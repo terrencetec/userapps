@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# by Sekiguchi 2015/08/03
+
+#RSET
+# tdswrite K1:VIS-PROTO_TM_GLOBALF_L_RSET 2
+
+#RAMP
+tdswrite K1:VIS-PROTO_TM_GLOBALF_L_TRAMP 1.0
+
+#OSEM SERVO OFF
+tdswrite K1:VIS-PROTO_TM_GLOBALF_L_GAIN 0.0
+
+
+
+
+
+
+
+

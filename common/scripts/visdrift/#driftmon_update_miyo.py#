@@ -1,0 +1,538 @@
+#!/usr/bin/env python
+
+"""aLIGO Suspension Drift Monitor 2
+
+updated Nov 23, 2014   RXA
+---fold in default command line args; we don't want to have a bunch of site specific junk in the MEDM screen
+
+---run it in the past based on the user input GPS time, rather than default to 'now - latency'
+
+---use fixed numbers for allowable drift rather than calculate based on recent fluctuations
+
+---replaced 'verbose' with python logging package
+
+---using fixed tolerances instead of statistical stdev calculations
+
+---added OMC suspension to the list
+
+---no longer writes to the STD or MEAN epics fields
+
+updated Jan 30, 2015   TDA
+
+-- cleaned up old options that no longer have use
+
+-- added dictionaries for defining fixed limits for each optic
+
+-- arbitrarily changed version from 0.1 to 0.2
+
+updated Nov 27, 2018 KK
+
+-- modified for the KAGRA version
+
+"""
+
+__author__ = 'Thomas Abbott <thomas.abbott@ligo.org>'
+__date__ = 'January 2015'
+__version__ = '0.2'
+
+import math
+import os
+import optparse
+import sys
+
+import nds2
+import epics
+
+import logging
+
+#ALL_OPTICS = ['MCI', 'MCE', 'MCO', 'PRM', 'PR2', 'PR3', 'SRM', 'SR2', 'SR3',
+#              'ITMX', 'ITMY', 'ETMX', 'ETMY','BS', 'TMSX', 'TMSY','ITM','IM2',
+#              'IM3','IM4','RTM','RM2','OTM','OM2','OM3', 'OMC']
+
+ALL_OPTICS = ['PRM', 'PR2', 'PR3', 'SRM', 'SR2', 'SR3',
+              'ITMX', 'ITMY', 'ETMX', 'ETMY','BS']
+
+ALL_STAGES = [
+    'MCE_IM','MCE_TM',
+    'MCI_IM','MCI_TM',
+    'MCO_IM','MCO_TM',
+    'IMMT1_IM','IMMT1_TM',
+    'IMMT2_IM','IMMT2_TM',
+    'PR2_SF','P2M_BF','PR2_IM','PR2_TM',    
+    'PR3_SF','P3M_BF','PR3_IM','PR3_TM',
+    'PRM_SF','PRM_BF','PRM_IM','PRM_TM',
+    'BS_IP','BS_F0','BS_F1','BS_BF','BS_IM','BS_TM',    
+    'SRM_IP','SRM_F0','SRM_F1','SRM_BF','SRM_IM','SRM_TM',
+    'SR2_IP','SR2_F0','SR2_F1','SR2_BF','SR2_IM','SR2_TM',
+    'SR3_IP','SR3_F0','SR3_F1','SR3_BF','SR3_IM','SR3_TM',
+    'ITMX_IP','ITMX_F0','ITMX_F1','ITMX_F2','ITMX_F3','ITMX_BF','ITMX_IM','ITMX_TM',
+    'ETMX_IP','ETMX_F0','ETMX_F1','ETMX_F2','ETMX_F3','ETMX_BF','ETMX_IM','ETMX_TM',
+    'ITMY_IP','ITMY_F0','ITMY_F1','ITMY_F2','ITMY_F3','ITMY_BF','ITMY_IM','ITMY_TM',
+    'ETMY_IP','ETMY_F0','ETMY_F1','ETMY_F2','ETMY_F3','ETMY_BF','ETMY_IM','ETMY_TM',   
+]
+              
+
+STAGE = {#'MCI': 'TM',
+#         'MCE': 'TM',
+#         'MCO': 'TM',
+         'PRM': 'BF',
+         'PR2': 'BF',
+         'PR3': 'BF',
+         'SRM': 'IM',
+         'SR2': 'IM',
+         'SR3': 'IM',
+         'ITMX': 'BF',
+         'ITMY': 'BF',
+         'ETMX': 'BF',
+         'ETMY': 'BF',
+         'BS': 'IM',
+#         'TMSX': 'TM',
+#         'TMSY': 'TM',
+#         'IMMT1': 'TM',
+#         'IMMT2': 'TM',
+#         'IM3': 'TM',
+#         'IM4': 'TM',
+#         'RTM': 'TM',
+#         'RM2': 'TM',
+#         'OTM': 'TM',
+#         'OM2': 'TM',
+#         'OM3': 'TM',
+#         'OMC': 'TM',
+         }
+
+DEGREES_OF_FREEDOTM = ['P', 'Y', 'V']
+DEGREES_OF_FREEDOM2 = ['P', 'Y', 'L']
+
+DOF = {#'MCI': DEGREES_OF_FREEDOTM,
+#         'MCE': DEGREES_OF_FREEDOTM,
+#         'MCO': DEGREES_OF_FREEDOTM,
+         'PRM': DEGREES_OF_FREEDOTM,
+         'PR2': DEGREES_OF_FREEDOTM,
+         'PR3': DEGREES_OF_FREEDOTM,
+         'SRM': DEGREES_OF_FREEDOTM,
+         'SR2': DEGREES_OF_FREEDOTM,
+         'SR3': DEGREES_OF_FREEDOTM,
+         'ITMX': DEGREES_OF_FREEDOTM,
+         'ITMY': DEGREES_OF_FREEDOTM,
+         'ETMX': DEGREES_OF_FREEDOTM,
+         'ETMY': DEGREES_OF_FREEDOTM,
+         'BS': DEGREES_OF_FREEDOTM,
+#         'TMSX': DEGREES_OF_FREEDOTM,
+#         'TMSY': DEGREES_OF_FREEDOTM,
+#         'OMC': DEGREES_OF_FREEDOTM,
+#         'IMMT1': DEGREES_OF_FREEDOM2,
+#         'IMMT2': DEGREES_OF_FREEDOM2,
+#         'IM3': DEGREES_OF_FREEDOM2,
+#         'IM4': DEGREES_OF_FREEDOM2,
+#         'RTM': DEGREES_OF_FREEDOM2,
+#         'RM2': DEGREES_OF_FREEDOM2,
+#         'OTM': DEGREES_OF_FREEDOM2,
+#         'OM2': DEGREES_OF_FREEDOM2,
+#         'OM3': DEGREES_OF_FREEDOM2,
+         }
+
+_DOF = {'TM' : ['P', 'Y', 'L'],
+        'IM' : ['P', 'Y', 'V', 'R', 'L', 'T'],
+        'BF' : ['P', 'Y', 'V', 'R', 'L', 'T', 'GAS'],
+        'SF' : ['GAS'],
+        'F0' : ['GAS'],
+        'F1' : ['GAS'],
+        'F2' : ['GAS'],
+        'F3' : ['GAS'],
+        'IP' : ['Y', 'L', 'T']
+        }
+TM_DOF = {
+    'MCO_TM' : ['PIT', 'YAW'],
+    'MCE_TM' : ['PIT', 'YAW'],
+    'MCI_TM' : ['PIT', 'YAW'],
+    'IMMT1_TM' : ['PIT', 'YAW'],
+    'IMMT2_TM' : ['PIT', 'YAW'],
+    'PR2_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'PR3_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'PRM_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'ITMX_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'ETMX_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'ITMY_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'ETMY_TM' : ['TILT_PIT', 'TILT_YAW'],
+    'BS_TM' : ['PIT', 'YAW'], # DIAG
+    'SR2_TM' : ['PIT', 'YAW'], # DIAG
+    'SR3_TM' : ['PIT', 'YAW'], # DIAG
+    'SRM_TM' : ['PIT', 'YAW'], # DIAG
+     }
+
+_BOUND = {
+    # TM
+    'TM_P': 20, # urad
+    'TM_Y': 20, # urad
+    'TM_L': 20, # um
+    # IM
+    'IM_P': 20, # urad
+    'IM_Y': 20, # urad
+    'IM_R': 20, # urad
+    'IM_V': 20, # um
+    'IM_L': 20, # um
+    'IM_T': 20, # um
+    # BF
+    'BF_P': 20, # urad
+    'BF_Y': 20, # urad
+    'BF_R': 20, # urad
+    'BF_V': 20, # um
+    'BF_L': 20, # um
+    'BF_T': 20, # um
+    # GAS
+    'BF_GAS': 20, # um    
+    'SF_GAS': 20, # um
+    'F0_GAS': 20, # um
+    'F1_GAS': 20, # um
+    'F2_GAS': 20, # um
+    'F3_GAS': 20, # um
+    # IP
+    'IP_P': 20, # urad
+    'IP_Y': 20, # urad
+    'IP_R': 20, # urad
+    'IP_V': 20, # um
+    'IP_L': 20, # um
+    'IP_T': 20, # um
+}
+
+CHANNEL = "%s:VIS-%s_%s_DAMP_%s_INMON"
+_CHANNEL = "%s:VIS-%s_DAMP_%s_INMON"
+OPLEV_CHANNEL = "%s:VIS-%s_OPLEV_%s_OUTPUT" # OUTMON is not DQ channel
+OPLEV_DIAG_CHANNEL = "%s:VIS-%s_OPLEV_%s_DIAGMON"
+
+SEVERITY = {'HHSV': 'MAJOR',
+            'HSV': 'MINOR',
+            'LSV': 'MINOR',
+            'LLSV': 'MAJOR',
+            }
+
+########## TUNE THRESHOLDS HERE ###########
+# yellow thresholds = mean +- yellow_factor * BOUND value
+# red thresholds = mean +- red_factor * BOUND value
+
+
+yellow_factor = 1
+red_factor = 5
+
+#BOUND_MCI = {'P' : 20, 'V' : 10, 'Y' : 10}
+#BOUND_MCE = {'P' : 20, 'V' : 10, 'Y' : 10}
+#BOUND_MCO = {'P' : 20, 'V' : 15 , 'Y' : 10}
+BOUND_PRM = {'P' : 20, 'V' : 15, 'Y' : 15}
+BOUND_PR2 = {'P' : 30, 'V' : 15, 'Y' : 25}
+BOUND_PR3 = {'P' : 5, 'V' : 15 , 'Y' : 5}
+BOUND_SRM = {'P' : 20, 'V' : 15, 'Y' : 50}
+BOUND_SR2 = {'P' : 20, 'V' : 25, 'Y' : 30}
+BOUND_SR3 = {'P' : 5, 'V' : 15 , 'Y' : 5}
+BOUND_ITMX = {'P' : 15, 'V' : 20, 'Y' : 5}
+BOUND_ITMY = {'P' : 15, 'V' : 20, 'Y' : 5}
+BOUND_ETMX = {'P' : 15, 'V' : 20 , 'Y' : 5}
+BOUND_ETMY = {'P' : 15, 'V' : 20 , 'Y' : 5}
+BOUND_BS = {'P' : 20, 'V' : 20, 'Y' : 5}
+#BOUND_TMSX = {'P' : 10, 'V' : 20 , 'Y' : 5}
+#BOUND_TMSY = {'P' : 10, 'V' : 20 , 'Y' : 5}
+#BOUND_RTM = {'P' : 100, 'L' : 2 , 'Y' : 100}
+#BOUND_RM2 = {'P' : 100, 'L' : 2 , 'Y' : 100}
+#BOUND_ITM = {'P' : 10, 'L' : 2 , 'Y' : 5}
+#BOUND_IMMT1 = {'P' : 10, 'L' : 2 , 'Y' : 5}
+#BOUND_IMMT2 = {'P' : 10, 'L' : 2 , 'Y' : 5}
+#BOUND_IM4 = {'P' : 10, 'L' : 2 , 'Y' : 10}
+#BOUND_OTM = {'P' : 50, 'L' : 2 , 'Y' : 50}
+#BOUND_OM2 = {'P' : 50, 'L' : 2 , 'Y' : 50}
+#BOUND_OM3 = {'P' : 50, 'L' : 2 , 'Y' : 50}
+#BOUND_OMC = {'P' : 15, 'V' : 2 , 'Y' : 10}
+###########################################
+
+
+BOUND_OPTIC = {#'MCI' : BOUND_MCI,
+#        'MCE' : BOUND_MCE,
+#        'MCO' : BOUND_MCO,
+        'PRM' : BOUND_PRM,
+        'PR2' : BOUND_PR2,
+        'PR3' : BOUND_PR3,
+        'SRM' : BOUND_SRM,
+        'SR2' : BOUND_SR2,
+        'SR3' : BOUND_SR3,
+        'ITMX' : BOUND_ITMX,
+        'ITMY' : BOUND_ITMY,
+        'ETMX' : BOUND_ETMX,
+        'ETMY' : BOUND_ETMY,
+        'BS' : BOUND_BS,
+#        'TMSX' : BOUND_TMSX,
+#        'TMSY' : BOUND_TMSY,
+#        'RTM' : BOUND_RTM,
+#        'RM2' : BOUND_RM2,
+#        'IMMT1' : BOUND_IMMT1,
+#        'IMMT2' : BOUND_IMMT2,
+#        'IM3' : BOUND_IM3,
+#        'IM4' : BOUND_IM4,
+#        'OTM' : BOUND_OTM,
+#        'OM2' : BOUND_OM2,
+#        'OM3' : BOUND_OM3,
+#        'OMC' : BOUND_OMC
+        }
+
+# -----------------------------------------------------------------------------
+# Parse command-line
+
+usage = "%s ifo [OPTIONS]" % os.path.basename(__file__)
+
+parser = optparse.OptionParser(description=__doc__, usage=usage,
+                               epilog="Please direct all questions/comments "
+                                      "to %s" % __author__)
+
+
+ndsargs = parser.add_option_group('NDS options')
+ndsargs.add_option('-H', '--host', action='store', type='string',
+                   help="NDS server hostname, default: site nds1 host")
+ndsargs.add_option('-P', '--port', action='store', type='int',
+                   default=8088, help="NDS server port, default: %default")
+ndsargs.add_option('-l', '--latency', action='store', type='float',
+                   default=30,
+                   help="NDS data access latency, default: %default")
+ndsargs.add_option('--starttime', action='store', type='float',
+                   help="GPS start time [s]")
+
+
+opargs = parser.add_option_group("Optic choices",
+                                 "Choose which optics to update, --all is "
+                                 "default, otherwise specify each optic "
+                                 "individually.")
+opargs.add_option("-a", "--all", action="store_true", default=False,
+                  help="Update all optics, default: %default")
+for optic in ALL_OPTICS:
+    opargs.add_option('--%s' % optic.lower(), action='store_true',
+                      default=False,
+                      help=("Update {0}, default: %default "
+                            "(unless --all)".format(optic)))
+for stage in ALL_STAGES:
+    opargs.add_option('--%s' % stage.lower(), action='store_true',
+                      default=False,
+                      help=("Update {0}, default: %default "
+                            "(unless --all)".format(stage)))
+
+datargs = parser.add_option_group("Data choices",
+                                  "Choose how much data to use in determining "
+                                  "standard deviations.")
+datargs.add_option('-d', '--duration', action='store', type='float',
+                   help="Duration of data used for threshold determination")
+datargs.add_option('--minor-stdev', action='store', type='int', default=1,
+                   help="number of standard deviations for minor threshold "
+                        "(yellow)")
+datargs.add_option('--major-stdev', action='store', type='int', default=2,
+                   help="number of standard deviations for major threshold "
+                        "(red)")
+
+epicsargs = parser.add_option_group("EPICS options")
+epicsargs.add_option("-s", "--setup-epics", action='store', default=False,
+                     help="Set EPICS alarm severities, only needs to be "
+                          "done once on each system")
+
+opts, args = parser.parse_args()
+
+# parse arguments
+if len(args) != 1:
+    parser.error("Must give IFO prefix as argument")
+ifo = args[0]
+
+# set NDS server default
+if not opts.host:
+    opts.host = '%snds1' % ifo[:2].lower()
+
+# parse optics
+optics = []
+if any(getattr(opts, optic.lower()) for optic in ALL_OPTICS):
+    for optic in ALL_OPTICS:
+        if getattr(opts, optic.lower()):
+            optics.append(optic)
+
+if not optics:
+    # parse stage
+    stages = []
+    if any(getattr(opts, stage.lower()) for stage in ALL_STAGES):
+        for stage in ALL_STAGES:
+            if getattr(opts, stage.lower()):
+                stages.append(stage)
+            
+if True and optics:
+    for optic in optics:
+        stage = STAGE[optic]
+        DEGREES_OF_FREEDOM = DOF[optic]
+        for dof in DEGREES_OF_FREEDOM:
+            channel = CHANNEL % (ifo, optic, stage, dof)
+            for sev,val in SEVERITY.iteritems():
+                epics.caput('%s.%s' % (channel, sev), val)
+                print('%s.%s' % (channel, sev), val)
+                
+elif True and stages:
+    for stage in stages:
+        print stage
+        if '_TM' in stage:        
+            DEGREES_OF_FREEDOM = TM_DOF[stage]
+            if 'PR' in stage:
+                DEGREES_OF_FREEDOM = TM_DOF[stage]
+            else:
+                DEGREES_OF_FREEDOM = TM_DOF[stage]
+        else:
+            DEGREES_OF_FREEDOM = _DOF[stage.split('_')[1]]        
+        for dof in DEGREES_OF_FREEDOM:
+            if '_TM' in stage:
+                if 'BS' in stage or 'SR' in stage:
+                    channel = OPLEV_DIAG_CHANNEL % (ifo, stage, dof)
+                else:
+                    channel = OPLEV_CHANNEL % (ifo, stage, dof)
+            else:
+                channel = _CHANNEL % (ifo, stage, dof)
+            
+            for sev,val in SEVERITY.iteritems():
+                epics.caput('%s.%s' % (channel, sev), val)
+                print('%s.%s' % (channel, sev), val)
+#exit()    
+# -----------------------------------------------------------------------------
+# set up alarm severities (should only need to run this section once) #
+if True:
+    for optic in optics:
+        stage = STAGE[optic]
+        DEGREES_OF_FREEDOM = DOF[optic]
+        for dof in DEGREES_OF_FREEDOM:
+            channel = CHANNEL % (ifo, optic, stage, dof)
+            for sev,val in SEVERITY.iteritems():
+                #epics.caput('%s.%s' % (channel, sev), val)
+                print('%s.%s' % (channel, sev), val)
+
+# -----------------------------------------------------------------------------
+# Read optic data, get thresholds, and set in EPICS
+
+# set GPS times
+if not opts.starttime:
+    #gpsstart = 1232344474
+    #opts.starttime = gpsstart
+    t = raw_input("Enter GPS start time in seconds: ")
+    opts.starttime = float(t)
+    gpsstart = opts.starttime        
+    
+if not opts.duration:
+    #opts.duration = 10
+    t = raw_input("Enter averaging duration in seconds: ")
+    opts.duration = float(t)
+
+# setup location of DEBUG log file (should be different for each site?)
+optic_name = "ALL"
+
+for optic in ALL_OPTICS:
+    if getattr(opts, optic.lower()):
+        optic_name = optic 
+if not optics:
+    optic_name = 'TMP'    
+
+log_dir = "/opt/rtcds/userapps/release/vis/common/scripts/visdrift/"
+log_filename = "%sSUSDRIFT_%s_%s-%s.log" % (log_dir,optic_name,int(opts.starttime),int(opts.duration))
+logging.basicConfig(filename=log_filename, level=logging.DEBUG)
+
+def nds_fetch_old_data(connection, channel, start, end):
+    """Fetch data from NDS using the standard fetch method
+    """
+    print channel
+    return connection.fetch(int(math.floor(start)), int(math.ceil(end)),
+                            [channel])[0]
+
+
+logging.info("Start time: %s" % opts.starttime)
+logging.info("Duration: %s" % opts.duration)
+
+# open connection to NDS2
+connection = nds2.connection(opts.host, opts.port)
+logging.info("Connected to NDS host %s:%d" % (opts.host, opts.port))
+
+if not optics:
+    for stage in stages:
+        print stage
+        if '_TM' in stage:        
+            DEGREES_OF_FREEDOM = TM_DOF[stage]
+            if 'PR' in stage:
+                DEGREES_OF_FREEDOM = TM_DOF[stage]
+            else:
+                DEGREES_OF_FREEDOM = TM_DOF[stage]
+        else:
+            DEGREES_OF_FREEDOM = _DOF[stage.split('_')[1]]
+        print DEGREES_OF_FREEDOM
+        logging.info("Updating %s..." % optic)
+        for dof in DEGREES_OF_FREEDOM:
+            if 'PR' in stage:
+                if '_TM' in stage:
+                    bound = _BOUND[stage.split('_')[1]+'_'+dof.split('_')[1][0]]
+            else:
+                if '_TM' in stage:
+                    if 'TILT' in dof:
+                        bound = _BOUND[stage.split('_')[1]+'_'+dof.split('_')[1][0]]
+                    else:
+                        bound = _BOUND[stage.split('_')[1]+'_'+dof[0]]
+                else:
+                    bound = _BOUND[stage.split('_')[1]+'_'+dof]
+            logging.info("    %s: " % dof)
+            print stage
+            if '_TM' in stage:
+                if 'BS' in stage or 'SR' in stage:
+                    channel = OPLEV_DIAG_CHANNEL % (ifo, stage, dof)
+                else:
+                    channel = OPLEV_CHANNEL % (ifo, stage, dof)
+            else:
+                channel = _CHANNEL % (ifo, stage, dof)
+            buffer_ = nds_fetch_old_data(connection, channel, gpsstart, gpsstart+opts.duration)
+            data = buffer_.data            
+            mean = data.mean()
+            
+            yellow = yellow_factor*bound
+            red = red_factor*bound
+            
+            # caput thresholds
+            for thresh,dev in zip(['HIHI', 'HIGH', 'LOW', 'LOLO'],
+                                  [red,  yellow, -yellow, -red]):
+                epics.caput('%s.%s' % (channel, thresh), mean+dev)
+                print('    %s.%s: %s' % (channel, thresh, mean+dev))
+                logging.info('    %s.%s: %s' % (channel, thresh, mean+dev))
+            print("")    
+    
+for optic in optics:
+    stage = STAGE[optic]
+    DEGREES_OF_FREEDOM = DOF[optic]
+    logging.info("Updating %s..." % optic)
+    for dof in DEGREES_OF_FREEDOM:
+	
+        bound_optic = BOUND_OPTIC[optic]
+        bound = bound_optic[dof]
+
+        logging.info("    %s: " % dof)
+        channel = CHANNEL % (ifo, optic, stage, dof)
+        buffer_ = nds_fetch_old_data(connection, channel, gpsstart, gpsstart+opts.duration)
+        data = buffer_.data
+
+#        logging.info("%.2fs read from NDS, " % opts.duration)
+
+        mean = data.mean()
+
+        yellow = yellow_factor*bound
+        red = red_factor*bound
+
+        # caput mean value
+        # meanchannel = "%s_MEAN" % channel
+        # epics.caput(meanchannel, mean)
+
+        # caput STD value
+        # stdchannel = '%s_STD' % channel
+        # epics.caput(stdchannel, std)
+
+        # caput thresholds
+        for thresh,dev in zip(['HIHI', 'HIGH', 'LOW', 'LOLO'],
+                              [red,  yellow, -yellow, -red]):
+            epics.caput('%s.%s' % (channel, thresh), mean+dev)
+            print('    %s.%s: %s' % (channel, thresh, mean+dev))
+            logging.info('    %s.%s: %s' % (channel, thresh, mean+dev))
+        print("")
+
+logging.info("Update completed successfully")
+
+print("All logging info saved into %s" % log_filename)
+raw_input("Press Enter to close window...")
+
+
+#EOF

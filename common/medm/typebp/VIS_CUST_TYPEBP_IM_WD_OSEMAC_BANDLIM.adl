@@ -1,0 +1,7318 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/typebp/VIS_CUST_TYPEBP_IM_WD_OSEMAC_BANDLIM.adl"
+	version=030107
+}
+display {
+	object {
+		x=654
+		y=78
+		width=945
+		height=948
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=1000
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=405
+		y=3
+		width=150
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(IFO) $(OPTIC) IM WD OSEM BAND LIMIT FILTERS (for AC coupling)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=714
+		y=2
+		width=200
+		height=14
+	}
+	monitor {
+		chan="$(IFO):FEC-$(FEC)_TIME_STRING"
+		clr=30
+		bclr=14
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=3
+		width=44
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="$(IFO)"
+}
+rectangle {
+	object {
+		x=166
+		y=24
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=77
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+	}
+}
+polyline {
+	object {
+		x=705
+		y=113
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(706,114)
+		(706,153)
+		(931,153)
+	}
+}
+polyline {
+	object {
+		x=792
+		y=75
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(793,76)
+		(905,76)
+	}
+}
+polyline {
+	object {
+		x=70
+		y=113
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(71,114)
+		(892,114)
+	}
+}
+polyline {
+	object {
+		x=105
+		y=50
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(155,51)
+		(106,51)
+	}
+}
+polyline {
+	object {
+		x=152
+		y=50
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(153,51)
+		(153,113)
+	}
+}
+text {
+	object {
+		x=33
+		y=84
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=3
+		y=99
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=88
+		y=103
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=84
+		y=123
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=188
+		y=83
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=187
+		y=103
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=185
+		y=126
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=265
+		y=28
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=470
+		y=28
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=539
+		y=89
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(539,89)
+		(539,139)
+		(608,113)
+		(539,89)
+	}
+}
+"text entry" {
+	object {
+		x=539
+		y=105
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=614
+		y=102
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=613
+		y=125
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=615
+		y=82
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=271
+		y=157
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=323
+		y=157
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=273
+		y=135
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=377
+		y=135
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=430
+		y=135
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=326
+		y=135
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=481
+		y=135
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=271
+		y=118
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=325
+		y=118
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=377
+		y=118
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=430
+		y=118
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=482
+		y=118
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=271
+		y=98
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=273
+		y=76
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=326
+		y=76
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=378
+		y=76
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=429
+		y=76
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=481
+		y=76
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=271
+		y=59
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=325
+		y=59
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=377
+		y=59
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=430
+		y=59
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=482
+		y=59
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=828
+		y=113
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(829,114)
+		(895,114)
+	}
+}
+"text update" {
+	object {
+		x=862
+		y=62
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=862
+		y=100
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=862
+		y=138
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=863
+		y=31
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=873
+		y=51
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=40
+		y=36
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=890
+		y=84
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=890
+		y=123
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=890
+		y=163
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=68
+		y=20
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=678
+		y=70
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=706
+		y=84
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(706,84)
+		(706,114)
+	}
+}
+polygon {
+	object {
+		x=701
+		y=83
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(701,99)
+		(712,99)
+		(706,83)
+		(701,99)
+	}
+}
+"message button" {
+	object {
+		x=736
+		y=102
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=733
+		y=122
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=783
+		y=84
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=778
+		y=64
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=808
+		y=82
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,83)
+		(809,113)
+	}
+}
+text {
+	object {
+		x=133
+		y=19
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=147
+		y=33
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(147,33)
+		(158,33)
+		(152,49)
+		(147,33)
+	}
+}
+composite {
+	object {
+		x=74
+		y=68
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=79
+				y=84
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=79
+						y=84
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(90,100)
+						(79,100)
+						(83,84)
+						(90,100)
+					}
+				}
+				polyline {
+					object {
+						x=85
+						y=85
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(85,85)
+						(85,113)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=74
+				y=68
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=171
+				y=83
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=177
+						y=85
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(177,85)
+						(177,113)
+					}
+				}
+				polygon {
+					object {
+						x=171
+						y=83
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(182,100)
+						(171,100)
+						(175,83)
+						(182,100)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=153
+				y=69
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=539
+		y=90
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_SW2R"
+	}
+	points {
+		(539,90)
+		(539,140)
+		(608,114)
+		(539,90)
+	}
+}
+text {
+	object {
+		x=543
+		y=152
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=640
+		y=147
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V1_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=165
+		y=176
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=182
+		y=229
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+	}
+}
+polyline {
+	object {
+		x=704
+		y=265
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(705,266)
+		(705,305)
+		(930,305)
+	}
+}
+polyline {
+	object {
+		x=791
+		y=227
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(792,228)
+		(904,228)
+	}
+}
+polyline {
+	object {
+		x=69
+		y=265
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(70,266)
+		(891,266)
+	}
+}
+polyline {
+	object {
+		x=104
+		y=202
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(154,203)
+		(105,203)
+	}
+}
+polyline {
+	object {
+		x=151
+		y=202
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(152,203)
+		(152,265)
+	}
+}
+text {
+	object {
+		x=32
+		y=236
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=2
+		y=251
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=87
+		y=255
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=83
+		y=275
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=187
+		y=235
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=186
+		y=255
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=184
+		y=278
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=264
+		y=180
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=469
+		y=180
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=538
+		y=241
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(538,241)
+		(538,291)
+		(607,265)
+		(538,241)
+	}
+}
+"text entry" {
+	object {
+		x=538
+		y=257
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=613
+		y=254
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=612
+		y=277
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=614
+		y=234
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=270
+		y=309
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=322
+		y=309
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=272
+		y=287
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=376
+		y=287
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=429
+		y=287
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=287
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=480
+		y=287
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=270
+		y=270
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=270
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=270
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=270
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=270
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=270
+		y=250
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=272
+		y=228
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=228
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=377
+		y=228
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=428
+		y=228
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=480
+		y=228
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=270
+		y=211
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=211
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=211
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=211
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=211
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=827
+		y=265
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(828,266)
+		(894,266)
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=214
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=252
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=290
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=862
+		y=183
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=872
+		y=203
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=39
+		y=188
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=236
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=275
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=315
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=67
+		y=172
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=677
+		y=222
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=705
+		y=236
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(705,236)
+		(705,266)
+	}
+}
+polygon {
+	object {
+		x=700
+		y=235
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(700,251)
+		(711,251)
+		(705,235)
+		(700,251)
+	}
+}
+"message button" {
+	object {
+		x=735
+		y=254
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=732
+		y=274
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=782
+		y=236
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=777
+		y=216
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=807
+		y=234
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(808,235)
+		(808,265)
+	}
+}
+polygon {
+	object {
+		x=146
+		y=185
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(146,185)
+		(157,185)
+		(151,201)
+		(146,185)
+	}
+}
+composite {
+	object {
+		x=73
+		y=220
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=78
+				y=236
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=78
+						y=236
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(89,252)
+						(78,252)
+						(82,236)
+						(89,252)
+					}
+				}
+				polyline {
+					object {
+						x=84
+						y=237
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(84,237)
+						(84,265)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=73
+				y=220
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=170
+				y=235
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=176
+						y=237
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(176,237)
+						(176,265)
+					}
+				}
+				polygon {
+					object {
+						x=170
+						y=235
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(181,252)
+						(170,252)
+						(174,235)
+						(181,252)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=152
+				y=221
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=538
+		y=242
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_SW2R"
+	}
+	points {
+		(538,242)
+		(538,292)
+		(607,266)
+		(538,242)
+	}
+}
+text {
+	object {
+		x=542
+		y=304
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=639
+		y=299
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V2_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=165
+		y=328
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=182
+		y=381
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+	}
+}
+polyline {
+	object {
+		x=704
+		y=417
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(705,418)
+		(705,457)
+		(930,457)
+	}
+}
+polyline {
+	object {
+		x=791
+		y=379
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(792,380)
+		(904,380)
+	}
+}
+polyline {
+	object {
+		x=69
+		y=417
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(70,418)
+		(891,418)
+	}
+}
+polyline {
+	object {
+		x=104
+		y=354
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(154,355)
+		(105,355)
+	}
+}
+polyline {
+	object {
+		x=151
+		y=354
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(152,355)
+		(152,417)
+	}
+}
+text {
+	object {
+		x=32
+		y=388
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=2
+		y=403
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=87
+		y=407
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=83
+		y=427
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=187
+		y=387
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=186
+		y=407
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=184
+		y=430
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=264
+		y=332
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=469
+		y=332
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=538
+		y=393
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(538,393)
+		(538,443)
+		(607,417)
+		(538,393)
+	}
+}
+"text entry" {
+	object {
+		x=538
+		y=409
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=613
+		y=406
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=612
+		y=429
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=614
+		y=386
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=270
+		y=461
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=322
+		y=461
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=272
+		y=439
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=376
+		y=439
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=429
+		y=439
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=439
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=480
+		y=439
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=270
+		y=422
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=422
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=422
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=422
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=422
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=270
+		y=402
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=272
+		y=380
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=380
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=377
+		y=380
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=428
+		y=380
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=480
+		y=380
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=270
+		y=363
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=363
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=363
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=363
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=363
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=827
+		y=417
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(828,418)
+		(894,418)
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=366
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=404
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=442
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=862
+		y=335
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=872
+		y=355
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=39
+		y=340
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=388
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=427
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=67
+		y=324
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=677
+		y=374
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=705
+		y=388
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(705,388)
+		(705,418)
+	}
+}
+polygon {
+	object {
+		x=700
+		y=387
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(700,403)
+		(711,403)
+		(705,387)
+		(700,403)
+	}
+}
+"message button" {
+	object {
+		x=735
+		y=406
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=732
+		y=426
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=782
+		y=388
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=777
+		y=368
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=807
+		y=386
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(808,387)
+		(808,417)
+	}
+}
+text {
+	object {
+		x=132
+		y=323
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=146
+		y=337
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(146,337)
+		(157,337)
+		(151,353)
+		(146,337)
+	}
+}
+composite {
+	object {
+		x=73
+		y=372
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=78
+				y=388
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=78
+						y=388
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(89,404)
+						(78,404)
+						(82,388)
+						(89,404)
+					}
+				}
+				polyline {
+					object {
+						x=84
+						y=389
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(84,389)
+						(84,417)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=73
+				y=372
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=170
+				y=387
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=176
+						y=389
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(176,389)
+						(176,417)
+					}
+				}
+				polygon {
+					object {
+						x=170
+						y=387
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(181,404)
+						(170,404)
+						(174,387)
+						(181,404)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=152
+				y=373
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=538
+		y=394
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_SW2R"
+	}
+	points {
+		(538,394)
+		(538,444)
+		(607,418)
+		(538,394)
+	}
+}
+text {
+	object {
+		x=542
+		y=456
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=639
+		y=451
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_V3_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=165
+		y=480
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=182
+		y=533
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+	}
+}
+polyline {
+	object {
+		x=704
+		y=569
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(705,570)
+		(705,609)
+		(930,609)
+	}
+}
+polyline {
+	object {
+		x=791
+		y=531
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(792,532)
+		(904,532)
+	}
+}
+polyline {
+	object {
+		x=69
+		y=569
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(70,570)
+		(891,570)
+	}
+}
+polyline {
+	object {
+		x=104
+		y=506
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(154,507)
+		(105,507)
+	}
+}
+polyline {
+	object {
+		x=151
+		y=506
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(152,507)
+		(152,569)
+	}
+}
+text {
+	object {
+		x=32
+		y=540
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=87
+		y=559
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=83
+		y=579
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=187
+		y=539
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=186
+		y=559
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=184
+		y=582
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=264
+		y=484
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=469
+		y=484
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=538
+		y=545
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(538,545)
+		(538,595)
+		(607,569)
+		(538,545)
+	}
+}
+"text entry" {
+	object {
+		x=538
+		y=561
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=613
+		y=558
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=612
+		y=581
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=614
+		y=538
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=271
+		y=613
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=323
+		y=613
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=272
+		y=591
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=376
+		y=591
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=429
+		y=591
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=591
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=480
+		y=591
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=270
+		y=574
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=574
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=574
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=574
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=574
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=270
+		y=554
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=272
+		y=532
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=532
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=377
+		y=532
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=428
+		y=532
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=480
+		y=532
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=270
+		y=515
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=515
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=515
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=515
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=515
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=827
+		y=569
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(828,570)
+		(894,570)
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=518
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=556
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=594
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=862
+		y=487
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=872
+		y=507
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=39
+		y=492
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=540
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=579
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=890
+		y=619
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=67
+		y=476
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=677
+		y=526
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=705
+		y=540
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(705,540)
+		(705,570)
+	}
+}
+polygon {
+	object {
+		x=700
+		y=539
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(700,555)
+		(711,555)
+		(705,539)
+		(700,555)
+	}
+}
+"message button" {
+	object {
+		x=735
+		y=558
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=732
+		y=578
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=782
+		y=540
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=777
+		y=520
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=807
+		y=538
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(808,539)
+		(808,569)
+	}
+}
+text {
+	object {
+		x=132
+		y=475
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=146
+		y=489
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(146,489)
+		(157,489)
+		(151,505)
+		(146,489)
+	}
+}
+composite {
+	object {
+		x=73
+		y=524
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=78
+				y=540
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=78
+						y=540
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(89,556)
+						(78,556)
+						(82,540)
+						(89,556)
+					}
+				}
+				polyline {
+					object {
+						x=84
+						y=541
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(84,541)
+						(84,569)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=73
+				y=524
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=170
+				y=539
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=176
+						y=541
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(176,541)
+						(176,569)
+					}
+				}
+				polygon {
+					object {
+						x=170
+						y=539
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(181,556)
+						(170,556)
+						(174,539)
+						(181,556)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=152
+				y=525
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=538
+		y=546
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_SW2R"
+	}
+	points {
+		(538,546)
+		(538,596)
+		(607,570)
+		(538,546)
+	}
+}
+text {
+	object {
+		x=543
+		y=608
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=639
+		y=603
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=2
+		y=555
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H1_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+composite {
+	object {
+		x=-2147483648
+		y=2147483647
+		width=1
+		height=1
+	}
+	"composite name"=""
+	children {
+	}
+}
+rectangle {
+	object {
+		x=165
+		y=632
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=182
+		y=685
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+	}
+}
+polyline {
+	object {
+		x=704
+		y=721
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(705,722)
+		(705,761)
+		(930,761)
+	}
+}
+polyline {
+	object {
+		x=791
+		y=683
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(792,684)
+		(904,684)
+	}
+}
+polyline {
+	object {
+		x=69
+		y=721
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(70,722)
+		(891,722)
+	}
+}
+polyline {
+	object {
+		x=104
+		y=658
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(154,659)
+		(105,659)
+	}
+}
+polyline {
+	object {
+		x=151
+		y=658
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(152,659)
+		(152,721)
+	}
+}
+text {
+	object {
+		x=32
+		y=692
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=2
+		y=707
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=87
+		y=711
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=83
+		y=731
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=187
+		y=691
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=186
+		y=711
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=184
+		y=734
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=264
+		y=636
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=469
+		y=636
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=538
+		y=697
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(538,697)
+		(538,747)
+		(607,721)
+		(538,697)
+	}
+}
+"text entry" {
+	object {
+		x=538
+		y=713
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=613
+		y=710
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=612
+		y=733
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=614
+		y=690
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=270
+		y=765
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=322
+		y=765
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=272
+		y=743
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=376
+		y=743
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=429
+		y=743
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=743
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=480
+		y=743
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=270
+		y=726
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=726
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=726
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=726
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=726
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=270
+		y=706
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=272
+		y=684
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=684
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=377
+		y=684
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=428
+		y=684
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=480
+		y=684
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=270
+		y=667
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=667
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=667
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=667
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=667
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=827
+		y=721
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(828,722)
+		(894,722)
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=670
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=708
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=746
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=862
+		y=639
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=872
+		y=659
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=39
+		y=644
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=692
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=731
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=67
+		y=628
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=677
+		y=678
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=705
+		y=692
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(705,692)
+		(705,722)
+	}
+}
+polygon {
+	object {
+		x=700
+		y=691
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(700,707)
+		(711,707)
+		(705,691)
+		(700,707)
+	}
+}
+"message button" {
+	object {
+		x=735
+		y=710
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=732
+		y=730
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=782
+		y=692
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=777
+		y=672
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=807
+		y=690
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(808,691)
+		(808,721)
+	}
+}
+text {
+	object {
+		x=132
+		y=627
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=146
+		y=641
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(146,641)
+		(157,641)
+		(151,657)
+		(146,641)
+	}
+}
+composite {
+	object {
+		x=73
+		y=676
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=78
+				y=692
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=78
+						y=692
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(89,708)
+						(78,708)
+						(82,692)
+						(89,708)
+					}
+				}
+				polyline {
+					object {
+						x=84
+						y=693
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(84,693)
+						(84,721)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=73
+				y=676
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=170
+				y=691
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=176
+						y=693
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(176,693)
+						(176,721)
+					}
+				}
+				polygon {
+					object {
+						x=170
+						y=691
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(181,708)
+						(170,708)
+						(174,691)
+						(181,708)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=152
+				y=677
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=538
+		y=698
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_SW2R"
+	}
+	points {
+		(538,698)
+		(538,748)
+		(607,722)
+		(538,698)
+	}
+}
+text {
+	object {
+		x=542
+		y=760
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=639
+		y=755
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H2_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=771
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=165
+		y=784
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=182
+		y=837
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+	}
+}
+polyline {
+	object {
+		x=704
+		y=873
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(705,874)
+		(705,913)
+		(930,913)
+	}
+}
+polyline {
+	object {
+		x=791
+		y=835
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(792,836)
+		(904,836)
+	}
+}
+polyline {
+	object {
+		x=69
+		y=873
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(70,874)
+		(891,874)
+	}
+}
+polyline {
+	object {
+		x=104
+		y=810
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(154,811)
+		(105,811)
+	}
+}
+polyline {
+	object {
+		x=151
+		y=810
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(152,811)
+		(152,873)
+	}
+}
+text {
+	object {
+		x=32
+		y=844
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=2
+		y=859
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=87
+		y=863
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=83
+		y=883
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=187
+		y=843
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=186
+		y=863
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=184
+		y=886
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=264
+		y=788
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=469
+		y=788
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=538
+		y=849
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(538,849)
+		(538,899)
+		(607,873)
+		(538,849)
+	}
+}
+"text entry" {
+	object {
+		x=538
+		y=865
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=613
+		y=862
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=612
+		y=885
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=614
+		y=842
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=270
+		y=917
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=322
+		y=917
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=272
+		y=895
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=376
+		y=895
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=429
+		y=895
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=895
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=480
+		y=895
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=270
+		y=878
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=878
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=878
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=878
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=878
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=270
+		y=858
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=272
+		y=836
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=325
+		y=836
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=377
+		y=836
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=428
+		y=836
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=480
+		y=836
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=270
+		y=819
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=324
+		y=819
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=376
+		y=819
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=429
+		y=819
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=481
+		y=819
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=827
+		y=873
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(828,874)
+		(894,874)
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=822
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=860
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=861
+		y=898
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=862
+		y=791
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=872
+		y=811
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=39
+		y=796
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=889
+		y=844
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=889
+		y=883
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=67
+		y=780
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=677
+		y=830
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=705
+		y=844
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(705,844)
+		(705,874)
+	}
+}
+polygon {
+	object {
+		x=700
+		y=843
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(700,859)
+		(711,859)
+		(705,843)
+		(700,859)
+	}
+}
+"message button" {
+	object {
+		x=735
+		y=862
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=732
+		y=882
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=782
+		y=844
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=777
+		y=824
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=807
+		y=842
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(808,843)
+		(808,873)
+	}
+}
+text {
+	object {
+		x=132
+		y=779
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=146
+		y=793
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(146,793)
+		(157,793)
+		(151,809)
+		(146,793)
+	}
+}
+composite {
+	object {
+		x=73
+		y=828
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=78
+				y=844
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=78
+						y=844
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(89,860)
+						(78,860)
+						(82,844)
+						(89,860)
+					}
+				}
+				polyline {
+					object {
+						x=84
+						y=845
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(84,845)
+						(84,873)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=73
+				y=828
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=170
+				y=843
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=176
+						y=845
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(176,845)
+						(176,873)
+					}
+				}
+				polygon {
+					object {
+						x=170
+						y=843
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(181,860)
+						(170,860)
+						(174,843)
+						(181,860)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=152
+				y=829
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=538
+		y=850
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_SW2R"
+	}
+	points {
+		(538,850)
+		(538,900)
+		(607,874)
+		(538,850)
+	}
+}
+text {
+	object {
+		x=542
+		y=912
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=639
+		y=907
+		width=57
+		height=25
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_IM_WD_OSEMAC_BANDLIM_H3_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=186
+		y=31
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="V1"
+}
+text {
+	object {
+		x=186
+		y=185
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="V2"
+}
+text {
+	object {
+		x=186
+		y=337
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="V3"
+}
+text {
+	object {
+		x=186
+		y=490
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="H1"
+}
+text {
+	object {
+		x=186
+		y=639
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="H2"
+}
+text {
+	object {
+		x=186
+		y=791
+		width=33
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="H3"
+}

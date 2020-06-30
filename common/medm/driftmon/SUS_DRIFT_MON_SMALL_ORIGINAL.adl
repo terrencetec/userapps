@@ -1,0 +1,3474 @@
+
+file {
+	name="/opt/rtcds/userapps/trunk/sus/common/medm/SUS_DRIFT_MON_SMALL.adl"
+	version=030109
+}
+display {
+	object {
+		x=3116
+		y=464
+		width=1285
+		height=695
+	}
+	clr=50
+	bclr=13
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=1285
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=8
+		y=2
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=15
+	}
+	textix="$(IFO)"
+}
+text {
+	object {
+		x=531
+		y=2
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=60
+	}
+	textix="$(IFO)DRIFT_MONITOR"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1024
+		y=2
+		width=230
+		height=15
+	}
+	monitor {
+		chan="$(IFO):FEC-30_TIME_STRING"
+		clr=30
+		bclr=14
+	}
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=16
+		y=655
+		width=290
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Yellow: Somewhat out of range"
+}
+text {
+	object {
+		x=924
+		y=655
+		width=320
+		height=20
+	}
+	"basic attribute" {
+		clr=4
+	}
+	textix="Note: Top-stage OSEM channels used."
+}
+text {
+	object {
+		x=362
+		y=655
+		width=290
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Red: Danger Zone"
+}
+composite {
+	object {
+		x=12
+		y=440
+		width=230
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=12
+				y=442
+				width=30
+				height=22
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="ITMy"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=85
+				y=447
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=78
+				y=476
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=75
+				y=505
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=166
+				y=440
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMY_M0_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=166
+				y=468
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMY_M0_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=166
+				y=498
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMY_M0_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=12
+		y=340
+		width=229
+		height=83
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=12
+				y=343
+				width=29
+				height=23
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="ETMy"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=85
+				y=348
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=78
+				y=379
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=75
+				y=408
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=165
+				y=340
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMY_M0_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=370
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMY_M0_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=165
+				y=400
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMY_M0_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=262
+		y=440
+		width=227
+		height=84
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=262
+				y=442
+				width=29
+				height=23
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="BS"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=335
+				y=447
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=327
+				y=477
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=325
+				y=508
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=413
+				y=440
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-BS_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=413
+				y=470
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-BS_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=413
+				y=501
+				width=76
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-BS_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=12
+		y=535
+		width=229
+		height=81
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=12
+				y=535
+				width=30
+				height=23
+			}
+			"basic attribute" {
+				clr=31
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="TMSY"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=81
+				y=540
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=73
+				y=571
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=600
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=164
+				y=537
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-TMSY_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=164
+				y=593
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-TMSY_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=164
+				y=565
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-TMSY_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=440
+		width=229
+		height=81
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=843
+				y=445
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=774
+				y=440
+				width=30
+				height=23
+			}
+			"basic attribute" {
+				clr=40
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="RM1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=835
+				y=475
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=832
+				y=504
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=926
+				y=498
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM1_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=926
+				y=469
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM1_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=926
+				y=442
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM1_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=535
+		width=229
+		height=81
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=843
+				y=540
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=835
+				y=571
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=832
+				y=600
+				width=38
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=774
+				y=535
+				width=30
+				height=23
+			}
+			"basic attribute" {
+				clr=40
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="RM2"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=926
+				y=537
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM2_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=926
+				y=565
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=926
+				y=593
+				width=77
+				height=23
+			}
+			monitor {
+				chan="$(IFO):SUS-RM2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=522
+		y=440
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=522
+				y=440
+				width=30
+				height=22
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="ITMx"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=595
+				y=445
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=676
+				y=440
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMX_M0_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=676
+				y=467
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMX_M0_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		text {
+			object {
+				x=588
+				y=474
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=585
+				y=504
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=676
+				y=496
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ITMX_M0_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=522
+		y=340
+		width=230
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=522
+				y=342
+				width=30
+				height=22
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="ETMx"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=595
+				y=347
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=588
+				y=376
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=585
+				y=405
+				width=37
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=676
+				y=340
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMX_M0_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=676
+				y=368
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMX_M0_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=676
+				y=397
+				width=76
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-ETMX_M0_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=526
+		y=535
+		width=225
+		height=81
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=526
+				y=535
+				width=225
+				height=81
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=526
+						y=535
+						width=29
+						height=23
+					}
+					"basic attribute" {
+						clr=60
+					}
+					"dynamic attribute" {
+						chan="C1:SUS-SRM_POS"
+					}
+					textix="TMSX"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=593
+						y=540
+						width=37
+						height=15
+					}
+					"basic attribute" {
+						clr=0
+					}
+					textix="pitch(uRad)"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=586
+						y=571
+						width=37
+						height=15
+					}
+					"basic attribute" {
+						clr=0
+					}
+					textix="vert (micron)"
+					align="horiz. centered"
+				}
+				text {
+					object {
+						x=583
+						y=600
+						width=37
+						height=15
+					}
+					"basic attribute" {
+						clr=0
+					}
+					textix="yaw(uRad)"
+					align="horiz. centered"
+				}
+				"text update" {
+					object {
+						x=675
+						y=537
+						width=76
+						height=23
+					}
+					monitor {
+						chan="$(IFO):SUS-TMSX_M1_DAMP_P_INMON"
+						clr=0
+						bclr=14
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					limits {
+						precSrc="default"
+						precDefault=1
+					}
+				}
+				"text update" {
+					object {
+						x=675
+						y=565
+						width=76
+						height=23
+					}
+					monitor {
+						chan="$(IFO):SUS-TMSX_M1_DAMP_V_INMON"
+						clr=0
+						bclr=14
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					limits {
+						precSrc="default"
+						precDefault=1
+					}
+				}
+				"text update" {
+					object {
+						x=675
+						y=593
+						width=76
+						height=23
+					}
+					monitor {
+						chan="$(IFO):SUS-TMSX_M1_DAMP_Y_INMON"
+						clr=0
+						bclr=14
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					limits {
+						precSrc="default"
+						precDefault=1
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=1030
+		y=140
+		width=230
+		height=78
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1030
+				y=141
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=63
+			}
+			textix="OM2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1100
+				y=146
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1092
+				y=175
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1090
+				y=203
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=1180
+				y=140
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM2_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=166
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=194
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=1030
+		y=40
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1030
+				y=41
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=63
+			}
+			textix="OM1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1100
+				y=46
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1092
+				y=76
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1090
+				y=104
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=1180
+				y=40
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM1_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=67
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM1_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=95
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM1_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=340
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=774
+				y=341
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="IM4"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=844
+				y=346
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=836
+				y=376
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=834
+				y=404
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=924
+				y=340
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM4_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=367
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM4_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=395
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM4_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+text {
+	object {
+		x=96
+		y=162
+		width=2
+		height=2
+	}
+	"basic attribute" {
+		clr=0
+	}
+}
+text {
+	object {
+		x=10
+		y=133
+		width=36
+		height=19
+	}
+	"basic attribute" {
+		clr=0
+	}
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=14
+		y=140
+		width=226
+		height=81
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=14
+				y=143
+				width=31
+				height=21
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="MC2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=81
+				y=148
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=73
+				y=177
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=206
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=161
+				y=199
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=160
+				y=169
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC2_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=160
+				y=140
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=14
+		y=240
+		width=225
+		height=83
+	}
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=160
+				y=240
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC3_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		text {
+			object {
+				x=14
+				y=245
+				width=31
+				height=21
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="MC3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=81
+				y=250
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=73
+				y=279
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=308
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=160
+				y=269
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC3_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=160
+				y=299
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC3_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=1030
+		y=340
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1030
+				y=341
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=17
+			}
+			textix="OMC"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1100
+				y=346
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1092
+				y=376
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1090
+				y=404
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=1180
+				y=340
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OMC_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=367
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OMC_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=395
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OMC_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=262
+		y=140
+		width=230
+		height=81
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=262
+				y=140
+				width=32
+				height=22
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="PR2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=330
+				y=145
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=322
+				y=176
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=320
+				y=205
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=411
+				y=142
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=170
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR2_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=199
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=262
+		y=40
+		width=230
+		height=88
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=262
+				y=44
+				width=32
+				height=22
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-PRM_POS"
+			}
+			textix="PRM"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=330
+				y=50
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=322
+				y=81
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=320
+				y=113
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=411
+				y=40
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PRM_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=71
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PRM_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=102
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PRM_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=522
+		y=240
+		width=229
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=522
+				y=240
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=52
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="SR3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=591
+				y=245
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=583
+				y=276
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=580
+				y=304
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=670
+				y=242
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR3_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=269
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR3_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=298
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR3_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=240
+		width=230
+		height=78
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=774
+				y=241
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="IM3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=844
+				y=246
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=836
+				y=275
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=834
+				y=303
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=924
+				y=240
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM3_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=266
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM3_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=294
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM3_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=1030
+		y=240
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=1030
+				y=241
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=17
+			}
+			textix="OM3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1100
+				y=246
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1092
+				y=276
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=1090
+				y=304
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=1180
+				y=240
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM3_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=267
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM3_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=1180
+				y=295
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-OM3_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=522
+		y=140
+		width=229
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=522
+				y=140
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=52
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="SR2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=591
+				y=145
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=583
+				y=175
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=580
+				y=204
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=670
+				y=142
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=169
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR2_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=198
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SR2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=140
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=774
+				y=141
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="IM2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=844
+				y=146
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=836
+				y=176
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=834
+				y=204
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=924
+				y=140
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM2_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=167
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM2_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=195
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM2_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=14
+		y=40
+		width=225
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=14
+				y=42
+				width=31
+				height=21
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-MMT2_POS"
+			}
+			textix="MC1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=81
+				y=47
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=73
+				y=76
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=70
+				y=105
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=160
+				y=69
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC1_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=160
+				y=98
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC1_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=160
+				y=40
+				width=79
+				height=21
+			}
+			monitor {
+				chan="$(IFO):SUS-MC1_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=522
+		y=40
+		width=229
+		height=80
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=522
+				y=40
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=52
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="SRM"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=591
+				y=45
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=583
+				y=75
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=580
+				y=104
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=670
+				y=42
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SRM_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=69
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SRM_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=670
+				y=98
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-SRM_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=774
+		y=40
+		width=230
+		height=79
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=774
+				y=41
+				width=31
+				height=22
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="IM1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=844
+				y=46
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="long(um)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=836
+				y=76
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=834
+				y=104
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=924
+				y=40
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM1_M1_DAMP_L_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=67
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM1_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=924
+				y=95
+				width=80
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-IM1_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=262
+		y=240
+		width=230
+		height=82
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=262
+				y=240
+				width=32
+				height=22
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				chan="C1:SUS-SRM_POS"
+			}
+			textix="PR3"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=330
+				y=245
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="pitch(uRad)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=322
+				y=276
+				width=40
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="vert (micron)"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=320
+				y=305
+				width=39
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="yaw(uRad)"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=411
+				y=242
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR3_M1_DAMP_P_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=270
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR3_M1_DAMP_V_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+		"text update" {
+			object {
+				x=411
+				y=300
+				width=81
+				height=22
+			}
+			monitor {
+				chan="$(IFO):SUS-PR3_M1_DAMP_Y_INMON"
+				clr=0
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+				precSrc="default"
+				precDefault=1
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=552
+		y=651
+		width=180
+		height=27
+	}
+	display[0] {
+		name="/opt/rtcds/userapps/release/sus/common/medm/SUS_DRIFT_MONITOR_LARGE.adl"
+		args="IFO=$(IFO)"
+	}
+	clr=50
+	bclr=6
+	label="Drift Mon Large"
+}
+"shell command" {
+	object {
+		x=1072
+		y=451
+		width=171
+		height=31
+	}
+	command[0] {
+		label="ARM TRENDS"
+		name="xterm -g -40x10 -e"
+		args="'. /opt/rtcds/userapps/release/sys/common/scripts/dvplot_last_lock.sh -f ARMS.txt' &"
+	}
+	clr=50
+	bclr=13
+	label="ARM TRENDS"
+}
+"shell command" {
+	object {
+		x=1074
+		y=492
+		width=171
+		height=31
+	}
+	command[0] {
+		label="ARM TRENDS"
+		name="xterm -g -40x10 -e"
+		args="'. /opt/rtcds/userapps/release/sys/common/scripts/dvplot_last_lock.sh -f CORNER.txt' &"
+	}
+	clr=50
+	bclr=13
+	label="CORNER TRENDS"
+}
+"shell command" {
+	object {
+		x=1074
+		y=534
+		width=171
+		height=31
+	}
+	command[0] {
+		label="ARM TRENDS"
+		name="xterm -g -40x10 -e"
+		args="'. /opt/rtcds/userapps/release/sys/common/scripts/dvplot_last_lock.sh -f INPUT_OUTPUT.txt' &"
+	}
+	clr=50
+	bclr=13
+	label="INPUT TRENDS"
+}
+"shell command" {
+	object {
+		x=1076
+		y=575
+		width=171
+		height=31
+	}
+	command[0] {
+		label="ARM TRENDS"
+		name="xterm -g -40x10 -e"
+		args="'. /opt/rtcds/userapps/release/sys/common/scripts/dvplot_last_lock.sh -f MCS.txt' &"
+	}
+	clr=50
+	bclr=13
+	label="MC TRENDS"
+}

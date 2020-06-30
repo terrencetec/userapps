@@ -1,0 +1,6133 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/typea/VIS_CUST_TYPEA_GASMODAL_MASTER.adl"
+	version=030107
+}
+display {
+	object {
+		x=827
+		y=67
+		width=958
+		height=800
+	}
+	clr=27
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=169
+		y=640
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=39
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=693
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+	}
+}
+text {
+	object {
+		x=206
+		y=653
+		width=40
+		height=30
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="M5"
+}
+polyline {
+	object {
+		x=708
+		y=729
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(709,730)
+		(709,769)
+		(934,769)
+	}
+}
+polyline {
+	object {
+		x=795
+		y=691
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(796,692)
+		(908,692)
+	}
+}
+polyline {
+	object {
+		x=73
+		y=729
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(74,730)
+		(895,730)
+	}
+}
+polyline {
+	object {
+		x=108
+		y=666
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(158,667)
+		(109,667)
+	}
+}
+polyline {
+	object {
+		x=155
+		y=666
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(156,667)
+		(156,729)
+	}
+}
+text {
+	object {
+		x=36
+		y=700
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=6
+		y=715
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=91
+		y=719
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=87
+		y=739
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=191
+		y=699
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=190
+		y=719
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=188
+		y=742
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=268
+		y=644
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=473
+		y=644
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=542
+		y=705
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(542,705)
+		(542,755)
+		(611,729)
+		(542,705)
+	}
+}
+"text entry" {
+	object {
+		x=542
+		y=721
+		width=51
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=718
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=616
+		y=741
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=618
+		y=698
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=274
+		y=773
+		width=51
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=326
+		y=773
+		width=205
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=276
+		y=751
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=380
+		y=751
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=433
+		y=751
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=751
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=484
+		y=751
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=274
+		y=734
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=734
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=734
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=734
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=734
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=274
+		y=714
+		width=256
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=276
+		y=692
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=692
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=381
+		y=692
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=432
+		y=692
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=484
+		y=692
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=274
+		y=675
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=675
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=675
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=675
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=675
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=831
+		y=729
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(832,730)
+		(898,730)
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=678
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=716
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=754
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=866
+		y=647
+		width=72
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=876
+		y=667
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=43
+		y=652
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=700
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=739
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=779
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=636
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=681
+		y=686
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=709
+		y=700
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(709,700)
+		(709,730)
+	}
+}
+polygon {
+	object {
+		x=704
+		y=699
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(704,715)
+		(715,715)
+		(709,699)
+		(704,715)
+	}
+}
+"message button" {
+	object {
+		x=739
+		y=718
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=736
+		y=738
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=786
+		y=700
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=781
+		y=680
+		width=61
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=811
+		y=698
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(812,699)
+		(812,729)
+	}
+}
+text {
+	object {
+		x=136
+		y=635
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=150
+		y=649
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(150,649)
+		(161,649)
+		(155,665)
+		(150,649)
+	}
+}
+composite {
+	object {
+		x=77
+		y=684
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=82
+				y=700
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=82
+						y=700
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(93,716)
+						(82,716)
+						(86,700)
+						(93,716)
+					}
+				}
+				polyline {
+					object {
+						x=88
+						y=701
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(88,701)
+						(88,729)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=77
+				y=684
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=174
+				y=699
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=180
+						y=701
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(180,701)
+						(180,729)
+					}
+				}
+				polygon {
+					object {
+						x=174
+						y=699
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(185,716)
+						(174,716)
+						(178,699)
+						(185,716)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=156
+				y=685
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=542
+		y=706
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_SW2R"
+	}
+	points {
+		(542,706)
+		(542,756)
+		(611,730)
+		(542,706)
+	}
+}
+text {
+	object {
+		x=546
+		y=768
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=643
+		y=763
+		width=57
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M5_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=169
+		y=487
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=38
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=540
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=950
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=208
+		y=503
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="M4"
+}
+polyline {
+	object {
+		x=708
+		y=576
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(709,577)
+		(709,616)
+		(934,616)
+	}
+}
+polyline {
+	object {
+		x=795
+		y=538
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(796,539)
+		(908,539)
+	}
+}
+polyline {
+	object {
+		x=73
+		y=576
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(74,577)
+		(895,577)
+	}
+}
+polyline {
+	object {
+		x=108
+		y=513
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(158,514)
+		(109,514)
+	}
+}
+polyline {
+	object {
+		x=155
+		y=513
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(156,514)
+		(156,576)
+	}
+}
+text {
+	object {
+		x=36
+		y=547
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=6
+		y=562
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=91
+		y=566
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=87
+		y=586
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=191
+		y=546
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=190
+		y=566
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=188
+		y=589
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=268
+		y=491
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=473
+		y=491
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=542
+		y=552
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(542,552)
+		(542,602)
+		(611,576)
+		(542,552)
+	}
+}
+"text entry" {
+	object {
+		x=542
+		y=568
+		width=51
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=565
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=616
+		y=588
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=618
+		y=545
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=274
+		y=620
+		width=51
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=326
+		y=620
+		width=205
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=276
+		y=598
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=380
+		y=598
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=433
+		y=598
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=598
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=484
+		y=598
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=274
+		y=581
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=581
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=581
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=581
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=581
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=274
+		y=561
+		width=256
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=276
+		y=539
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=539
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=381
+		y=539
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=432
+		y=539
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=484
+		y=539
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=274
+		y=522
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=522
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=522
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=522
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=522
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=831
+		y=576
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(832,577)
+		(898,577)
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=525
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=563
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=601
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=866
+		y=494
+		width=72
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=876
+		y=514
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=43
+		y=499
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=547
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=586
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=626
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=483
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=681
+		y=533
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=709
+		y=547
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(709,547)
+		(709,577)
+	}
+}
+polygon {
+	object {
+		x=704
+		y=546
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(704,562)
+		(715,562)
+		(709,546)
+		(704,562)
+	}
+}
+"message button" {
+	object {
+		x=739
+		y=565
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=736
+		y=585
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=786
+		y=547
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=781
+		y=527
+		width=61
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=811
+		y=545
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(812,546)
+		(812,576)
+	}
+}
+text {
+	object {
+		x=136
+		y=482
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=150
+		y=496
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(150,496)
+		(161,496)
+		(155,512)
+		(150,496)
+	}
+}
+composite {
+	object {
+		x=77
+		y=531
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=82
+				y=547
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=82
+						y=547
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(93,563)
+						(82,563)
+						(86,547)
+						(93,563)
+					}
+				}
+				polyline {
+					object {
+						x=88
+						y=548
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(88,548)
+						(88,576)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=77
+				y=531
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=174
+				y=546
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=180
+						y=548
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(180,548)
+						(180,576)
+					}
+				}
+				polygon {
+					object {
+						x=174
+						y=546
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(185,563)
+						(174,563)
+						(178,546)
+						(185,563)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=156
+				y=532
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=542
+		y=553
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_SW2R"
+	}
+	points {
+		(542,553)
+		(542,603)
+		(611,577)
+		(542,553)
+	}
+}
+text {
+	object {
+		x=546
+		y=615
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=643
+		y=610
+		width=57
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M4_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=169
+		y=335
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=37
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=388
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+	}
+}
+text {
+	object {
+		x=206
+		y=352
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="M3"
+}
+polyline {
+	object {
+		x=708
+		y=424
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(709,425)
+		(709,464)
+		(934,464)
+	}
+}
+polyline {
+	object {
+		x=795
+		y=386
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(796,387)
+		(908,387)
+	}
+}
+polyline {
+	object {
+		x=73
+		y=424
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(74,425)
+		(895,425)
+	}
+}
+polyline {
+	object {
+		x=108
+		y=361
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(158,362)
+		(109,362)
+	}
+}
+polyline {
+	object {
+		x=155
+		y=361
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(156,362)
+		(156,424)
+	}
+}
+text {
+	object {
+		x=36
+		y=395
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=6
+		y=410
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=91
+		y=414
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=87
+		y=434
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=191
+		y=394
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=190
+		y=414
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=188
+		y=437
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=268
+		y=339
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=473
+		y=339
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=542
+		y=400
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(542,400)
+		(542,450)
+		(611,424)
+		(542,400)
+	}
+}
+"text entry" {
+	object {
+		x=542
+		y=416
+		width=51
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=413
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=616
+		y=436
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=618
+		y=393
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=274
+		y=468
+		width=51
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=326
+		y=468
+		width=205
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=276
+		y=446
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=380
+		y=446
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=433
+		y=446
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=446
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=484
+		y=446
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=274
+		y=429
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=429
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=429
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=429
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=429
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=274
+		y=409
+		width=256
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=276
+		y=387
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=387
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=381
+		y=387
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=432
+		y=387
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=484
+		y=387
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=274
+		y=370
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=370
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=370
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=370
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=370
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=831
+		y=424
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(832,425)
+		(898,425)
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=373
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=411
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=449
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=866
+		y=342
+		width=72
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=876
+		y=362
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=43
+		y=347
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=395
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=434
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=474
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=331
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=681
+		y=381
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=709
+		y=395
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(709,395)
+		(709,425)
+	}
+}
+polygon {
+	object {
+		x=704
+		y=394
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(704,410)
+		(715,410)
+		(709,394)
+		(704,410)
+	}
+}
+"message button" {
+	object {
+		x=739
+		y=413
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=736
+		y=433
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=786
+		y=395
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=781
+		y=375
+		width=61
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=811
+		y=393
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(812,394)
+		(812,424)
+	}
+}
+text {
+	object {
+		x=136
+		y=330
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=150
+		y=344
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(150,344)
+		(161,344)
+		(155,360)
+		(150,344)
+	}
+}
+composite {
+	object {
+		x=77
+		y=379
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=82
+				y=395
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=82
+						y=395
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(93,411)
+						(82,411)
+						(86,395)
+						(93,411)
+					}
+				}
+				polyline {
+					object {
+						x=88
+						y=396
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(88,396)
+						(88,424)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=77
+				y=379
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=174
+				y=394
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=180
+						y=396
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(180,396)
+						(180,424)
+					}
+				}
+				polygon {
+					object {
+						x=174
+						y=394
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(185,411)
+						(174,411)
+						(178,394)
+						(185,411)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=156
+				y=380
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=542
+		y=401
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_SW2R"
+	}
+	points {
+		(542,401)
+		(542,451)
+		(611,425)
+		(542,401)
+	}
+}
+text {
+	object {
+		x=546
+		y=463
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=643
+		y=458
+		width=57
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M3_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=169
+		y=182
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=36
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=235
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+	}
+}
+text {
+	object {
+		x=211
+		y=198
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="M2"
+}
+polyline {
+	object {
+		x=708
+		y=271
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(709,272)
+		(709,311)
+		(934,311)
+	}
+}
+polyline {
+	object {
+		x=795
+		y=233
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(796,234)
+		(908,234)
+	}
+}
+polyline {
+	object {
+		x=73
+		y=271
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(74,272)
+		(895,272)
+	}
+}
+polyline {
+	object {
+		x=108
+		y=208
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(158,209)
+		(109,209)
+	}
+}
+polyline {
+	object {
+		x=155
+		y=208
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(156,209)
+		(156,271)
+	}
+}
+text {
+	object {
+		x=36
+		y=242
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=6
+		y=257
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=91
+		y=261
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=87
+		y=281
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=191
+		y=241
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=190
+		y=261
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=188
+		y=284
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=268
+		y=186
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=473
+		y=186
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=542
+		y=247
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(542,247)
+		(542,297)
+		(611,271)
+		(542,247)
+	}
+}
+"text entry" {
+	object {
+		x=542
+		y=263
+		width=51
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=260
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=616
+		y=283
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=618
+		y=240
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=274
+		y=315
+		width=51
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=326
+		y=315
+		width=205
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=276
+		y=293
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=380
+		y=293
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=433
+		y=293
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=293
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=484
+		y=293
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=274
+		y=276
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=276
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=276
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=276
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=276
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=274
+		y=256
+		width=256
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=276
+		y=234
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=234
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=381
+		y=234
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=432
+		y=234
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=484
+		y=234
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=274
+		y=217
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=217
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=217
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=217
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=217
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=831
+		y=271
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(832,272)
+		(898,272)
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=220
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=258
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=296
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=866
+		y=189
+		width=72
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=876
+		y=209
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=43
+		y=194
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=242
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=281
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=892
+		y=322
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=178
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=681
+		y=228
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=709
+		y=242
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(709,242)
+		(709,272)
+	}
+}
+polygon {
+	object {
+		x=704
+		y=241
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(704,257)
+		(715,257)
+		(709,241)
+		(704,257)
+	}
+}
+"message button" {
+	object {
+		x=739
+		y=260
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=736
+		y=280
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=786
+		y=242
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=781
+		y=222
+		width=61
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=811
+		y=240
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(812,241)
+		(812,271)
+	}
+}
+text {
+	object {
+		x=136
+		y=177
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=150
+		y=191
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(150,191)
+		(161,191)
+		(155,207)
+		(150,191)
+	}
+}
+composite {
+	object {
+		x=77
+		y=226
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=82
+				y=242
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=82
+						y=242
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(93,258)
+						(82,258)
+						(86,242)
+						(93,258)
+					}
+				}
+				polyline {
+					object {
+						x=88
+						y=243
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(88,243)
+						(88,271)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=77
+				y=226
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=174
+				y=241
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=180
+						y=243
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(180,243)
+						(180,271)
+					}
+				}
+				polygon {
+					object {
+						x=174
+						y=241
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(185,258)
+						(174,258)
+						(178,241)
+						(185,258)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=156
+				y=227
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=542
+		y=248
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_SW2R"
+	}
+	points {
+		(542,248)
+		(542,298)
+		(611,272)
+		(542,248)
+	}
+}
+text {
+	object {
+		x=546
+		y=310
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=643
+		y=305
+		width=57
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M2_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=169
+		y=28
+		width=680
+		height=150
+	}
+	"basic attribute" {
+		clr=35
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=81
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+	}
+}
+text {
+	object {
+		x=206
+		y=48
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="M1"
+}
+polyline {
+	object {
+		x=708
+		y=117
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(709,118)
+		(709,157)
+		(934,157)
+	}
+}
+polyline {
+	object {
+		x=795
+		y=79
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(796,80)
+		(908,80)
+	}
+}
+polyline {
+	object {
+		x=73
+		y=117
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(74,118)
+		(895,118)
+	}
+}
+polyline {
+	object {
+		x=108
+		y=54
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(158,55)
+		(109,55)
+	}
+}
+polyline {
+	object {
+		x=155
+		y=54
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(156,55)
+		(156,117)
+	}
+}
+text {
+	object {
+		x=36
+		y=88
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=6
+		y=103
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=91
+		y=107
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=87
+		y=127
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=191
+		y=87
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=190
+		y=107
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=188
+		y=130
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=268
+		y=32
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=473
+		y=32
+		width=205
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=542
+		y=93
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(542,93)
+		(542,143)
+		(611,117)
+		(542,93)
+	}
+}
+"text entry" {
+	object {
+		x=542
+		y=109
+		width=51
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=617
+		y=106
+		width=49
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=616
+		y=129
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=618
+		y=86
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=274
+		y=161
+		width=51
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=326
+		y=161
+		width=205
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=276
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=380
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=433
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=484
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=274
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=274
+		y=102
+		width=256
+		height=11
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=276
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=329
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=381
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=432
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=484
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=274
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=328
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=380
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=433
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=485
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=831
+		y=117
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(832,118)
+		(898,118)
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=66
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=104
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=142
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=866
+		y=35
+		width=72
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=876
+		y=55
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=43
+		y=40
+		width=77
+		height=24
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=893
+		y=88
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=127
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=893
+		y=168
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=24
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=681
+		y=74
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=709
+		y=88
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(709,88)
+		(709,118)
+	}
+}
+polygon {
+	object {
+		x=704
+		y=87
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(704,103)
+		(715,103)
+		(709,87)
+		(704,103)
+	}
+}
+"message button" {
+	object {
+		x=739
+		y=106
+		width=47
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=736
+		y=126
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=786
+		y=88
+		width=51
+		height=7
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=781
+		y=68
+		width=61
+		height=20
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=811
+		y=86
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(812,87)
+		(812,117)
+	}
+}
+text {
+	object {
+		x=136
+		y=23
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=150
+		y=37
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(150,37)
+		(161,37)
+		(155,53)
+		(150,37)
+	}
+}
+composite {
+	object {
+		x=77
+		y=72
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=82
+				y=88
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=82
+						y=88
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(93,104)
+						(82,104)
+						(86,88)
+						(93,104)
+					}
+				}
+				polyline {
+					object {
+						x=88
+						y=89
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(88,89)
+						(88,117)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=77
+				y=72
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=174
+				y=87
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=180
+						y=89
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(180,89)
+						(180,117)
+					}
+				}
+				polygon {
+					object {
+						x=174
+						y=87
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(185,104)
+						(174,104)
+						(178,87)
+						(185,104)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=156
+				y=73
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=542
+		y=94
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_SW2R"
+	}
+	points {
+		(542,94)
+		(542,144)
+		(611,118)
+		(542,94)
+	}
+}
+text {
+	object {
+		x=546
+		y=156
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=643
+		y=151
+		width=57
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_GASMODAL_$(FUNC)_M1_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=807
+		y=4
+		width=120
+		height=15
+	}
+	monitor {
+		chan="K1:FEC-106_TIME_STRING"
+		clr=30
+		bclr=14
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=373
+		y=4
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="$(IFO) $(OPTIC) GAS MODAL $(FUNCTION) FILTERS"
+	align="horiz. centered"
+}

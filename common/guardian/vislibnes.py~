@@ -1,0 +1,650 @@
+'''
+vislib is the library of the utility function for VIS guardain.
+[TODO] VISfunctions.py needs to be marged.
+Function
+--------
+get_Type(optic)
+make_DoFList(DoF)
+DiagChan(optic,DoF)
+DCSetChan(optic,DoF)
+DitherINF(optic,DoF,stage='TM')
+init_DitherINF(optic, DoF='Both', stage='TM')
+ISCINF(optic,DoF)
+init_ISCINF(optic, DoF='Both', stage='TM', engaged_FM=[])
+Lock(optic,DoF,stage='TM')
+init_Lock(optic, DoF='Both', stage='TM', engaged_FM=[], gain=1)
+update_DCsetpoint(optic, DoF='Both')
+OpticAlign(optic,DoF,LigoFilter=False)
+init_OpticAlign(optic, DoF='Both', ramptime=RampTimeOpticAlignDC)
+'''
+import kagralib
+from visparams import * 
+##########################
+# valuables
+##########################
+IE = ['I','E']
+XY = ['X','Y']
+DOFs = ['PIT','YAW']
+TypeA = 'TypeA'
+TypeB = 'TypeB'
+TypeBp = 'TypeBp'
+TypeC = 'TypeC'
+
+TypeList = {
+    'TypeA':['%sTM%s'%(ie,xy) for ie in IE for xy in XY],
+    'TypeB':['BS'] + ['SR%s'%s for s in ['2','3','M']],
+    'TypeBp':['PR%s'%s for s in ['2','3','M']],
+    'TypeC':['IMMT1','IMMT2'] + ['MC%s'%s for s in ['E','I','O']],
+}
+
+##########################
+#utility functions
+##########################
+def get_Type(optic):
+    for key in TypeList.keys():
+        if optic in TypeList[key]:
+            return key
+
+def make_DoFList(DoF):
+    '''make_DoFList(DoF)
+    function to make DoF list. 
+    Example
+    -------
+    make_DoFList('PIT') returns ['PIT']
+    make_DoFList('Both') returns ['PIT','YAW']
+    make_DoFList(['YAW']) returns ['YAW']
+    '''
+    if DoF == 'Both':
+        DoFs = ['PIT','YAW']
+    else:
+        if not isinstance(DoF, list):
+            DoFs = [DoF]
+        else:
+            DoFs = DoF
+
+    return DoFs
+
+def initialize_VISFB(optic, chanFunc, gain, ramptime, DoF='ALL', stage='ALL', engaged_FM=[], gain,)
+    '''initialize_VISFB(optic, chanFunc, **kwargs):
+    function to initialize FB
+    
+    Arguments
+    ---------
+    optic: string
+    chanFunc: function
+        function of FB to initialize
+    DoF: string
+    stage: string
+    '''
+    
+##########################
+# Chanel managers
+##########################
+def DiagChan(optic,DoF):
+    '''DiagChan(optic,DoF)
+    function to get channal name of diagonalized oplev value
+
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,LEN
+     
+    Return
+    ------
+    channelname: string
+
+    Example
+    -------
+    oplev = ezca[DiagChan('ITMX','PIT')]
+
+    '''
+    if optic in TypeList[TypeC]:
+        return 'VIS-%s_TM_OPLEV_%s_OUT16'%(optic,DoF)
+    else:
+        return 'VIS-%s_TM_OPLEV_%s_DIAGMON'%(optic,DoF)
+
+    
+def DCSetChan(optic,DoF):
+    '''DCSetChan(optic,DoF):
+    function to get channal name of DC setpoint
+
+    Arguments
+    ---------
+    optic: string
+    DoF: string
+       Chose from PIT,YAW,LEN
+
+    Return
+    ------
+    channelname: string or LIGOFilter
+
+    Example
+    -------
+    ezca[DCSetChan('ITMX','PIT')] = 10
+    '''
+    if optic in TypeList[TypeC]:
+        return None
+    StageList = {
+        'TypeA':'MN',
+        'TypeB':'IM',
+        'TypeBp':'TM',
+        }
+    Type = get_Type(optic)
+    return ezca.get_LIGOFilter('VIS-%s_%s_OLSET_%s'%(optic,StageList[get_Type(optic)],DoF[0]))
+
+
+def init_DCSetChan(optic, DoF='Both', ramptime=TRAMP['DCSetChan']):
+    '''init_DCSetChan(optic, DoF='Both', ramp_time=TRAMP['DCSetChan']):
+    Function to initialize DC setpoint FB.
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string
+    ramp_time: float
+    
+    Example
+    -------
+    init_DCSetChan('ETMY')
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(DCSetChan(optic, dof, True).filter_name,
+                         gain = 1,
+                         ramptime = ramptime,
+                         )
+    
+    
+def DitherINF(optic,DoF,stage='TM'):
+    '''DitherINF(optic,DoF,stage='TM')
+    function to get LIGOFilter object of the Dither input filter
+
+    Arguments
+    --------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+     
+    Return
+    ------
+    ditherInf: LIGOFilter
+
+    Example
+    -------
+    DitherINF('PR3','PIT').ramp_gain(value=1, ramp_time=0, wait=False)
+    '''
+    type = get_Type(optic)
+    return ezca.get_LIGOFilter('VIS-%s_%s_DITHER_%s'%(optic,stage,DoF[0]))
+
+
+def init_DitherINF(optic, DoF='Both', stage='TM', ramptime=TRAMP['DitherINF']):
+    '''init_DitherINF(optic, DoF='Both', stage='TM', ramptime=TRAMP['DitherINF']):
+    function to engage Dither INF. put gain of 1 to Dither INF
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+    ramptime: float
+
+    Example
+    -------
+    init_DitherINF('ETMX', stage='IM')
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(DitherINF(optic, dof, stage).filter_name,
+                         gain = 1,
+                         ramptime = ramptime,
+                         )
+        
+def disable_DitherINF(optic, DoF='Both', stage='ALL', ramptime=TRAMP['Disable']):
+    '''disable_DitherINF(optic, DoF='Both', stage='ALL', ramptime=TRAMP['Disable']):
+    function to disable Dither INF.
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA), or ALL
+    ramptime: float
+
+    Example
+    -------
+    disable_DitherINF('ETMX', stage='IM')
+    '''
+    type = get_Type(optic)
+    DoFs = make_DoFList(DoF)
+    Stages = [stage]
+    if stage == 'ALL':
+        if type == TypeA:
+            Stages = ['TM','IM','MN']
+        elif type == TypeB:
+            Stages = ['TM','IM']
+        else:
+            Stages = ['TM']
+            
+    for dof in DoFs:
+        for Stage in Stages:
+            kagralib.init_FB(DitherINF(optic, dof, Stage).filter_name,
+                             gain = 0,
+                             ramptime = ramptime,
+                         )
+        
+def ISCINF(optic,DoF):
+    '''ISCINF(optic,DoF)
+    function to get LIGOFilter object of the ISC input filter
+
+    Arguments
+    --------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,LEN
+     
+    Return
+    ------
+    ditherInf: LIGOFilter
+
+    Example
+    -------
+    ISCINF('PR3','PIT').ramp_gain(value=1, ramp_time=0, wait=False)
+    '''
+    type = get_Type(optic)
+    stage = {'TypeA':'','TypeB':'','TypeBp':'TM_','TypeC':'TM_'}
+    return ezca.get_LIGOFilter('VIS-%s_%sISCINF_%s'%(optic,stage[type],DoF[0]))
+
+
+def init_ISCINF(optic, DoF='Both', engaged_FM=[], ramptime=TRAMP['ISCINF']):
+    '''init_ISCINF(optic, DoF='Both', engaged_FM=[], ramptime=TRAMP['ISCINF']):
+    function to initialize Dither INF. 
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    enaged_FM: list of string
+       FM list to be enabled
+    ramptime: float
+
+    Example
+    -------
+    init_ISCINF('ETMX', engaged_FM = ['FM1'])
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(ISCINF(optic, dof).filter_name,
+                         gain = 1,
+                         engaged_FM = engaged_FM,
+                         ramptime = ramptime,
+                         )
+
+def disable_ISCINF(optic, DoF='Both', ramptime=TRAMP['disable']):
+    '''disable_ISCINF(optic, DoF='Both', ramptime=TRAMP['disable']):
+    function to disable ISCINF. 
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT, YAW, Both
+    ramptime: float
+
+    Example
+    -------
+    disable_ISCINF('ETMX')
+    '''
+    type = get_Type(optic)
+    DoFs = make_DoFList(DoF)
+            
+    for dof in DoFs:
+        kagralib.init_FB(ISCINF(optic, dof).filter_name,
+                         gain = 0,
+                         ramptime = ramptime,
+        )
+
+
+def Lock(optic,DoF,stage='TM'):
+    '''Lock(optic,DoF,stage='TM'):
+    function to get LIGOFilter object of the Lock filter
+
+    Arguments
+    --------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+     
+    Return
+    ------
+    LockFilter: LIGOFilter
+
+    Example
+    -------
+    Lock('PR3','PIT').ramp_gain(value=1, ramp_time=0, wait=False)
+    '''
+    type = get_Type(optic)
+    return ezca.get_LIGOFilter('VIS-%s_%s_LOCK_%s'%(optic,stage,DoF[0]))
+
+
+def init_Lock(optic, DoF='Both', stage='TM', engaged_FM=[], gain=1, ramptime=TRAMP['Lock']):
+    '''init_Lock(optic, DoF='Both', stage='TM', engaged_FM=[], gain=1, ramptime=TRAMP['Lock']):
+    function to engage Dither INF.
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+    enaged_FM: list of string
+       FM list to be enabled
+    gain: float
+    ramptime: float
+
+    Example
+    -------
+    init_Lock('ETMX', stage='IM')
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(Lock(optic, dof, stage).filter_name,
+                         gain = gain,
+                         engaged_FM = engaged_FM,
+                         ramptime = ramptime,
+                         )
+        
+def disable_Lock(optic, DoF='Both', stage='ALL', ramptime=TRAMP['disable']):
+    '''disable_ISCINF(optic, DoF='ALL',ramptime=TRAMP['disable']):
+    function to disable ISCINF. 
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA), or ALL
+    ramptime: float
+
+    Example
+    -------
+    disable_Lock('ETMX', stage='IM')
+    '''
+    type = get_Type(optic)
+    DoFs = make_DoFList(DoF)
+    Stages = [stage]
+    if stage == 'ALL':
+        if type == TypeA:
+            Stages = ['TM','IM','MN']
+        elif type == TypeB:
+            Stages = ['TM','IM']
+        else:
+            Stages = ['TM']
+            
+    for dof in DoFs:
+        for Stage in Stages:
+            kagralib.init_FB(Lock(optic, dof, Stage).filter_name,
+                             gain = 0,
+                             ramptime = ramptime,
+                         )
+
+def OpticAlign(optic,DoF):
+    '''OpticAlign(optic,DoF):
+    function to get LIGOFilter object of the Optic Align filter
+
+    Arguments
+    --------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW
+     
+    Return
+    ------
+    OpticAlignFilter: string(offset channel name) or LIGOFilter 
+
+    Example
+    -------
+    OpticAlign('PR3','PIT').ramp_gain(value=1, ramp_time=0, wait=False)
+    '''
+    type = get_Type(optic)
+    stagelist = {
+        'TypeA':'MN',
+        'TypeB':'IM',
+        'TypeBp':'IM',
+        'TypeC':'TM',
+        }
+    return ezca.get_LIGOFilter('VIS-%s_%s_OPTICALIGN_%s'%(optic,stage,DoF[0]))
+
+
+def init_OpticAlign(optic, DoF='Both', engaged_FM=[], ramptime=TRAMP['OpticAlign']):
+    '''init_OpticAlign(optic, DoF='Both', ramptime=TRAMP['OpticAlign']):
+    function to initialize OpticAlign.
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    enaged_FM: list of string
+       FM list to be enabled
+    ramptime: float
+
+    Example
+    -------
+    init_OpticAlign('ETMX')
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(OpticAlign(optic, dof),
+                         gain = 1,
+                         engaged_FM = engaged_FM,
+                         ramptime = ramptime,
+                         clear_history = False,
+                         hold_offset = True
+                         )
+
+def disable_OpticAlign(optic, DoF='Both', ramptime=TRAMP['disable']):
+    '''disable_OpticAlign(optic, DoF='Both', ramptime=TRAMP['disable']):
+    function to disable OpticAlign. 
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT, YAW, Both
+    ramptime: float
+
+    Example
+    -------
+    disable_OpticAlign('ETMX')
+    '''
+    type = get_Type(optic)
+    DoFs = make_DoFList(DoF)
+            
+    for dof in DoFs:
+        kagralib.init_FB(OpticAlign(optic, dof, True).filter_name,
+                         gain = 0,
+                         ramptime = ramptime,
+        )
+
+def OLDAMP(optic,DoF,stage='TM'):
+    '''OLDAMP(optic,DoF,stage='TM'):
+    function to get LIGOFilter object of the OLDAMP filter
+
+    Arguments
+    --------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+     
+    Return
+    ------
+    OLDAMPFilter: LIGOFilter
+
+    Example
+    -------
+    OLDAMP('PR3','PIT').ramp_gain(value=1, ramp_time=0, wait=False)
+    '''
+    type = get_Type(optic)
+    return ezca.get_LIGOFilter('VIS-%s_%s_LOCK_%s'%(optic,stage,DoF[0]))
+
+
+def init_OLDAMP(optic, DoF='Both', stage='TM', engaged_FM=[], gain=1, ramptime=TRAMP['OLDAMP'],):
+    '''init_OLDAMP(optic, DoF='Both', stage='TM', engaged_FM=[], gain=1, ramptime=TRAMP['OLDAMP'],)
+    function to engage Dither INF.
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA)
+    enaged_FM: list of string
+       FM list to be enabled
+    gain: float
+    ramptime: float
+
+    Example
+    -------
+    init_OLDAMP('ETMX', stage='IM')
+    '''
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        kagralib.init_FB(OLDAMP(optic, dof, stage).filter_name,
+                         gain = gain,
+                         engaged_FM = engaged_FM,
+                         ramptime = ramptime,
+                         )
+        
+def disable_OLDAMP(optic, DoF='Both', stage='ALL', ramptime=TRAMP['disable']):
+    '''disable_ISCINF(optic, DoF='ALL',ramptime=TRAMP['disable']):
+    function to disable ISCINF. 
+    
+    Arguments
+    ---------
+    optic: string
+    DoF: string 
+       Chose from PIT,YAW,Both
+    stage: string
+       Chose from TM(all), IM(TypeB,TypeA), MN(TypeA), or ALL
+    ramptime: float
+
+    Example
+    -------
+    disable_OLDAMP('ETMX', stage='IM')
+    '''
+    type = get_Type(optic)
+    DoFs = make_DoFList(DoF)
+    Stages = [stage]
+    if stage == 'ALL':
+        if type == TypeA:
+            Stages = ['TM','IM','MN']
+        elif type == TypeB:
+            Stages = ['TM','IM']
+        else:
+            Stages = ['TM']
+            
+    for dof in DoFs:
+        for Stage in Stages:
+            kagralib.init_FB(OLDAMP(optic, dof, Stage).filter_name,
+                             gain = 0,
+                             ramptime = ramptime,
+                         )
+
+##########################
+# WD managers
+##########################
+
+#[TODO] define TypeA,B,Bp BIOList
+WDList = {
+    'TypeC':['TM',],
+    #'TypeB':['TM',],
+    #'TypeBp':['TM',],
+    #'TypeA':['TM',],
+    #'TypeAtower':['TM'],
+    }
+def is_WD_tripped(optic, payload=True):
+    '''is_WD_tripped(optic, payload)
+    function to check analog WD
+    
+    Arguments
+    ---------
+    optic: string
+    payload: bool
+    if it's false, it check the WD of the tower part.
+
+    Example
+    -------
+    is_WD_tripped('IMMT')
+    '''
+    type = get_Type(optic)
+    if not payload:
+        optic += 'tower'
+    # reference for check WD. from 16 bit to 19 bit are for the WD readback
+    ref = 0
+    for ii in range(16,20):
+        ref = 2**ii
+    return any([(int(ezca['VIS-%s_BIO_%s_MON'%(optic,BIO)]) & ref) for BIO in WDList[type]])
+
+DGWDList = {
+    'TypeC':['TM',],
+    }
+
+def is_DGWD_tripped(optic, payload=True):
+    '''is_DGWD_tripped(optic, payload)
+    function to check digital WD
+    
+    Arguments
+    ---------
+    optic: string
+    payload: bool
+    if it's false, it check the WD of the tower part.
+
+    Example
+    -------
+    is_WD_tripped('IMMT')
+    '''
+    type = get_Type(optic)
+    if not payload:
+        optic += 'tower'
+        
+    return any([not ezca['VIS-%s_%s_WDMON_STATE'%optic,WD] for WD in DGWDList[type]])
+
+##########################
+# Oplev managers
+##########################
+def update_DCsetpoint(optic, DoF='Both'):
+    '''update_DCsetpoint(optic)
+    Function to update DC setpoint. DC setpoint is set to oplev value
+    
+    Argument
+    --------
+    optic: string
+    DoF: string chosen in ['PIT','YAW','Both']
+
+    Example
+    -------
+    update_DCsetpoint('ETMX')
+    '''
+    if get_Type(optic) == 'TypeC':
+        return None
+    DoFs = make_DoFList(DoF)
+    for dof in DoFs:
+        ezca[DCSetChan(optic,dof)] = ezca[DiagChan(optic,dof)]
+    
+
+    

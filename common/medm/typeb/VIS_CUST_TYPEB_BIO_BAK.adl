@@ -1,0 +1,7769 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/typeb/VIS_CUST_TYPEB_BIO.adl"
+	version=030107
+}
+display {
+	object {
+		x=207
+		y=22
+		width=1351
+		height=1110
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=708
+		y=74
+		width=200
+		height=200
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=1300
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=367
+		y=0
+		width=211
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="$(IFO) $(OPTIC) BINARY I/O CONTROL"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=998
+		y=2
+		width=200
+		height=14
+	}
+	monitor {
+		chan="$(IFO):FEC-$(FEC)_TIME_STRING"
+		clr=30
+		bclr=14
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=4
+		y=3
+		width=44
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="$(IFO)"
+}
+rectangle {
+	object {
+		x=688
+		y=742
+		width=650
+		height=350
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+rectangle {
+	object {
+		x=688
+		y=741
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+text {
+	object {
+		x=802
+		y=746
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC) GAS MONITORS HPCD #1 = Contec #2H"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=687
+		y=740
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=707
+		y=748
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=706
+		y=748
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+"text entry" {
+	object {
+		x=730
+		y=801
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_STATEREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=711
+		y=784
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="STATE REQUEST"
+}
+text {
+	object {
+		x=707
+		y=924
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=19
+	}
+	textix="MS DELAY: TURN ON"
+}
+text {
+	object {
+		x=706
+		y=982
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="MS DELAY: TURN OFF"
+}
+"text entry" {
+	object {
+		x=728
+		y=947
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MSDELAYON"
+		clr=19
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=728
+		y=1003
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MSDELAYOFF"
+		clr=39
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=704
+		y=1033
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=49
+	}
+	textix="COIL TEST ENABLE"
+}
+"text entry" {
+	object {
+		x=728
+		y=1055
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_CTENABLE"
+		clr=49
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=720
+		y=842
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 0: ISC control"
+}
+text {
+	object {
+		x=720
+		y=864
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 1: Analog LP OFF"
+}
+text {
+	object {
+		x=720
+		y=887
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 2: Analog LP ON"
+}
+byte {
+	object {
+		x=1188
+		y=813
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+text {
+	object {
+		x=882
+		y=812
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0"
+}
+text {
+	object {
+		x=882
+		y=831
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1"
+}
+text {
+	object {
+		x=882
+		y=850
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="2"
+}
+text {
+	object {
+		x=1119
+		y=815
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3"
+}
+text {
+	object {
+		x=882
+		y=877
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="4"
+}
+text {
+	object {
+		x=882
+		y=897
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="5"
+}
+text {
+	object {
+		x=882
+		y=915
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="6"
+}
+text {
+	object {
+		x=1119
+		y=834
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="7"
+}
+text {
+	object {
+		x=882
+		y=944
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="8"
+}
+text {
+	object {
+		x=882
+		y=963
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="9"
+}
+text {
+	object {
+		x=1119
+		y=853
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="11"
+}
+text {
+	object {
+		x=882
+		y=1011
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="12"
+}
+text {
+	object {
+		x=882
+		y=1030
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13"
+}
+text {
+	object {
+		x=882
+		y=1049
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="14"
+}
+text {
+	object {
+		x=1119
+		y=872
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="15"
+}
+text {
+	object {
+		x=1028
+		y=832
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP2"
+}
+text {
+	object {
+		x=1028
+		y=813
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP1"
+}
+text {
+	object {
+		x=1028
+		y=851
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP3"
+}
+text {
+	object {
+		x=1028
+		y=878
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP1"
+}
+text {
+	object {
+		x=1028
+		y=897
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP2"
+}
+text {
+	object {
+		x=1028
+		y=916
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP3"
+}
+text {
+	object {
+		x=1028
+		y=945
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP1"
+}
+text {
+	object {
+		x=1028
+		y=964
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP2"
+}
+text {
+	object {
+		x=1028
+		y=983
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP3"
+}
+text {
+	object {
+		x=1028
+		y=1012
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP1"
+}
+text {
+	object {
+		x=1028
+		y=1031
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP2"
+}
+text {
+	object {
+		x=1028
+		y=1050
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP3"
+}
+byte {
+	object {
+		x=1144
+		y=813
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+byte {
+	object {
+		x=1188
+		y=832
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=1144
+		y=832
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=1188
+		y=851
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=1144
+		y=851
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=1188
+		y=870
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	ebit=15
+}
+byte {
+	object {
+		x=1144
+		y=870
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	ebit=15
+}
+text {
+	object {
+		x=908
+		y=793
+		width=40
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ON(1)"
+}
+text {
+	object {
+		x=955
+		y=793
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="OFF(0)"
+}
+text {
+	object {
+		x=1029
+		y=793
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="FILTER"
+}
+text {
+	object {
+		x=875
+		y=793
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=1149
+		y=782
+		width=30
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="TEST"
+}
+text {
+	object {
+		x=1135
+		y=796
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="(0)ENABLED(1)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1202
+		y=782
+		width=15
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="AI"
+}
+byte {
+	object {
+		x=953
+		y=810
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=953
+		y=829
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=953
+		y=848
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=953
+		y=875
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=953
+		y=894
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=953
+		y=913
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=953
+		y=942
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=953
+		y=961
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=953
+		y=980
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=953
+		y=1009
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=953
+		y=1028
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=953
+		y=1047
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+byte {
+	object {
+		x=909
+		y=810
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=909
+		y=829
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=909
+		y=848
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=909
+		y=875
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=909
+		y=894
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=909
+		y=913
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=909
+		y=942
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=909
+		y=961
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=909
+		y=980
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=909
+		y=1009
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=909
+		y=1028
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=909
+		y=1047
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+text {
+	object {
+		x=905
+		y=778
+		width=130
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ANALOG DEWHITENING"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1112
+		y=782
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=1241
+		y=816
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL TEST/COIL"
+}
+text {
+	object {
+		x=1241
+		y=835
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL TEST/COIL"
+}
+text {
+	object {
+		x=1241
+		y=854
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR TEST/COIL"
+}
+text {
+	object {
+		x=1241
+		y=873
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR TEST/COIL"
+}
+text {
+	object {
+		x=1119
+		y=1022
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WD Pulse"
+}
+text {
+	object {
+		x=1113
+		y=907
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not Tripped"
+}
+byte {
+	object {
+		x=1188
+		y=927
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+text {
+	object {
+		x=1119
+		y=948
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="17"
+}
+text {
+	object {
+		x=1119
+		y=967
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="18"
+}
+text {
+	object {
+		x=1119
+		y=986
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="19"
+}
+text {
+	object {
+		x=1119
+		y=930
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="16"
+}
+byte {
+	object {
+		x=1144
+		y=927
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+byte {
+	object {
+		x=1188
+		y=946
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=1144
+		y=946
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=1188
+		y=965
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=1144
+		y=965
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=1188
+		y=984
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+byte {
+	object {
+		x=1144
+		y=984
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_GAS_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+text {
+	object {
+		x=1244
+		y=935
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL WD"
+}
+text {
+	object {
+		x=1244
+		y=954
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL WD"
+}
+text {
+	object {
+		x=1244
+		y=973
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR WD"
+}
+text {
+	object {
+		x=1244
+		y=992
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR WD"
+}
+"choice button" {
+	object {
+		x=1291
+		y=955
+		width=40
+		height=49
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_GAS_WD_RSET"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=879
+		y=982
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="10"
+}
+rectangle {
+	object {
+		x=24
+		y=383
+		width=650
+		height=350
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+"text entry" {
+	object {
+		x=55
+		y=442
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_STATEREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=36
+		y=425
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="STATE REQUEST"
+}
+text {
+	object {
+		x=32
+		y=565
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=19
+	}
+	textix="MS DELAY: TURN ON"
+}
+text {
+	object {
+		x=31
+		y=623
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="MS DELAY: TURN OFF"
+}
+"text entry" {
+	object {
+		x=53
+		y=588
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MSDELAYON"
+		clr=19
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=53
+		y=644
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MSDELAYOFF"
+		clr=39
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=29
+		y=674
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=49
+	}
+	textix="COIL TEST ENABLE"
+}
+"text entry" {
+	object {
+		x=53
+		y=696
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_CTENABLE"
+		clr=49
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=45
+		y=483
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 0: ISC control"
+}
+text {
+	object {
+		x=45
+		y=505
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 1: Analog LP OFF"
+}
+text {
+	object {
+		x=45
+		y=528
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 2: Analog LP ON"
+}
+rectangle {
+	object {
+		x=24
+		y=382
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+byte {
+	object {
+		x=512
+		y=454
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+text {
+	object {
+		x=207
+		y=453
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0"
+}
+text {
+	object {
+		x=207
+		y=472
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1"
+}
+text {
+	object {
+		x=207
+		y=491
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="2"
+}
+text {
+	object {
+		x=443
+		y=456
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3"
+}
+text {
+	object {
+		x=207
+		y=518
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="4"
+}
+text {
+	object {
+		x=207
+		y=538
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="5"
+}
+text {
+	object {
+		x=207
+		y=556
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="6"
+}
+text {
+	object {
+		x=443
+		y=475
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="7"
+}
+text {
+	object {
+		x=207
+		y=585
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="8"
+}
+text {
+	object {
+		x=207
+		y=604
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="9"
+}
+text {
+	object {
+		x=443
+		y=494
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="11"
+}
+text {
+	object {
+		x=207
+		y=652
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="12"
+}
+text {
+	object {
+		x=207
+		y=671
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13"
+}
+text {
+	object {
+		x=207
+		y=690
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="14"
+}
+text {
+	object {
+		x=443
+		y=513
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="15"
+}
+text {
+	object {
+		x=352
+		y=473
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP2"
+}
+text {
+	object {
+		x=352
+		y=454
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP1"
+}
+text {
+	object {
+		x=352
+		y=492
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP3"
+}
+text {
+	object {
+		x=352
+		y=519
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP1"
+}
+text {
+	object {
+		x=352
+		y=538
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP2"
+}
+text {
+	object {
+		x=352
+		y=557
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP3"
+}
+text {
+	object {
+		x=352
+		y=586
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP1"
+}
+text {
+	object {
+		x=352
+		y=605
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP2"
+}
+text {
+	object {
+		x=352
+		y=624
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP3"
+}
+text {
+	object {
+		x=352
+		y=653
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP1"
+}
+text {
+	object {
+		x=352
+		y=672
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP2"
+}
+text {
+	object {
+		x=352
+		y=691
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP3"
+}
+byte {
+	object {
+		x=468
+		y=454
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+byte {
+	object {
+		x=512
+		y=473
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=468
+		y=473
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=512
+		y=492
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=468
+		y=492
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=512
+		y=511
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	ebit=15
+}
+byte {
+	object {
+		x=468
+		y=511
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	ebit=15
+}
+text {
+	object {
+		x=138
+		y=387
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC) IM-V MONITORS LPCD #1 = Contec #1L"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=232
+		y=434
+		width=40
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ON(1)"
+}
+text {
+	object {
+		x=279
+		y=434
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="OFF(0)"
+}
+text {
+	object {
+		x=353
+		y=434
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="FILTER"
+}
+text {
+	object {
+		x=200
+		y=434
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=473
+		y=423
+		width=30
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="TEST"
+}
+text {
+	object {
+		x=459
+		y=437
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="(0)ENABLED(1)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=526
+		y=423
+		width=15
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="AI"
+}
+byte {
+	object {
+		x=277
+		y=451
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=277
+		y=470
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=277
+		y=489
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=277
+		y=516
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=277
+		y=535
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=277
+		y=554
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=277
+		y=583
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=277
+		y=602
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=277
+		y=621
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=277
+		y=650
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=277
+		y=669
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=277
+		y=688
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+byte {
+	object {
+		x=233
+		y=451
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=233
+		y=470
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=233
+		y=489
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=233
+		y=516
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=233
+		y=535
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=233
+		y=554
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=233
+		y=583
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=233
+		y=602
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=233
+		y=621
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=233
+		y=650
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=233
+		y=669
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=233
+		y=688
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+text {
+	object {
+		x=229
+		y=419
+		width=130
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ANALOG DEWHITENING"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=436
+		y=423
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=565
+		y=457
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL TEST/COIL"
+}
+text {
+	object {
+		x=565
+		y=476
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL TEST/COIL"
+}
+text {
+	object {
+		x=565
+		y=495
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR TEST/COIL"
+}
+text {
+	object {
+		x=565
+		y=514
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR TEST/COIL"
+}
+rectangle {
+	object {
+		x=23
+		y=381
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=443
+		y=663
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WD Pulse"
+}
+text {
+	object {
+		x=437
+		y=548
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not Tripped"
+}
+byte {
+	object {
+		x=512
+		y=568
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+text {
+	object {
+		x=443
+		y=589
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="17"
+}
+text {
+	object {
+		x=443
+		y=608
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="18"
+}
+text {
+	object {
+		x=443
+		y=627
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="19"
+}
+text {
+	object {
+		x=443
+		y=571
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="16"
+}
+byte {
+	object {
+		x=468
+		y=568
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+byte {
+	object {
+		x=512
+		y=587
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=468
+		y=587
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=512
+		y=606
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=468
+		y=606
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=512
+		y=625
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+byte {
+	object {
+		x=468
+		y=625
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMV_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+text {
+	object {
+		x=568
+		y=576
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL WD"
+}
+text {
+	object {
+		x=568
+		y=595
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL WD"
+}
+text {
+	object {
+		x=568
+		y=614
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR WD"
+}
+text {
+	object {
+		x=568
+		y=633
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR WD"
+}
+"choice button" {
+	object {
+		x=506
+		y=663
+		width=40
+		height=49
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMV_WD_RSET"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=204
+		y=623
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="10"
+}
+text {
+	object {
+		x=43
+		y=389
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=42
+		y=389
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+rectangle {
+	object {
+		x=686
+		y=383
+		width=650
+		height=350
+	}
+	"basic attribute" {
+		clr=50
+	}
+}
+rectangle {
+	object {
+		x=686
+		y=382
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+text {
+	object {
+		x=800
+		y=387
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC) IM-H MONITORS LPCD #2 = Contec #1H"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=685
+		y=381
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=705
+		y=389
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=704
+		y=389
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+"text entry" {
+	object {
+		x=729
+		y=442
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_STATEREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=710
+		y=425
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="STATE REQUEST"
+}
+text {
+	object {
+		x=706
+		y=565
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=19
+	}
+	textix="MS DELAY: TURN ON"
+}
+text {
+	object {
+		x=705
+		y=623
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="MS DELAY: TURN OFF"
+}
+"text entry" {
+	object {
+		x=727
+		y=588
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MSDELAYON"
+		clr=19
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=727
+		y=644
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MSDELAYOFF"
+		clr=39
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=703
+		y=674
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=49
+	}
+	textix="COIL TEST ENABLE"
+}
+"text entry" {
+	object {
+		x=727
+		y=696
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_CTENABLE"
+		clr=49
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=719
+		y=483
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 0: ISC control"
+}
+text {
+	object {
+		x=719
+		y=505
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 1: Analog LP OFF"
+}
+text {
+	object {
+		x=719
+		y=528
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 2: Analog LP ON"
+}
+byte {
+	object {
+		x=1186
+		y=454
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+text {
+	object {
+		x=881
+		y=453
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0"
+}
+text {
+	object {
+		x=881
+		y=472
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1"
+}
+text {
+	object {
+		x=881
+		y=491
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="2"
+}
+text {
+	object {
+		x=1117
+		y=456
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3"
+}
+text {
+	object {
+		x=881
+		y=518
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="4"
+}
+text {
+	object {
+		x=881
+		y=538
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="5"
+}
+text {
+	object {
+		x=881
+		y=556
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="6"
+}
+text {
+	object {
+		x=1117
+		y=475
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="7"
+}
+text {
+	object {
+		x=881
+		y=585
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="8"
+}
+text {
+	object {
+		x=881
+		y=604
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="9"
+}
+text {
+	object {
+		x=1117
+		y=494
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="11"
+}
+text {
+	object {
+		x=881
+		y=652
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="12"
+}
+text {
+	object {
+		x=881
+		y=671
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13"
+}
+text {
+	object {
+		x=881
+		y=690
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="14"
+}
+text {
+	object {
+		x=1117
+		y=513
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="15"
+}
+text {
+	object {
+		x=1026
+		y=473
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP2"
+}
+text {
+	object {
+		x=1026
+		y=454
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP1"
+}
+text {
+	object {
+		x=1026
+		y=492
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP3"
+}
+text {
+	object {
+		x=1026
+		y=519
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP1"
+}
+text {
+	object {
+		x=1026
+		y=538
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP2"
+}
+text {
+	object {
+		x=1026
+		y=557
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP3"
+}
+text {
+	object {
+		x=1026
+		y=586
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP1"
+}
+text {
+	object {
+		x=1026
+		y=605
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP2"
+}
+text {
+	object {
+		x=1026
+		y=624
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP3"
+}
+text {
+	object {
+		x=1026
+		y=653
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP1"
+}
+text {
+	object {
+		x=1026
+		y=672
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP2"
+}
+text {
+	object {
+		x=1026
+		y=691
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP3"
+}
+byte {
+	object {
+		x=1142
+		y=454
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+byte {
+	object {
+		x=1186
+		y=473
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=1142
+		y=473
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=1186
+		y=492
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=1142
+		y=492
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=1186
+		y=511
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	ebit=15
+}
+byte {
+	object {
+		x=1142
+		y=511
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	ebit=15
+}
+text {
+	object {
+		x=906
+		y=434
+		width=40
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ON(1)"
+}
+text {
+	object {
+		x=953
+		y=434
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="OFF(0)"
+}
+text {
+	object {
+		x=1027
+		y=434
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="FILTER"
+}
+text {
+	object {
+		x=874
+		y=434
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=1147
+		y=423
+		width=30
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="TEST"
+}
+text {
+	object {
+		x=1133
+		y=437
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="(0)ENABLED(1)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1200
+		y=423
+		width=15
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="AI"
+}
+byte {
+	object {
+		x=951
+		y=451
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=951
+		y=470
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=951
+		y=489
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=951
+		y=516
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=951
+		y=535
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=951
+		y=554
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=951
+		y=583
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=951
+		y=602
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=951
+		y=621
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=951
+		y=650
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=951
+		y=669
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=951
+		y=688
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+byte {
+	object {
+		x=907
+		y=451
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=907
+		y=470
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=907
+		y=489
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=907
+		y=516
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=907
+		y=535
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=907
+		y=554
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=907
+		y=583
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=907
+		y=602
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=907
+		y=621
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=907
+		y=650
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=907
+		y=669
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=907
+		y=688
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+text {
+	object {
+		x=903
+		y=419
+		width=130
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ANALOG DEWHITENING"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1110
+		y=423
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=1239
+		y=457
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL TEST/COIL"
+}
+text {
+	object {
+		x=1239
+		y=476
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL TEST/COIL"
+}
+text {
+	object {
+		x=1239
+		y=495
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR TEST/COIL"
+}
+text {
+	object {
+		x=1239
+		y=514
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR TEST/COIL"
+}
+text {
+	object {
+		x=1117
+		y=663
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WD Pulse"
+}
+text {
+	object {
+		x=1111
+		y=548
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not Tripped"
+}
+byte {
+	object {
+		x=1186
+		y=568
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+text {
+	object {
+		x=1117
+		y=589
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="17"
+}
+text {
+	object {
+		x=1117
+		y=608
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="18"
+}
+text {
+	object {
+		x=1117
+		y=627
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="19"
+}
+text {
+	object {
+		x=1117
+		y=571
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="16"
+}
+byte {
+	object {
+		x=1142
+		y=568
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+byte {
+	object {
+		x=1186
+		y=587
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=1142
+		y=587
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=1186
+		y=606
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=1142
+		y=606
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=1186
+		y=625
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+byte {
+	object {
+		x=1142
+		y=625
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IMH_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+text {
+	object {
+		x=1242
+		y=576
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL WD"
+}
+text {
+	object {
+		x=1242
+		y=595
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL WD"
+}
+text {
+	object {
+		x=1242
+		y=614
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR WD"
+}
+text {
+	object {
+		x=1242
+		y=633
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR WD"
+}
+"choice button" {
+	object {
+		x=1180
+		y=663
+		width=40
+		height=49
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMH_WD_RSET"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=878
+		y=623
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="10"
+}
+rectangle {
+	object {
+		x=23
+		y=23
+		width=650
+		height=350
+	}
+	"basic attribute" {
+		clr=31
+	}
+}
+"text entry" {
+	object {
+		x=54
+		y=82
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_STATEREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=35
+		y=65
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="STATE REQUEST"
+}
+text {
+	object {
+		x=31
+		y=205
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=19
+	}
+	textix="MS DELAY: TURN ON"
+}
+text {
+	object {
+		x=30
+		y=263
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="MS DELAY: TURN OFF"
+}
+"text entry" {
+	object {
+		x=52
+		y=228
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MSDELAYON"
+		clr=19
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=52
+		y=284
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MSDELAYOFF"
+		clr=39
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=28
+		y=314
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=49
+	}
+	textix="COIL TEST ENABLE"
+}
+"text entry" {
+	object {
+		x=52
+		y=336
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_CTENABLE"
+		clr=49
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=44
+		y=123
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 0: ISC control"
+}
+text {
+	object {
+		x=44
+		y=145
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 1: Analog LP OFF"
+}
+text {
+	object {
+		x=44
+		y=168
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 2: Analog LP ON"
+}
+rectangle {
+	object {
+		x=23
+		y=22
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+byte {
+	object {
+		x=511
+		y=94
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+text {
+	object {
+		x=206
+		y=93
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0"
+}
+text {
+	object {
+		x=206
+		y=112
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1"
+}
+text {
+	object {
+		x=206
+		y=131
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="2"
+}
+text {
+	object {
+		x=442
+		y=96
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3"
+}
+text {
+	object {
+		x=206
+		y=158
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="4"
+}
+text {
+	object {
+		x=206
+		y=178
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="5"
+}
+text {
+	object {
+		x=206
+		y=196
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="6"
+}
+text {
+	object {
+		x=442
+		y=115
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="7"
+}
+text {
+	object {
+		x=206
+		y=225
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="8"
+}
+text {
+	object {
+		x=206
+		y=244
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="9"
+}
+text {
+	object {
+		x=442
+		y=134
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="11"
+}
+text {
+	object {
+		x=206
+		y=292
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="12"
+}
+text {
+	object {
+		x=206
+		y=311
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13"
+}
+text {
+	object {
+		x=206
+		y=330
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="14"
+}
+text {
+	object {
+		x=442
+		y=153
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="15"
+}
+text {
+	object {
+		x=351
+		y=113
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP2"
+}
+text {
+	object {
+		x=351
+		y=94
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP1"
+}
+text {
+	object {
+		x=351
+		y=132
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP3"
+}
+text {
+	object {
+		x=351
+		y=159
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP1"
+}
+text {
+	object {
+		x=351
+		y=178
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP2"
+}
+text {
+	object {
+		x=351
+		y=197
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP3"
+}
+text {
+	object {
+		x=351
+		y=226
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP1"
+}
+text {
+	object {
+		x=351
+		y=245
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP2"
+}
+text {
+	object {
+		x=351
+		y=264
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP3"
+}
+text {
+	object {
+		x=351
+		y=293
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP1"
+}
+text {
+	object {
+		x=351
+		y=312
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP2"
+}
+text {
+	object {
+		x=351
+		y=331
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP3"
+}
+byte {
+	object {
+		x=467
+		y=94
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+byte {
+	object {
+		x=511
+		y=113
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=467
+		y=113
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=511
+		y=132
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=467
+		y=132
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=511
+		y=151
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	ebit=15
+}
+byte {
+	object {
+		x=467
+		y=151
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	ebit=15
+}
+text {
+	object {
+		x=137
+		y=27
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC) TM MONITORS LPCD #0 = Contec #0L"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=231
+		y=74
+		width=40
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ON(1)"
+}
+text {
+	object {
+		x=278
+		y=74
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="OFF(0)"
+}
+text {
+	object {
+		x=352
+		y=74
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="FILTER"
+}
+text {
+	object {
+		x=199
+		y=74
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=472
+		y=63
+		width=30
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="TEST"
+}
+text {
+	object {
+		x=458
+		y=77
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="(0)ENABLED(1)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=525
+		y=63
+		width=15
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="AI"
+}
+byte {
+	object {
+		x=276
+		y=91
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=276
+		y=110
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=276
+		y=129
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=276
+		y=156
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=276
+		y=175
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=276
+		y=194
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=276
+		y=223
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=276
+		y=242
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=276
+		y=261
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=276
+		y=290
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=276
+		y=309
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=276
+		y=328
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+byte {
+	object {
+		x=232
+		y=91
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=232
+		y=110
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=232
+		y=129
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=232
+		y=156
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=232
+		y=175
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=232
+		y=194
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=232
+		y=223
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=232
+		y=242
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=232
+		y=261
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=232
+		y=290
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=232
+		y=309
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=232
+		y=328
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+text {
+	object {
+		x=228
+		y=59
+		width=130
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ANALOG DEWHITENING"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=435
+		y=63
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=564
+		y=97
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL TEST/COIL"
+}
+text {
+	object {
+		x=564
+		y=116
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL TEST/COIL"
+}
+text {
+	object {
+		x=564
+		y=135
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR TEST/COIL"
+}
+text {
+	object {
+		x=564
+		y=154
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR TEST/COIL"
+}
+rectangle {
+	object {
+		x=22
+		y=21
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=442
+		y=303
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WD Pulse"
+}
+text {
+	object {
+		x=436
+		y=188
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not Tripped"
+}
+byte {
+	object {
+		x=511
+		y=208
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+text {
+	object {
+		x=442
+		y=229
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="17"
+}
+text {
+	object {
+		x=442
+		y=248
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="18"
+}
+text {
+	object {
+		x=442
+		y=267
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="19"
+}
+text {
+	object {
+		x=442
+		y=211
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="16"
+}
+byte {
+	object {
+		x=467
+		y=208
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+byte {
+	object {
+		x=511
+		y=227
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=467
+		y=227
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=511
+		y=246
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=467
+		y=246
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=511
+		y=265
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+byte {
+	object {
+		x=467
+		y=265
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_TM_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+text {
+	object {
+		x=567
+		y=216
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL WD"
+}
+text {
+	object {
+		x=567
+		y=235
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL WD"
+}
+text {
+	object {
+		x=567
+		y=254
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR WD"
+}
+text {
+	object {
+		x=567
+		y=273
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR WD"
+}
+"choice button" {
+	object {
+		x=505
+		y=303
+		width=40
+		height=49
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=203
+		y=263
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="10"
+}
+text {
+	object {
+		x=42
+		y=29
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=41
+		y=29
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+rectangle {
+	object {
+		x=23
+		y=742
+		width=650
+		height=350
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+rectangle {
+	object {
+		x=23
+		y=741
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+text {
+	object {
+		x=137
+		y=746
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC) IP MONITORS HPCD #0 = Contec #2L"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=22
+		y=740
+		width=650
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=42
+		y=748
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=41
+		y=748
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+"text entry" {
+	object {
+		x=65
+		y=801
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_STATEREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=46
+		y=784
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="STATE REQUEST"
+}
+text {
+	object {
+		x=42
+		y=924
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=19
+	}
+	textix="MS DELAY: TURN ON"
+}
+text {
+	object {
+		x=41
+		y=982
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="MS DELAY: TURN OFF"
+}
+"text entry" {
+	object {
+		x=63
+		y=947
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MSDELAYON"
+		clr=19
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=63
+		y=1003
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MSDELAYOFF"
+		clr=39
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=39
+		y=1033
+		width=146
+		height=20
+	}
+	"basic attribute" {
+		clr=49
+	}
+	textix="COIL TEST ENABLE"
+}
+"text entry" {
+	object {
+		x=63
+		y=1055
+		width=107
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_CTENABLE"
+		clr=49
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=55
+		y=842
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 0: ISC control"
+}
+text {
+	object {
+		x=55
+		y=864
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 1: Analog LP OFF"
+}
+text {
+	object {
+		x=55
+		y=887
+		width=189
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="State 2: Analog LP ON"
+}
+byte {
+	object {
+		x=522
+		y=813
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+text {
+	object {
+		x=217
+		y=812
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="0"
+}
+text {
+	object {
+		x=217
+		y=831
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1"
+}
+text {
+	object {
+		x=217
+		y=850
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="2"
+}
+text {
+	object {
+		x=453
+		y=815
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3"
+}
+text {
+	object {
+		x=217
+		y=877
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="4"
+}
+text {
+	object {
+		x=217
+		y=897
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="5"
+}
+text {
+	object {
+		x=217
+		y=915
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="6"
+}
+text {
+	object {
+		x=453
+		y=834
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="7"
+}
+text {
+	object {
+		x=217
+		y=944
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="8"
+}
+text {
+	object {
+		x=217
+		y=963
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="9"
+}
+text {
+	object {
+		x=453
+		y=853
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="11"
+}
+text {
+	object {
+		x=217
+		y=1011
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="12"
+}
+text {
+	object {
+		x=217
+		y=1030
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="13"
+}
+text {
+	object {
+		x=217
+		y=1049
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="14"
+}
+text {
+	object {
+		x=453
+		y=872
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="15"
+}
+text {
+	object {
+		x=362
+		y=832
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP2"
+}
+text {
+	object {
+		x=362
+		y=813
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP1"
+}
+text {
+	object {
+		x=362
+		y=851
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL LP3"
+}
+text {
+	object {
+		x=362
+		y=878
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP1"
+}
+text {
+	object {
+		x=362
+		y=897
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP2"
+}
+text {
+	object {
+		x=362
+		y=916
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL LP3"
+}
+text {
+	object {
+		x=362
+		y=945
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP1"
+}
+text {
+	object {
+		x=362
+		y=964
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP2"
+}
+text {
+	object {
+		x=362
+		y=983
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR LP3"
+}
+text {
+	object {
+		x=362
+		y=1012
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP1"
+}
+text {
+	object {
+		x=362
+		y=1031
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP2"
+}
+text {
+	object {
+		x=362
+		y=1050
+		width=45
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR LP3"
+}
+byte {
+	object {
+		x=478
+		y=813
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=3
+	ebit=3
+}
+byte {
+	object {
+		x=522
+		y=832
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=478
+		y=832
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=7
+	ebit=7
+}
+byte {
+	object {
+		x=522
+		y=851
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=478
+		y=851
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=11
+	ebit=11
+}
+byte {
+	object {
+		x=522
+		y=870
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	ebit=15
+}
+byte {
+	object {
+		x=478
+		y=870
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	ebit=15
+}
+text {
+	object {
+		x=242
+		y=793
+		width=40
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="OFF(0)"
+}
+text {
+	object {
+		x=289
+		y=793
+		width=35
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ON(1)"
+}
+text {
+	object {
+		x=363
+		y=793
+		width=42
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="FILTER"
+}
+text {
+	object {
+		x=210
+		y=793
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=483
+		y=782
+		width=30
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="TEST"
+}
+text {
+	object {
+		x=469
+		y=796
+		width=105
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="(0)ENABLED(1)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=536
+		y=782
+		width=15
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="AI"
+}
+byte {
+	object {
+		x=287
+		y=810
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=287
+		y=829
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=287
+		y=848
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=287
+		y=875
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=287
+		y=894
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=287
+		y=913
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=287
+		y=942
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=287
+		y=961
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=287
+		y=980
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=287
+		y=1009
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=287
+		y=1028
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=287
+		y=1047
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=60
+		bclr=11
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+byte {
+	object {
+		x=243
+		y=810
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=0
+}
+byte {
+	object {
+		x=243
+		y=829
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=1
+	ebit=1
+}
+byte {
+	object {
+		x=243
+		y=848
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=2
+	ebit=2
+}
+byte {
+	object {
+		x=243
+		y=875
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=4
+	ebit=4
+}
+byte {
+	object {
+		x=243
+		y=894
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=5
+	ebit=5
+}
+byte {
+	object {
+		x=243
+		y=913
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=6
+	ebit=6
+}
+byte {
+	object {
+		x=243
+		y=942
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=8
+	ebit=8
+}
+byte {
+	object {
+		x=243
+		y=961
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=9
+	ebit=9
+}
+byte {
+	object {
+		x=243
+		y=980
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=243
+		y=1009
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=12
+	ebit=12
+}
+byte {
+	object {
+		x=243
+		y=1028
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=13
+	ebit=13
+}
+byte {
+	object {
+		x=243
+		y=1047
+		width=38
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=11
+		bclr=60
+	}
+	direction="down"
+	sbit=14
+	ebit=14
+}
+text {
+	object {
+		x=239
+		y=778
+		width=130
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="ANALOG DEWHITENING"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=446
+		y=782
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=12
+	}
+	textix="BIT"
+}
+text {
+	object {
+		x=575
+		y=816
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL TEST/COIL"
+}
+text {
+	object {
+		x=575
+		y=835
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL TEST/COIL"
+}
+text {
+	object {
+		x=575
+		y=854
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR TEST/COIL"
+}
+text {
+	object {
+		x=575
+		y=873
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR TEST/COIL"
+}
+text {
+	object {
+		x=453
+		y=1022
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="WD Pulse"
+}
+text {
+	object {
+		x=447
+		y=907
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Not Tripped"
+}
+byte {
+	object {
+		x=522
+		y=927
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+text {
+	object {
+		x=453
+		y=948
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="17"
+}
+text {
+	object {
+		x=453
+		y=967
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="18"
+}
+text {
+	object {
+		x=453
+		y=986
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="19"
+}
+text {
+	object {
+		x=453
+		y=930
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="16"
+}
+byte {
+	object {
+		x=478
+		y=927
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=16
+	ebit=16
+}
+byte {
+	object {
+		x=522
+		y=946
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=478
+		y=946
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=17
+	ebit=17
+}
+byte {
+	object {
+		x=522
+		y=965
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=478
+		y=965
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=18
+	ebit=18
+}
+byte {
+	object {
+		x=522
+		y=984
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=20
+		bclr=60
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+byte {
+	object {
+		x=478
+		y=984
+		width=40
+		height=18
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_IP_MON"
+		clr=30
+		bclr=11
+	}
+	direction="down"
+	sbit=19
+	ebit=19
+}
+text {
+	object {
+		x=578
+		y=935
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UL WD"
+}
+text {
+	object {
+		x=578
+		y=954
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LL WD"
+}
+text {
+	object {
+		x=578
+		y=973
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UR WD"
+}
+text {
+	object {
+		x=578
+		y=992
+		width=85
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LR WD"
+}
+"choice button" {
+	object {
+		x=621
+		y=956
+		width=40
+		height=49
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IP_WD_RSET"
+		clr=14
+		bclr=4
+	}
+}
+text {
+	object {
+		x=214
+		y=982
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="10"
+}
+rectangle {
+	object {
+		x=709
+		y=75
+		width=200
+		height=200
+	}
+	"basic attribute" {
+		clr=11
+	}
+}
+text {
+	object {
+		x=728
+		y=82
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=727
+		y=82
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="BIO "
+}
+text {
+	object {
+		x=764
+		y=82
+		width=160
+		height=16
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Stepper Motor Driver"
+}
+rectangle {
+	object {
+		x=770
+		y=186
+		width=80
+		height=44
+	}
+	"basic attribute" {
+		clr=20
+	}
+}
+"choice button" {
+	object {
+		x=780
+		y=193
+		width=60
+		height=30
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_ENCODE_STEP_IP_SW"
+		clr=0
+		bclr=49
+	}
+	stacking="column"
+}
+rectangle {
+	object {
+		x=770
+		y=186
+		width=80
+		height=44
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="$(IFO):VIS-$(OPTIC)_BIO_ENCODE_STEP_IP_SW"
+	}
+}
+rectangle {
+	object {
+		x=770
+		y=128
+		width=80
+		height=44
+	}
+	"basic attribute" {
+		clr=20
+	}
+}
+"choice button" {
+	object {
+		x=780
+		y=135
+		width=60
+		height=30
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_BIO_ENCODE_STEP_GAS_SW"
+		clr=0
+		bclr=49
+	}
+	stacking="column"
+}
+rectangle {
+	object {
+		x=770
+		y=128
+		width=80
+		height=44
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="$(IFO):VIS-$(OPTIC)_BIO_ENCODE_STEP_GAS_SW"
+	}
+}
+text {
+	object {
+		x=732
+		y=199
+		width=36
+		height=16
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="IP"
+}
+text {
+	object {
+		x=732
+		y=143
+		width=36
+		height=16
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="GAS"
+}
+rectangle {
+	object {
+		x=767
+		y=183
+		width=86
+		height=50
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=767
+		y=125
+		width=86
+		height=50
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+text {
+	object {
+		x=859
+		y=143
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="24"
+}
+text {
+	object {
+		x=859
+		y=200
+		width=40
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="25"
+}
+text {
+	object {
+		x=787
+		y=100
+		width=100
+		height=16
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Contec #0H"
+}
+"related display" {
+	object {
+		x=1082
+		y=163
+		width=148
+		height=20
+	}
+	display[0] {
+		label="CAM0"
+		name="K1BIO_SWITCH.adl"
+		args="IFO=K1,ifo=k1,SITE=KAMIOKA,site=kamioka,userapps=/opt/rtcds/userapps/release,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=51
+	label="BIO"
+}

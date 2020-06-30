@@ -1,0 +1,5832 @@
+
+file {
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/driftmon/SUS_DRIFTMON_TM_COMMS.adl"
+	version=030109
+}
+display {
+	object {
+		x=180
+		y=67
+		width=1396
+		height=948
+	}
+	clr=50
+	bclr=13
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=205
+		y=112
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Live"
+}
+text {
+	object {
+		x=21
+		y=247
+		width=36
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	align="horiz. centered"
+}
+text {
+	object {
+		x=24
+		y=442
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=52
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-SRM_POS"
+	}
+	textix="SRM"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=447
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=477
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=505
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=24
+		y=142
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-PRM_POS"
+	}
+	textix="PRM"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=147
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=177
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=207
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=138
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=168
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=198
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=444
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_PIT_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=471
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_L_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=499
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_YAW_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=138
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=168
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=198
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=444
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_PIT_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=471
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_L_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=499
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_YAW_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=24
+		y=240
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-SRM_POS"
+	}
+	textix="PR2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=245
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=275
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=303
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=242
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=269
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=297
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=242
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=269
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=297
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=24
+		y=338
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-SRM_POS"
+	}
+	textix="PR3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=343
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=373
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=401
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=340
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=367
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=395
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=340
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=367
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=395
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=24
+		y=544
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=52
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-SRM_POS"
+	}
+	textix="SR2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=549
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=579
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=607
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=546
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_PIT_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=573
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_L_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=601
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_YAW_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=546
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_PIT_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=573
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_L_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=601
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_YAW_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=24
+		y=650
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=52
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-SRM_POS"
+	}
+	textix="SR3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=655
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=685
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=104
+		y=713
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=187
+		y=652
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_PIT_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=187
+		y=679
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_L_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=187
+		y=706
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_YAW_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=273
+		y=652
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_PIT_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=273
+		y=679
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_L_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=273
+		y=706
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_YAW_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=1402
+		height=22
+	}
+	"basic attribute" {
+		clr=25
+	}
+}
+text {
+	object {
+		x=20
+		y=2
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(IFO)"
+}
+text {
+	object {
+		x=538
+		y=2
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(IFO)DRIFT_MONITOR"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=1090
+		y=4
+		width=230
+		height=15
+	}
+	monitor {
+		chan="$(IFO):FEC-30_TIME_STRING"
+		clr=14
+		bclr=25
+	}
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=138
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=168
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=198
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=444
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_PIT_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=471
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_L_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=499
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_YAW_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=242
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=269
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=297
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=340
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=367
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=395
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=546
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_PIT_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=573
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_L_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=601
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_YAW_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=361
+		y=652
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_PIT_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=361
+		y=679
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_L_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=361
+		y=706
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_YAW_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=138
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=168
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=198
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=444
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_PIT_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=471
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_L_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=499
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_YAW_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=242
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=269
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=297
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=340
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=367
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=395
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=546
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_PIT_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=573
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_L_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=452
+		y=601
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_YAW_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=652
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_PIT_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=679
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_L_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=706
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_YAW_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=138
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=168
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=198
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PRM_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=444
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_PIT_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=471
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_L_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=499
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SRM_TM_OPLEV_YAW_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=242
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=269
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=297
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR2_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=340
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=367
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=395
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-PR3_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=546
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_PIT_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=573
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_L_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=601
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR2_TM_OPLEV_YAW_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=540
+		y=652
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_PIT_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=540
+		y=679
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_L_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=540
+		y=706
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-SR3_TM_OPLEV_YAW_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=367
+		y=112
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Low"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=456
+		y=112
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="High"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=280
+		y=112
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Very Low"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=545
+		y=112
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Very High"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=883
+		y=117
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Live"
+}
+text {
+	object {
+		x=703
+		y=142
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="ITMX"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=703
+		y=250
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="ITMY"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=703
+		y=358
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="ETMX"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=703
+		y=466
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="ETMY"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=147
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=255
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=363
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=471
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=177
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=285
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=393
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=501
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=207
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=315
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=423
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=529
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=864
+		y=248
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=703
+		y=569
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=52
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="BS"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=574
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=604
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=634
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=864
+		y=567
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_PIT_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=597
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_L_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=627
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_YAW_DIAGMON"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=142
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=170
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=199
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=277
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=307
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=415
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=385
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=356
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=463
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=492
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=522
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=248
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=567
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_PIT_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=597
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_L_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=627
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_YAW_DIAGMON.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=142
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=170
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=199
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=277
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=307
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=415
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=385
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=356
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=463
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=492
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=522
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=248
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=567
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_PIT_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=597
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_L_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=627
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_YAW_DIAGMON.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=142
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=170
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=199
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=277
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=307
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=415
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=385
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=356
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=463
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=492
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=522
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=248
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=567
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_PIT_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=597
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_L_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=627
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_YAW_DIAGMON.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=142
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=170
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=199
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=277
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=307
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=415
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=385
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=356
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=463
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=492
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=522
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=248
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=567
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_PIT_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=597
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_L_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=627
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-BS_TM_OPLEV_YAW_DIAGMON.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=142
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=170
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=199
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMX_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=277
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=307
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ITMY_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=415
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=385
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=356
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMX_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=463
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=492
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=522
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-ETMY_TM_OPLEV_TILT_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+text {
+	object {
+		x=1057
+		y=117
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Low"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1146
+		y=117
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="High"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=959
+		y=117
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Very Low"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1243
+		y=117
+		width=72
+		height=19
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Very High"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=637
+		y=138
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_PRM"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --prm_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=637
+		y=243
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_PR2"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --pr2_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=637
+		y=340
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_PR3"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --pr3_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=638
+		y=444
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_SRM"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --srm_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=639
+		y=546
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_SR2"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --sr2_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=637
+		y=653
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_SR3"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --sr3_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=1333
+		y=142
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_ITMX"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --itmx_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=1335
+		y=247
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_ITMY"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --itmy_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=1334
+		y=356
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_ETMX"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --etmx_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=1334
+		y=463
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_ETMY"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --etmy_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+"shell command" {
+	object {
+		x=1334
+		y=567
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_BS"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --bs_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+text {
+	object {
+		x=950
+		y=1054
+		width=290
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Yellow: Somewhat out of range"
+}
+text {
+	object {
+		x=222
+		y=1056
+		width=320
+		height=15
+	}
+	"basic attribute" {
+		clr=4
+	}
+	textix="Note: Top-stage OSEM channels used."
+}
+text {
+	object {
+		x=1601
+		y=1052
+		width=290
+		height=22
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="Red: Danger Zone"
+}
+"shell command" {
+	object {
+		x=1291
+		y=1042
+		width=260
+		height=35
+	}
+	command[0] {
+		label="updatethresh"
+		name="xterm -e '/opt/rtcds/userapps/release/sus/common/scripts/driftmon_update_miyo.py $(IFO) --all'"
+		args="&"
+	}
+	clr=14
+	bclr=4
+	label="-Update All Thresholds"
+}
+text {
+	object {
+		x=526
+		y=42
+		width=350
+		height=32
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Suspension Drift Monitor for TEST MASS"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=11
+		y=39
+		width=350
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Originally developed by T Abbot, LIGO"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=704
+		y=668
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="MCI"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=789
+		y=673
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=789
+		y=703
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=789
+		y=731
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=865
+		y=665
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=694
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=865
+		y=724
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1052
+		y=665
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1052
+		y=694
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1052
+		y=724
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=955
+		y=665
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=955
+		y=694
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=955
+		y=724
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1142
+		y=665
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1142
+		y=694
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1142
+		y=724
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1239
+		y=665
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1239
+		y=694
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1239
+		y=724
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCI_TM_OPLEV_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"shell command" {
+	object {
+		x=1335
+		y=665
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_MCI"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --mci_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+text {
+	object {
+		x=703
+		y=760
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="MCO"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=765
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=795
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=823
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=864
+		y=757
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=786
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=816
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=757
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=786
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=816
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=757
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=786
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=816
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=757
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=786
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=816
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=757
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=786
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=816
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCO_TM_OPLEV_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"shell command" {
+	object {
+		x=1334
+		y=757
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_MCO"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --mco_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+text {
+	object {
+		x=703
+		y=850
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="MCE"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=855
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=885
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=788
+		y=913
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=864
+		y=847
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=876
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=864
+		y=906
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=847
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=876
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1051
+		y=906
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=847
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=876
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=906
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=847
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=876
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1141
+		y=906
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=847
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=876
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=1238
+		y=906
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-MCE_TM_OPLEV_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"shell command" {
+	object {
+		x=1334
+		y=847
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_MCE"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --mce_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+text {
+	object {
+		x=22
+		y=749
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="IMMT1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=102
+		y=754
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=102
+		y=784
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=102
+		y=812
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=752
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=781
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=811
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=752
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=781
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=362
+		y=811
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=752
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=781
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=811
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=752
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=781
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=811
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=752
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=781
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=541
+		y=811
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT1_TM_OPLEV_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"shell command" {
+	object {
+		x=637
+		y=752
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_IMMT1"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --immt1_tm' &"
+	}
+	clr=50
+	bclr=27
+}
+text {
+	object {
+		x=20
+		y=848
+		width=31
+		height=22
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		chan="C1:VIS-MMT2_POS"
+	}
+	textix="IMMT2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=100
+		y=850
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="pitch(uRad)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=100
+		y=880
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="long (micron)"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=100
+		y=908
+		width=39
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="yaw(uRad)"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=188
+		y=845
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_PIT_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=874
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_L_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=188
+		y=904
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_YAW_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=364
+		y=845
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_PIT_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=364
+		y=874
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_L_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=364
+		y=904
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_YAW_OUTPUT.LOW"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=845
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_PIT_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=874
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_L_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=274
+		y=904
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_YAW_OUTPUT.LOLO"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=845
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_PIT_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=874
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_L_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=451
+		y=904
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_YAW_OUTPUT.HIGH"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=542
+		y=845
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_PIT_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=542
+		y=874
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_L_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"text update" {
+	object {
+		x=542
+		y=904
+		width=80
+		height=22
+	}
+	monitor {
+		chan="$(IFO):VIS-IMMT2_TM_OPLEV_YAW_OUTPUT.HIHI"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+		precDefault=1
+	}
+}
+"shell command" {
+	object {
+		x=637
+		y=845
+		width=24
+		height=23
+	}
+	command[0] {
+		label="updatethresh_IMMT2"
+		name="xterm -e 'python /opt/rtcds/userapps/trunk/vis/common/scripts/visdrift/driftmon_update_miyo.py $(IFO) --immt2_tm' &"
+	}
+	clr=50
+	bclr=27
+}

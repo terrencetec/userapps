@@ -1,0 +1,668 @@
+
+file {
+	name="/opt/rtcds/userapps/release/cry/common/medm/CRY_CUST_TYPEA_ADC_MONITOR.adl"
+	version=030109
+}
+display {
+	object {
+		x=1171
+		y=351
+		width=320
+		height=450
+	}
+	clr=14
+	bclr=45
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=1
+		width=320
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=1
+		y=5
+		width=320
+		height=18
+	}
+	"basic attribute" {
+		clr=2
+	}
+	textix="ADC MONITOR"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=60
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_H1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=79
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_H2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=99
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_H3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=118
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_H4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=137
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_V1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=38
+		y=155
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_MR_SENSINF_V2"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=191
+		y=61
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_H1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=190
+		y=79
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_H2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=191
+		y=99
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_H3_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=191
+		y=118
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_H4_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=192
+		y=137
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_V1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=192
+		y=156
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_MR_SENSINF_V2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=8
+		y=182
+		width=298
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_X1_INMON"
+	}
+	points {
+		(8,182)
+		(306,182)
+	}
+}
+text {
+	object {
+		x=40
+		y=195
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_H1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=40
+		y=214
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_H2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=40
+		y=234
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_H3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=40
+		y=253
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_H4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=40
+		y=272
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_V1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=40
+		y=290
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_IM_SENSINF_V2"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=193
+		y=196
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_H1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=192
+		y=214
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_H2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=193
+		y=234
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_H3_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=193
+		y=253
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_H4_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=194
+		y=272
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_V1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=194
+		y=291
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_IM_SENSINF_V2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=8
+		y=320
+		width=298
+		height=0
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_X1_INMON"
+	}
+	points {
+		(8,320)
+		(306,320)
+	}
+}
+text {
+	object {
+		x=42
+		y=332
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_TM_OPLEVINF_X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=42
+		y=351
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_TM_OPLEVINF_Y1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=42
+		y=371
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_TM_OPLEVINF_X2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=42
+		y=390
+		width=150
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PROTO_TM_OPLEVINF_Y2"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=195
+		y=333
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_X1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=194
+		y=351
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_Y1_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=195
+		y=371
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_X2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=195
+		y=390
+		width=60
+		height=13
+	}
+	monitor {
+		chan="$(IFO):CRY-$(OPTIC)_TM_OPLEVINF_Y2_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=10
+		y=108
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MR"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=11
+		y=243
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=15
+		y=361
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+	align="horiz. centered"
+}

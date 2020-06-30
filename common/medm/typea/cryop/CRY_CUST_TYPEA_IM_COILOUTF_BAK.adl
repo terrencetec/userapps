@@ -1,0 +1,8094 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/typea/cryop/CRY_CUST_TYPEA_IM_COILOUTF.adl"
+	version=030107
+}
+display {
+	object {
+		x=2063
+		y=39
+		width=964
+		height=1008
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=1
+		width=983
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=8
+		y=3
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=2
+	}
+	textix="K1"
+}
+"text update" {
+	object {
+		x=831
+		y=5
+		width=120
+		height=15
+	}
+	monitor {
+		chan="K1:FEC-19_TIME_STRING"
+		clr=2
+		bclr=14
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=382
+		y=2
+		width=200
+		height=18
+	}
+	"basic attribute" {
+		clr=2
+	}
+	textix="K1CRY-PROTO_IM_COILOUTF"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=8
+		y=57
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="H1"
+}
+text {
+	object {
+		x=11
+		y=227
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="H2"
+}
+text {
+	object {
+		x=11
+		y=390
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="H3"
+}
+text {
+	object {
+		x=10
+		y=555
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="H4(V3)"
+}
+text {
+	object {
+		x=12
+		y=720
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="V1"
+}
+text {
+	object {
+		x=13
+		y=886
+		width=40
+		height=18
+	}
+	"basic attribute" {
+		clr=54
+	}
+	textix="V2"
+}
+composite {
+	object {
+		x=-1
+		y=24
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=-1
+				y=24
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(-1,24)
+				(24,24)
+				(24,49)
+				(-1,24)
+			}
+		}
+		polygon {
+			object {
+				x=-1
+				y=24
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(24,49)
+				(-1,49)
+				(-1,24)
+				(24,49)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=167
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=154
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_H1.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=154
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_H1,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=23
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=81
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=117
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,118)
+		(722,157)
+		(947,157)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=79
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,80)
+		(921,80)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=117
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,118)
+		(908,118)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=54
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,55)
+		(122,55)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=54
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,55)
+		(169,117)
+	}
+}
+text {
+	object {
+		x=49
+		y=88
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=103
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=107
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=127
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=87
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=107
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=130
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=281
+		y=27
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=486
+		y=27
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=93
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,93)
+		(555,143)
+		(624,117)
+		(555,93)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=109
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=106
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=129
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=86
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=161
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=161
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=139
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=122
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=102
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=80
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=63
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=117
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,118)
+		(911,118)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=66
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=104
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=142
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=35
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=55
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=40
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=88
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=127
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=24
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=74
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=88
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,88)
+		(722,118)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=87
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,103)
+		(728,103)
+		(722,87)
+		(717,103)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=106
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=126
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=88
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=68
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=86
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,87)
+		(825,117)
+	}
+}
+text {
+	object {
+		x=149
+		y=23
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=37
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,37)
+		(174,37)
+		(168,53)
+		(163,37)
+	}
+}
+composite {
+	object {
+		x=90
+		y=72
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=88
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=88
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,104)
+						(95,104)
+						(99,88)
+						(106,104)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=89
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,89)
+						(101,117)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=72
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=87
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=89
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,89)
+						(193,117)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=87
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,104)
+						(187,104)
+						(191,87)
+						(198,104)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=73
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=94
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SW2R"
+	}
+	points {
+		(555,94)
+		(555,144)
+		(624,118)
+		(555,94)
+	}
+}
+text {
+	object {
+		x=555
+		y=156
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=151
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=155
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H1_SWSTAT"
+	}
+}
+composite {
+	object {
+		x=-1
+		y=197
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=-1
+				y=197
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(-1,197)
+				(24,197)
+				(24,222)
+				(-1,197)
+			}
+		}
+		polygon {
+			object {
+				x=-1
+				y=197
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(24,222)
+				(-1,222)
+				(-1,197)
+				(24,222)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=338
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=322
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_H2.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=322
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_H2,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=183
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=248
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=284
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,285)
+		(722,324)
+		(947,324)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=246
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,247)
+		(921,247)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=284
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,285)
+		(908,285)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=221
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,222)
+		(122,222)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=221
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,222)
+		(169,284)
+	}
+}
+text {
+	object {
+		x=49
+		y=255
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=270
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=274
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=294
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=254
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=274
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=297
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=281
+		y=196
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=486
+		y=196
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=260
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,260)
+		(555,310)
+		(624,284)
+		(555,260)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=276
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=273
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=296
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=253
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=328
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=328
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=306
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=306
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=306
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=306
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=306
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=289
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=289
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=289
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=289
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=289
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=269
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=247
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=247
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=247
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=247
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=247
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=230
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=230
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=230
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=230
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=230
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=284
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,285)
+		(911,285)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=233
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=271
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=309
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=202
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=222
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=207
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=255
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=294
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=191
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=241
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=255
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,255)
+		(722,285)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=254
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,270)
+		(728,270)
+		(722,254)
+		(717,270)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=273
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=293
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=255
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=235
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=253
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,254)
+		(825,284)
+	}
+}
+text {
+	object {
+		x=149
+		y=190
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=204
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,204)
+		(174,204)
+		(168,220)
+		(163,204)
+	}
+}
+composite {
+	object {
+		x=90
+		y=239
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=255
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=255
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,271)
+						(95,271)
+						(99,255)
+						(106,271)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=256
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,256)
+						(101,284)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=239
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=254
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=256
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,256)
+						(193,284)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=254
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,271)
+						(187,271)
+						(191,254)
+						(198,271)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=240
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=261
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SW2R"
+	}
+	points {
+		(555,261)
+		(555,311)
+		(624,285)
+		(555,261)
+	}
+}
+text {
+	object {
+		x=555
+		y=323
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=318
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=323
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H2_SWSTAT"
+	}
+}
+composite {
+	object {
+		x=-1
+		y=356
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=-1
+				y=356
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(-1,356)
+				(24,356)
+				(24,381)
+				(-1,356)
+			}
+		}
+		polygon {
+			object {
+				x=-1
+				y=356
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(24,381)
+				(-1,381)
+				(-1,356)
+				(24,381)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=499
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=485
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_H3.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=485
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_H3,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=348
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=409
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=445
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,446)
+		(722,485)
+		(947,485)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=407
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,408)
+		(921,408)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=445
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,446)
+		(908,446)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=382
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,383)
+		(122,383)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=382
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,383)
+		(169,445)
+	}
+}
+text {
+	object {
+		x=49
+		y=416
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=431
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=435
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=455
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=415
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=435
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=458
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=281
+		y=360
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=486
+		y=360
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=421
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,421)
+		(555,471)
+		(624,445)
+		(555,421)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=437
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=434
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=457
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=414
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=489
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=489
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=467
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=467
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=467
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=467
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=467
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=450
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=450
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=450
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=450
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=450
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=430
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=408
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=408
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=408
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=408
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=408
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=391
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=391
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=391
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=391
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=391
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=445
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,446)
+		(911,446)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=394
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=432
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=470
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=363
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=383
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=368
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=416
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=455
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=352
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=402
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=416
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,416)
+		(722,446)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=415
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,431)
+		(728,431)
+		(722,415)
+		(717,431)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=434
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=454
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=416
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=396
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=414
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,415)
+		(825,445)
+	}
+}
+text {
+	object {
+		x=149
+		y=351
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=365
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,365)
+		(174,365)
+		(168,381)
+		(163,365)
+	}
+}
+composite {
+	object {
+		x=90
+		y=400
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=416
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=416
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,432)
+						(95,432)
+						(99,416)
+						(106,432)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=417
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,417)
+						(101,445)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=400
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=415
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=417
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,417)
+						(193,445)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=415
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,432)
+						(187,432)
+						(191,415)
+						(198,432)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=401
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=422
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SW2R"
+	}
+	points {
+		(555,422)
+		(555,472)
+		(624,446)
+		(555,422)
+	}
+}
+text {
+	object {
+		x=555
+		y=484
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=479
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=486
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_H3_SWSTAT"
+	}
+}
+composite {
+	object {
+		x=-1
+		y=523
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=-1
+				y=523
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(-1,523)
+				(24,523)
+				(24,548)
+				(-1,523)
+			}
+		}
+		polygon {
+			object {
+				x=-1
+				y=523
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(24,548)
+				(-1,548)
+				(-1,523)
+				(24,548)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=662
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=646
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_V3.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=646
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_V3,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=511
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=572
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=608
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,609)
+		(722,648)
+		(947,648)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=570
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,571)
+		(921,571)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=608
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,609)
+		(908,609)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=545
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,546)
+		(122,546)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=545
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,546)
+		(169,608)
+	}
+}
+text {
+	object {
+		x=49
+		y=579
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=594
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=598
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=618
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=578
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=598
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=621
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=278
+		y=522
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=483
+		y=522
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=584
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,584)
+		(555,634)
+		(624,608)
+		(555,584)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=600
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=597
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=620
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=577
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=652
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=652
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=630
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=630
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=630
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=630
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=630
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=613
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=613
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=613
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=613
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=613
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=593
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=571
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=571
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=571
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=571
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=571
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=554
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=554
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=554
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=554
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=554
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=608
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,609)
+		(911,609)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=557
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=595
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=633
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=526
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=546
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=531
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=579
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=618
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=515
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=565
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=579
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,579)
+		(722,609)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=578
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,594)
+		(728,594)
+		(722,578)
+		(717,594)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=597
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=617
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=579
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=559
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=577
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,578)
+		(825,608)
+	}
+}
+text {
+	object {
+		x=149
+		y=518
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=528
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,528)
+		(174,528)
+		(168,544)
+		(163,528)
+	}
+}
+composite {
+	object {
+		x=90
+		y=563
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=579
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=579
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,595)
+						(95,595)
+						(99,579)
+						(106,595)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=580
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,580)
+						(101,608)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=563
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=578
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=580
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,580)
+						(193,608)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=578
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,595)
+						(187,595)
+						(191,578)
+						(198,595)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=564
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=585
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SW2R"
+	}
+	points {
+		(555,585)
+		(555,635)
+		(624,609)
+		(555,585)
+	}
+}
+text {
+	object {
+		x=555
+		y=647
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=642
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=647
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V3_SWSTAT"
+	}
+}
+composite {
+	object {
+		x=-1
+		y=688
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=-1
+				y=688
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(-1,688)
+				(24,688)
+				(24,713)
+				(-1,688)
+			}
+		}
+		polygon {
+			object {
+				x=-1
+				y=688
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(24,713)
+				(-1,713)
+				(-1,688)
+				(24,713)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=826
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=810
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_V1.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=810
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_V1,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=671
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=736
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=772
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,773)
+		(722,812)
+		(947,812)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=734
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,735)
+		(921,735)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=772
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,773)
+		(908,773)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=709
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,710)
+		(122,710)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=709
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,710)
+		(169,772)
+	}
+}
+text {
+	object {
+		x=49
+		y=743
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=758
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=762
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=782
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=742
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=762
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=785
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=281
+		y=686
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=486
+		y=686
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=748
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,748)
+		(555,798)
+		(624,772)
+		(555,748)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=764
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=761
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=784
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=741
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=816
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=816
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=794
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=794
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=794
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=794
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=794
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=777
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=777
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=777
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=777
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=777
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=757
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=735
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=735
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=735
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=735
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=735
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=718
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=718
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=718
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=718
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=718
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=772
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,773)
+		(911,773)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=721
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=759
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=797
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=690
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=710
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=695
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=743
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=782
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=679
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=729
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=743
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,743)
+		(722,773)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=742
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,758)
+		(728,758)
+		(722,742)
+		(717,758)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=761
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=781
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=743
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=723
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=741
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,742)
+		(825,772)
+	}
+}
+text {
+	object {
+		x=149
+		y=678
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=692
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,692)
+		(174,692)
+		(168,708)
+		(163,692)
+	}
+}
+composite {
+	object {
+		x=90
+		y=727
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=743
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=743
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,759)
+						(95,759)
+						(99,743)
+						(106,759)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=744
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,744)
+						(101,772)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=727
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=742
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=744
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,744)
+						(193,772)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=742
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,759)
+						(187,759)
+						(191,742)
+						(198,759)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=728
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=749
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SW2R"
+	}
+	points {
+		(555,749)
+		(555,799)
+		(624,773)
+		(555,749)
+	}
+}
+text {
+	object {
+		x=555
+		y=811
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=806
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=811
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V1_SWSTAT"
+	}
+}
+composite {
+	object {
+		x=0
+		y=851
+		width=25
+		height=25
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=0
+				y=851
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+			}
+			points {
+				(0,851)
+				(25,851)
+				(25,876)
+				(0,851)
+			}
+		}
+		polygon {
+			object {
+				x=0
+				y=851
+				width=25
+				height=25
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			points {
+				(25,876)
+				(0,876)
+				(0,851)
+				(25,876)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=906
+		y=991
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTMON"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=3
+		y=976
+		width=75
+		height=20
+	}
+	command[0] {
+		label="Documentation"
+		name="xterm -e view"
+		args="/opt/rtcds/kamioka/k1/medm/k1visetmy/docs/K1VIS-ETMY_IM_COILOUTF_V2.txt"
+	}
+	command[1] {
+		label="Update Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="U &A &X"
+	}
+	command[2] {
+		label="Current Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="V &A"
+	}
+	command[3] {
+		label="Previous Snapshot"
+		name="/opt/rtcds/kamioka/k1/scripts/medm/medmsnap.pl"
+		args="P &A"
+	}
+	clr=14
+	bclr=55
+}
+"related display" {
+	object {
+		x=80
+		y=976
+		width=100
+		height=20
+	}
+	display[0] {
+		name="/opt/rtcds/rtscore/tags/advLigoRTS-2.9.7//src/epics/util/FILTALH.adl"
+		args="FPREFIX=K1,FNAME=VIS-ETMY_IM_COILOUTF_V2,DCUID=106"
+	}
+	clr=0
+	bclr=34
+	label="GUARDIAN SET"
+}
+rectangle {
+	object {
+		x=182
+		y=836
+		width=680
+		height=170
+	}
+	"basic attribute" {
+		clr=8
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=901
+		width=57
+		height=70
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&8192"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+	}
+}
+polyline {
+	object {
+		x=721
+		y=937
+		width=228
+		height=42
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(722,938)
+		(722,977)
+		(947,977)
+	}
+}
+polyline {
+	object {
+		x=808
+		y=899
+		width=115
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(809,900)
+		(921,900)
+	}
+}
+polyline {
+	object {
+		x=86
+		y=937
+		width=824
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(87,938)
+		(908,938)
+	}
+}
+polyline {
+	object {
+		x=121
+		y=874
+		width=52
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(171,875)
+		(122,875)
+	}
+}
+polyline {
+	object {
+		x=168
+		y=874
+		width=3
+		height=65
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(169,875)
+		(169,937)
+	}
+}
+text {
+	object {
+		x=49
+		y=908
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="INMON"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=19
+		y=923
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_INMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=104
+		y=927
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="4"
+}
+byte {
+	object {
+		x=100
+		y=947
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=204
+		y=907
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="OFFSET"
+	release_msg="8"
+}
+"text entry" {
+	object {
+		x=203
+		y=927
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=201
+		y=950
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=3
+	ebit=3
+}
+"message button" {
+	object {
+		x=281
+		y=850
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="CLEAR HISTORY"
+	release_msg="2"
+}
+"message button" {
+	object {
+		x=486
+		y=850
+		width=205
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+		clr=14
+		bclr=4
+	}
+	label="LOAD COEFFICIENTS"
+	release_msg="1"
+}
+polygon {
+	object {
+		x=555
+		y=913
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(555,913)
+		(555,963)
+		(624,937)
+		(555,913)
+	}
+}
+"text entry" {
+	object {
+		x=555
+		y=929
+		width=51
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_GAIN"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=630
+		y=926
+		width=49
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_LIMIT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+byte {
+	object {
+		x=629
+		y=949
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=8
+	ebit=8
+}
+"message button" {
+	object {
+		x=631
+		y=906
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="LIMIT"
+	release_msg="256"
+}
+byte {
+	object {
+		x=287
+		y=981
+		width=51
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=14
+	ebit=15
+}
+byte {
+	object {
+		x=339
+		y=981
+		width=205
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=0
+	ebit=7
+}
+"message button" {
+	object {
+		x=289
+		y=959
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM6"
+	release_msg="16384"
+}
+"message button" {
+	object {
+		x=393
+		y=959
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM8"
+	release_msg="4"
+}
+"message button" {
+	object {
+		x=446
+		y=959
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM9"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=959
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM7"
+	release_msg="1"
+}
+"message button" {
+	object {
+		x=497
+		y=959
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="FM10"
+	release_msg="64"
+}
+"text update" {
+	object {
+		x=287
+		y=942
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name05"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=942
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name06"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=942
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name07"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=942
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name08"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=942
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name09"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+byte {
+	object {
+		x=287
+		y=922
+		width=256
+		height=11
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=4
+	ebit=13
+}
+"message button" {
+	object {
+		x=289
+		y=900
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM1"
+	release_msg="16"
+}
+"message button" {
+	object {
+		x=342
+		y=900
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM2"
+	release_msg="64"
+}
+"message button" {
+	object {
+		x=394
+		y=900
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM3"
+	release_msg="256"
+}
+"message button" {
+	object {
+		x=445
+		y=900
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM4"
+	release_msg="1024"
+}
+"message button" {
+	object {
+		x=497
+		y=900
+		width=46
+		height=22
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW1"
+		clr=14
+		bclr=4
+	}
+	label="FM5"
+	release_msg="4096"
+}
+"text update" {
+	object {
+		x=287
+		y=883
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name00"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=341
+		y=883
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name01"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=393
+		y=883
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name02"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=446
+		y=883
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name03"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=498
+		y=883
+		width=51
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_Name04"
+		clr=14
+		bclr=4
+	}
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=844
+		y=937
+		width=69
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(845,938)
+		(911,938)
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=886
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_OUT16"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=924
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_OUTPUT"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=878
+		y=962
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_OUTMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=879
+		y=855
+		width=72
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="HOLD OUTPUT"
+	release_msg="2048"
+}
+byte {
+	object {
+		x=889
+		y=875
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=11
+	ebit=11
+}
+"text update" {
+	object {
+		x=56
+		y=860
+		width=77
+		height=24
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_EXCMON"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	limits {
+	}
+}
+text {
+	object {
+		x=906
+		y=908
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUT16"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=906
+		y=947
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="OUTPUT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=84
+		y=844
+		width=20
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EXCMON"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=694
+		y=894
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=55
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=722
+		y=908
+		width=1
+		height=31
+	}
+	"basic attribute" {
+		clr=55
+		width=1
+	}
+	points {
+		(722,908)
+		(722,938)
+	}
+}
+polygon {
+	object {
+		x=717
+		y=907
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=55
+		width=3
+	}
+	points {
+		(717,923)
+		(728,923)
+		(722,907)
+		(717,923)
+	}
+}
+"message button" {
+	object {
+		x=752
+		y=926
+		width=47
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="ON/OFF"
+	release_msg="1024"
+}
+byte {
+	object {
+		x=749
+		y=946
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=10
+	ebit=10
+}
+byte {
+	object {
+		x=799
+		y=908
+		width=51
+		height=7
+	}
+	monitor {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+		clr=60
+		bclr=20
+	}
+	sbit=9
+	ebit=9
+}
+"message button" {
+	object {
+		x=794
+		y=888
+		width=61
+		height=20
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2"
+		clr=14
+		bclr=4
+	}
+	label="DECIMATION"
+	release_msg="512"
+}
+polyline {
+	object {
+		x=824
+		y=906
+		width=3
+		height=33
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	points {
+		(825,907)
+		(825,937)
+	}
+}
+text {
+	object {
+		x=149
+		y=843
+		width=40
+		height=15
+	}
+	"basic attribute" {
+		clr=34
+	}
+	textix="EXC"
+	align="horiz. centered"
+}
+polygon {
+	object {
+		x=163
+		y=857
+		width=11
+		height=16
+	}
+	"basic attribute" {
+		clr=34
+		width=3
+	}
+	points {
+		(163,857)
+		(174,857)
+		(168,873)
+		(163,857)
+	}
+}
+composite {
+	object {
+		x=90
+		y=892
+		width=126
+		height=48
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=95
+				y=908
+				width=11
+				height=29
+			}
+			"composite name"=""
+			children {
+				polygon {
+					object {
+						x=95
+						y=908
+						width=11
+						height=16
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(106,924)
+						(95,924)
+						(99,908)
+						(106,924)
+					}
+				}
+				polyline {
+					object {
+						x=101
+						y=909
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(101,909)
+						(101,937)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=90
+				y=892
+				width=20
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN1"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=187
+				y=907
+				width=11
+				height=33
+			}
+			"composite name"=""
+			children {
+				polyline {
+					object {
+						x=193
+						y=909
+						width=1
+						height=29
+					}
+					"basic attribute" {
+						clr=55
+						width=1
+					}
+					points {
+						(193,909)
+						(193,937)
+					}
+				}
+				polygon {
+					object {
+						x=187
+						y=907
+						width=11
+						height=17
+					}
+					"basic attribute" {
+						clr=55
+						width=3
+					}
+					points {
+						(198,924)
+						(187,924)
+						(191,907)
+						(198,924)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=169
+				y=893
+				width=47
+				height=15
+			}
+			"basic attribute" {
+				clr=55
+			}
+			textix="IN2"
+			align="horiz. centered"
+		}
+	}
+}
+polygon {
+	object {
+		x=555
+		y=914
+		width=69
+		height=50
+	}
+	"basic attribute" {
+		clr=30
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&4096"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SW2R"
+	}
+	points {
+		(555,914)
+		(555,964)
+		(624,938)
+		(555,914)
+	}
+}
+text {
+	object {
+		x=555
+		y=976
+		width=76
+		height=18
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="Ramp Time (sec):"
+}
+"text entry" {
+	object {
+		x=652
+		y=971
+		width=50
+		height=25
+	}
+	control {
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_TRAMP"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=183
+		y=977
+		width=20
+		height=18
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&0x40000"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_SWSTAT"
+	}
+}
+polyline {
+	object {
+		x=-2
+		y=184
+		width=980
+		height=0
+	}
+	"basic attribute" {
+		clr=25
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1024"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+	}
+	points {
+		(978,184)
+		(-2,184)
+	}
+}
+polyline {
+	object {
+		x=-16
+		y=351
+		width=980
+		height=0
+	}
+	"basic attribute" {
+		clr=25
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1024"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+	}
+	points {
+		(964,351)
+		(-16,351)
+	}
+}
+polyline {
+	object {
+		x=-16
+		y=514
+		width=980
+		height=0
+	}
+	"basic attribute" {
+		clr=25
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1024"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+	}
+	points {
+		(964,514)
+		(-16,514)
+	}
+}
+polyline {
+	object {
+		x=-16
+		y=677
+		width=980
+		height=0
+	}
+	"basic attribute" {
+		clr=25
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1024"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+	}
+	points {
+		(964,677)
+		(-16,677)
+	}
+}
+polyline {
+	object {
+		x=-16
+		y=839
+		width=980
+		height=0
+	}
+	"basic attribute" {
+		clr=25
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1024"
+		chan="K1:VIS-ETMY_IM_COILOUTF_V2_RSET"
+	}
+	points {
+		(964,839)
+		(-16,839)
+	}
+}
