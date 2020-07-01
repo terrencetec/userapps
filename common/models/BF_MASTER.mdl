@@ -2,7 +2,7 @@ Library {
   Name			  "BF_MASTER"
   Version		  8.6
   MdlSubVersion		  0
-  SavedCharacterEncoding  "US-ASCII"
+  SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-84.0, 231.0, 1776.0, 968.0]
+      Location		      [124.0, 12.0, 1735.0, 1035.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,18 +33,18 @@ Library {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[0]
+	Visible			[1]
       }
       Object {
 	$PropName		"EditorsInfo"
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1740.0, 826.0]
-	ZoomFactor		[0.8]
-	Offset			[-120.5, 46.400000000000091]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"774"
+	Extents			[1681.0, 864.0]
+	ZoomFactor		[0.49999999999999994]
+	Offset			[-922.50000000000091, -115.49999999999977]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 07 11:58:22 2019"
-  RTWModifiedTimeStamp	  492350157
-  ModelVersionFormat	  "1.%<AutoIncrement:48>"
+  LastModifiedDate	  "Wed Jul 01 20:03:01 2020"
+  RTWModifiedTimeStamp	  515534522
+  ModelVersionFormat	  "1.%<AutoIncrement:51>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -908,8 +908,8 @@ Library {
   }
   System {
     Name		    "BF_MASTER"
-    Location		    [-84, 231, 1692, 1199]
-    Open		    on
+    Location		    [124, 12, 1859, 1047]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -920,9 +920,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1220"
+    SIDHighWatermark	    "1228"
     Block {
       BlockType		      SubSystem
       Name		      "BF"
@@ -10429,16 +10429,17 @@ Library {
       BlockType		      SubSystem
       Name		      "BF_TYPEBP"
       SID		      "774"
-      Ports		      [21, 9]
+      Ports		      [23, 9]
       Position		      [510, 448, 690, 892]
-      ZOrder		      308
+      ZOrder		      4501
       BackgroundColor	      "[0.737255, 0.647059, 1.000000]"
+      LibraryVersion	      "*1.50"
       RequestExecContextInheritance off
       Variant		      off
       System {
 	Name			"BF_TYPEBP"
-	Location		[558, 136, 2334, 1104]
-	Open			off
+	Location		[124, 12, 1859, 1047]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -10449,7 +10450,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"50"
 	Block {
 	  BlockType		  Inport
 	  Name			  "LVDT_GAS_In"
@@ -10666,17 +10667,37 @@ Library {
 	  IconDisplay		  "Port number"
 	}
 	Block {
+	  BlockType		  Inport
+	  Name			  "TM_PSD_P"
+	  SID			  "1227"
+	  Position		  [890, 475, 910, 485]
+	  ZOrder		  4577
+	  BackgroundColor	  "yellow"
+	  Port			  "22"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_PSD_Y"
+	  SID			  "1228"
+	  Position		  [935, 490, 955, 500]
+	  ZOrder		  4578
+	  BackgroundColor	  "yellow"
+	  Port			  "23"
+	  IconDisplay		  "Port number"
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "ADD"
 	  SID			  "795"
-	  Ports			  [24, 7]
-	  Position		  [935, 109, 1115, 496]
+	  Ports			  [26, 7]
+	  Position		  [985, 113, 1165, 502]
 	  ZOrder		  1599
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
 	    Name		    "ADD"
-	    Location		    [2049, 48, 3825, 1016]
+	    Location		    [2171, 34, 3629, 815]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -10905,6 +10926,24 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
+	      BlockType		      Inport
+	      Name		      "PSD_P"
+	      SID		      "1221"
+	      Position		      [15, 1218, 45, 1232]
+	      ZOrder		      34
+	      Port		      "25"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "PSD_Y"
+	      SID		      "1222"
+	      Position		      [15, 1263, 45, 1277]
+	      ZOrder		      36
+	      Port		      "26"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
 	      BlockType		      From
 	      Name		      "From1"
 	      SID		      "820"
@@ -10918,7 +10957,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From10"
 	      SID		      "821"
-	      Position		      [270, 851, 355, 869]
+	      Position		      [270, 961, 355, 979]
 	      ZOrder		      -19
 	      BackgroundColor	      "gray"
 	      CloseFcn		      "tagdialog Close"
@@ -10928,7 +10967,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From11"
 	      SID		      "822"
-	      Position		      [250, 791, 355, 809]
+	      Position		      [250, 901, 355, 919]
 	      ZOrder		      -20
 	      BackgroundColor	      "cyan"
 	      CloseFcn		      "tagdialog Close"
@@ -10998,7 +11037,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From18"
 	      SID		      "829"
-	      Position		      [270, 996, 355, 1014]
+	      Position		      [270, 1211, 355, 1229]
 	      ZOrder		      10
 	      BackgroundColor	      "gray"
 	      CloseFcn		      "tagdialog Close"
@@ -11008,7 +11047,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From19"
 	      SID		      "830"
-	      Position		      [250, 916, 355, 934]
+	      Position		      [250, 1131, 355, 1149]
 	      ZOrder		      9
 	      BackgroundColor	      "cyan"
 	      CloseFcn		      "tagdialog Close"
@@ -11028,7 +11067,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From20"
 	      SID		      "832"
-	      Position		      [270, 956, 355, 974]
+	      Position		      [270, 1171, 355, 1189]
 	      ZOrder		      8
 	      BackgroundColor	      "yellow"
 	      CloseFcn		      "tagdialog Close"
@@ -11076,6 +11115,26 @@ Library {
 	    }
 	    Block {
 	      BlockType		      From
+	      Name		      "From25"
+	      SID		      "1225"
+	      Position		      [270, 716, 355, 734]
+	      ZOrder		      37
+	      BackgroundColor	      "red"
+	      CloseFcn		      "tagdialog Close"
+	      GotoTag		      "PSD_P"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From26"
+	      SID		      "1226"
+	      Position		      [270, 991, 355, 1009]
+	      ZOrder		      38
+	      BackgroundColor	      "red"
+	      CloseFcn		      "tagdialog Close"
+	      GotoTag		      "PSD_Y"
+	    }
+	    Block {
+	      BlockType		      From
 	      Name		      "From3"
 	      SID		      "837"
 	      Position		      [255, 51, 340, 69]
@@ -11088,7 +11147,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From4"
 	      SID		      "838"
-	      Position		      [270, 621, 355, 639]
+	      Position		      [270, 626, 355, 644]
 	      ZOrder		      -29
 	      BackgroundColor	      "yellow"
 	      CloseFcn		      "tagdialog Close"
@@ -11098,7 +11157,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From5"
 	      SID		      "839"
-	      Position		      [270, 561, 355, 579]
+	      Position		      [270, 566, 355, 584]
 	      ZOrder		      -30
 	      BackgroundColor	      "[0.200000, 1.000000, 0.520000]"
 	      CloseFcn		      "tagdialog Close"
@@ -11108,7 +11167,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From6"
 	      SID		      "840"
-	      Position		      [270, 651, 355, 669]
+	      Position		      [270, 656, 355, 674]
 	      ZOrder		      -31
 	      BackgroundColor	      "gray"
 	      CloseFcn		      "tagdialog Close"
@@ -11118,7 +11177,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From7"
 	      SID		      "841"
-	      Position		      [255, 591, 355, 609]
+	      Position		      [260, 596, 360, 614]
 	      ZOrder		      -32
 	      BackgroundColor	      "cyan"
 	      CloseFcn		      "tagdialog Close"
@@ -11128,7 +11187,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From8"
 	      SID		      "842"
-	      Position		      [270, 821, 355, 839]
+	      Position		      [270, 931, 355, 949]
 	      ZOrder		      -33
 	      BackgroundColor	      "yellow"
 	      CloseFcn		      "tagdialog Close"
@@ -11138,7 +11197,7 @@ Library {
 	      BlockType		      From
 	      Name		      "From9"
 	      SID		      "843"
-	      Position		      [270, 761, 355, 779]
+	      Position		      [270, 871, 355, 889]
 	      ZOrder		      -34
 	      BackgroundColor	      "[0.200000, 1.000000, 0.521569]"
 	      CloseFcn		      "tagdialog Close"
@@ -11299,6 +11358,24 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Goto
+	      Name		      "Goto24"
+	      SID		      "1223"
+	      Position		      [85, 1217, 165, 1233]
+	      ZOrder		      33
+	      BackgroundColor	      "red"
+	      GotoTag		      "PSD_P"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto25"
+	      SID		      "1224"
+	      Position		      [85, 1262, 165, 1278]
+	      ZOrder		      35
+	      BackgroundColor	      "red"
+	      GotoTag		      "PSD_Y"
+	    }
+	    Block {
+	      BlockType		      Goto
 	      Name		      "Goto3"
 	      SID		      "861"
 	      Position		      [105, 332, 185, 348]
@@ -11402,11 +11479,11 @@ Library {
 	      BlockType		      Sum
 	      Name		      "Sum3"
 	      SID		      "871"
-	      Ports		      [4, 1]
-	      Position		      [430, 758, 450, 872]
+	      Ports		      [5, 1]
+	      Position		      [430, 858, 450, 1022]
 	      ZOrder		      -55
 	      ShowName		      off
-	      Inputs		      "++++"
+	      Inputs		      "+++++"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -11415,11 +11492,11 @@ Library {
 	      BlockType		      Sum
 	      Name		      "Sum4"
 	      SID		      "872"
-	      Ports		      [5, 1]
-	      Position		      [430, 549, 450, 711]
+	      Ports		      [6, 1]
+	      Position		      [430, 553, 450, 747]
 	      ZOrder		      -56
 	      ShowName		      off
-	      Inputs		      "+++++"
+	      Inputs		      "++++++"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -11442,7 +11519,7 @@ Library {
 	      Name		      "Sum6"
 	      SID		      "874"
 	      Ports		      [3, 1]
-	      Position		      [430, 908, 450, 1022]
+	      Position		      [430, 1123, 450, 1237]
 	      ZOrder		      6
 	      ShowName		      off
 	      Inputs		      "+++"
@@ -11489,7 +11566,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "PITCH_MAIN_Out"
 	      SID		      "879"
-	      Position		      [515, 623, 545, 637]
+	      Position		      [515, 643, 545, 657]
 	      ZOrder		      -62
 	      Port		      "5"
 	      IconDisplay	      "Port number"
@@ -11498,7 +11575,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "YAW_MAIN_Out"
 	      SID		      "880"
-	      Position		      [515, 808, 545, 822]
+	      Position		      [515, 933, 545, 947]
 	      ZOrder		      -63
 	      Port		      "6"
 	      IconDisplay	      "Port number"
@@ -11507,167 +11584,195 @@ Library {
 	      BlockType		      Outport
 	      Name		      "GAS_Main_Out"
 	      SID		      "881"
-	      Position		      [515, 958, 545, 972]
+	      Position		      [515, 1173, 545, 1187]
 	      ZOrder		      5
 	      Port		      "7"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
 	      ZOrder		      1
+	      SrcBlock		      "From26"
+	      SrcPort		      1
+	      DstBlock		      "Sum3"
+	      DstPort		      5
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "From25"
+	      SrcPort		      1
+	      DstBlock		      "Sum4"
+	      DstPort		      6
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "PSD_P"
+	      SrcPort		      1
+	      DstBlock		      "Goto24"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "PSD_Y"
+	      SrcPort		      1
+	      DstBlock		      "Goto25"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
 	      SrcBlock		      "From15"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      2
+	      ZOrder		      6
 	      SrcBlock		      "From14"
 	      SrcPort		      1
 	      DstBlock		      "Sum2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      3
+	      ZOrder		      7
 	      SrcBlock		      "From17"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      4
+	      ZOrder		      8
 	      SrcBlock		      "From16"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      5
+	      ZOrder		      9
 	      SrcBlock		      "From13"
 	      SrcPort		      1
 	      DstBlock		      "Sum5"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      6
+	      ZOrder		      10
 	      SrcBlock		      "From12"
 	      SrcPort		      1
 	      DstBlock		      "Sum5"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      7
+	      ZOrder		      11
 	      SrcBlock		      "From10"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      8
+	      ZOrder		      12
 	      SrcBlock		      "From8"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      9
+	      ZOrder		      13
 	      SrcBlock		      "From11"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      10
+	      ZOrder		      14
 	      SrcBlock		      "From9"
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      11
+	      ZOrder		      15
 	      SrcBlock		      "From6"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      12
+	      ZOrder		      16
 	      SrcBlock		      "From4"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      13
+	      ZOrder		      17
 	      SrcBlock		      "From7"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      14
+	      ZOrder		      18
 	      SrcBlock		      "From5"
 	      SrcPort		      1
 	      DstBlock		      "Sum4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      15
+	      ZOrder		      19
 	      SrcBlock		      "ISC_Y_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      16
+	      ZOrder		      20
 	      SrcBlock		      "ISC_P_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      17
+	      ZOrder		      21
 	      SrcBlock		      "ISC_L_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      18
+	      ZOrder		      22
 	      SrcBlock		      "OPTICALIGN_Y_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto5"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      19
+	      ZOrder		      23
 	      SrcBlock		      "OPTICALIGN_P_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      20
+	      ZOrder		      24
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      DstBlock		      "TRANS_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
+	      ZOrder		      25
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
 	      DstBlock		      "VERT_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      22
+	      ZOrder		      26
 	      SrcBlock		      "Sum5"
 	      SrcPort		      1
 	      DstBlock		      "ROLL_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
+	      ZOrder		      27
 	      SrcBlock		      "From3"
 	      SrcPort		      1
 	      Points		      [17, 0; 0, -5]
@@ -11675,14 +11780,14 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      24
+	      ZOrder		      28
 	      SrcBlock		      "From1"
 	      SrcPort		      1
 	      DstBlock		      "Sum"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      25
+	      ZOrder		      29
 	      SrcBlock		      "From2"
 	      SrcPort		      1
 	      Points		      [38, 0; 0, 15]
@@ -11690,175 +11795,175 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      26
+	      ZOrder		      30
 	      SrcBlock		      "Sum"
 	      SrcPort		      1
 	      DstBlock		      "LONG_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      27
+	      ZOrder		      31
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
 	      DstBlock		      "YAW_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      28
+	      ZOrder		      32
 	      SrcBlock		      "Sum4"
 	      SrcPort		      1
 	      DstBlock		      "PITCH_MAIN_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      29
+	      ZOrder		      33
 	      SrcBlock		      "Sum6"
 	      SrcPort		      1
 	      DstBlock		      "GAS_Main_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      30
+	      ZOrder		      34
 	      SrcBlock		      "OPTICALIGN_GAS_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto19"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      31
+	      ZOrder		      35
 	      SrcBlock		      "TEST_L_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      32
+	      ZOrder		      36
 	      SrcBlock		      "TEST_T_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto8"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      33
+	      ZOrder		      37
 	      SrcBlock		      "TEST_V_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto10"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      34
+	      ZOrder		      38
 	      SrcBlock		      "TEST_R_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto9"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      35
+	      ZOrder		      39
 	      SrcBlock		      "TEST_P_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto6"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      36
+	      ZOrder		      40
 	      SrcBlock		      "TEST_Y_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto7"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      37
+	      ZOrder		      41
 	      SrcBlock		      "TEST_GAS_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto17"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      38
+	      ZOrder		      42
 	      SrcBlock		      "DAMP_L_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto12"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      39
+	      ZOrder		      43
 	      SrcBlock		      "DAMP_T_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto15"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      40
+	      ZOrder		      44
 	      SrcBlock		      "DAMP_V_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto11"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      41
+	      ZOrder		      45
 	      SrcBlock		      "DAMP_R_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto16"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      42
+	      ZOrder		      46
 	      SrcBlock		      "DAMP_P_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto13"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      43
+	      ZOrder		      47
 	      SrcBlock		      "DAMP_Y_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto14"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      44
+	      ZOrder		      48
 	      SrcBlock		      "DAMP_GAS_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto18"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      45
+	      ZOrder		      49
 	      SrcBlock		      "From19"
 	      SrcPort		      1
 	      DstBlock		      "Sum6"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      46
+	      ZOrder		      50
 	      SrcBlock		      "From20"
 	      SrcPort		      1
 	      DstBlock		      "Sum6"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      47
+	      ZOrder		      51
 	      SrcBlock		      "From18"
 	      SrcPort		      1
 	      DstBlock		      "Sum6"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      48
+	      ZOrder		      52
 	      SrcBlock		      "FF_L_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto20"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      49
+	      ZOrder		      53
 	      SrcBlock		      "FF_T_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto21"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      50
+	      ZOrder		      54
 	      SrcBlock		      "From21"
 	      SrcPort		      1
 	      Points		      [38, 0; 0, -25]
@@ -11866,21 +11971,21 @@ Library {
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      51
+	      ZOrder		      55
 	      SrcBlock		      "From22"
 	      SrcPort		      1
 	      DstBlock		      "Sum1"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      52
+	      ZOrder		      56
 	      SrcBlock		      "FF_L2P_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto22"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      53
+	      ZOrder		      57
 	      SrcBlock		      "From23"
 	      SrcPort		      1
 	      Points		      [33, 0; 0, -5]
@@ -11888,15 +11993,14 @@ Library {
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      54
+	      ZOrder		      58
 	      SrcBlock		      "From24"
 	      SrcPort		      1
-	      Points		      [33, 0; 0, -5]
 	      DstBlock		      "Sum4"
 	      DstPort		      5
 	    }
 	    Line {
-	      ZOrder		      55
+	      ZOrder		      59
 	      SrcBlock		      "FF_T2R_In"
 	      SrcPort		      1
 	      DstBlock		      "Goto23"
@@ -14702,7 +14806,7 @@ Library {
 	  Position		  [545, -246, 645, -184]
 	  ZOrder		  4574
 	  BackgroundColor	  "green"
-	  LibraryVersion	  "1.157"
+	  LibraryVersion	  "1.162"
 	  SourceBlock		  "VIS_LIB/DRIVEALIGN"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -14762,7 +14866,7 @@ Library {
 	  Description		  "ADL=SUS_INMATRIX.adl\nSCRIPT=generate_KisselButton.py 4 5 #CHANNEL# > #TARGET_DIR#/#FULL_PART_NAME#"
 	  "_KB.adl"
 	  Ports			  [1, 1]
-	  Position		  [1260, 260, 1305, 300]
+	  Position		  [1260, 265, 1305, 305]
 	  ZOrder		  -104
 	  BackgroundColor	  "green"
 	  DropShadow		  on
@@ -15075,7 +15179,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From10"
 	  SID			  "999"
-	  Position		  [700, 260, 785, 270]
+	  Position		  [700, 250, 785, 260]
 	  ZOrder		  1601
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  GotoTag		  "TESTR"
@@ -15084,7 +15188,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From11"
 	  SID			  "1000"
-	  Position		  [700, 275, 785, 285]
+	  Position		  [700, 265, 785, 275]
 	  ZOrder		  1602
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  ShowName		  off
@@ -15152,7 +15256,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From3"
 	  SID			  "1007"
-	  Position		  [700, 215, 785, 225]
+	  Position		  [700, 205, 785, 215]
 	  ZOrder		  1581
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  GotoTag		  "TESTL"
@@ -15183,7 +15287,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From6"
 	  SID			  "1010"
-	  Position		  [700, 230, 785, 240]
+	  Position		  [700, 220, 785, 230]
 	  ZOrder		  1582
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  GotoTag		  "TESTT"
@@ -15192,7 +15296,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From7"
 	  SID			  "1011"
-	  Position		  [700, 290, 785, 300]
+	  Position		  [700, 280, 785, 290]
 	  ZOrder		  1583
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  GotoTag		  "TESTY"
@@ -15201,7 +15305,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From8"
 	  SID			  "1012"
-	  Position		  [700, 305, 785, 315]
+	  Position		  [700, 295, 785, 305]
 	  ZOrder		  1584
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  ShowName		  off
@@ -15211,7 +15315,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From9"
 	  SID			  "1013"
-	  Position		  [700, 245, 785, 255]
+	  Position		  [700, 235, 785, 245]
 	  ZOrder		  1600
 	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
 	  GotoTag		  "TESTV"
@@ -16041,7 +16145,7 @@ Library {
 	      ZOrder		      7
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16076,7 +16180,7 @@ Library {
 	      ZOrder		      -18
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16111,7 +16215,7 @@ Library {
 	      ZOrder		      -20
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16146,7 +16250,7 @@ Library {
 	      ZOrder		      -22
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16181,7 +16285,7 @@ Library {
 	      ZOrder		      -12
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16216,7 +16320,7 @@ Library {
 	      ZOrder		      -14
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16251,7 +16355,7 @@ Library {
 	      ZOrder		      -16
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16286,7 +16390,7 @@ Library {
 	      ZOrder		      5
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16321,7 +16425,7 @@ Library {
 	      ZOrder		      -30
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16356,7 +16460,7 @@ Library {
 	      ZOrder		      -32
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16391,7 +16495,7 @@ Library {
 	      ZOrder		      -34
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16426,7 +16530,7 @@ Library {
 	      ZOrder		      -24
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16461,7 +16565,7 @@ Library {
 	      ZOrder		      -26
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -16496,7 +16600,7 @@ Library {
 	      ZOrder		      -28
 	      BackgroundColor	      "green"
 	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.5"
+	      LibraryVersion	      "1.6"
 	      SourceBlock	      "cdsTP/Subsystem"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -17060,90 +17164,93 @@ Library {
 	      }
 	    }
 	    Line {
-	      ZOrder		      97
+	      ZOrder		      50
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
 	      DstBlock		      "Add"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      96
+	      ZOrder		      51
 	      SrcBlock		      "SHUTDOWN"
 	      SrcPort		      1
 	      DstBlock		      "Add"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      53
+	      ZOrder		      52
 	      SrcBlock		      "PWD_V1MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_V1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      54
+	      ZOrder		      53
 	      SrcBlock		      "PWD_V2MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_V2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      55
+	      ZOrder		      54
 	      SrcBlock		      "PWD_V3MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_V3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      56
+	      ZOrder		      55
 	      SrcBlock		      "PWD_H1MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_H1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      57
+	      ZOrder		      56
 	      SrcBlock		      "PWD_H2MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_H2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      58
+	      ZOrder		      57
 	      SrcBlock		      "PWD_H3MON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_H3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      59
+	      ZOrder		      58
 	      SrcBlock		      "GAS_In"
 	      SrcPort		      1
 	      DstBlock		      "P_MS_GAS"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      60
+	      ZOrder		      59
 	      SrcBlock		      "MASTERSWITCH"
 	      SrcPort		      1
 	      Points		      [125, 0]
 	      Branch {
-		ZOrder			61
+		ZOrder			60
 		DstBlock		"SWITCHMON"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			62
+		ZOrder			61
 		Points			[0, -275]
 		Branch {
-		  ZOrder		  63
+		  ZOrder		  62
 		  DstBlock		  "P_MS_GAS"
 		  DstPort		  1
 		}
 		Branch {
-		  ZOrder		  64
+		  ZOrder		  63
 		  Points		  [0, -65]
 		  Branch {
+		    ZOrder		    64
+		    Points		    [0, -65]
+		    Branch {
 		    ZOrder		    65
 		    Points		    [0, -65]
 		    Branch {
@@ -17155,38 +17262,35 @@ Library {
 		    Branch {
 		    ZOrder		    68
 		    Points		    [0, -65]
-		    Branch {
-		    ZOrder		    69
-		    Points		    [0, -65]
 		    DstBlock		    "P_MS_V1"
 		    DstPort		    1
 		    }
 		    Branch {
-		    ZOrder		    70
+		    ZOrder		    69
 		    DstBlock		    "P_MS_V2"
 		    DstPort		    1
 		    }
 		    }
 		    Branch {
-		    ZOrder		    71
+		    ZOrder		    70
 		    DstBlock		    "P_MS_V3"
 		    DstPort		    1
 		    }
 		    }
 		    Branch {
-		    ZOrder		    72
+		    ZOrder		    71
 		    DstBlock		    "P_MS_H1"
 		    DstPort		    1
 		    }
 		    }
 		    Branch {
-		    ZOrder		    73
+		    ZOrder		    72
 		    DstBlock		    "P_MS_H2"
 		    DstPort		    1
 		    }
 		  }
 		  Branch {
-		    ZOrder		    74
+		    ZOrder		    73
 		    DstBlock		    "P_MS_H3"
 		    DstPort		    1
 		  }
@@ -17194,111 +17298,111 @@ Library {
 	      }
 	    }
 	    Line {
-	      ZOrder		      75
+	      ZOrder		      74
 	      SrcBlock		      "OUT_GASMON"
 	      SrcPort		      1
 	      DstBlock		      "GAS_Out"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      76
+	      ZOrder		      75
 	      SrcBlock		      "P_MS_GAS"
 	      SrcPort		      1
 	      Points		      [25, 0]
 	      Branch {
-		ZOrder			77
+		ZOrder			76
 		Points			[0, -40]
 		DstBlock		"PWD_GAS"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			78
+		ZOrder			77
 		DstBlock		"PWD_GASMON"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      79
+	      ZOrder		      78
 	      SrcBlock		      "P_WD_GAS"
 	      SrcPort		      1
 	      Points		      [115, 0]
 	      Branch {
-		ZOrder			80
+		ZOrder			79
 		DstBlock		"OUT_GASMON"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			81
+		ZOrder			80
 		Points			[0, -40]
 		DstBlock		"OUT_GAS"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      82
+	      ZOrder		      81
 	      SrcBlock		      "PWD_GASMON"
 	      SrcPort		      1
 	      DstBlock		      "P_WD_GAS"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      98
+	      ZOrder		      82
 	      SrcBlock		      "Add"
 	      SrcPort		      1
 	      Points		      [305, 0; 0, 185]
 	      Branch {
-		ZOrder			84
+		ZOrder			83
 		Points			[0, 65]
 		Branch {
-		  ZOrder		  85
+		  ZOrder		  84
 		  Points		  [0, 65]
 		  Branch {
+		    ZOrder		    85
+		    Points		    [0, 65]
+		    Branch {
 		    ZOrder		    86
 		    Points		    [0, 65]
 		    Branch {
 		    ZOrder		    87
-		    Points		    [0, 65]
-		    Branch {
-		    ZOrder		    88
 		    Points		    [0, 65; 1, 0]
 		    Branch {
-		    ZOrder		    89
+		    ZOrder		    88
 		    Points		    [0, 65]
 		    DstBlock		    "P_WD_GAS"
 		    DstPort		    2
 		    }
 		    Branch {
-		    ZOrder		    90
+		    ZOrder		    89
 		    DstBlock		    "P_WD_H3"
 		    DstPort		    2
 		    }
 		    }
 		    Branch {
-		    ZOrder		    91
+		    ZOrder		    90
 		    DstBlock		    "P_WD_H2"
 		    DstPort		    2
 		    }
 		    }
 		    Branch {
-		    ZOrder		    92
+		    ZOrder		    91
 		    DstBlock		    "P_WD_H1"
 		    DstPort		    2
 		    }
 		  }
 		  Branch {
-		    ZOrder		    93
+		    ZOrder		    92
 		    DstBlock		    "P_WD_V3"
 		    DstPort		    2
 		  }
 		}
 		Branch {
-		  ZOrder		  94
+		  ZOrder		  93
 		  DstBlock		  "P_WD_V2"
 		  DstPort		  2
 		}
 	      }
 	      Branch {
-		ZOrder			95
+		ZOrder			94
 		DstBlock		"P_WD_V1"
 		DstPort			2
 	      }
@@ -17340,7 +17444,7 @@ Library {
 	  Name			  "Mux6"
 	  SID			  "1122"
 	  Ports			  [6, 1]
-	  Position		  [1220, 115, 1225, 440]
+	  Position		  [1220, 120, 1225, 445]
 	  ZOrder		  -102
 	  ShowName		  off
 	  Inputs		  "6"
@@ -17377,7 +17481,7 @@ Library {
 	  Position		  [185, -246, 335, -164]
 	  ZOrder		  4551
 	  BackgroundColor	  "orange"
-	  LibraryVersion	  "1.157"
+	  LibraryVersion	  "1.162"
 	  SourceBlock		  "VIS_LIB/DAMP"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -17387,7 +17491,7 @@ Library {
 	  Name			  "OPTICALIGN"
 	  SID			  "1126"
 	  Ports			  [0, 3]
-	  Position		  [525, 165, 675, 215]
+	  Position		  [570, 155, 720, 205]
 	  ZOrder		  4316
 	  BackgroundColor	  "lightBlue"
 	  RequestExecContextInheritance	off
@@ -18698,7 +18802,7 @@ Library {
 	  Position		  [265, 924, 445, 1046]
 	  ZOrder		  1588
 	  BackgroundColor	  "[1.000000, 0.687268, 0.543612]"
-	  LibraryVersion	  "1.157"
+	  LibraryVersion	  "1.162"
 	  SourceBlock		  "VIS_LIB/WD_BF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -18711,7 +18815,7 @@ Library {
 	  Position		  [1060, 894, 1185, 1001]
 	  ZOrder		  1531
 	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.105"
+	  LibraryVersion	  "1.115"
 	  SourceBlock		  "SIXOSEM_F_STAGE_MASTER/SIXOSEM_F_STAGE_MASTER/WDMON"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -18807,317 +18911,332 @@ Library {
 	}
 	Line {
 	  ZOrder		  1
+	  SrcBlock		  "TM_PSD_Y"
+	  SrcPort		  1
+	  DstBlock		  "ADD"
+	  DstPort		  26
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "TM_PSD_P"
+	  SrcPort		  1
+	  DstBlock		  "ADD"
+	  DstPort		  25
+	}
+	Line {
+	  ZOrder		  3
 	  SrcBlock		  "Mux7"
 	  SrcPort		  1
 	  DstBlock		  "SENS2EUL"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  2
+	  ZOrder		  4
 	  SrcBlock		  "Mux6"
 	  SrcPort		  1
 	  DstBlock		  "EUL2COIL"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  3
+	  ZOrder		  5
 	  SrcBlock		  "EUL2COIL"
 	  SrcPort		  1
+	  Points		  [15, 0; 0, -5]
 	  DstBlock		  "Demux6"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  4
+	  ZOrder		  6
 	  SrcBlock		  "MASTER"
 	  SrcPort		  1
 	  DstBlock		  "COIL_V1_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  5
+	  ZOrder		  7
 	  SrcBlock		  "MASTER"
 	  SrcPort		  2
 	  DstBlock		  "COIL_V2_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  6
+	  ZOrder		  8
 	  SrcBlock		  "MASTER"
 	  SrcPort		  3
 	  DstBlock		  "COIL_V3_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  7
+	  ZOrder		  9
 	  SrcBlock		  "WD_RESET_In"
 	  SrcPort		  1
 	  DstBlock		  "Mux9"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  8
+	  ZOrder		  10
 	  SrcBlock		  "WD"
 	  SrcPort		  1
 	  DstBlock		  "Mux9"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  9
+	  ZOrder		  11
 	  SrcBlock		  "From2"
 	  SrcPort		  1
 	  DstBlock		  "Bus\nSelector"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  10
+	  ZOrder		  12
 	  SrcBlock		  "Demux9"
 	  SrcPort		  1
 	  Points		  [110, 0]
 	  Branch {
-	    ZOrder		    11
+	    ZOrder		    13
 	    Points		    [0, -70]
 	    DstBlock		    "Goto"
 	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    12
+	    ZOrder		    14
 	    DstBlock		    "WDMON"
 	    DstPort		    1
 	  }
 	}
 	Line {
-	  ZOrder		  13
+	  ZOrder		  15
 	  SrcBlock		  "Demux9"
 	  SrcPort		  2
 	  DstBlock		  "WDMON"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  14
+	  ZOrder		  16
 	  SrcBlock		  "Demux9"
 	  SrcPort		  3
 	  DstBlock		  "WDMON"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  15
+	  ZOrder		  17
 	  SrcBlock		  "Demux9"
 	  SrcPort		  4
 	  DstBlock		  "WDMON"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  16
+	  ZOrder		  18
 	  SrcBlock		  "Mux9"
 	  SrcPort		  1
 	  DstBlock		  "WATCHDOG"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  17
+	  ZOrder		  19
 	  SrcBlock		  "WATCHDOG"
 	  SrcPort		  1
 	  DstBlock		  "Demux9"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  18
+	  ZOrder		  20
 	  SrcBlock		  "LVDT_V1_In"
 	  SrcPort		  1
 	  Points		  [77, 0]
 	  Branch {
-	    ZOrder		    19
+	    ZOrder		    21
 	    Points		    [0, 290]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    2
 	  }
 	  Branch {
-	    ZOrder		    20
+	    ZOrder		    22
 	    DstBlock		    "LVDTINF"
 	    DstPort		    2
 	  }
 	}
 	Line {
-	  ZOrder		  21
+	  ZOrder		  23
 	  SrcBlock		  "LVDT_V2_In"
 	  SrcPort		  1
 	  Points		  [72, 0]
 	  Branch {
-	    ZOrder		    22
+	    ZOrder		    24
 	    Points		    [0, 265]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    3
 	  }
 	  Branch {
-	    ZOrder		    23
+	    ZOrder		    25
 	    DstBlock		    "LVDTINF"
 	    DstPort		    3
 	  }
 	}
 	Line {
-	  ZOrder		  24
+	  ZOrder		  26
 	  SrcBlock		  "LVDT_V3_In"
 	  SrcPort		  1
 	  Points		  [66, 0]
 	  Branch {
-	    ZOrder		    25
+	    ZOrder		    27
 	    Points		    [0, 240]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    4
 	  }
 	  Branch {
-	    ZOrder		    26
+	    ZOrder		    28
 	    DstBlock		    "LVDTINF"
 	    DstPort		    4
 	  }
 	}
 	Line {
-	  ZOrder		  27
+	  ZOrder		  29
 	  SrcBlock		  "LVDT_H1_In"
 	  SrcPort		  1
 	  Points		  [61, 0]
 	  Branch {
-	    ZOrder		    28
+	    ZOrder		    30
 	    DstBlock		    "LVDTINF"
 	    DstPort		    5
 	  }
 	  Branch {
-	    ZOrder		    29
+	    ZOrder		    31
 	    Points		    [0, 215]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    5
 	  }
 	}
 	Line {
-	  ZOrder		  30
+	  ZOrder		  32
 	  SrcBlock		  "LVDT_H2_In"
 	  SrcPort		  1
 	  Points		  [56, 0]
 	  Branch {
-	    ZOrder		    31
+	    ZOrder		    33
 	    DstBlock		    "LVDTINF"
 	    DstPort		    6
 	  }
 	  Branch {
-	    ZOrder		    32
+	    ZOrder		    34
 	    Points		    [0, 190]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    6
 	  }
 	}
 	Line {
-	  ZOrder		  33
+	  ZOrder		  35
 	  SrcBlock		  "LVDT_H3_In"
 	  SrcPort		  1
 	  Points		  [50, 0]
 	  Branch {
-	    ZOrder		    34
+	    ZOrder		    36
 	    DstBlock		    "LVDTINF"
 	    DstPort		    7
 	  }
 	  Branch {
-	    ZOrder		    35
+	    ZOrder		    37
 	    Points		    [0, 165]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    7
 	  }
 	}
 	Line {
-	  ZOrder		  36
+	  ZOrder		  38
 	  SrcBlock		  "Bus\nCreator1"
 	  SrcPort		  1
 	  DstBlock		  "Goto2"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  37
+	  ZOrder		  39
 	  SrcBlock		  "COILOUTF_CTRL_V"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  8
 	}
 	Line {
-	  ZOrder		  38
+	  ZOrder		  40
 	  SrcBlock		  "COILOUTF_MASK_V"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  9
 	}
 	Line {
-	  ZOrder		  39
+	  ZOrder		  41
 	  SrcBlock		  "LVDT_GAS_In"
 	  SrcPort		  1
 	  Points		  [89, 0]
 	  Branch {
-	    ZOrder		    40
+	    ZOrder		    42
 	    Points		    [0, 315]
 	    DstBlock		    "Bus\nCreator1"
 	    DstPort		    1
 	  }
 	  Branch {
-	    ZOrder		    41
+	    ZOrder		    43
 	    DstBlock		    "LVDTINF"
 	    DstPort		    1
 	  }
 	}
 	Line {
-	  ZOrder		  42
+	  ZOrder		  44
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  1
 	  DstBlock		  "Goto1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  43
+	  ZOrder		  45
 	  SrcBlock		  "TEST"
 	  SrcPort		  1
 	  DstBlock		  "Goto4"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  44
+	  ZOrder		  46
 	  SrcBlock		  "TEST"
 	  SrcPort		  2
 	  DstBlock		  "Goto5"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  45
+	  ZOrder		  47
 	  SrcBlock		  "TEST"
 	  SrcPort		  6
 	  DstBlock		  "Goto6"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  46
+	  ZOrder		  48
 	  SrcBlock		  "From3"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  47
+	  ZOrder		  49
 	  SrcBlock		  "From6"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  8
 	}
 	Line {
-	  ZOrder		  48
+	  ZOrder		  50
 	  SrcBlock		  "From7"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  12
 	}
 	Line {
-	  ZOrder		  49
+	  ZOrder		  51
 	  SrcBlock		  "From8"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  13
 	}
 	Line {
-	  ZOrder		  50
+	  ZOrder		  52
 	  SrcBlock		  "MASTER"
 	  SrcPort		  4
 	  DstBlock		  "COIL_H1_Out"
@@ -19125,7 +19244,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_GAS>"
-	  ZOrder		  51
+	  ZOrder		  53
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  1
@@ -19133,442 +19252,442 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  52
+	  ZOrder		  54
 	  SrcBlock		  "Demux2"
 	  SrcPort		  6
 	  DstBlock		  "DAMP"
 	  DstPort		  6
 	}
 	Line {
-	  ZOrder		  53
+	  ZOrder		  55
 	  SrcBlock		  "Demux2"
 	  SrcPort		  5
 	  DstBlock		  "Sum3"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  54
+	  ZOrder		  56
 	  SrcBlock		  "Demux2"
 	  SrcPort		  4
 	  DstBlock		  "Sum4"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  55
+	  ZOrder		  57
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
 	  DstBlock		  "DAMP"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  56
+	  ZOrder		  58
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
 	  DstBlock		  "Sum2"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  57
+	  ZOrder		  59
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
 	  DstBlock		  "Sum1"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  58
+	  ZOrder		  60
 	  SrcBlock		  "SENS2EUL"
 	  SrcPort		  1
 	  DstBlock		  "Demux1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  59
+	  ZOrder		  61
 	  SrcBlock		  "Demux1"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  60
+	  ZOrder		  62
 	  SrcBlock		  "Demux1"
 	  SrcPort		  2
 	  DstBlock		  "Mux1"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  61
+	  ZOrder		  63
 	  SrcBlock		  "Demux1"
 	  SrcPort		  3
 	  DstBlock		  "Mux1"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  62
+	  ZOrder		  64
 	  SrcBlock		  "Demux1"
 	  SrcPort		  4
 	  DstBlock		  "Mux1"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  63
+	  ZOrder		  65
 	  SrcBlock		  "Demux1"
 	  SrcPort		  5
 	  DstBlock		  "Mux1"
 	  DstPort		  5
 	}
 	Line {
-	  ZOrder		  64
+	  ZOrder		  66
 	  SrcBlock		  "Demux1"
 	  SrcPort		  6
 	  DstBlock		  "Mux1"
 	  DstPort		  6
 	}
 	Line {
-	  ZOrder		  65
+	  ZOrder		  67
 	  SrcBlock		  "Mux1"
 	  SrcPort		  1
 	  DstBlock		  "SENSALIGN"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  66
+	  ZOrder		  68
 	  SrcBlock		  "SENSALIGN"
 	  SrcPort		  1
 	  DstBlock		  "Demux2"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  67
+	  ZOrder		  69
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  2
 	  DstBlock		  "Mux7"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  68
+	  ZOrder		  70
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  3
 	  DstBlock		  "Mux7"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  69
+	  ZOrder		  71
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  4
 	  DstBlock		  "Mux7"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  70
+	  ZOrder		  72
 	  SrcBlock		  "DAMP"
 	  SrcPort		  8
 	  DstBlock		  "Goto3"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  71
+	  ZOrder		  73
 	  SrcBlock		  "TEST"
 	  SrcPort		  3
 	  DstBlock		  "Goto8"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  72
+	  ZOrder		  74
 	  SrcBlock		  "TEST"
 	  SrcPort		  4
 	  DstBlock		  "Goto9"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  73
+	  ZOrder		  75
 	  SrcBlock		  "TEST"
 	  SrcPort		  5
 	  DstBlock		  "Goto10"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  74
+	  ZOrder		  76
 	  SrcBlock		  "From9"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  9
 	}
 	Line {
-	  ZOrder		  75
+	  ZOrder		  77
 	  SrcBlock		  "From10"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  10
 	}
 	Line {
-	  ZOrder		  76
+	  ZOrder		  78
 	  SrcBlock		  "From11"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  11
 	}
 	Line {
-	  ZOrder		  77
+	  ZOrder		  79
 	  SrcBlock		  "DAMP"
 	  SrcPort		  7
-	  Points		  [110, 0; 0, -130]
+	  Points		  [110, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  20
 	}
 	Line {
-	  ZOrder		  78
+	  ZOrder		  80
 	  SrcBlock		  "DAMP"
 	  SrcPort		  6
-	  Points		  [87, 0; 0, -130]
+	  Points		  [87, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  19
 	}
 	Line {
-	  ZOrder		  79
+	  ZOrder		  81
 	  SrcBlock		  "DAMP"
 	  SrcPort		  5
-	  Points		  [73, 0; 0, -130]
+	  Points		  [73, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  18
 	}
 	Line {
-	  ZOrder		  80
+	  ZOrder		  82
 	  SrcBlock		  "DAMP"
 	  SrcPort		  4
-	  Points		  [61, 0; 0, -130]
+	  Points		  [61, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  17
 	}
 	Line {
-	  ZOrder		  81
+	  ZOrder		  83
 	  SrcBlock		  "DAMP"
 	  SrcPort		  3
-	  Points		  [44, 0; 0, -130]
+	  Points		  [44, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  16
 	}
 	Line {
-	  ZOrder		  82
+	  ZOrder		  84
 	  SrcBlock		  "DAMP"
 	  SrcPort		  2
-	  Points		  [31, 0; 0, -130]
+	  Points		  [31, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  15
 	}
 	Line {
-	  ZOrder		  83
+	  ZOrder		  85
 	  SrcBlock		  "DAMP"
 	  SrcPort		  1
-	  Points		  [16, 0; 0, -130]
+	  Points		  [16, 0; 0, -140]
 	  DstBlock		  "ADD"
 	  DstPort		  14
 	}
 	Line {
-	  ZOrder		  84
+	  ZOrder		  86
 	  SrcBlock		  "ADD"
 	  SrcPort		  7
-	  Points		  [150, 0; 0, -105]
+	  Points		  [100, 0; 0, -110]
 	  DstBlock		  "COILOUTF"
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  85
+	  ZOrder		  87
 	  SrcBlock		  "ADD"
 	  SrcPort		  6
 	  DstBlock		  "Mux6"
 	  DstPort		  6
-	}
-	Line {
-	  ZOrder		  86
-	  SrcBlock		  "ADD"
-	  SrcPort		  5
-	  DstBlock		  "Mux6"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  87
-	  SrcBlock		  "ADD"
-	  SrcPort		  4
-	  DstBlock		  "Mux6"
-	  DstPort		  4
 	}
 	Line {
 	  ZOrder		  88
 	  SrcBlock		  "ADD"
+	  SrcPort		  5
+	  DstBlock		  "Mux6"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  89
+	  SrcBlock		  "ADD"
+	  SrcPort		  4
+	  DstBlock		  "Mux6"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  90
+	  SrcBlock		  "ADD"
 	  SrcPort		  3
 	  DstBlock		  "Mux6"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  89
+	  ZOrder		  91
 	  SrcBlock		  "ADD"
 	  SrcPort		  2
 	  DstBlock		  "Mux6"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  90
+	  ZOrder		  92
 	  SrcBlock		  "ADD"
 	  SrcPort		  1
 	  DstBlock		  "Mux6"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  91
+	  ZOrder		  93
 	  SrcBlock		  "OPTICALIGN"
 	  SrcPort		  1
 	  DstBlock		  "ADD"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  92
+	  ZOrder		  94
 	  SrcBlock		  "OPTICALIGN"
 	  SrcPort		  2
 	  DstBlock		  "ADD"
 	  DstPort		  5
 	}
 	Line {
-	  ZOrder		  93
+	  ZOrder		  95
 	  SrcBlock		  "OPTICALIGN"
 	  SrcPort		  3
 	  DstBlock		  "ADD"
 	  DstPort		  6
 	}
 	Line {
-	  ZOrder		  94
+	  ZOrder		  96
 	  SrcBlock		  "Demux6"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  95
+	  ZOrder		  97
 	  SrcBlock		  "Demux6"
 	  SrcPort		  2
 	  DstBlock		  "COILOUTF"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  96
+	  ZOrder		  98
 	  SrcBlock		  "Demux6"
 	  SrcPort		  3
 	  DstBlock		  "COILOUTF"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  97
+	  ZOrder		  99
 	  SrcBlock		  "Demux6"
 	  SrcPort		  4
 	  DstBlock		  "COILOUTF"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  98
-	  SrcBlock		  "Demux6"
-	  SrcPort		  5
-	  DstBlock		  "COILOUTF"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  99
-	  SrcBlock		  "Demux6"
-	  SrcPort		  6
-	  DstBlock		  "COILOUTF"
-	  DstPort		  6
-	}
-	Line {
 	  ZOrder		  100
-	  SrcBlock		  "COILOUTF"
+	  SrcBlock		  "Demux6"
 	  SrcPort		  5
-	  DstBlock		  "MASTER"
+	  DstBlock		  "COILOUTF"
 	  DstPort		  5
 	}
 	Line {
 	  ZOrder		  101
-	  SrcBlock		  "COILOUTF"
+	  SrcBlock		  "Demux6"
 	  SrcPort		  6
-	  DstBlock		  "MASTER"
+	  DstBlock		  "COILOUTF"
 	  DstPort		  6
 	}
 	Line {
 	  ZOrder		  102
 	  SrcBlock		  "COILOUTF"
+	  SrcPort		  5
+	  DstBlock		  "MASTER"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  103
+	  SrcBlock		  "COILOUTF"
+	  SrcPort		  6
+	  DstBlock		  "MASTER"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  104
+	  SrcBlock		  "COILOUTF"
 	  SrcPort		  7
 	  DstBlock		  "MASTER"
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  103
+	  ZOrder		  105
 	  SrcBlock		  "COILOUTF"
 	  SrcPort		  1
 	  DstBlock		  "MASTER"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  104
+	  ZOrder		  106
 	  SrcBlock		  "COILOUTF"
 	  SrcPort		  2
 	  DstBlock		  "MASTER"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  105
+	  ZOrder		  107
 	  SrcBlock		  "COILOUTF"
 	  SrcPort		  3
 	  DstBlock		  "MASTER"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  106
+	  ZOrder		  108
 	  SrcBlock		  "COILOUTF"
 	  SrcPort		  4
 	  DstBlock		  "MASTER"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  176
+	  ZOrder		  109
 	  SrcBlock		  "SHUTDOWN"
 	  SrcPort		  1
 	  DstBlock		  "MASTER"
 	  DstPort		  8
 	}
 	Line {
-	  ZOrder		  108
+	  ZOrder		  110
 	  SrcBlock		  "MASTERSW_In"
 	  SrcPort		  1
 	  DstBlock		  "MASTER"
 	  DstPort		  9
 	}
 	Line {
-	  ZOrder		  109
+	  ZOrder		  111
 	  SrcBlock		  "MASTER"
 	  SrcPort		  5
 	  DstBlock		  "COIL_H2_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  110
+	  ZOrder		  112
 	  SrcBlock		  "MASTER"
 	  SrcPort		  6
 	  DstBlock		  "COIL_H3_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  111
+	  ZOrder		  113
 	  SrcBlock		  "MASTER"
 	  SrcPort		  7
 	  DstBlock		  "COIL_GAS_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  112
+	  ZOrder		  114
 	  SrcBlock		  "From4"
 	  SrcPort		  1
 	  DstBlock		  "WD_BLOCK_Out"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  113
+	  ZOrder		  115
 	  SrcBlock		  "From5"
 	  SrcPort		  1
 	  DstBlock		  "DAMP_STATE_Out"
@@ -19576,7 +19695,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_V1>"
-	  ZOrder		  114
+	  ZOrder		  116
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  2
@@ -19585,7 +19704,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_V2>"
-	  ZOrder		  115
+	  ZOrder		  117
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  3
@@ -19594,7 +19713,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_V3>"
-	  ZOrder		  116
+	  ZOrder		  118
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  4
@@ -19603,7 +19722,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_H1>"
-	  ZOrder		  117
+	  ZOrder		  119
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  5
@@ -19612,7 +19731,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_H2>"
-	  ZOrder		  118
+	  ZOrder		  120
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  6
@@ -19621,7 +19740,7 @@ Library {
 	}
 	Line {
 	  Name			  "<LVDT_H3>"
-	  ZOrder		  119
+	  ZOrder		  121
 	  Labels		  [0, 0]
 	  SrcBlock		  "Bus\nSelector"
 	  SrcPort		  7
@@ -19629,77 +19748,77 @@ Library {
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  120
+	  ZOrder		  122
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  5
 	  DstBlock		  "Mux7"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  121
+	  ZOrder		  123
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  6
 	  DstBlock		  "Mux7"
 	  DstPort		  5
 	}
 	Line {
-	  ZOrder		  122
+	  ZOrder		  124
 	  SrcBlock		  "LVDTINF"
 	  SrcPort		  7
 	  DstBlock		  "Mux7"
 	  DstPort		  6
 	}
 	Line {
-	  ZOrder		  123
+	  ZOrder		  125
 	  SrcBlock		  "COILOUTF_CTRL_H"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  10
 	}
 	Line {
-	  ZOrder		  124
+	  ZOrder		  126
 	  SrcBlock		  "COILOUTF_MASK_H"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  11
 	}
 	Line {
-	  ZOrder		  125
+	  ZOrder		  127
 	  SrcBlock		  "COILOUTF_CTRL_GAS"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  12
 	}
 	Line {
-	  ZOrder		  126
+	  ZOrder		  128
 	  SrcBlock		  "COILOUTF_MASK_GAS"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  13
 	}
 	Line {
-	  ZOrder		  128
+	  ZOrder		  129
 	  SrcBlock		  "GAS_EFFMON_OSC"
 	  SrcPort		  1
 	  DstBlock		  "Goto12"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  129
+	  ZOrder		  130
 	  SrcBlock		  "TEST"
 	  SrcPort		  7
 	  DstBlock		  "Sum"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  130
+	  ZOrder		  131
 	  SrcBlock		  "Sum"
 	  SrcPort		  1
 	  DstBlock		  "Goto7"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  131
+	  ZOrder		  132
 	  SrcBlock		  "From14"
 	  SrcPort		  1
 	  Points		  [20, 0]
@@ -19707,108 +19826,108 @@ Library {
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  132
+	  ZOrder		  133
 	  SrcBlock		  "Ground"
 	  SrcPort		  1
 	  DstBlock		  "GAS_EFFMON_OSC"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  133
+	  ZOrder		  134
 	  SrcBlock		  "GAS_EFFMON_OSC"
 	  SrcPort		  2
 	  DstBlock		  "Terminator"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  134
+	  ZOrder		  135
 	  SrcBlock		  "GAS_EFFMON_OSC"
 	  SrcPort		  3
 	  DstBlock		  "Terminator1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  135
+	  ZOrder		  136
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  4
 	  DstBlock		  "Terminator3"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  136
+	  ZOrder		  137
 	  SrcBlock		  "OLDAMP_YAW"
 	  SrcPort		  1
 	  DstBlock		  "OLDAMP"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  137
+	  ZOrder		  138
 	  SrcBlock		  "OLDAMP_PIT"
 	  SrcPort		  1
 	  DstBlock		  "OLDAMP"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  138
+	  ZOrder		  139
 	  SrcBlock		  "OLDAMP_LONG"
 	  SrcPort		  1
 	  DstBlock		  "OLDAMP"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  139
+	  ZOrder		  140
 	  SrcBlock		  "Ground15"
 	  SrcPort		  1
 	  DstBlock		  "Terminator2"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  245
+	  ZOrder		  141
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  1
 	  DstBlock		  "DRIVEALIGN"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  247
+	  ZOrder		  142
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  2
 	  DstBlock		  "DRIVEALIGN"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  248
+	  ZOrder		  143
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  3
 	  DstBlock		  "DRIVEALIGN"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  251
+	  ZOrder		  144
 	  SrcBlock		  "DRIVEALIGN"
 	  SrcPort		  3
-	  Points		  [75, 0; 0, 355]
+	  Points		  [75, 0; 0, 345]
 	  DstBlock		  "ADD"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  250
+	  ZOrder		  145
 	  SrcBlock		  "DRIVEALIGN"
 	  SrcPort		  2
-	  Points		  [107, 0; 0, 360]
+	  Points		  [107, 0; 0, 350]
 	  DstBlock		  "ADD"
 	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  249
-	  SrcBlock		  "DRIVEALIGN"
-	  SrcPort		  1
-	  Points		  [141, 0; 0, 365]
-	  DstBlock		  "ADD"
-	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  146
+	  SrcBlock		  "DRIVEALIGN"
+	  SrcPort		  1
+	  Points		  [141, 0; 0, 355]
+	  DstBlock		  "ADD"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  147
 	  SrcBlock		  "SC"
 	  SrcPort		  1
 	  Points		  [515, 0]
@@ -19816,35 +19935,35 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  147
+	  ZOrder		  148
 	  SrcBlock		  "PEM_SEIS_Y_IN"
 	  SrcPort		  1
 	  Points		  [35, 0]
 	  Branch {
-	    ZOrder		    148
+	    ZOrder		    149
 	    Points		    [18, 0]
 	    Branch {
-	      ZOrder		      149
+	      ZOrder		      150
 	      Points		      [0, 60]
 	      DstBlock		      "SC"
 	      DstPort		      4
 	    }
 	    Branch {
-	      ZOrder		      150
+	      ZOrder		      151
 	      DstBlock		      "SC"
 	      DstPort		      2
 	    }
 	  }
 	  Branch {
-	    ZOrder		    151
+	    ZOrder		    152
 	    Points		    [0, -75]
 	    Branch {
-	      ZOrder		      152
+	      ZOrder		      153
 	      DstBlock		      "FF"
 	      DstPort		      4
 	    }
 	    Branch {
-	      ZOrder		      153
+	      ZOrder		      154
 	      Points		      [0, -50]
 	      DstBlock		      "FF"
 	      DstPort		      2
@@ -19852,7 +19971,7 @@ Library {
 	  }
 	}
 	Line {
-	  ZOrder		  154
+	  ZOrder		  155
 	  SrcBlock		  "SC"
 	  SrcPort		  2
 	  Points		  [480, 0]
@@ -19860,124 +19979,124 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  155
+	  ZOrder		  156
 	  SrcBlock		  "Sum1"
 	  SrcPort		  1
 	  DstBlock		  "DAMP"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  156
+	  ZOrder		  157
 	  SrcBlock		  "Sum2"
 	  SrcPort		  1
 	  DstBlock		  "DAMP"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  157
+	  ZOrder		  158
 	  SrcBlock		  "PEM_SEIS_X_IN"
 	  SrcPort		  1
 	  Points		  [13, 0]
 	  Branch {
-	    ZOrder		    158
+	    ZOrder		    159
 	    Points		    [0, -70]
 	    Branch {
-	      ZOrder		      159
+	      ZOrder		      160
 	      Points		      [0, -50]
 	      DstBlock		      "FF"
 	      DstPort		      1
 	    }
 	    Branch {
-	      ZOrder		      160
+	      ZOrder		      161
 	      DstBlock		      "FF"
 	      DstPort		      3
 	    }
 	  }
 	  Branch {
-	    ZOrder		    161
+	    ZOrder		    162
 	    Points		    [52, 0]
 	    Branch {
-	      ZOrder		      162
+	      ZOrder		      163
 	      Points		      [0, 60]
 	      DstBlock		      "SC"
 	      DstPort		      3
 	    }
 	    Branch {
-	      ZOrder		      163
+	      ZOrder		      164
 	      DstBlock		      "SC"
 	      DstPort		      1
 	    }
 	  }
 	}
 	Line {
-	  ZOrder		  164
+	  ZOrder		  165
 	  SrcBlock		  "FF"
 	  SrcPort		  1
 	  DstBlock		  "Goto11"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  165
+	  ZOrder		  166
 	  SrcBlock		  "FF"
 	  SrcPort		  2
 	  DstBlock		  "Goto13"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  166
+	  ZOrder		  167
 	  SrcBlock		  "From12"
 	  SrcPort		  1
-	  Points		  [18, 0; 0, -165]
+	  Points		  [18, 0; 0, -175]
 	  DstBlock		  "ADD"
 	  DstPort		  21
 	}
 	Line {
-	  ZOrder		  167
+	  ZOrder		  168
 	  SrcBlock		  "From13"
 	  SrcPort		  1
-	  Points		  [27, 0; 0, -165]
+	  Points		  [27, 0; 0, -175]
 	  DstBlock		  "ADD"
 	  DstPort		  22
 	}
 	Line {
-	  ZOrder		  168
+	  ZOrder		  169
 	  SrcBlock		  "FF"
 	  SrcPort		  3
 	  DstBlock		  "Goto14"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  169
+	  ZOrder		  170
 	  SrcBlock		  "FF"
 	  SrcPort		  4
 	  DstBlock		  "Goto15"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  170
+	  ZOrder		  171
 	  SrcBlock		  "From15"
 	  SrcPort		  1
-	  Points		  [33, 0; 0, -175]
+	  Points		  [33, 0; 0, -185]
 	  DstBlock		  "ADD"
 	  DstPort		  23
 	}
 	Line {
-	  ZOrder		  171
+	  ZOrder		  172
 	  SrcBlock		  "From16"
 	  SrcPort		  1
-	  Points		  [41, 0; 0, -190]
+	  Points		  [41, 0; 0, -200]
 	  DstBlock		  "ADD"
 	  DstPort		  24
 	}
 	Line {
-	  ZOrder		  172
+	  ZOrder		  173
 	  SrcBlock		  "Sum3"
 	  SrcPort		  1
 	  DstBlock		  "DAMP"
 	  DstPort		  5
 	}
 	Line {
-	  ZOrder		  173
+	  ZOrder		  174
 	  SrcBlock		  "SC"
 	  SrcPort		  3
 	  Points		  [405, 0]
@@ -19985,14 +20104,14 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  174
+	  ZOrder		  175
 	  SrcBlock		  "Sum4"
 	  SrcPort		  1
 	  DstBlock		  "DAMP"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  175
+	  ZOrder		  176
 	  SrcBlock		  "SC"
 	  SrcPort		  4
 	  Points		  [445, 0]
@@ -20000,14 +20119,14 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  284
+	  ZOrder		  177
 	  SrcBlock		  "From1"
 	  SrcPort		  1
 	  DstBlock		  "Sum5"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  285
+	  ZOrder		  178
 	  SrcBlock		  "Sum5"
 	  SrcPort		  1
 	  Points		  [65, 0; 0, -35]
@@ -20015,7 +20134,7 @@ Library {
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  286
+	  ZOrder		  179
 	  SrcBlock		  "SET"
 	  SrcPort		  1
 	  Points		  [25, 0]
