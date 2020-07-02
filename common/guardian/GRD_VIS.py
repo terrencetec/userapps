@@ -592,7 +592,8 @@ class ALIGNED(GuardState):
     @check_ISCSIG
     def run(self):
         if sustype in ['TypeA','TypeBp']:
-            vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
+            pass
+            #vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
         return True
 
 
