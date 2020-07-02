@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2508
-		y=129
+		x=3915
+		y=388
 		width=368
 		height=519
 	}
@@ -95,8 +95,8 @@ display {
 		height=324
 	}
 	plotcom {
-		xlabel="YAW (cts)"
-		ylabel="PIT (cts)"
+		xlabel="YAW (mrad)"
+		ylabel="PIT (a.u.)"
 		clr=0
 		bclr=14
 	}
@@ -111,16 +111,18 @@ display {
 	}
 	x_axis {
 		rangeStyle="user-specified"
-		minRange=-3000.000000
-		maxRange=3000.000000
+		minRange=-30.000000
+		maxRange=30.000000
 	}
 	y1_axis {
 		rangeStyle="user-specified"
-		minRange=-3000.000000
-		maxRange=3000.000000
+		minRange=-2000.000000
+		maxRange=2000.000000
 	}
 	y2_axis {
-		rangeStyle="user-specified"
+		rangeStyle="auto-scale"
+		minRange=-30.000000
+		maxRange=30.000000
 	}
 	trigger="$(IFO):VIS-PRM_TM_PSD_PIT_OUTMON"
 	countPvName="5"
@@ -170,64 +172,31 @@ display {
 	bclr=51
 	label="PRM PSD SUM"
 }
-"related display" {
-	object {
-		x=24
-		y=422
-		width=148
-		height=20
-	}
-	display[0] {
-		label="PRM PSD PIT"
-		name="/opt/rtcds/userapps/release/vis/common/medm/typebp/VIS_CUST_TYPEBP_IM_OPTICALIGN.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC)"
-	}
-	clr=0
-	bclr=62
-	label="PRM COIL OFS"
-}
 "shell command" {
 	object {
 		x=230
-		y=435
+		y=448
 		width=90
 		height=35
 	}
-	command[0] {
-		label="StripTool"
-		name="StripTool"
-		args="/users/striptool/VIS_PRM_PSD.stp &"
+	command[1] {
+		label="ndscope"
+		name="ndscope"
+		args="K1:VIS-PRM_TM_PSD_PIT_OUTPUT K1:VIS-PRM_TM_PSD_YAW_OUTPUT &"
 	}
 	clr=14
 	bclr=31
-	label="StripTool"
+	label="Scope"
 }
 "text update" {
 	object {
-		x=33
-		y=458
+		x=68
+		y=441
 		width=55
 		height=24
 	}
 	monitor {
-		chan="K1:VIS-$(OPTIC)_IM_OPTICALIGN_P_OUTPUT"
-		clr=35
-		bclr=14
-	}
-	clrmod="alarm"
-	align="horiz. centered"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=95
-		y=458
-		width=55
-		height=24
-	}
-	monitor {
-		chan="K1:VIS-$(OPTIC)_IM_OPTICALIGN_Y_OUTPUT"
+		chan="K1:VIS-PRM_BF_TEST_Y_OFFSET"
 		clr=35
 		bclr=14
 	}
@@ -238,9 +207,9 @@ display {
 }
 text {
 	object {
-		x=45
-		y=443
-		width=40
+		x=46
+		y=423
+		width=100
 		height=20
 	}
 	"basic attribute" {
@@ -250,14 +219,14 @@ text {
 		clr="alarm"
 		chan="K1:VIS-$(OPTIC)_IM_OPTICALIGN_Y_OUTPUT"
 	}
-	textix="PIT"
+	textix="BF YAW OFS"
 	align="horiz. centered"
 }
 text {
 	object {
-		x=103
-		y=443
-		width=40
+		x=0
+		y=473
+		width=200
 		height=20
 	}
 	"basic attribute" {
@@ -267,6 +236,23 @@ text {
 		clr="alarm"
 		chan="K1:VIS-$(OPTIC)_IM_OPTICALIGN_Y_OUTPUT"
 	}
-	textix="YAW"
+	textix="PSD should be centered"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=0
+		y=493
+		width=200
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="K1:VIS-$(OPTIC)_IM_OPTICALIGN_Y_OUTPUT"
+	}
+	textix="when BF OFS is 15000"
 	align="horiz. centered"
 }
