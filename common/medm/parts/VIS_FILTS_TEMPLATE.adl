@@ -1,14 +1,14 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/parts/VIS_FILTS_TEMPLATE.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/parts/VIS_FILTS_TEMPLATE.adl"
 	version=030107
 }
 display {
 	object {
-		x=877
-		y=122
-		width=473
-		height=605
+		x=470
+		y=264
+		width=567
+		height=609
 	}
 	clr=14
 	bclr=4
@@ -87,612 +87,115 @@ display {
 		1a7309,
 	}
 }
-composite {
+rectangle {
 	object {
-		x=129
+		x=126
+		y=100
+		width=143
+		height=480
+	}
+	"basic attribute" {
+		clr=10
+		style="dash"
+		fill="outline"
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+}
+text {
+	object {
+		x=82
+		y=478
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=493
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=149
 		y=461
-		width=123
-		height=107
+		width=100
+		height=15
 	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=147
-				y=478
-				width=105
-				height=90
-			}
-			display[0] {
-				label="NOSTAGE NOFUNC"
-				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_6DOF.adl"
-				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4,DOF5=X5,DOF6=X6"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		text {
-			object {
-				x=129
-				y=478
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF1"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=493
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF2"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=149
-				y=461
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="H1"
-			}
-			textix="NOSTAGE NOFUNC"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=478
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=478
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=480
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=478
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
-					}
-					points {
-						(192,478)
-						(206,485)
-						(191,492)
-						(192,478)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=478
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=493
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=493
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=495
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=493
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
-					}
-					points {
-						(192,493)
-						(206,500)
-						(191,507)
-						(192,493)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=493
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=129
-				y=508
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF3"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=508
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=508
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=510
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=508
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
-					}
-					points {
-						(192,508)
-						(206,515)
-						(191,522)
-						(192,508)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=508
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=129
-				y=523
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF4"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=538
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF5"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=553
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF6"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=523
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=523
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=525
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=523
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_GAIN"
-					}
-					points {
-						(192,523)
-						(206,530)
-						(191,537)
-						(192,523)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=523
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=538
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=538
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=540
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=538
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_GAIN"
-					}
-					points {
-						(192,538)
-						(206,545)
-						(191,552)
-						(192,538)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=538
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=553
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=553
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=555
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=553
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_GAIN"
-					}
-					points {
-						(192,553)
-						(206,560)
-						(191,567)
-						(192,553)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=553
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
+	"basic attribute" {
+		clr=0
 	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="STAGENAME FUNCNAME"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=508
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=523
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=538
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X5"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=553
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X6"
+	align="horiz. centered"
 }
 text {
 	object {
@@ -772,6 +275,927 @@ text {
 	textix="6DOF"
 	align="horiz. centered"
 }
+text {
+	object {
+		x=82
+		y=365
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=380
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=395
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=410
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=274
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=289
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=304
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=197
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=212
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=82
+		y=134
+		width=12
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="X1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=148
+		y=349
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="STAGENAME FUNCNAME"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=148
+		y=259
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="STAGENAME FUNCNAME"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=148
+		y=179
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="STAGENAME FUNCNAME"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=149
+		y=116
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="STAGENAME FUNCNAME"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=189
+		y=133
+		width=16
+		height=15
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=189
+				y=133
+				width=15
+				height=15
+			}
+			display[0] {
+				label="STAGENAME FUNCTIONNAME"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_1DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGENAME=STAGENAMENAME,FUNC=FUNCTIONNAME,FUNC=FUNCNAME,DOF1=X1"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		rectangle {
+			object {
+				x=191
+				y=135
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=133
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_GAIN"
+			}
+			points {
+				(191,133)
+				(205,140)
+				(190,147)
+				(191,133)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=189
+		y=196
+		width=16
+		height=30
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=189
+				y=196
+				width=15
+				height=30
+			}
+			display[0] {
+				label="STAGENAME FUNCNAME"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_2DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGENAME=STAGENAME,FUNC=FUNC,FUNCTION=FUNCTION,DOF1=X1,DOF2=X2"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		rectangle {
+			object {
+				x=191
+				y=198
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=196
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_GAIN"
+			}
+			points {
+				(191,196)
+				(205,203)
+				(190,210)
+				(191,196)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=213
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=211
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_GAIN"
+			}
+			points {
+				(191,211)
+				(205,218)
+				(190,225)
+				(191,211)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=189
+		y=276
+		width=16
+		height=45
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=189
+				y=276
+				width=15
+				height=45
+			}
+			display[0] {
+				label="STAGENAME FUNCNAME"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_3DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGENAME=STAGENAME,FUNC=FUNC,FUNCTION=FUNCTION,DOF1=X1,DOF2=X2,DOF3=X3"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		rectangle {
+			object {
+				x=191
+				y=278
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=276
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_GAIN"
+			}
+			points {
+				(191,276)
+				(205,283)
+				(190,290)
+				(191,276)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=293
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=291
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_GAIN"
+			}
+			points {
+				(191,291)
+				(205,298)
+				(190,305)
+				(191,291)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=308
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=306
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_GAIN"
+			}
+			points {
+				(191,306)
+				(205,313)
+				(190,320)
+				(191,306)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=189
+		y=366
+		width=16
+		height=60
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=189
+				y=366
+				width=15
+				height=60
+			}
+			display[0] {
+				label="STAGENAME FUNCNAME"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_4DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGENAME=STAGENAME,FUNC=FUNC,FUNCTION=FUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		rectangle {
+			object {
+				x=191
+				y=368
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=366
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_GAIN"
+			}
+			points {
+				(191,366)
+				(205,373)
+				(190,380)
+				(191,366)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=383
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=381
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_GAIN"
+			}
+			points {
+				(191,381)
+				(205,388)
+				(190,395)
+				(191,381)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=398
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=396
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_GAIN"
+			}
+			points {
+				(191,396)
+				(205,403)
+				(190,410)
+				(191,396)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=413
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=411
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_GAIN"
+			}
+			points {
+				(191,411)
+				(205,418)
+				(190,425)
+				(191,411)
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=189
+		y=478
+		width=16
+		height=90
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=189
+				y=478
+				width=15
+				height=90
+			}
+			display[0] {
+				label="STAGENAME FUNCNAME"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_6DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=STAGENAME,FUNC=FUNC,FUNCTION=FUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4,DOF5=X5,DOF6=X6"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		rectangle {
+			object {
+				x=191
+				y=480
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=495
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=493
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X2_GAIN"
+			}
+			points {
+				(191,493)
+				(205,500)
+				(190,507)
+				(191,493)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=510
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=508
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X3_GAIN"
+			}
+			points {
+				(191,508)
+				(205,515)
+				(190,522)
+				(191,508)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=525
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=523
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X4_GAIN"
+			}
+			points {
+				(191,523)
+				(205,530)
+				(190,537)
+				(191,523)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=540
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=538
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X5_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X5_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X5_GAIN"
+			}
+			points {
+				(191,538)
+				(205,545)
+				(190,552)
+				(191,538)
+			}
+		}
+		rectangle {
+			object {
+				x=191
+				y=555
+				width=4
+				height=11
+			}
+			"basic attribute" {
+				clr=21
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=553
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X6_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X6_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X6_GAIN"
+			}
+			points {
+				(191,553)
+				(205,560)
+				(190,567)
+				(191,553)
+			}
+		}
+		polygon {
+			object {
+				x=190
+				y=478
+				width=15
+				height=14
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="(A&4)&&(B&1024)&&(C!=0)"
+				chan="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW1R"
+				chanB="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_SW2R"
+				chanC="$(IFO):VIS-$(OPTIC)_STAGENAME_FUNCNAME_X1_GAIN"
+			}
+			points {
+				(191,478)
+				(205,485)
+				(190,492)
+				(191,478)
+			}
+		}
+	}
+}
+text {
+	object {
+		x=147
+		y=82
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	textix="copy and paste"
+	align="horiz. centered"
+}
 composite {
 	object {
 		x=270
@@ -796,7 +1220,7 @@ composite {
 		}
 		text {
 			object {
-				x=297
+				x=336
 				y=225
 				width=100
 				height=15
@@ -804,12 +1228,12 @@ composite {
 			"basic attribute" {
 				clr=0
 			}
-			textix="1. copy block"
+			textix="1. copy block to new file."
 			align="horiz. centered"
 		}
 		text {
 			object {
-				x=321
+				x=342
 				y=240
 				width=100
 				height=15
@@ -817,12 +1241,12 @@ composite {
 			"basic attribute" {
 				clr=0
 			}
-			textix="2. replace parameters"
+			textix="2. replace names in the file"
 			align="horiz. centered"
 		}
 		text {
 			object {
-				x=301
+				x=345
 				y=395
 				width=100
 				height=15
@@ -830,7 +1254,7 @@ composite {
 			"basic attribute" {
 				clr=0
 			}
-			textix="3. paste block"
+			textix="3. paste block where you want"
 			align="horiz. centered"
 		}
 		text {
@@ -887,7 +1311,7 @@ composite {
 							"basic attribute" {
 								clr=0
 							}
-							textix="NOSTAGE -> IM"
+							textix="STAGENAME -> IM"
 							align="horiz. centered"
 						}
 						text {
@@ -900,7 +1324,7 @@ composite {
 							"basic attribute" {
 								clr=0
 							}
-							textix="NOFUNCTION -> OLDAMP"
+							textix="FUNCTIONNAME -> OLDAMP"
 							align="horiz. centered"
 						}
 						text {
@@ -913,7 +1337,7 @@ composite {
 							"basic attribute" {
 								clr=0
 							}
-							textix="NOFUNC -> OLDAMP"
+							textix="FUNCNAME -> OLDAMP"
 							align="horiz. centered"
 						}
 						text {
@@ -994,1118 +1418,6 @@ composite {
 							textix="X6 -> Y"
 							align="horiz. centered"
 						}
-					}
-				}
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=129
-		y=348
-		width=123
-		height=77
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=147
-				y=365
-				width=105
-				height=60
-			}
-			display[0] {
-				label="NOSTAGE NOFUNC"
-				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_4DOF.adl"
-				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		text {
-			object {
-				x=129
-				y=365
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF1"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=380
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF2"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=149
-				y=348
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="H1"
-			}
-			textix="NOSTAGE NOFUNC"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=365
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=365
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=367
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=365
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
-					}
-					points {
-						(192,365)
-						(206,372)
-						(191,379)
-						(192,365)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=365
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=380
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=380
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=382
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=380
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
-					}
-					points {
-						(192,380)
-						(206,387)
-						(191,394)
-						(192,380)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=380
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=129
-				y=395
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF3"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=395
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=395
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=397
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=395
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
-					}
-					points {
-						(192,395)
-						(206,402)
-						(191,409)
-						(192,395)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=395
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=129
-				y=410
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF4"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=410
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=410
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=412
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=410
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_GAIN"
-					}
-					points {
-						(192,410)
-						(206,417)
-						(191,424)
-						(192,410)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=410
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=129
-		y=257
-		width=123
-		height=62
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=147
-				y=274
-				width=105
-				height=45
-			}
-			display[0] {
-				label="NOSTAGE NOFUNC"
-				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_3DOF.adl"
-				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		text {
-			object {
-				x=129
-				y=274
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF1"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=289
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF2"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=149
-				y=257
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="H1"
-			}
-			textix="NOSTAGE NOFUNC"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=274
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=274
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=276
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=274
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
-					}
-					points {
-						(192,274)
-						(206,281)
-						(191,288)
-						(192,274)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=274
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=289
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=289
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=291
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=289
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
-					}
-					points {
-						(192,289)
-						(206,296)
-						(191,303)
-						(192,289)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=289
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		text {
-			object {
-				x=129
-				y=304
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF3"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=304
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=304
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=306
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=304
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
-					}
-					points {
-						(192,304)
-						(206,311)
-						(191,318)
-						(192,304)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=304
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=129
-		y=180
-		width=123
-		height=47
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=147
-				y=197
-				width=105
-				height=30
-			}
-			display[0] {
-				label="NOSTAGE NOFUNC"
-				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_2DOF.adl"
-				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		text {
-			object {
-				x=129
-				y=197
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF1"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=129
-				y=212
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF2"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=149
-				y=180
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="H1"
-			}
-			textix="NOSTAGE NOFUNC"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=197
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=197
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=199
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=197
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
-					}
-					points {
-						(192,197)
-						(206,204)
-						(191,211)
-						(192,197)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=197
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=148
-				y=212
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=212
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=214
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=212
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
-					}
-					points {
-						(192,212)
-						(206,219)
-						(191,226)
-						(192,212)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=212
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=129
-		y=117
-		width=123
-		height=32
-	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=147
-				y=134
-				width=105
-				height=15
-			}
-			display[0] {
-				label="NOSTAGE NOFUNC"
-				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_1DOF.adl"
-				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		text {
-			object {
-				x=129
-				y=134
-				width=12
-				height=14
-			}
-			"basic attribute" {
-				clr=0
-			}
-			textix="NODOF1"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=149
-				y=117
-				width=100
-				height=15
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="H1"
-			}
-			textix="NOSTAGE NOFUNC"
-			align="horiz. centered"
-		}
-		composite {
-			object {
-				x=148
-				y=134
-				width=102
-				height=14
-			}
-			"composite name"=""
-			children {
-				"text update" {
-					object {
-						x=148
-						y=134
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
-					}
-				}
-				rectangle {
-					object {
-						x=192
-						y=136
-						width=4
-						height=11
-					}
-					"basic attribute" {
-						clr=21
-					}
-				}
-				polygon {
-					object {
-						x=191
-						y=134
-						width=15
-						height=14
-					}
-					"basic attribute" {
-						clr=16
-						width=3
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="(A&4)&&(B&1024)&&(C!=0)"
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
-						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
-						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
-					}
-					points {
-						(192,134)
-						(206,141)
-						(191,148)
-						(192,134)
-					}
-				}
-				"text update" {
-					object {
-						x=208
-						y=134
-						width=42
-						height=14
-					}
-					monitor {
-						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
-						clr=50
-						bclr=53
-					}
-					align="horiz. centered"
-					format="truncated"
-					limits {
 					}
 				}
 			}
