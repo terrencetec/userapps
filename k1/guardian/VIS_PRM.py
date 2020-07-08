@@ -5,6 +5,9 @@ from guardian import GuardState
 ###########
 #MISALIGN_OFFSET = -7500
 #MISALIGN_OFFSET = 14000
+NOMINAL_BF_OFS = -30000
+TRAMP_BF_OFS = 10
+
 MISALIGN_OFFSET = -2000
 MISALIGN_OFFSET_FOR_PRFPMI = -2000
 MISALIGN_TRAMP = 10
@@ -170,7 +173,8 @@ class MISALIGNING_FOR_PRFPMI(GuardState):
     def main(self):
         self.ofschan = ezca.get_LIGOFilter(MISALIGN_CHAN)
         self.ofschan.turn_on('OFFSET')
-        self.ofschan.ramp_offset(MISALIGN_OFFSET_FOR_PRFPMI, MISALIGN_TRAMP_FOR_PRFPMI, False)
+        init_ofs = self.ofschan.OFFSET.get()
+        self.ofschan.ramp_offset(init_ofs + MISALIGN_OFFSET_FOR_PRFPMI, MISALIGN_TRAMP_FOR_PRFPMI, False)
         self.ofschan.ramp_gain(1, MISALIGN_TRAMP_FOR_PRFPMI, False)
 
     @check_TWWD
@@ -196,7 +200,9 @@ class REALIGNING_FOR_PRFPMI(GuardState):
     @check_WD
     def main(self):
         self.ofschan = ezca.get_LIGOFilter(MISALIGN_CHAN)
-        self.ofschan.ramp_offset(0,MISALIGN_TRAMP_FOR_PRFPMI, False)
+        init_ofs = self.ofschan.OFFSET.get()
+        log(init_ofs)
+        self.ofschan.ramp_offset(init_ofs - MISALIGN_OFFSET_FOR_PRFPMI, MISALIGN_TRAMP_FOR_PRFPMI, False)
 
     @check_TWWD
     @check_WD
