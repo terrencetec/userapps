@@ -268,6 +268,40 @@ class ENGAGE_BF_LOCALDAMP(engage_damping):
             integrator = sysmod.BF_LOCALDAMP['integrator']
         )
 
+    def main(self):
+        super(ENGAGE_BF_LOCALDAMP,self).main()
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if not self.timer['waiting']:
+            return 
+        
+        if self.counter == 0:
+            if super(ENGAGE_BF_LOCALDAMP,self).run():
+                self.timer['waiting'] = 2
+                self.counter += 1
+
+        elif self.counter == 1:
+            # if NOMINAL_BF_OFS is defined, put that number to BF TEST Y. This is for PRM.
+            try:
+                log('put BF nominal offset if defined.')
+                filt = ezca.get_LIGOFilter('VIS-%s_BF_TEST_Y'%OPTIC)
+                filt.ramp_offset(0,0,True)
+                filt.ramp_gain(1,0,True)
+                filt.turn_on('OFFSET')
+                filt.ramp_offset(sysmod.NOMINAL_BF_OFS,sysmod.TRAMP_BF_OFS,False)
+                self.counter += 1
+            except:
+                return True
+
+        elif self.counter == 2:
+            filt = ezca.get_LIGOFilter('VIS-%s_BF_TEST_Y'%OPTIC)
+            return not filt.is_offset_ramping()
+        
+        
+                
+
 class TWR_DAMPED(GuardState):
     index = 50
     request = True
@@ -585,6 +619,13 @@ class ALIGNED(GuardState):
     def main(self):
         #[FIXME] temporally use only for TypeA
         if sustype in ['TypeA','TypeBp']:
+            for DoF in ['PIT','YAW']:
+                OPAL = vislib.OpticAlign(optic=OPTIC,DOF=DoF,)
+                if OPAL.OUTPUT.get() == 0:
+                    OPAL.ramp_offset(0,0,False)
+                    OPAL.ramp_gain(1,0,False)
+                    OPAL.turn_on('OFFSET')
+                    
             vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
 
     @check_WD
@@ -592,8 +633,11 @@ class ALIGNED(GuardState):
     @check_ISCSIG
     def run(self):
         if sustype in ['TypeA','TypeBp']:
-            pass
-            #vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
+            try:
+                vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
+            except:
+                vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
+                
         return True
 
 
@@ -902,6 +946,36 @@ class DISABLE_BF_LOCALDAMP(disable_damping):
             ramptime = sysmod.BF_LOCALDAMP['ramptime'],
             integrator = sysmod.BF_LOCALDAMP['integrator'],
         )
+
+    def main(self):
+        super(DISABLE_BF_LOCALDAMP, self).main()
+        self.timer['waiting'] = 0
+        self.counter = 0
+
+    def run(self):
+
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            if super(DISABLE_BF_LOCALDAMP, self).run():
+                self.timer['waiting'] = 3
+                self.counter += 1
+
+        elif self.counter == 1:
+            # if NOMINAL_BF_OFS is defined, remove from BF TEST Y. This is for PRM.
+            try:
+                log('remove BF nominal offset')
+                filt = ezca.get_LIGOFilter('VIS-%s_BF_TEST_Y'%OPTIC)
+                filt.ramp_offset(0,sysmod.TRAMP_BF_OFS,False)
+                self.counter += 1
+            except:
+                return True
+
+        elif self.counter == 2:
+            filt = ezca.get_LIGOFilter('VIS-%s_BF_TEST_Y'%OPTIC)
+            return not filt.is_offset_ramping()
+
 
     
 class DISABLE_GAS_LOCALDAMP(disable_damping_for_PAY):
