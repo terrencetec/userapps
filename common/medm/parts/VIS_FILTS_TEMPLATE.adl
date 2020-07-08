@@ -1,0 +1,2114 @@
+
+file {
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/parts/VIS_FILTS_TEMPLATE.adl"
+	version=030107
+}
+display {
+	object {
+		x=877
+		y=122
+		width=473
+		height=605
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+composite {
+	object {
+		x=129
+		y=461
+		width=123
+		height=107
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=147
+				y=478
+				width=105
+				height=90
+			}
+			display[0] {
+				label="NOSTAGE NOFUNC"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_6DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4,DOF5=X5,DOF6=X6"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		text {
+			object {
+				x=129
+				y=478
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=493
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=149
+				y=461
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			textix="NOSTAGE NOFUNC"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=478
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=478
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=480
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=478
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
+					}
+					points {
+						(192,478)
+						(206,485)
+						(191,492)
+						(192,478)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=478
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=493
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=493
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=495
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=493
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
+					}
+					points {
+						(192,493)
+						(206,500)
+						(191,507)
+						(192,493)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=493
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=129
+				y=508
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF3"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=508
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=508
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=510
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=508
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
+					}
+					points {
+						(192,508)
+						(206,515)
+						(191,522)
+						(192,508)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=508
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=129
+				y=523
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF4"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=538
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF5"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=553
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF6"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=523
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=523
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=525
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=523
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_GAIN"
+					}
+					points {
+						(192,523)
+						(206,530)
+						(191,537)
+						(192,523)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=523
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=538
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=538
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=540
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=538
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_GAIN"
+					}
+					points {
+						(192,538)
+						(206,545)
+						(191,552)
+						(192,538)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=538
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF5_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=553
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=553
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=555
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=553
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_GAIN"
+					}
+					points {
+						(192,553)
+						(206,560)
+						(191,567)
+						(192,553)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=553
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF6_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+text {
+	object {
+		x=189
+		y=44
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="[Note] Please do not edit!"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=33
+		y=116
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="1DOF"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=33
+		y=180
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="2DOF"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=33
+		y=258
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="3DOF"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=33
+		y=348
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="4DOF"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=33
+		y=462
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="6DOF"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=270
+		y=209
+		width=199
+		height=220
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=270
+				y=209
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="Usage"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=297
+				y=225
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="1. copy block"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=321
+				y=240
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="2. replace parameters"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=301
+				y=395
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="3. paste block"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=279
+				y=414
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="4. done"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=314
+				y=260
+				width=155
+				height=132
+			}
+			"composite name"=""
+			children {
+				text {
+					object {
+						x=341
+						y=260
+						width=100
+						height=15
+					}
+					"basic attribute" {
+						clr=0
+					}
+					textix="[Example of 6DOF] "
+					align="horiz. centered"
+				}
+				composite {
+					object {
+						x=314
+						y=281
+						width=155
+						height=111
+					}
+					"composite name"=""
+					children {
+						text {
+							object {
+								x=329
+								y=281
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="NOSTAGE -> IM"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=332
+								y=300
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="NOFUNCTION -> OLDAMP"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=344
+								y=319
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="NOFUNC -> OLDAMP"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=314
+								y=339
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X1 -> L"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=314
+								y=358
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X2 -> T"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=314
+								y=377
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X3 -> V"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=369
+								y=339
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X4 -> R"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=369
+								y=358
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X5 -> P"
+							align="horiz. centered"
+						}
+						text {
+							object {
+								x=369
+								y=377
+								width=100
+								height=15
+							}
+							"basic attribute" {
+								clr=0
+							}
+							textix="X6 -> Y"
+							align="horiz. centered"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=129
+		y=348
+		width=123
+		height=77
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=147
+				y=365
+				width=105
+				height=60
+			}
+			display[0] {
+				label="NOSTAGE NOFUNC"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_4DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3,DOF4=X4"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		text {
+			object {
+				x=129
+				y=365
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=380
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=149
+				y=348
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			textix="NOSTAGE NOFUNC"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=365
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=365
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=367
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=365
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
+					}
+					points {
+						(192,365)
+						(206,372)
+						(191,379)
+						(192,365)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=365
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=380
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=380
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=382
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=380
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
+					}
+					points {
+						(192,380)
+						(206,387)
+						(191,394)
+						(192,380)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=380
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=129
+				y=395
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF3"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=395
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=395
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=397
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=395
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
+					}
+					points {
+						(192,395)
+						(206,402)
+						(191,409)
+						(192,395)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=395
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=129
+				y=410
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF4"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=410
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=410
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=412
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=410
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_GAIN"
+					}
+					points {
+						(192,410)
+						(206,417)
+						(191,424)
+						(192,410)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=410
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF4_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=129
+		y=257
+		width=123
+		height=62
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=147
+				y=274
+				width=105
+				height=45
+			}
+			display[0] {
+				label="NOSTAGE NOFUNC"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_3DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2,DOF3=X3"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		text {
+			object {
+				x=129
+				y=274
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=289
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=149
+				y=257
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			textix="NOSTAGE NOFUNC"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=274
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=274
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=276
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=274
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
+					}
+					points {
+						(192,274)
+						(206,281)
+						(191,288)
+						(192,274)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=274
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=289
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=289
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=291
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=289
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
+					}
+					points {
+						(192,289)
+						(206,296)
+						(191,303)
+						(192,289)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=289
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=129
+				y=304
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF3"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=304
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=304
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=306
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=304
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_GAIN"
+					}
+					points {
+						(192,304)
+						(206,311)
+						(191,318)
+						(192,304)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=304
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF3_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=129
+		y=180
+		width=123
+		height=47
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=147
+				y=197
+				width=105
+				height=30
+			}
+			display[0] {
+				label="NOSTAGE NOFUNC"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_2DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1,DOF2=X2"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		text {
+			object {
+				x=129
+				y=197
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=129
+				y=212
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF2"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=149
+				y=180
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			textix="NOSTAGE NOFUNC"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=197
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=197
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=199
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=197
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
+					}
+					points {
+						(192,197)
+						(206,204)
+						(191,211)
+						(192,197)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=197
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=148
+				y=212
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=212
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=214
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=212
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_GAIN"
+					}
+					points {
+						(192,212)
+						(206,219)
+						(191,226)
+						(192,212)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=212
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF2_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=129
+		y=117
+		width=123
+		height=32
+	}
+	"composite name"=""
+	children {
+		"related display" {
+			object {
+				x=147
+				y=134
+				width=105
+				height=15
+			}
+			display[0] {
+				label="NOSTAGE NOFUNC"
+				name="$(USERAPPS)/vis/common/medm/parts/VIS_FILTS_1DOF.adl"
+				args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=NOSTAGE,FUNC=NOFUNC,FUNCTION=NOFUNCTION,DOF1=X1"
+			}
+			clr=14
+			bclr=55
+			visual="invisible"
+		}
+		text {
+			object {
+				x=129
+				y=134
+				width=12
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="NODOF1"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=149
+				y=117
+				width=100
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			textix="NOSTAGE NOFUNC"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=148
+				y=134
+				width=102
+				height=14
+			}
+			"composite name"=""
+			children {
+				"text update" {
+					object {
+						x=148
+						y=134
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_INMON"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+				rectangle {
+					object {
+						x=192
+						y=136
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=191
+						y=134
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_GAIN"
+					}
+					points {
+						(192,134)
+						(206,141)
+						(191,148)
+						(192,134)
+					}
+				}
+				"text update" {
+					object {
+						x=208
+						y=134
+						width=42
+						height=14
+					}
+					monitor {
+						chan="$(IFO):VIS-$(OPTIC)_NOSTAGE_NOFUNC_NODOF1_OUTPUT"
+						clr=50
+						bclr=53
+					}
+					align="horiz. centered"
+					format="truncated"
+					limits {
+					}
+				}
+			}
+		}
+	}
+}
