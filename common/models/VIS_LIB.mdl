@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1911.0, 28.0, 1571.0, 960.0]
+      Location		      [266.0, 43.0, 1571.0, 960.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -40,11 +40,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"3623"
 	Extents			[1517.0, 767.0]
-	ZoomFactor		[0.6]
-	Offset			[111.34633568841551, 605.212270860187]
+	ZoomFactor		[3.0]
+	Offset			[-59.925208588296407, -84.298450888479039]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 09 17:53:45 2020"
-  RTWModifiedTimeStamp	  516218000
-  ModelVersionFormat	  "1.%<AutoIncrement:163>"
+  LastModifiedDate	  "Fri Jul 10 08:15:56 2020"
+  RTWModifiedTimeStamp	  516269751
+  ModelVersionFormat	  "1.%<AutoIncrement:165>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -890,8 +890,8 @@ Library {
   }
   System {
     Name		    "VIS_LIB"
-    Location		    [1911, 28, 3482, 988]
-    Open		    on
+    Location		    [266, 43, 1837, 1003]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -902,7 +902,7 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "3662"
     Block {
@@ -917,8 +917,8 @@ Library {
       Variant		      off
       System {
 	Name			"ACC"
-	Location		[1911, 28, 3482, 988]
-	Open			off
+	Location		[266, 43, 1837, 1003]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -929,12 +929,12 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"300"
 	Block {
 	  BlockType		  Inport
 	  Name			  "err"
 	  SID			  "3624"
-	  Position		  [30, 53, 60, 67]
+	  Position		  [55, 53, 85, 67]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
@@ -973,7 +973,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Reference
-	  Name			  "ERR2ACC"
+	  Name			  "FB2ACC"
 	  SID			  "3658"
 	  Tag			  "cdsFilt"
 	  Description		  "Purpose:                                                                                           "
@@ -994,7 +994,7 @@ Library {
 	  "                                                                                                                   "
 	  "                                                              "
 	  Ports			  [1, 1]
-	  Position		  [120, -12, 190, 12]
+	  Position		  [225, -12, 295, 12]
 	  ZOrder		  5
 	  BackgroundColor	  "darkGreen"
 	  DropShadow		  on
@@ -1008,7 +1008,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "acc"
 	  SID			  "3659"
-	  Position		  [235, -7, 265, 7]
+	  Position		  [315, -7, 345, 7]
 	  ZOrder		  6
 	  IconDisplay		  "Port number"
 	}
@@ -1016,7 +1016,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "fb"
 	  SID			  "3660"
-	  Position		  [235, 53, 265, 67]
+	  Position		  [315, 53, 345, 67]
 	  ZOrder		  7
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1025,29 +1025,29 @@ Library {
 	  ZOrder		  30
 	  SrcBlock		  "err"
 	  SrcPort		  1
-	  Points		  [19, 0]
-	  Branch {
-	    ZOrder		    34
-	    Points		    [0, -60]
-	    DstBlock		    "ERR2ACC"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    33
-	    DstBlock		    "ACCSERVO"
-	    DstPort		    1
-	  }
+	  DstBlock		  "ACCSERVO"
+	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  37
 	  SrcBlock		  "ACCSERVO"
 	  SrcPort		  1
-	  DstBlock		  "fb"
-	  DstPort		  1
+	  Points		  [9, 0]
+	  Branch {
+	    ZOrder		    40
+	    Points		    [0, -60]
+	    DstBlock		    "FB2ACC"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    39
+	    DstBlock		    "fb"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  ZOrder		  36
-	  SrcBlock		  "ERR2ACC"
+	  SrcBlock		  "FB2ACC"
 	  SrcPort		  1
 	  DstBlock		  "acc"
 	  DstPort		  1
@@ -49077,13 +49077,13 @@ MatData {
   NumRecords		  1
   DataRecord {
     Tag			    DataTag0
-    Data		    "  %)30     .    0 (   8    (     @         %    \"     $    !     0         %  0 \"     $    8    =F5R<"
+    Data		    "  %)30     .    6 (   8    (     @         %    \"     $    !     0         %  0 \"     $    8    =F5R<"
     "VEO;@!C;VYT96YT &9O<FUA=   #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    S,S,S,S/S/"
-    "PX   !P 0  !@    @    $          4    (     0   #X!   !         !     ^ 0  4V5R=F\\@9FEL=&5R(&9O<B!625,@86-C96QE<F"
-    "]M971E<@H]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]\"@HC(%!A<F%M971E<G,*26YP=70@( H@*B!E<G(@.B!/=71P=70@<VEG;F%"
-    "L(&9R;VT@3%9$5\"!D<FEV97(*3W5T<'5T\"B J(&%C8R Z($-A;&EB<F%T960@86-C96QE<F%T:6]N('-I9VYA; H@*B!F8B Z($9E961B86-K('-"
-    "I9VYA;\"!T;R!C;VEL(&1R:79E<@H*(R!5<V%G90HQ+B!$97-I9VX@=&AE($%#0U-%4E9/(&%S('EO=2!L:6ME+B *,BX@5W)I=&4@86-T=6%T;W(@"
-    "969F:6-I96YC>2 H02!;3B]672D@=&\\@8V%L:6)R871E+@H*   .    ,     8    (    !          %    \"     $    #     0      "
-    "   0  , 5%A4  "
+    "PX   \"( 0  !@    @    $          4    (     0   %<!   !         !    !7 0  4V5R=F\\@9FEL=&5R(&9O<B!625,@86-C96QE<"
+    "F]M971E<@H]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]\"@HC(%!A<F%M971E<G,*26YP=70@( H@*B!E<G(@.B!/=71P=70@<VEG;F"
+    "%L(&9R;VT@3%9$5\"!D<FEV97(*3W5T<'5T\"B J(&%C8R Z($-A;&EB<F%T960@86-C96QE<F%T:6]N('-I9VYA;\"!B>2!U<VEN9R!F965D8F%C:"
+    "R!S:6=N86P*(\"H@9F(@.B!&965D8F%C:R!S:6=N86P@=&\\@8V]I;\"!D<FEV97(*\"B,@57-A9V4*,2X@1&5S:6=N('1H92!!0T-315)63R!A<R!"
+    "Y;W4@;&EK92X@\"C(N(%=R:71E(&%C='5A=&]R(&5F9FEC:65N8WD@*$$@6TXO5ETI('1O(&-A;&EB<F%T92X*\"@ .    ,     8    (    !  "
+    "        %    \"     $    #     0         0  , 5%A4  "
   }
 }
