@@ -1,5 +1,6 @@
 from guardian import GuardState
-
+import vislib
+import kagralib
 ###########
 # Misalign
 ###########
@@ -191,6 +192,137 @@ class MISALIGNED_FOR_PRFPMI(GuardState):
     @check_WD
     def run(self):
         return True
+
+#Overwrite misalign state in VIS_GRD.py
+class MISALIGNING(GuardState):
+    index = 101
+    request = False
+
+    def is_PSD_centered(self):
+        #[FIXME] check PSD position
+        return True
+    
+    @check_TWWD
+    @check_WD
+    def main(self):
+        self.timer['waiting'] = 0
+        self.timer['warning'] = 0
+        self.counter = 0
+        self.OPAL = {DoF:vislib.OpticAlign('PRM',DoF) for DoF in ['PIT','YAW']}
+        self.IM_TEST = {DoF:ezca.get_LIGOFilter('VIS-PRM_IM_TEST_%s'%DoF[0]) for DoF in ['PIT','YAW']}
+        self.IM_OFFSET = {'PIT':-1500,'YAW':-3000}
+        self.BF_TEST = ezca.get_LIGOFilter('VIS-PRM_BF_TEST_Y')
+        self.BF_OFFSET = 70000
+
+    @check_TWWD
+    @check_WD
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if bool(ezca['PSL-BEAM_SHUTTER_STATE']):
+            if self.timer['warning']:
+                kagralib.speak_aloud('PSL shutter is open. Please close it to misalign PRM')
+                notify('PSL shutter is open. Please close it to misalign PRM')
+                self.timer['warning'] = 30
+            return 
+
+        if self.counter == 0:
+            for key in self.OPAL:
+                self.OPAL[key].turn_off('OFFSET')
+                self.IM_TEST[key].turn_on('OFFSET')
+                self.IM_TEST[key].ramp_gain(1,0,False)
+                self.IM_TEST[key].ramp_offset(self.IM_OFFSET[key],3,False)
+            self.counter += 1
+            self.timer['waiting'] = 1
+
+        elif self.counter == 1:
+            self.BF_TEST.turn_on('OFFSET')
+            self.BF_TEST.ramp_gain(1,0,False)
+            self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
+            self.timer['warning'] = 120
+            self.counter += 1
+
+            
+        elif self.counter == 2 and not self.BF_TEST.is_offset_ramping():
+            #[FIXME] engage PSD loop or add state ENGAGE_PSD_LOOP state
+            if self.timer['warning']:
+                kagralib.speak_aloud('PRM is not misaligned propery yet. Please check PRM status.')
+                self.timer['warning'] = 120
+            return self.is_PSD_centered()
+
+#[FIXME]
+'''
+class ENGAGE_PSD_LOOP(engage_damping):
+    index = 106
+    request = False
+    #[FIXME]
+    pass
+'''
+
+class REALIGNING(GuardState):
+    index = 103
+    request = False
+
+    def is_oplev_inrange(self):
+        #[FIXME] check oplev position
+        return all([ (abs(ezca[vislib.DiagChan('PRM',DoF)]) < 400) for DoF in ['PIT','YAW']]) and ezca['VIS-PRM_TM_OPLEV_TILT_SUM_OUTPUT'] > 3000
+    
+    @check_TWWD
+    @check_WD
+    def main(self):
+        self.timer['waiting'] = 0
+        self.timer['warning'] = 0
+        self.counter = 0
+        self.OPAL = {DoF:vislib.OpticAlign('PRM',DoF) for DoF in ['PIT','YAW']}
+        self.IM_TEST = {DoF:ezca.get_LIGOFilter('VIS-PRM_IM_TEST_%s'%DoF[0]) for DoF in ['PIT','YAW']}
+        self.IM_OFFSET = {'PIT':-1500,'YAW':-3000}
+        self.BF_TEST = ezca.get_LIGOFilter('VIS-PRM_BF_TEST_Y')
+        self.BF_OFFSET = NOMINAL_BF_OFS
+
+    @check_TWWD
+    @check_WD
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if bool(ezca['PSL-BEAM_SHUTTER_STATE']):
+            if self.timer['warning']:
+                kagralib.speak_aloud('PSL shutter is open. Please close it to realign PRM')
+                notify('PSL shutter is open. Please close it to realign PRM')
+
+                self.timer['warning'] = 30
+            return 
+
+        if self.counter == 0:
+            for key in self.OPAL:
+                self.OPAL[key].turn_on('OFFSET')
+                self.IM_TEST[key].turn_off('OFFSET')
+            self.counter += 1
+            self.timer['waiting'] = 1
+
+        elif self.counter == 1:
+            self.BF_TEST.turn_on('OFFSET')
+            self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
+            self.timer['warning'] = 120
+            self.counter += 1
+
+            
+        elif self.counter == 2 and not self.BF_TEST.is_offset_ramping():
+            if self.timer['warning']:
+                kagralib.speak_aloud('PRM is not realigned propery yet. Please check PRM status.')
+                self.timer['warning'] = 120
+            return self.is_oplev_inrange()
+#[FIXME]
+'''
+class DISABLE_PSD_LOOP(disable_damping):
+    index = 107
+    request = False
+
+    pass
+'''
+        
+    
 
 class REALIGNING_FOR_PRFPMI(GuardState):
     index = 98
