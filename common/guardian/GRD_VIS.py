@@ -108,7 +108,7 @@ class engage_damping(GuardState):
     def run(self):
         return engage_run(self)
         
-
+# Due to the difference of WDs to be checked, we need another class for Payload. 
 class engage_damping_for_PAY(GuardState):
     def __init__(self, logfunc, chanfunc, stage, init_FM, bst_FM, ramptime, integrator, initialization=True):
         super(engage_damping_for_PAY, self).__init__(logfunc)
