@@ -1,6 +1,7 @@
 from guardian import GuardState
-import vislib
 import kagralib
+import vislib
+
 ###########
 # Misalign
 ###########
@@ -162,6 +163,7 @@ from TypeBp import INIT, SAFE, TRIPPED, nominal
 from GRD_VIS import ENGAGE_GAS_LOCALDAMP, ENGAGE_BF_LOCALDAMP, TWR_DAMPED, DISABLE_BF_LOCALDAMP, DISABLE_GAS_LOCALDAMP, ENGAGE_IM_LOCALDAMP, PAY_LOCALDAMPED,  ENGAGE_TM_OLDAMP, ENGAGE_IM_OLDAMP, ENGAGE_OLSERVO, ALIGNED, DISABLE_OLSERVO, DISABLE_IM_OLDAMP, DISABLE_TM_OLDAMP, PAY_LOCALDAMPED, TRANSIT_TO_OBS, OBSERVATION, BACK_TO_ALIGNED, TWR_IDLE, DISABLE_IM_LOCALDAMP, edges, MISALIGNING, MISALIGNED, REALIGNING, check_WD, check_TWWD, OLDAMPED, ENGAGE_IM_OLDC, DISABLE_IM_OLDC, ENGAGE_OLSERVO_DC, DISABLE_OLSERVO_DC,TRANSIT_TO_LOCKACQ, LOCK_ACQUISITION, BACK_TO_LOCKACQ
 
 
+
 #########################
 # class
 #########################
@@ -199,8 +201,12 @@ class MISALIGNING(GuardState):
     request = False
 
     def is_PSD_centered(self):
-        #[FIXME] check PSD position
-        return True
+        pit = ezca['VIS-PRM_TM_PSD_PIT_OUTPUT']
+        yaw = ezca['VIS-PRM_TM_PSD_YAW_OUTPUT']
+        if abs(pit)<0.1 and abs(yaw)<0.1:            
+            return True
+        else:
+            return False
     
     @check_TWWD
     @check_WD
@@ -213,6 +219,7 @@ class MISALIGNING(GuardState):
         self.IM_OFFSET = {'PIT':-1500,'YAW':-3000}
         self.BF_TEST = ezca.get_LIGOFilter('VIS-PRM_BF_TEST_Y')
         self.BF_OFFSET = 70000
+        self.timer['checking'] = 0
 
     @check_TWWD
     @check_WD
@@ -242,14 +249,28 @@ class MISALIGNING(GuardState):
             self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
             self.timer['warning'] = 120
             self.counter += 1
-
             
         elif self.counter == 2 and not self.BF_TEST.is_offset_ramping():
-            #[FIXME] engage PSD loop or add state ENGAGE_PSD_LOOP state
+            # engage PSD loop in IM_PIT and BF_YAW
+            filt = ezca.get_LIGOFilter('VIS-PRM_BF_PSD_Y')
+            filt.switch('FM3','FM7','FM8','FM9','ON')
+            filt.ramp_gain(1,ramp_time=5,wait=True)            
+            filt = ezca.get_LIGOFilter('VIS-PRM_IM_PSD_P')
+            filt.switch('FM3','FM7','FM8','FM9','ON')
+            filt.ramp_gain(1,ramp_time=5,wait=True)
+                            
+            if self.is_PSD_centered() and self.timer['checking']:
+                self.timer['checking'] = 10
+                self.counter += 1
+                
+        elif self.counter==3:
+            if self.timer['checking']:
+                if self.is_PSD_centered():
+                    return True
             if self.timer['warning']:
                 kagralib.speak_aloud('PRM is not misaligned propery yet. Please check PRM status.')
-                self.timer['warning'] = 120
-            return self.is_PSD_centered()
+                self.timer['warning'] = 120                
+                    
 
 #[FIXME]
 '''
@@ -266,6 +287,9 @@ class REALIGNING(GuardState):
 
     def is_oplev_inrange(self):
         #[FIXME] check oplev position
+        #inrange = all([ (abs(ezca[vislib.DiagChan('PRM',DoF)]) < 400) for DoF in ['PIT','YAW']])
+        #oksum = ezca['VIS-PRM_TM_OPLEV_TILT_SUM_OUTPUT'] > 3000
+        #return (inrange and oksum)
         return all([ (abs(ezca[vislib.DiagChan('PRM',DoF)]) < 400) for DoF in ['PIT','YAW']]) and ezca['VIS-PRM_TM_OPLEV_TILT_SUM_OUTPUT'] > 3000
     
     @check_TWWD
@@ -306,12 +330,20 @@ class REALIGNING(GuardState):
             self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
             self.timer['warning'] = 120
             self.counter += 1
-
             
         elif self.counter == 2 and not self.BF_TEST.is_offset_ramping():
+            # diable PSD loop in IM_PIT and BF_YAW
+            filt = ezca.get_LIGOFilter('VIS-PRM_BF_PSD_Y')
+            filt.switch('FM3','FM7','FM8','FM9','OFF')
+            filt.ramp_gain(0,ramp_time=5,wait=True)
+            filt = ezca.get_LIGOFilter('VIS-PRM_IM_PSD_P')
+            filt.switch('FM3','FM7','FM8','FM9','OFF')
+            filt.ramp_gain(0,ramp_time=5,wait=True)
+            
             if self.timer['warning']:
                 kagralib.speak_aloud('PRM is not realigned propery yet. Please check PRM status.')
                 self.timer['warning'] = 120
+                
             return self.is_oplev_inrange()
 #[FIXME]
 '''
