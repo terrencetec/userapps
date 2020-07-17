@@ -1,0 +1,174 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/filters/MINI_FILTER2.adl"
+	version=030107
+}
+display {
+	object {
+		x=1344
+		y=805
+		width=251
+		height=75
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+composite {
+	object {
+		x=24
+		y=28
+		width=172
+		height=15
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=180
+				y=28
+				width=16
+				height=15
+			}
+			"composite name"=""
+			children {
+				"related display" {
+					object {
+						x=180
+						y=28
+						width=15
+						height=15
+					}
+					display[0] {
+						label="$(FNAME)"
+						name="$(FNAME)"
+					}
+					clr=14
+					bclr=55
+					visual="invisible"
+				}
+				rectangle {
+					object {
+						x=182
+						y=30
+						width=4
+						height=11
+					}
+					"basic attribute" {
+						clr=21
+					}
+				}
+				polygon {
+					object {
+						x=181
+						y=28
+						width=15
+						height=14
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="(A&4)&&(B&1024)&&(C!=0)"
+						chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF)_SW1R"
+						chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF)_SW2R"
+						chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF)_GAIN"
+					}
+					points {
+						(182,28)
+						(196,35)
+						(181,42)
+						(182,28)
+					}
+				}
+			}
+		}
+		text {
+			object {
+				x=24
+				y=29
+				width=19
+				height=11
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="$(STAGE) $(FUNC) $(DOF)"
+		}
+	}
+}
