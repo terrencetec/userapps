@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [266.0, 43.0, 1571.0, 960.0]
+      Location		      [448.0, 78.0, 1314.0, 734.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -40,11 +40,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"3623"
-	Extents			[1517.0, 767.0]
-	ZoomFactor		[3.0]
-	Offset			[-59.925208588296407, -84.298450888479039]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1260.0, 541.0]
+	ZoomFactor		[4.0]
+	Offset			[960.73095238095243, 1308.1642857142856]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jul 10 08:15:56 2020"
-  RTWModifiedTimeStamp	  516269751
-  ModelVersionFormat	  "1.%<AutoIncrement:165>"
+  LastModifiedDate	  "Fri Jul 17 11:42:56 2020"
+  RTWModifiedTimeStamp	  516886971
+  ModelVersionFormat	  "1.%<AutoIncrement:166>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -890,8 +890,8 @@ Library {
   }
   System {
     Name		    "VIS_LIB"
-    Location		    [266, 43, 1837, 1003]
-    Open		    off
+    Location		    [448, 78, 1762, 812]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -902,14 +902,14 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "200"
+    ZoomFactor		    "400"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "3662"
+    SIDHighWatermark	    "3665"
     Block {
       BlockType		      SubSystem
       Name		      "ACC"
       SID		      "3623"
-      Ports		      [1, 2]
+      Ports		      [1, 3]
       Position		      [1075, 1356, 1145, 1394]
       ZOrder		      4407
       BackgroundColor	      "lightBlue"
@@ -917,8 +917,8 @@ Library {
       Variant		      off
       System {
 	Name			"ACC"
-	Location		[266, 43, 1837, 1003]
-	Open			on
+	Location		[448, 78, 1762, 812]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -929,7 +929,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"300"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "err"
@@ -973,6 +973,39 @@ Library {
 	}
 	Block {
 	  BlockType		  Reference
+	  Name			  "ERR2ACC"
+	  SID			  "3663"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [225, -77, 295, -53]
+	  ZOrder		  8
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
 	  Name			  "FB2ACC"
 	  SID			  "3658"
 	  Tag			  "cdsFilt"
@@ -1006,27 +1039,46 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "acc"
+	  Name			  "fb"
 	  SID			  "3659"
-	  Position		  [315, -7, 345, 7]
+	  Position		  [325, 53, 355, 67]
 	  ZOrder		  6
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "fb"
+	  Name			  "fb2acc"
 	  SID			  "3660"
-	  Position		  [315, 53, 345, 67]
+	  Position		  [325, -7, 355, 7]
 	  ZOrder		  7
 	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "err2acc"
+	  SID			  "3664"
+	  Position		  [325, -72, 355, -58]
+	  ZOrder		  9
+	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  30
 	  SrcBlock		  "err"
 	  SrcPort		  1
-	  DstBlock		  "ACCSERVO"
-	  DstPort		  1
+	  Points		  [12, 0]
+	  Branch {
+	    ZOrder		    45
+	    Points		    [0, -125]
+	    DstBlock		    "ERR2ACC"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    44
+	    DstBlock		    "ACCSERVO"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  ZOrder		  37
@@ -1034,22 +1086,29 @@ Library {
 	  SrcPort		  1
 	  Points		  [9, 0]
 	  Branch {
-	    ZOrder		    40
+	    ZOrder		    48
+	    DstBlock		    "fb"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    47
 	    Points		    [0, -60]
 	    DstBlock		    "FB2ACC"
 	    DstPort		    1
 	  }
-	  Branch {
-	    ZOrder		    39
-	    DstBlock		    "fb"
-	    DstPort		    1
-	  }
 	}
 	Line {
-	  ZOrder		  36
+	  ZOrder		  49
 	  SrcBlock		  "FB2ACC"
 	  SrcPort		  1
-	  DstBlock		  "acc"
+	  DstBlock		  "fb2acc"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  50
+	  SrcBlock		  "ERR2ACC"
+	  SrcPort		  1
+	  DstBlock		  "err2acc"
 	  DstPort		  1
 	}
       }
@@ -49077,13 +49136,14 @@ MatData {
   NumRecords		  1
   DataRecord {
     Tag			    DataTag0
-    Data		    "  %)30     .    6 (   8    (     @         %    \"     $    !     0         %  0 \"     $    8    =F5R<"
+    Data		    "  %)30     .    H (   8    (     @         %    \"     $    !     0         %  0 \"     $    8    =F5R<"
     "VEO;@!C;VYT96YT &9O<FUA=   #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    S,S,S,S/S/"
-    "PX   \"( 0  !@    @    $          4    (     0   %<!   !         !    !7 0  4V5R=F\\@9FEL=&5R(&9O<B!625,@86-C96QE<"
+    "PX   #0 0  !@    @    $          4    (     0   )P!   !         !    \"< 0  4V5R=F\\@9FEL=&5R(&9O<B!625,@86-C96QE<"
     "F]M971E<@H]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]/3T]\"@HC(%!A<F%M971E<G,*26YP=70@( H@*B!E<G(@.B!/=71P=70@<VEG;F"
-    "%L(&9R;VT@3%9$5\"!D<FEV97(*3W5T<'5T\"B J(&%C8R Z($-A;&EB<F%T960@86-C96QE<F%T:6]N('-I9VYA;\"!B>2!U<VEN9R!F965D8F%C:"
-    "R!S:6=N86P*(\"H@9F(@.B!&965D8F%C:R!S:6=N86P@=&\\@8V]I;\"!D<FEV97(*\"B,@57-A9V4*,2X@1&5S:6=N('1H92!!0T-315)63R!A<R!"
-    "Y;W4@;&EK92X@\"C(N(%=R:71E(&%C='5A=&]R(&5F9FEC:65N8WD@*$$@6TXO5ETI('1O(&-A;&EB<F%T92X*\"@ .    ,     8    (    !  "
-    "        %    \"     $    #     0         0  , 5%A4  "
+    "%L(&9R;VT@3%9$5\"!D<FEV97(*3W5T<'5T\"B J(&9B,F%C8R Z($-A;&EB<F%T960@86-C96QE<F%T:6]N('-I9VYA;\"!B>2!U<VEN9R!F965D8"
+    "F%C:R!S:6=N86P*(\"H@97)R,F%C8R Z($-A;&EB<F%T960@86-C96QE<F%T:6]N('-I9VYA;\"!B>2!U<VEN9R!E<G)O<B!S:6=N86P*(\"H@9F(@"
+    ".B!&965D8F%C:R!S:6=N86P@=&\\@8V]I;\"!D<FEV97(*\"B,@57-A9V4*,2X@1&5S:6=N('1H92!!0T-315)63R!A<R!Y;W4@;&EK92X@\"C(N(%"
+    "=R:71E(&%C='5A=&]R(&5F9FEC:65N8WD@*$$@6TXO5ETI('1O(&-A;&EB<F%T92X*\"@     .    ,     8    (    !          %    \" "
+    "    $    #     0         0  , 5%A4  "
   }
 }
