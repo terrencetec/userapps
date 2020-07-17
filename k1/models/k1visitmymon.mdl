@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.19"
+    ComputedModelVersion    "1.24"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [330.0, 139.0, 1458.0, 781.0]
+      Location		      [2235.0, 387.0, 1098.0, 781.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -51,11 +51,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1404.0, 601.0]
-	ZoomFactor		[1.3398558089611217]
-	Offset			[-76.436975385662436, -60.4488855490018]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"716"
+	Extents			[1044.0, 579.0]
+	ZoomFactor		[1.0]
+	Offset			[-211.99326430021489, 88.874432318829577]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Dec 27 04:40:09 2019"
-  RTWModifiedTimeStamp	  499322407
-  ModelVersionFormat	  "1.%<AutoIncrement:19>"
+  LastModifiedDate	  "Fri Jul 17 22:05:56 2020"
+  RTWModifiedTimeStamp	  516924354
+  ModelVersionFormat	  "1.%<AutoIncrement:24>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -782,13 +782,77 @@ Model {
       BlockType		      Ground
     }
     Block {
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWSystemCode	      "Auto"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      Opaque		      off
+      MaskHideContents	      off
+      SFBlockType	      "NONE"
+      GeneratePreprocessorConditionals off
+      ContentPreviewEnabled   off
+      IsWebBlock	      off
+    }
+    Block {
       BlockType		      Terminator
     }
   }
   System {
     Name		    "k1visitmymon"
-    Location		    [330, 139, 1788, 920]
-    Open		    on
+    Location		    [2235, 387, 3333, 1168]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -799,9 +863,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "134"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "716"
+    SIDHighWatermark	    "745"
     Block {
       BlockType		      Reference
       Name		      "ADC2"
@@ -940,6 +1004,15 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground2"
+      SID		      "743"
+      Position		      [350, 395, 370, 415]
+      ZOrder		      6708
+      ShowName		      off
+      FontSize		      12
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground3"
       SID		      "710"
       Position		      [155, 235, 175, 255]
@@ -948,16 +1021,1218 @@ Model {
       FontSize		      12
     }
     Block {
-      BlockType		      Reference
+      BlockType		      Ground
+      Name		      "Ground4"
+      SID		      "744"
+      Position		      [350, 455, 370, 475]
+      ZOrder		      6709
+      ShowName		      off
+      FontSize		      12
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground5"
+      SID		      "745"
+      Position		      [350, 515, 370, 535]
+      ZOrder		      6710
+      ShowName		      off
+      FontSize		      12
+    }
+    Block {
+      BlockType		      SubSystem
       Name		      "ITMY"
       SID		      "716"
-      Ports		      [16]
-      Position		      [560, -50, 740, 345]
+      Ports		      [19]
+      Position		      [560, -46, 745, 416]
       ZOrder		      6394
-      LibraryVersion	      "1.3"
-      SourceBlock	      "VISMON_MASTER/TYPEAMON"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
+      AncestorBlock	      "VISMON_MASTER/TYPEAMON"
+      LibraryVersion	      "*1.3"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"ITMY"
+	Location		[2235, 387, 3333, 1168]
+	Open			on
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	SIDHighWatermark	"55"
+	SIDPrevWatermark	"20"
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V3"
+	  SID			  "716:11"
+	  Position		  [20, 88, 50, 102]
+	  ZOrder		  6410
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H1"
+	  SID			  "716:13"
+	  Position		  [20, 118, 50, 132]
+	  ZOrder		  6412
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H2"
+	  SID			  "716:16"
+	  Position		  [20, 148, 50, 162]
+	  ZOrder		  6415
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H3"
+	  SID			  "716:19"
+	  Position		  [20, 178, 50, 192]
+	  ZOrder		  6418
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V1"
+	  SID			  "716:5"
+	  Position		  [20, 28, 50, 42]
+	  ZOrder		  6404
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V2"
+	  SID			  "716:8"
+	  Position		  [20, 58, 50, 72]
+	  ZOrder		  6407
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V1"
+	  SID			  "716:6"
+	  Position		  [190, 28, 220, 42]
+	  ZOrder		  6405
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V2"
+	  SID			  "716:9"
+	  Position		  [190, 58, 220, 72]
+	  ZOrder		  6408
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V3"
+	  SID			  "716:12"
+	  Position		  [190, 88, 220, 102]
+	  ZOrder		  6411
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H1"
+	  SID			  "716:14"
+	  Position		  [190, 118, 220, 132]
+	  ZOrder		  6413
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H2"
+	  SID			  "716:17"
+	  Position		  [190, 148, 220, 162]
+	  ZOrder		  6416
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H3"
+	  SID			  "716:20"
+	  Position		  [190, 178, 220, 192]
+	  ZOrder		  6419
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H1"
+	  SID			  "716:7"
+	  Position		  [355, 38, 385, 52]
+	  ZOrder		  6406
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H2"
+	  SID			  "716:10"
+	  Position		  [355, 83, 385, 97]
+	  ZOrder		  6409
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H3"
+	  SID			  "716:15"
+	  Position		  [355, 128, 385, 142]
+	  ZOrder		  6414
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H4"
+	  SID			  "716:18"
+	  Position		  [355, 173, 385, 187]
+	  ZOrder		  6417
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLP"
+	  SID			  "716:43"
+	  Position		  [140, 313, 170, 327]
+	  ZOrder		  6442
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLY"
+	  SID			  "716:44"
+	  Position		  [125, 428, 155, 442]
+	  ZOrder		  6443
+	  Port			  "18"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLL"
+	  SID			  "716:45"
+	  Position		  [125, 543, 155, 557]
+	  ZOrder		  6444
+	  Port			  "19"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  SID			  "716:21"
+	  Ports			  [2, 1]
+	  Position		  [585, 397, 615, 428]
+	  ZOrder		  6427
+	  Inputs		  "/*"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide1"
+	  SID			  "716:52"
+	  Ports			  [2, 1]
+	  Position		  [585, 512, 615, 543]
+	  ZOrder		  6451
+	  Inputs		  "/*"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "ENV1"
+	  SID			  "716:22"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [465, 338, 535, 362]
+	  ZOrder		  6420
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "ENV2"
+	  SID			  "716:23"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [465, 453, 535, 477]
+	  ZOrder		  6422
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "ENV3"
+	  SID			  "716:46"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [465, 568, 535, 592]
+	  ZOrder		  6445
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground"
+	  SID			  "716:26"
+	  Position		  [145, 340, 165, 360]
+	  ZOrder		  6436
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IM_COILDRV_VMON"
+	  SID			  "716:1"
+	  Ports			  [6]
+	  Position		  [240, 24, 320, 196]
+	  ZOrder		  6401
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/IM_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MN_COILDRV_VMON"
+	  SID			  "716:2"
+	  Ports			  [6]
+	  Position		  [70, 24, 150, 196]
+	  ZOrder		  6402
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/MN_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MODEL_RATE"
+	  SID			  "716:27"
+	  Tag			  "cdsModelRate"
+	  Ports			  [0, 1]
+	  Position		  [115, 373, 165, 387]
+	  ZOrder		  6421
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.1"
+	  SourceBlock		  "cdsModelRate/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MODEL_RATE1"
+	  SID			  "716:28"
+	  Tag			  "cdsModelRate"
+	  Ports			  [0, 1]
+	  Position		  [190, 488, 240, 502]
+	  ZOrder		  6425
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.1"
+	  SourceBlock		  "cdsModelRate/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MODEL_RATE2"
+	  SID			  "716:29"
+	  Tag			  "cdsModelRate"
+	  Ports			  [0, 1]
+	  Position		  [-140, 373, -90, 387]
+	  ZOrder		  6438
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.1"
+	  SourceBlock		  "cdsModelRate/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MODEL_RATE3"
+	  SID			  "716:55"
+	  Tag			  "cdsModelRate"
+	  Ports			  [0, 1]
+	  Position		  [190, 603, 240, 617]
+	  ZOrder		  6454
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.1"
+	  SourceBlock		  "cdsModelRate/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "P2L"
+	  SID			  "716:53"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [640, 518, 710, 542]
+	  ZOrder		  6452
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "P2Y"
+	  SID			  "716:34"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [640, 403, 710, 427]
+	  ZOrder		  6428
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_DEMOD_FREQ"
+	  SID			  "716:30"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [-50, 260, 15, 290]
+	  ZOrder		  6435
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_START"
+	  SID			  "716:31"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [-175, 305, -110, 335]
+	  ZOrder		  6437
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "QUALEN"
+	  SID			  "716:47"
+	  Ports			  [5, 5]
+	  Position		  [260, 539, 445, 621]
+	  ZOrder		  6446
+	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
+	  LibraryVersion	  "1.157"
+	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "QUAPIT"
+	  SID			  "716:32"
+	  Ports			  [5, 5]
+	  Position		  [190, 309, 375, 391]
+	  ZOrder		  6423
+	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
+	  LibraryVersion	  "1.159"
+	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "QUAYAW"
+	  SID			  "716:33"
+	  Ports			  [5, 5]
+	  Position		  [260, 424, 445, 506]
+	  ZOrder		  6424
+	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
+	  LibraryVersion	  "1.157"
+	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SW"
+	  SID			  "716:35"
+	  Ports			  [2, 1]
+	  Position		  [-80, 335, 45, 395]
+	  ZOrder		  6426
+	  BackgroundColor	  "green"
+	  LibraryVersion	  "1.157"
+	  SourceBlock		  "KAGRA_UTIL/StopWatch"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TM_COILDRV_VMON"
+	  SID			  "716:3"
+	  Ports			  [4]
+	  Position		  [405, 25, 485, 200]
+	  ZOrder		  6403
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/TM_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  "716:48"
+	  Position		  [465, 542, 490, 558]
+	  ZOrder		  6447
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator10"
+	  SID			  "716:51"
+	  Position		  [465, 602, 490, 618]
+	  ZOrder		  6450
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator11"
+	  SID			  "716:54"
+	  Position		  [725, 522, 750, 538]
+	  ZOrder		  6453
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator13"
+	  SID			  "716:36"
+	  Position		  [725, 407, 750, 423]
+	  ZOrder		  6441
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator2"
+	  SID			  "716:49"
+	  Position		  [465, 557, 490, 573]
+	  ZOrder		  6448
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator3"
+	  SID			  "716:37"
+	  Position		  [395, 312, 420, 328]
+	  ZOrder		  6429
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator4"
+	  SID			  "716:38"
+	  Position		  [395, 327, 420, 343]
+	  ZOrder		  6430
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator5"
+	  SID			  "716:39"
+	  Position		  [465, 427, 490, 443]
+	  ZOrder		  6431
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator6"
+	  SID			  "716:40"
+	  Position		  [465, 442, 490, 458]
+	  ZOrder		  6432
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator7"
+	  SID			  "716:41"
+	  Position		  [465, 472, 490, 488]
+	  ZOrder		  6433
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator8"
+	  SID			  "716:42"
+	  Position		  [465, 487, 490, 503]
+	  ZOrder		  6434
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator9"
+	  SID			  "716:50"
+	  Position		  [465, 587, 490, 603]
+	  ZOrder		  6449
+	  ShowName		  off
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "IM_V1"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "MN_H1"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "MN_H2"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "MN_V3"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "IM_V2"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "MN_V2"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "IM_V3"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "IM_H2"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "MN_V1"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "TM_H3"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  11
+	  SrcBlock		  "TM_H4"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  "TM_H2"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "TM_H1"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  14
+	  SrcBlock		  "MN_H3"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  15
+	  SrcBlock		  "IM_H3"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  16
+	  SrcBlock		  "IM_H1"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  17
+	  SrcBlock		  "MODEL_RATE1"
+	  SrcPort		  1
+	  DstBlock		  "QUAYAW"
+	  DstPort		  5
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  18
+	  SrcBlock		  "MODEL_RATE"
+	  SrcPort		  1
+	  DstBlock		  "QUAPIT"
+	  DstPort		  5
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  21
+	  SrcBlock		  "SW"
+	  SrcPort		  1
+	  Points		  [36, 0]
+	  Branch {
+	    ZOrder		    20
+	    Points		    [0, 115]
+	    Branch {
+	      ZOrder		      59
+	      Points		      [0, 115]
+	      DstBlock		      "QUALEN"
+	      DstPort		      4
+	    }
+	    Branch {
+	      ZOrder		      58
+	      DstBlock		      "QUAYAW"
+	      DstPort		      4
+	    }
+	  }
+	  Branch {
+	    ZOrder		    19
+	    DstBlock		    "QUAPIT"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  22
+	  SrcBlock		  "QUAPIT"
+	  SrcPort		  5
+	  Points		  [2, 0; 0, 37; -150, 0; 0, 48]
+	  Branch {
+	    ZOrder		    65
+	    Points		    [-57, 0; 0, 115]
+	    DstBlock		    "QUALEN"
+	    DstPort		    3
+	  }
+	  Branch {
+	    ZOrder		    64
+	    DstBlock		    "QUAYAW"
+	    DstPort		    3
+	  }
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  23
+	  SrcBlock		  "QUAPIT"
+	  SrcPort		  4
+	  Points		  [16, 0; 0, 45; -156, 0; 0, 40]
+	  Branch {
+	    ZOrder		    63
+	    DstBlock		    "QUAYAW"
+	    DstPort		    2
+	  }
+	  Branch {
+	    ZOrder		    62
+	    Points		    [-72, 0; 0, 115]
+	    DstBlock		    "QUALEN"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  24
+	  SrcBlock		  "QUAPIT"
+	  SrcPort		  3
+	  DstBlock		  "ENV1"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  25
+	  SrcBlock		  "QUAYAW"
+	  SrcPort		  3
+	  DstBlock		  "ENV2"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  26
+	  SrcBlock		  "ENV1"
+	  SrcPort		  1
+	  Points		  [28, 0; 0, 55]
+	  Branch {
+	    ZOrder		    51
+	    Points		    [0, 115]
+	    DstBlock		    "Divide1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    50
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  27
+	  SrcBlock		  "ENV2"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -45]
+	  DstBlock		  "Divide"
+	  DstPort		  2
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  28
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  DstBlock		  "P2Y"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  29
+	  SrcBlock		  "QUAPIT"
+	  SrcPort		  1
+	  DstBlock		  "Terminator3"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  30
+	  SrcBlock		  "QUAPIT"
+	  SrcPort		  2
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  31
+	  SrcBlock		  "QUAYAW"
+	  SrcPort		  1
+	  DstBlock		  "Terminator5"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  32
+	  SrcBlock		  "QUAYAW"
+	  SrcPort		  2
+	  DstBlock		  "Terminator6"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  33
+	  SrcBlock		  "QUAYAW"
+	  SrcPort		  4
+	  DstBlock		  "Terminator7"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  34
+	  SrcBlock		  "QUAYAW"
+	  SrcPort		  5
+	  DstBlock		  "Terminator8"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  35
+	  SrcBlock		  "PREQUA_DEMOD_FREQ"
+	  SrcPort		  1
+	  Points		  [155, 0]
+	  DstBlock		  "QUAPIT"
+	  DstPort		  2
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  36
+	  SrcBlock		  "Ground"
+	  SrcPort		  1
+	  DstBlock		  "QUAPIT"
+	  DstPort		  3
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  37
+	  SrcBlock		  "PREQUA_START"
+	  SrcPort		  1
+	  Points		  [7, 0; 0, 30]
+	  DstBlock		  "SW"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  38
+	  SrcBlock		  "MODEL_RATE2"
+	  SrcPort		  1
+	  DstBlock		  "SW"
+	  DstPort		  2
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  42
+	  SrcBlock		  "OLP"
+	  SrcPort		  1
+	  DstBlock		  "QUAPIT"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  43
+	  SrcBlock		  "OLY"
+	  SrcPort		  1
+	  DstBlock		  "QUAYAW"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  41
+	  SrcBlock		  "P2Y"
+	  SrcPort		  1
+	  DstBlock		  "Terminator13"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  44
+	  SrcBlock		  "QUALEN"
+	  SrcPort		  3
+	  DstBlock		  "ENV3"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  49
+	  SrcBlock		  "ENV3"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -45]
+	  DstBlock		  "Divide1"
+	  DstPort		  2
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  46
+	  SrcBlock		  "QUALEN"
+	  SrcPort		  2
+	  DstBlock		  "Terminator2"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  47
+	  SrcBlock		  "QUALEN"
+	  SrcPort		  4
+	  DstBlock		  "Terminator9"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  48
+	  SrcBlock		  "QUALEN"
+	  SrcPort		  5
+	  DstBlock		  "Terminator10"
+	  DstPort		  1
+	}
+	Line {
+	  FontName		  "Helvetica"
+	  FontSize		  9
+	  FontWeight		  "normal"
+	  FontAngle		  "normal"
+	  ZOrder		  53
+	  SrcBlock		  "P2L"
+	  SrcPort		  1
+	  DstBlock		  "Terminator11"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  54
+	  SrcBlock		  "Divide1"
+	  SrcPort		  1
+	  DstBlock		  "P2L"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  55
+	  SrcBlock		  "QUALEN"
+	  SrcPort		  1
+	  DstBlock		  "Terminator1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  56
+	  SrcBlock		  "OLL"
+	  SrcPort		  1
+	  DstBlock		  "QUALEN"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  66
+	  SrcBlock		  "MODEL_RATE3"
+	  SrcPort		  1
+	  DstBlock		  "QUALEN"
+	  DstPort		  5
+	}
+      }
     }
     Block {
       BlockType		      Reference
@@ -1026,6 +2301,57 @@ Model {
       AttributesFormatString  "%<Tag>"
       LibraryVersion	      "1.3"
       SourceBlock	      "cdsFilt/Subsystem"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ITMY_TM_OPLEV_L"
+      SID		      "742"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [400, 516, 465, 534]
+      ZOrder		      6707
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ITMY_TM_OPLEV_P"
+      SID		      "740"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [400, 396, 465, 414]
+      ZOrder		      6705
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ITMY_TM_OPLEV_Y"
+      SID		      "741"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [400, 456, 465, 474]
+      ZOrder		      6706
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
@@ -1134,6 +2460,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      1
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      1
     }
@@ -1143,6 +2470,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      2
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      2
     }
@@ -1152,6 +2480,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      3
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      3
     }
@@ -1161,6 +2490,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      4
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      4
     }
@@ -1170,6 +2500,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      5
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      5
     }
@@ -1179,6 +2510,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      6
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      6
     }
@@ -1188,6 +2520,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      7
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      7
     }
@@ -1197,6 +2530,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      8
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      8
     }
@@ -1206,6 +2540,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      9
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      9
     }
@@ -1215,6 +2550,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      10
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      10
     }
@@ -1224,6 +2560,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      11
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      11
     }
@@ -1233,6 +2570,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      12
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      12
     }
@@ -1242,6 +2580,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      13
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      13
     }
@@ -1251,6 +2590,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      14
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      14
     }
@@ -1260,6 +2600,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      15
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      15
     }
@@ -1269,8 +2610,54 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      16
+      Points		      [55, 0]
       DstBlock		      "ITMY"
       DstPort		      16
+    }
+    Line {
+      ZOrder		      112
+      SrcBlock		      "K1:VIS-ITMY_TM_OPLEV_P"
+      SrcPort		      1
+      Points		      [53, 0; 0, -40]
+      DstBlock		      "ITMY"
+      DstPort		      17
+    }
+    Line {
+      ZOrder		      113
+      SrcBlock		      "K1:VIS-ITMY_TM_OPLEV_Y"
+      SrcPort		      1
+      Points		      [72, 0; 0, -75]
+      DstBlock		      "ITMY"
+      DstPort		      18
+    }
+    Line {
+      ZOrder		      114
+      SrcBlock		      "K1:VIS-ITMY_TM_OPLEV_L"
+      SrcPort		      1
+      Points		      [58, 0; 0, -110]
+      DstBlock		      "ITMY"
+      DstPort		      19
+    }
+    Line {
+      ZOrder		      116
+      SrcBlock		      "Ground2"
+      SrcPort		      1
+      DstBlock		      "K1:VIS-ITMY_TM_OPLEV_P"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      118
+      SrcBlock		      "Ground4"
+      SrcPort		      1
+      DstBlock		      "K1:VIS-ITMY_TM_OPLEV_Y"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      120
+      SrcBlock		      "Ground5"
+      SrcPort		      1
+      DstBlock		      "K1:VIS-ITMY_TM_OPLEV_L"
+      DstPort		      1
     }
   }
 }
