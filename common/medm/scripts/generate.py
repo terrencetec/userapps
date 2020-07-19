@@ -92,7 +92,7 @@ display {
 }
 """
 
-minifilter2="""
+minifilter="""
 composite {{
 	object {{
 		x={x}
@@ -101,11 +101,11 @@ composite {{
 		height={height}
 	}}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/filters/MINI_FILTER2.adl; FNAME={fname}, IFO={ifo}, OPTIC={OPTIC}, STAGE={stage}, DOF={dof}, FUNC={func}, FUNCTION={func}, optic={optic}, dof={dof}"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/filters/MINI_FILTER.adl; FNAME={fname}, IFO={ifo}, OPTIC={OPTIC}, STAGE={stage}, DOF={dof}, FUNC={func}, FUNCTION={func}, optic={optic}, dof={dof}"
 }}
 """
 
-mini="""
+minioverview = """
 composite {{
 	object {{
 		x={x}
@@ -117,7 +117,6 @@ composite {{
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/scripts/MINI_MODEL.adl; fname={fname}, IFO={ifo}, subsys={subsys}"
 }}
 """
-
 
 
 def get(adl):
@@ -139,56 +138,49 @@ def get(adl):
     return optic,stage,func,dof
 
 
-def hoge(subsys,text,minifilter):
-    prefix = '/opt/rtcds/kamioka/k1/medm/{subsys}'.format(subsys=subsys)        
-    adl_list = os.listdir(prefix)
-    adl_list.sort()
+def master(minilist,header,minitemplate,fname,overview=False):
     i,j=0,0
     height=0
-    for adl in adl_list:
-        optic,stage,func,dof = get(adl)
-        text += minifilter.format(x=j*180+38,y=10+i*16,width=230,height=32,
-                                  OPTIC=optic, stage=stage, func=func,
-                                  function=func, optic=optic.lower(), dof=dof,
-                                  ifo='K1',fname=prefix+'/'+adl)
+    text=header
+    for mini in minilist:
+        if overview:
+            subsys = [item for item in mini.split('/') if 'adl' in item][0].split('_')[0]
+            text += minitemplate.format(x=j*180+38,y=10+i*16,width=230,height=32,subsys=subsys,ifo='K1',
+                                fname=mini)
+        else:
+            optic,stage,func,dof = get(mini)
+            text += minitemplate.format(x=j*180+38,y=10+i*16,width=230,height=32,
+                                      OPTIC=optic, stage=stage, func=func,
+                                      function=func, optic=optic.lower(), dof=dof,
+                                      ifo='K1',fname=_prefix+'/'+mini)            
         height += 32*i
         i+=1
-        if height>50000:
-            height=0
-            j += 1
-            i = 0            
-    fname = '../tmp/'+'{0}_overview'.format(subsys).upper()+'.adl'
-    with open(fname,'w') as f:
-        f.write(text)
-    print(fname)
-
-
-def huge(subsys_list,text,mini):
-    i,j=0,0
-    height=0
-    for subsys in subsys_list:
-        text += mini.format(x=j*180+38,y=10+i*16,width=230,height=32,subsys=subsys,ifo='K1',
-                            fname='/opt/rtcds/userapps/release/vis/common/medm/scripts/'+subsys.upper()+'_OVERVIEW.adl')
-        height += 32*i
-        i+=1
-        if height>5000:
+        if height>30000:
             height=0
             j += 1
             i = 0
-    fname = '../tmp/VIS_OVERVIEW.adl'
+            
     with open(fname,'w') as f:
         f.write(text)
     print(fname)
-        
+    
     
     
 if __name__=='__main__':
     import os
-    prefix = '/opt/rtcds/kamioka/k1/medm'
-    subsys_list = os.listdir(prefix)
-    subsys_list.sort()
-    subsys_list = list(filter(lambda x:'vis' in x, subsys_list))
-    for subsys in subsys_list:
-        hoge(subsys,text,minifilter2)
-    huge(subsys_list,text,mini)
+    userapps = '/opt/rtcds/userapps/release/vis/common/medm/'
+    kamioka = '/opt/rtcds/kamioka/k1/medm'
+    
+    _subsys_list = os.listdir(kamioka)
+    _subsys_list.sort()
+    _subsys_list = list(filter(lambda x:'vis' in x, _subsys_list))        
+    for subsys in _subsys_list:
+        _prefix = kamioka+'/{subsys}'.format(subsys=subsys)
+        adl_list = os.listdir(_prefix)
+        adl_list.sort()
+        fname = '../tmp/'+'{0}_overview'.format(subsys).upper()+'.adl'
+        master(adl_list,text,minifilter,fname)
         
+    subsys_list = list(map(lambda x:userapps+'/tmp/'+x.upper()+'_OVERVIEW.adl', _subsys_list))    
+    fname = '../tmp/VIS_OVERVIEW.adl'    
+    master(subsys_list,text,minioverview,fname,overview=True)
