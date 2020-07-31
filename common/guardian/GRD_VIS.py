@@ -1,9 +1,13 @@
+import matplotlib
+matplotlib.use('Agg')
+
 from guardian import GuardState
 from guardian import GuardStateDecorator
 
 import kagralib
 import vislib
 import time
+import foton
 
 import importlib
 sysmod = importlib.import_module(SYSTEM)
@@ -378,6 +382,9 @@ class MISALIGNED(GuardState):
 
     @check_TWWD
     @check_WD
+    def main(self):
+        kagralib.speak_aloud('%s is misaligned'%(OPTIC))
+    
     def run(self):
         return True
 
@@ -618,7 +625,7 @@ class ALIGNED(GuardState):
     @check_ISCSIG
     def main(self):
         #[FIXME] temporally use only for TypeA
-        if sustype in ['TypeA','TypeBp']:
+        if sustype in []:
             for DoF in ['PIT','YAW']:
                 OPAL = vislib.OpticAlign(optic=OPTIC,DOF=DoF,)
                 if OPAL.OUTPUT.get() == 0:
@@ -632,7 +639,7 @@ class ALIGNED(GuardState):
     @check_TWWD
     @check_ISCSIG
     def run(self):
-        if sustype in ['TypeA','TypeBp']:
+        if sustype in []:
             try:
                 vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
             except:
@@ -920,7 +927,7 @@ class DISABLE_IM_LOCALDAMP(disable_damping_for_PAY):
 
 
 class DISABLE_MN_LOCALDAMP(disable_damping_for_PAY):
-    index = 80
+    index = 70
     request = False
 
     def __init__(self,logfunc=None):
@@ -1000,6 +1007,215 @@ class DISABLE_IP_LOCALDAMP(disable_damping_for_PAY):
 class CALMDOWN(GuardState):
     request = True
     pass
+
+#############
+# COIL BALANCE
+# add by K. TANAKA on 21 Jul 2020
+#############
+import numpy as np
+import balanceCOILOUTF_TypeA
+import logging, sys, os
+from datetime import datetime
+import matplotlib.pyplot as plt
+
+def coil_engage_main(self):
+    self.counter = 0
+    self.timer['waiting'] = 0
+     ##### Define logger
+    dt_now = datetime.now()
+    year = dt_now.year
+    month = dt_now.month
+    day = dt_now.day
+    hour = dt_now.hour
+    minute = dt_now.minute
+
+    log_dir = '/users/Commissioning/scripts/diagonalization/log/'
+    date_str = '%d%s%s_%s%s'%(year,str(month).zfill(2),str(day).zfill(2),str(hour).zfill(2),str(minute).zfill(2))
+    log_file = log_dir + '/archives/balanceCOILOUTF_%s_'%OPTIC + date_str + '.log'
+    #logging.basicConfig(filename=log_file,level=logging.DEBUG)
+    logger = logging.getLogger('flogger')
+    logger.setLevel(logging.DEBUG)
+    handler=logging.StreamHandler()
+    logger.addHandler(handler)
+    #handler=logging.FileHandler(filename=log_file)
+    #logger.addHandler(handler)
+
+    # define sign of coilout
+    if self.stage == 'TM':
+        coil_gain = balanceCOILOUTF_TypeA.SIGN_TM_COILOUT(self.optic,logger)
+    else:
+        coil_gain = balanceCOILOUTF_TypeA.SIGN_MNIM_COILOUT(self.optic,self.stage,logger)
+    
+    for coil in self.coils:
+        gg,avgI,avgQ,stdI,stdQ = balanceCOILOUTF_TypeA.Balancing(
+            self.optic,
+            self.stage,
+            coil,
+            self.freq[coil],
+            self.oscAMP[coil],
+            coil_gain,
+            self.sweeprange,
+            logger
+            )
+        # fititing
+        pI = np.polyfit(gg,avgI,1)
+        pQ = np.polyfit(gg,avgQ,1)
+        pGAIN = float(pI[1])/float(pI[0])*(-1) # final gain of the balanced coil
+                
+        logger.debug('fitresult with a*gain + b:')
+        logger.debug('-I (a,b) = (%f,%f)'%(pI[0],pI[1]))
+        logger.debug('-Q (a,b) = (%f,%f)'%(pQ[0],pQ[1]))
+        logger.debug('%s BALANCED GAIN = %f'%(coil,pGAIN))
+        logger.debug('put %f in VIS-%s_%s_COILOUTF_%s_GAIN'%(pGAIN, self.optic, self.stage, coil))
+        ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(self.optic, self.stage, coil)] = pGAIN
+                
+        # plot results
+        #plt.close()
+        #plt.scatter(gg,avgI)
+        #plt.scatter(gg,avgQ,color='red')
+        #plt.plot(gg,np.polyval(pI,gg))
+        #plt.plot(gg,np.polyval(pQ,gg))
+        #plt.plot(gg,fitfunc(paramQ[0],paramQ[1],np.array(gg)))
+        #plt.savefig(log_dir+'archives/balanceCOILOUTF_%s_'%(self.optic) + date_str +'_%s_%s'%(self.stage,coil)+'.png')
+        #plt.savefig(log_dir+'balanceCOILOUTF_%s_%s_%s_latest'%(self.optic,self.stage,coil)+'.png')
+                
+
+    #os.system('cp %s %s'%(log_file,(log_dir+'balanceCOILOUTF_%s_latest.log'%(self.optic))))
+    balanceCOILOUTF_TypeA.ShutdownLOCKIN(self.optic)
+
+def coil_engage_run(self):
+    return True
+
+
+class COIL_BALANCED(GuardState):
+    index = 75
+    request = True
+
+    @check_TWWD
+    @check_WD
+
+    
+    
+    def run(self):
+        return True
+
+class engage_coil_balance(GuardState):
+    def __init__(self,logfunc,optic,stage,coils,freq,oscAMP,sweeprange,Np=10,avgDuration=10,settleDuration=5,oscTRAMP=10):
+        super(engage_coil_balance,self).__init__(logfunc)
+        self.optic = OPTIC
+        self.stage = stage
+        self.coils = coils
+        self.freq = freq
+        self.oscAMP = oscAMP
+        #self.coil_gain = coil_gain
+        self.sweeprange = sweeprange
+       
+   
+
+    @check_WD
+    @check_TWWD
+    def main(self):
+        coil_engage_main(self)
+        
+
+    @check_WD
+    @check_TWWD
+    def run(self):
+        coil_engage_run(self)
+
+class MN_COIL_BALANCING(engage_coil_balance):
+    index = 73
+    request = False
+    def __init__(self, logfunc=None):
+        super(MN_COIL_BALANCING,self).__init__(
+            logfunc,
+            optic = OPTIC,
+            stage = 'MN',
+            coils = sysmod.MN_COIL_BALANCE['coils'],
+            freq = sysmod.MN_COIL_BALANCE['freq'],
+            oscAMP = sysmod.MN_COIL_BALANCE['oscAMP'],
+            #coil_gain = Signcoiloutgain(optic),
+            sweeprange = sysmod.MN_COIL_BALANCE['sweeprange'],
+            Np = sysmod.MN_COIL_BALANCE['Npoints'],
+            avgDuration = sysmod.MN_COIL_BALANCE['duration'],
+            settleDuration = sysmod.MN_COIL_BALANCE['SettleDuration'],
+            oscTRAMP = sysmod.MN_COIL_BALANCE['oscTRAMP'],
+        )
+
+class IM_COIL_BALANCING(engage_coil_balance):
+    index = 72
+    request = False
+    def __init__(self, logfunc=None):
+        super(IM_COIL_BALANCING,self).__init__(
+            logfunc,
+            optic = OPTIC,
+            stage = 'IM',
+            coils = sysmod.IM_COIL_BALANCE['coils'],
+            freq = sysmod.IM_COIL_BALANCE['freq'],
+            oscAMP = sysmod.IM_COIL_BALANCE['oscAMP'],
+            #coil_gain = Signcoiloutgain(optic),
+            sweeprange = sysmod.IM_COIL_BALANCE['sweeprange'],
+            Np = sysmod.IM_COIL_BALANCE['Npoints'],
+            avgDuration = sysmod.IM_COIL_BALANCE['duration'],
+            settleDuration = sysmod.IM_COIL_BALANCE['SettleDuration'],
+            oscTRAMP = sysmod.IM_COIL_BALANCE['oscTRAMP'],
+        )
+
+class TM_COIL_BALANCING(engage_coil_balance):
+    index = 74
+    request = False
+    def __init__(self, logfunc=None):
+        super(TM_COIL_BALANCING,self).__init__(
+            logfunc,
+            optic = OPTIC,
+            stage = 'TM',
+            coils = sysmod.TM_COIL_BALANCE['coils'],
+            freq = sysmod.TM_COIL_BALANCE['freq'],
+            oscAMP = sysmod.TM_COIL_BALANCE['oscAMP'],
+            #coil_gain = Signcoiloutgain(optic),
+            sweeprange = sysmod.TM_COIL_BALANCE['sweeprange'],
+            Np = sysmod.TM_COIL_BALANCE['Npoints'],
+            avgDuration = sysmod.TM_COIL_BALANCE['duration'],
+            settleDuration = sysmod.TM_COIL_BALANCE['SettleDuration'],
+            oscTRAMP = sysmod.TM_COIL_BALANCE['oscTRAMP'],
+        )
+
+
+
+
+##################################################
+# SUSCHAR 
+##################################################
+class INIT_MON(GuardState):
+    request = True
+    index = 58
+
+    def main(self):
+        
+
+        # copy INF
+        '''
+        chans = '/opt/rtcds/kamioka/k1/chans/'
+        test = foton.FilterFile(chans+'K1LSC.txt')
+
+        FBs = foton.FilterFile(chans+'K1VIS%sP.txt'%(optic.upper()))
+        FBs_MON = foton.FilterFile(chans+'K1VIS%sMON.txt'%(optic.upper()))
+        for stage in ['MN','IM']:
+            for DoF in ['V1','V2','V3','H1','H2','H3']:
+                PSINF_MON = 'VIS-%s_MON_%s_PSINF_%s'%(optic,stage,DoF)
+                PSINF = 'VIS-%s_%s_PSINF_%s'%(optic,stage,DoF)
+                for char in ['_SW1S','_SW2S','_GAIN']:
+                    ezca[PSINF_MON+char] = ezca[PSINF+char]
+
+                for index in range(10):
+                    kagralib.copy_FB(FBs,PSINF[4:],FBs_MON,PSINF_MON[4:])
+                ezca[PSINF_MON+'_RSET'] = 1
+        FBs_MON.write()   
+        '''
+
+
+                    
+    
 
 ##################################################
 # EDGES
