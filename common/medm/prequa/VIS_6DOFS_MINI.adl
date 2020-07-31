@@ -1,0 +1,703 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/prequa/VIS_6DOFS_MINI.adl"
+	version=030107
+}
+display {
+	object {
+		x=1252
+		y=300
+		width=400
+		height=400
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"related display" {
+	object {
+		x=63
+		y=68
+		width=124
+		height=108
+	}
+	display[0] {
+		label="MN SENSOR FILTER"
+		name="VIS_6SENSORS.adl"
+		args="CHANNAME=$(CHANNAME)"
+	}
+	clr=14
+	bclr=55
+	visual="invisible"
+}
+"text update" {
+	object {
+		x=80
+		y=72
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_LEN_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=72
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_LEN_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=80
+		y=86
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_TRA_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=86
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_TRA_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=80
+		y=142
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_YAW_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=142
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_YAW_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=80
+		y=100
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_VER_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=100
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_VER_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=80
+		y=114
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_ROL_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=114
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_ROL_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=80
+		y=128
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_PIT_INMON"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=140
+		y=128
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(CHANNAME)_PIT_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=91
+		y=159
+		width=90
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(STAGE) "
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=123
+		y=74
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=72
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_LEN_SW1R"
+		chanB="$(CHANNAME)_LEN_SW2R"
+		chanC="$(CHANNAME)_LEN_GAIN"
+	}
+	points {
+		(123,72)
+		(137,79)
+		(122,86)
+		(123,72)
+	}
+}
+rectangle {
+	object {
+		x=123
+		y=88
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=86
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_TRA_SW1R"
+		chanB="$(CHANNAME)_TRA_SW2R"
+		chanC="$(CHANNAME)_TRA_GAIN"
+	}
+	points {
+		(123,86)
+		(137,93)
+		(122,100)
+		(123,86)
+	}
+}
+rectangle {
+	object {
+		x=123
+		y=102
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=100
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_VER_SW1R"
+		chanB="$(CHANNAME)_VER_SW2R"
+		chanC="$(CHANNAME)_VER_GAIN"
+	}
+	points {
+		(123,100)
+		(137,107)
+		(122,114)
+		(123,100)
+	}
+}
+rectangle {
+	object {
+		x=123
+		y=116
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=114
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_ROL_SW1R"
+		chanB="$(CHANNAME)_ROL_SW2R"
+		chanC="$(CHANNAME)_ROL_GAIN"
+	}
+	points {
+		(123,114)
+		(137,121)
+		(122,128)
+		(123,114)
+	}
+}
+rectangle {
+	object {
+		x=123
+		y=130
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=128
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_PIT_SW1R"
+		chanB="$(CHANNAME)_PIT_SW2R"
+		chanC="$(CHANNAME)_PIT_GAIN"
+	}
+	points {
+		(123,128)
+		(137,135)
+		(122,142)
+		(123,128)
+	}
+}
+rectangle {
+	object {
+		x=123
+		y=144
+		width=4
+		height=11
+	}
+	"basic attribute" {
+		clr=21
+	}
+}
+polygon {
+	object {
+		x=122
+		y=142
+		width=15
+		height=14
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(CHANNAME)_YAW_SW1R"
+		chanB="$(CHANNAME)_YAW_SW2R"
+		chanC="$(CHANNAME)_YAW_GAIN"
+	}
+	points {
+		(123,142)
+		(137,149)
+		(122,156)
+		(123,142)
+	}
+}
+text {
+	object {
+		x=66
+		y=100
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="VER"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=66
+		y=114
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="ROL"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=66
+		y=128
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="PIT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=66
+		y=142
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="YAW"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=66
+		y=72
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="LEN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=66
+		y=86
+		width=12
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TRA"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=74
+		y=159
+		width=10
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=74
+				y=159
+				width=7
+				height=8
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+		}
+		polyline {
+			object {
+				x=84
+				y=162
+				width=0
+				height=8
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(84,170)
+				(84,162)
+			}
+		}
+		polyline {
+			object {
+				x=77
+				y=170
+				width=7
+				height=0
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(77,170)
+				(84,170)
+			}
+		}
+		polyline {
+			object {
+				x=82
+				y=162
+				width=2
+				height=0
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(82,162)
+				(84,162)
+			}
+		}
+		polyline {
+			object {
+				x=77
+				y=167
+				width=0
+				height=3
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(77,167)
+				(77,170)
+			}
+		}
+	}
+}

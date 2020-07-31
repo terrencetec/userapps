@@ -1,0 +1,2057 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm//prequa/MODE_PARAMS.adl"
+	version=030107
+}
+display {
+	object {
+		x=1459
+		y=665
+		width=625
+		height=550
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"text entry" {
+	object {
+		x=129
+		y=410
+		width=290
+		height=28
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_USER_DESCRIPTION"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=19
+		y=416
+		width=72
+		height=28
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="User description"
+}
+text {
+	object {
+		x=447
+		y=458
+		width=104
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Degree of Freedom"
+}
+text {
+	object {
+		x=30
+		y=18
+		width=134
+		height=21
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode No.$(MODENO), State:$(STATE)"
+}
+text {
+	object {
+		x=20
+		y=449
+		width=72
+		height=28
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Predicted frequency"
+}
+"text entry" {
+	object {
+		x=142
+		y=447
+		width=60
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_PRE_FREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=211
+		y=451
+		width=13
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Hz"
+}
+text {
+	object {
+		x=236
+		y=452
+		width=72
+		height=28
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Predicted Q value"
+}
+"text entry" {
+	object {
+		x=358
+		y=447
+		width=60
+		height=22
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_PRE_Q"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=147
+		y=87
+		width=61
+		height=19
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_FREQ"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+		precDefault=5
+	}
+}
+text {
+	object {
+		x=34
+		y=86
+		width=104
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Resonant frequency"
+}
+text {
+	object {
+		x=216
+		y=86
+		width=13
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Hz"
+}
+text {
+	object {
+		x=34
+		y=108
+		width=104
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Quality factor"
+}
+"text update" {
+	object {
+		x=147
+		y=109
+		width=61
+		height=19
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_Q_VAL"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=34
+		y=130
+		width=104
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Decay time"
+}
+"text update" {
+	object {
+		x=147
+		y=131
+		width=61
+		height=19
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_DECAY_TIME"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=216
+		y=131
+		width=13
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="sec"
+}
+text {
+	object {
+		x=79
+		y=488
+		width=81
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Mode motion in sensor basis"
+}
+"text update" {
+	object {
+		x=148
+		y=153
+		width=25
+		height=13
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MEAS_DATE_YEAR"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+	}
+}
+text {
+	object {
+		x=35
+		y=152
+		width=104
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Measurement Date"
+}
+text {
+	object {
+		x=175
+		y=153
+		width=6
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="/"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=186
+		y=152
+		width=15
+		height=13
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MEAS_DATE_MON"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+	}
+}
+text {
+	object {
+		x=205
+		y=153
+		width=6
+		height=11
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="/"
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=216
+		y=152
+		width=15
+		height=13
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MEAS_DATE_DAY"
+		clr=14
+		bclr=4
+	}
+	align="horiz. right"
+	limits {
+		precSrc="default"
+	}
+}
+text {
+	object {
+		x=448
+		y=434
+		width=104
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PLL sensor"
+}
+"text entry" {
+	object {
+		x=558
+		y=453
+		width=53
+		height=21
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_DOF"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=558
+		y=428
+		width=53
+		height=21
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_PLL_SENS"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=258
+		y=46
+		width=128
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Normalized sensing vector"
+}
+"text update" {
+	object {
+		x=413
+		y=87
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=110
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=130
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=153
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=175
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=198
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_CP_COEF_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=260
+		y=90
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LEN"
+}
+text {
+	object {
+		x=260
+		y=115
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TRANS"
+}
+text {
+	object {
+		x=260
+		y=155
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="ROLL"
+}
+text {
+	object {
+		x=260
+		y=135
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VER"
+}
+text {
+	object {
+		x=260
+		y=200
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="YAW"
+}
+text {
+	object {
+		x=260
+		y=175
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PIT"
+}
+"text update" {
+	object {
+		x=478
+		y=87
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=478
+		y=110
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=478
+		y=131
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=478
+		y=154
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=478
+		y=176
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=478
+		y=199
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_CP_COEF_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=87
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=177
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=197
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=418
+		y=65
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=483
+		y=65
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+}
+text {
+	object {
+		x=553
+		y=65
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+}
+text {
+	object {
+		x=261
+		y=229
+		width=128
+		height=17
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Relativ phase to "
+}
+"text update" {
+	object {
+		x=413
+		y=270
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=293
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=414
+		y=313
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=414
+		y=336
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=358
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=413
+		y=382
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_MN_REL_PHASE_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=255
+		y=272
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="LEN"
+}
+text {
+	object {
+		x=253
+		y=295
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TRANS"
+}
+text {
+	object {
+		x=255
+		y=336
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="ROLL"
+}
+text {
+	object {
+		x=255
+		y=315
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VER"
+}
+"text update" {
+	object {
+		x=366
+		y=229
+		width=26
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_DOF"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=256
+		y=382
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="YAW"
+}
+text {
+	object {
+		x=256
+		y=359
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PIT"
+}
+"text update" {
+	object {
+		x=479
+		y=270
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=479
+		y=293
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=480
+		y=314
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=480
+		y=337
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=479
+		y=359
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=479
+		y=383
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IM_REL_PHASE_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=270
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=358
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=381
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=415
+		y=248
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MN"
+}
+text {
+	object {
+		x=482
+		y=248
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+}
+text {
+	object {
+		x=548
+		y=248
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+}
+"related display" {
+	object {
+		x=78
+		y=506
+		width=161
+		height=36
+	}
+	display[0] {
+		label="mode1"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/MODAL_DAMP.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),optic=$(optic),MODEINDEX=$(MODENO),place=kamioka"
+	}
+	clr=14
+	bclr=4
+	label="MODAL DAMP"
+}
+byte {
+	object {
+		x=45
+		y=528
+		width=25
+		height=7
+	}
+	monitor {
+		chan="$(IFO):MOD-$(OPTIC)_MODE$(MODENO)_SERVO_SW1R"
+		clr=60
+		bclr=20
+	}
+	sbit=2
+	ebit=2
+}
+"message button" {
+	object {
+		x=43
+		y=508
+		width=30
+		height=20
+	}
+	control {
+		chan="$(IFO):MOD-$(OPTIC)_MODE$(MODENO)_SERVO_SW1"
+		clr=14
+		bclr=4
+	}
+	label="ON"
+	release_msg="4"
+}
+"related display" {
+	object {
+		x=27
+		y=483
+		width=47
+		height=22
+	}
+	display[0] {
+		label="a"
+		name="/opt/rtcds/kamioka/k1/medm/k1modal$(optic)/K1MODALITMY_ITMY_MODE$(MODENO)_SERVO.adl"
+	}
+	clr=60
+	bclr=20
+	label="MDFB"
+}
+"text update" {
+	object {
+		x=296
+		y=88
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=296
+		y=111
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=296
+		y=131
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=296
+		y=154
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=296
+		y=176
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=296
+		y=199
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_CP_COEF_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=88
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=111
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=132
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=155
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=177
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=200
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_CP_COEF_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=301
+		y=66
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IP"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=360
+		y=66
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BF"
+}
+"text update" {
+	object {
+		x=294
+		y=270
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=294
+		y=293
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=295
+		y=313
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=295
+		y=336
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=294
+		y=358
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=294
+		y=382
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_IP_REL_PHASE_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=270
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_LEN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=293
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=356
+		y=314
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=356
+		y=337
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=359
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_PIT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=355
+		y=383
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_BF_REL_PHASE_YAW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=296
+		y=248
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IP"
+}
+text {
+	object {
+		x=358
+		y=248
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BF"
+}
+text {
+	object {
+		x=71
+		y=265
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IP"
+}
+"text update" {
+	object {
+		x=107
+		y=265
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_CP_COEF_IP"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=46
+		y=242
+		width=32
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Stage motion"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=71
+		y=287
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BF"
+}
+"text update" {
+	object {
+		x=107
+		y=287
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_CP_COEF_BF"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=70
+		y=309
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MN"
+}
+"text update" {
+	object {
+		x=106
+		y=309
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_CP_COEF_MN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=70
+		y=331
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+}
+"text update" {
+	object {
+		x=106
+		y=331
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_CP_COEF_IM"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=70
+		y=352
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+}
+"text update" {
+	object {
+		x=106
+		y=352
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_CP_COEF_TM"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=118
+		y=242
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="AMP"
+}
+"text update" {
+	object {
+		x=170
+		y=265
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_REL_PHASE_IP"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=170
+		y=287
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_REL_PHASE_BF"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=169
+		y=309
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_REL_PHASE_MN"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=169
+		y=331
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_REL_PHASE_IM"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=169
+		y=352
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_REL_PHASE_TM"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=174
+		y=242
+		width=34
+		height=13
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PHASE"
+}
+composite {
+	object {
+		x=294
+		y=483
+		width=310
+		height=56
+	}
+	"composite name"=""
+	"composite file"="/kagra/apps/guardian/lib/python2.7/site-packages/guardian/medm/screens/GRD_MINI_USERMSG.adl; IFO=$(IFO), SYSTEM=QUA_$(OPTIC)"
+}
+"shell command" {
+	object {
+		x=29
+		y=39
+		width=53
+		height=19
+	}
+	command[0] {
+		label="start"
+		name="caput"
+		args="K1:QUA-$(OPTIC)_MODE_INDEX $(MODENO) && caput K1:GRD-QUA_$(OPTIC)_REQUEST CLOSE_PLL"
+	}
+	clr=14
+	bclr=4
+	label="start"
+}
+"shell command" {
+	object {
+		x=92
+		y=39
+		width=53
+		height=19
+	}
+	command[0] {
+		label="start"
+		name="caput"
+		args="K1:QUA-$(OPTIC)_MODE_INDEX $(MODENO) && caput K1:GRD-QUA_$(OPTIC)_REQUEST EXCITE_RESONANCE"
+	}
+	clr=14
+	bclr=4
+	label="excite"
+}
+"shell command" {
+	object {
+		x=152
+		y=39
+		width=53
+		height=19
+	}
+	command[0] {
+		label="start"
+		name="caput"
+		args="K1:QUA-$(OPTIC)_MODE_INDEX $(MODENO) && caput K1:GRD-QUA_$(OPTIC)_REQUEST RECORD_MEASUREMENT"
+	}
+	clr=14
+	bclr=4
+	label="record"
+}
+"text entry" {
+	object {
+		x=558
+		y=404
+		width=53
+		height=21
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_DEGEN_MODE"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=448
+		y=410
+		width=104
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Degenerate mode"
+}
+"text update" {
+	object {
+		x=549
+		y=108
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=549
+		y=129
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=549
+		y=152
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_CP_COEF_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=548
+		y=292
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_TRA"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=549
+		y=313
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_VER"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=549
+		y=336
+		width=42
+		height=18
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_$(STATE)_MODE_LIST_NO$(MODENO)_TM_REL_PHASE_ROL"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}

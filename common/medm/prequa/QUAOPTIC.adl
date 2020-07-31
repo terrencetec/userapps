@@ -1,0 +1,1809 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUAOPTIC.adl"
+	version=030107
+}
+display {
+	object {
+		x=2161
+		y=758
+		width=1069
+		height=820
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+"related display" {
+	object {
+		x=18
+		y=22
+		width=139
+		height=25
+	}
+	display[0] {
+		label="No1"
+		name="MODE_LIST.adl"
+		args="IFO=$(IFO),STATE=FREE,OPTIC=$(OPTIC),optic=$(optic)"
+	}
+	clr=14
+	bclr=4
+	label="Free Mode list"
+}
+"related display" {
+	object {
+		x=18
+		y=53
+		width=139
+		height=25
+	}
+	display[0] {
+		label="No1"
+		name="MODE_LIST.adl"
+		args="IFO=$(IFO),STATE=DAMPED,OPTIC=$(OPTIC),optic=$(optic)"
+	}
+	clr=14
+	bclr=4
+	label="Damped Mode list"
+}
+"text update" {
+	object {
+		x=44
+		y=650
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SEG1_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=650
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SEG2_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=623
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SEG3_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=44
+		y=623
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SEG4_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=61
+		y=670
+		width=54
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TILT QPD"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=44
+		y=735
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SEG1_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=735
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SEG2_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=89
+		y=708
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SEG3_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=44
+		y=708
+		width=42
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SEG4_OUTPUT"
+		clr=30
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=23
+		y=670
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SUM"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=145
+		y=624
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="PIT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=144
+		y=638
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="YAW"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=144
+		y=652
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SUM"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=167
+		y=623
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_PIT_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=167
+		y=637
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_YAW_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=167
+		y=651
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SUM_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=141
+		y=710
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="VERT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=141
+		y=724
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="LONG"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=146
+		y=738
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SUM"
+	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=167
+		y=710
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_PIT_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=167
+		y=724
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_YAW_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=167
+		y=738
+		width=40
+		height=14
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SUM_OUTMON"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+polyline {
+	object {
+		x=224
+		y=640
+		width=2
+		height=91
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(225,641)
+		(225,730)
+	}
+}
+rectangle {
+	object {
+		x=39
+		y=608
+		width=96
+		height=60
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=3
+	}
+}
+polyline {
+	object {
+		x=87
+		y=612
+		width=1
+		height=55
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=1
+	}
+	points {
+		(87,612)
+		(87,666)
+	}
+}
+polyline {
+	object {
+		x=43
+		y=638
+		width=92
+		height=1
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=1
+	}
+	points {
+		(43,638)
+		(134,638)
+	}
+}
+text {
+	object {
+		x=53
+		y=638
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=99
+		y=638
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=53
+		y=611
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=99
+		y=611
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG3"
+	align="horiz. centered"
+}
+bar {
+	object {
+		x=25
+		y=609
+		width=15
+		height=59
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_TILT_SUM_OUTMON"
+		clr=15
+		bclr=12
+	}
+	label="no decorations"
+	direction="up"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=10000
+	}
+}
+text {
+	object {
+		x=59
+		y=754
+		width=60
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="LENGTH QPD"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=23
+		y=754
+		width=20
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SUM"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=39
+		y=693
+		width=96
+		height=60
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=3
+	}
+}
+polyline {
+	object {
+		x=87
+		y=697
+		width=1
+		height=55
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=1
+	}
+	points {
+		(87,697)
+		(87,751)
+	}
+}
+polyline {
+	object {
+		x=43
+		y=723
+		width=92
+		height=1
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+		width=1
+	}
+	points {
+		(43,723)
+		(134,723)
+	}
+}
+text {
+	object {
+		x=53
+		y=723
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=99
+		y=723
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG2"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=53
+		y=696
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG4"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=99
+		y=696
+		width=24
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="SEG3"
+	align="horiz. centered"
+}
+bar {
+	object {
+		x=25
+		y=694
+		width=15
+		height=59
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_TM_DIAG_OPLEV_LEN_SUM_OUTMON"
+		clr=15
+		bclr=12
+	}
+	label="no decorations"
+	direction="up"
+	limits {
+		loprSrc="default"
+		hoprSrc="default"
+		hoprDefault=10000
+	}
+}
+text {
+	object {
+		x=159
+		y=680
+		width=48
+		height=12
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TM OPLEV"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=206
+		y=641
+		width=21
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(207,642)
+		(226,642)
+	}
+}
+polyline {
+	object {
+		x=206
+		y=729
+		width=21
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	points {
+		(207,730)
+		(226,730)
+	}
+}
+oval {
+	object {
+		x=221
+		y=682
+		width=8
+		height=8
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+}
+composite {
+	object {
+		x=143
+		y=680
+		width=10
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=143
+				y=680
+				width=7
+				height=8
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+		}
+		polyline {
+			object {
+				x=153
+				y=683
+				width=0
+				height=8
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(153,691)
+				(153,683)
+			}
+		}
+		polyline {
+			object {
+				x=146
+				y=691
+				width=7
+				height=0
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(146,691)
+				(153,691)
+			}
+		}
+		polyline {
+			object {
+				x=151
+				y=683
+				width=2
+				height=0
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(151,683)
+				(153,683)
+			}
+		}
+		polyline {
+			object {
+				x=146
+				y=688
+				width=0
+				height=3
+			}
+			"basic attribute" {
+				clr=0
+				fill="outline"
+			}
+			points {
+				(146,688)
+				(146,691)
+			}
+		}
+	}
+}
+"shell command" {
+	object {
+		x=642
+		y=71
+		width=87
+		height=23
+	}
+	command[0] {
+		label="Envelope Payload"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_ENVELOPE.yml OPTIC $(OPTIC) &"
+	}
+	command[1] {
+		label="Envelope TOWER"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_ENVELOPE_TOWER.yml OPTIC $(OPTIC) &"
+	}
+	command[2] {
+		label="FREQ Payload"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_PARAM_PAYLOAD.yml OPTIC $(OPTIC) PARAM FREQ &"
+	}
+	command[3] {
+		label="FREQ Tower"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_PARAM_TOWER.yml OPTIC $(OPTIC) PARAM FREQ &"
+	}
+	command[4] {
+		label="Q val Payload"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_PARAM_PAYLOAD.yml OPTIC $(OPTIC) PARAM Q_VAL &"
+	}
+	command[5] {
+		label="Q val Tower"
+		name="python"
+		args="/users/Commissioning/scripts/ndscope_with_args.py /users/Commissioning/templates/ndscope/PREQUA_PARAM_TOWER.yml OPTIC $(OPTIC) PARAM Q_VAL &"
+	}
+	clr=14
+	bclr=4
+	label="ndscope"
+}
+text {
+	object {
+		x=860
+		y=46
+		width=68
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Demod frequency"
+}
+"text entry" {
+	object {
+		x=997
+		y=44
+		width=56
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PREQUA_DEMOD_FREQ"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=860
+		y=75
+		width=68
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Frequency sweep speed"
+}
+"text entry" {
+	object {
+		x=997
+		y=73
+		width=56
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_FREQ_SWEEPER_SWEEP_SPEED"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=860
+		y=102
+		width=68
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Frequency sweep switch"
+}
+"text entry" {
+	object {
+		x=997
+		y=100
+		width=56
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_FREQ_SWEEPER_SW"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=860
+		y=17
+		width=68
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DEMOD_SW"
+}
+"choice button" {
+	object {
+		x=998
+		y=15
+		width=56
+		height=19
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PREQUA_DEMOD_SW"
+		clr=14
+		bclr=4
+	}
+	stacking="column"
+}
+"related display" {
+	object {
+		x=739
+		y=68
+		width=79
+		height=27
+	}
+	display[0] {
+		label="MNPS"
+		name="QUAEXC.adl"
+		args="OPTIC=$(OPTIC),optic=$(optic),optic=$(optic),INDEX=26"
+	}
+	clr=14
+	bclr=4
+	label="QUA EXC"
+}
+composite {
+	object {
+		x=27
+		y=229
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6SENSORS_MINI.adl;STAGE=BF,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_BF_DIAG_INF"
+}
+composite {
+	object {
+		x=26
+		y=350
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6SENSORS_MINI.adl;STAGE=MN,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_MN_DIAG_INF"
+}
+composite {
+	object {
+		x=26
+		y=475
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6SENSORS_MINI.adl;STAGE=IM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IM_DIAG_INF"
+}
+composite {
+	object {
+		x=27
+		y=111
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6SENSORS_MINI.adl;STAGE=IP,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IP_DIAG_INF"
+}
+composite {
+	object {
+		x=163
+		y=122
+		width=138
+		height=80
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX.adl;STAGE=IP,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IP_DIAG_INF"
+}
+composite {
+	object {
+		x=163
+		y=233
+		width=138
+		height=80
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX.adl;STAGE=BF,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_BF_DIAG_INF"
+}
+composite {
+	object {
+		x=163
+		y=354
+		width=138
+		height=80
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX.adl;STAGE=MN,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_MN_DIAG_INF"
+}
+composite {
+	object {
+		x=163
+		y=479
+		width=138
+		height=80
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX.adl;STAGE=IM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IM_DIAG_INF"
+}
+composite {
+	object {
+		x=355
+		y=229
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=BF,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_BF_DIAG"
+}
+composite {
+	object {
+		x=354
+		y=350
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=MN,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_MN_DIAG"
+}
+composite {
+	object {
+		x=354
+		y=475
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=IM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IM_DIAG"
+}
+composite {
+	object {
+		x=355
+		y=111
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=IP,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_IP_DIAG"
+}
+composite {
+	object {
+		x=221
+		y=645
+		width=118
+		height=80
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX_OL.adl;STAGE=TM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_TM_DIAG"
+}
+composite {
+	object {
+		x=357
+		y=629
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=TM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_TM_DIAG"
+}
+"related display" {
+	object {
+		x=488
+		y=149
+		width=95
+		height=20
+	}
+	display[0] {
+		label="quastage"
+		name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUASTAGE.adl"
+		args="OPTIC=$(OPTIC),STAGE=IP,IFO=$(IFO)"
+	}
+	clr=14
+	bclr=4
+	label="IP PREQUA"
+}
+composite {
+	object {
+		x=318
+		y=23
+		width=310
+		height=56
+	}
+	"composite name"=""
+	"composite file"="/kagra/apps/guardian/lib/python2.7/site-packages/guardian/medm/screens/GRD_MINI_USERMSG.adl; IFO=$(IFO), SYSTEM=QUA_$(OPTIC)"
+}
+text {
+	object {
+		x=645
+		y=23
+		width=96
+		height=22
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MODE index under measurement"
+}
+"text entry" {
+	object {
+		x=780
+		y=38
+		width=58
+		height=23
+	}
+	control {
+		chan="K1:QUA-$(OPTIC)_MODE_INDEX"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=490
+		y=273
+		width=95
+		height=20
+	}
+	display[0] {
+		label="quastage"
+		name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUASTAGE.adl"
+		args="OPTIC=$(OPTIC),STAGE=BF,IFO=$(IFO)"
+	}
+	clr=14
+	bclr=4
+	label="BF PREQUA"
+}
+"related display" {
+	object {
+		x=494
+		y=523
+		width=95
+		height=20
+	}
+	display[0] {
+		label="quastage"
+		name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUASTAGE.adl"
+		args="OPTIC=$(OPTIC),STAGE=IM,IFO=$(IFO)"
+	}
+	clr=14
+	bclr=4
+	label="IM PREQUA"
+}
+"related display" {
+	object {
+		x=492
+		y=399
+		width=95
+		height=20
+	}
+	display[0] {
+		label="quastage"
+		name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUASTAGE.adl"
+		args="OPTIC=$(OPTIC),STAGE=MN,IFO=$(IFO)"
+	}
+	clr=14
+	bclr=4
+	label="MN PREQUA"
+}
+"related display" {
+	object {
+		x=494
+		y=677
+		width=95
+		height=20
+	}
+	display[0] {
+		label="quastage"
+		name="/opt/rtcds/userapps/release/vis/common/medm/prequa/QUASTAGE.adl"
+		args="OPTIC=$(OPTIC),STAGE=TM,IFO=$(IFO)"
+	}
+	clr=14
+	bclr=4
+	label="TM PREQUA"
+}
+text {
+	object {
+		x=610
+		y=322
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Stage Selector"
+}
+composite {
+	object {
+		x=729
+		y=386
+		width=56
+		height=35
+	}
+	"composite name"=""
+	"composite file"="STAGE_SELECTOR_MINI.adl;IFO=$(IFO),STAGE=$(STAGE),OPTIC=$(OPTIC),PARAM=FREQ"
+}
+text {
+	object {
+		x=612
+		y=394
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Resonant frequency"
+}
+text {
+	object {
+		x=612
+		y=433
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Q value"
+}
+composite {
+	object {
+		x=729
+		y=425
+		width=56
+		height=35
+	}
+	"composite name"=""
+	"composite file"="STAGE_SELECTOR_MINI.adl;IFO=$(IFO),STAGE=$(STAGE),OPTIC=$(OPTIC),PARAM=Q_VAL"
+}
+text {
+	object {
+		x=612
+		y=472
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Decay time"
+}
+text {
+	object {
+		x=612
+		y=354
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Reference Phase"
+}
+composite {
+	object {
+		x=729
+		y=346
+		width=56
+		height=35
+	}
+	"composite name"=""
+	"composite file"="STAGE_SELECTOR_MINI.adl;IFO=$(IFO),STAGE=$(STAGE),OPTIC=$(OPTIC),PARAM=REF_PHASE"
+}
+composite {
+	object {
+		x=729
+		y=465
+		width=56
+		height=35
+	}
+	"composite name"=""
+	"composite file"="STAGE_SELECTOR_MINI.adl;IFO=$(IFO),STAGE=$(STAGE),OPTIC=$(OPTIC),PARAM=DECAY_TIME"
+}
+"text update" {
+	object {
+		x=800
+		y=394
+		width=45
+		height=21
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_FREQ_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=801
+		y=437
+		width=45
+		height=21
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_Q_VAL_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=802
+		y=472
+		width=45
+		height=21
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_DECAY_TIME_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=958
+		y=249
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_CP_COEF_IP_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=958
+		y=279
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_CP_COEF_BF_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=958
+		y=309
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_CP_COEF_MN_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=958
+		y=339
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_CP_COEF_IM_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=958
+		y=369
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_CP_COEF_TM_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=876
+		y=221
+		width=115
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Normalized motion vector"
+}
+text {
+	object {
+		x=904
+		y=249
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IP"
+}
+text {
+	object {
+		x=904
+		y=279
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BF"
+}
+text {
+	object {
+		x=904
+		y=339
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+}
+text {
+	object {
+		x=904
+		y=309
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MN"
+}
+text {
+	object {
+		x=904
+		y=369
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+}
+"text update" {
+	object {
+		x=954
+		y=522
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_REL_PHASE_IP_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=552
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_REL_PHASE_BF_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=582
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_REL_PHASE_MN_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=612
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_REL_PHASE_IM_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=954
+		y=642
+		width=38
+		height=19
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_REL_PHASE_TM_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=870
+		y=494
+		width=115
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Relative phase to chosen stage"
+}
+text {
+	object {
+		x=904
+		y=523
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IP"
+}
+text {
+	object {
+		x=904
+		y=553
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BF"
+}
+text {
+	object {
+		x=904
+		y=613
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IM"
+}
+text {
+	object {
+		x=904
+		y=583
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MN"
+}
+text {
+	object {
+		x=904
+		y=643
+		width=37
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TM"
+}
+"choice button" {
+	object {
+		x=668
+		y=552
+		width=40
+		height=21
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_ACTMEAS_SW"
+		clr=14
+		bclr=4
+	}
+	stacking="column"
+}
+"text update" {
+	object {
+		x=672
+		y=591
+		width=46
+		height=28
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_DECAY_ASYM_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=672
+		y=615
+		width=46
+		height=28
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_QUAEXC_RMS_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=673
+		y=639
+		width=46
+		height=28
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_PREQUA_ACTEFF_OUTPUT"
+		clr=14
+		bclr=4
+	}
+	limits {
+	}
+}
