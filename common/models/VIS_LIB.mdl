@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1071.0, 1047.0, 1098.0, 734.0]
+      Location		      [158.0, 82.0, 1584.0, 928.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -40,11 +40,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"5906"
-	Extents			[1044.0, 541.0]
-	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1366.0, 735.0]
+	ZoomFactor		[0.59999999999999987]
+	Offset			[-681.24999999999932, 1963.3333333333344]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jul 31 00:24:40 2020"
-  RTWModifiedTimeStamp	  518055878
-  ModelVersionFormat	  "1.%<AutoIncrement:296>"
+  LastModifiedDate	  "Mon Aug 03 16:50:23 2020"
+  RTWModifiedTimeStamp	  518373080
+  ModelVersionFormat	  "1.%<AutoIncrement:314>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -890,8 +890,8 @@ Library {
   }
   System {
     Name		    "VIS_LIB"
-    Location		    [1071, 1047, 2169, 1781]
-    Open		    off
+    Location		    [158, 82, 1742, 1010]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -902,9 +902,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "60"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5922"
+    SIDHighWatermark	    "6300"
     Block {
       BlockType		      SubSystem
       Name		      "5Stage"
@@ -3384,6 +3384,217 @@ Library {
 	  SrcBlock		  "L"
 	  SrcPort		  1
 	  DstBlock		  "LEN_Out"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "COILBAL_DATE"
+      SID		      "6290"
+      Ports		      []
+      Position		      [212, 2376, 312, 2436]
+      ZOrder		      7293
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"COILBAL_DATE"
+	Location		[345, 113, 1929, 1041]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Reference
+	  Name			  "DAY"
+	  SID			  "6291"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [245, 180, 310, 210]
+	  ZOrder		  4053
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "HOUR"
+	  SID			  "6292"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [245, 260, 310, 290]
+	  ZOrder		  4055
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MIN"
+	  SID			  "6293"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [245, 350, 310, 380]
+	  ZOrder		  4057
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MON"
+	  SID			  "6294"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [245, 105, 310, 135]
+	  ZOrder		  4059
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  "6295"
+	  Position		  [355, 22, 395, 58]
+	  ZOrder		  4052
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator2"
+	  SID			  "6296"
+	  Position		  [355, 102, 395, 138]
+	  ZOrder		  4060
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator3"
+	  SID			  "6297"
+	  Position		  [355, 177, 395, 213]
+	  ZOrder		  4054
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator4"
+	  SID			  "6298"
+	  Position		  [355, 257, 395, 293]
+	  ZOrder		  4056
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator5"
+	  SID			  "6299"
+	  Position		  [355, 347, 395, 383]
+	  ZOrder		  4058
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "YEAR"
+	  SID			  "6300"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [245, 25, 310, 55]
+	  ZOrder		  4051
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "MIN"
+	  SrcPort		  1
+	  DstBlock		  "Terminator5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "DAY"
+	  SrcPort		  1
+	  DstBlock		  "Terminator3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "HOUR"
+	  SrcPort		  1
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "MON"
+	  SrcPort		  1
+	  DstBlock		  "Terminator2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "YEAR"
+	  SrcPort		  1
+	  DstBlock		  "Terminator1"
 	  DstPort		  1
 	}
       }
@@ -22532,7 +22743,7 @@ Library {
 	  Position		  [70, 30, 155, 210]
 	  ZOrder		  6589
 	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/CrypParts/PSINF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -31675,7 +31886,7 @@ Library {
       Position		      [1325, 315, 1420, 605]
       ZOrder		      4387
       BackgroundColor	      "gray"
-      LibraryVersion	      "1.99"
+      LibraryVersion	      "1.100"
       SourceBlock	      "CRYP_TM_MASTER/CRYP_TM_MASTER/MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -32582,13 +32793,14 @@ Library {
 	  SID			  "5514"
 	  Ports			  [30, 24]
 	  Position		  [155, 115, 350, 465]
-	  ZOrder		  7109
+	  ZOrder		  7114
 	  BackgroundColor	  "cyan"
+	  LibraryVersion	  "*1.308"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
 	    Name		    "MODE1"
-	    Location		    [1071, 1047, 2169, 1781]
+	    Location		    [94, 82, 1678, 1010]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -32600,7 +32812,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "IPL"
@@ -32883,7 +33095,7 @@ Library {
 	      "                                                                              \nName the part with the desired "
 	      "EPICS channel name.                                    "
 	      Ports		      [0, 1]
-	      Position		      [295, 415, 360, 445]
+	      Position		      [510, 470, 575, 500]
 	      ZOrder		      6536
 	      BackgroundColor	      "green"
 	      DropShadow	      on
@@ -32898,7 +33110,7 @@ Library {
 	      Name		      "ACT_PHASE_SHIFT"
 	      SID		      "5546"
 	      Ports		      [25, 24]
-	      Position		      [410, 40, 485, 460]
+	      Position		      [625, 40, 700, 460]
 	      ZOrder		      -24
 	      RequestExecContextInheritance off
 	      Variant		      off
@@ -35209,13 +35421,13 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Reference
-	      Name		      "ACT_VECTOR"
-	      SID		      "5673"
+	      Name		      "BF_ACT_VECTOR"
+	      SID		      "6279"
 	      Tag		      "cdsMuxMatrix"
 	      Description	      "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
 	      Ports		      [1, 1]
-	      Position		      [310, 215, 350, 275]
-	      ZOrder		      6470
+	      Position		      [525, 125, 565, 185]
+	      ZOrder		      6584
 	      BackgroundColor	      "green"
 	      DropShadow	      on
 	      AttributesFormatString  "%<Tag>"
@@ -35239,14 +35451,125 @@ Library {
 	    Block {
 	      BlockType		      Demux
 	      Name		      "Demux1"
-	      SID		      "5675"
-	      Ports		      [1, 24]
-	      Position		      [385, 62, 390, 423]
-	      ZOrder		      6472
+	      SID		      "6277"
+	      Ports		      [1, 3]
+	      Position		      [600, 60, 605, 110]
+	      ZOrder		      6583
 	      BackgroundColor	      "black"
 	      ShowName		      off
-	      Outputs		      "24"
+	      Outputs		      "3"
 	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux2"
+	      SID		      "6273"
+	      Ports		      [1, 5]
+	      Position		      [420, 125, 425, 365]
+	      ZOrder		      6579
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Outputs		      "5"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux3"
+	      SID		      "6278"
+	      Ports		      [1, 6]
+	      Position		      [600, 109, 605, 196]
+	      ZOrder		      6586
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Outputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux4"
+	      SID		      "6282"
+	      Ports		      [1, 6]
+	      Position		      [600, 199, 605, 286]
+	      ZOrder		      6589
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Outputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux5"
+	      SID		      "6284"
+	      Ports		      [1, 6]
+	      Position		      [600, 289, 605, 376]
+	      ZOrder		      6592
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Outputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux6"
+	      SID		      "6287"
+	      Ports		      [1, 3]
+	      Position		      [600, 375, 605, 425]
+	      ZOrder		      6595
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Outputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "IM_ACT_VECTOR"
+	      SID		      "6285"
+	      Tag		      "cdsMuxMatrix"
+	      Description	      "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	      Ports		      [1, 1]
+	      Position		      [525, 305, 565, 365]
+	      ZOrder		      6590
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsMuxMatrix/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "IP_ACT_VECTOR"
+	      SID		      "5673"
+	      Tag		      "cdsMuxMatrix"
+	      Description	      "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	      Ports		      [1, 1]
+	      Position		      [525, 55, 565, 115]
+	      ZOrder		      6470
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsMuxMatrix/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "MN_ACT_VECTOR"
+	      SID		      "6281"
+	      Tag		      "cdsMuxMatrix"
+	      Description	      "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	      Ports		      [1, 1]
+	      Position		      [525, 215, 565, 275]
+	      ZOrder		      6587
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsMuxMatrix/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
 	    }
 	    Block {
 	      BlockType		      Mux
@@ -35266,6 +35589,61 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [285, 230, 290, 260]
 	      ZOrder		      6471
+	      ShowName		      off
+	      Inputs		      "1"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux2"
+	      SID		      "6276"
+	      Ports		      [1, 1]
+	      Position		      [495, 70, 500, 100]
+	      ZOrder		      6582
+	      ShowName		      off
+	      Inputs		      "1"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux3"
+	      SID		      "6280"
+	      Ports		      [1, 1]
+	      Position		      [495, 140, 500, 170]
+	      ZOrder		      6585
+	      ShowName		      off
+	      Inputs		      "1"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux4"
+	      SID		      "6283"
+	      Ports		      [1, 1]
+	      Position		      [495, 230, 500, 260]
+	      ZOrder		      6588
+	      ShowName		      off
+	      Inputs		      "1"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux5"
+	      SID		      "6286"
+	      Ports		      [1, 1]
+	      Position		      [495, 320, 500, 350]
+	      ZOrder		      6591
+	      ShowName		      off
+	      Inputs		      "1"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux6"
+	      SID		      "6289"
+	      Ports		      [1, 1]
+	      Position		      [495, 385, 500, 415]
+	      ZOrder		      6594
 	      ShowName		      off
 	      Inputs		      "1"
 	      DisplayOption	      "bar"
@@ -38206,10 +38584,43 @@ Library {
 	      ContentPreviewEnabled   off
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "STAGE_DIVIDER"
+	      SID		      "6271"
+	      Tag		      "cdsRampMuxMatrix"
+	      Ports		      [1, 1]
+	      Position		      [330, 215, 370, 275]
+	      ZOrder		      6577
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsRampMuxMatrix/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "TM_ACT_VECTOR"
+	      SID		      "6288"
+	      Tag		      "cdsMuxMatrix"
+	      Description	      "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	      Ports		      [1, 1]
+	      Position		      [525, 370, 565, 430]
+	      ZOrder		      6593
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsMuxMatrix/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "IPLo"
 	      SID		      "5838"
-	      Position		      [505, 73, 535, 87]
+	      Position		      [720, 73, 750, 87]
 	      ZOrder		      6399
 	      IconDisplay	      "Port number"
 	    }
@@ -38217,7 +38628,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IPTo"
 	      SID		      "5839"
-	      Position		      [505, 88, 535, 102]
+	      Position		      [720, 88, 750, 102]
 	      ZOrder		      6400
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -38226,7 +38637,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IPYo"
 	      SID		      "5840"
-	      Position		      [505, 103, 535, 117]
+	      Position		      [720, 103, 750, 117]
 	      ZOrder		      6401
 	      Port		      "3"
 	      IconDisplay	      "Port number"
@@ -38235,7 +38646,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFLo"
 	      SID		      "5841"
-	      Position		      [505, 118, 535, 132]
+	      Position		      [720, 118, 750, 132]
 	      ZOrder		      6449
 	      Port		      "4"
 	      IconDisplay	      "Port number"
@@ -38244,7 +38655,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFTo"
 	      SID		      "5842"
-	      Position		      [505, 133, 535, 147]
+	      Position		      [720, 133, 750, 147]
 	      ZOrder		      6450
 	      Port		      "5"
 	      IconDisplay	      "Port number"
@@ -38253,7 +38664,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFVo"
 	      SID		      "5843"
-	      Position		      [505, 148, 535, 162]
+	      Position		      [720, 148, 750, 162]
 	      ZOrder		      6451
 	      Port		      "6"
 	      IconDisplay	      "Port number"
@@ -38262,7 +38673,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFRo"
 	      SID		      "5844"
-	      Position		      [505, 163, 535, 177]
+	      Position		      [720, 163, 750, 177]
 	      ZOrder		      6452
 	      Port		      "7"
 	      IconDisplay	      "Port number"
@@ -38271,7 +38682,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFPo"
 	      SID		      "5845"
-	      Position		      [505, 178, 535, 192]
+	      Position		      [720, 178, 750, 192]
 	      ZOrder		      6453
 	      Port		      "8"
 	      IconDisplay	      "Port number"
@@ -38280,7 +38691,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "BFYo"
 	      SID		      "5846"
-	      Position		      [505, 193, 535, 207]
+	      Position		      [720, 193, 750, 207]
 	      ZOrder		      6455
 	      Port		      "9"
 	      IconDisplay	      "Port number"
@@ -38289,7 +38700,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNLo"
 	      SID		      "5847"
-	      Position		      [505, 208, 535, 222]
+	      Position		      [720, 208, 750, 222]
 	      ZOrder		      6458
 	      Port		      "10"
 	      IconDisplay	      "Port number"
@@ -38298,7 +38709,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNTo"
 	      SID		      "5848"
-	      Position		      [505, 223, 535, 237]
+	      Position		      [720, 223, 750, 237]
 	      ZOrder		      6459
 	      Port		      "11"
 	      IconDisplay	      "Port number"
@@ -38307,7 +38718,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNVo"
 	      SID		      "5849"
-	      Position		      [505, 238, 535, 252]
+	      Position		      [720, 238, 750, 252]
 	      ZOrder		      6460
 	      Port		      "12"
 	      IconDisplay	      "Port number"
@@ -38316,7 +38727,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNRo"
 	      SID		      "5850"
-	      Position		      [505, 253, 535, 267]
+	      Position		      [720, 253, 750, 267]
 	      ZOrder		      6461
 	      Port		      "13"
 	      IconDisplay	      "Port number"
@@ -38325,7 +38736,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNPo"
 	      SID		      "5851"
-	      Position		      [505, 268, 535, 282]
+	      Position		      [720, 268, 750, 282]
 	      ZOrder		      6462
 	      Port		      "14"
 	      IconDisplay	      "Port number"
@@ -38334,7 +38745,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "MNYo"
 	      SID		      "5852"
-	      Position		      [505, 283, 535, 297]
+	      Position		      [720, 283, 750, 297]
 	      ZOrder		      6463
 	      Port		      "15"
 	      IconDisplay	      "Port number"
@@ -38343,7 +38754,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMLo"
 	      SID		      "5853"
-	      Position		      [505, 298, 535, 312]
+	      Position		      [720, 298, 750, 312]
 	      ZOrder		      6464
 	      Port		      "16"
 	      IconDisplay	      "Port number"
@@ -38352,7 +38763,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMTo"
 	      SID		      "5854"
-	      Position		      [505, 313, 535, 327]
+	      Position		      [720, 313, 750, 327]
 	      ZOrder		      6465
 	      Port		      "17"
 	      IconDisplay	      "Port number"
@@ -38361,7 +38772,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMVo"
 	      SID		      "5855"
-	      Position		      [505, 328, 535, 342]
+	      Position		      [720, 328, 750, 342]
 	      ZOrder		      6466
 	      Port		      "18"
 	      IconDisplay	      "Port number"
@@ -38370,7 +38781,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMRo"
 	      SID		      "5856"
-	      Position		      [505, 343, 535, 357]
+	      Position		      [720, 343, 750, 357]
 	      ZOrder		      6467
 	      Port		      "19"
 	      IconDisplay	      "Port number"
@@ -38379,7 +38790,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMPo"
 	      SID		      "5857"
-	      Position		      [505, 358, 535, 372]
+	      Position		      [720, 358, 750, 372]
 	      ZOrder		      6468
 	      Port		      "20"
 	      IconDisplay	      "Port number"
@@ -38388,7 +38799,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "IMYo"
 	      SID		      "5858"
-	      Position		      [505, 373, 535, 387]
+	      Position		      [720, 373, 750, 387]
 	      ZOrder		      6469
 	      Port		      "21"
 	      IconDisplay	      "Port number"
@@ -38397,7 +38808,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "TMLo"
 	      SID		      "5859"
-	      Position		      [505, 388, 535, 402]
+	      Position		      [720, 388, 750, 402]
 	      ZOrder		      6473
 	      Port		      "22"
 	      IconDisplay	      "Port number"
@@ -38406,7 +38817,7 @@ Library {
 	      BlockType		      Outport
 	      Name		      "TMPo"
 	      SID		      "5860"
-	      Position		      [505, 403, 535, 417]
+	      Position		      [720, 403, 750, 417]
 	      ZOrder		      6474
 	      Port		      "23"
 	      IconDisplay	      "Port number"
@@ -38415,391 +38826,501 @@ Library {
 	      BlockType		      Outport
 	      Name		      "TMYo"
 	      SID		      "5861"
-	      Position		      [505, 418, 535, 432]
+	      Position		      [720, 418, 750, 432]
 	      ZOrder		      6475
 	      Port		      "24"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
 	      ZOrder		      1
-	      SrcBlock		      "ACT_FREQ"
-	      SrcPort		      1
-	      DstBlock		      "ACT_PHASE_SHIFT"
-	      DstPort		      25
+	      SrcBlock		      "Demux2"
+	      SrcPort		      5
+	      Points		      [13, 0; 0, 65]
+	      DstBlock		      "Mux6"
+	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      2
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      23
-	      DstBlock		      "TMPo"
+	      SrcBlock		      "Demux2"
+	      SrcPort		      4
+	      Points		      [30, 0; 0, 45]
+	      DstBlock		      "Mux5"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      3
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      22
-	      DstBlock		      "TMLo"
+	      SrcBlock		      "Demux2"
+	      SrcPort		      3
+	      DstBlock		      "Mux4"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      4
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      21
-	      DstBlock		      "IMYo"
+	      SrcBlock		      "Demux2"
+	      SrcPort		      2
+	      Points		      [48, 0; 0, -45]
+	      DstBlock		      "Mux3"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      5
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      20
-	      DstBlock		      "IMPo"
+	      SrcBlock		      "Demux2"
+	      SrcPort		      1
+	      Points		      [30, 0; 0, -70]
+	      DstBlock		      "Mux2"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      6
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      19
-	      DstBlock		      "IMRo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      7
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      18
-	      DstBlock		      "IMVo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      8
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      17
-	      DstBlock		      "IMTo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      16
-	      DstBlock		      "IMLo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      15
-	      DstBlock		      "MNYo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      11
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      14
-	      DstBlock		      "MNPo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      12
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      13
-	      DstBlock		      "MNRo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      13
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      12
-	      DstBlock		      "MNVo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      14
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      11
-	      DstBlock		      "MNTo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      15
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      10
-	      DstBlock		      "MNLo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      16
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      9
-	      DstBlock		      "BFYo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      17
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      8
-	      DstBlock		      "BFPo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      18
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      7
-	      DstBlock		      "BFRo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      19
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      6
-	      DstBlock		      "BFVo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      20
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      5
-	      DstBlock		      "BFTo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      21
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      4
-	      DstBlock		      "BFLo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      22
-	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcBlock		      "Demux6"
 	      SrcPort		      3
-	      DstBlock		      "IPYo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      23
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      2
-	      DstBlock		      "IPTo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      24
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      1
-	      DstBlock		      "IPLo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      25
-	      SrcBlock		      "ACT_PHASE_SHIFT"
-	      SrcPort		      24
-	      DstBlock		      "TMYo"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      26
-	      SrcBlock		      "Demux1"
-	      SrcPort		      24
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      24
 	    }
 	    Line {
-	      ZOrder		      27
-	      SrcBlock		      "Demux1"
-	      SrcPort		      23
+	      ZOrder		      7
+	      SrcBlock		      "Demux6"
+	      SrcPort		      2
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      23
 	    }
 	    Line {
-	      ZOrder		      28
-	      SrcBlock		      "Demux1"
-	      SrcPort		      22
+	      ZOrder		      8
+	      SrcBlock		      "Demux6"
+	      SrcPort		      1
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      22
 	    }
 	    Line {
-	      ZOrder		      29
-	      SrcBlock		      "Demux1"
-	      SrcPort		      21
+	      ZOrder		      9
+	      SrcBlock		      "Mux6"
+	      SrcPort		      1
+	      DstBlock		      "TM_ACT_VECTOR"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "TM_ACT_VECTOR"
+	      SrcPort		      1
+	      DstBlock		      "Demux6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "Demux5"
+	      SrcPort		      6
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      21
 	    }
 	    Line {
-	      ZOrder		      30
-	      SrcBlock		      "Demux1"
-	      SrcPort		      20
+	      ZOrder		      12
+	      SrcBlock		      "Demux5"
+	      SrcPort		      5
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      20
 	    }
 	    Line {
-	      ZOrder		      31
-	      SrcBlock		      "Demux1"
-	      SrcPort		      19
+	      ZOrder		      13
+	      SrcBlock		      "Demux5"
+	      SrcPort		      4
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      19
 	    }
 	    Line {
-	      ZOrder		      32
-	      SrcBlock		      "Demux1"
-	      SrcPort		      18
-	      DstBlock		      "ACT_PHASE_SHIFT"
-	      DstPort		      18
-	    }
-	    Line {
-	      ZOrder		      33
-	      SrcBlock		      "Demux1"
-	      SrcPort		      17
+	      ZOrder		      14
+	      SrcBlock		      "Demux5"
+	      SrcPort		      2
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      17
 	    }
 	    Line {
-	      ZOrder		      34
-	      SrcBlock		      "Demux1"
-	      SrcPort		      16
+	      ZOrder		      15
+	      SrcBlock		      "Demux5"
+	      SrcPort		      3
+	      DstBlock		      "ACT_PHASE_SHIFT"
+	      DstPort		      18
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "Demux5"
+	      SrcPort		      1
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      16
 	    }
 	    Line {
-	      ZOrder		      35
-	      SrcBlock		      "Demux1"
-	      SrcPort		      15
+	      ZOrder		      17
+	      SrcBlock		      "Mux5"
+	      SrcPort		      1
+	      DstBlock		      "IM_ACT_VECTOR"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "IM_ACT_VECTOR"
+	      SrcPort		      1
+	      DstBlock		      "Demux5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Demux4"
+	      SrcPort		      6
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      15
 	    }
 	    Line {
-	      ZOrder		      36
-	      SrcBlock		      "Demux1"
-	      SrcPort		      14
+	      ZOrder		      20
+	      SrcBlock		      "Demux4"
+	      SrcPort		      5
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      14
 	    }
 	    Line {
-	      ZOrder		      37
-	      SrcBlock		      "Demux1"
-	      SrcPort		      13
+	      ZOrder		      21
+	      SrcBlock		      "Demux4"
+	      SrcPort		      4
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      13
 	    }
 	    Line {
-	      ZOrder		      38
-	      SrcBlock		      "Demux1"
-	      SrcPort		      12
-	      DstBlock		      "ACT_PHASE_SHIFT"
-	      DstPort		      12
-	    }
-	    Line {
-	      ZOrder		      39
-	      SrcBlock		      "Demux1"
-	      SrcPort		      11
+	      ZOrder		      22
+	      SrcBlock		      "Demux4"
+	      SrcPort		      2
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      11
 	    }
 	    Line {
-	      ZOrder		      40
-	      SrcBlock		      "Demux1"
-	      SrcPort		      10
+	      ZOrder		      23
+	      SrcBlock		      "Demux4"
+	      SrcPort		      3
+	      DstBlock		      "ACT_PHASE_SHIFT"
+	      DstPort		      12
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "Demux4"
+	      SrcPort		      1
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      10
 	    }
 	    Line {
-	      ZOrder		      41
-	      SrcBlock		      "Demux1"
-	      SrcPort		      9
+	      ZOrder		      25
+	      SrcBlock		      "Mux4"
+	      SrcPort		      1
+	      DstBlock		      "MN_ACT_VECTOR"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "MN_ACT_VECTOR"
+	      SrcPort		      1
+	      DstBlock		      "Demux4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "Demux3"
+	      SrcPort		      6
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      9
 	    }
 	    Line {
-	      ZOrder		      42
-	      SrcBlock		      "Demux1"
-	      SrcPort		      8
+	      ZOrder		      28
+	      SrcBlock		      "Demux3"
+	      SrcPort		      5
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      8
 	    }
 	    Line {
-	      ZOrder		      43
-	      SrcBlock		      "Demux1"
-	      SrcPort		      7
+	      ZOrder		      29
+	      SrcBlock		      "Demux3"
+	      SrcPort		      4
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      7
 	    }
 	    Line {
-	      ZOrder		      44
-	      SrcBlock		      "Demux1"
-	      SrcPort		      6
-	      DstBlock		      "ACT_PHASE_SHIFT"
-	      DstPort		      6
-	    }
-	    Line {
-	      ZOrder		      45
-	      SrcBlock		      "Demux1"
-	      SrcPort		      5
+	      ZOrder		      30
+	      SrcBlock		      "Demux3"
+	      SrcPort		      2
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      5
 	    }
 	    Line {
-	      ZOrder		      46
-	      SrcBlock		      "Demux1"
-	      SrcPort		      4
+	      ZOrder		      31
+	      SrcBlock		      "Demux3"
+	      SrcPort		      3
+	      DstBlock		      "ACT_PHASE_SHIFT"
+	      DstPort		      6
+	    }
+	    Line {
+	      ZOrder		      32
+	      SrcBlock		      "Demux3"
+	      SrcPort		      1
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      47
+	      ZOrder		      33
+	      SrcBlock		      "Mux3"
+	      SrcPort		      1
+	      DstBlock		      "BF_ACT_VECTOR"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      34
+	      SrcBlock		      "BF_ACT_VECTOR"
+	      SrcPort		      1
+	      DstBlock		      "Demux3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      35
 	      SrcBlock		      "Demux1"
 	      SrcPort		      3
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      48
+	      ZOrder		      36
 	      SrcBlock		      "Demux1"
 	      SrcPort		      2
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      49
+	      ZOrder		      37
 	      SrcBlock		      "Demux1"
 	      SrcPort		      1
 	      DstBlock		      "ACT_PHASE_SHIFT"
 	      DstPort		      1
 	    }
 	    Line {
+	      ZOrder		      38
+	      SrcBlock		      "Mux2"
+	      SrcPort		      1
+	      DstBlock		      "IP_ACT_VECTOR"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      39
+	      SrcBlock		      "STAGE_DIVIDER"
+	      SrcPort		      1
+	      DstBlock		      "Demux2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      40
+	      SrcBlock		      "ACT_FREQ"
+	      SrcPort		      1
+	      Points		      [22, 0; 0, -55]
+	      DstBlock		      "ACT_PHASE_SHIFT"
+	      DstPort		      25
+	    }
+	    Line {
+	      ZOrder		      41
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      23
+	      DstBlock		      "TMPo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      42
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      22
+	      DstBlock		      "TMLo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      43
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      21
+	      DstBlock		      "IMYo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      44
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      20
+	      DstBlock		      "IMPo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      45
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      19
+	      DstBlock		      "IMRo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      46
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      18
+	      DstBlock		      "IMVo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      47
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      17
+	      DstBlock		      "IMTo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      48
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      16
+	      DstBlock		      "IMLo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      49
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      15
+	      DstBlock		      "MNYo"
+	      DstPort		      1
+	    }
+	    Line {
 	      ZOrder		      50
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      14
+	      DstBlock		      "MNPo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      51
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      13
+	      DstBlock		      "MNRo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      52
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      12
+	      DstBlock		      "MNVo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      53
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      11
+	      DstBlock		      "MNTo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      54
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      10
+	      DstBlock		      "MNLo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      55
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      9
+	      DstBlock		      "BFYo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      56
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      8
+	      DstBlock		      "BFPo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      57
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      7
+	      DstBlock		      "BFRo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      58
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      6
+	      DstBlock		      "BFVo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      59
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      5
+	      DstBlock		      "BFTo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      60
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      4
+	      DstBlock		      "BFLo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      61
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      3
+	      DstBlock		      "IPYo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      62
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      2
+	      DstBlock		      "IPTo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      63
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      1
+	      DstBlock		      "IPLo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      64
+	      SrcBlock		      "ACT_PHASE_SHIFT"
+	      SrcPort		      24
+	      DstBlock		      "TMYo"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      65
 	      SrcBlock		      "SERVO"
 	      SrcPort		      1
 	      DstBlock		      "Mux1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      51
-	      SrcBlock		      "ACT_VECTOR"
+	      ZOrder		      66
+	      SrcBlock		      "IP_ACT_VECTOR"
 	      SrcPort		      1
 	      DstBlock		      "Demux1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      52
+	      ZOrder		      67
 	      SrcBlock		      "Mux1"
 	      SrcPort		      1
-	      DstBlock		      "ACT_VECTOR"
+	      DstBlock		      "STAGE_DIVIDER"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      53
+	      ZOrder		      68
 	      SrcBlock		      "Demux"
 	      SrcPort		      1
 	      DstBlock		      "SERVO"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      54
+	      ZOrder		      69
 	      SrcBlock		      "SENS_VECTOR"
 	      SrcPort		      1
 	      DstBlock		      "Demux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      55
+	      ZOrder		      70
 	      SrcBlock		      "Mux"
 	      SrcPort		      1
 	      Points		      [13, 0; 0, -45]
@@ -38807,7 +39328,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      56
+	      ZOrder		      71
 	      SrcBlock		      "SENS_FREQ"
 	      SrcPort		      1
 	      Points		      [17, 0; 0, -50]
@@ -38815,420 +39336,420 @@ Library {
 	      DstPort		      31
 	    }
 	    Line {
-	      ZOrder		      57
+	      ZOrder		      72
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      1
 	      DstBlock		      "Mux"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      58
+	      ZOrder		      73
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      2
 	      DstBlock		      "Mux"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      59
+	      ZOrder		      74
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      3
 	      DstBlock		      "Mux"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      60
+	      ZOrder		      75
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      4
 	      DstBlock		      "Mux"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      61
+	      ZOrder		      76
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      5
 	      DstBlock		      "Mux"
 	      DstPort		      5
 	    }
 	    Line {
-	      ZOrder		      62
+	      ZOrder		      77
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      6
 	      DstBlock		      "Mux"
 	      DstPort		      6
 	    }
 	    Line {
-	      ZOrder		      63
+	      ZOrder		      78
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      7
 	      DstBlock		      "Mux"
 	      DstPort		      7
 	    }
 	    Line {
-	      ZOrder		      64
+	      ZOrder		      79
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      8
 	      DstBlock		      "Mux"
 	      DstPort		      8
 	    }
 	    Line {
-	      ZOrder		      65
+	      ZOrder		      80
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      9
 	      DstBlock		      "Mux"
 	      DstPort		      9
 	    }
 	    Line {
-	      ZOrder		      66
+	      ZOrder		      81
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      10
 	      DstBlock		      "Mux"
 	      DstPort		      10
 	    }
 	    Line {
-	      ZOrder		      67
+	      ZOrder		      82
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      11
 	      DstBlock		      "Mux"
 	      DstPort		      11
 	    }
 	    Line {
-	      ZOrder		      68
+	      ZOrder		      83
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      12
 	      DstBlock		      "Mux"
 	      DstPort		      12
 	    }
 	    Line {
-	      ZOrder		      69
+	      ZOrder		      84
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      13
 	      DstBlock		      "Mux"
 	      DstPort		      13
 	    }
 	    Line {
-	      ZOrder		      70
+	      ZOrder		      85
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      14
 	      DstBlock		      "Mux"
 	      DstPort		      14
 	    }
 	    Line {
-	      ZOrder		      71
+	      ZOrder		      86
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      15
 	      DstBlock		      "Mux"
 	      DstPort		      15
 	    }
 	    Line {
-	      ZOrder		      72
+	      ZOrder		      87
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      16
 	      DstBlock		      "Mux"
 	      DstPort		      16
 	    }
 	    Line {
-	      ZOrder		      73
+	      ZOrder		      88
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      17
 	      DstBlock		      "Mux"
 	      DstPort		      17
 	    }
 	    Line {
-	      ZOrder		      74
+	      ZOrder		      89
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      18
 	      DstBlock		      "Mux"
 	      DstPort		      18
 	    }
 	    Line {
-	      ZOrder		      75
+	      ZOrder		      90
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      19
 	      DstBlock		      "Mux"
 	      DstPort		      19
 	    }
 	    Line {
-	      ZOrder		      76
+	      ZOrder		      91
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      20
 	      DstBlock		      "Mux"
 	      DstPort		      20
 	    }
 	    Line {
-	      ZOrder		      77
+	      ZOrder		      92
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      21
 	      DstBlock		      "Mux"
 	      DstPort		      21
 	    }
 	    Line {
-	      ZOrder		      78
+	      ZOrder		      93
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      22
 	      DstBlock		      "Mux"
 	      DstPort		      22
 	    }
 	    Line {
-	      ZOrder		      79
+	      ZOrder		      94
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      23
 	      DstBlock		      "Mux"
 	      DstPort		      23
 	    }
 	    Line {
-	      ZOrder		      80
+	      ZOrder		      95
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      24
 	      DstBlock		      "Mux"
 	      DstPort		      24
 	    }
 	    Line {
-	      ZOrder		      81
+	      ZOrder		      96
 	      SrcBlock		      "IPL"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      82
+	      ZOrder		      97
 	      SrcBlock		      "IPT"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      83
+	      ZOrder		      98
 	      SrcBlock		      "IPR"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      84
+	      ZOrder		      99
 	      SrcBlock		      "IPV"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      85
+	      ZOrder		      100
 	      SrcBlock		      "BFL"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      7
 	    }
 	    Line {
-	      ZOrder		      86
+	      ZOrder		      101
 	      SrcBlock		      "IPP"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      5
 	    }
 	    Line {
-	      ZOrder		      87
+	      ZOrder		      102
 	      SrcBlock		      "IPY"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      6
 	    }
 	    Line {
-	      ZOrder		      88
+	      ZOrder		      103
 	      SrcBlock		      "IMP"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      23
 	    }
 	    Line {
-	      ZOrder		      89
+	      ZOrder		      104
 	      SrcBlock		      "BFT"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      8
 	    }
 	    Line {
-	      ZOrder		      90
+	      ZOrder		      105
 	      SrcBlock		      "BFV"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      9
 	    }
 	    Line {
-	      ZOrder		      91
+	      ZOrder		      106
 	      SrcBlock		      "BFR"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      10
 	    }
 	    Line {
-	      ZOrder		      92
+	      ZOrder		      107
 	      SrcBlock		      "BFP"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      11
 	    }
 	    Line {
-	      ZOrder		      93
+	      ZOrder		      108
 	      SrcBlock		      "BFY"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      12
 	    }
 	    Line {
-	      ZOrder		      94
+	      ZOrder		      109
 	      SrcBlock		      "MNL"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      13
 	    }
 	    Line {
-	      ZOrder		      95
+	      ZOrder		      110
 	      SrcBlock		      "MNT"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      14
 	    }
 	    Line {
-	      ZOrder		      96
+	      ZOrder		      111
 	      SrcBlock		      "MNV"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      15
 	    }
 	    Line {
-	      ZOrder		      97
+	      ZOrder		      112
 	      SrcBlock		      "MNR"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      16
 	    }
 	    Line {
-	      ZOrder		      98
+	      ZOrder		      113
 	      SrcBlock		      "MNP"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      17
 	    }
 	    Line {
-	      ZOrder		      99
+	      ZOrder		      114
 	      SrcBlock		      "MNY"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      18
 	    }
 	    Line {
-	      ZOrder		      100
+	      ZOrder		      115
 	      SrcBlock		      "IML"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      19
 	    }
 	    Line {
-	      ZOrder		      101
+	      ZOrder		      116
 	      SrcBlock		      "IMT"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      20
 	    }
 	    Line {
-	      ZOrder		      102
+	      ZOrder		      117
 	      SrcBlock		      "IMV"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      21
 	    }
 	    Line {
-	      ZOrder		      103
+	      ZOrder		      118
 	      SrcBlock		      "IMR"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      22
 	    }
 	    Line {
-	      ZOrder		      104
+	      ZOrder		      119
 	      SrcBlock		      "IMY"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      24
 	    }
 	    Line {
-	      ZOrder		      105
+	      ZOrder		      120
 	      SrcBlock		      "TML"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      25
 	    }
 	    Line {
-	      ZOrder		      106
+	      ZOrder		      121
 	      SrcBlock		      "TMY"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      30
 	    }
 	    Line {
-	      ZOrder		      107
+	      ZOrder		      122
 	      SrcBlock		      "TMP"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      29
 	    }
 	    Line {
-	      ZOrder		      108
+	      ZOrder		      123
 	      SrcBlock		      "TMV"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      27
 	    }
 	    Line {
-	      ZOrder		      109
+	      ZOrder		      124
 	      SrcBlock		      "TMT"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      26
 	    }
 	    Line {
-	      ZOrder		      110
+	      ZOrder		      125
 	      SrcBlock		      "TMR"
 	      SrcPort		      1
 	      DstBlock		      "SENS_PHASE_SHIFT"
 	      DstPort		      28
 	    }
 	    Line {
-	      ZOrder		      111
+	      ZOrder		      126
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      25
 	      DstBlock		      "Mux"
 	      DstPort		      25
 	    }
 	    Line {
-	      ZOrder		      112
+	      ZOrder		      127
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      26
 	      DstBlock		      "Mux"
 	      DstPort		      26
 	    }
 	    Line {
-	      ZOrder		      113
+	      ZOrder		      128
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      27
 	      DstBlock		      "Mux"
 	      DstPort		      27
 	    }
 	    Line {
-	      ZOrder		      114
+	      ZOrder		      129
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      28
 	      DstBlock		      "Mux"
 	      DstPort		      28
 	    }
 	    Line {
-	      ZOrder		      115
+	      ZOrder		      130
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      29
 	      DstBlock		      "Mux"
 	      DstPort		      29
 	    }
 	    Line {
-	      ZOrder		      116
+	      ZOrder		      131
 	      SrcBlock		      "SENS_PHASE_SHIFT"
 	      SrcPort		      30
 	      DstBlock		      "Mux"
@@ -39486,14 +40007,14 @@ Library {
 	  Name			  "sum1"
 	  SID			  "5906"
 	  Ports			  [2, 1]
-	  Position		  [595, 240, 635, 415]
+	  Position		  [595, 240, 640, 280]
 	  ZOrder		  7110
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
 	    Name		    "sum1"
 	    Location		    [1071, 1047, 2169, 1781]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -40216,7 +40737,7 @@ Library {
       Variant		      off
       System {
 	Name			"MODE_LIST"
-	Location		[1071, 420, 2169, 1781]
+	Location		[345, 113, 1929, 1041]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -40236,7 +40757,7 @@ Library {
 	  Ports			  []
 	  Position		  [-43, 455, 22, 540]
 	  ZOrder		  6643
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40248,7 +40769,7 @@ Library {
 	  Ports			  []
 	  Position		  [167, 575, 232, 660]
 	  ZOrder		  6708
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40260,7 +40781,7 @@ Library {
 	  Ports			  []
 	  Position		  [182, 590, 247, 675]
 	  ZOrder		  6709
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40272,7 +40793,7 @@ Library {
 	  Ports			  []
 	  Position		  [197, 605, 262, 690]
 	  ZOrder		  6710
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40284,7 +40805,7 @@ Library {
 	  Ports			  []
 	  Position		  [212, 620, 277, 705]
 	  ZOrder		  6711
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40296,7 +40817,7 @@ Library {
 	  Ports			  []
 	  Position		  [227, 635, 292, 720]
 	  ZOrder		  6712
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40308,7 +40829,7 @@ Library {
 	  Ports			  []
 	  Position		  [242, 650, 307, 735]
 	  ZOrder		  6713
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40320,7 +40841,7 @@ Library {
 	  Ports			  []
 	  Position		  [257, 665, 322, 750]
 	  ZOrder		  6714
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40332,7 +40853,7 @@ Library {
 	  Ports			  []
 	  Position		  [272, 680, 337, 765]
 	  ZOrder		  6715
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40344,7 +40865,7 @@ Library {
 	  Ports			  []
 	  Position		  [287, 695, 352, 780]
 	  ZOrder		  6716
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40356,7 +40877,7 @@ Library {
 	  Ports			  []
 	  Position		  [302, 710, 367, 795]
 	  ZOrder		  6717
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40368,7 +40889,7 @@ Library {
 	  Ports			  []
 	  Position		  [47, 455, 112, 540]
 	  ZOrder		  6700
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40380,7 +40901,7 @@ Library {
 	  Ports			  []
 	  Position		  [317, 725, 382, 810]
 	  ZOrder		  6718
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40392,7 +40913,7 @@ Library {
 	  Ports			  []
 	  Position		  [332, 740, 397, 825]
 	  ZOrder		  6719
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40404,7 +40925,7 @@ Library {
 	  Ports			  []
 	  Position		  [347, 755, 412, 840]
 	  ZOrder		  6720
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40416,7 +40937,7 @@ Library {
 	  Ports			  []
 	  Position		  [362, 770, 427, 855]
 	  ZOrder		  6721
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40428,7 +40949,7 @@ Library {
 	  Ports			  []
 	  Position		  [377, 785, 442, 870]
 	  ZOrder		  6722
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40440,7 +40961,7 @@ Library {
 	  Ports			  []
 	  Position		  [62, 470, 127, 555]
 	  ZOrder		  6701
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40452,7 +40973,7 @@ Library {
 	  Ports			  []
 	  Position		  [77, 485, 142, 570]
 	  ZOrder		  6702
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40464,7 +40985,7 @@ Library {
 	  Ports			  []
 	  Position		  [92, 500, 157, 585]
 	  ZOrder		  6703
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40476,7 +40997,7 @@ Library {
 	  Ports			  []
 	  Position		  [107, 515, 172, 600]
 	  ZOrder		  6704
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40488,7 +41009,7 @@ Library {
 	  Ports			  []
 	  Position		  [122, 530, 187, 615]
 	  ZOrder		  6705
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40500,7 +41021,7 @@ Library {
 	  Ports			  []
 	  Position		  [137, 545, 202, 630]
 	  ZOrder		  6706
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40512,7 +41033,7 @@ Library {
 	  Ports			  []
 	  Position		  [152, 560, 217, 645]
 	  ZOrder		  6707
-	  LibraryVersion	  "1.294"
+	  LibraryVersion	  "1.311"
 	  SourceBlock		  "VIS_LIB/MODE_PARAMS"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40551,7 +41072,7 @@ Library {
 	  Ports			  []
 	  Position		  [502, 258, 542, 318]
 	  ZOrder		  7144
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40563,7 +41084,7 @@ Library {
 	  Ports			  []
 	  Position		  [432, 163, 472, 223]
 	  ZOrder		  7145
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/5Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40683,7 +41204,7 @@ Library {
 	  Ports			  []
 	  Position		  [642, 258, 682, 318]
 	  ZOrder		  7138
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40695,7 +41216,7 @@ Library {
 	  Ports			  []
 	  Position		  [432, 258, 472, 318]
 	  ZOrder		  7143
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40847,7 +41368,7 @@ Library {
 	  Ports			  []
 	  Position		  [572, 258, 612, 318]
 	  ZOrder		  7136
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40945,7 +41466,7 @@ Library {
 	  Ports			  []
 	  Position		  [502, 163, 542, 223]
 	  ZOrder		  7146
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/5Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -40957,7 +41478,7 @@ Library {
 	  Ports			  []
 	  Position		  [717, 258, 757, 318]
 	  ZOrder		  7142
-	  LibraryVersion	  "1.293"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/Stage"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56188,7 +56709,7 @@ Library {
 	  Position		  [550, -9, 730, 69]
 	  ZOrder		  6459
 	  BackgroundColor	  "darkGreen"
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/CALC_CP_COEF_3DOF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56223,7 +56744,7 @@ Library {
 	  Position		  [550, 111, 730, 189]
 	  ZOrder		  6592
 	  BackgroundColor	  "darkGreen"
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/CALC_CP_COEF_3DOF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56236,7 +56757,7 @@ Library {
 	  Position		  [105, -76, 285, 76]
 	  ZOrder		  6442
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56249,7 +56770,7 @@ Library {
 	  Position		  [105, 119, 285, 271]
 	  ZOrder		  7108
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56262,7 +56783,7 @@ Library {
 	  Position		  [105, 309, 285, 461]
 	  ZOrder		  7109
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56275,7 +56796,7 @@ Library {
 	  Position		  [550, 216, 730, 294]
 	  ZOrder		  6596
 	  BackgroundColor	  "darkGreen"
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/CALC_CP_COEF_3DOF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -56648,14 +57169,14 @@ Library {
       SID		      "3700"
       Ports		      [15, 5]
       Position		      [-135, 1742, 50, 1988]
-      ZOrder		      7048
+      ZOrder		      7292
       BackgroundColor	      "[1.000000, 0.666667, 1.000000]"
-      LibraryVersion	      "*1.281"
+      LibraryVersion	      "*1.284"
       RequestExecContextInheritance off
       Variant		      off
       System {
 	Name			"PReQua_6DOF"
-	Location		[58, 598, 1156, 1959]
+	Location		[705, 80, 1803, 814]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -56667,7 +57188,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"50"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Freq"
@@ -56805,12 +57326,12 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "CP_COEF"
-	  SID			  "5256"
+	  SID			  "5923"
 	  Ports			  [6, 6]
-	  Position		  [770, -45, 905, 85]
-	  ZOrder		  7246
-	  LibraryVersion	  "1.295"
-	  SourceBlock		  "VIS_LIB/UTILs/FBs_6DOF"
+	  Position		  [775, -41, 905, 81]
+	  ZOrder		  7261
+	  LibraryVersion	  "1.313"
+	  SourceBlock		  "VIS_LIB/UTILs/FBs_6DOF_DQ"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -56825,7 +57346,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "DOF_SEL"
-	    Location		    [2151, 425, 3249, 1786]
+	    Location		    [705, 80, 1803, 814]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -56837,7 +57358,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "101"
+	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "AMP_LEN"
@@ -58828,7 +59349,7 @@ Library {
 	  Position		  [110, -86, 290, 66]
 	  ZOrder		  7065
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58841,7 +59362,7 @@ Library {
 	  Position		  [110, 694, 290, 846]
 	  ZOrder		  7082
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58854,7 +59375,7 @@ Library {
 	  Position		  [110, 499, 290, 651]
 	  ZOrder		  7086
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58867,7 +59388,7 @@ Library {
 	  Position		  [110, 114, 290, 266]
 	  ZOrder		  7085
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58880,7 +59401,7 @@ Library {
 	  Position		  [110, 309, 290, 461]
 	  ZOrder		  7084
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58893,7 +59414,7 @@ Library {
 	  Position		  [110, 884, 290, 1036]
 	  ZOrder		  7083
 	  BackgroundColor	  "[0.949020, 0.647059, 1.000000]"
-	  LibraryVersion	  "1.197"
+	  LibraryVersion	  "1.198"
 	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -58901,12 +59422,12 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "REL_PHASE"
-	  SID			  "5261"
+	  SID			  "5924"
 	  Ports			  [6, 6]
-	  Position		  [875, 262, 1015, 618]
-	  ZOrder		  7253
-	  LibraryVersion	  "1.295"
-	  SourceBlock		  "VIS_LIB/UTILs/FBs_6DOF"
+	  Position		  [875, 258, 1010, 622]
+	  ZOrder		  7262
+	  LibraryVersion	  "1.313"
+	  SourceBlock		  "VIS_LIB/UTILs/FBs_6DOF_DQ"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -59017,7 +59538,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "normalize"
-	    Location		    [325, 100, 1855, 1461]
+	    Location		    [705, 80, 1803, 814]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -59688,93 +60209,93 @@ Library {
 	}
 	Line {
 	  ZOrder		  1
-	  SrcBlock		  "PREQUA_DECAY_TIME"
-	  SrcPort		  1
-	  DstBlock		  "tau"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  2
-	  SrcBlock		  "PREQUA_Q_VAL"
-	  SrcPort		  1
-	  DstBlock		  "Q"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "PREQUA_FREQ"
-	  SrcPort		  1
-	  DstBlock		  "freq"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  4
-	  SrcBlock		  "REL_PHASE"
-	  SrcPort		  6
-	  DstBlock		  "Terminator11"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  5
-	  SrcBlock		  "REL_PHASE"
-	  SrcPort		  5
-	  DstBlock		  "Terminator10"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  6
-	  SrcBlock		  "REL_PHASE"
-	  SrcPort		  4
-	  DstBlock		  "Terminator8"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  7
-	  SrcBlock		  "REL_PHASE"
-	  SrcPort		  3
-	  DstBlock		  "Terminator7"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  8
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  8
 	  DstBlock		  "REL_PHASE"
 	  DstPort		  6
 	}
 	Line {
-	  ZOrder		  9
+	  ZOrder		  2
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  7
 	  DstBlock		  "REL_PHASE"
 	  DstPort		  5
 	}
 	Line {
-	  ZOrder		  10
+	  ZOrder		  3
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  6
 	  DstBlock		  "REL_PHASE"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  11
+	  ZOrder		  4
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  5
 	  DstBlock		  "REL_PHASE"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  12
+	  ZOrder		  5
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  4
 	  DstBlock		  "REL_PHASE"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  13
+	  ZOrder		  6
 	  SrcBlock		  "DOF_SEL"
 	  SrcPort		  3
 	  DstBlock		  "REL_PHASE"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "PREQUA_DECAY_TIME"
+	  SrcPort		  1
+	  DstBlock		  "tau"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "PREQUA_Q_VAL"
+	  SrcPort		  1
+	  DstBlock		  "Q"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "PREQUA_FREQ"
+	  SrcPort		  1
+	  DstBlock		  "freq"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  6
+	  DstBlock		  "Terminator11"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  11
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  5
+	  DstBlock		  "Terminator10"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  4
+	  DstBlock		  "Terminator8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  3
+	  DstBlock		  "Terminator7"
 	  DstPort		  1
 	}
 	Line {
@@ -60254,48 +60775,6 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  82
-	  SrcBlock		  "From32"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  6
-	}
-	Line {
-	  ZOrder		  83
-	  SrcBlock		  "From27"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  84
-	  SrcBlock		  "From30"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  85
-	  SrcBlock		  "From29"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  86
-	  SrcBlock		  "From28"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  87
-	  SrcBlock		  "From31"
-	  SrcPort		  1
-	  DstBlock		  "normalize"
-	  DstPort		  1
-	}
-	Line {
 	  ZOrder		  88
 	  SrcBlock		  "QUAPIT"
 	  SrcPort		  2
@@ -60656,6 +61135,48 @@ Library {
 	    DstPort		    1
 	  }
 	}
+	Line {
+	  ZOrder		  165
+	  SrcBlock		  "From31"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  163
+	  SrcBlock		  "From28"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  164
+	  SrcBlock		  "From29"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  162
+	  SrcBlock		  "From30"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  167
+	  SrcBlock		  "From27"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  166
+	  SrcBlock		  "From32"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  6
+	}
       }
     }
     Block {
@@ -60854,7 +61375,7 @@ Library {
 	  Ports			  []
 	  Position		  [22, 21, 62, 81]
 	  ZOrder		  7139
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/6DoF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -60866,7 +61387,7 @@ Library {
 	  Ports			  []
 	  Position		  [92, 21, 132, 81]
 	  ZOrder		  7140
-	  LibraryVersion	  "1.295"
+	  LibraryVersion	  "1.313"
 	  SourceBlock		  "VIS_LIB/6DoF"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -60884,7 +61405,7 @@ Library {
       Variant		      off
       System {
 	Name			"UTILs"
-	Location		[1071, 500, 2169, 1234]
+	Location		[693, 528, 1791, 1262]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -60897,6 +61418,1903 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "3COILs"
+	  SID			  "6089"
+	  Ports			  [3, 3]
+	  Position		  [1135, 20, 1270, 230]
+	  ZOrder		  7254
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "3COILs"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "6091"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "6092"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "6093"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "6095"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "6096"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "6097"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "6099"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "6100"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "6101"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "3COILs_DQ"
+	  SID			  "6090"
+	  Ports			  [3, 3]
+	  Position		  [1135, 290, 1270, 500]
+	  ZOrder		  7255
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "3COILs_DQ"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "6103"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "6104"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "6105"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "6107"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "6108"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "6109"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "6111"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "6112"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "6113"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "6115"
+	      Name		      "#DAQ Channels\n\nH1_OUT 256\nH2_OUT 256\nH3_OUT 256"
+	      Position		      [183, 209, 286, 301]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      DropShadow	      on
+	      ZOrder		      -1
+	      FontSize		      14
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "4COILs"
+	  SID			  "6044"
+	  Ports			  [4, 4]
+	  Position		  [900, 20, 1035, 230]
+	  ZOrder		  7252
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "4COILs"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "6049"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "6050"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "6051"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH4"
+	      SID		      "6083"
+	      Position		      [290, 73, 320, 87]
+	      ZOrder		      7087
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "6052"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "6053"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "6054"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H4"
+	      SID		      "6084"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [340, 68, 410, 92]
+	      ZOrder		      7086
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "6061"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "6062"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "6063"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH4"
+	      SID		      "6085"
+	      Position		      [425, 78, 455, 92]
+	      ZOrder		      7088
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "iH4"
+	      SrcPort		      1
+	      DstBlock		      "H4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "H4"
+	      SrcPort		      1
+	      Points		      [2, 0; 0, 5]
+	      DstBlock		      "oH4"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "4COILs_DQ"
+	  SID			  "6045"
+	  Ports			  [4, 4]
+	  Position		  [900, 290, 1035, 500]
+	  ZOrder		  7253
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "4COILs_DQ"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "6067"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "6068"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "6069"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH4"
+	      SID		      "6086"
+	      Position		      [290, 73, 320, 87]
+	      ZOrder		      7087
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "6070"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "6071"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "6072"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H4"
+	      SID		      "6087"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [340, 68, 410, 92]
+	      ZOrder		      7086
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "6079"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "6080"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "6081"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH4"
+	      SID		      "6088"
+	      Position		      [430, 73, 460, 87]
+	      ZOrder		      7088
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "iH4"
+	      SrcPort		      1
+	      DstBlock		      "H4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "H4"
+	      SrcPort		      1
+	      DstBlock		      "oH4"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "6082"
+	      Name		      "#DAQ Channels\n\nH1_OUT 256\nH2_OUT 256\nH3_OUT 256\nH4_OUT 256"
+	      Position		      [183, 209, 286, 319]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      DropShadow	      on
+	      ZOrder		      -1
+	      FontSize		      14
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "6COILs"
+	  SID			  "5951"
+	  Ports			  [6, 6]
+	  Position		  [690, 18, 825, 227]
+	  ZOrder		  7248
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "6COILs"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV1"
+	      SID		      "5953"
+	      Position		      [20, 28, 50, 42]
+	      ZOrder		      7053
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV2"
+	      SID		      "5974"
+	      Position		      [35, 43, 65, 57]
+	      ZOrder		      7072
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV3"
+	      SID		      "5977"
+	      Position		      [50, 58, 80, 72]
+	      ZOrder		      7075
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "5980"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "5983"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "5986"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "5981"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "5984"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "5987"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V1"
+	      SID		      "5959"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [70, 23, 140, 47]
+	      ZOrder		      7052
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V2"
+	      SID		      "5975"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [85, 38, 155, 62]
+	      ZOrder		      7071
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V3"
+	      SID		      "5978"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [100, 53, 170, 77]
+	      ZOrder		      7074
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV1"
+	      SID		      "5965"
+	      Position		      [160, 28, 190, 42]
+	      ZOrder		      7056
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV2"
+	      SID		      "5976"
+	      Position		      [175, 43, 205, 57]
+	      ZOrder		      7073
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV3"
+	      SID		      "5979"
+	      Position		      [190, 58, 220, 72]
+	      ZOrder		      7076
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "5982"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "5985"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "5988"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "V1"
+	      SrcPort		      1
+	      DstBlock		      "oV1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "iV1"
+	      SrcPort		      1
+	      DstBlock		      "V1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "V2"
+	      SrcPort		      1
+	      DstBlock		      "oV2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "iV2"
+	      SrcPort		      1
+	      DstBlock		      "V2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "V3"
+	      SrcPort		      1
+	      DstBlock		      "oV3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "iV3"
+	      SrcPort		      1
+	      DstBlock		      "V3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "6COILs_DQ"
+	  SID			  "5989"
+	  Ports			  [6, 6]
+	  Position		  [690, 288, 825, 497]
+	  ZOrder		  7249
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "6COILs_DQ"
+	    Location		    [705, 80, 1803, 814]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV1"
+	      SID		      "5990"
+	      Position		      [20, 28, 50, 42]
+	      ZOrder		      7053
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV2"
+	      SID		      "5991"
+	      Position		      [35, 43, 65, 57]
+	      ZOrder		      7072
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iV3"
+	      SID		      "5992"
+	      Position		      [50, 58, 80, 72]
+	      ZOrder		      7075
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH1"
+	      SID		      "5993"
+	      Position		      [245, 28, 275, 42]
+	      ZOrder		      7078
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH2"
+	      SID		      "5994"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      7081
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "iH3"
+	      SID		      "5995"
+	      Position		      [275, 58, 305, 72]
+	      ZOrder		      7084
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H1"
+	      SID		      "5996"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [295, 23, 365, 47]
+	      ZOrder		      7077
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H2"
+	      SID		      "5997"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [310, 38, 380, 62]
+	      ZOrder		      7080
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "H3"
+	      SID		      "5998"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [325, 53, 395, 77]
+	      ZOrder		      7083
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V1"
+	      SID		      "5999"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [70, 23, 140, 47]
+	      ZOrder		      7052
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V2"
+	      SID		      "6000"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [85, 38, 155, 62]
+	      ZOrder		      7071
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "V3"
+	      SID		      "6001"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [100, 53, 170, 77]
+	      ZOrder		      7074
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV1"
+	      SID		      "6002"
+	      Position		      [160, 28, 190, 42]
+	      ZOrder		      7056
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV2"
+	      SID		      "6003"
+	      Position		      [175, 43, 205, 57]
+	      ZOrder		      7073
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oV3"
+	      SID		      "6004"
+	      Position		      [190, 58, 220, 72]
+	      ZOrder		      7076
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH1"
+	      SID		      "6005"
+	      Position		      [385, 28, 415, 42]
+	      ZOrder		      7079
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH2"
+	      SID		      "6006"
+	      Position		      [400, 43, 430, 57]
+	      ZOrder		      7082
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "oH3"
+	      SID		      "6007"
+	      Position		      [415, 58, 445, 72]
+	      ZOrder		      7085
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "V1"
+	      SrcPort		      1
+	      DstBlock		      "oV1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "iV1"
+	      SrcPort		      1
+	      DstBlock		      "V1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "V2"
+	      SrcPort		      1
+	      DstBlock		      "oV2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "iV2"
+	      SrcPort		      1
+	      DstBlock		      "V2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "V3"
+	      SrcPort		      1
+	      DstBlock		      "oV3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "iV3"
+	      SrcPort		      1
+	      DstBlock		      "V3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "oH1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "iH1"
+	      SrcPort		      1
+	      DstBlock		      "H1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "oH2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "iH2"
+	      SrcPort		      1
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "H3"
+	      SrcPort		      1
+	      DstBlock		      "oH3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "iH3"
+	      SrcPort		      1
+	      DstBlock		      "H3"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "6008"
+	      Name		      "#DAQ Channels\n\nV1_OUT 256\nV2_OUT 256\nV3_OUT 256\nH1_OUT 256\nH2_OUT 256\nH3_OUT 256"
+	      Position		      [183, 209, 286, 355]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      DropShadow	      on
+	      ZOrder		      -1
+	      FontSize		      14
+	    }
+	  }
+	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "FBs_3DOF"
@@ -62174,7 +64592,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "FBs_5STAGE_DQ"
-	    Location		    [1071, 500, 2169, 1234]
+	    Location		    [705, 80, 1803, 814]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -62961,7 +65379,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "FBs_6DOF_DQ"
-	    Location		    [1071, 500, 2169, 1234]
+	    Location		    [693, 528, 1791, 1262]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -62993,7 +65411,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "PIT_IN1"
+	      Name		      "VER_IN"
 	      SID		      "4919"
 	      Position		      [440, 28, 470, 42]
 	      ZOrder		      7063
@@ -63250,7 +65668,7 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "PIT_OUT1"
+	      Name		      "VER_OUT"
 	      SID		      "4931"
 	      Position		      [580, 28, 610, 42]
 	      ZOrder		      7066
@@ -63356,7 +65774,7 @@ Library {
 	    }
 	    Line {
 	      ZOrder		      11
-	      SrcBlock		      "PIT_IN1"
+	      SrcBlock		      "VER_IN"
 	      SrcPort		      1
 	      DstBlock		      "VER"
 	      DstPort		      1
@@ -63365,7 +65783,7 @@ Library {
 	      ZOrder		      12
 	      SrcBlock		      "VER"
 	      SrcPort		      1
-	      DstBlock		      "PIT_OUT1"
+	      DstBlock		      "VER_OUT"
 	      DstPort		      1
 	    }
 	    Annotation {

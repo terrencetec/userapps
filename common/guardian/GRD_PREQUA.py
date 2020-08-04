@@ -9,8 +9,13 @@ import foton
 
 import numpy as np
 import importlib
+
 sysmod = importlib.import_module(SYSTEM)
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
 
 
 __,OPTIC = SYSTEM.split('_') # This instruction retrieves the name of the Guardian node running the code e.i. the suspension name: SYSTEM='VIS_BS'.
@@ -72,12 +77,15 @@ class INIT_DIAG(GuardState):
         self.TOWER_FBs = foton.FilterFile(chans+'K1VIS%sT.txt'%(OPTIC.upper()))
         self.PAYLOAD_FBs = foton.FilterFile(chans+'K1VIS%sP.txt'%(OPTIC.upper()))
         self.QUA_FBs = foton.FilterFile(chans+'K1VIS%sMON.txt'%(OPTIC.upper()))
+        self.MODAL = foton.FilterFile(chans+'K1MODAL%s.txt'%(OPTIC.upper()))
+        
 
 
         # Initialize INF for each sensor
         # IP
         stage = 'IP'
 
+        '''
         for sensor in ['H1','H2','H3']:
             log('copy IP %s INF'%sensor)
             kagralib.copy_FB('VIS',self.TOWER_FBs,'%s_IP_LVDTINF_%s'%(OPTIC,sensor),self.QUA_FBs,'%s_IP_DIAG_INF_%s'%(OPTIC,sensor))
@@ -104,8 +112,28 @@ class INIT_DIAG(GuardState):
             for ii in range(4):
                 log('copy %s %s SEG%d INF'%(stage,oplev,ii+1))
                 kagralib.copy_FB('VIS',self.PAYLOAD_FBs,'%s_%s_OPLEV_%s_SEG%d'%(OPTIC,stage,oplev,ii+1),self.QUA_FBs,'%s_%s_DIAG_OPLEV_%s_SEG%d'%(OPTIC,stage,oplev,ii+1))
-        
+        '''
 
+        # Initialize COILOUTF
+        coildict = {'IP':['H1','H2','H3'],
+                    'BF':['V1','V2','V3','H1','H2','H3'],
+                    'MN':['V1','V2','V3','H1','H2','H3'],
+                    'IM':['V1','V2','V3','H1','H2','H3'],
+                    'TM':['H1','H2','H3','H4'],
+                    }
+                    
+        for stage in ['IP','BF','MN','IM','TM']:
+            for coil in coildict[stage]:
+                if stage in ['IP','BF']:
+                    FBs = self.TOWER_FBs
+                else:
+                    FBs = self.PAYLOAD_FBs
+                kagralib.foton_comb(FBs,'MOD_%s_%s_COILOUTF_%s'%(OPTIC,stage,coil),0,freq=128,Q=10,amplitude=-100,harmonics=4,force=True)
+                kagralib.foton_ELP(FBs,'MOD_%s_%s_COILOUTF_%s'%(OPTIC,stage,coil),1,freq=128,force=True)
+                ezca.switch('MOD-%s_%s_COILOUTF_%s'%(OPTIC,stage,coil),'FM1','FM2','ON',)
+        self.TOWER_FBs.write()
+        self.PAYLOAD_FBs.write()
+                
         # Initialize SEN2EUL matrix
         sensors = ['V1','V2','V3','H1','H2','H3']
         OL_sensors = ['TILT_PIT','TILT_YAW','LEN_PIT','LEN_YAW']
@@ -116,13 +144,29 @@ class INIT_DIAG(GuardState):
             cols={ii+1: sensors[ii] for ii in range(6)},
             rows={ii+1: DoFs[ii] for ii in range(6)},
         ) for stage in ['IP','BF','MN','IM']}
+        MOD_EUL2COIL = {stage:cdsutils.CDSMatrix(
+            'MOD-%s_%s_EUL2COIL'%(OPTIC,stage),
+            cols={ii+1: sensors[ii] for ii in range(6)},
+            rows={ii+1: DoFs[ii] for ii in range(6)},
+        ) for stage in ['IP','BF','MN','IM']}
         DIAG_SEN2EUL_OL = cdsutils.CDSMatrix(
             'VIS-%s_TM_DIAG_SEN2EUL'%(OPTIC),
             cols={ii+1: sensors[ii] for ii in range(4)},
             rows={ii+1: DoFs[ii] for ii in range(6)},
         )
+        MOD_EUL2COIL_TM = cdsutils.CDSMatrix(
+            'MOD-%s_TM_EUL2COIL'%(OPTIC),
+            cols={ii+1: DoFs[ii] for ii in range(6)},
+            rows={ii+1: sensors[ii] for ii in range(4)},
+        )
         DECPL = {stage:cdsutils.CDSMatrix(
             'VIS-%s_%s_DIAG_DECPL'%(OPTIC,stage),
+            cols={ii+1: DoFs[ii] for ii in range(6)},
+            rows={ii+1: DoFs[ii] for ii in range(6)},
+        ) for stage in ['IP','BF','MN','IM','TM']}
+
+        DRIVEDECPL = {stage:cdsutils.CDSMatrix(
+            'MOD-%s_%s_DRIVEDECPL'%(OPTIC,stage),
             cols={ii+1: DoFs[ii] for ii in range(6)},
             rows={ii+1: DoFs[ii] for ii in range(6)},
         ) for stage in ['IP','BF','MN','IM','TM']}
@@ -141,6 +185,14 @@ class INIT_DIAG(GuardState):
              [0,0,0,0,0,0],
              [0,0,0,1./np.sqrt(3),1./np.sqrt(3),1./np.sqrt(3)]]
             ))
+        MOD_EUL2COIL['IP'].put_matrix(
+            np.matrix([[0,0,0,0,0,0,],
+                       [0,0,0,0,0,0,],
+                       [0,0,0,0,0,0,],
+                       [2./3.,0,0,0,0,1/np.sqrt(3)],
+                       [-1./3.,-1./np.sqrt(3),0,0,0,1./np.sqrt(3)],
+                       [-1./3.,1/np.sqrt(3),0,0,0,1./np.sqrt(3)]]
+            ))
 
         DIAG_SEN2EUL['BF'].put_matrix(
             np.matrix([[0,0,0,2./3.,-1./3.,-1./3.],
@@ -149,6 +201,15 @@ class INIT_DIAG(GuardState):
              [-0.9157,-0.9157,1.83150,0,0,0],
              [-1.5861,1.5861,0,0,0,0],
              [0,0,0,0.8170,0.8170,0.8170]]
+            ))
+
+        MOD_EUL2COIL['BF'].put_matrix(
+            np.matrix([[0,0,1,-0.182,-0.3152,0],
+                       [0,0,1,-0.182,0.3152,0],
+                       [0,0,1,0.364,0,0],
+                       [1,0,0,0,0,0.408],
+                       [-0.5,-0.866,0,0,0,0.408],
+                       [-0.5,0.866,0,0,0,0.408]]
             ))
 
         for stage in ['IM','MN']:
@@ -160,6 +221,15 @@ class INIT_DIAG(GuardState):
                            [1./2.,0,-1./2.,0,0,0],
                            [0,0,0,1./2.,-1./2.,0]]
                       ))
+        for stage in ['IM','MN']:
+            MOD_EUL2COIL[stage].put_matrix(
+                np.matrix([[0,0,0.5,-0.5,-0.5,0],
+                           [0,0,0,1,0,0],
+                           [0,0,0.5,-0.5,0.5,0],
+                           [-0.5,0.5,0,0,0,-0.5],
+                           [-0.5,0.5,0,0,0,0.5],
+                           [0,-1,0,0,0,0]]
+                      ))
         DIAG_SEN2EUL_OL.put_matrix(
             np.matrix([[0,0,0,1],
                        [0,0,0,0],
@@ -169,9 +239,19 @@ class INIT_DIAG(GuardState):
                        [0,1,0,0]]
             ))
 
+        MOD_EUL2COIL_TM.put_matrix(
+            np.matrix([[1,0,0,0,1,0],
+                       [1,0,0,0,-1,0],
+                       [1,0,0,0,0,-1],
+                       [1,0,0,0,0,1]],
+            ))
+
 
         for stage in DECPL.keys():
             DECPL[stage].put_matrix(
+                np.identity(6)
+                )
+            DRIVEDECPL[stage].put_matrix(
                 np.identity(6)
                 )
         for oplev in OL2EUL.keys():
@@ -379,10 +459,7 @@ class INIT_PREQUA(GuardState):
                     
             time.sleep(1)
             if int(ezca['FEC-%d_STATE_WORD'%sysmod.DCUID]) & 0b10000000000:
-                for chan in edit_chans:
-                    ezca[chan+'_RSET'] = 1
-                    
-                #ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.DCUID] = 1                    
+                ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.DCUID] = 1                    
             self.counter += 1
 
         elif self.counter == 1:
@@ -495,6 +572,11 @@ class RECORD_MEASUREMENT(GuardState):
     index = 150
     request = True
 
+    def mkdir(self,dirname):
+        log(os.path.exists(dirname))
+        if not os.path.exists(dirname):
+            os.mkdir(dirname)
+
     #@check_mod_freq
     def main(self):
         self.counter = 0
@@ -506,16 +588,16 @@ class RECORD_MEASUREMENT(GuardState):
         # readback channel and record channel
         state = 'FREE'
         self.prefix = 'K1:VIS-%s_%s_MODE_LIST_NO%d_'%(OPTIC,state,self.modeindex)
-        short_prefix = 'K1:VIS-%s_'%OPTIC
+        self.short_prefix = 'K1:VIS-%s_'%OPTIC
         self.chandict = {}
         for param in ['FREQ','Q_VAL','DECAY_TIME']:
-            self.chandict[short_prefix+'PREQUA_%s_OUT_DQ'%param] = self.prefix+param
+            self.chandict[self.short_prefix+'PREQUA_%s_OUT_DQ'%param] = self.prefix+param
         
         for stage in ['IP','BF','MN','IM','TM']:
             for param in ['CP_COEF','REL_PHASE']:
-                self.chandict[short_prefix+'%s_%s_OUT_DQ'%(param,stage)] = self.prefix+'%s_%s'%(param,stage)
+                self.chandict[self.short_prefix+'%s_%s_OUT_DQ'%(param,stage)] = self.prefix+'%s_%s'%(param,stage)
                 for DoF in DoFList:
-                    self.chandict[short_prefix+'%s_%s_%s_OUTPUT'%(stage,param,DoF)] = self.prefix+'%s_%s_%s'%(stage,param,DoF)
+                    self.chandict[self.short_prefix+'%s_%s_%s_OUTPUT'%(stage,param,DoF)] = self.prefix+'%s_%s_%s'%(stage,param,DoF)
 
         _t = time.localtime()
         keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
@@ -525,8 +607,20 @@ class RECORD_MEASUREMENT(GuardState):
 
         for key in ['YEAR','MON','DAY']:
             ezca[self.prefix[3:]+'MEAS_DATE_' + key] = self.time[key]
-            
-        
+
+        # for plot
+        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/mode%d/'%int(self.modeindex)
+        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/mode%d/archive/'%int(self.modeindex)
+
+        self.mkdir(self.figdir)
+        self.mkdir(self.figdir+'medm')
+        self.mkdir(self.figdir_archive)
+
+        self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
+                                         str(self.time['MON']).zfill(2),
+                                         str(self.time['DAY']).zfill(2),
+                                         str(self.time['HOUR']).zfill(2),
+                                         str(self.time['MIN']).zfill(2))
 
     #@check_mod_freq
     def run(self):
@@ -553,6 +647,9 @@ class RECORD_MEASUREMENT(GuardState):
             self.data = {
                 _keys[ii]: _data[ii].data for ii in range(len(_keys))
                 }
+            self.tt = {
+                _keys[ii]: 1/_data[ii].sample_rate * np.array(range(len(_data[ii].data))) for ii in range(len(_keys))
+                }
             self.counter += 1
 
         elif self.counter == 1:
@@ -564,7 +661,38 @@ class RECORD_MEASUREMENT(GuardState):
                     for DoF in DoFList:
                         ezca[self.prefix[3:]+'%s_REL_PHASE_%s'%(stage,DoF)] = np.mod(ezca[self.prefix[3:]+'%s_REL_PHASE_%s'%(stage,DoF)],-360)
             self.counter +=1
+        
         elif self.counter == 2:
+            # make plot
+            fig = plt.figure()
+            #for param in ['FREQ','Q_VAL','DECAY_TIME']:
+            _keyfreq = self.short_prefix+'PREQUA_%s_OUT_DQ'%'FREQ'
+            _keyQ = self.short_prefix+'PREQUA_%s_OUT_DQ'%'Q_VAL'
+            ax1 = fig.add_subplot(2,1,1)
+            ax1.plot(self.tt[_keyfreq],self.data[_keyfreq])
+            ax1.set_ylabel('Frequency [Hz]')
+
+            
+            ax2 = fig.add_subplot(2,1,2)
+            ax2.plot(self.tt[_keyQ],self.data[_keyQ])
+            ax2.set_xlabel('time [sec]')
+            ax2.set_ylabel('Q Value')
+
+            fig.tight_layout()
+            fig.savefig(self.figdir + 'MODE_PARAMS.png')
+            fig.savefig(self.figdir_archive + self.fileprefix +  'MODE_PARAMS.png')
+            
+            os.system('convert %s %s'%(self.figdir + 'MODE_PARAMS.png',self.figdir + 'medm/MODE_PARAMS.gif'))
+            self.counter += 1
+
+            for stage in ['IP','BF','MN','IM','TM']:
+                for param in ['CP_COEF','REL_PHASE']:
+                    fig = plt.figure()
+                    self.chandict[self.short_prefix+'%s_%s_OUT_DQ'%(param,stage)] = self.prefix+'%s_%s'%(param,stage)
+                    for DoF in DoFList:
+                        self.chandict[self.short_prefix+'%s_%s_%s_OUTPUT'%(stage,param,DoF)] = self.prefix+'%s_%s_%s'%(stage,param,DoF)
+            
+        elif self.counter == 3:
             return True
                 
 class UPDATE_MODFREQ(GuardState):
@@ -613,6 +741,10 @@ class INIT_MODALDAMP(GuardState):
         self.timer['waiting'] = 0
 
     def run(self):
+        if 'self' in ezca['VIS-%s_FREE_MODE_LIST_NO%d_USER_DESCRIPTION'%(OPTIC,self.modeindex)]:
+            kagralib.speak_aloud('This filter is self designed. I don\'t change anyhing.')
+            return True
+
         
         if not self.timer['waiting']:
             return
@@ -649,7 +781,7 @@ class INIT_MODALDAMP(GuardState):
 
         elif self.counter == 0:
             SERVO = ezca.get_LIGOFilter(self.prefix+'SERVO')
-            SERVO.ramp_gain(0,0,False)
+            SERVO.ramp_gain(0,2,False)
             SERVO.turn_on('INPUT','OUTPUT','FM1','FM2','FM10')
             
             FBs = foton.FilterFile(chans+'K1MODAL%s.txt'%OPTIC)
@@ -684,10 +816,79 @@ class INIT_MODALDAMP(GuardState):
         elif self.counter == 2:
             return True
 
+class SENSOR_DIAGONALIZATION(GuardState):
+    index = 250
+    request = True
+
+    def calc_major_axis(self,A,B,theta):
+        # calc major axis of elliptic described as x = A*cos(t), y = B*cos(t+theta)
+        # 2020/08/02 by MN
+        # calculate t which X = x**2 + y**2 got maximum.
+        # dX/dt =  a*sin(2t)+b*cos(2t) = sqt(a**2+b**2)*sin(2t+alpha) = 0,
+        # where a, b and alpha is drived as below.
+        # major axis can be derived as x = A*cos(-alpha/2), y = B*cos(-alpha/2+theta)
+    
+        a = (A**2+B**2*np.cos(2*theta))
+        b = B**2*np.sin(2*theta)
+        alpha = np.arcsin(b/np.sqrt(a**2+b**2))
+        
+        x = A*np.cos(-alpha/2)
+        y = B*np.cos(-alpha/2+theta)
+        
+        return x,y
+
+    def calc_DIAG_matrix(self,modedict, stage):
+        _t_sensing_matrix = np.identity(len(DoFList))
+        ii = 0
+        for motion_DoF in DoFList:
+            _sensing_vector = []
+            _A = ezca['VIS-ITMY_FREE_MODE_LIST_NO%d_%s_CP_COEF_%s'%(modedict[motion_DoF],stage,motion_DoF)]
+            _theta_a = ezca['VIS-ITMY_FREE_MODE_LIST_NO%d_%s_REL_PHASE_%s'%(modedict[motion_DoF],stage,motion_DoF)]
+            if _A == 0:
+                log('skip this DoF')
+                
+            else:
+                for sensor_DoF in DoFList:
+                    _B = ezca['VIS-ITMY_FREE_MODE_LIST_NO%d_%s_CP_COEF_%s'%(modedict[motion_DoF],stage,sensor_DoF)]
+                    _theta_b = ezca['VIS-ITMY_FREE_MODE_LIST_NO%d_%s_REL_PHASE_%s'%(modedict[motion_DoF],stage,sensor_DoF)]
+                    _theta = (_theta_a - _theta_b)/180*np.pi
+                    
+                    _AA,_BB = self.calc_major_axis(_A,_B,_theta)
+                    _sensing_vector.append(_BB/_AA)
+
+                _t_sensing_matrix[ii] = _sensing_vector
+                
+            ii += 1
+        sensing_matrix = np.transpose(_t_sensing_matrix)
+        _diag_matrix = np.linalg.inv(sensing_matrix)
+        
+        for ii in range(len(_diag_matrix)):
+            _diag_matrix[ii] = _diag_matrix[ii]/np.sqrt(np.sum(_diag_matrix[ii]**2))
+        return _diag_matrix
+
+
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if self.counter == 0:
+            DECPL = {stage:cdsutils.CDSMatrix(
+                'VIS-%s_%s_DIAG_DECPL'%(OPTIC,stage),
+                cols={ii+1: ii for ii in range(6)},
+                rows={ii+1: ii for ii in range(6)},                
+            ) for stage in ['IP','BF','MN','IM','TM']}
+            
+            for stage in ['MN','IM','TM']:
+                DECPL[stage].put_matrix(self.calc_DIAG_matrix(sysmod.modedict,stage))
+            self.counter += 1
+
+        else:
+            return True
+                
 
             
-                 
-                 
+        
     
 ##################################################
 # EDGES
@@ -698,8 +899,9 @@ edges = [('INIT','STANDBY'),
          ('STANDBY','INIT_PREQUA'),
          ('INIT_PREQUA','CLOSE_PLL'),
          ('CLOSE_PLL','EXCITE_RESONANCE'),
+         ('EXCITE_RESONANCE','INIT_MODALDAMP'),
+         ('INIT_MODALDAMP','STANDBY'),
          ('EXCITE_RESONANCE','RECORD_MEASUREMENT'),
          ('RECORD_MEASUREMENT','UPDATE_MODFREQ'),
-         ('UPDATE_MODFREQ','INIT_MODALDAMP'),
-         ('INIT_MODALDAMP','STANDBY'),
+         ('UPDATE_MODFREQ','EXCITE_RESONANCE'),
 ]

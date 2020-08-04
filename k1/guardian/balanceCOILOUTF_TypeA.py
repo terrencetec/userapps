@@ -1,4 +1,4 @@
-# Script for balancing the coils of MN, IM, TM stages on TypeA 
+# Script for balancing the coils of MN, IM, TM stages on TypeA
 # 17th July 2020, by K. Tanaka
 # in reference of /users/Commissioning/scripts/diagonalization/balanceCOILOUTF_TypeA.py by Nakano-san
 
@@ -53,12 +53,12 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=10):
     data_before = cdsutils.getdata(['K1:VIS-%s_TM_OPLEV_PIT_DIAG_DQ'%optic, 'K1:VIS-%s_TM_OPLEV_YAW_DIAG_DQ'%optic], duration = avgDuration)
     pit_before = np.mean(data_before[0].data)
     yaw_before = np.mean(data_before[1].data)
-    
+
     logger.debug('Oplev value before putting offset:(pitch, yaw) = (%f, %f)'%(pit_before,yaw_before))
-    
+
     # put the offset in each coils and fetch the oplev value in this time one by one
     default_offset = 10000
-    coil_gain = {} # The void dict to put the gains of TM coils 
+    coil_gain = {} # The void dict to put the gains of TM coils
     for ii in ['H1','H2','H3','H4']:
         logger.debug('Put %d cnts as offset in %s TM %s coil, ramp time = %d'%(default_offset, optic, ii, offTRAMP))
         coil_offset = ezca.get_LIGOFilter('VIS-%s_TM_COILOUTF_%s'%(optic,ii))
@@ -69,14 +69,14 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=10):
         data_after = cdsutils.getdata(['K1:VIS-%s_TM_OPLEV_PIT_DIAG_DQ'%optic, 'K1:VIS-%s_TM_OPLEV_YAW_DIAG_DQ'%optic], duration = avgDuration)
         pit_after = np.mean(data_after[0].data)
         yaw_after = np.mean(data_after[1].data)
-        
+
         logger.debug('Oplev value after putting offset in %s : (pitch, yaw) = (%f, %f)'%(ii,pit_after,yaw_after))
 
         logger.debug('Turn off the offset of %s TM %s coil, ramp time = %d'%(optic, ii, offTRAMP))
         coil_offset.ramp_offset(0, ramp_time = offTRAMP, wait=True)
         coil_offset.turn_off('OFFSET')
         time.sleep(settleDuration)
-        
+
         compare_pitch = pit_after - pit_before
         compare_yaw   = yaw_after - yaw_before
 
@@ -86,54 +86,55 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=10):
             if compare_pitch < 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
-                
+
         # in case of H2
         elif ii == 'H2':
             if compare_pitch > 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
-                
+
         # in case of H3
         elif ii == 'H3':
             if compare_yaw > 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
-                
+
         # in case of H4
         else:
             if compare_yaw < 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is negative(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
         print coil_gain
         ezca['VIS-%s_TM_COILOUTF_%s_GAIN'%(optic,ii)] = coil_gain[ii]
     return coil_gain
 
 def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10,settleDuration=5,avgDuration=10):
     logger.debug('--------------Start coil check the sign of %s %s coils------------------'%(optic,stage))
-    '''
-    warningflag = True
-    while any(ezca['K1:VIS-%s_MN_OPTICALIGN_%s_OUTPUT'%(optic,DoF)] > 0 for DoF in ['YAW','PIT']):
-        if warningflag:
-            logger.debug('MN OPTIC ALIGN is engaged now . Please turn off MN OPTIC ALIGN.')
-            warningflag = False
-    '''
+
+    #  Turn off OPTIC ALIGN
+    if stage=='MN':
+        for dof in ['P','Y']:
+            optic_align_offset = ezca.get_LIGOFilter('VIS-%s_MN_OPTICALIGN_%s'%(optic,dof))
+            optic_align_offset.ramp_offset(0, ramp_time = 30, wait=True)
+            time.sleep(settleDuration)
+
     # Put the same value in GAIN channels of all COILOUTF filters
     default_gain = 1.0
     for ii in ['V1','V3','V2','H1','H2','H3']:
@@ -146,12 +147,12 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10,settleDuration=5,avgDuratio
     yaw_before = np.mean(data_before[1].data)
     trans_before = np.mean(data_before[2].data)
     roll_before = np.mean(data_before[3].data)
-    
+
     logger.debug('%s PS value before putting offset:(pitch,yaw,trans,roll) = (%f,%f,%f,%f)'%(stage,pit_before,yaw_before,trans_before,roll_before))
-    
+
     # put the offset in each coils and fetch the oplev value in this time one by one
     default_offset = 5000
-    coil_gain = {} # The void dict to put the gains of MN coils 
+    coil_gain = {} # The void dict to put the gains of MN coils
     for ii in ['V1','V2','V3','H1','H2','H3']:
         logger.debug('Put %d cnts as offset in %s %s %s coil, ramp time = %d'%(default_offset, optic, stage, ii, offTRAMP))
         coil_offset = ezca.get_LIGOFilter('VIS-%s_%s_COILOUTF_%s'%(optic, stage, ii))
@@ -164,14 +165,14 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10,settleDuration=5,avgDuratio
         yaw_after = np.mean(data_after[1].data)
         trans_after = np.mean(data_after[2].data)
         roll_after = np.mean(data_after[3].data)
-            
+
         logger.debug('%s PS  value after putting offset in %s : (pitch,yaw,trans,roll) = (%f,%f,%f,%f)'%(stage,ii,pit_after,yaw_after,trans_after,roll_after))
 
         logger.debug('Turn off the offset of %s %s %s coil, ramp time = %d'%(optic, stage, ii, offTRAMP))
         coil_offset.ramp_offset(0, ramp_time = offTRAMP, wait=True)
         coil_offset.turn_off('OFFSET')
         time.sleep(settleDuration)
-        
+
         compare_pitch = pit_after - pit_before
         compare_yaw   = yaw_after - yaw_before
         compare_trans = trans_after - trans_before
@@ -179,69 +180,69 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10,settleDuration=5,avgDuratio
 
         # in case of V1
         if ii == 'V1':
-            if compare_pitch > 0:
+            if compare_pitch < 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
 
         # in case of V2
         if ii == 'V2':
-            if compare_roll < 0:
+            if compare_roll > 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
-                
+
         # in case of V3
         elif ii == 'V3':
-            if compare_pitch < 0:
+            if compare_pitch > 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
 
         # in case of H1
         if ii == 'H1':
-            if compare_yaw > 0:
-                logger.debug('The sign of %s coil is negative(-)'%(ii))
-                coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
-            else:
-                logger.debug('The sign of %s coil is positive(+)'%(ii))
-                coil_gain["%s"%(ii)] = default_gain
-                
-        # in case of H2
-        elif ii == 'H2':
             if compare_yaw < 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
+            else:
+                logger.debug('The sign of %s coil is positive(+)'%(ii))
+                coil_gain["%s"%(ii)] = default_gain
+
+        # in case of H2
+        elif ii == 'H2':
+            if compare_yaw > 0:
+                logger.debug('The sign of %s coil is negative(-)'%(ii))
+                coil_gain["%s"%(ii)] = default_gain*(-1.0)
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
 
         # in case of H3
         elif ii == 'H3':
-            if compare_trans > 0:
+            if compare_trans < 0:
                 logger.debug('The sign of %s coil is negative(-)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain*(-1.0)
-                
+
             else:
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
-                
+
         print coil_gain
         ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(optic,stage,ii)] = coil_gain[ii]
     return coil_gain
 
-                
+
 #Function for balance the coil
 def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avgDuration=10,settleDuration=5,oscTRAMP=10):
     logger.debug('--------------Start coil balancing of %s %s %s------------------'%(optic,stage,coil))
@@ -263,10 +264,10 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
 
     logger.debug('Turn on the filter named %s in DEMOD_Q filter bank'%Q.Name00.get())
     Q.turn_on('FM1')
-    
+
     # if there is a proper comb filter in I and Q FB, engage it
     for ii in range(10):
-        
+
         exec('FMnameI = I.Name%s.get()'%str(ii).zfill(2))
         exec('FMnameQ = Q.Name%s.get()'%str(ii).zfill(2))
 
@@ -277,6 +278,15 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
             logger.debug('Turn on the filter named %s in DEMOD_Q filter bank'%FMnameQ)
             Q.turn_on('FM%d'%(ii+1))
 
+
+    '''
+    #  Turn off OPTIC ALIGN before starting MN coil balance
+    for dof in ['P','Y']:
+        optic_align_offset = ezca.get_LIGOFilter('VIS-%s_MN_OPTICALIGN_%s_OFFSET'%(optic,dof))
+        #optic_align_offset.turn_on('OFFSET')
+        optic_align_offset.ramp_offset(offset = 0, ramp_time = 30, wait=True)
+        time.sleep(settleDuration)
+    '''
 
     # input and output matrix setting
     actDoF = {'V3':'V','H2':'L','H3':'T','H4':'L'}
@@ -323,7 +333,7 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
         sw_range = [max(sweeprange)*(-1.0),min(sweeprange)*(-1.0)]
     else:
         sw_range = sweeprange
-            
+
     logger.debug('Sweeprange of %s COILOUTF gain is [%f, %f]'%(coil, min(sw_range),max(sw_range)))
     logger.debug('The number of sweep point is %d'%(Np))
     sweepstep = (max(sw_range)-min(sw_range))/((Np-1)*1.)
@@ -346,11 +356,11 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
 
         # Check suspension condition
         #CheckSuspension(optic,logger)
-        
+
         # wait for a while.
         logger.debug('Waiting for %d seconds'%settleDuration)
         time.sleep(settleDuration)
-        
+
         # fetch the data
         d = cdsutils.getdata(['K1:'+I.filter_name+'_OUT','K1:'+Q.filter_name+'_OUT'],duration=avgDuration)
         avgI.append(np.mean(d[0].data))
@@ -360,7 +370,7 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
         logger.debug('Result: (I, Q) = (%f, %f)'%(avgI[-1],avgQ[-1]))
         logger.debug('Std: (I, Q) = (%f, %f)'%(stdI[-1],stdQ[-1]))
     return gg, avgI, avgQ, stdI, stdQ
-        
+
 
 if __name__ == '__main__':
     ezca = Ezca()
@@ -377,7 +387,7 @@ if __name__ == '__main__':
         'IM':{'V3':3000,'H2':500,'H3':500},
         'TM':{'H2':5000,'H4':5000}
     }
-    
+
     ## Parse arguments and define constants
     parser=argparse.ArgumentParser(description=
 '''Balance the coils with COILOUTF gains of TypeA
@@ -406,7 +416,7 @@ e.g. balanceCOILOUTF.py ITMY
         if not args.STAGE in ['IM','MN','TM']:
             print 'Invalid Stage.'
         stages = [args.STAGE,]
-    
+
     if args.COIL == 'ALL':
         coils = {
             # 'MN':['V3','H2','H3'],
@@ -431,7 +441,7 @@ e.g. balanceCOILOUTF.py ITMY
             'IM':['H2'],
             'TM':['H2']
             }
-        
+
     oscAMP = (args.AMP)
     sweeprange = (args.SWEEPRANGE)
     Npoints = (args.NPOINTS)
@@ -450,7 +460,7 @@ e.g. balanceCOILOUTF.py ITMY
     log_dir = '/users/Commissioning/scripts/diagonalization/log/'
     date_str = '%d%s%s_%s%s'%(year,str(month).zfill(2),str(day).zfill(2),str(hour).zfill(2),str(minute).zfill(2))
     log_file = log_dir + 'archives/balanceCOILOUTF_%s_'%optic + date_str + '.log'
-    
+
     logger=logging.getLogger('flogger')
     logger.setLevel(logging.DEBUG)
     handler=logging.StreamHandler()
@@ -473,7 +483,7 @@ e.g. balanceCOILOUTF.py ITMY
                 ## fitting
                 pI = np.polyfit(gg,avgI,1)
                 pQ = np.polyfit(gg,avgQ,1)
-                pGAIN = float(pI[1])/float(pI[0])*(-1) # final gain of the balanced coil 
+                pGAIN = float(pI[1])/float(pI[0])*(-1) # final gain of the balanced coil
 
                 logger.debug('fitresult with a*gain + b:')
                 logger.debug('-I (a,b) = (%f,%f)'%(pI[0],pI[1]))
@@ -482,7 +492,7 @@ e.g. balanceCOILOUTF.py ITMY
                 logger.debug('balance')
                 logger.debug('put %f in VIS-%s_%s_COILOUTF_%s_GAIN'%(pGAIN, optic, stage, coil))
                 ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(optic, stage, coil)] = pGAIN
-            
+
                 ## plot results
                 plt.close()
                 plt.scatter(gg,avgI,label="I")
@@ -490,14 +500,14 @@ e.g. balanceCOILOUTF.py ITMY
                 plt.plot(gg,np.polyval(pI,gg))
                 plt.plot(gg,np.polyval(pQ,gg))
                 plt.grid()
-            
+
                 #plt.plot(gg,fitfunc(paramQ[0],paramQ[1],np.array(gg)))
                 plt.xlabel('%s_%s_COILOUTF_%s_GAIN'%(optic, stage, coil))
                 plt.ylabel('Amplitude of demodulated signal')
                 plt.legend()
                 plt.savefig(log_dir+'archives/balanceCOILOUTF_%s_'%optic + date_str +'_%s_%s'%(stage, coil)+'.png')
                 plt.savefig(log_dir+'balanceCOILOUTF_%s_%s_%s_latest'%(optic, stage, coil)+'.png')
-                
+
 
         os.system('cp %s %s'%(log_file,(log_dir+'balanceCOILOUTF_%s_latest.log'%optic)))
         ShutdownLOCKIN(optic)
@@ -505,4 +515,3 @@ e.g. balanceCOILOUTF.py ITMY
         ## Shut down LOCKIN
         logger.debug('Keyboard Interruption detected! Shutting down...')
         ShutdownLOCKIN(optic)
-        

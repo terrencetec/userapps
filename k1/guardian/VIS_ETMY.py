@@ -51,7 +51,7 @@ note
     If integrator is True:
         (0. If gain is 0, change gain to 1 with input off. Wait for ramping)
         1. Turn init_FM on
-        2. Engage input. 
+        2. Engage input.
         3. Toggle first component of bst_FM. Wait for ramping
             4. Toggle second component of bst_FM
                 ...
@@ -131,7 +131,7 @@ MN_COIL_BALANCE = {
     'coils':['V3','H2','H3'],
     'freq':{'V3':5,'H2':5,'H3':6},
     'oscAMP':{'V3':3000,'H2':3000,'H3':3000},
-    'sweeprange':[0.9,1.5],
+    'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
     'SettleDuration':5,
@@ -141,7 +141,7 @@ MN_COIL_BALANCE = {
 IM_COIL_BALANCE = {
     'coils':['V3','H2','H3'],
     'freq':{'V3':5,'H2':5,'H3':6},
-    'oscAMP':{'V3':3000,'H2':500,'H3':500},
+    'oscAMP':{'V3':500,'H2':500,'H3':500},
     'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
@@ -160,7 +160,7 @@ TM_COIL_BALANCE = {
     'oscTRAMP':10
 }
 
-        
+
 from TYPEA import *
 #from GRD_VIS import *
 from GRD_VIS import ENGAGE_TM_OLDAMP, ENGAGE_IM_OLDAMP, ENGAGE_MN_OLDAMP, ENGAGE_MN_MNOLDAMP, DISABLE_TM_OLDAMP, DISABLE_IM_OLDAMP, DISABLE_MN_OLDAMP, DISABLE_MN_MNOLDAMP, ENGAGE_MN_LOCALDAMP, DISABLE_MN_LOCALDAMP, PAY_LOCALDAMPED, edges, ALIGNED, TRANSIT_TO_OBS, OBSERVATION, BACK_TO_ALIGNED, MISALIGNING, MISALIGNED, REALIGNING, ENGAGE_BPCOMB, DISABLE_BPCOMB, ENGAGE_OLSERVO, OLDAMPED, ENGAGE_MN_MNOLDC, DISABLE_MN_MNOLDC, DISABLE_IM_OLDC, DISABLE_MN_OLDC, ENGAGE_IM_OLDC, ENGAGE_MN_OLDC, TRANSIT_TO_LOCKACQ, LOCK_ACQUISITION, BACK_TO_LOCKACQ, REMOVE_ISCSIG,INIT_MON,COIL_BALANCED,MN_COIL_BALANCING,IM_COIL_BALANCING,TM_COIL_BALANCING
@@ -169,5 +169,6 @@ edges.extend([('TWR_DAMPED','INIT_MON'),
               ('TWR_DAMPED','MN_COIL_BALANCING'),
               ('MN_COIL_BALANCING','IM_COIL_BALANCING'),
               ('IM_COIL_BALANCING','TM_COIL_BALANCING'),
-              ('TM_COIL_BALANCING','COIL_BALANCED')
+              ('TM_COIL_BALANCING','COIL_BALANCED'),
+              ('COIL_BALANCED','TWR_DAMPED')
           ])

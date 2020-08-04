@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=754
-		y=243
+		x=1081
+		y=235
 		width=1003
 		height=512
 	}
@@ -6025,7 +6025,7 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 10 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 10 9"
 	}
 	clr=14
 	bclr=4
@@ -6041,7 +6041,7 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -10 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -10 9 &"
 	}
 	clr=14
 	bclr=4
@@ -6057,7 +6057,7 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 6 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 6 9 &"
 	}
 	clr=14
 	bclr=4
@@ -6073,7 +6073,7 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -6 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -6 9 &"
 	}
 	clr=14
 	bclr=4
@@ -6089,7 +6089,7 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 1 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 1 9 &"
 	}
 	clr=14
 	bclr=4
@@ -6105,9 +6105,371 @@ composite {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -1 9"
+		args="/users/Commissioning/scripts/fotongain.py $(IFO)MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -1 9 &"
 	}
 	clr=14
 	bclr=4
 	label=" -1dB"
+}
+"related display" {
+	object {
+		x=734
+		y=173
+		width=11
+		height=64
+	}
+	display[0] {
+		label="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER"
+		name="STAGE_DIVIDER.adl"
+	}
+	clr=14
+	bclr=55
+	visual="invisible"
+}
+rectangle {
+	object {
+		x=730
+		y=170
+		width=20
+		height=71
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=732
+		y=172
+		width=16
+		height=67
+	}
+	"basic attribute" {
+		clr=6
+	}
+}
+rectangle {
+	object {
+		x=735
+		y=189
+		width=10
+		height=47
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+composite {
+	object {
+		x=736
+		y=190
+		width=8
+		height=45
+	}
+	"composite name"=""
+	children {
+		composite {
+			object {
+				x=736
+				y=190
+				width=8
+				height=8
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=736
+						y=190
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+				}
+				rectangle {
+					object {
+						x=736
+						y=190
+						width=7
+						height=8
+					}
+					"basic attribute" {
+						clr=12
+						width=3
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=736
+				y=199
+				width=8
+				height=8
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=736
+						y=199
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+				}
+				rectangle {
+					object {
+						x=736
+						y=199
+						width=7
+						height=8
+					}
+					"basic attribute" {
+						clr=12
+						width=3
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=736
+				y=208
+				width=8
+				height=8
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=736
+						y=208
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+				}
+				rectangle {
+					object {
+						x=736
+						y=208
+						width=7
+						height=8
+					}
+					"basic attribute" {
+						clr=12
+						width=3
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=736
+				y=217
+				width=8
+				height=8
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=736
+						y=217
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+				}
+				rectangle {
+					object {
+						x=736
+						y=217
+						width=7
+						height=8
+					}
+					"basic attribute" {
+						clr=12
+						width=3
+					}
+				}
+			}
+		}
+		composite {
+			object {
+				x=736
+				y=226
+				width=8
+				height=8
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=736
+						y=226
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=14
+						width=3
+					}
+				}
+				rectangle {
+					object {
+						x=736
+						y=226
+						width=7
+						height=8
+					}
+					"basic attribute" {
+						clr=12
+						width=3
+					}
+				}
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=736
+		y=190
+		width=8
+		height=45
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=736
+				y=190
+				width=8
+				height=8
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER_1_1"
+			}
+		}
+		rectangle {
+			object {
+				x=736
+				y=199
+				width=8
+				height=8
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER_2_1"
+			}
+		}
+		rectangle {
+			object {
+				x=736
+				y=208
+				width=8
+				height=8
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER_3_1"
+			}
+		}
+		rectangle {
+			object {
+				x=736
+				y=217
+				width=8
+				height=8
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER_4_1"
+			}
+		}
+		rectangle {
+			object {
+				x=736
+				y=226
+				width=8
+				height=8
+			}
+			"basic attribute" {
+				clr=16
+				width=3
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_STAGE_DIVIDER_5_1"
+			}
+		}
+	}
+}
+text {
+	object {
+		x=758
+		y=62
+		width=48
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="gain"
+}
+text {
+	object {
+		x=791
+		y=63
+		width=48
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="phase"
+}
+text {
+	object {
+		x=724
+		y=154
+		width=41
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="stage"
 }

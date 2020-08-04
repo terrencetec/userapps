@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/MODAL_DAMP/SERVO_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SERVO_MINI.adl"
 	version=030107
 }
 display {
 	object {
-		x=1094
-		y=669
+		x=1081
+		y=653
 		width=901
 		height=156
 	}
@@ -162,9 +162,9 @@ text {
 "related display" {
 	object {
 		x=6
-		y=26
+		y=30
 		width=36
-		height=14
+		height=24
 	}
 	display[0] {
 		label="No1"
@@ -365,8 +365,8 @@ text {
 }
 "related display" {
 	object {
-		x=6
-		y=41
+		x=480
+		y=58
 		width=36
 		height=14
 	}
@@ -436,7 +436,7 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 10 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 10 9 &"
 	}
 	clr=14
 	bclr=4
@@ -452,7 +452,7 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -10 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -10 9 &"
 	}
 	clr=14
 	bclr=4
@@ -468,7 +468,7 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 6 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 6 9 &"
 	}
 	clr=14
 	bclr=4
@@ -484,7 +484,7 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -6 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -6 9 &"
 	}
 	clr=14
 	bclr=4
@@ -500,7 +500,7 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 1 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO 1 9 &"
 	}
 	clr=14
 	bclr=4
@@ -516,9 +516,39 @@ text {
 	command[0] {
 		label="python"
 		name="python"
-		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -1 9"
+		args="/users/Commissioning/scripts/fotongain.py K1MODAL$(OPTIC).txt $(OPTIC)_MODE$(MODEINDEX)_SERVO -1 9 &"
 	}
 	clr=14
 	bclr=4
 	label=" -1dB"
+}
+"message button" {
+	object {
+		x=584
+		y=57
+		width=14
+		height=14
+	}
+	control {
+		chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_SERVO_GAIN"
+		clr=14
+		bclr=3
+	}
+	label="0"
+	press_msg="0"
+}
+"message button" {
+	object {
+		x=600
+		y=57
+		width=14
+		height=14
+	}
+	control {
+		chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_SERVO_GAIN"
+		clr=14
+		bclr=3
+	}
+	label="1"
+	press_msg="1"
 }

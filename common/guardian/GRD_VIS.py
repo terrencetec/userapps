@@ -9,6 +9,12 @@ import vislib
 import time
 import foton
 
+import numpy as np
+import balanceCOILOUTF_TypeA
+import logging, sys, os
+from datetime import datetime
+import matplotlib.pyplot as plt
+
 import importlib
 sysmod = importlib.import_module(SYSTEM)
 
@@ -79,7 +85,7 @@ def engage_main(self):
                 clear_history=(not self.integrator),
                 hold_offset=True,
                 disable_input=self.integrator)
-        
+
 def engage_run(self):
     return all([kagralib.engage_FB(self,self.chanfunc(OPTIC,DoF,self.stage),
                                    FM_list=self.bst_FM[DoF],
@@ -111,8 +117,8 @@ class engage_damping(GuardState):
     @check_TWWD
     def run(self):
         return engage_run(self)
-        
-# Due to the difference of WDs to be checked, we need another class for Payload. 
+
+# Due to the difference of WDs to be checked, we need another class for Payload.
 class engage_damping_for_PAY(GuardState):
     def __init__(self, logfunc, chanfunc, stage, init_FM, bst_FM, ramptime, integrator, initialization=True):
         super(engage_damping_for_PAY, self).__init__(logfunc)
@@ -131,7 +137,7 @@ class engage_damping_for_PAY(GuardState):
     @check_WD
     def main(self):
         engage_main(self)
-        
+
     @check_TWWD
     @check_WD
     def run(self):
@@ -156,7 +162,7 @@ class disable_damping_for_PAY(GuardState):
         self.counter = 0
         self.timer['waiting'] = 0
 
-    @check_WD            
+    @check_WD
     @check_TWWD
     def run(self):
         return all([kagralib.disable_FB(self,self.chanfunc(OPTIC,DoF,self.stage),FM_list=self.bst_FM[DoF],ramptime=self.ramptime,integrate=self.integrator,zero_gain=self.zero_gain,wait=self.wait) for DoF in self.DoFs])
@@ -177,7 +183,7 @@ class disable_damping(GuardState):
     def main(self):
         self.counter = 0
         self.timer['waiting'] = 0
-            
+
     @check_TWWD
     def run(self):
         return all([kagralib.disable_FB(self,self.chanfunc(OPTIC,DoF,self.stage),FM_list=self.bst_FM[DoF],ramptime=self.ramptime,integrate=self.integrator, zero_gain=self.zero_gain, wait=self.wait) for DoF in self.DoFs])
@@ -194,16 +200,16 @@ class TRIPPED(GuardState):
     def main(self):
         notify("please restart WatchDog!")
         self.timer['speak'] = 10
-            
+
 
     def run(self):
         lib.all_off_quick(self,optic)
         ezca['VIS-'+optic+'_PAY_MASTERSWITCH'] = 'OFF'
         ezca['VIS-'+optic+'_MASTERSWITCH'] = 'OFF'
-        
+
         kagralib.speak_aloud(optic+' watchdog has tripped')
         kagralib.speak_aloud('Please check the status of '+optic)
-        
+
         return not (lib.is_pay_tripped(optic,par.BIO_PAY) or lib.is_twr_tripped(optic,par.BIO_TWR))
 
 
@@ -219,7 +225,7 @@ class SAFE(GuardState):
 
 class REMOVE_TWR_DC(GuardState):
     pass
-    
+
 class TWR_IDLE(GuardState):
     index = 1
     request = True
@@ -279,8 +285,8 @@ class ENGAGE_BF_LOCALDAMP(engage_damping):
 
     def run(self):
         if not self.timer['waiting']:
-            return 
-        
+            return
+
         if self.counter == 0:
             if super(ENGAGE_BF_LOCALDAMP,self).run():
                 self.timer['waiting'] = 2
@@ -302,9 +308,9 @@ class ENGAGE_BF_LOCALDAMP(engage_damping):
         elif self.counter == 2:
             filt = ezca.get_LIGOFilter('VIS-%s_BF_TEST_Y'%OPTIC)
             return not filt.is_offset_ramping()
-        
-        
-                
+
+
+
 
 class TWR_DAMPED(GuardState):
     index = 50
@@ -313,11 +319,11 @@ class TWR_DAMPED(GuardState):
     def main(self):
         if sustype == 'TypeB':
             ezca['VIS-%s_IM_DAMPMODE_LOAD_MATRIX'%OPTIC] = 1
-            
+
     @check_TWWD
     def run(self):
         return True
-    
+
 
 class ENGAGE_MN_LOCALDAMP(engage_damping_for_PAY):
     index = 60
@@ -334,7 +340,7 @@ class ENGAGE_MN_LOCALDAMP(engage_damping_for_PAY):
         )
 
 
-    
+
 class ENGAGE_IM_LOCALDAMP(engage_damping_for_PAY):
     index = 70
     request = False
@@ -384,7 +390,7 @@ class MISALIGNED(GuardState):
     @check_WD
     def main(self):
         kagralib.speak_aloud('%s is misaligned'%(OPTIC))
-    
+
     def run(self):
         return True
 
@@ -402,7 +408,7 @@ class REALIGNING(GuardState):
     @check_WD
     def run(self):
         return not self.ofschan.is_offset_ramping()
-    
+
 
 class ENGAGE_OLSERVO(engage_damping_for_PAY):
     index = 105
@@ -427,7 +433,7 @@ class CHECK_TM_ANGLE(GuardState):
     @check_TWWD
     def main(self):
         self.timer['speak'] = 60
-    
+
     @check_WD
     @check_TWWD
     def run(self):
@@ -443,7 +449,7 @@ class CHECK_TM_ANGLE(GuardState):
             self.timer['speak'] = 120
 
         return not any([is_too_far, is_outrange])
-'''  
+'''
 
 
 class ENGAGE_MN_MNOLDAMP(engage_damping_for_PAY):
@@ -471,11 +477,11 @@ class ENGAGE_MN_OLDAMP(engage_damping_for_PAY):
             chanfunc = vislib.OLDamp,
             stage = 'MN',
             init_FM = sysmod.MN_OLDAMP['init_FM'],
-            bst_FM = sysmod.MN_OLDAMP['bst_FM'],
             ramptime = sysmod.MN_OLDAMP['ramptime'],
+            bst_FM = sysmod.MN_OLDAMP['bst_FM'],
             integrator = sysmod.MN_OLDAMP['integrator'],
         )
-        
+
 class ENGAGE_IM_OLDAMP(engage_damping_for_PAY):
     index = 130
     request = False
@@ -530,7 +536,7 @@ class OLDAMPED(GuardState):
     @check_TWWD
     def run(self):
         return True
-    
+
 class ENGAGE_MN_MNOLDC(engage_damping_for_PAY):
     index = 310
     request = False
@@ -562,7 +568,7 @@ class ENGAGE_MN_OLDC(engage_damping_for_PAY):
             integrator = False,
             initialization = False,
         )
-        
+
 class ENGAGE_IM_OLDC(engage_damping_for_PAY):
     index = 330
     request = False
@@ -615,7 +621,7 @@ class ENGAGE_OLSERVO_DC(engage_damping_for_PAY):
     @check_OL
     def run(self):
         return super(ENGAGE_OLSERVO_DC,self).run()
-    
+
 class ALIGNED(GuardState):
     index = 500
     request = True
@@ -632,7 +638,7 @@ class ALIGNED(GuardState):
                     OPAL.ramp_offset(0,0,False)
                     OPAL.ramp_gain(1,0,False)
                     OPAL.turn_on('OFFSET')
-                    
+
             vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
 
     @check_WD
@@ -644,7 +650,7 @@ class ALIGNED(GuardState):
                 vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='run')
             except:
                 vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
-                
+
         return True
 
 
@@ -665,25 +671,25 @@ class REMOVE_ISCSIG(GuardState):
         for stage in ['TM','IM','MN']:
             ezca['VIS-%s_%s_ISCRAMPHOLD_TRAMP'%(OPTIC,stage)] = self.TRAMP
 
-            
+
 
     def run(self):
         if not self.timer['waiting']:
             return None
-        
+
         if self.counter == 0:
             for DoF in ['LEN','PIT','YAW']:
                 vislib.ISCINF(OPTIC, DOF = DoF).turn_off('INPUT')
                 self.timer['waiting'] = 0.3
             self.counter += 1
-            
+
         elif self.counter == 1:
             for DoF in ['LEN','PIT','YAW']:
                 for stage in ['MN','IM','TM']:
                     vislib.Lock(OPTIC, DOF = DoF, stage = stage).RSET.put(2)
 
             self.counter += 1
-                    
+
         elif self.counter == 2:
             ezca['VIS-%s_ISCWD_RESET'%OPTIC] = 1
             time.sleep(0.5)
@@ -696,13 +702,13 @@ class REMOVE_ISCSIG(GuardState):
                 self.counter -= 1
             else:
                 return True
-            
-            
-                
-            
-            
-                
-            
+
+
+
+
+
+
+
 class LOCK_ACQUISITION(GuardState):
     index = 800
     request = True
@@ -728,7 +734,7 @@ class OBSERVATION(GuardState):
     def run(self):
         return True
 
-    
+
 class BACK_TO_LOCKACQ(GuardState):
     index = 990
     request = False
@@ -826,7 +832,7 @@ class DISABLE_MN_MNOLDC(disable_damping_for_PAY):
 class DISABLE_BPCOMB(GuardState):
     index = 295
     request = False
-    
+
     @check_WD
     @check_TWWD
     def main(self):
@@ -984,7 +990,7 @@ class DISABLE_BF_LOCALDAMP(disable_damping):
             return not filt.is_offset_ramping()
 
 
-    
+
 class DISABLE_GAS_LOCALDAMP(disable_damping_for_PAY):
     index = 8
     request = False
@@ -1012,11 +1018,6 @@ class CALMDOWN(GuardState):
 # COIL BALANCE
 # add by K. TANAKA on 21 Jul 2020
 #############
-import numpy as np
-import balanceCOILOUTF_TypeA
-import logging, sys, os
-from datetime import datetime
-import matplotlib.pyplot as plt
 
 def coil_engage_main(self):
     self.counter = 0
@@ -1037,15 +1038,15 @@ def coil_engage_main(self):
     logger.setLevel(logging.DEBUG)
     handler=logging.StreamHandler()
     logger.addHandler(handler)
-    #handler=logging.FileHandler(filename=log_file)
-    #logger.addHandler(handler)
+    handler=logging.FileHandler(filename=log_file)
+    logger.addHandler(handler)
 
     # define sign of coilout
     if self.stage == 'TM':
         coil_gain = balanceCOILOUTF_TypeA.SIGN_TM_COILOUT(self.optic,logger)
     else:
         coil_gain = balanceCOILOUTF_TypeA.SIGN_MNIM_COILOUT(self.optic,self.stage,logger)
-    
+
     for coil in self.coils:
         gg,avgI,avgQ,stdI,stdQ = balanceCOILOUTF_TypeA.Balancing(
             self.optic,
@@ -1057,34 +1058,41 @@ def coil_engage_main(self):
             self.sweeprange,
             logger
             )
-        # fititing
+        ### fitting
         pI = np.polyfit(gg,avgI,1)
         pQ = np.polyfit(gg,avgQ,1)
         pGAIN = float(pI[1])/float(pI[0])*(-1) # final gain of the balanced coil
-                
+
         logger.debug('fitresult with a*gain + b:')
         logger.debug('-I (a,b) = (%f,%f)'%(pI[0],pI[1]))
         logger.debug('-Q (a,b) = (%f,%f)'%(pQ[0],pQ[1]))
         logger.debug('%s BALANCED GAIN = %f'%(coil,pGAIN))
         logger.debug('put %f in VIS-%s_%s_COILOUTF_%s_GAIN'%(pGAIN, self.optic, self.stage, coil))
         ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(self.optic, self.stage, coil)] = pGAIN
-                
-        # plot results
-        #plt.close()
-        #plt.scatter(gg,avgI)
-        #plt.scatter(gg,avgQ,color='red')
-        #plt.plot(gg,np.polyval(pI,gg))
-        #plt.plot(gg,np.polyval(pQ,gg))
-        #plt.plot(gg,fitfunc(paramQ[0],paramQ[1],np.array(gg)))
-        #plt.savefig(log_dir+'archives/balanceCOILOUTF_%s_'%(self.optic) + date_str +'_%s_%s'%(self.stage,coil)+'.png')
-        #plt.savefig(log_dir+'balanceCOILOUTF_%s_%s_%s_latest'%(self.optic,self.stage,coil)+'.png')
-                
 
-    #os.system('cp %s %s'%(log_file,(log_dir+'balanceCOILOUTF_%s_latest.log'%(self.optic))))
+        ### plot results
+        plt.close()
+        plt.scatter(gg,avgI,label="I")
+        plt.scatter(gg,avgQ,color='red',label="Q")
+        plt.plot(gg,np.polyval(pI,gg))
+        plt.plot(gg,np.polyval(pQ,gg))
+        plt.grid()
+
+        plt.title(date_str)
+        plt.xlabel('%s_%s_COILOUTF_%s_GAIN'%(self.optic, self.stage, coil))
+        plt.ylabel('Amplitude of demodulated signal')
+        plt.legend()
+
+        plt.savefig(log_dir+'archives/balanceCOILOUTF_%s_'%(self.optic) + date_str +'_%s_%s'%(self.stage,coil)+'.png')
+        plt.savefig(log_dir+'balanceCOILOUTF_%s_%s_%s_latest'%(self.optic,self.stage,coil)+'.png')
+
+
+    os.system('cp %s %s'%(log_file,(log_dir+'balanceCOILOUTF_%s_latest.log'%(self.optic))))
     balanceCOILOUTF_TypeA.ShutdownLOCKIN(self.optic)
+    self.timer['waiting'] = 3
 
 def coil_engage_run(self):
-    return True
+    return self.timer['waiting']
 
 
 class COIL_BALANCED(GuardState):
@@ -1094,8 +1102,8 @@ class COIL_BALANCED(GuardState):
     @check_TWWD
     @check_WD
 
-    
-    
+
+
     def run(self):
         return True
 
@@ -1109,22 +1117,22 @@ class engage_coil_balance(GuardState):
         self.oscAMP = oscAMP
         #self.coil_gain = coil_gain
         self.sweeprange = sweeprange
-       
-   
+
+
 
     @check_WD
     @check_TWWD
     def main(self):
         coil_engage_main(self)
-        
+
 
     @check_WD
     @check_TWWD
     def run(self):
-        coil_engage_run(self)
+        return coil_engage_run(self)
 
 class MN_COIL_BALANCING(engage_coil_balance):
-    index = 73
+    index = 72
     request = False
     def __init__(self, logfunc=None):
         super(MN_COIL_BALANCING,self).__init__(
@@ -1143,7 +1151,7 @@ class MN_COIL_BALANCING(engage_coil_balance):
         )
 
 class IM_COIL_BALANCING(engage_coil_balance):
-    index = 72
+    index = 73
     request = False
     def __init__(self, logfunc=None):
         super(IM_COIL_BALANCING,self).__init__(
@@ -1184,14 +1192,14 @@ class TM_COIL_BALANCING(engage_coil_balance):
 
 
 ##################################################
-# SUSCHAR 
+# SUSCHAR
 ##################################################
 class INIT_MON(GuardState):
     request = True
     index = 58
 
     def main(self):
-        
+
 
         # copy INF
         '''
@@ -1210,12 +1218,12 @@ class INIT_MON(GuardState):
                 for index in range(10):
                     kagralib.copy_FB(FBs,PSINF[4:],FBs_MON,PSINF_MON[4:])
                 ezca[PSINF_MON+'_RSET'] = 1
-        FBs_MON.write()   
+        FBs_MON.write()
         '''
 
 
-                    
-    
+
+
 
 ##################################################
 # EDGES
@@ -1239,7 +1247,7 @@ if sustype == 'TypeB':
         ('DISENGAGING_GAS_CONTROL','IP_CONTROL_ENGAGED'),
 
         ('PAY_TRIPPED','TWR_DAMPED'),
-        
+
         ('TWR_DAMPED','ENGAGE_IM_LOCALDAMP'),
         ('ENGAGE_IM_LOCALDAMP','PAY_LOCALDAMPED'),
         ('PAY_LOCALDAMPED','DISABLE_IM_LOCALDAMP'),
@@ -1268,7 +1276,7 @@ if sustype == 'TypeB':
     ]
 
 elif sustype == 'TypeBp':
-    
+
     edges = [
         ('INIT','SAFE'),
         ('TRIPPED','SAFE'),
@@ -1285,7 +1293,7 @@ elif sustype == 'TypeBp':
         ('ENGAGE_IM_LOCALDAMP','PAY_LOCALDAMPED'),
         ('PAY_LOCALDAMPED','DISABLE_IM_LOCALDAMP'),
         ('DISABLE_IM_LOCALDAMP','TWR_DAMPED'),
-        
+
         ('PAY_LOCALDAMPED','ENGAGE_OLSERVO'),
         ('ENGAGE_OLSERVO','DISABLE_OLSERVO'),
         ('DISABLE_OLSERVO','ENGAGE_OLSERVO'),
@@ -1316,7 +1324,7 @@ elif sustype == 'TypeBp':
 
         ('ENGAGE_OLSERVO_DC','ALIGNED'),
         ('ALIGNED','DISABLE_OLSERVO_DC'),
-        
+
         ('ALIGNED','TRANSIT_TO_LOCKACQ'),
         ('TRANSIT_TO_LOCKACQ','LOCK_ACQUISITION'),
         ('LOCK_ACQUISITION','TRANSIT_TO_OBS'),
@@ -1333,7 +1341,7 @@ elif sustype == 'TypeBp':
     ]
 
 elif sustype == 'TypeA':
-    
+
     edges = [
     ('INIT','SAFE'),
         ('RESET', 'SAFE'),
@@ -1346,7 +1354,7 @@ elif sustype == 'TypeA':
         ('TWR_DAMPED','DISABLE_TWR_DAMPING'),
         ('DISABLE_TWR_DAMPING','UNDAMPED'),
         ('UNDAMPED','SAFE'),
-        
+
         ('TWR_DAMPED','ENGAGE_MN_LOCALDAMP'),
         ('ENGAGE_MN_LOCALDAMP','PAY_LOCALDAMPED'),
         ('PAY_LOCALDAMPED','DISABLE_MN_LOCALDAMP'),
@@ -1361,7 +1369,7 @@ elif sustype == 'TypeA':
         ('ENGAGE_MN_OLDAMP','DISABLE_MN_OLDAMP'),
         ('DISABLE_MN_OLDAMP','ENGAGE_MN_OLDAMP'),
         ('DISABLE_MN_OLDAMP','DISABLE_MN_MNOLDAMP'),
-        #IMOLDAMP 
+        #IMOLDAMP
         ('ENGAGE_MN_OLDAMP','ENGAGE_IM_OLDAMP'),
         ('ENGAGE_IM_OLDAMP','DISABLE_IM_OLDAMP'),
         ('DISABLE_IM_OLDAMP','ENGAGE_IM_OLDAMP'),
@@ -1374,10 +1382,10 @@ elif sustype == 'TypeA':
         # BPCOMB
         ('ENGAGE_TM_OLDAMP','ENGAGE_BPCOMB'),
         ('ENGAGE_BPCOMB','DISABLE_BPCOMB'),
-        ('DISABLE_BPCOMB','ENGAGE_BPCOMB'),        
+        ('DISABLE_BPCOMB','ENGAGE_BPCOMB'),
         ('DISABLE_BPCOMB','DISABLE_TM_OLDAMP'),
 
-        ('ENGAGE_BPCOMB','OLDAMPED'),        
+        ('ENGAGE_BPCOMB','OLDAMPED'),
         ('OLDAMPED','DISABLE_BPCOMB'),
 
         ('OLDAMPED','ENGAGE_MN_MNOLDC'),

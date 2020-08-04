@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/ACT_VECTOR.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/EUL2COIL_OL.adl"
 	version=030107
 }
 display {
 	object {
-		x=1286
-		y=536
-		width=140
-		height=900
+		x=1597
+		y=910
+		width=440
+		height=200
 	}
 	clr=5
-	bclr=12
+	bclr=29
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -91,8 +91,8 @@ composite {
 	object {
 		x=80
 		y=60
-		width=50
-		height=830
+		width=350
+		height=130
 	}
 	"composite name"="matrix"
 	children {
@@ -113,7 +113,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_1_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_1"
 						clr=14
 						bclr=60
 					}
@@ -123,7 +123,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_1_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_1"
 			}
 		}
 		composite {
@@ -143,7 +143,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_1_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_1"
 						clr=10
 						bclr=5
 					}
@@ -153,7 +153,307 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_1_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_1"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_2"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_2"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_2"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_2"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_3"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_3"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_3"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_3"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_4"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_4"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_4"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_4"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_5"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_5"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_5"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_5"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_6"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_6"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=60
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=60
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_6"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_1_6"
 			}
 		}
 		composite {
@@ -173,7 +473,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_2_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_1"
 						clr=14
 						bclr=60
 					}
@@ -183,7 +483,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_2_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_1"
 			}
 		}
 		composite {
@@ -203,7 +503,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_2_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_1"
 						clr=10
 						bclr=5
 					}
@@ -213,7 +513,307 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_2_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_1"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_2"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_2"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_2"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_2"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_3"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_3"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_3"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_3"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_4"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_4"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_4"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_4"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_5"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_5"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_5"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_5"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_6"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_6"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=95
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=95
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_6"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_2_6"
 			}
 		}
 		composite {
@@ -233,7 +833,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_3_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_1"
 						clr=14
 						bclr=60
 					}
@@ -243,7 +843,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_3_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_1"
 			}
 		}
 		composite {
@@ -263,7 +863,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_3_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_1"
 						clr=10
 						bclr=5
 					}
@@ -273,7 +873,307 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IP_ACT_VECTOR_3_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_1"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_2"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_2"
+			}
+		}
+		composite {
+			object {
+				x=140
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=140
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_2"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_2"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_3"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_3"
+			}
+		}
+		composite {
+			object {
+				x=200
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=200
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_3"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_3"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_4"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_4"
+			}
+		}
+		composite {
+			object {
+				x=260
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=260
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_4"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_4"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_5"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_5"
+			}
+		}
+		composite {
+			object {
+				x=320
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=320
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_5"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_5"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_6"
+						clr=14
+						bclr=60
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_6"
+			}
+		}
+		composite {
+			object {
+				x=380
+				y=130
+				width=50
+				height=25
+			}
+			"composite name"=""
+			children {
+				"text entry" {
+					object {
+						x=380
+						y=130
+						width=50
+						height=25
+					}
+					control {
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_6"
+						clr=10
+						bclr=5
+					}
+					limits {
+					}
+				}
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_3_6"
 			}
 		}
 		composite {
@@ -293,7 +1193,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_1_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_1"
 						clr=14
 						bclr=60
 					}
@@ -303,7 +1203,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_1_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_1"
 			}
 		}
 		composite {
@@ -323,7 +1223,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_1_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_1"
 						clr=10
 						bclr=5
 					}
@@ -333,13 +1233,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_1_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_1"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=200
+				x=140
+				y=165
 				width=50
 				height=25
 			}
@@ -347,13 +1247,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=200
+						x=140
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_2_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_2"
 						clr=14
 						bclr=60
 					}
@@ -363,13 +1263,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_2_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_2"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=200
+				x=140
+				y=165
 				width=50
 				height=25
 			}
@@ -377,13 +1277,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=200
+						x=140
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_2_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_2"
 						clr=10
 						bclr=5
 					}
@@ -393,13 +1293,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_2_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_2"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=235
+				x=200
+				y=165
 				width=50
 				height=25
 			}
@@ -407,13 +1307,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=235
+						x=200
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_3_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_3"
 						clr=14
 						bclr=60
 					}
@@ -423,13 +1323,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_3_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_3"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=235
+				x=200
+				y=165
 				width=50
 				height=25
 			}
@@ -437,13 +1337,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=235
+						x=200
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_3_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_3"
 						clr=10
 						bclr=5
 					}
@@ -453,13 +1353,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_3_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_3"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=270
+				x=260
+				y=165
 				width=50
 				height=25
 			}
@@ -467,13 +1367,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=270
+						x=260
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_4_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_4"
 						clr=14
 						bclr=60
 					}
@@ -483,13 +1383,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_4_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_4"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=270
+				x=260
+				y=165
 				width=50
 				height=25
 			}
@@ -497,13 +1397,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=270
+						x=260
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_4_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_4"
 						clr=10
 						bclr=5
 					}
@@ -513,13 +1413,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_4_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_4"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=305
+				x=320
+				y=165
 				width=50
 				height=25
 			}
@@ -527,13 +1427,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=305
+						x=320
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_5_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_5"
 						clr=14
 						bclr=60
 					}
@@ -543,13 +1443,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_5_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_5"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=305
+				x=320
+				y=165
 				width=50
 				height=25
 			}
@@ -557,13 +1457,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=305
+						x=320
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_5_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_5"
 						clr=10
 						bclr=5
 					}
@@ -573,13 +1473,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_5_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_5"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=340
+				x=380
+				y=165
 				width=50
 				height=25
 			}
@@ -587,13 +1487,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=340
+						x=380
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_6_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_6"
 						clr=14
 						bclr=60
 					}
@@ -603,13 +1503,13 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_6_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_6"
 			}
 		}
 		composite {
 			object {
-				x=80
-				y=340
+				x=380
+				y=165
 				width=50
 				height=25
 			}
@@ -617,13 +1517,13 @@ composite {
 			children {
 				"text entry" {
 					object {
-						x=80
-						y=340
+						x=380
+						y=165
 						width=50
 						height=25
 					}
 					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_6_1"
+						chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_6"
 						clr=10
 						bclr=5
 					}
@@ -633,1196 +1533,151 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_BF_ACT_VECTOR_6_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=375
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=375
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_1_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=375
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=375
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_1_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=410
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=410
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_2_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=410
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=410
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_2_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=445
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=445
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_3_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_3_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=445
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=445
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_3_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_3_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=480
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=480
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_4_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_4_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=480
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=480
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_4_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_4_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=515
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=515
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_5_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_5_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=515
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=515
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_5_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_5_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=550
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=550
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_6_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_6_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=550
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=550
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_6_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_MN_ACT_VECTOR_6_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=585
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=585
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_1_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=585
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=585
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_1_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=620
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=620
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_2_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=620
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=620
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_2_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=655
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=655
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_3_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_3_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=655
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=655
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_3_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_3_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=690
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=690
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_4_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_4_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=690
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=690
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_4_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_4_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=725
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=725
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_5_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_5_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=725
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=725
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_5_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_5_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=760
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=760
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_6_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_6_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=760
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=760
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_6_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_IM_ACT_VECTOR_6_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=795
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=795
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_1_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=795
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=795
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_1_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_1_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=830
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=830
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_2_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=830
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=830
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_2_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_2_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=865
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=865
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_3_1"
-						clr=14
-						bclr=60
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_3_1"
-			}
-		}
-		composite {
-			object {
-				x=80
-				y=865
-				width=50
-				height=25
-			}
-			"composite name"=""
-			children {
-				"text entry" {
-					object {
-						x=80
-						y=865
-						width=50
-						height=25
-					}
-					control {
-						chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_3_1"
-						clr=10
-						bclr=5
-					}
-					limits {
-					}
-				}
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				chan="$(IFO):MOD-$(OPTIC)_MODE$(MODEINDEX)_TM_ACT_VECTOR_3_1"
+				chan="$(IFO):MOD-$(OPTIC)_$(STAGE)_EUL2COIL_4_6"
 			}
 		}
 	}
 }
 text {
 	object {
-		x=27
-		y=67
-		width=33
-		height=21
+		x=90
+		y=39
+		width=36
+		height=17
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="IP LEN"
+	textix="LEN"
 }
 text {
 	object {
-		x=27
-		y=102
-		width=33
-		height=21
+		x=146
+		y=39
+		width=36
+		height=17
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="IP TRA"
+	textix="TRA"
 }
 text {
 	object {
-		x=27
+		x=264
+		y=39
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="ROL"
+}
+text {
+	object {
+		x=205
+		y=39
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="VER"
+}
+text {
+	object {
+		x=330
+		y=39
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="PIT"
+}
+text {
+	object {
+		x=389
+		y=39
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="YAW"
+}
+rectangle {
+	object {
+		x=0
+		y=1
+		width=437
+		height=28
+	}
+	"basic attribute" {
+		clr=35
+	}
+}
+text {
+	object {
+		x=153
+		y=6
+		width=166
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Euler basis to coil"
+}
+text {
+	object {
+		x=34
+		y=64
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="H1"
+}
+text {
+	object {
+		x=34
+		y=100
+		width=36
+		height=17
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="H2"
+}
+text {
+	object {
+		x=34
 		y=135
-		width=33
-		height=21
+		width=36
+		height=17
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="IP YAW"
+	textix="H3"
 }
 text {
 	object {
-		x=27
-		y=172
-		width=33
-		height=21
+		x=35
+		y=171
+		width=36
+		height=17
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="BF LEN"
-}
-text {
-	object {
-		x=27
-		y=206
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="BF TRA"
-}
-text {
-	object {
-		x=27
-		y=242
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="BF VER"
-}
-text {
-	object {
-		x=27
-		y=276
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="BF ROL"
-}
-text {
-	object {
-		x=27
-		y=311
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="BF PIT"
-}
-text {
-	object {
-		x=27
-		y=345
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="BF YAW"
-}
-text {
-	object {
-		x=27
-		y=382
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN LEN"
-}
-text {
-	object {
-		x=27
-		y=416
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN TRA"
-}
-text {
-	object {
-		x=27
-		y=452
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN VER"
-}
-text {
-	object {
-		x=27
-		y=486
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN ROL"
-}
-text {
-	object {
-		x=27
-		y=521
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN PIT"
-}
-text {
-	object {
-		x=27
-		y=555
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="MN YAW"
-}
-text {
-	object {
-		x=27
-		y=592
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM LEN"
-}
-text {
-	object {
-		x=27
-		y=626
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM TRA"
-}
-text {
-	object {
-		x=27
-		y=662
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM VER"
-}
-text {
-	object {
-		x=27
-		y=696
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM ROL"
-}
-text {
-	object {
-		x=27
-		y=731
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM PIT"
-}
-text {
-	object {
-		x=27
-		y=765
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="IM YAW"
-}
-text {
-	object {
-		x=27
-		y=799
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="TM LEN"
-}
-text {
-	object {
-		x=27
-		y=834
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="TM PIT"
-}
-text {
-	object {
-		x=27
-		y=867
-		width=33
-		height=21
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="TM YAW"
+	textix="H4"
 }
