@@ -27,7 +27,7 @@ offload_gain = {
 
 
 
-        
+
 ###########
 # FB Config.
 ###########
@@ -57,7 +57,7 @@ note
     If integrator is True:
         (0. If gain is 0, change gain to 1 with input off. Wait for ramping)
         1. Turn init_FM on
-        2. Engage input. 
+        2. Engage input.
         3. Toggle first component of bst_FM. Wait for ramping
             4. Toggle second component of bst_FM
                 ...
@@ -130,21 +130,23 @@ OLSERVO = {
     }
 
 MN_COIL_BALANCE = {
-    'coils':['V3','H2','H3'],
-    'freq':{'V3':5,'H2':5,'H3':6},
-    'oscAMP':{'V3':3000,'H2':3000,'H3':3000},
-    'sweeprange':[0.9,1.1],
+    'coils':[
+        #'V3',
+        'H2','H3'],
+    'freq':{'V3':5,'H2':5.8,'H3':5.8},
+    'oscAMP':{'V3':3000,'H2':15000,'H3':15000},
+    'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
-    'SettleDuration':5,
+    'SettleDuration':30,
     'oscTRAMP':10
 }
 
 IM_COIL_BALANCE = {
     'coils':['V3','H2','H3'],
     'freq':{'V3':5,'H2':5,'H3':6},
-    'oscAMP':{'V3':3000,'H2':500,'H3':500},
-    'sweeprange':[0.9,1.1],
+    'oscAMP':{'V3':10000,'H2':20000,'H3':20000},
+    'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
     'SettleDuration':5,
@@ -154,7 +156,7 @@ IM_COIL_BALANCE = {
 TM_COIL_BALANCE = {
     'coils':['H2','H4'],
     'freq':{'H2':5.0,'H4':5.0},
-    'oscAMP':{'H2':5000.0,'H4':5000.0},
+    'oscAMP':{'H2':20000.0,'H4':20000.0},
     'sweeprange':[0.1,1.0],
     'Npoints':10,
     'duration':10,
@@ -175,5 +177,6 @@ edges.extend([('TWR_DAMPED','INIT_MON'),
               ('TWR_DAMPED','MN_COIL_BALANCING'),
               ('MN_COIL_BALANCING','IM_COIL_BALANCING'),
               ('IM_COIL_BALANCING','TM_COIL_BALANCING'),
-              ('TM_COIL_BALANCING','COIL_BALANCED')
+              ('TM_COIL_BALANCING','COIL_BALANCED'),
+              ('COIL_BALANCED','TWR_DAMPED')
           ])
