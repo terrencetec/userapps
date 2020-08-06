@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.152"
+    ComputedModelVersion    "1.154"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [672.0, -4.0, 1098.0, 1036.0]
+      Location		      [1071.0, 126.0, 1098.0, 1036.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -51,11 +51,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1044.0, 856.0]
-	ZoomFactor		[0.4]
-	Offset			[-936.93604679209488, -493.18016190603316]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"716"
+	Extents			[1044.0, 834.0]
+	ZoomFactor		[0.6]
+	Offset			[-158.39163764254135, 595.49770432895912]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 03 15:18:34 2020"
-  RTWModifiedTimeStamp	  518366433
-  ModelVersionFormat	  "1.%<AutoIncrement:152>"
+  LastModifiedDate	  "Tue Aug 04 13:41:53 2020"
+  RTWModifiedTimeStamp	  518449292
+  ModelVersionFormat	  "1.%<AutoIncrement:154>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -774,15 +774,168 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Abs
+      ZeroCross		      on
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
       BlockType		      BusSelector
       OutputSignals	      "signal1,signal2,signal3"
       OutputAsBus	      off
     }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      Demux
+      Outputs		      "4"
+      DisplayOption	      "none"
+      BusSelectionMode	      off
+    }
+    Block {
+      BlockType		      From
+      GotoTag		      "A"
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Goto
+      GotoTag		      "A"
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Ground
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      CheckFcnCallInpInsideContextMsg off
+      SystemSampleTime	      "-1"
+      RTWSystemCode	      "Auto"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
+      MinMaxOverflowLogging   "UseLocalSettings"
+      Opaque		      off
+      MaskHideContents	      off
+      SFBlockType	      "NONE"
+      GeneratePreprocessorConditionals off
+      ContentPreviewEnabled   off
+      IsWebBlock	      off
+    }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Terminator
+    }
   }
   System {
     Name		    "k1visitmymon"
-    Location		    [672, -4, 1770, 1032]
-    Open		    on
+    Location		    [1071, 28, 2169, 1064]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -793,7 +946,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "40"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "812"
     Block {
@@ -1155,16 +1308,5767 @@ Model {
       }
     }
     Block {
-      BlockType		      Reference
+      BlockType		      SubSystem
       Name		      "ITMY"
       SID		      "716"
       Ports		      [46, 31]
       Position		      [565, -68, 765, 1113]
       ZOrder		      6394
-      LibraryVersion	      "1.4"
-      SourceBlock	      "VISMON_MASTER/TYPEAMON"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
+      AncestorBlock	      "VISMON_MASTER/TYPEAMON"
+      LibraryVersion	      "*1.4"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"ITMY"
+	Location		[1071, 126, 2169, 1162]
+	Open			on
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"60"
+	SIDHighWatermark	"1569"
+	SIDPrevWatermark	"1484"
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V3"
+	  SID			  "716:11"
+	  Position		  [50, -127, 80, -113]
+	  ZOrder		  6410
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H1"
+	  SID			  "716:13"
+	  Position		  [50, -97, 80, -83]
+	  ZOrder		  6412
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H2"
+	  SID			  "716:16"
+	  Position		  [50, -67, 80, -53]
+	  ZOrder		  6415
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_H3"
+	  SID			  "716:19"
+	  Position		  [50, -37, 80, -23]
+	  ZOrder		  6418
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V1"
+	  SID			  "716:5"
+	  Position		  [50, -187, 80, -173]
+	  ZOrder		  6404
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_V2"
+	  SID			  "716:8"
+	  Position		  [50, -157, 80, -143]
+	  ZOrder		  6407
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V1"
+	  SID			  "716:6"
+	  Position		  [220, -187, 250, -173]
+	  ZOrder		  6405
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V2"
+	  SID			  "716:9"
+	  Position		  [220, -157, 250, -143]
+	  ZOrder		  6408
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_V3"
+	  SID			  "716:12"
+	  Position		  [220, -127, 250, -113]
+	  ZOrder		  6411
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H1"
+	  SID			  "716:14"
+	  Position		  [220, -97, 250, -83]
+	  ZOrder		  6413
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H2"
+	  SID			  "716:17"
+	  Position		  [220, -67, 250, -53]
+	  ZOrder		  6416
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IM_H3"
+	  SID			  "716:20"
+	  Position		  [220, -37, 250, -23]
+	  ZOrder		  6419
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H1"
+	  SID			  "716:7"
+	  Position		  [385, -177, 415, -163]
+	  ZOrder		  6406
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H2"
+	  SID			  "716:10"
+	  Position		  [385, -132, 415, -118]
+	  ZOrder		  6409
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H3"
+	  SID			  "716:15"
+	  Position		  [385, -87, 415, -73]
+	  ZOrder		  6414
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_H4"
+	  SID			  "716:18"
+	  Position		  [385, -42, 415, -28]
+	  ZOrder		  6417
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_V1"
+	  SID			  "716:291"
+	  Position		  [-85, 938, -55, 952]
+	  ZOrder		  6595
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_V2"
+	  SID			  "716:326"
+	  Position		  [-85, 958, -55, 972]
+	  ZOrder		  6671
+	  Port			  "18"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_V3"
+	  SID			  "716:327"
+	  Position		  [-85, 978, -55, 992]
+	  ZOrder		  6672
+	  Port			  "19"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_H1"
+	  SID			  "716:328"
+	  Position		  [-85, 998, -55, 1012]
+	  ZOrder		  6673
+	  Port			  "20"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_H2"
+	  SID			  "716:329"
+	  Position		  [-85, 1018, -55, 1032]
+	  ZOrder		  6674
+	  Port			  "21"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MCPS_H3"
+	  SID			  "716:330"
+	  Position		  [-85, 1038, -55, 1052]
+	  ZOrder		  6675
+	  Port			  "22"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_V1"
+	  SID			  "716:331"
+	  Position		  [-85, 1263, -55, 1277]
+	  ZOrder		  6676
+	  Port			  "23"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_V2"
+	  SID			  "716:332"
+	  Position		  [-85, 1283, -55, 1297]
+	  ZOrder		  6677
+	  Port			  "24"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_V3"
+	  SID			  "716:333"
+	  Position		  [-85, 1303, -55, 1317]
+	  ZOrder		  6678
+	  Port			  "25"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_H1"
+	  SID			  "716:334"
+	  Position		  [-85, 1323, -55, 1337]
+	  ZOrder		  6679
+	  Port			  "26"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_H2"
+	  SID			  "716:335"
+	  Position		  [-85, 1343, -55, 1357]
+	  ZOrder		  6680
+	  Port			  "27"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IMPS_H3"
+	  SID			  "716:336"
+	  Position		  [-85, 1363, -55, 1377]
+	  ZOrder		  6681
+	  Port			  "28"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TILT_SEG1"
+	  SID			  "716:1119"
+	  Position		  [-130, 1623, -100, 1637]
+	  ZOrder		  7066
+	  Port			  "29"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TILT_SEG2"
+	  SID			  "716:1127"
+	  Position		  [-130, 1638, -100, 1652]
+	  ZOrder		  7074
+	  Port			  "30"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TILT_SEG3"
+	  SID			  "716:1128"
+	  Position		  [-130, 1653, -100, 1667]
+	  ZOrder		  7075
+	  Port			  "31"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TILT_SEG4"
+	  SID			  "716:1129"
+	  Position		  [-130, 1668, -100, 1682]
+	  ZOrder		  7076
+	  Port			  "32"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "LEN_SEG1"
+	  SID			  "716:1130"
+	  Position		  [-130, 1683, -100, 1697]
+	  ZOrder		  7077
+	  Port			  "33"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "LEN_SEG2"
+	  SID			  "716:1131"
+	  Position		  [-130, 1698, -100, 1712]
+	  ZOrder		  7078
+	  Port			  "34"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "LEN_SEG3"
+	  SID			  "716:1132"
+	  Position		  [-130, 1713, -100, 1727]
+	  ZOrder		  7079
+	  Port			  "35"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "LEN_SEG4"
+	  SID			  "716:1133"
+	  Position		  [-130, 1728, -100, 1742]
+	  ZOrder		  7080
+	  Port			  "36"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_V1"
+	  SID			  "716:1354"
+	  Position		  [-85, 593, -55, 607]
+	  ZOrder		  7285
+	  Port			  "37"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_V2"
+	  SID			  "716:1355"
+	  Position		  [-85, 613, -55, 627]
+	  ZOrder		  7287
+	  Port			  "38"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_V3"
+	  SID			  "716:1356"
+	  Position		  [-85, 633, -55, 647]
+	  ZOrder		  7288
+	  Port			  "39"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_H1"
+	  SID			  "716:1357"
+	  Position		  [-85, 653, -55, 667]
+	  ZOrder		  7289
+	  Port			  "40"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_H2"
+	  SID			  "716:1358"
+	  Position		  [-85, 673, -55, 687]
+	  ZOrder		  7290
+	  Port			  "41"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BFLVDT_H3"
+	  SID			  "716:1359"
+	  Position		  [-85, 693, -55, 707]
+	  ZOrder		  7291
+	  Port			  "42"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IPLVDT_H1"
+	  SID			  "716:1391"
+	  Position		  [-85, 268, -55, 282]
+	  ZOrder		  7318
+	  Port			  "43"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IPLVDT_H2"
+	  SID			  "716:1392"
+	  Position		  [-85, 288, -55, 302]
+	  ZOrder		  7319
+	  Port			  "44"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IPLVDT_H3"
+	  SID			  "716:1393"
+	  Position		  [-85, 308, -55, 322]
+	  ZOrder		  7320
+	  Port			  "45"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "SampFreq"
+	  SID			  "716:617"
+	  Position		  [-440, 223, -410, 237]
+	  ZOrder		  6897
+	  Port			  "46"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "ACTDIAG"
+	  SID			  "716:1485"
+	  Ports			  []
+	  Position		  [447, 1915, 602, 2000]
+	  ZOrder		  7398
+	  BackgroundColor	  "blue"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "ACTDIAG"
+	    Location		    [1071, 126, 2169, 1162]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "BF"
+	      SID		      "716:1556"
+	      Ports		      []
+	      Position		      [212, 580, 367, 665]
+	      ZOrder		      7403
+	      BackgroundColor	      "blue"
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"BF"
+		Location		[1071, 126, 2169, 1162]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Reference
+		  Name			  "LEN"
+		  SID			  "716:1557"
+		  Ports			  []
+		  Position		  [-43, 455, 22, 540]
+		  ZOrder		  6643
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "PIT"
+		  SID			  "716:1558"
+		  Ports			  []
+		  Position		  [332, 455, 397, 540]
+		  ZOrder		  6703
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "ROL"
+		  SID			  "716:1559"
+		  Ports			  []
+		  Position		  [237, 455, 302, 540]
+		  ZOrder		  6702
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "TRA"
+		  SID			  "716:1560"
+		  Ports			  []
+		  Position		  [47, 455, 112, 540]
+		  ZOrder		  6700
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "VER"
+		  SID			  "716:1561"
+		  Ports			  []
+		  Position		  [137, 455, 202, 540]
+		  ZOrder		  6701
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "YAW"
+		  SID			  "716:1562"
+		  Ports			  []
+		  Position		  [432, 455, 497, 540]
+		  ZOrder		  6704
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "IM"
+	      SID		      "716:1542"
+	      Ports		      []
+	      Position		      [397, 460, 552, 545]
+	      ZOrder		      7401
+	      BackgroundColor	      "blue"
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"IM"
+		Location		[1071, 126, 2169, 1162]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Reference
+		  Name			  "LEN"
+		  SID			  "716:1543"
+		  Ports			  []
+		  Position		  [-43, 455, 22, 540]
+		  ZOrder		  6643
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "PIT"
+		  SID			  "716:1544"
+		  Ports			  []
+		  Position		  [332, 455, 397, 540]
+		  ZOrder		  6703
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "ROL"
+		  SID			  "716:1545"
+		  Ports			  []
+		  Position		  [237, 455, 302, 540]
+		  ZOrder		  6702
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "TRA"
+		  SID			  "716:1546"
+		  Ports			  []
+		  Position		  [47, 455, 112, 540]
+		  ZOrder		  6700
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "VER"
+		  SID			  "716:1547"
+		  Ports			  []
+		  Position		  [137, 455, 202, 540]
+		  ZOrder		  6701
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "YAW"
+		  SID			  "716:1548"
+		  Ports			  []
+		  Position		  [432, 455, 497, 540]
+		  ZOrder		  6704
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "IP"
+	      SID		      "716:1563"
+	      Ports		      []
+	      Position		      [397, 580, 552, 665]
+	      ZOrder		      7404
+	      BackgroundColor	      "blue"
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"IP"
+		Location		[1071, 126, 2169, 1162]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Reference
+		  Name			  "LEN"
+		  SID			  "716:1564"
+		  Ports			  []
+		  Position		  [-43, 455, 22, 540]
+		  ZOrder		  6643
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "PIT"
+		  SID			  "716:1565"
+		  Ports			  []
+		  Position		  [332, 455, 397, 540]
+		  ZOrder		  6703
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "ROL"
+		  SID			  "716:1566"
+		  Ports			  []
+		  Position		  [237, 455, 302, 540]
+		  ZOrder		  6702
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "TRA"
+		  SID			  "716:1567"
+		  Ports			  []
+		  Position		  [47, 455, 112, 540]
+		  ZOrder		  6700
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "VER"
+		  SID			  "716:1568"
+		  Ports			  []
+		  Position		  [137, 455, 202, 540]
+		  ZOrder		  6701
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "YAW"
+		  SID			  "716:1569"
+		  Ports			  []
+		  Position		  [432, 455, 497, 540]
+		  ZOrder		  6704
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "MN"
+	      SID		      "716:1549"
+	      Ports		      []
+	      Position		      [592, 460, 747, 545]
+	      ZOrder		      7402
+	      BackgroundColor	      "blue"
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"MN"
+		Location		[1071, 126, 2169, 1162]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Reference
+		  Name			  "LEN"
+		  SID			  "716:1550"
+		  Ports			  []
+		  Position		  [-43, 455, 22, 540]
+		  ZOrder		  6643
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "PIT"
+		  SID			  "716:1551"
+		  Ports			  []
+		  Position		  [332, 455, 397, 540]
+		  ZOrder		  6703
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "ROL"
+		  SID			  "716:1552"
+		  Ports			  []
+		  Position		  [237, 455, 302, 540]
+		  ZOrder		  6702
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "TRA"
+		  SID			  "716:1553"
+		  Ports			  []
+		  Position		  [47, 455, 112, 540]
+		  ZOrder		  6700
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "VER"
+		  SID			  "716:1554"
+		  Ports			  []
+		  Position		  [137, 455, 202, 540]
+		  ZOrder		  6701
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "YAW"
+		  SID			  "716:1555"
+		  Ports			  []
+		  Position		  [432, 455, 497, 540]
+		  ZOrder		  6704
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "TM"
+	      SID		      "716:1535"
+	      Ports		      []
+	      Position		      [212, 460, 367, 545]
+	      ZOrder		      7400
+	      BackgroundColor	      "blue"
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"TM"
+		Location		[1071, 126, 2169, 1162]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Reference
+		  Name			  "LEN"
+		  SID			  "716:1536"
+		  Ports			  []
+		  Position		  [-43, 455, 22, 540]
+		  ZOrder		  6643
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "PIT"
+		  SID			  "716:1537"
+		  Ports			  []
+		  Position		  [332, 455, 397, 540]
+		  ZOrder		  6703
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "ROL"
+		  SID			  "716:1538"
+		  Ports			  []
+		  Position		  [237, 455, 302, 540]
+		  ZOrder		  6702
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "TRA"
+		  SID			  "716:1539"
+		  Ports			  []
+		  Position		  [47, 455, 112, 540]
+		  ZOrder		  6700
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "VER"
+		  SID			  "716:1540"
+		  Ports			  []
+		  Position		  [137, 455, 202, 540]
+		  ZOrder		  6701
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "YAW"
+		  SID			  "716:1541"
+		  Ports			  []
+		  Position		  [432, 455, 497, 540]
+		  ZOrder		  6704
+		  LibraryVersion	  "1.314"
+		  SourceBlock		  "VIS_LIB/MODE_PARAMS"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+	      }
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "BF"
+	  SID			  "716:1369"
+	  Ports			  [15, 5]
+	  Position		  [245, 536, 425, 824]
+	  ZOrder		  7292
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/PReQua_6DOF"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "BF_DIAG"
+	  SID			  "716:1413"
+	  Ports			  [6, 6]
+	  Position		  [-20, 585, 120, 715]
+	  ZOrder		  7335
+	  BackgroundColor	  "orange"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/DIAG"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "CP_COEF"
+	  SID			  "716:1436"
+	  Ports			  [5, 5]
+	  Position		  [805, 554, 940, 676]
+	  ZOrder		  7354
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/UTILs/FBs_5STAGE_DQ"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  "716:1182"
+	  Position		  [660, 980, 690, 1010]
+	  ZOrder		  7110
+	  NamePlacement		  "alternate"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux1"
+	  SID			  "716:1238"
+	  Ports			  [1, 1]
+	  Position		  [1355, 741, 1360, 779]
+	  ZOrder		  7142
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Outputs		  "1"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux3"
+	  SID			  "716:1282"
+	  Ports			  [1, 1]
+	  Position		  [1355, 901, 1360, 939]
+	  ZOrder		  7219
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Outputs		  "1"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux4"
+	  SID			  "716:1290"
+	  Ports			  [1, 1]
+	  Position		  [1355, 1056, 1360, 1094]
+	  ZOrder		  7227
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Outputs		  "1"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux5"
+	  SID			  "716:1299"
+	  Ports			  [1, 1]
+	  Position		  [1355, 1206, 1360, 1244]
+	  ZOrder		  7236
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Outputs		  "1"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux6"
+	  SID			  "716:1312"
+	  Ports			  [1, 1]
+	  Position		  [1355, 581, 1360, 619]
+	  ZOrder		  7246
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Outputs		  "1"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "FREE_MODE_LIST"
+	  SID			  "716:1174"
+	  Ports			  []
+	  Position		  [257, 1915, 412, 2000]
+	  ZOrder		  7102
+	  BackgroundColor	  "blue"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/MODE_LIST"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "FREQ_SWEEPER"
+	  SID			  "716:1135"
+	  Ports			  [1, 1]
+	  Position		  [-375, 318, -300, 362]
+	  ZOrder		  7082
+	  BackgroundColor	  "green"
+	  LibraryVersion	  "1.198"
+	  SourceBlock		  "KAGRA_UTIL/Frequency_sweeper"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From1"
+	  SID			  "716:1107"
+	  Position		  [130, 1423, 220, 1437]
+	  ZOrder		  7055
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From10"
+	  SID			  "716:1146"
+	  Position		  [140, 1243, 230, 1257]
+	  ZOrder		  7093
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From11"
+	  SID			  "716:1148"
+	  Position		  [140, 1568, 230, 1582]
+	  ZOrder		  7094
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From12"
+	  SID			  "716:1149"
+	  Position		  [140, 1588, 230, 1602]
+	  ZOrder		  7095
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From13"
+	  SID			  "716:1180"
+	  Position		  [600, 1023, 690, 1037]
+	  ZOrder		  7108
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From14"
+	  SID			  "716:1181"
+	  Position		  [600, 1093, 690, 1107]
+	  ZOrder		  7109
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From15"
+	  SID			  "716:1188"
+	  Position		  [130, 1118, 220, 1132]
+	  ZOrder		  7116
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From16"
+	  SID			  "716:1223"
+	  Position		  [615, 658, 705, 672]
+	  ZOrder		  7123
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From17"
+	  SID			  "716:1225"
+	  Position		  [615, 633, 705, 647]
+	  ZOrder		  7125
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From18"
+	  SID			  "716:1227"
+	  Position		  [615, 608, 705, 622]
+	  ZOrder		  7127
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From19"
+	  SID			  "716:1232"
+	  Position		  [1115, 813, 1205, 827]
+	  ZOrder		  7132
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From2"
+	  SID			  "716:1192"
+	  Position		  [130, 1808, 220, 1822]
+	  ZOrder		  7120
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From20"
+	  SID			  "716:1233"
+	  Position		  [1115, 783, 1205, 797]
+	  ZOrder		  7134
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From21"
+	  SID			  "716:1234"
+	  Position		  [1115, 753, 1205, 767]
+	  ZOrder		  7136
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From22"
+	  SID			  "716:1241"
+	  Position		  [615, 898, 705, 912]
+	  ZOrder		  7143
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From23"
+	  SID			  "716:1242"
+	  Position		  [615, 863, 705, 877]
+	  ZOrder		  7144
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From24"
+	  SID			  "716:1243"
+	  Position		  [615, 828, 705, 842]
+	  ZOrder		  7145
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From26"
+	  SID			  "716:1360"
+	  Position		  [130, 773, 220, 787]
+	  ZOrder		  7296
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From29"
+	  SID			  "716:1283"
+	  Position		  [1115, 973, 1205, 987]
+	  ZOrder		  7214
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_FREQ"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From3"
+	  SID			  "716:1139"
+	  Position		  [140, 878, 230, 892]
+	  ZOrder		  7086
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From30"
+	  SID			  "716:1284"
+	  Position		  [1115, 943, 1205, 957]
+	  ZOrder		  7215
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_FREQ"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From31"
+	  SID			  "716:1248"
+	  Position		  [615, 723, 705, 737]
+	  ZOrder		  7187
+	  BackgroundColor	  "gray"
+	  ShowName		  off
+	  GotoTag		  "PHASE_REF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From32"
+	  SID			  "716:1285"
+	  Position		  [1115, 913, 1205, 927]
+	  ZOrder		  7216
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_FREQ"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From33"
+	  SID			  "716:1291"
+	  Position		  [1115, 1128, 1205, 1142]
+	  ZOrder		  7222
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_Q"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From34"
+	  SID			  "716:1292"
+	  Position		  [1115, 1098, 1205, 1112]
+	  ZOrder		  7223
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_Q"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From35"
+	  SID			  "716:1293"
+	  Position		  [1115, 1068, 1205, 1082]
+	  ZOrder		  7224
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_Q"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From36"
+	  SID			  "716:1300"
+	  Position		  [1115, 1278, 1205, 1292]
+	  ZOrder		  7231
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_tau"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From37"
+	  SID			  "716:1301"
+	  Position		  [1115, 1248, 1205, 1262]
+	  ZOrder		  7232
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_tau"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From38"
+	  SID			  "716:1302"
+	  Position		  [1115, 1218, 1205, 1232]
+	  ZOrder		  7233
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_tau"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From39"
+	  SID			  "716:1309"
+	  Position		  [1115, 653, 1205, 667]
+	  ZOrder		  7241
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From4"
+	  SID			  "716:1144"
+	  Position		  [140, 1203, 230, 1217]
+	  ZOrder		  7091
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From40"
+	  SID			  "716:1310"
+	  Position		  [1115, 623, 1205, 637]
+	  ZOrder		  7242
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From41"
+	  SID			  "716:1311"
+	  Position		  [1115, 593, 1205, 607]
+	  ZOrder		  7243
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From43"
+	  SID			  "716:1361"
+	  Position		  [140, 533, 230, 547]
+	  ZOrder		  7293
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From44"
+	  SID			  "716:1362"
+	  Position		  [140, 553, 230, 567]
+	  ZOrder		  7294
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From45"
+	  SID			  "716:1363"
+	  Position		  [140, 573, 230, 587]
+	  ZOrder		  7295
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From46"
+	  SID			  "716:1371"
+	  Position		  [615, 583, 705, 597]
+	  ZOrder		  7302
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From47"
+	  SID			  "716:1380"
+	  Position		  [615, 793, 705, 807]
+	  ZOrder		  7306
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From48"
+	  SID			  "716:1383"
+	  Position		  [1115, 723, 1205, 737]
+	  ZOrder		  7309
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From49"
+	  SID			  "716:1384"
+	  Position		  [1115, 883, 1205, 897]
+	  ZOrder		  7310
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_FREQ"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From5"
+	  SID			  "716:1147"
+	  Position		  [140, 1608, 230, 1622]
+	  ZOrder		  7096
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From50"
+	  SID			  "716:1385"
+	  Position		  [1115, 1038, 1205, 1052]
+	  ZOrder		  7311
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_Q"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From51"
+	  SID			  "716:1386"
+	  Position		  [1115, 1188, 1205, 1202]
+	  ZOrder		  7312
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_tau"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From52"
+	  SID			  "716:1387"
+	  Position		  [1115, 563, 1205, 577]
+	  ZOrder		  7313
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From53"
+	  SID			  "716:1395"
+	  Position		  [130, 368, 220, 382]
+	  ZOrder		  7325
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From54"
+	  SID			  "716:1396"
+	  Position		  [140, 148, 230, 162]
+	  ZOrder		  7322
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From55"
+	  SID			  "716:1397"
+	  Position		  [140, 168, 230, 182]
+	  ZOrder		  7323
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From56"
+	  SID			  "716:1398"
+	  Position		  [140, 188, 230, 202]
+	  ZOrder		  7324
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From57"
+	  SID			  "716:1420"
+	  Position		  [615, 558, 705, 572]
+	  ZOrder		  7338
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From58"
+	  SID			  "716:1423"
+	  Position		  [615, 758, 705, 772]
+	  ZOrder		  7341
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From59"
+	  SID			  "716:1430"
+	  Position		  [1115, 693, 1205, 707]
+	  ZOrder		  7348
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_PHASE"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From6"
+	  SID			  "716:1150"
+	  Position		  [-480, 333, -390, 347]
+	  ZOrder		  7097
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From60"
+	  SID			  "716:1431"
+	  Position		  [1115, 853, 1205, 867]
+	  ZOrder		  7349
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_FREQ"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From61"
+	  SID			  "716:1432"
+	  Position		  [1115, 1008, 1205, 1022]
+	  ZOrder		  7350
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_Q"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From62"
+	  SID			  "716:1433"
+	  Position		  [1115, 1158, 1205, 1172]
+	  ZOrder		  7351
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_tau"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From63"
+	  SID			  "716:1434"
+	  Position		  [1115, 533, 1205, 547]
+	  ZOrder		  7352
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_AMP"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From7"
+	  SID			  "716:1141"
+	  Position		  [140, 898, 230, 912]
+	  ZOrder		  7088
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From8"
+	  SID			  "716:1143"
+	  Position		  [140, 918, 230, 932]
+	  ZOrder		  7090
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From9"
+	  SID			  "716:1145"
+	  Position		  [140, 1223, 230, 1237]
+	  ZOrder		  7092
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto"
+	  SID			  "716:1111"
+	  Position		  [-275, 138, -185, 152]
+	  ZOrder		  7059
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "DemodFreq"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto1"
+	  SID			  "716:1224"
+	  Position		  [450, 1598, 540, 1612]
+	  ZOrder		  7122
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_AMP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto13"
+	  SID			  "716:1336"
+	  Position		  [450, 1708, 540, 1722]
+	  ZOrder		  7267
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_FREQ"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto14"
+	  SID			  "716:1337"
+	  Position		  [445, 1343, 535, 1357]
+	  ZOrder		  7268
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_FREQ"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto15"
+	  SID			  "716:1338"
+	  Position		  [445, 1018, 535, 1032]
+	  ZOrder		  7269
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_FREQ"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto16"
+	  SID			  "716:1339"
+	  Position		  [450, 1763, 540, 1777]
+	  ZOrder		  7270
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_Q"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto17"
+	  SID			  "716:1340"
+	  Position		  [445, 1398, 535, 1412]
+	  ZOrder		  7271
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_Q"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto18"
+	  SID			  "716:1341"
+	  Position		  [445, 1073, 535, 1087]
+	  ZOrder		  7272
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_Q"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto19"
+	  SID			  "716:1342"
+	  Position		  [450, 1818, 540, 1832]
+	  ZOrder		  7273
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_tau"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto2"
+	  SID			  "716:1226"
+	  Position		  [445, 1233, 535, 1247]
+	  ZOrder		  7124
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_AMP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto20"
+	  SID			  "716:1343"
+	  Position		  [445, 1453, 535, 1467]
+	  ZOrder		  7274
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_tau"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto21"
+	  SID			  "716:1344"
+	  Position		  [445, 1128, 535, 1142]
+	  ZOrder		  7275
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_tau"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto22"
+	  SID			  "716:1364"
+	  Position		  [445, 288, 535, 302]
+	  ZOrder		  7299
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_FREQ"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto23"
+	  SID			  "716:1365"
+	  Position		  [445, 343, 535, 357]
+	  ZOrder		  7300
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_Q"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto24"
+	  SID			  "716:1366"
+	  Position		  [445, 398, 535, 412]
+	  ZOrder		  7301
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_tau"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto25"
+	  SID			  "716:1367"
+	  Position		  [445, 178, 535, 192]
+	  ZOrder		  7297
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_AMP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto26"
+	  SID			  "716:1368"
+	  Position		  [445, 233, 535, 247]
+	  ZOrder		  7298
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IP_PHASE"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto27"
+	  SID			  "716:1399"
+	  Position		  [445, 673, 535, 687]
+	  ZOrder		  7328
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_FREQ"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto28"
+	  SID			  "716:1400"
+	  Position		  [445, 728, 535, 742]
+	  ZOrder		  7329
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_Q"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto29"
+	  SID			  "716:1401"
+	  Position		  [445, 783, 535, 797]
+	  ZOrder		  7330
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_tau"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto3"
+	  SID			  "716:1140"
+	  Position		  [-275, 208, -185, 222]
+	  ZOrder		  7087
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "t"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto30"
+	  SID			  "716:1402"
+	  Position		  [445, 563, 535, 577]
+	  ZOrder		  7326
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_AMP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto31"
+	  SID			  "716:1403"
+	  Position		  [445, 618, 535, 632]
+	  ZOrder		  7327
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "BF_PHASE"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto32"
+	  SID			  "716:1249"
+	  Position		  [1380, 753, 1470, 767]
+	  ZOrder		  7186
+	  BackgroundColor	  "gray"
+	  ShowName		  off
+	  GotoTag		  "PHASE_REF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto4"
+	  SID			  "716:1142"
+	  Position		  [-275, 278, -185, 292]
+	  ZOrder		  7089
+	  BackgroundColor	  "orange"
+	  ShowName		  off
+	  GotoTag		  "SampFreq"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto5"
+	  SID			  "716:1187"
+	  Position		  [-265, 333, -175, 347]
+	  ZOrder		  7115
+	  BackgroundColor	  "cyan"
+	  ShowName		  off
+	  GotoTag		  "FREQ_SWEEP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto6"
+	  SID			  "716:1228"
+	  Position		  [445, 908, 535, 922]
+	  ZOrder		  7126
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_AMP"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto7"
+	  SID			  "716:1235"
+	  Position		  [450, 1653, 540, 1667]
+	  ZOrder		  7131
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "TM_PHASE"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto8"
+	  SID			  "716:1236"
+	  Position		  [445, 1288, 535, 1302]
+	  ZOrder		  7133
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "IM_PHASE"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto9"
+	  SID			  "716:1237"
+	  Position		  [445, 963, 535, 977]
+	  ZOrder		  7135
+	  BackgroundColor	  "lightBlue"
+	  ShowName		  off
+	  GotoTag		  "MN_PHASE"
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground1"
+	  SID			  "716:1178"
+	  Position		  [-540, 175, -520, 195]
+	  ZOrder		  7105
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground2"
+	  SID			  "716:1262"
+	  Position		  [650, 1055, 670, 1075]
+	  ZOrder		  7200
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground4"
+	  SID			  "716:1405"
+	  Position		  [-80, 205, -60, 225]
+	  ZOrder		  7331
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground5"
+	  SID			  "716:1406"
+	  Position		  [-80, 225, -60, 245]
+	  ZOrder		  7332
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground6"
+	  SID			  "716:1407"
+	  Position		  [-80, 245, -60, 265]
+	  ZOrder		  7333
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IM"
+	  SID			  "716:1100"
+	  Ports			  [15, 5]
+	  Position		  [245, 1206, 425, 1494]
+	  ZOrder		  7048
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/PReQua_6DOF"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IM_COILDRV_VMON"
+	  SID			  "716:1"
+	  Ports			  [6]
+	  Position		  [270, -191, 350, -19]
+	  ZOrder		  6401
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/IM_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IM_DIAG"
+	  SID			  "716:1415"
+	  Ports			  [6, 6]
+	  Position		  [-30, 1255, 110, 1385]
+	  ZOrder		  7337
+	  BackgroundColor	  "orange"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/DIAG"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IP"
+	  SID			  "716:1394"
+	  Ports			  [15, 5]
+	  Position		  [245, 151, 425, 439]
+	  ZOrder		  7321
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/PReQua_6DOF"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IP_DIAG"
+	  SID			  "716:1412"
+	  Ports			  [6, 6]
+	  Position		  [-20, 200, 120, 330]
+	  ZOrder		  7334
+	  BackgroundColor	  "orange"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/DIAG"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MN"
+	  SID			  "716:1101"
+	  Ports			  [15, 5]
+	  Position		  [245, 881, 425, 1169]
+	  ZOrder		  7049
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/PReQua_6DOF"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MN_COILDRV_VMON"
+	  SID			  "716:2"
+	  Ports			  [6]
+	  Position		  [105, -191, 185, -19]
+	  ZOrder		  6402
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/MN_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MN_DIAG"
+	  SID			  "716:1414"
+	  Ports			  [6, 6]
+	  Position		  [-20, 930, 120, 1060]
+	  ZOrder		  7336
+	  BackgroundColor	  "orange"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/DIAG"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux1"
+	  SID			  "716:1426"
+	  Ports			  [5, 1]
+	  Position		  [1225, 686, 1230, 834]
+	  ZOrder		  7344
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux3"
+	  SID			  "716:1427"
+	  Ports			  [5, 1]
+	  Position		  [1225, 846, 1230, 994]
+	  ZOrder		  7345
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux4"
+	  SID			  "716:1428"
+	  Ports			  [5, 1]
+	  Position		  [1225, 1001, 1230, 1149]
+	  ZOrder		  7346
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux5"
+	  SID			  "716:1429"
+	  Ports			  [5, 1]
+	  Position		  [1225, 1151, 1230, 1299]
+	  ZOrder		  7347
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux6"
+	  SID			  "716:1314"
+	  Ports			  [5, 1]
+	  Position		  [1225, 526, 1230, 674]
+	  ZOrder		  7245
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "OSC"
+	  SID			  "716:1179"
+	  Ports			  [4, 3]
+	  Position		  [715, 974, 780, 1121]
+	  ZOrder		  7107
+	  BackgroundColor	  "magenta"
+	  LibraryVersion	  "1.198"
+	  SourceBlock		  "KAGRA_UTIL/pReQua_ver2/PLL/OSC"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_DECAY_TIME"
+	  SID			  "716:1308"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1390, 1213, 1460, 1237]
+	  ZOrder		  7240
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_DEMOD_FREQ"
+	  SID			  "716:1134"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [-380, 130, -315, 160]
+	  ZOrder		  7081
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_DEMOD_SW"
+	  SID			  "716:1177"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [-485, 170, -410, 200]
+	  ZOrder		  7106
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_FREQ"
+	  SID			  "716:1306"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1390, 908, 1460, 932]
+	  ZOrder		  7238
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PREQUA_Q_VAL"
+	  SID			  "716:1307"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1390, 1063, 1460, 1087]
+	  ZOrder		  7239
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "QUAEXC"
+	  SID			  "716:1185"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [815, 988, 885, 1012]
+	  ZOrder		  7113
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "REL_PHASE"
+	  SID			  "716:1442"
+	  Ports			  [5, 5]
+	  Position		  [795, 744, 930, 916]
+	  ZOrder		  7360
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/UTILs/FBs_5STAGE_DQ"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "SENDIAG"
+	  SID			  "716:1486"
+	  Ports			  []
+	  Position		  [637, 1915, 792, 2000]
+	  ZOrder		  7399
+	  BackgroundColor	  "blue"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "SENDIAG"
+	    Location		    [1071, 126, 2169, 1162]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "LEN"
+	      SID		      "716:1511"
+	      Ports		      []
+	      Position		      [-43, 455, 22, 540]
+	      ZOrder		      6643
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "PIT"
+	      SID		      "716:1530"
+	      Ports		      []
+	      Position		      [332, 455, 397, 540]
+	      ZOrder		      6703
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "ROL"
+	      SID		      "716:1529"
+	      Ports		      []
+	      Position		      [237, 455, 302, 540]
+	      ZOrder		      6702
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "TRA"
+	      SID		      "716:1522"
+	      Ports		      []
+	      Position		      [47, 455, 112, 540]
+	      ZOrder		      6700
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "VER"
+	      SID		      "716:1528"
+	      Ports		      []
+	      Position		      [137, 455, 202, 540]
+	      ZOrder		      6701
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "YAW"
+	      SID		      "716:1531"
+	      Ports		      []
+	      Position		      [432, 455, 497, 540]
+	      ZOrder		      6704
+	      LibraryVersion	      "1.314"
+	      SourceBlock	      "VIS_LIB/MODE_PARAMS"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STAGE_SEL_AMP"
+	  SID			  "716:1315"
+	  Tag			  "cdsMuxMatrix"
+	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	  Ports			  [1, 1]
+	  Position		  [1270, 570, 1310, 630]
+	  ZOrder		  7244
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsMuxMatrix/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STAGE_SEL_DECAY_TIME"
+	  SID			  "716:1305"
+	  Tag			  "cdsMuxMatrix"
+	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	  Ports			  [1, 1]
+	  Position		  [1275, 1195, 1315, 1255]
+	  ZOrder		  7234
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsMuxMatrix/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STAGE_SEL_FREQ"
+	  SID			  "716:1288"
+	  Tag			  "cdsMuxMatrix"
+	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	  Ports			  [1, 1]
+	  Position		  [1275, 890, 1315, 950]
+	  ZOrder		  7217
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsMuxMatrix/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STAGE_SEL_Q_VAL"
+	  SID			  "716:1296"
+	  Tag			  "cdsMuxMatrix"
+	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	  Ports			  [1, 1]
+	  Position		  [1275, 1045, 1315, 1105]
+	  ZOrder		  7225
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsMuxMatrix/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STAGE_SEL_REF_PHASE"
+	  SID			  "716:1240"
+	  Tag			  "cdsMuxMatrix"
+	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
+	  Ports			  [1, 1]
+	  Position		  [1270, 730, 1310, 790]
+	  ZOrder		  7140
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsMuxMatrix/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SW"
+	  SID			  "716:601"
+	  Ports			  [2, 1]
+	  Position		  [-365, 185, -315, 245]
+	  ZOrder		  6687
+	  BackgroundColor	  "green"
+	  LibraryVersion	  "1.198"
+	  SourceBlock		  "KAGRA_UTIL/StopWatch"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  SID			  "716:1244"
+	  Ports			  [2, 1]
+	  Position		  [740, 750, 760, 770]
+	  ZOrder		  7182
+	  ShowName		  off
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  SID			  "716:1246"
+	  Ports			  [2, 1]
+	  Position		  [740, 785, 760, 805]
+	  ZOrder		  7184
+	  ShowName		  off
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum2"
+	  SID			  "716:1247"
+	  Ports			  [2, 1]
+	  Position		  [740, 820, 760, 840]
+	  ZOrder		  7185
+	  ShowName		  off
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum4"
+	  SID			  "716:1378"
+	  Ports			  [2, 1]
+	  Position		  [740, 855, 760, 875]
+	  ZOrder		  7304
+	  ShowName		  off
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum5"
+	  SID			  "716:1424"
+	  Ports			  [2, 1]
+	  Position		  [740, 890, 760, 910]
+	  ZOrder		  7340
+	  ShowName		  off
+	  Inputs		  "-+"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TM"
+	  SID			  "716:1191"
+	  Ports			  [15, 5]
+	  Position		  [245, 1571, 425, 1859]
+	  ZOrder		  7119
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/PReQua_6DOF"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TM_COILDRV_VMON"
+	  SID			  "716:3"
+	  Ports			  [4]
+	  Position		  [440, -190, 520, -15]
+	  ZOrder		  6403
+	  LibraryVersion	  "1.9"
+	  SourceBlock		  "VISMON_LIB/TM_COILDRV_VMON"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TM_DIAG"
+	  SID			  "716:1118"
+	  Ports			  [8, 6]
+	  Position		  [-50, 1616, 100, 1749]
+	  ZOrder		  7065
+	  BackgroundColor	  "orange"
+	  LibraryVersion	  "1.314"
+	  SourceBlock		  "VIS_LIB/DIAG_OL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  "716:1184"
+	  Position		  [805, 1092, 830, 1108]
+	  ZOrder		  7112
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator10"
+	  SID			  "716:1483"
+	  Position		  [1380, 592, 1405, 608]
+	  ZOrder		  7396
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator11"
+	  SID			  "716:1440"
+	  Position		  [955, 582, 980, 598]
+	  ZOrder		  7356
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator12"
+	  SID			  "716:1183"
+	  Position		  [805, 1042, 830, 1058]
+	  ZOrder		  7111
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator13"
+	  SID			  "716:1446"
+	  Position		  [955, 892, 980, 908]
+	  ZOrder		  7365
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator14"
+	  SID			  "716:1447"
+	  Position		  [955, 752, 980, 768]
+	  ZOrder		  7361
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator15"
+	  SID			  "716:1441"
+	  Position		  [955, 607, 980, 623]
+	  ZOrder		  7357
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator16"
+	  SID			  "716:1484"
+	  Position		  [1480, 1217, 1505, 1233]
+	  ZOrder		  7397
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator2"
+	  SID			  "716:1346"
+	  Position		  [1500, 1067, 1525, 1083]
+	  ZOrder		  7277
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator3"
+	  SID			  "716:1345"
+	  Position		  [1500, 912, 1525, 928]
+	  ZOrder		  7276
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator4"
+	  SID			  "716:1437"
+	  Position		  [955, 632, 980, 648]
+	  ZOrder		  7358
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator5"
+	  SID			  "716:1438"
+	  Position		  [955, 657, 980, 673]
+	  ZOrder		  7359
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator6"
+	  SID			  "716:1439"
+	  Position		  [955, 557, 980, 573]
+	  ZOrder		  7355
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator7"
+	  SID			  "716:1443"
+	  Position		  [955, 787, 980, 803]
+	  ZOrder		  7362
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator8"
+	  SID			  "716:1444"
+	  Position		  [955, 822, 980, 838]
+	  ZOrder		  7363
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator9"
+	  SID			  "716:1445"
+	  Position		  [955, 857, 980, 873]
+	  ZOrder		  7364
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "normalize"
+	  SID			  "716:1193"
+	  Ports			  [5, 5]
+	  Position		  [725, 554, 780, 676]
+	  ZOrder		  7121
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "normalize"
+	    Location		    [11, 508, 1109, 1869]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "101"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "716:1194"
+	      Position		      [20, 53, 50, 67]
+	      ZOrder		      7103
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In2"
+	      SID		      "716:1195"
+	      Position		      [20, 113, 50, 127]
+	      ZOrder		      7104
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In3"
+	      SID		      "716:1196"
+	      Position		      [20, 173, 50, 187]
+	      ZOrder		      7105
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In4"
+	      SID		      "716:1372"
+	      Position		      [20, 233, 50, 247]
+	      ZOrder		      7126
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In5"
+	      SID		      "716:1416"
+	      Position		      [20, 293, 50, 307]
+	      ZOrder		      7131
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs"
+	      SID		      "716:1448"
+	      Position		      [215, 75, 245, 105]
+	      ZOrder		      7134
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs1"
+	      SID		      "716:1449"
+	      Position		      [215, 140, 245, 170]
+	      ZOrder		      7135
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs2"
+	      SID		      "716:1450"
+	      Position		      [215, 200, 245, 230]
+	      ZOrder		      7136
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs3"
+	      SID		      "716:1451"
+	      Position		      [215, 260, 245, 290]
+	      ZOrder		      7137
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Abs
+	      Name		      "Abs4"
+	      SID		      "716:1452"
+	      Position		      [215, 320, 245, 350]
+	      ZOrder		      7138
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide"
+	      SID		      "716:1200"
+	      Ports		      [2, 1]
+	      Position		      [165, 72, 195, 103]
+	      ZOrder		      7112
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide1"
+	      SID		      "716:1201"
+	      Ports		      [2, 1]
+	      Position		      [165, 137, 195, 168]
+	      ZOrder		      7113
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide2"
+	      SID		      "716:1222"
+	      Ports		      [2, 1]
+	      Position		      [165, 197, 195, 228]
+	      ZOrder		      7124
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide3"
+	      SID		      "716:1417"
+	      Ports		      [2, 1]
+	      Position		      [165, 317, 195, 348]
+	      ZOrder		      7133
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Divide4"
+	      SID		      "716:1374"
+	      Ports		      [2, 1]
+	      Position		      [165, 257, 195, 288]
+	      ZOrder		      7129
+	      Inputs		      "*/"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From31"
+	      SID		      "716:1206"
+	      Position		      [15, 23, 105, 37]
+	      ZOrder		      7111
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      GotoTag		      "NORM"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto32"
+	      SID		      "716:1207"
+	      Position		      [835, 168, 925, 182]
+	      ZOrder		      7110
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      GotoTag		      "NORM"
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product"
+	      SID		      "716:1208"
+	      Ports		      [2, 1]
+	      Position		      [660, 37, 690, 68]
+	      ZOrder		      7094
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product1"
+	      SID		      "716:1209"
+	      Ports		      [2, 1]
+	      Position		      [660, 97, 690, 128]
+	      ZOrder		      7095
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product2"
+	      SID		      "716:1210"
+	      Ports		      [2, 1]
+	      Position		      [660, 157, 690, 188]
+	      ZOrder		      7096
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product3"
+	      SID		      "716:1375"
+	      Ports		      [2, 1]
+	      Position		      [660, 217, 690, 248]
+	      ZOrder		      7125
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product4"
+	      SID		      "716:1418"
+	      Ports		      [2, 1]
+	      Position		      [660, 277, 690, 308]
+	      ZOrder		      7130
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "SQRT"
+	      SID		      "716:1214"
+	      Tag		      "cdsSqrt"
+	      Ports		      [1, 1]
+	      Position		      [765, 156, 795, 194]
+	      ZOrder		      7102
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsSqrt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "716:1215"
+	      Ports		      [5, 1]
+	      Position		      [715, 26, 730, 324]
+	      ZOrder		      7100
+	      ShowName		      off
+	      Inputs		      "+++++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "716:1216"
+	      Position		      [270, 83, 300, 97]
+	      ZOrder		      7118
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out2"
+	      SID		      "716:1217"
+	      Position		      [270, 148, 300, 162]
+	      ZOrder		      7119
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out3"
+	      SID		      "716:1218"
+	      Position		      [270, 208, 300, 222]
+	      ZOrder		      7120
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out4"
+	      SID		      "716:1376"
+	      Position		      [270, 268, 300, 282]
+	      ZOrder		      7128
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out5"
+	      SID		      "716:1419"
+	      Position		      [270, 328, 300, 342]
+	      ZOrder		      7132
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "SQRT"
+	      SrcPort		      1
+	      DstBlock		      "Goto32"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "In3"
+	      SrcPort		      1
+	      Points		      [89, 0]
+	      Branch {
+		ZOrder			3
+		Points			[0, 25]
+		DstBlock		"Divide2"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			4
+		Points			[483, 0]
+		Branch {
+		  ZOrder		  5
+		  Points		  [0, -15]
+		  DstBlock		  "Product2"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  6
+		  DstBlock		  "Product2"
+		  DstPort		  2
+		}
+	      }
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "Product1"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      Points		      [85, 0]
+	      Branch {
+		ZOrder			9
+		Points			[0, 20]
+		DstBlock		"Divide"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			10
+		Points			[487, 0]
+		Branch {
+		  ZOrder		  11
+		  Points		  [0, -15]
+		  DstBlock		  "Product"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  12
+		  DstBlock		  "Product"
+		  DstPort		  2
+		}
+	      }
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "SQRT"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "Product"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "Product2"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "In2"
+	      SrcPort		      1
+	      Points		      [85, 0]
+	      Branch {
+		ZOrder			17
+		Points			[0, 25]
+		DstBlock		"Divide1"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			18
+		Points			[487, 0]
+		Branch {
+		  ZOrder		  19
+		  Points		  [0, -15]
+		  DstBlock		  "Product1"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  20
+		  DstBlock		  "Product1"
+		  DstPort		  2
+		}
+	      }
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "Divide"
+	      SrcPort		      1
+	      DstBlock		      "Abs"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Divide1"
+	      SrcPort		      1
+	      DstBlock		      "Abs1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "Divide2"
+	      SrcPort		      1
+	      DstBlock		      "Abs2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "In4"
+	      SrcPort		      1
+	      Points		      [89, 0]
+	      Branch {
+		ZOrder			25
+		Points			[0, 25]
+		DstBlock		"Divide4"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			26
+		Points			[483, 0]
+		Branch {
+		  ZOrder		  27
+		  Points		  [0, -15]
+		  DstBlock		  "Product3"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  28
+		  DstBlock		  "Product3"
+		  DstPort		  2
+		}
+	      }
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "Product3"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      30
+	      SrcBlock		      "Divide4"
+	      SrcPort		      1
+	      DstBlock		      "Abs3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      31
+	      SrcBlock		      "In5"
+	      SrcPort		      1
+	      Points		      [89, 0]
+	      Branch {
+		ZOrder			32
+		Points			[0, 25]
+		DstBlock		"Divide3"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			33
+		Points			[483, 0]
+		Branch {
+		  ZOrder		  34
+		  Points		  [0, -15]
+		  DstBlock		  "Product4"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  35
+		  DstBlock		  "Product4"
+		  DstPort		  2
+		}
+	      }
+	    }
+	    Line {
+	      ZOrder		      36
+	      SrcBlock		      "From31"
+	      SrcPort		      1
+	      Points		      [13, 0; 0, 65]
+	      Branch {
+		ZOrder			37
+		Points			[0, 65]
+		Branch {
+		  ZOrder		  38
+		  Points		  [0, 60]
+		  Branch {
+		    ZOrder		    39
+		    Points		    [0, 60]
+		    Branch {
+		    ZOrder		    40
+		    Points		    [0, 60]
+		    DstBlock		    "Divide3"
+		    DstPort		    2
+		    }
+		    Branch {
+		    ZOrder		    41
+		    DstBlock		    "Divide4"
+		    DstPort		    2
+		    }
+		  }
+		  Branch {
+		    ZOrder		    42
+		    DstBlock		    "Divide2"
+		    DstPort		    2
+		  }
+		}
+		Branch {
+		  ZOrder		  43
+		  DstBlock		  "Divide1"
+		  DstPort		  2
+		}
+	      }
+	      Branch {
+		ZOrder			44
+		DstBlock		"Divide"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      45
+	      SrcBlock		      "Divide3"
+	      SrcPort		      1
+	      DstBlock		      "Abs4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      46
+	      SrcBlock		      "Product4"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      5
+	    }
+	    Line {
+	      ZOrder		      47
+	      SrcBlock		      "Abs"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      48
+	      SrcBlock		      "Abs1"
+	      SrcPort		      1
+	      DstBlock		      "Out2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      49
+	      SrcBlock		      "Abs2"
+	      SrcPort		      1
+	      DstBlock		      "Out3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      50
+	      SrcBlock		      "Abs3"
+	      SrcPort		      1
+	      DstBlock		      "Out4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      51
+	      SrcBlock		      "Abs4"
+	      SrcPort		      1
+	      DstBlock		      "Out5"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "exc"
+	  SID			  "716:1186"
+	  Position		  [910, 993, 940, 1007]
+	  ZOrder		  7114
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_LEN"
+	  SID			  "716:1453"
+	  Position		  [180, 218, 210, 232]
+	  ZOrder		  7366
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_TRA"
+	  SID			  "716:1454"
+	  Position		  [180, 238, 210, 252]
+	  ZOrder		  7367
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_VER"
+	  SID			  "716:1455"
+	  Position		  [180, 258, 210, 272]
+	  ZOrder		  7368
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_ROL"
+	  SID			  "716:1456"
+	  Position		  [180, 278, 210, 292]
+	  ZOrder		  7369
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_PIT"
+	  SID			  "716:1457"
+	  Position		  [180, 298, 210, 312]
+	  ZOrder		  7370
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_YAW"
+	  SID			  "716:1458"
+	  Position		  [180, 318, 210, 332]
+	  ZOrder		  7371
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_LEN"
+	  SID			  "716:1459"
+	  Position		  [180, 603, 210, 617]
+	  ZOrder		  7372
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_TRA"
+	  SID			  "716:1460"
+	  Position		  [180, 623, 210, 637]
+	  ZOrder		  7373
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_VER"
+	  SID			  "716:1461"
+	  Position		  [180, 643, 210, 657]
+	  ZOrder		  7374
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_ROL"
+	  SID			  "716:1462"
+	  Position		  [180, 663, 210, 677]
+	  ZOrder		  7375
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_PIT"
+	  SID			  "716:1463"
+	  Position		  [180, 683, 210, 697]
+	  ZOrder		  7376
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_YAW"
+	  SID			  "716:1464"
+	  Position		  [180, 703, 210, 717]
+	  ZOrder		  7377
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_LEN"
+	  SID			  "716:1465"
+	  Position		  [170, 948, 200, 962]
+	  ZOrder		  7378
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_TRA"
+	  SID			  "716:1466"
+	  Position		  [170, 968, 200, 982]
+	  ZOrder		  7379
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_VER"
+	  SID			  "716:1467"
+	  Position		  [170, 988, 200, 1002]
+	  ZOrder		  7380
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_ROL"
+	  SID			  "716:1468"
+	  Position		  [170, 1008, 200, 1022]
+	  ZOrder		  7381
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_PIT"
+	  SID			  "716:1469"
+	  Position		  [170, 1028, 200, 1042]
+	  ZOrder		  7382
+	  Port			  "18"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MN_YAW"
+	  SID			  "716:1470"
+	  Position		  [170, 1048, 200, 1062]
+	  ZOrder		  7383
+	  Port			  "19"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_LEN"
+	  SID			  "716:1471"
+	  Position		  [170, 1273, 200, 1287]
+	  ZOrder		  7384
+	  Port			  "20"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_TRA"
+	  SID			  "716:1472"
+	  Position		  [170, 1293, 200, 1307]
+	  ZOrder		  7385
+	  Port			  "21"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_VER"
+	  SID			  "716:1473"
+	  Position		  [170, 1313, 200, 1327]
+	  ZOrder		  7386
+	  Port			  "22"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_ROL"
+	  SID			  "716:1474"
+	  Position		  [170, 1333, 200, 1347]
+	  ZOrder		  7387
+	  Port			  "23"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_PIT"
+	  SID			  "716:1475"
+	  Position		  [170, 1353, 200, 1367]
+	  ZOrder		  7388
+	  Port			  "24"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IM_YAW"
+	  SID			  "716:1476"
+	  Position		  [170, 1373, 200, 1387]
+	  ZOrder		  7389
+	  Port			  "25"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TM_LEN"
+	  SID			  "716:1477"
+	  Position		  [170, 1638, 200, 1652]
+	  ZOrder		  7390
+	  Port			  "26"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TM_TRA"
+	  SID			  "716:1478"
+	  Position		  [170, 1658, 200, 1672]
+	  ZOrder		  7391
+	  Port			  "27"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TM_VER"
+	  SID			  "716:1479"
+	  Position		  [170, 1678, 200, 1692]
+	  ZOrder		  7392
+	  Port			  "28"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TM_ROL"
+	  SID			  "716:1480"
+	  Position		  [170, 1698, 200, 1712]
+	  ZOrder		  7393
+	  Port			  "29"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_PIT1"
+	  SID			  "716:1481"
+	  Position		  [170, 1718, 200, 1732]
+	  ZOrder		  7394
+	  Port			  "30"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TM_YAW"
+	  SID			  "716:1482"
+	  Position		  [170, 1738, 200, 1752]
+	  ZOrder		  7395
+	  Port			  "31"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "IM_V1"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "MN_H1"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "MN_H2"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "MN_V3"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "IM_V2"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "MN_V2"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "IM_V3"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "IM_H2"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "MN_V1"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "TM_H3"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  11
+	  SrcBlock		  "TM_H4"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  "TM_H2"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "TM_H1"
+	  SrcPort		  1
+	  DstBlock		  "TM_COILDRV_VMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  14
+	  SrcBlock		  "MN_H3"
+	  SrcPort		  1
+	  DstBlock		  "MN_COILDRV_VMON"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  15
+	  SrcBlock		  "IM_H3"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  16
+	  SrcBlock		  "IM_H1"
+	  SrcPort		  1
+	  DstBlock		  "IM_COILDRV_VMON"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  17
+	  SrcBlock		  "MCPS_H1"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  18
+	  SrcBlock		  "MCPS_H2"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  19
+	  SrcBlock		  "MCPS_V3"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  20
+	  SrcBlock		  "MCPS_V2"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  21
+	  SrcBlock		  "MCPS_V1"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "MCPS_H3"
+	  SrcPort		  1
+	  DstBlock		  "MN_DIAG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  23
+	  SrcBlock		  "IMPS_V1"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  24
+	  SrcBlock		  "IMPS_V2"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  25
+	  SrcBlock		  "IMPS_V3"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  26
+	  SrcBlock		  "IMPS_H1"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  27
+	  SrcBlock		  "IMPS_H2"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  28
+	  SrcBlock		  "IMPS_H3"
+	  SrcPort		  1
+	  DstBlock		  "IM_DIAG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  29
+	  SrcBlock		  "PREQUA_DEMOD_SW"
+	  SrcPort		  1
+	  Points		  [17, 0; 0, 15]
+	  DstBlock		  "SW"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  30
+	  SrcBlock		  "SampFreq"
+	  SrcPort		  1
+	  Points		  [17, 0]
+	  Branch {
+	    ZOrder		    31
+	    Points		    [0, 55]
+	    DstBlock		    "Goto4"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    32
+	    DstBlock		    "SW"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  ZOrder		  33
+	  SrcBlock		  "SW"
+	  SrcPort		  1
+	  DstBlock		  "Goto3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  34
+	  SrcBlock		  "From3"
+	  SrcPort		  1
+	  DstBlock		  "MN"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  35
+	  SrcBlock		  "From7"
+	  SrcPort		  1
+	  DstBlock		  "MN"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  36
+	  SrcBlock		  "From8"
+	  SrcPort		  1
+	  DstBlock		  "MN"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  37
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  1
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    38
+	    Points		    [0, 10]
+	    DstBlock		    "MN_LEN"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    39
+	    DstBlock		    "MN"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  ZOrder		  40
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  2
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    41
+	    Points		    [0, 10]
+	    DstBlock		    "MN_TRA"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    42
+	    DstBlock		    "MN"
+	    DstPort		    5
+	  }
+	}
+	Line {
+	  ZOrder		  43
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  3
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    44
+	    Points		    [0, 10]
+	    DstBlock		    "MN_VER"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    45
+	    DstBlock		    "MN"
+	    DstPort		    6
+	  }
+	}
+	Line {
+	  ZOrder		  46
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  4
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    47
+	    Points		    [0, 10]
+	    DstBlock		    "MN_ROL"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    48
+	    DstBlock		    "MN"
+	    DstPort		    7
+	  }
+	}
+	Line {
+	  ZOrder		  49
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  5
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    50
+	    Points		    [0, 10]
+	    DstBlock		    "MN_PIT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    51
+	    DstBlock		    "MN"
+	    DstPort		    8
+	  }
+	}
+	Line {
+	  ZOrder		  52
+	  SrcBlock		  "MN_DIAG"
+	  SrcPort		  6
+	  Points		  [29, 0]
+	  Branch {
+	    ZOrder		    53
+	    Points		    [0, 10]
+	    DstBlock		    "MN_YAW"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    54
+	    DstBlock		    "MN"
+	    DstPort		    9
+	  }
+	}
+	Line {
+	  ZOrder		  55
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  2
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    56
+	    Points		    [0, 10]
+	    DstBlock		    "IM_TRA"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    57
+	    DstBlock		    "IM"
+	    DstPort		    5
+	  }
+	}
+	Line {
+	  ZOrder		  58
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  3
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    59
+	    Points		    [0, 10]
+	    DstBlock		    "IM_VER"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    60
+	    DstBlock		    "IM"
+	    DstPort		    6
+	  }
+	}
+	Line {
+	  ZOrder		  61
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  4
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    62
+	    Points		    [0, 10]
+	    DstBlock		    "IM_ROL"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    63
+	    DstBlock		    "IM"
+	    DstPort		    7
+	  }
+	}
+	Line {
+	  ZOrder		  64
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  5
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    65
+	    Points		    [0, 10]
+	    DstBlock		    "IM_PIT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    66
+	    DstBlock		    "IM"
+	    DstPort		    8
+	  }
+	}
+	Line {
+	  ZOrder		  67
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  6
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    68
+	    Points		    [0, 10]
+	    DstBlock		    "IM_YAW"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    69
+	    DstBlock		    "IM"
+	    DstPort		    9
+	  }
+	}
+	Line {
+	  ZOrder		  70
+	  SrcBlock		  "TILT_SEG1"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  71
+	  SrcBlock		  "TILT_SEG2"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  72
+	  SrcBlock		  "TILT_SEG3"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  73
+	  SrcBlock		  "TILT_SEG4"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  74
+	  SrcBlock		  "LEN_SEG1"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  75
+	  SrcBlock		  "LEN_SEG2"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  76
+	  SrcBlock		  "LEN_SEG3"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  77
+	  SrcBlock		  "LEN_SEG4"
+	  SrcPort		  1
+	  DstBlock		  "TM_DIAG"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  78
+	  SrcBlock		  "FREQ_SWEEPER"
+	  SrcPort		  1
+	  DstBlock		  "Goto5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  79
+	  SrcBlock		  "PREQUA_DEMOD_FREQ"
+	  SrcPort		  1
+	  DstBlock		  "Goto"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  80
+	  SrcBlock		  "From4"
+	  SrcPort		  1
+	  DstBlock		  "IM"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  81
+	  SrcBlock		  "From9"
+	  SrcPort		  1
+	  DstBlock		  "IM"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  82
+	  SrcBlock		  "From10"
+	  SrcPort		  1
+	  DstBlock		  "IM"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  83
+	  SrcBlock		  "From11"
+	  SrcPort		  1
+	  DstBlock		  "TM"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  84
+	  SrcBlock		  "From12"
+	  SrcPort		  1
+	  DstBlock		  "TM"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  85
+	  SrcBlock		  "From5"
+	  SrcPort		  1
+	  DstBlock		  "TM"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  86
+	  SrcBlock		  "From6"
+	  SrcPort		  1
+	  DstBlock		  "FREQ_SWEEPER"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  87
+	  SrcBlock		  "Ground1"
+	  SrcPort		  1
+	  DstBlock		  "PREQUA_DEMOD_SW"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  88
+	  SrcBlock		  "From13"
+	  SrcPort		  1
+	  DstBlock		  "OSC"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  89
+	  SrcBlock		  "From14"
+	  SrcPort		  1
+	  DstBlock		  "OSC"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  90
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "OSC"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  91
+	  SrcBlock		  "OSC"
+	  SrcPort		  2
+	  DstBlock		  "Terminator12"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  92
+	  SrcBlock		  "OSC"
+	  SrcPort		  3
+	  DstBlock		  "Terminator1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  93
+	  SrcBlock		  "OSC"
+	  SrcPort		  1
+	  DstBlock		  "QUAEXC"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  94
+	  SrcBlock		  "QUAEXC"
+	  SrcPort		  1
+	  DstBlock		  "exc"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  95
+	  SrcBlock		  "From1"
+	  SrcPort		  1
+	  Points		  [1, 0]
+	  Branch {
+	    ZOrder		    96
+	    Points		    [0, -20]
+	    Branch {
+	      ZOrder		      97
+	      Points		      [0, -20]
+	      DstBlock		      "IM"
+	      DstPort		      10
+	    }
+	    Branch {
+	      ZOrder		      98
+	      DstBlock		      "IM"
+	      DstPort		      11
+	    }
+	  }
+	  Branch {
+	    ZOrder		    99
+	    Points		    [0, 20]
+	    Branch {
+	      ZOrder		      100
+	      Points		      [0, 20]
+	      Branch {
+		ZOrder			101
+		Points			[0, 20]
+		DstBlock		"IM"
+		DstPort			15
+	      }
+	      Branch {
+		ZOrder			102
+		DstBlock		"IM"
+		DstPort			14
+	      }
+	    }
+	    Branch {
+	      ZOrder		      103
+	      DstBlock		      "IM"
+	      DstPort		      13
+	    }
+	  }
+	  Branch {
+	    ZOrder		    104
+	    DstBlock		    "IM"
+	    DstPort		    12
+	  }
+	}
+	Line {
+	  ZOrder		  105
+	  SrcBlock		  "From15"
+	  SrcPort		  1
+	  Points		  [3, 0]
+	  Branch {
+	    ZOrder		    106
+	    Points		    [0, -20]
+	    Branch {
+	      ZOrder		      107
+	      Points		      [0, -20]
+	      Branch {
+		ZOrder			108
+		Points			[0, -20]
+		DstBlock		"MN"
+		DstPort			10
+	      }
+	      Branch {
+		ZOrder			109
+		DstBlock		"MN"
+		DstPort			11
+	      }
+	    }
+	    Branch {
+	      ZOrder		      110
+	      DstBlock		      "MN"
+	      DstPort		      12
+	    }
+	  }
+	  Branch {
+	    ZOrder		    111
+	    Points		    [0, 20]
+	    Branch {
+	      ZOrder		      112
+	      Points		      [0, 20]
+	      DstBlock		      "MN"
+	      DstPort		      15
+	    }
+	    Branch {
+	      ZOrder		      113
+	      DstBlock		      "MN"
+	      DstPort		      14
+	    }
+	  }
+	  Branch {
+	    ZOrder		    114
+	    DstBlock		    "MN"
+	    DstPort		    13
+	  }
+	}
+	Line {
+	  ZOrder		  115
+	  SrcBlock		  "From2"
+	  SrcPort		  1
+	  Points		  [1, 0]
+	  Branch {
+	    ZOrder		    116
+	    Points		    [0, -20]
+	    Branch {
+	      ZOrder		      117
+	      Points		      [0, -20]
+	      Branch {
+		ZOrder			118
+		Points			[0, -20]
+		DstBlock		"TM"
+		DstPort			10
+	      }
+	      Branch {
+		ZOrder			119
+		DstBlock		"TM"
+		DstPort			11
+	      }
+	    }
+	    Branch {
+	      ZOrder		      120
+	      DstBlock		      "TM"
+	      DstPort		      12
+	    }
+	  }
+	  Branch {
+	    ZOrder		    121
+	    DstBlock		    "TM"
+	    DstPort		    13
+	  }
+	  Branch {
+	    ZOrder		    122
+	    Points		    [0, 20]
+	    Branch {
+	      ZOrder		      123
+	      Points		      [0, 20]
+	      DstBlock		      "TM"
+	      DstPort		      15
+	    }
+	    Branch {
+	      ZOrder		      124
+	      DstBlock		      "TM"
+	      DstPort		      14
+	    }
+	  }
+	}
+	Line {
+	  ZOrder		  125
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  1
+	  Points		  [45, 0]
+	  Branch {
+	    ZOrder		    126
+	    Points		    [0, 10]
+	    DstBlock		    "TM_LEN"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    127
+	    DstBlock		    "TM"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  ZOrder		  128
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  2
+	  Points		  [44, 0]
+	  Branch {
+	    ZOrder		    129
+	    Points		    [0, 10]
+	    DstBlock		    "TM_TRA"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    130
+	    DstBlock		    "TM"
+	    DstPort		    5
+	  }
+	}
+	Line {
+	  ZOrder		  131
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  3
+	  Points		  [46, 0]
+	  Branch {
+	    ZOrder		    132
+	    Points		    [0, 10]
+	    DstBlock		    "TM_VER"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    133
+	    DstBlock		    "TM"
+	    DstPort		    6
+	  }
+	}
+	Line {
+	  ZOrder		  134
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  4
+	  Points		  [44, 0]
+	  Branch {
+	    ZOrder		    135
+	    Points		    [0, 10]
+	    DstBlock		    "TM_ROL"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    136
+	    DstBlock		    "TM"
+	    DstPort		    7
+	  }
+	}
+	Line {
+	  ZOrder		  137
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  5
+	  Points		  [43, 0]
+	  Branch {
+	    ZOrder		    138
+	    Points		    [0, 10]
+	    DstBlock		    "IP_PIT1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    139
+	    DstBlock		    "TM"
+	    DstPort		    8
+	  }
+	}
+	Line {
+	  ZOrder		  140
+	  SrcBlock		  "TM_DIAG"
+	  SrcPort		  6
+	  Points		  [44, 0]
+	  Branch {
+	    ZOrder		    141
+	    Points		    [0, 10]
+	    DstBlock		    "TM_YAW"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    142
+	    DstBlock		    "TM"
+	    DstPort		    9
+	  }
+	}
+	Line {
+	  ZOrder		  143
+	  SrcBlock		  "TM"
+	  SrcPort		  1
+	  DstBlock		  "Goto1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  144
+	  SrcBlock		  "IM"
+	  SrcPort		  1
+	  DstBlock		  "Goto2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  145
+	  SrcBlock		  "MN"
+	  SrcPort		  1
+	  DstBlock		  "Goto6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  146
+	  SrcBlock		  "MN"
+	  SrcPort		  2
+	  DstBlock		  "Goto9"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  147
+	  SrcBlock		  "IM"
+	  SrcPort		  2
+	  DstBlock		  "Goto8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  148
+	  SrcBlock		  "TM"
+	  SrcPort		  2
+	  DstBlock		  "Goto7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  149
+	  SrcBlock		  "Mux1"
+	  SrcPort		  1
+	  DstBlock		  "STAGE_SEL_REF_PHASE"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  150
+	  SrcBlock		  "STAGE_SEL_REF_PHASE"
+	  SrcPort		  1
+	  DstBlock		  "Demux1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  151
+	  SrcBlock		  "Demux1"
+	  SrcPort		  1
+	  DstBlock		  "Goto32"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  152
+	  SrcBlock		  "From31"
+	  SrcPort		  1
+	  Points		  [8, 0; 0, 25]
+	  Branch {
+	    ZOrder		    153
+	    Points		    [0, 35]
+	    Branch {
+	      ZOrder		      154
+	      Points		      [0, 35]
+	      Branch {
+		ZOrder			155
+		Points			[0, 35]
+		Branch {
+		  ZOrder		  156
+		  Points		  [0, 35]
+		  DstBlock		  "Sum5"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  157
+		  DstBlock		  "Sum4"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		ZOrder			158
+		DstBlock		"Sum2"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      ZOrder		      159
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    ZOrder		    160
+	    DstBlock		    "Sum"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  161
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "REL_PHASE"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  162
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "REL_PHASE"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  163
+	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  DstBlock		  "REL_PHASE"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  164
+	  SrcBlock		  "Ground2"
+	  SrcPort		  1
+	  DstBlock		  "OSC"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  165
+	  SrcBlock		  "Mux3"
+	  SrcPort		  1
+	  DstBlock		  "STAGE_SEL_FREQ"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  166
+	  SrcBlock		  "STAGE_SEL_FREQ"
+	  SrcPort		  1
+	  DstBlock		  "Demux3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  167
+	  SrcBlock		  "Demux3"
+	  SrcPort		  1
+	  DstBlock		  "PREQUA_FREQ"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  168
+	  SrcBlock		  "Mux4"
+	  SrcPort		  1
+	  DstBlock		  "STAGE_SEL_Q_VAL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  169
+	  SrcBlock		  "STAGE_SEL_Q_VAL"
+	  SrcPort		  1
+	  DstBlock		  "Demux4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  170
+	  SrcBlock		  "Demux4"
+	  SrcPort		  1
+	  DstBlock		  "PREQUA_Q_VAL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  171
+	  SrcBlock		  "Mux5"
+	  SrcPort		  1
+	  DstBlock		  "STAGE_SEL_DECAY_TIME"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  172
+	  SrcBlock		  "STAGE_SEL_DECAY_TIME"
+	  SrcPort		  1
+	  DstBlock		  "Demux5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  173
+	  SrcBlock		  "Demux5"
+	  SrcPort		  1
+	  DstBlock		  "PREQUA_DECAY_TIME"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  174
+	  SrcBlock		  "Mux6"
+	  SrcPort		  1
+	  DstBlock		  "STAGE_SEL_AMP"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  175
+	  SrcBlock		  "STAGE_SEL_AMP"
+	  SrcPort		  1
+	  DstBlock		  "Demux6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  176
+	  SrcBlock		  "PREQUA_DECAY_TIME"
+	  SrcPort		  1
+	  DstBlock		  "Terminator16"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  177
+	  SrcBlock		  "MN"
+	  SrcPort		  3
+	  DstBlock		  "Goto15"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  178
+	  SrcBlock		  "IM"
+	  SrcPort		  3
+	  DstBlock		  "Goto14"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  179
+	  SrcBlock		  "TM"
+	  SrcPort		  3
+	  DstBlock		  "Goto13"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  180
+	  SrcBlock		  "MN"
+	  SrcPort		  4
+	  DstBlock		  "Goto18"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  181
+	  SrcBlock		  "IM"
+	  SrcPort		  4
+	  DstBlock		  "Goto17"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  182
+	  SrcBlock		  "TM"
+	  SrcPort		  4
+	  DstBlock		  "Goto16"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  183
+	  SrcBlock		  "MN"
+	  SrcPort		  5
+	  DstBlock		  "Goto21"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  184
+	  SrcBlock		  "IM"
+	  SrcPort		  5
+	  DstBlock		  "Goto20"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  185
+	  SrcBlock		  "TM"
+	  SrcPort		  5
+	  DstBlock		  "Goto19"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  186
+	  SrcBlock		  "PREQUA_FREQ"
+	  SrcPort		  1
+	  DstBlock		  "Terminator3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  187
+	  SrcBlock		  "PREQUA_Q_VAL"
+	  SrcPort		  1
+	  DstBlock		  "Terminator2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  188
+	  SrcBlock		  "BFLVDT_H1"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  189
+	  SrcBlock		  "BFLVDT_H2"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  190
+	  SrcBlock		  "BFLVDT_V3"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  191
+	  SrcBlock		  "BFLVDT_V2"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  192
+	  SrcBlock		  "BFLVDT_V1"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  193
+	  SrcBlock		  "BFLVDT_H3"
+	  SrcPort		  1
+	  DstBlock		  "BF_DIAG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  194
+	  SrcBlock		  "From43"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  195
+	  SrcBlock		  "From44"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  196
+	  SrcBlock		  "From45"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  197
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  1
+	  Points		  [37, 0]
+	  Branch {
+	    ZOrder		    198
+	    Points		    [0, 10]
+	    DstBlock		    "BF_LEN"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    199
+	    DstBlock		    "BF"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  ZOrder		  200
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  2
+	  Points		  [38, 0]
+	  Branch {
+	    ZOrder		    201
+	    Points		    [0, 10]
+	    DstBlock		    "BF_TRA"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    202
+	    DstBlock		    "BF"
+	    DstPort		    5
+	  }
+	}
+	Line {
+	  ZOrder		  203
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  3
+	  Points		  [40, 0]
+	  Branch {
+	    ZOrder		    204
+	    DstBlock		    "BF_VER"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    205
+	    DstBlock		    "BF"
+	    DstPort		    6
+	  }
+	}
+	Line {
+	  ZOrder		  206
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  4
+	  Points		  [41, 0]
+	  Branch {
+	    ZOrder		    207
+	    Points		    [0, 10]
+	    DstBlock		    "BF_ROL"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    208
+	    DstBlock		    "BF"
+	    DstPort		    7
+	  }
+	}
+	Line {
+	  ZOrder		  209
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  5
+	  Points		  [40, 0]
+	  Branch {
+	    ZOrder		    210
+	    DstBlock		    "BF_PIT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    211
+	    DstBlock		    "BF"
+	    DstPort		    8
+	  }
+	}
+	Line {
+	  ZOrder		  212
+	  SrcBlock		  "BF_DIAG"
+	  SrcPort		  6
+	  Points		  [40, 0]
+	  Branch {
+	    ZOrder		    213
+	    DstBlock		    "BF_YAW"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    214
+	    DstBlock		    "BF"
+	    DstPort		    9
+	  }
+	}
+	Line {
+	  ZOrder		  215
+	  SrcBlock		  "From26"
+	  SrcPort		  1
+	  Points		  [3, 0]
+	  Branch {
+	    ZOrder		    216
+	    Points		    [0, -20]
+	    Branch {
+	      ZOrder		      217
+	      Points		      [0, -20]
+	      Branch {
+		ZOrder			218
+		Points			[0, -20]
+		DstBlock		"BF"
+		DstPort			10
+	      }
+	      Branch {
+		ZOrder			219
+		DstBlock		"BF"
+		DstPort			11
+	      }
+	    }
+	    Branch {
+	      ZOrder		      220
+	      DstBlock		      "BF"
+	      DstPort		      12
+	    }
+	  }
+	  Branch {
+	    ZOrder		    221
+	    Points		    [0, 20]
+	    Branch {
+	      ZOrder		      222
+	      Points		      [0, 20]
+	      DstBlock		      "BF"
+	      DstPort		      15
+	    }
+	    Branch {
+	      ZOrder		      223
+	      DstBlock		      "BF"
+	      DstPort		      14
+	    }
+	  }
+	  Branch {
+	    ZOrder		    224
+	    DstBlock		    "BF"
+	    DstPort		    13
+	  }
+	}
+	Line {
+	  ZOrder		  225
+	  SrcBlock		  "Sum4"
+	  SrcPort		  1
+	  DstBlock		  "REL_PHASE"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  226
+	  SrcBlock		  "From36"
+	  SrcPort		  1
+	  DstBlock		  "Mux5"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  227
+	  SrcBlock		  "IPLVDT_H1"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  228
+	  SrcBlock		  "IPLVDT_H2"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  229
+	  SrcBlock		  "Ground6"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  230
+	  SrcBlock		  "Ground5"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  231
+	  SrcBlock		  "Ground4"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  232
+	  SrcBlock		  "IPLVDT_H3"
+	  SrcPort		  1
+	  DstBlock		  "IP_DIAG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  233
+	  SrcBlock		  "From54"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  234
+	  SrcBlock		  "From55"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  235
+	  SrcBlock		  "From56"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  236
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  1
+	  Points		  [33, 0]
+	  Branch {
+	    ZOrder		    237
+	    Points		    [0, 10]
+	    DstBlock		    "IP_LEN"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    238
+	    DstBlock		    "IP"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  ZOrder		  239
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  2
+	  Points		  [34, 0]
+	  Branch {
+	    ZOrder		    240
+	    Points		    [0, 10]
+	    DstBlock		    "IP_TRA"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    241
+	    DstBlock		    "IP"
+	    DstPort		    5
+	  }
+	}
+	Line {
+	  ZOrder		  242
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  3
+	  Points		  [34, 0]
+	  Branch {
+	    ZOrder		    243
+	    Points		    [0, 10]
+	    DstBlock		    "IP_VER"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    244
+	    DstBlock		    "IP"
+	    DstPort		    6
+	  }
+	}
+	Line {
+	  ZOrder		  245
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  4
+	  Points		  [33, 0]
+	  Branch {
+	    ZOrder		    246
+	    Points		    [0, 10]
+	    DstBlock		    "IP_ROL"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    247
+	    DstBlock		    "IP"
+	    DstPort		    7
+	  }
+	}
+	Line {
+	  ZOrder		  248
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  5
+	  Points		  [32, 0]
+	  Branch {
+	    ZOrder		    249
+	    Points		    [0, 10]
+	    DstBlock		    "IP_PIT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    250
+	    DstBlock		    "IP"
+	    DstPort		    8
+	  }
+	}
+	Line {
+	  ZOrder		  251
+	  SrcBlock		  "IP_DIAG"
+	  SrcPort		  6
+	  Points		  [32, 0]
+	  Branch {
+	    ZOrder		    252
+	    Points		    [0, 10]
+	    DstBlock		    "IP_YAW"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    253
+	    DstBlock		    "IP"
+	    DstPort		    9
+	  }
+	}
+	Line {
+	  ZOrder		  254
+	  SrcBlock		  "From53"
+	  SrcPort		  1
+	  Points		  [3, 0]
+	  Branch {
+	    ZOrder		    255
+	    Points		    [0, -20]
+	    Branch {
+	      ZOrder		      256
+	      Points		      [0, -20]
+	      DstBlock		      "IP"
+	      DstPort		      10
+	    }
+	    Branch {
+	      ZOrder		      257
+	      DstBlock		      "IP"
+	      DstPort		      11
+	    }
+	  }
+	  Branch {
+	    ZOrder		    258
+	    Points		    [0, 20]
+	    Branch {
+	      ZOrder		      259
+	      Points		      [0, 20]
+	      Branch {
+		ZOrder			260
+		Points			[0, 20]
+		DstBlock		"IP"
+		DstPort			15
+	      }
+	      Branch {
+		ZOrder			261
+		DstBlock		"IP"
+		DstPort			14
+	      }
+	    }
+	    Branch {
+	      ZOrder		      262
+	      DstBlock		      "IP"
+	      DstPort		      13
+	    }
+	  }
+	  Branch {
+	    ZOrder		    263
+	    DstBlock		    "IP"
+	    DstPort		    12
+	  }
+	}
+	Line {
+	  ZOrder		  264
+	  SrcBlock		  "Sum5"
+	  SrcPort		  1
+	  DstBlock		  "REL_PHASE"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  265
+	  SrcBlock		  "IP"
+	  SrcPort		  5
+	  DstBlock		  "Goto24"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  266
+	  SrcBlock		  "IP"
+	  SrcPort		  1
+	  DstBlock		  "Goto25"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  267
+	  SrcBlock		  "IP"
+	  SrcPort		  2
+	  DstBlock		  "Goto26"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  268
+	  SrcBlock		  "IP"
+	  SrcPort		  3
+	  DstBlock		  "Goto22"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  269
+	  SrcBlock		  "IP"
+	  SrcPort		  4
+	  DstBlock		  "Goto23"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  270
+	  SrcBlock		  "BF"
+	  SrcPort		  5
+	  DstBlock		  "Goto29"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  271
+	  SrcBlock		  "BF"
+	  SrcPort		  1
+	  DstBlock		  "Goto30"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  272
+	  SrcBlock		  "BF"
+	  SrcPort		  2
+	  DstBlock		  "Goto31"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  273
+	  SrcBlock		  "BF"
+	  SrcPort		  3
+	  DstBlock		  "Goto27"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  274
+	  SrcBlock		  "BF"
+	  SrcPort		  4
+	  DstBlock		  "Goto28"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  275
+	  SrcBlock		  "From39"
+	  SrcPort		  1
+	  DstBlock		  "Mux6"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  276
+	  SrcBlock		  "From52"
+	  SrcPort		  1
+	  DstBlock		  "Mux6"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  277
+	  SrcBlock		  "From41"
+	  SrcPort		  1
+	  DstBlock		  "Mux6"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  278
+	  SrcBlock		  "From40"
+	  SrcPort		  1
+	  DstBlock		  "Mux6"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  279
+	  SrcBlock		  "From48"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  280
+	  SrcBlock		  "From21"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  281
+	  SrcBlock		  "From20"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  282
+	  SrcBlock		  "From19"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  283
+	  SrcBlock		  "From49"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  284
+	  SrcBlock		  "From32"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  285
+	  SrcBlock		  "From30"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  286
+	  SrcBlock		  "From29"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  287
+	  SrcBlock		  "From50"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  288
+	  SrcBlock		  "From35"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  289
+	  SrcBlock		  "From34"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  290
+	  SrcBlock		  "From33"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  291
+	  SrcBlock		  "From51"
+	  SrcPort		  1
+	  DstBlock		  "Mux5"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  292
+	  SrcBlock		  "From38"
+	  SrcPort		  1
+	  DstBlock		  "Mux5"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  293
+	  SrcBlock		  "From37"
+	  SrcPort		  1
+	  DstBlock		  "Mux5"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  294
+	  SrcBlock		  "From63"
+	  SrcPort		  1
+	  DstBlock		  "Mux6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  295
+	  SrcBlock		  "From59"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  296
+	  SrcBlock		  "From60"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  297
+	  SrcBlock		  "From61"
+	  SrcPort		  1
+	  DstBlock		  "Mux4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  298
+	  SrcBlock		  "From62"
+	  SrcPort		  1
+	  DstBlock		  "Mux5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  299
+	  SrcBlock		  "normalize"
+	  SrcPort		  1
+	  DstBlock		  "CP_COEF"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  300
+	  SrcBlock		  "normalize"
+	  SrcPort		  2
+	  DstBlock		  "CP_COEF"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  301
+	  SrcBlock		  "normalize"
+	  SrcPort		  3
+	  DstBlock		  "CP_COEF"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  302
+	  SrcBlock		  "normalize"
+	  SrcPort		  4
+	  DstBlock		  "CP_COEF"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  303
+	  SrcBlock		  "normalize"
+	  SrcPort		  5
+	  DstBlock		  "CP_COEF"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  304
+	  SrcBlock		  "From18"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  305
+	  SrcBlock		  "From17"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  306
+	  SrcBlock		  "From16"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  307
+	  SrcBlock		  "From57"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  308
+	  SrcBlock		  "From46"
+	  SrcPort		  1
+	  DstBlock		  "normalize"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  309
+	  SrcBlock		  "CP_COEF"
+	  SrcPort		  3
+	  DstBlock		  "Terminator15"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  310
+	  SrcBlock		  "CP_COEF"
+	  SrcPort		  1
+	  DstBlock		  "Terminator6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  311
+	  SrcBlock		  "CP_COEF"
+	  SrcPort		  2
+	  DstBlock		  "Terminator11"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  312
+	  SrcBlock		  "CP_COEF"
+	  SrcPort		  4
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  313
+	  SrcBlock		  "CP_COEF"
+	  SrcPort		  5
+	  DstBlock		  "Terminator5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  314
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  3
+	  DstBlock		  "Terminator8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  315
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  1
+	  DstBlock		  "Terminator14"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  316
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  2
+	  DstBlock		  "Terminator7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  317
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  4
+	  DstBlock		  "Terminator9"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  318
+	  SrcBlock		  "REL_PHASE"
+	  SrcPort		  5
+	  DstBlock		  "Terminator13"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  319
+	  SrcBlock		  "From24"
+	  SrcPort		  1
+	  DstBlock		  "Sum2"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  320
+	  SrcBlock		  "From23"
+	  SrcPort		  1
+	  DstBlock		  "Sum4"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  321
+	  SrcBlock		  "From22"
+	  SrcPort		  1
+	  DstBlock		  "Sum5"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  322
+	  SrcBlock		  "From47"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  323
+	  SrcBlock		  "From58"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  324
+	  SrcBlock		  "IM_DIAG"
+	  SrcPort		  1
+	  Points		  [39, 0]
+	  Branch {
+	    ZOrder		    325
+	    Points		    [0, 10]
+	    DstBlock		    "IM_LEN"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    326
+	    DstBlock		    "IM"
+	    DstPort		    4
+	  }
+	}
+	Line {
+	  ZOrder		  327
+	  SrcBlock		  "Demux6"
+	  SrcPort		  1
+	  DstBlock		  "Terminator10"
+	  DstPort		  1
+	}
+	Annotation {
+	  SID			  "716:1321"
+	  Name			  "#DAQ Channels\n\nPREQUA_FREQ_OUT 256\nPREQUA_DECAY_TIME_OUT 256\nPREQUA_Q_VAL_OUT 256"
+	  Position		  [1209, 394, 1431, 486]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  HorizontalAlignment	  "left"
+	  DropShadow		  on
+	  ZOrder		  -1
+	  FontSize		  14
+	}
+      }
     }
     Block {
       BlockType		      Reference

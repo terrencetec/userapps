@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.161"
+    ComputedModelVersion    "1.170"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [3918.0, 7.0, 1458.0, 955.0]
+      Location		      [2135.0, 80.0, 1458.0, 955.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -64,8 +64,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1404.0, 769.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [305.06751255690216, 811.56430073441652]
+	  ZoomFactor		  [0.8]
+	  Offset		  [-401.70910198149454, -160.68358763074249]
 	}
 	PropName		"EditorsInfo"
       }
@@ -77,9 +77,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 03 20:49:12 2020"
-  RTWModifiedTimeStamp	  518388535
-  ModelVersionFormat	  "1.%<AutoIncrement:161>"
+  LastModifiedDate	  "Wed Aug 05 01:14:13 2020"
+  RTWModifiedTimeStamp	  518490843
+  ModelVersionFormat	  "1.%<AutoIncrement:170>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "k1visetmxt"
-    Location		    [3918, 7, 5376, 962]
+    Location		    [2135, 80, 3593, 1035]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -907,9 +907,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "858"
+    SIDHighWatermark	    "992"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -934,6 +934,15 @@ Model {
       SID		      "695"
       Position		      [505, 520, 560, 540]
       ZOrder		      5544
+      BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
+      GotoTag		      "ADC0"
+    }
+    Block {
+      BlockType		      From
+      Name		      "ADC0-2"
+      SID		      "866"
+      Position		      [-330, 175, -275, 195]
+      ZOrder		      6932
       BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
       GotoTag		      "ADC0"
     }
@@ -1046,6 +1055,34 @@ Model {
       Port {
 	PortNumber		17
 	Name			"<adc_0_18>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector2"
+      SID		      "867"
+      Ports		      [1, 3]
+      Position		      [-210, 86, -205, 284]
+      ZOrder		      6931
+      ShowName		      off
+      OutputSignals	      "adc_0_24,adc_0_25,adc_0_26"
+      Port {
+	PortNumber		1
+	Name			"<adc_0_24>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"<adc_0_25>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		3
+	Name			"<adc_0_26>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
@@ -1801,8 +1838,8 @@ Model {
       BlockType		      Goto
       Name		      "Goto1"
       SID		      "732"
-      Position		      [980, 12, 1060, 28]
-      ZOrder		      5653
+      Position		      [190, 112, 270, 128]
+      ZOrder		      6937
       BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
       ShowName		      off
       GotoTag		      "EXV_SEIS_X"
@@ -1901,8 +1938,8 @@ Model {
       BlockType		      Goto
       Name		      "Goto19"
       SID		      "733"
-      Position		      [980, 77, 1060, 93]
-      ZOrder		      5654
+      Position		      [190, 177, 270, 193]
+      ZOrder		      6938
       BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
       ShowName		      off
       GotoTag		      "EXV_SEIS_Y"
@@ -1921,8 +1958,8 @@ Model {
       BlockType		      Goto
       Name		      "Goto20"
       SID		      "734"
-      Position		      [980, 142, 1060, 158]
-      ZOrder		      5655
+      Position		      [190, 242, 270, 258]
+      ZOrder		      6939
       BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
       ShowName		      off
       GotoTag		      "EXV_SEIS_Z"
@@ -2063,30 +2100,6 @@ Model {
       SID		      "789"
       Position		      [450, 1087, 470, 1103]
       ZOrder		      5703
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground10"
-      SID		      "742"
-      Position		      [825, 82, 845, 98]
-      ZOrder		      5648
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground11"
-      SID		      "743"
-      Position		      [825, 147, 845, 163]
-      ZOrder		      5651
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground12"
-      SID		      "739"
-      Position		      [825, 17, 845, 33]
-      ZOrder		      5645
       ShowName		      off
     }
     Block {
@@ -2294,57 +2307,6 @@ Model {
       BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
       DropShadow	      on
       AttributesFormatString  "%<Description>\\n%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsIPCx/SignalName"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "K1:PEM-EXV_X3_VIS_X"
-      SID		      "744"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
-      Ports		      [1, 2]
-      Position		      [870, 16, 935, 34]
-      ZOrder		      5644
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
-      DropShadow	      on
-      AttributesFormatString  "%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsIPCx/SignalName"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "K1:PEM-EXV_Y3_VIS_Y"
-      SID		      "745"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
-      Ports		      [1, 2]
-      Position		      [870, 81, 935, 99]
-      ZOrder		      5647
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
-      DropShadow	      on
-      AttributesFormatString  "%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsIPCx/SignalName"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "K1:PEM-EXV_Z3_VIS_Z"
-      SID		      "746"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
-      Ports		      [1, 2]
-      Position		      [870, 146, 935, 164]
-      ZOrder		      5650
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
-      DropShadow	      on
-      AttributesFormatString  "%<Tag>"
       LibraryVersion	      "1.1"
       SourceBlock	      "cdsIPCx/SignalName"
       SourceType	      "SubSystem"
@@ -2685,7 +2647,7 @@ Model {
       Variant		      off
       System {
 	Name			"MOD"
-	Location		[2293, 147, 3751, 1077]
+	Location		[2124, 37, 3582, 992]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2780,7 +2742,7 @@ Model {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "ITMY"
+	  Name			  "ETMX"
 	  SID			  "827"
 	  Ports			  [9, 9]
 	  Position		  [25, 229, 125, 591]
@@ -2788,7 +2750,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
-	    Name		    "ITMY"
+	    Name		    "ETMX"
 	    Location		    [2293, 147, 3751, 1077]
 	    Open		    off
 	    ModelBrowserVisibility  off
@@ -3194,63 +3156,63 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  9
 	  DstBlock		  "Out16"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  1
 	  DstBlock		  "Out8"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  3
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  2
 	  DstBlock		  "Out9"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  4
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  3
 	  DstBlock		  "Out10"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  5
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  4
 	  DstBlock		  "Out11"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  6
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  5
 	  DstBlock		  "Out12"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  7
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  6
 	  DstBlock		  "Out13"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  8
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  7
 	  DstBlock		  "Out14"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  9
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ETMX"
 	  SrcPort		  8
 	  DstBlock		  "Out15"
 	  DstPort		  1
@@ -3259,63 +3221,63 @@ Model {
 	  ZOrder		  10
 	  SrcBlock		  "In8"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  11
 	  SrcBlock		  "In9"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  2
 	}
 	Line {
 	  ZOrder		  12
 	  SrcBlock		  "In10"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  3
 	}
 	Line {
 	  ZOrder		  13
 	  SrcBlock		  "In11"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  4
 	}
 	Line {
 	  ZOrder		  14
 	  SrcBlock		  "In12"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  5
 	}
 	Line {
 	  ZOrder		  15
 	  SrcBlock		  "In13"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  6
 	}
 	Line {
 	  ZOrder		  16
 	  SrcBlock		  "In14"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  7
 	}
 	Line {
 	  ZOrder		  17
 	  SrcBlock		  "In15"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  8
 	}
 	Line {
 	  ZOrder		  18
 	  SrcBlock		  "In16"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ETMX"
 	  DstPort		  9
 	}
       }
@@ -3330,6 +3292,161 @@ Model {
       ShowName		      off
       Inputs		      "9"
       DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PEM"
+      SID		      "881"
+      Tag		      "top_names"
+      Ports		      [3, 3]
+      Position		      [40, 90, 155, 280]
+      ZOrder		      6943
+      AttributesFormatString  "%<Tag>"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"PEM"
+	Location		[2135, 80, 3593, 1035]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"150"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  SID			  "980"
+	  Position		  [570, 378, 600, 392]
+	  ZOrder		  6944
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_24"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  SID			  "981"
+	  Position		  [570, 443, 600, 457]
+	  ZOrder		  6945
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_25"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  SID			  "982"
+	  Position		  [570, 508, 600, 522]
+	  ZOrder		  6946
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_26"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SEIS_EXV_GND"
+	  SID			  "986"
+	  Ports			  [3, 3]
+	  Position		  [785, 353, 935, 547]
+	  ZOrder		  6943
+	  LibraryVersion	  "1.37"
+	  SourceBlock		  "seis/SEIS"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  "987"
+	  Position		  [1075, 378, 1105, 392]
+	  ZOrder		  6947
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  SID			  "988"
+	  Position		  [1075, 443, 1105, 457]
+	  ZOrder		  6948
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out3"
+	  SID			  "989"
+	  Position		  [1075, 508, 1105, 522]
+	  ZOrder		  6949
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  59
+	  SrcBlock		  "SEIS_EXV_GND"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  60
+	  SrcBlock		  "SEIS_EXV_GND"
+	  SrcPort		  2
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  61
+	  SrcBlock		  "SEIS_EXV_GND"
+	  SrcPort		  3
+	  DstBlock		  "Out3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  50
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_EXV_GND"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  51
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_EXV_GND"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  52
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_EXV_GND"
+	  DstPort		  3
+	}
+      }
     }
     Block {
       BlockType		      Terminator
@@ -3357,22 +3474,6 @@ Model {
     }
     Block {
       BlockType		      Terminator
-      Name		      "Terminator11"
-      SID		      "753"
-      Position		      [955, 92, 975, 98]
-      ZOrder		      5649
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator12"
-      SID		      "754"
-      Position		      [955, 157, 975, 163]
-      ZOrder		      5652
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
       Name		      "Terminator13"
       SID		      "798"
       Position		      [455, 872, 475, 878]
@@ -3385,14 +3486,6 @@ Model {
       SID		      "788"
       Position		      [440, 972, 460, 978]
       ZOrder		      5697
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator2"
-      SID		      "751"
-      Position		      [955, 27, 975, 33]
-      ZOrder		      5646
       ShowName		      off
     }
     Block {
@@ -4199,69 +4292,6 @@ Model {
       DstPort		      18
     }
     Line {
-      ZOrder		      2108
-      SrcBlock		      "Ground12"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-EXV_X3_VIS_X"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2109
-      SrcBlock		      "K1:PEM-EXV_X3_VIS_X"
-      SrcPort		      2
-      DstBlock		      "Terminator2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2110
-      SrcBlock		      "Ground10"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-EXV_Y3_VIS_Y"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2111
-      SrcBlock		      "K1:PEM-EXV_Y3_VIS_Y"
-      SrcPort		      2
-      DstBlock		      "Terminator11"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2112
-      SrcBlock		      "Ground11"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-EXV_Z3_VIS_Z"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2113
-      SrcBlock		      "K1:PEM-EXV_Z3_VIS_Z"
-      SrcPort		      2
-      DstBlock		      "Terminator12"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2114
-      SrcBlock		      "K1:PEM-EXV_X3_VIS_X"
-      SrcPort		      1
-      DstBlock		      "Goto1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2115
-      SrcBlock		      "K1:PEM-EXV_Y3_VIS_Y"
-      SrcPort		      1
-      DstBlock		      "Goto19"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2116
-      SrcBlock		      "K1:PEM-EXV_Z3_VIS_Z"
-      SrcPort		      1
-      DstBlock		      "Goto20"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      2117
       SrcBlock		      "K1:VIS-ETMX_PAY_OLSERVO_BFY"
       SrcPort		      2
@@ -4777,6 +4807,89 @@ Model {
       DstBlock		      "ETMX"
       DstPort		      46
     }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2300
+      SrcBlock		      "ADC0-2"
+      SrcPort		      1
+      DstBlock		      "Bus\nSelector2"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_24>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2337
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      1
+      DstBlock		      "PEM"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_25>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2338
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      2
+      DstBlock		      "PEM"
+      DstPort		      2
+    }
+    Line {
+      Name		      "<adc_0_26>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2346
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      3
+      DstBlock		      "PEM"
+      DstPort		      3
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2347
+      SrcBlock		      "PEM"
+      SrcPort		      1
+      DstBlock		      "Goto1"
+      DstPort		      1
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2348
+      SrcBlock		      "PEM"
+      SrcPort		      2
+      DstBlock		      "Goto19"
+      DstPort		      1
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2349
+      SrcBlock		      "PEM"
+      SrcPort		      3
+      DstBlock		      "Goto20"
+      DstPort		      1
+    }
     Annotation {
       SID		      "245"
       Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4857,7 +4970,7 @@ Model {
       "style=\" font-size:11px;\"> </span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
       "right:0px; -qt-block-indent:0; text-indent:0px; line-height:100%;\"><span style=\" font-size:11px;\">Inner-compu"
       "ter Communication</span></p></body></html>"
-      Position		      [792, 111, 1445, 448]
+      Position		      [795, 120, 1448, 457]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      on
       FixedWidth	      on

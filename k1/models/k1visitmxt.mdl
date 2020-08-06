@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.157"
+    ComputedModelVersion    "1.167"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [3966.0, 2.0, 1458.0, 930.0]
+      Location		      [2047.0, 42.0, 1458.0, 930.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -64,8 +64,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1404.0, 744.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-213.58565924436164, 999.041556769416]
+	  ZoomFactor		  [0.8]
+	  Offset		  [-361.99372099870232, -212.24206758706208]
 	}
 	PropName		"EditorsInfo"
       }
@@ -77,9 +77,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 03 20:44:28 2020"
-  RTWModifiedTimeStamp	  518388255
-  ModelVersionFormat	  "1.%<AutoIncrement:157>"
+  LastModifiedDate	  "Wed Aug 05 01:14:28 2020"
+  RTWModifiedTimeStamp	  518490863
+  ModelVersionFormat	  "1.%<AutoIncrement:167>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -895,7 +895,7 @@ Model {
   }
   System {
     Name		    "k1visitmxt"
-    Location		    [3966, 2, 5424, 932]
+    Location		    [2047, 42, 3505, 972]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -907,9 +907,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "845"
+    SIDHighWatermark	    "884"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -934,6 +934,15 @@ Model {
       SID		      "695"
       Position		      [585, 555, 640, 575]
       ZOrder		      5544
+      BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
+      GotoTag		      "ADC0"
+    }
+    Block {
+      BlockType		      From
+      Name		      "ADC0-2"
+      SID		      "856"
+      Position		      [-420, -20, -365, 0]
+      ZOrder		      6915
       BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
       GotoTag		      "ADC0"
     }
@@ -1046,6 +1055,34 @@ Model {
       Port {
 	PortNumber		17
 	Name			"<adc_0_18>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector2"
+      SID		      "857"
+      Ports		      [1, 3]
+      Position		      [-225, -74, -220, 194]
+      ZOrder		      6914
+      ShowName		      off
+      OutputSignals	      "adc_0_24,adc_0_25,adc_0_26"
+      Port {
+	PortNumber		1
+	Name			"<adc_0_24>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"<adc_0_25>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		3
+	Name			"<adc_0_26>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
@@ -1628,16 +1665,6 @@ Model {
     }
     Block {
       BlockType		      Goto
-      Name		      "Goto1"
-      SID		      "746"
-      Position		      [1155, 17, 1235, 33]
-      ZOrder		      5629
-      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
-      ShowName		      off
-      GotoTag		      "IXV_SEIS_X"
-    }
-    Block {
-      BlockType		      Goto
       Name		      "Goto10"
       SID		      "209"
       Position		      [1070, 897, 1140, 913]
@@ -1728,16 +1755,6 @@ Model {
     }
     Block {
       BlockType		      Goto
-      Name		      "Goto19"
-      SID		      "747"
-      Position		      [1155, 82, 1235, 98]
-      ZOrder		      5630
-      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
-      ShowName		      off
-      GotoTag		      "IXV_SEIS_Y"
-    }
-    Block {
-      BlockType		      Goto
       Name		      "Goto2"
       SID		      "177"
       Position		      [1080, 697, 1150, 713]
@@ -1745,16 +1762,6 @@ Model {
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
       GotoTag		      "BF_GAS"
-    }
-    Block {
-      BlockType		      Goto
-      Name		      "Goto20"
-      SID		      "748"
-      Position		      [1155, 147, 1235, 163]
-      ZOrder		      5631
-      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
-      ShowName		      off
-      GotoTag		      "IXV_SEIS_Z"
     }
     Block {
       BlockType		      Goto
@@ -1838,6 +1845,16 @@ Model {
     }
     Block {
       BlockType		      Goto
+      Name		      "Goto29"
+      SID		      "865"
+      Position		      [205, -133, 285, -117]
+      ZOrder		      6917
+      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
+      ShowName		      off
+      GotoTag		      "IXV_SEIS_X"
+    }
+    Block {
+      BlockType		      Goto
       Name		      "Goto3"
       SID		      "148"
       Position		      [1080, 647, 1150, 663]
@@ -1845,6 +1862,26 @@ Model {
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
       GotoTag		      "F3_GAS"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto30"
+      SID		      "866"
+      Position		      [240, 92, 320, 108]
+      ZOrder		      6918
+      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
+      ShowName		      off
+      GotoTag		      "IXV_SEIS_Y"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto31"
+      SID		      "867"
+      Position		      [240, 162, 320, 178]
+      ZOrder		      6919
+      BackgroundColor	      "[0.666667, 0.666667, 0.498039]"
+      ShowName		      off
+      GotoTag		      "IXV_SEIS_Z"
     }
     Block {
       BlockType		      Goto
@@ -1928,14 +1965,6 @@ Model {
       SID		      "735"
       Position		      [735, 1097, 755, 1113]
       ZOrder		      5596
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground12"
-      SID		      "737"
-      Position		      [1000, 22, 1020, 38]
-      ZOrder		      5607
       ShowName		      off
     }
     Block {
@@ -2104,22 +2133,6 @@ Model {
       SID		      "778"
       Position		      [410, 147, 430, 163]
       ZOrder		      5690
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground8"
-      SID		      "739"
-      Position		      [1000, 87, 1020, 103]
-      ZOrder		      5610
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground9"
-      SID		      "742"
-      Position		      [1000, 152, 1020, 168]
-      ZOrder		      5613
       ShowName		      off
     }
     Block {
@@ -2341,16 +2354,16 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "K1:PEM-IXV_X3_VIS_X"
-      SID		      "736"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
+      Name		      "K1:PEM-IXV_X2_VIS_X"
+      SID		      "849"
+      Tag		      "cdsIPCx_RFM"
+      Description	      "card=0"
       Ports		      [1, 2]
-      Position		      [1045, 21, 1110, 39]
-      ZOrder		      5606
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      Position		      [250, -96, 315, -74]
+      ZOrder		      6904
+      BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
       DropShadow	      on
-      AttributesFormatString  "%<Tag>"
+      AttributesFormatString  "%<Description>\\n%<Tag>"
       LibraryVersion	      "1.1"
       SourceBlock	      "cdsIPCx/SignalName"
       SourceType	      "SubSystem"
@@ -2358,16 +2371,16 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "K1:PEM-IXV_Y3_VIS_Y"
-      SID		      "740"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
+      Name		      "K1:PEM-IXV_Y2_VIS_Y"
+      SID		      "851"
+      Tag		      "cdsIPCx_RFM"
+      Description	      "card=0"
       Ports		      [1, 2]
-      Position		      [1045, 86, 1110, 104]
-      ZOrder		      5609
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      Position		      [250, 14, 315, 36]
+      ZOrder		      6905
+      BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
       DropShadow	      on
-      AttributesFormatString  "%<Tag>"
+      AttributesFormatString  "%<Description>\\n%<Tag>"
       LibraryVersion	      "1.1"
       SourceBlock	      "cdsIPCx/SignalName"
       SourceType	      "SubSystem"
@@ -2375,16 +2388,16 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "K1:PEM-IXV_Z3_VIS_Z"
-      SID		      "743"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
+      Name		      "K1:PEM-IXV_Z2_VIS_Z"
+      SID		      "853"
+      Tag		      "cdsIPCx_RFM"
+      Description	      "card=0"
       Ports		      [1, 2]
-      Position		      [1045, 151, 1110, 169]
-      ZOrder		      5612
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      Position		      [250, 229, 315, 251]
+      ZOrder		      6906
+      BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
       DropShadow	      on
-      AttributesFormatString  "%<Tag>"
+      AttributesFormatString  "%<Description>\\n%<Tag>"
       LibraryVersion	      "1.1"
       SourceBlock	      "cdsIPCx/SignalName"
       SourceType	      "SubSystem"
@@ -2708,7 +2721,7 @@ Model {
       Variant		      off
       System {
 	Name			"MOD"
-	Location		[2293, 147, 3751, 1077]
+	Location		[2000, 80, 3458, 1010]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2720,7 +2733,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In8"
@@ -2803,7 +2816,7 @@ Model {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "ITMY"
+	  Name			  "ITMX"
 	  SID			  "814"
 	  Ports			  [9, 9]
 	  Position		  [25, 229, 125, 591]
@@ -2811,8 +2824,8 @@ Model {
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
-	    Name		    "ITMY"
-	    Location		    [2293, 147, 3751, 1077]
+	    Name		    "ITMX"
+	    Location		    [3966, 28, 5424, 958]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2824,7 +2837,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In14"
@@ -2912,6 +2925,7 @@ Model {
 	      Ports		      [6, 6]
 	      Position		      [80, 203, 180, 387]
 	      ZOrder		      7314
+	      LibraryVersion	      "1.314"
 	      SourceBlock	      "VIS_LIB/UTILs/6COILs_DQ"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -2923,6 +2937,7 @@ Model {
 	      Ports		      [3, 3]
 	      Position		      [80, 100, 180, 190]
 	      ZOrder		      7317
+	      LibraryVersion	      "1.314"
 	      SourceBlock	      "VIS_LIB/UTILs/3COILs_DQ"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -3217,63 +3232,63 @@ Model {
 	}
 	Line {
 	  ZOrder		  1
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  9
 	  DstBlock		  "Out16"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  1
 	  DstBlock		  "Out8"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  3
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  2
 	  DstBlock		  "Out9"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  4
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  3
 	  DstBlock		  "Out10"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  5
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  4
 	  DstBlock		  "Out11"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  6
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  5
 	  DstBlock		  "Out12"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  7
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  6
 	  DstBlock		  "Out13"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  8
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  7
 	  DstBlock		  "Out14"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  9
-	  SrcBlock		  "ITMY"
+	  SrcBlock		  "ITMX"
 	  SrcPort		  8
 	  DstBlock		  "Out15"
 	  DstPort		  1
@@ -3282,63 +3297,63 @@ Model {
 	  ZOrder		  10
 	  SrcBlock		  "In8"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  11
 	  SrcBlock		  "In9"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  2
 	}
 	Line {
 	  ZOrder		  12
 	  SrcBlock		  "In10"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  3
 	}
 	Line {
 	  ZOrder		  13
 	  SrcBlock		  "In11"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  4
 	}
 	Line {
 	  ZOrder		  14
 	  SrcBlock		  "In12"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  5
 	}
 	Line {
 	  ZOrder		  15
 	  SrcBlock		  "In13"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  6
 	}
 	Line {
 	  ZOrder		  16
 	  SrcBlock		  "In14"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  7
 	}
 	Line {
 	  ZOrder		  17
 	  SrcBlock		  "In15"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  8
 	}
 	Line {
 	  ZOrder		  18
 	  SrcBlock		  "In16"
 	  SrcPort		  1
-	  DstBlock		  "ITMY"
+	  DstBlock		  "ITMX"
 	  DstPort		  9
 	}
       }
@@ -3353,6 +3368,281 @@ Model {
       ShowName		      off
       Inputs		      "9"
       DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PEM"
+      SID		      "871"
+      Tag		      "top_names"
+      Ports		      [3, 3]
+      Position		      [-95, -78, 85, 198]
+      ZOrder		      6944
+      AttributesFormatString  "%<Tag>"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"PEM"
+	Location		[2047, 42, 3505, 972]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"175"
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  SID			  "872"
+	  Position		  [570, 378, 600, 392]
+	  ZOrder		  6944
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_24"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  SID			  "873"
+	  Position		  [570, 443, 600, 457]
+	  ZOrder		  6945
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_25"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In3"
+	  SID			  "874"
+	  Position		  [570, 508, 600, 522]
+	  ZOrder		  6946
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  Port {
+	    PortNumber		    1
+	    PropagatedSignals	    "adc_0_26"
+	    ShowPropagatedSignals   "on"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IXV_GND_TR120Q_X_AA"
+	  SID			  "875"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1005, 373, 1075, 397]
+	  ZOrder		  6940
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IXV_GND_TR120Q_Y_AA"
+	  SID			  "876"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1005, 438, 1075, 462]
+	  ZOrder		  6941
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IXV_GND_TR120Q_Z_AA"
+	  SID			  "877"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1005, 503, 1075, 527]
+	  ZOrder		  6942
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SEIS_IXV_GND"
+	  SID			  "878"
+	  Ports			  [3, 3]
+	  Position		  [785, 353, 935, 547]
+	  ZOrder		  6943
+	  LibraryVersion	  "1.37"
+	  SourceBlock		  "seis/SEIS"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  SID			  "879"
+	  Position		  [1175, 378, 1205, 392]
+	  ZOrder		  6947
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  SID			  "880"
+	  Position		  [1175, 443, 1205, 457]
+	  ZOrder		  6948
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out3"
+	  SID			  "881"
+	  Position		  [1175, 508, 1205, 522]
+	  ZOrder		  6949
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "IXV_GND_TR120Q_X_AA"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "IXV_GND_TR120Q_Y_AA"
+	  SrcPort		  1
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "IXV_GND_TR120Q_Z_AA"
+	  SrcPort		  1
+	  DstBlock		  "Out3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "SEIS_IXV_GND"
+	  SrcPort		  2
+	  DstBlock		  "IXV_GND_TR120Q_Y_AA"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_IXV_GND"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_IXV_GND"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "In3"
+	  SrcPort		  1
+	  DstBlock		  "SEIS_IXV_GND"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "SEIS_IXV_GND"
+	  SrcPort		  1
+	  DstBlock		  "IXV_GND_TR120Q_X_AA"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "SEIS_IXV_GND"
+	  SrcPort		  3
+	  DstBlock		  "IXV_GND_TR120Q_Z_AA"
+	  DstPort		  1
+	}
+      }
     }
     Block {
       BlockType		      Terminator
@@ -3411,14 +3701,6 @@ Model {
     }
     Block {
       BlockType		      Terminator
-      Name		      "Terminator2"
-      SID		      "738"
-      Position		      [1130, 32, 1150, 38]
-      ZOrder		      5608
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
       Name		      "Terminator3"
       SID		      "701"
       Position		      [835, 92, 855, 98]
@@ -3431,22 +3713,6 @@ Model {
       SID		      "290"
       Position		      [1080, 1510, 1100, 1530]
       ZOrder		      4486
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator5"
-      SID		      "741"
-      Position		      [1130, 97, 1150, 103]
-      ZOrder		      5611
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator6"
-      SID		      "744"
-      Position		      [1130, 162, 1150, 168]
-      ZOrder		      5614
       ShowName		      off
     }
     Block {
@@ -4216,69 +4482,6 @@ Model {
       DstPort		      18
     }
     Line {
-      ZOrder		      2131
-      SrcBlock		      "Ground12"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-IXV_X3_VIS_X"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2132
-      SrcBlock		      "K1:PEM-IXV_X3_VIS_X"
-      SrcPort		      2
-      DstBlock		      "Terminator2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2133
-      SrcBlock		      "Ground8"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-IXV_Y3_VIS_Y"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2134
-      SrcBlock		      "K1:PEM-IXV_Y3_VIS_Y"
-      SrcPort		      2
-      DstBlock		      "Terminator5"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2135
-      SrcBlock		      "Ground9"
-      SrcPort		      1
-      DstBlock		      "K1:PEM-IXV_Z3_VIS_Z"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2136
-      SrcBlock		      "K1:PEM-IXV_Z3_VIS_Z"
-      SrcPort		      2
-      DstBlock		      "Terminator6"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2140
-      SrcBlock		      "K1:PEM-IXV_X3_VIS_X"
-      SrcPort		      1
-      DstBlock		      "Goto1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2141
-      SrcBlock		      "K1:PEM-IXV_Y3_VIS_Y"
-      SrcPort		      1
-      DstBlock		      "Goto19"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2142
-      SrcBlock		      "K1:PEM-IXV_Z3_VIS_Z"
-      SrcPort		      1
-      DstBlock		      "Goto20"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      2144
       SrcBlock		      "K1:VIS-ITMX_PAY_OLSERVO_BFY"
       SrcPort		      2
@@ -4790,6 +4993,121 @@ Model {
       DstBlock		      "ITMX"
       DstPort		      46
     }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2293
+      SrcBlock		      "ADC0-2"
+      SrcPort		      1
+      Points		      [20, 0; 0, 70]
+      DstBlock		      "Bus\nSelector2"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_24>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2319
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      1
+      DstBlock		      "PEM"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_25>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2320
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      2
+      DstBlock		      "PEM"
+      DstPort		      2
+    }
+    Line {
+      Name		      "<adc_0_26>"
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2321
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      3
+      DstBlock		      "PEM"
+      DstPort		      3
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2322
+      SrcBlock		      "PEM"
+      SrcPort		      1
+      Points		      [66, 0; 0, -55]
+      Branch {
+	ZOrder			2329
+	Points			[0, -40]
+	DstBlock		"Goto29"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			2328
+	DstBlock		"K1:PEM-IXV_X2_VIS_X"
+	DstPort			1
+      }
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2323
+      SrcBlock		      "PEM"
+      SrcPort		      2
+      Points		      [37, 0]
+      Branch {
+	ZOrder			2331
+	Points			[0, 40]
+	DstBlock		"Goto30"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			2330
+	Points			[0, -35]
+	DstBlock		"K1:PEM-IXV_Y2_VIS_Y"
+	DstPort			1
+      }
+    }
+    Line {
+      FontName		      "Helvetica"
+      FontSize		      9
+      FontWeight	      "normal"
+      FontAngle		      "normal"
+      ZOrder		      2324
+      SrcBlock		      "PEM"
+      SrcPort		      3
+      Points		      [15, 0; 0, 20]
+      Branch {
+	ZOrder			2333
+	DstBlock		"Goto31"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			2332
+	Points			[0, 70]
+	DstBlock		"K1:PEM-IXV_Z2_VIS_Z"
+	DstPort			1
+      }
+    }
     Annotation {
       SID		      "245"
       Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4870,7 +5188,7 @@ Model {
       "style=\" font-size:11px;\"> </span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
       "right:0px; -qt-block-indent:0; text-indent:0px; line-height:100%;\"><span style=\" font-size:11px;\">Inner-compu"
       "ter Communication</span></p></body></html>"
-      Position		      [827, 106, 1695, 458]
+      Position		      [806, 121, 1674, 473]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      on
       FixedWidth	      on
