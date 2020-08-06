@@ -1022,6 +1022,11 @@ class CALMDOWN(GuardState):
 def coil_engage_main(self):
     self.counter = 0
     self.timer['waiting'] = 0
+
+    fotonfile = '/opt/rtcds/kamioka/k1/chans/K1VIS%sP.txt'%OPTIC
+
+
+
      ##### Define logger
     dt_now = datetime.now()
     year = dt_now.year
@@ -1030,7 +1035,7 @@ def coil_engage_main(self):
     hour = dt_now.hour
     minute = dt_now.minute
 
-    log_dir = '/users/Commissioning/scripts/diagonalization/log/'
+    log_dir = '/users/Measurements/VIS/%s/coil_balance/log/'%OPTIC
     date_str = '%d%s%s_%s%s'%(year,str(month).zfill(2),str(day).zfill(2),str(hour).zfill(2),str(minute).zfill(2))
     log_file = log_dir + '/archives/balanceCOILOUTF_%s_'%OPTIC + date_str + '.log'
     #logging.basicConfig(filename=log_file,level=logging.DEBUG)
@@ -1048,6 +1053,7 @@ def coil_engage_main(self):
         coil_gain = balanceCOILOUTF_TypeA.SIGN_MNIM_COILOUT(self.optic,self.stage,logger)
 
     for coil in self.coils:
+
         gg,avgI,avgQ,stdI,stdQ = balanceCOILOUTF_TypeA.Balancing(
             self.optic,
             self.stage,
@@ -1058,6 +1064,9 @@ def coil_engage_main(self):
             self.sweeprange,
             logger
             )
+
+
+
         ### fitting
         pI = np.polyfit(gg,avgI,1)
         pQ = np.polyfit(gg,avgQ,1)
@@ -1086,9 +1095,25 @@ def coil_engage_main(self):
         plt.savefig(log_dir+'archives/balanceCOILOUTF_%s_'%(self.optic) + date_str +'_%s_%s'%(self.stage,coil)+'.png')
         plt.savefig(log_dir+'balanceCOILOUTF_%s_%s_%s_latest'%(self.optic,self.stage,coil)+'.png')
 
+        self.timer['waiting'] = 3
+
+        ## Turn off excitation when finish the measurement
+        ezca['VIS-%s_PAY_OLSERVO_LKIN_OSC_CLKGAIN'%self.optic] = 0
+        time.sleep(ezca['VIS-%s_PAY_OLSERVO_LKIN_OSC_TRAMP'%self.optic])
+
+        self.timer['waiting'] = 3
 
     os.system('cp %s %s'%(log_file,(log_dir+'balanceCOILOUTF_%s_latest.log'%(self.optic))))
     balanceCOILOUTF_TypeA.ShutdownLOCKIN(self.optic)
+
+    ### show the balanced date on Type-A medm screen
+    ezca['VIS-%s_%s_COILBAL_DATE_YEAR'%(self.optic,self.stage)] = year
+    ezca['VIS-%s_%s_COILBAL_DATE_MON'%(self.optic,self.stage)]  = month
+    ezca['VIS-%s_%s_COILBAL_DATE_DAY'%(self.optic,self.stage)]  = day
+    ezca['VIS-%s_%s_COILBAL_DATE_HOUR'%(self.optic,self.stage)] = hour
+    ezca['VIS-%s_%s_COILBAL_DATE_MIN'%(self.optic,self.stage)]  = minute
+
+    kagralib.speak_aloud('%s %s coils are balanced'%(self.optic,self.stage))
     self.timer['waiting'] = 3
 
 def coil_engage_run(self):
@@ -1108,7 +1133,7 @@ class COIL_BALANCED(GuardState):
         return True
 
 class engage_coil_balance(GuardState):
-    def __init__(self,logfunc,optic,stage,coils,freq,oscAMP,sweeprange,Np=10,avgDuration=10,settleDuration=5,oscTRAMP=10):
+    def __init__(self,logfunc,optic,stage,coils,freq,oscAMP,sweeprange,Np=10,avgDuration=10,settleDuration=30,oscTRAMP=10):
         super(engage_coil_balance,self).__init__(logfunc)
         self.optic = OPTIC
         self.stage = stage

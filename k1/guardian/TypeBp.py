@@ -11,9 +11,12 @@ import os
 import sys
 import subprocess
 import VISfunction as vf
+import cdslib
+import sdflib
 import kagralib
 
 __,optic = SYSTEM.split('_')
+OPTIC = optic
 
 ##################################################
 # initialization values
@@ -106,6 +109,11 @@ class SAFE(GuardState):
         self.counter = 1
         self.timer['waiting'] = 0
         self.TRAMP = 10
+        # by Miyo
+        fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
+        sdflib.restore(fec,'safe') 
+
+        
     @watchdog_check
     def run(self):
         log('waiting for all outputs turned off')

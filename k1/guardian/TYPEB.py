@@ -8,7 +8,8 @@ import os
 import VISfunction as vf
 from burt import *
 import vistoolstest as vistools
-
+import sdflib
+import cdslib
 import sys
 
 globaldir = dir()
@@ -22,6 +23,7 @@ def checkvis():
         visObj=vistools.Vis((SYSTEM,ezca))
 
 userapps = '/opt/rtcds/userapps/release/'
+path_to_snap = '/opt/rtcds/kamioka/k1/target/{modname}/{modname}epics/burt/'
 IFO = os.getenv('IFO')
 ifo = IFO.lower()
 SITE = os.getenv('SITE')
@@ -635,7 +637,10 @@ class SAFE(GuardState):
         global visObj
         global state
         state = 'TOWER'
-        notify('In SAFE')
+        notify('In SAFE dayo!')
+        for suffix in ['P','T']: # by Miyo
+            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
+            sdflib.restore(fec,'safe') 
         if checkSafe() == False:
             resetSafe(self)
 
