@@ -43,7 +43,7 @@ def ShutdownLOCKIN(optic):
 # check the sign of coil output value by comparing the Oplev values before and after DC offset
 # When put positve offset in H1 or H4 coil, TM should move in the positive direction of pitch or yaw, considering the location of each coils.
 # On the other hand, When put positve offset in H2 or H3 coil, TM should move in the negative direction of pitch or yaw
-def SIGN_TM_COILOUT(optic,logger,offTRAMP=5,settleDuration=5,avgDuration=5):
+def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=5):
     #return
     logger.debug('--------------Start coil check the sign of %s TM coils------------------'%(optic))
     # Put the same value in GAIN channels of all COILOUTF filters
@@ -60,7 +60,7 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=5,settleDuration=5,avgDuration=5):
     logger.debug('Oplev value before putting offset:(pitch, yaw) = (%f, %f)'%(pit_before,yaw_before))
 
     # put the offset in each coils and fetch the oplev value in this time one by one
-    default_offset = 10000
+    default_offset = 20000
     coil_gain = {} # The void dict to put the gains of TM coils
     for ii in ['H1','H2','H3','H4']:
         logger.debug('Put %d cnts as offset in %s TM %s coil, ramp time = %d'%(default_offset, optic, ii, offTRAMP))
@@ -157,7 +157,7 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10.0,settleDuration=5,avgDurat
     logger.debug('%s sensor value before putting offset:(pitch,yaw,roll) = (%f,%f,%f)'%(stage,pit_before,yaw_before,roll_before))
 
     # put the offset in each coils and fetch the oplev value in this time one by one
-    default_offset = [{'H':50,'V': 200},{'H':3000,'V':5000}][stage=='IM']
+    default_offset = [{'H':50,'V': 150},{'H':5000,'V':5000}][stage=='IM']
     coil_gain = {} # The void dict to put the gains of MN coils
     for ii in ['V1','V2','V3','H1','H2','H3']:
         logger.debug('Put %d cnts as offset in %s %s %s coil, ramp time = %d'%(default_offset[ii[0]], optic, stage, ii, offTRAMP))
@@ -246,6 +246,7 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10.0,settleDuration=5,avgDurat
 
         print coil_gain
         ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(optic,stage,ii)] = coil_gain[ii]
+        time.sleep(settleDuration)
     return coil_gain
 
 

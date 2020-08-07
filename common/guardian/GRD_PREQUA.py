@@ -712,17 +712,19 @@ class RECORD_MEASUREMENT(GuardState):
             #And judge whether the stage's dof can be usable or not.
             self.freq_id_dict={}
             for key in self.freqchandict.keys():
-                self.freq_id_dict[self.freqchandict[key]]={'mean': np.mean(self.data[key]),
-                                                           'std': np.std(self.data[key]),
-                                                           'bool': True}
-            #Argorithm1: using mean of means.
-            _mean_list =  [self.freq_id_dict[k]['mean'] for k in self.freq_id_dict]
-            #_norm_std_list =  self.freq_id_dict[k]['std']/self.freq_id_dict[k]['mean'] for k in self.freq_id_dict]
-            _mean_list_mean = np.mean(_mean_list)
-            _mean_list_std = np.std(_mean_list)
+                _key2 = self.freqchandict[key]
+                self.freq_id_dict[_key2]={'mean': np.mean(self.data[key]),
+                                          #'std': np.std(self.data[key]),
+                                          'bool': True}
+            #Argorithm1: using mean of means. _mean_list = [mean,weight]
+            _mean_list = np.array([[self.freq_id_dict[k]['mean'], sysmod.AVGWEIGHT[k.split('_')[0]][k.split('_')[1]]] for k in self.freq_id_dict]).T
+            _mean_list_mean = np.average(_mean_list[0], weights = _mean_list[1]) # Weighted mean of the means
+            #_mean_list_std = np.std(_mean_list)
+            # The following is, I believe, weighted standard dev.
+            _mean_list_std = np.sqrt(np.average((_mean_list[0]-_mean_list_mean)**2., weights = _mean_list[1]))
             self.logger.debug('Resonant frequency:%f'%ezca['VIS-%s_FREE_MODE_LIST_NO%d_FREQ'%(OPTIC,self.modeindex)])
-            self.logger.debug('Mean of resonant frequency of all QUADOF:%f'%_mean_list_mean)
-            self.logger.debug('Std of resonant frequency of all QUADOF:%f'%_mean_list_std)
+            self.logger.debug('(Weighted) Mean of resonant frequency of all QUADOF:%f'%_mean_list_mean)
+            self.logger.debug('(Weighted) Std of resonant frequency of all QUADOF:%f'%_mean_list_std)
             for key in  self.freq_id_dict:
                 qq1 =  self.freq_id_dict[key]
                 if (qq1['mean'] > _mean_list_mean + _mean_list_std*3.) or (qq1['mean'] < _mean_list_mean - _mean_list_std*3. ):
@@ -733,8 +735,8 @@ class RECORD_MEASUREMENT(GuardState):
             for stage in ['IP','BF','MN','IM','TM']:
                 for DoF in DoFList:
                     self.logger.debug('- %s %s'%(stage,DoF))
-                    self.logger.debug('Coupling coefficient: %f'%(ezca[self.prefix[3:]+'CP_COEF_%s'%(stage)]))
-                    self.logger.debug('Relative phase: %f'%(np.mod(ezca[self.prefix[3:]+'REL_PHASE_%s'%(stage)],-360)))                    
+                    self.logger.debug('Coupling coefficient: %f'%(ezca[self.prefix[3:]+'%s_CP_COEF_%s'%(stage,DoF)]))
+                    self.logger.debug('Relative phase: %f'%(np.mod(ezca[self.prefix[3:]+'%s_REL_PHASE_%s'%(stage,DoF)],-360)))                    
                     if not self.freq_id_dict['%s_%s'%(stage,DoF)]['bool']:
                         qq1 = ezca[self.prefix[3:]+'%s_CP_COEF_%s'%(stage,DoF)]
                         self.logger.debug('---------------------warning---------------------------')
@@ -781,7 +783,7 @@ class RECORD_MEASUREMENT(GuardState):
                 ax = []
                 for stage in ['MN','IM','TM']:
                     for DoF in DoFList:
-                        ax.append(fig.add_subplot(5,6,ii+1))
+                        ax.append(fig.add_subplot(3,6,ii+1))
                         label = self.short_prefix+'%s_%s_%s_OUTPUT'%(stage,param,DoF)
                         ax[-1].plot(self.tt[label], self.data[label])
                         ax[-1].set_title('%s %s'%(stage,DoF),fontsize=6)
@@ -805,7 +807,7 @@ class RECORD_MEASUREMENT(GuardState):
             ax = []
             for stage in ['MN','IM','TM']:
                 for DoF in DoFList:
-                    ax.append(fig.add_subplot(5,6,ii+1))
+                    ax.append(fig.add_subplot(3,6,ii+1))
                     label = self.short_prefix+'%s_QUA%s_FREQ_OUTPUT'%(stage,DoF)
                     ax[-1].plot(self.tt[label], self.data[label])
                     #remove xtick except for bottom line
@@ -823,6 +825,14 @@ class RECORD_MEASUREMENT(GuardState):
             fig.savefig(self.figdir_archive + self.fileprefix + 'QUADOF_frequencies.png')
             os.system('cp %s %s/measurement.log'%(self.figdir_archive + self.fileprefix + 'measurement.log',self.figdir))
 
+            # Histogram of the mean of each freq chan
+            # The first version of the histgoram-ing was added by Akutsu on 20200806
+            fig = plt.figure()
+            ax1 = fig.add_subplot(111)
+            ax1.hist(_mean_list[0], bins=5)# Always hard to determine a proper bins; if using the Sturges' rule, bins=5 for 24 data points.
+            fig.savefig('/users/akutsu/test0.png')# Change the path!!
+
+            
             self.counter += 1
             
         elif self.counter == 3:
@@ -971,9 +981,9 @@ class SENSOR_DIAGONALIZATION(GuardState):
         return x,y
 
     def calc_SENSDIAG_matrix(self,stage):
-        _t_sensing_matrix = np.identity(len(DoFList))
+        _t_sensing_matrix = np.identity(5)
         ii = 0
-        for motion_DoF in DoFList:
+        for motion_DoF in ['LEN','TRA','ROL','PIT','YAW']:
             _sensing_vector = []
             _A = ezca['VIS-%s_SENDIAG_%s_%s_CP_COEF_%s'%(OPTIC,motion_DoF,stage,motion_DoF)]
             _theta_a = ezca['VIS-%s_SENDIAG_%s_%s_REL_PHASE_%s'%(OPTIC,motion_DoF,stage,motion_DoF)]
@@ -981,7 +991,7 @@ class SENSOR_DIAGONALIZATION(GuardState):
                 log('skip this DoF')
                 
             else:
-                for sensor_DoF in DoFList:
+                for sensor_DoF in ['LEN','TRA','ROL','PIT','YAW']:
                     _B = ezca['VIS-%s_SENDIAG_%s_%s_CP_COEF_%s'%(OPTIC,motion_DoF,stage,sensor_DoF)]
                     _theta_b = ezca['VIS-%s_SENDIAG_%s_%s_REL_PHASE_%s'%(OPTIC,motion_DoF,stage,sensor_DoF)]
 
@@ -1000,7 +1010,25 @@ class SENSOR_DIAGONALIZATION(GuardState):
         
         for ii in range(len(_diag_matrix)):
             _diag_matrix[ii] = _diag_matrix[ii]/np.sqrt(np.sum(_diag_matrix[ii]**2))
-        return _diag_matrix
+        
+        # insert vertical lines
+        diag_matrix = np.identity(6)
+        VERIND = 2
+        iii = 0
+        for ii in range(6):
+            jjj = 0
+            if ii == VERIND:
+                diag_matrix[ii] = [0,0,0,0,0,0]
+            else:
+                for jj in range(6):
+                    if jj == VERIND:
+                        diag_matrix[ii,jj] = 0
+                    else:
+                        diag_matrix[ii,jj] = _diag_matrix[iii,jjj]
+                        jjj += 1
+                iii += 1
+
+        return diag_matrix
 
 
     def main(self):
@@ -1016,13 +1044,139 @@ class SENSOR_DIAGONALIZATION(GuardState):
             ) for stage in ['IP','BF','MN','IM','TM']}
             
             for stage in ['MN','IM','TM']:
-                DECPL[stage].put_matrix(DECPL[stage].get_matrix() * self.calc_SENSDIAG_matrix(stage))
+                DECPL[stage].put_matrix(self.calc_SENSDIAG_matrix(stage)*DECPL[stage].get_matrix())
             self.counter += 1
 
         else:
             return True
                 
 
+class SENSOR_CALIBRATION(GuardState):
+    # Calibrate PIT YAW sensors in MN, IM at DC with the reference of TM sensor.
+    # Then, ROL is calibrated so that ROL and PIT has same order of values when same counts is input to the actuator.
+    # Same for YAW v.s. LEN and YAW v.s. TRA
+    index = 255
+    request = True
+
+    def get_data(self):
+        _data = cdsutils.getdata(self.chans,self.avgduration)
+        data = {self.chans[ii]: np.average(_data[ii].data) for ii in range(len(self.chans))}
+        return data
+        
+    def main(self):
+        self.ofs_dict = {
+            'LEN':20000,
+            'TRA':10000,
+            'ROL':5000,
+            'PIT':5000,
+            'YAW':1000
+        }
+        self.DoFlist = ['LEN','TRA','ROL','PIT','YAW']
+        self.stagelist = ['MN','IM']
+        
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+        
+        self.chans = ['K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF) for stage in ['MN','IM','TM'] for DoF in self.DoFlist]
+
+        self.TRAMP = 15 #ramptime for offset
+        self.avgduration = 10 # average duration for each data
+        self.settletime = 5 # settle time after put/remove offset
+        self.DoFindex = 0
+        self.stageindex = 0
+        self.dif = {stage:{} for stage in self.stagelist}
+        
+                                                                                                              
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        # initialize INF
+        if self.counter == 0:
+            for stage in self.stagelist:
+                for DoF in self.DoFlist:
+                    INF = ezca.get_LIGOFilter('VIS-%s_%s_DIAG_%s'%(OPTIC,stage,DoF))
+                    INF.ramp_gain(1,0,False)
+                    INF.ramp_offset(0,0,False)
+
+                    SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
+                    SUMOUT.ramp_gain(1,5,False)
+                    SUMOUT.ramp_offset(0,5,False)
+                    SUMOUT.turn_on('OFFSET')
+
+                    if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
+                        self.timer['waiting'] = 5
+            self.counter += 1 
+
+        # take reference value
+        elif self.counter == 1:
+            self.ref = self.get_data()
+            self.counter += 1
+
+        # put offset
+        elif self.counter == 2:
+            DoF = self.DoFlist[self.DoFindex]
+            stage = 'MN'
+            SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
+            SUMOUT.ramp_offset(self.ofs_dict[DoF],self.TRAMP)
+            self.timer['waiting'] = self.TRAMP + self.settletime
+            self.counter += 1
+
+        # take average and remove offset
+        elif self.counter == 3:
+            DoF = self.DoFlist[self.DoFindex]
+            stage = 'MN'
+            _data = self.get_data()
+            self.dif[DoF] = {key: _data[key] - self.ref[key] for key in _data.keys()}
+            SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
+            SUMOUT.ramp_offset(0,self.TRAMP)
+            self.timer['waiting'] = self.TRAMP + self.settletime
+            self.counter += 1
+
+        # if all DoF has been done, go next. Otherwise go back counter 2
+        elif self.counter == 4:
+            self.DoFindex += 1
+            if self.DoFindex >= len(self.DoFlist):
+                self.counter += 1
+            else:
+                self.counter = 2
+                
+        elif self.counter == 5:
+            for stage in self.stagelist:
+                # take ratio of PS diffrence to OL difference
+                for DoF in ['PIT','YAW','LEN']:
+                    OLkey = 'K1:VIS-%s_TM_DIAG_%s_INMON'%(OPTIC,DoF)
+                    stagekey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
+                    log('Difference when move in %s'%DoF)
+                    log('OL: %f, %s: %f'%(self.dif[DoF][OLkey],stage,self.dif[DoF][stagekey]))
+                    toOL = self.dif[DoF][OLkey]/self.dif[DoF][stagekey]
+                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = toOL
+
+                for DoF in ['TRA']:
+                    Lenkey = 'K1:VIS-%s_%s_DIAG_LEN_INMON'%(OPTIC,stage)
+                    DoFkey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
+                    
+                    log('Difference when move in %s'%DoF)
+                    log('%f'%(self.dif[DoF][OLkey]))
+                    
+                    toLen = (self.dif['LEN'][Lenkey]/self.ofs_dict['LEN'])/(self.dif[DoF][DoFkey]/self.ofs_dict[DoF])
+                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = ezca['VIS-%s_%s_DIAG_YAW_GAIN'%(OPTIC,stage)] * toLen
+
+                for DoF in ['ROL']:
+                    Pitkey = 'K1:VIS-%s_%s_DIAG_PIT_INMON'%(OPTIC,stage)
+                    DoFkey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
+
+                    log('Difference when move in %s'%DoF)
+                    log('%f'%(self.dif[DoF][OLkey]))
+                    
+                    toPit = (self.dif['PIT'][Pitkey]/self.ofs_dict['PIT'])/(self.dif[DoF][DoFkey]/self.ofs_dict[DoF])
+                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = ezca['VIS-%s_%s_DIAG_PIT_GAIN'%(OPTIC,stage)] * toPit
+            self.counter += 1
+        elif self.counter == 6:
+            return True
+            
+            
             
         
     
