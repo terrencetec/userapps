@@ -12,6 +12,8 @@ from guardian import NodeManager
 import os
 import sys
 import subprocess
+import cdslib
+import sdflib
 import VISfunction as vf
 import typea_lib as lib
 import typeaparams as par
@@ -21,7 +23,7 @@ sys.path.append('/opt/rtcds/userapps/release/vis/common/guardian/')
 
 
 __,optic = SYSTEM.split('_')
-
+OPTIC = optic
 ##################################################
 # initial REQUEST state
 request = 'INIT'
@@ -161,6 +163,11 @@ class SAFE(GuardState):
         ezca['VIS-'+optic+'_PAY_MASTERSWITCH'] = 'OFF'
         ezca['VIS-'+optic+'_MASTERSWITCH'] = 'OFF'
         subprocess.call(['burtrb', '-f', reqfile, '-o', snapfile, '-l','/tmp/controls.read.log', '-v'])
+        notify('In SAFE')
+        for suffix in ['P','T']: # by Miyo
+            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
+            sdflib.restore(fec,'safe') 
+        
 
     @watchdog_check
     def run(self):

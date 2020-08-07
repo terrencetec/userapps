@@ -4,6 +4,8 @@ matplotlib.use('Agg')
 from guardian import GuardState
 from guardian import GuardStateDecorator
 
+import cdslib
+import sdflib
 import kagralib
 import vislib
 import time
@@ -640,6 +642,14 @@ class ALIGNED(GuardState):
                     OPAL.turn_on('OFFSET')
 
             vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
+        if sustype in ['TypeA','TypeB']: # by Miyo
+            for suffix in ['P','T']: 
+                fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
+                sdflib.restore(fec,'aligned')
+        else:
+            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
+            sdflib.restore(fec,'aligned')
+            
 
     @check_WD
     @check_TWWD
@@ -1097,7 +1107,7 @@ def coil_engage_main(self):
 
         self.timer['waiting'] = 3
 
-        ## Turn off excitation when finish the measurement
+        ## Turn off excitation when finish the measuremetn
         ezca['VIS-%s_PAY_OLSERVO_LKIN_OSC_CLKGAIN'%self.optic] = 0
         time.sleep(ezca['VIS-%s_PAY_OLSERVO_LKIN_OSC_TRAMP'%self.optic])
 
