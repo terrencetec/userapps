@@ -6,23 +6,19 @@
 
 ## Files
 
- k1visbs.mdl
- k1visex.mdl
- k1visey.mdl
- 
- k1visetmyt.mdl.r2015b
- k1visetmyt.slx
- k1visproto.mdl
- k1vissr3ta.mdl
- k1vissrmp_20190624.mdl
- k1vissrmt_20190624.mdl
- k1vistest0.mdl
- k1vistest.mdl.r2015a
- k1vists.mdl
- k1vistst.mdl
- k1vistest.mdl
- k1pylon.mdl
- k1x01,mdl
+
+Not used???
+ * k1visbs.mdl
+ * k1visex.mdl
+ * k1visey.mdl 
+ * k1visproto.mdl
+ * k1vissr3ta.mdl
+ * k1vistest0.mdl
+ * k1vists.mdl
+ * k1vistst.mdl
+ * k1vistest.mdl
+ * k1pylon.mdl
+ * k1x01.mdl
 
 Mon
  * k1visbsmon.mdl
