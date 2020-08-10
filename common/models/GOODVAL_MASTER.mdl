@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1071.0, 199.0, 628.0, 495.0]
+      Location		      [293.0, 626.0, 628.0, 495.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -40,11 +40,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"22"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[574.0, 302.0]
 	ZoomFactor		[1.0]
-	Offset			[-263.0, 90.0]
+	Offset			[0.0, 0.0]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Apr 04 21:11:20 2020"
-  RTWModifiedTimeStamp	  507935480
-  ModelVersionFormat	  "1.%<AutoIncrement:18>"
+  LastModifiedDate	  "Mon Aug 10 16:31:12 2020"
+  RTWModifiedTimeStamp	  518976632
+  ModelVersionFormat	  "1.%<AutoIncrement:19>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,6 +716,9 @@ Library {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Ground
+    }
+    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -752,8 +755,8 @@ Library {
   }
   System {
     Name		    "GOODVAL_MASTER"
-    Location		    [1071, 199, 1699, 694]
-    Open		    off
+    Location		    [293, 626, 921, 1121]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -766,7 +769,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "325"
+    SIDHighWatermark	    "538"
     Block {
       BlockType		      SubSystem
       Name		      "ASC"
@@ -1401,16 +1404,16 @@ Library {
     Block {
       BlockType		      SubSystem
       Name		      "TYPEA"
-      SID		      "31"
+      SID		      "326"
       Ports		      []
-      Position		      [465, 155, 530, 195]
-      ZOrder		      4
+      Position		      [461, 154, 526, 194]
+      ZOrder		      5718
       BackgroundColor	      "blue"
       RequestExecContextInheritance off
       Variant		      off
       System {
 	Name			"TYPEA"
-	Location		[1092, 240, 1720, 735]
+	Location		[293, 626, 921, 1121]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1424,9 +1427,509 @@ Library {
 	ShowPageBoundaries	off
 	ZoomFactor		"80"
 	Block {
+	  BlockType		  SubSystem
+	  Name			  "BF"
+	  SID			  "327"
+	  Ports			  []
+	  Position		  [21, 440, 61, 500]
+	  ZOrder		  5686
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "BF"
+	    Location		    [0, 0, 1920, 1054]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "328"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "329"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "330"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "331"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "F0"
+	  SID			  "332"
+	  Ports			  []
+	  Position		  [21, 100, 61, 160]
+	  ZOrder		  5682
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "F0"
+	    Location		    [0, 0, 1920, 1054]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "333"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "334"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "335"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "336"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "F1"
+	  SID			  "337"
+	  Ports			  []
+	  Position		  [21, 185, 61, 245]
+	  ZOrder		  5683
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "F1"
+	    Location		    [0, 0, 1920, 1054]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "338"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "339"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "340"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "341"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "F2"
+	  SID			  "342"
+	  Ports			  []
+	  Position		  [21, 275, 61, 335]
+	  ZOrder		  5684
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "F2"
+	    Location		    [2511, 105, 3969, 886]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "343"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "344"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "345"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "346"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "F3"
+	  SID			  "347"
+	  Ports			  []
+	  Position		  [21, 360, 61, 420]
+	  ZOrder		  5685
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "F3"
+	    Location		    [0, 0, 1920, 1054]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "348"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "349"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "350"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "351"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_DAY"
-	  SID			  "119"
+	  SID			  "352"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1436,8 +1939,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [345, 215, 410, 245]
-	  ZOrder		  4087
+	  Position		  [785, 250, 850, 280]
+	  ZOrder		  5699
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1449,7 +1952,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_HOUR"
-	  SID			  "120"
+	  SID			  "353"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1459,8 +1962,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [345, 315, 410, 345]
-	  ZOrder		  4089
+	  Position		  [785, 350, 850, 380]
+	  ZOrder		  5701
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1472,7 +1975,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_MIN"
-	  SID			  "121"
+	  SID			  "354"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1482,8 +1985,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [345, 405, 410, 435]
-	  ZOrder		  4091
+	  Position		  [785, 440, 850, 470]
+	  ZOrder		  5703
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1495,7 +1998,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_MON"
-	  SID			  "122"
+	  SID			  "355"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1505,8 +2008,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [345, 490, 410, 520]
-	  ZOrder		  4093
+	  Position		  [785, 525, 850, 555]
+	  ZOrder		  5705
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1518,7 +2021,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_OPLEV_PIT"
-	  SID			  "123"
+	  SID			  "356"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1528,8 +2031,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [120, 120, 185, 150]
-	  ZOrder		  4081
+	  Position		  [560, 155, 625, 185]
+	  ZOrder		  5693
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1541,7 +2044,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_OPLEV_YAW"
-	  SID			  "124"
+	  SID			  "357"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1551,8 +2054,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [120, 195, 185, 225]
-	  ZOrder		  4082
+	  Position		  [560, 230, 625, 260]
+	  ZOrder		  5694
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1564,7 +2067,7 @@ Library {
 	Block {
 	  BlockType		  Reference
 	  Name			  "GOOD_YEAR"
-	  SID			  "125"
+	  SID			  "358"
 	  Tag			  "cdsEpicsIn"
 	  Description		  "Purpose:                                                                              \nCreate an E"
 	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
@@ -1574,8 +2077,8 @@ Library {
 	  "                                                       \nName the part with the desired EPICS channel name.        "
 	  "                            "
 	  Ports			  [0, 1]
-	  Position		  [345, 125, 410, 155]
-	  ZOrder		  4085
+	  Position		  [785, 160, 850, 190]
+	  ZOrder		  5697
 	  BackgroundColor	  "green"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -1585,113 +2088,3318 @@ Library {
 	  ContentPreviewEnabled	  off
 	}
 	Block {
+	  BlockType		  Ground
+	  Name			  "Ground1"
+	  SID			  "359"
+	  Position		  [240, 460, 260, 480]
+	  ZOrder		  5715
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "IM"
+	  SID			  "360"
+	  Ports			  []
+	  Position		  [21, 610, 61, 670]
+	  ZOrder		  5688
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "IM"
+	    Location		    [1071, 197, 2169, 1046]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "361"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "362"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "363"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "364"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "IP"
+	  SID			  "365"
+	  Ports			  []
+	  Position		  [21, 20, 61, 80]
+	  ZOrder		  -19
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "IP"
+	    Location		    [1071, 197, 2169, 1046]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "366"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "367"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "368"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "369"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "MN"
+	  SID			  "370"
+	  Ports			  []
+	  Position		  [21, 530, 61, 590]
+	  ZOrder		  5687
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "MN"
+	    Location		    [0, 0, 1920, 1054]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "371"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "372"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "373"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "374"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
 	  BlockType		  Reference
+	  Name			  "MTRX_LOCK"
+	  SID			  "375"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [295, 455, 370, 485]
+	  ZOrder		  5716
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "PAST0"
-	  SID			  "130"
+	  SID			  "376"
 	  Ports			  []
-	  Position		  [1177, 126, 1277, 186]
-	  ZOrder		  4098
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "GOODVAL_MASTER/TYPEC/PAST1"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  Position		  [1057, 271, 1157, 331]
+	  ZOrder		  5712
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST0"
+	    Location		    [1092, 240, 1720, 735]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "377"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "378"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "379"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "380"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "381"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "382"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "383"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "384"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "385"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "386"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "387"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "388"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "389"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "390"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
-	  BlockType		  Reference
+	  BlockType		  SubSystem
 	  Name			  "PAST1"
-	  SID			  "126"
+	  SID			  "391"
 	  Ports			  []
-	  Position		  [617, 126, 717, 186]
-	  ZOrder		  4080
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "GOODVAL_MASTER/TYPEC/PAST1"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  Position		  [1057, 161, 1157, 221]
+	  ZOrder		  5692
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST1"
+	    Location		    [293, 626, 921, 1121]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "392"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "393"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "394"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "395"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "396"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "397"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "398"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "399"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "400"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "401"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "402"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "403"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "404"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "405"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
-	  BlockType		  Reference
+	  BlockType		  SubSystem
 	  Name			  "PAST2"
-	  SID			  "127"
+	  SID			  "406"
 	  Ports			  []
-	  Position		  [762, 126, 862, 186]
-	  ZOrder		  4095
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "GOODVAL_MASTER/TYPEC/PAST1"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  Position		  [1202, 161, 1302, 221]
+	  ZOrder		  5707
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST2"
+	    Location		    [1092, 240, 1720, 735]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "407"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "408"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "409"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "410"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "411"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "412"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "413"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "414"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "415"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "416"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "417"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "418"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "419"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "420"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
-	  BlockType		  Reference
+	  BlockType		  SubSystem
 	  Name			  "PAST3"
-	  SID			  "128"
+	  SID			  "421"
 	  Ports			  []
-	  Position		  [902, 126, 1002, 186]
-	  ZOrder		  4096
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "GOODVAL_MASTER/TYPEC/PAST1"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  Position		  [1342, 161, 1442, 221]
+	  ZOrder		  5708
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST3"
+	    Location		    [1092, 240, 1720, 735]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "422"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "423"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "424"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "425"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "426"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "427"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "428"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "429"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "430"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "431"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "432"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "433"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "434"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "435"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
-	  BlockType		  Reference
+	  BlockType		  SubSystem
 	  Name			  "PAST4"
-	  SID			  "129"
+	  SID			  "436"
 	  Ports			  []
-	  Position		  [1042, 126, 1142, 186]
-	  ZOrder		  4097
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "GOODVAL_MASTER/TYPEC/PAST1"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  Position		  [1482, 161, 1582, 221]
+	  ZOrder		  5709
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST4"
+	    Location		    [1092, 240, 1720, 735]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "437"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "438"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "439"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "440"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "441"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "442"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "443"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "444"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "445"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "446"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "447"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "448"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "449"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "450"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "PAST5"
+	  SID			  "451"
+	  Ports			  []
+	  Position		  [1617, 161, 1717, 221]
+	  ZOrder		  5710
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PAST5"
+	    Location		    [1092, 240, 1720, 735]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "60"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_DAY"
+	      SID		      "452"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 115, 310, 145]
+	      ZOrder		      4053
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_HOUR"
+	      SID		      "453"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 215, 310, 245]
+	      ZOrder		      4055
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MIN"
+	      SID		      "454"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 305, 310, 335]
+	      ZOrder		      4057
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_MON"
+	      SID		      "455"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 390, 310, 420]
+	      ZOrder		      4059
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_PIT"
+	      SID		      "456"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      4010
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_OPLEV_YAW"
+	      SID		      "457"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 95, 85, 125]
+	      ZOrder		      4012
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "GOOD_YEAR"
+	      SID		      "458"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [245, 25, 310, 55]
+	      ZOrder		      4051
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "459"
+	      Position		      [140, 25, 160, 45]
+	      ZOrder		      4013
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "460"
+	      Position		      [140, 97, 165, 123]
+	      ZOrder		      4014
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "461"
+	      Position		      [355, 22, 395, 58]
+	      ZOrder		      4052
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "462"
+	      Position		      [355, 112, 395, 148]
+	      ZOrder		      4054
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "463"
+	      Position		      [355, 212, 395, 248]
+	      ZOrder		      4056
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "464"
+	      Position		      [355, 302, 395, 338]
+	      ZOrder		      4058
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "465"
+	      Position		      [355, 387, 395, 423]
+	      ZOrder		      4060
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "GOOD_MIN"
+	      SrcPort		      1
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "GOOD_DAY"
+	      SrcPort		      1
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "GOOD_HOUR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "GOOD_MON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "GOOD_YEAR"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "GOOD_OPLEV_PIT"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "GOOD_OPLEV_YAW"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "TM"
+	  SID			  "466"
+	  Ports			  []
+	  Position		  [21, 695, 61, 755]
+	  ZOrder		  5689
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "TM"
+	    Location		    [1069, 108, 2527, 957]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "175"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "INMON"
+	      SID		      "467"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 20, 85, 50]
+	      ZOrder		      5620
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "OPLEV"
+	      SID		      "468"
+	      Ports		      []
+	      Position		      [20, 169, 85, 226]
+	      ZOrder		      5643
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"OPLEV"
+		Location		[1069, 108, 2527, 957]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"175"
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "LEN_BLRMS_Y"
+		  SID			  "469"
+		  Ports			  []
+		  Position		  [155, 319, 255, 361]
+		  ZOrder		  5695
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "LEN_BLRMS_Y"
+		    Location		    [1069, 108, 2527, 957]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "200"
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_100M_300M"
+		    SID			    "470"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 200, 310, 230]
+		    ZOrder		    5710
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_10_30"
+		    SID			    "471"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 500, 310, 530]
+		    ZOrder		    5706
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_1_3"
+		    SID			    "472"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 345, 310, 375]
+		    ZOrder		    5702
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_300M_1"
+		    SID			    "473"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 265, 310, 295]
+		    ZOrder		    5700
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M"
+		    SID			    "474"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 55, 310, 85]
+		    ZOrder		    5696
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M_100M"
+		    SID			    "475"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 130, 310, 160]
+		    ZOrder		    5698
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30_100"
+		    SID			    "476"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 575, 310, 605]
+		    ZOrder		    5708
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_3_10"
+		    SID			    "477"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 420, 310, 450]
+		    ZOrder		    5704
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_NONLIN"
+		    SID			    "478"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [95, 55, 160, 85]
+		    ZOrder		    5694
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator1"
+		    SID			    "479"
+		    Position		    [325, 60, 345, 80]
+		    ZOrder		    5697
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator2"
+		    SID			    "480"
+		    Position		    [175, 60, 195, 80]
+		    ZOrder		    5695
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator3"
+		    SID			    "481"
+		    Position		    [325, 270, 345, 290]
+		    ZOrder		    5701
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator4"
+		    SID			    "482"
+		    Position		    [325, 135, 345, 155]
+		    ZOrder		    5699
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator5"
+		    SID			    "483"
+		    Position		    [325, 425, 345, 445]
+		    ZOrder		    5705
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator6"
+		    SID			    "484"
+		    Position		    [325, 350, 345, 370]
+		    ZOrder		    5703
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator7"
+		    SID			    "485"
+		    Position		    [325, 580, 345, 600]
+		    ZOrder		    5709
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator8"
+		    SID			    "486"
+		    Position		    [325, 505, 345, 525]
+		    ZOrder		    5707
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator9"
+		    SID			    "487"
+		    Position		    [325, 205, 345, 225]
+		    ZOrder		    5711
+		    ShowName		    off
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "TH_100M_300M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator9"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "TH_30_100"
+		    SrcPort		    1
+		    DstBlock		    "Terminator7"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    3
+		    SrcBlock		    "TH_10_30"
+		    SrcPort		    1
+		    DstBlock		    "Terminator8"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    4
+		    SrcBlock		    "TH_3_10"
+		    SrcPort		    1
+		    DstBlock		    "Terminator5"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    5
+		    SrcBlock		    "TH_1_3"
+		    SrcPort		    1
+		    DstBlock		    "Terminator6"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    6
+		    SrcBlock		    "TH_300M_1"
+		    SrcPort		    1
+		    DstBlock		    "Terminator3"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    7
+		    SrcBlock		    "TH_30M_100M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator4"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    8
+		    SrcBlock		    "TH_30M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    9
+		    SrcBlock		    "TH_NONLIN"
+		    SrcPort		    1
+		    DstBlock		    "Terminator2"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "TILT_BLRMS_P"
+		  SID			  "488"
+		  Ports			  []
+		  Position		  [155, 159, 255, 201]
+		  ZOrder		  5694
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "TILT_BLRMS_P"
+		    Location		    [1069, 108, 2527, 957]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "80"
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_100M_300M"
+		    SID			    "489"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 210, 310, 240]
+		    ZOrder		    5710
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_10_30"
+		    SID			    "490"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 520, 310, 550]
+		    ZOrder		    5706
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_1_3"
+		    SID			    "491"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 365, 310, 395]
+		    ZOrder		    5702
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_300M_1"
+		    SID			    "492"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 285, 310, 315]
+		    ZOrder		    5700
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M"
+		    SID			    "493"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 55, 310, 85]
+		    ZOrder		    5696
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M_100M"
+		    SID			    "494"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 130, 310, 160]
+		    ZOrder		    5698
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30_100"
+		    SID			    "495"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 595, 310, 625]
+		    ZOrder		    5708
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_3_10"
+		    SID			    "496"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 440, 310, 470]
+		    ZOrder		    5704
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_NONLIN"
+		    SID			    "497"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [95, 55, 160, 85]
+		    ZOrder		    5694
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator1"
+		    SID			    "498"
+		    Position		    [325, 60, 345, 80]
+		    ZOrder		    5697
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator2"
+		    SID			    "499"
+		    Position		    [175, 60, 195, 80]
+		    ZOrder		    5695
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator3"
+		    SID			    "500"
+		    Position		    [325, 290, 345, 310]
+		    ZOrder		    5701
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator4"
+		    SID			    "501"
+		    Position		    [325, 135, 345, 155]
+		    ZOrder		    5699
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator5"
+		    SID			    "502"
+		    Position		    [325, 445, 345, 465]
+		    ZOrder		    5705
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator6"
+		    SID			    "503"
+		    Position		    [325, 370, 345, 390]
+		    ZOrder		    5703
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator7"
+		    SID			    "504"
+		    Position		    [325, 600, 345, 620]
+		    ZOrder		    5709
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator8"
+		    SID			    "505"
+		    Position		    [325, 525, 345, 545]
+		    ZOrder		    5707
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator9"
+		    SID			    "506"
+		    Position		    [325, 215, 345, 235]
+		    ZOrder		    5711
+		    ShowName		    off
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "TH_100M_300M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator9"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "TH_30_100"
+		    SrcPort		    1
+		    DstBlock		    "Terminator7"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    3
+		    SrcBlock		    "TH_10_30"
+		    SrcPort		    1
+		    DstBlock		    "Terminator8"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    4
+		    SrcBlock		    "TH_3_10"
+		    SrcPort		    1
+		    DstBlock		    "Terminator5"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    5
+		    SrcBlock		    "TH_1_3"
+		    SrcPort		    1
+		    DstBlock		    "Terminator6"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    6
+		    SrcBlock		    "TH_300M_1"
+		    SrcPort		    1
+		    DstBlock		    "Terminator3"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    7
+		    SrcBlock		    "TH_30M_100M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator4"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    8
+		    SrcBlock		    "TH_30M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    9
+		    SrcBlock		    "TH_NONLIN"
+		    SrcPort		    1
+		    DstBlock		    "Terminator2"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "TILT_BLRMS_Y"
+		  SID			  "507"
+		  Ports			  []
+		  Position		  [155, 239, 255, 281]
+		  ZOrder		  5696
+		  RequestExecContextInheritance	off
+		  Variant		  off
+		  System {
+		    Name		    "TILT_BLRMS_Y"
+		    Location		    [1069, 108, 2527, 957]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_100M_300M"
+		    SID			    "508"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 200, 310, 230]
+		    ZOrder		    5710
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_10_30"
+		    SID			    "509"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 495, 310, 525]
+		    ZOrder		    5706
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_1_3"
+		    SID			    "510"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 340, 310, 370]
+		    ZOrder		    5702
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_300M_1"
+		    SID			    "511"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 270, 310, 300]
+		    ZOrder		    5700
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M"
+		    SID			    "512"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 55, 310, 85]
+		    ZOrder		    5696
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30M_100M"
+		    SID			    "513"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 130, 310, 160]
+		    ZOrder		    5698
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_30_100"
+		    SID			    "514"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 570, 310, 600]
+		    ZOrder		    5708
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_3_10"
+		    SID			    "515"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [245, 415, 310, 445]
+		    ZOrder		    5704
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Reference
+		    Name		    "TH_NONLIN"
+		    SID			    "516"
+		    Tag			    "cdsEpicsIn"
+		    Description		    "Purpose:                                                                              \nCreate"
+		    " an EPICS input channel connection to the FE realtime controls.                 \n                              "
+		    "                                                        \nOperation:                                            "
+		    "                                \nOutputs value from an EPICS ai record. Value is floating point with a precisio"
+		    "n of 3..\n                                                                                      \nUsage:        "
+		    "                                                                        \nName the part with the desired EPICS c"
+		    "hannel name.                                    "
+		    Ports		    [0, 1]
+		    Position		    [95, 55, 160, 85]
+		    ZOrder		    5694
+		    BackgroundColor	    "green"
+		    DropShadow		    on
+		    AttributesFormatString  "%<Tag>"
+		    SourceBlock		    "cdsEpicsIn/Subsystem"
+		    SourceType		    "SubSystem"
+		    ContentPreviewEnabled   off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator1"
+		    SID			    "517"
+		    Position		    [325, 60, 345, 80]
+		    ZOrder		    5697
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator2"
+		    SID			    "518"
+		    Position		    [175, 60, 195, 80]
+		    ZOrder		    5695
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator3"
+		    SID			    "519"
+		    Position		    [325, 275, 345, 295]
+		    ZOrder		    5701
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator4"
+		    SID			    "520"
+		    Position		    [325, 135, 345, 155]
+		    ZOrder		    5699
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator5"
+		    SID			    "521"
+		    Position		    [325, 420, 345, 440]
+		    ZOrder		    5705
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator6"
+		    SID			    "522"
+		    Position		    [325, 345, 345, 365]
+		    ZOrder		    5703
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator7"
+		    SID			    "523"
+		    Position		    [325, 575, 345, 595]
+		    ZOrder		    5709
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator8"
+		    SID			    "524"
+		    Position		    [325, 500, 345, 520]
+		    ZOrder		    5707
+		    ShowName		    off
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    "Terminator9"
+		    SID			    "525"
+		    Position		    [325, 205, 345, 225]
+		    ZOrder		    5711
+		    ShowName		    off
+		    }
+		    Line {
+		    ZOrder		    1
+		    SrcBlock		    "TH_100M_300M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator9"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    2
+		    SrcBlock		    "TH_30_100"
+		    SrcPort		    1
+		    DstBlock		    "Terminator7"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    3
+		    SrcBlock		    "TH_10_30"
+		    SrcPort		    1
+		    DstBlock		    "Terminator8"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    4
+		    SrcBlock		    "TH_3_10"
+		    SrcPort		    1
+		    DstBlock		    "Terminator5"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    5
+		    SrcBlock		    "TH_1_3"
+		    SrcPort		    1
+		    DstBlock		    "Terminator6"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    6
+		    SrcBlock		    "TH_300M_1"
+		    SrcPort		    1
+		    DstBlock		    "Terminator3"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    7
+		    SrcBlock		    "TH_30M_100M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator4"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    8
+		    SrcBlock		    "TH_30M"
+		    SrcPort		    1
+		    DstBlock		    "Terminator1"
+		    DstPort		    1
+		    }
+		    Line {
+		    ZOrder		    9
+		    SrcBlock		    "TH_NONLIN"
+		    SrcPort		    1
+		    DstBlock		    "Terminator2"
+		    DstPort		    1
+		    }
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "OUTMON"
+	      SID		      "526"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [20, 90, 85, 120]
+	      ZOrder		      5637
+	      BackgroundColor	      "green"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "527"
+	      Position		      [100, 25, 120, 45]
+	      ZOrder		      5636
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "528"
+	      Position		      [100, 95, 120, 115]
+	      ZOrder		      5638
+	      ShowName		      off
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "INMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator"
-	  SID			  "131"
-	  Position		  [240, 125, 260, 145]
-	  ZOrder		  4083
+	  SID			  "529"
+	  Position		  [680, 160, 700, 180]
+	  ZOrder		  5695
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator1"
-	  SID			  "132"
-	  Position		  [240, 197, 265, 223]
-	  ZOrder		  4084
+	  SID			  "530"
+	  Position		  [680, 232, 705, 258]
+	  ZOrder		  5696
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator2"
-	  SID			  "133"
-	  Position		  [455, 122, 495, 158]
-	  ZOrder		  4086
+	  SID			  "531"
+	  Position		  [385, 390, 405, 410]
+	  ZOrder		  5691
+	  ShowName		  off
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator3"
-	  SID			  "134"
-	  Position		  [455, 212, 495, 248]
-	  ZOrder		  4088
+	  SID			  "532"
+	  Position		  [895, 157, 935, 193]
+	  ZOrder		  5698
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator4"
-	  SID			  "135"
-	  Position		  [455, 312, 495, 348]
-	  ZOrder		  4090
+	  SID			  "533"
+	  Position		  [895, 247, 935, 283]
+	  ZOrder		  5700
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator5"
-	  SID			  "136"
-	  Position		  [455, 402, 495, 438]
-	  ZOrder		  4092
+	  SID			  "534"
+	  Position		  [895, 347, 935, 383]
+	  ZOrder		  5702
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator6"
-	  SID			  "137"
-	  Position		  [455, 487, 495, 523]
-	  ZOrder		  4094
+	  SID			  "535"
+	  Position		  [895, 437, 935, 473]
+	  ZOrder		  5704
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator7"
+	  SID			  "536"
+	  Position		  [895, 522, 935, 558]
+	  ZOrder		  5706
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator8"
+	  SID			  "537"
+	  Position		  [385, 460, 410, 480]
+	  ZOrder		  5714
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "WD"
+	  SID			  "538"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [305, 385, 370, 415]
+	  ZOrder		  5690
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "Ground1"
+	  SrcPort		  1
+	  DstBlock		  "MTRX_LOCK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "MTRX_LOCK"
+	  SrcPort		  1
+	  DstBlock		  "Terminator8"
+	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  3
@@ -1711,35 +5419,42 @@ Library {
 	  ZOrder		  5
 	  SrcBlock		  "GOOD_YEAR"
 	  SrcPort		  1
-	  DstBlock		  "Terminator2"
+	  DstBlock		  "Terminator3"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  6
 	  SrcBlock		  "GOOD_DAY"
 	  SrcPort		  1
-	  DstBlock		  "Terminator3"
+	  DstBlock		  "Terminator4"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  7
 	  SrcBlock		  "GOOD_HOUR"
 	  SrcPort		  1
-	  DstBlock		  "Terminator4"
+	  DstBlock		  "Terminator5"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  8
 	  SrcBlock		  "GOOD_MIN"
 	  SrcPort		  1
-	  DstBlock		  "Terminator5"
+	  DstBlock		  "Terminator6"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  9
 	  SrcBlock		  "GOOD_MON"
 	  SrcPort		  1
-	  DstBlock		  "Terminator6"
+	  DstBlock		  "Terminator7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "WD"
+	  SrcPort		  1
+	  DstBlock		  "Terminator2"
 	  DstPort		  1
 	}
       }
@@ -2474,7 +6189,7 @@ Library {
       System {
 	Name			"TYPEC"
 	Location		[1071, 199, 1699, 694]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
