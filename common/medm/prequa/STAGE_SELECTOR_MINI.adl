@@ -1,14 +1,14 @@
 
 file {
-	name="/opt/rtcds/caltech/c1/medm/c1lsc_tst/master/matX/L1ISI_OMC_OVERVIEW.adl"
-	version=030102
+	name="/opt/rtcds/userapps/release/vis/common/medm/prequa/STAGE_SELECTOR_MINI.adl"
+	version=030107
 }
 display {
 	object {
-x=50
-y=50
-width=545
-height=309
+		x=1008
+		y=157
+		width=545
+		height=309
 	}
 	clr=20
 	bclr=3
@@ -87,37 +87,37 @@ height=309
 		1a7309,
 	}
 }
+"related display" {
+	object {
+		x=131
+		y=105
+		width=58
+		height=28
+	}
+	display[0] {
+		label="$(IFO):VIS-$(OPTIC)_STAGE_SEL_$(PARAM)"
+		name="STAGE_SELECTOR.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),PARAM=$(PARAM)"
+	}
+	clr=14
+	bclr=55
+	visual="invisible"
+}
 composite {
 	object {
-x=100
-y=100
-width=56
-height=35
+		x=128
+		y=100
+		width=64
+		height=35
 	}
 	"composite name"=""
 	children {
-		"related display" {
-			object {
-x=104
-y=103
-width=47
-height=28
-			}
-			display[0] {
-				label="$(IFO):VIS-$(OPTIC)_STAGE_SEL_$(PARAM)"
-				name="STAGE_SELECTOR.adl"
-				args="IFO=$(IFO),OPTIC=$(OPTIC),PARAM=$(PARAM)"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
 		rectangle {
 			object {
-x=100
-y=100
-width=56
-height=35
+				x=128
+				y=100
+				width=64
+				height=35
 			}
 			"basic attribute" {
 				clr=14
@@ -126,34 +126,45 @@ height=35
 		}
 		rectangle {
 			object {
-x=102
-y=102
-width=52
-height=31
+				x=130
+				y=102
+				width=60
+				height=31
 			}
 			"basic attribute" {
 				clr=6
 			}
 		}
-		text {
-			object {
-x=108
-y=104
-width=41
-height=10
-			}
-			"basic attribute" {
-				clr=39
-			}
-			textix="$(PARAM)"
-			align="horiz. centered"
-		}
+	}
+}
+text {
+	object {
+		x=140
+		y=105
+		width=41
+		height=10
+	}
+	"basic attribute" {
+		clr=39
+	}
+	textix="$(PARAM)"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=133
+		y=120
+		width=55
+		height=11
+	}
+	"composite name"=""
+	children {
 		rectangle {
 			object {
-x=105
-y=119
-width=46
-height=11
+				x=133
+				y=120
+				width=55
+				height=11
 			}
 			"basic attribute" {
 				clr=9
@@ -161,28 +172,28 @@ height=11
 		}
 		composite {
 			object {
-x=106
-y=120
-width=44
-height=9
+				x=133
+				y=121
+				width=53
+				height=8
 			}
 			"composite name"=""
 			children {
 				composite {
 					object {
-x=106
-y=120
-width=8
-height=8
+						x=133
+						y=121
+						width=8
+						height=8
 					}
 					"composite name"=""
 					children {
 						rectangle {
 							object {
-x=106
-y=120
-width=8
-height=8
+								x=133
+								y=121
+								width=8
+								height=8
 							}
 							"basic attribute" {
 								clr=14
@@ -191,10 +202,10 @@ height=8
 						}
 						rectangle {
 							object {
-x=106
-y=120
-width=7
-height=8
+								x=133
+								y=121
+								width=7
+								height=8
 							}
 							"basic attribute" {
 								clr=12
@@ -203,23 +214,21 @@ height=8
 						}
 					}
 				}
-			}
-			children {
 				composite {
 					object {
-x=115
-y=120
-width=8
-height=8
+						x=142
+						y=121
+						width=8
+						height=8
 					}
 					"composite name"=""
 					children {
 						rectangle {
 							object {
-x=115
-y=120
-width=8
-height=8
+								x=142
+								y=121
+								width=8
+								height=8
 							}
 							"basic attribute" {
 								clr=14
@@ -228,10 +237,10 @@ height=8
 						}
 						rectangle {
 							object {
-x=115
-y=120
-width=7
-height=8
+								x=142
+								y=121
+								width=7
+								height=8
 							}
 							"basic attribute" {
 								clr=12
@@ -240,23 +249,21 @@ height=8
 						}
 					}
 				}
-			}
-			children {
 				composite {
 					object {
-x=124
-y=120
-width=8
-height=8
+						x=151
+						y=121
+						width=8
+						height=8
 					}
 					"composite name"=""
 					children {
 						rectangle {
 							object {
-x=124
-y=120
-width=8
-height=8
+								x=151
+								y=121
+								width=8
+								height=8
 							}
 							"basic attribute" {
 								clr=14
@@ -265,10 +272,10 @@ height=8
 						}
 						rectangle {
 							object {
-x=124
-y=120
-width=7
-height=8
+								x=151
+								y=121
+								width=7
+								height=8
 							}
 							"basic attribute" {
 								clr=12
@@ -277,23 +284,21 @@ height=8
 						}
 					}
 				}
-			}
-			children {
 				composite {
 					object {
-x=133
-y=120
-width=8
-height=8
+						x=160
+						y=121
+						width=8
+						height=8
 					}
 					"composite name"=""
 					children {
 						rectangle {
 							object {
-x=133
-y=120
-width=8
-height=8
+								x=160
+								y=121
+								width=8
+								height=8
 							}
 							"basic attribute" {
 								clr=14
@@ -302,10 +307,10 @@ height=8
 						}
 						rectangle {
 							object {
-x=133
-y=120
-width=7
-height=8
+								x=160
+								y=121
+								width=7
+								height=8
 							}
 							"basic attribute" {
 								clr=12
@@ -314,23 +319,21 @@ height=8
 						}
 					}
 				}
-			}
-			children {
 				composite {
 					object {
-x=142
-y=120
-width=8
-height=8
+						x=169
+						y=121
+						width=8
+						height=8
 					}
 					"composite name"=""
 					children {
 						rectangle {
 							object {
-x=142
-y=120
-width=8
-height=8
+								x=169
+								y=121
+								width=8
+								height=8
 							}
 							"basic attribute" {
 								clr=14
@@ -339,10 +342,45 @@ height=8
 						}
 						rectangle {
 							object {
-x=142
-y=120
-width=7
-height=8
+								x=169
+								y=121
+								width=7
+								height=8
+							}
+							"basic attribute" {
+								clr=12
+								width=3
+							}
+						}
+					}
+				}
+				composite {
+					object {
+						x=178
+						y=121
+						width=8
+						height=8
+					}
+					"composite name"=""
+					children {
+						rectangle {
+							object {
+								x=178
+								y=121
+								width=8
+								height=8
+							}
+							"basic attribute" {
+								clr=14
+								width=3
+							}
+						}
+						rectangle {
+							object {
+								x=178
+								y=121
+								width=7
+								height=8
 							}
 							"basic attribute" {
 								clr=12
@@ -355,19 +393,19 @@ height=8
 		}
 		composite {
 			object {
-x=106
-y=120
-width=44
-height=9
+				x=134
+				y=121
+				width=53
+				height=8
 			}
 			"composite name"=""
 			children {
 				rectangle {
 					object {
-x=106
-y=120
-width=8
-height=8
+						x=134
+						y=121
+						width=8
+						height=8
 					}
 					"basic attribute" {
 						clr=16
@@ -380,10 +418,10 @@ height=8
 				}
 				rectangle {
 					object {
-x=115
-y=120
-width=8
-height=8
+						x=143
+						y=121
+						width=8
+						height=8
 					}
 					"basic attribute" {
 						clr=16
@@ -396,10 +434,10 @@ height=8
 				}
 				rectangle {
 					object {
-x=124
-y=120
-width=8
-height=8
+						x=152
+						y=121
+						width=8
+						height=8
 					}
 					"basic attribute" {
 						clr=16
@@ -412,10 +450,10 @@ height=8
 				}
 				rectangle {
 					object {
-x=133
-y=120
-width=8
-height=8
+						x=161
+						y=121
+						width=8
+						height=8
 					}
 					"basic attribute" {
 						clr=16
@@ -428,10 +466,10 @@ height=8
 				}
 				rectangle {
 					object {
-x=142
-y=120
-width=8
-height=8
+						x=170
+						y=121
+						width=8
+						height=8
 					}
 					"basic attribute" {
 						clr=16
@@ -440,6 +478,22 @@ height=8
 					"dynamic attribute" {
 						vis="if not zero"
 						chan="$(IFO):VIS-$(OPTIC)_STAGE_SEL_$(PARAM)_1_5"
+					}
+				}
+				rectangle {
+					object {
+						x=179
+						y=121
+						width=8
+						height=8
+					}
+					"basic attribute" {
+						clr=16
+						width=3
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="$(IFO):VIS-$(OPTIC)_STAGE_SEL_$(PARAM)_1_6"
 					}
 				}
 			}
