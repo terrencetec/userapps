@@ -285,7 +285,22 @@ class INIT_OUTPUT(GuardState):
             kagralib.foton_zpk(self.MODAL_FBs,'%s_OLDC_BF_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
             kagralib.foton_gain(self.MODAL_FBs,'%s_OLDC_BF_%s'%(OPTIC,DoF),0,0.001,'1mHz',force=True)
 
-            ezca.switch('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF),'FM1','FM10','ON','INPUT','OFF')
+            ezca.switch('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF),'FM1','FM9','FM10','ON','INPUT','OFF')
+            ezca.switch('MOD-%s_OLDC_BF_%s'%(OPTIC,DoF),'FM1','FM10','ON','INPUT','OFF')
+            
+
+        # IPDC initialization
+        for DoF in ['LEN','TRA','YAW']:
+            ezca['MOD-%s_IPDC_SETPOINT_%s_TRAMP'%(OPTIC,DoF)] = 0.5
+            ezca.switch('MOD-%s_IPDC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
+            
+            kagralib.foton_zpk(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
+            kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),0,0.001,name='1mHz',force=True)
+            kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),1,0.01,name='10mHz',force=True)
+            kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),8,-1,force=True)
+
+            ezca.switch('MOD-%s_IPDC_%s'%(OPTIC,DoF),'FM1','FM0','FM10','ON','INPUT','OFF')
+
             
         self.MODAL_FBs.write()
         self.TOWER_FBs.write()
@@ -351,9 +366,9 @@ class INIT_OUTPUT(GuardState):
                            [1,0,0,0,0,-1],
                            [1,0,0,0,0,1]],
                       ))
-            for dcuid in [sysmod.MONDCUID,sysmod.MODALDCUID,sysmod.PDCUID,sysmod.TDCUID]:
-                if int(ezca['FEC-%d_STATE_WORD'%dcuid]) & 0b10000000000:
-                    ezca['FEC-%d_LOAD_NEW_COEFF'%dcuid] = 1
+        for dcuid in [sysmod.MONDCUID,sysmod.MODALDCUID,sysmod.PDCUID,sysmod.TDCUID]:
+            if int(ezca['FEC-%d_STATE_WORD'%dcuid]) & 0b10000000000:
+                ezca['FEC-%d_LOAD_NEW_COEFF'%dcuid] = 1
 
 
 
@@ -923,8 +938,9 @@ class RECORD_MEASUREMENT(GuardState):
             self.counter += 1
         elif self.counter == 3:
             ezca['VIS-%s_FREE_MODE_LIST_NO%d_PRE_FREQ'%(OPTIC,self.modeindex)] = ezca['VIS-%s_FREE_MODE_LIST_NO%d_FREQ'%(OPTIC,self.modeindex)]
+            self.counter += 1
             
-        elif self.counter == 3:
+        elif self.counter == 4:
             return True
 
 
@@ -1119,7 +1135,7 @@ class SENSOR_DIAGONALIZATION(GuardState):
                     rows={ii+1: ii+1 for ii in range(6)},                
                 ) for stage in ['IP','BF','MN','IM','TM']}
             
-                for stage in ['IP','BF','MN','IM','TM']:
+                for stage in ['BF','MN','IM','TM']:
                     if ezca['VIS-%s_MTRX_LOCK'%(OPTIC)]:
                         kagralib.speak_aloud('Decoupling Matrix is locked. I cannot change it')
                         self.counter += 1
@@ -1259,288 +1275,374 @@ class SENSOR_CALIBRATION(GuardState):
         elif self.counter == 6:
             return True
 
-class ACT_DIAGONALIZATION(GuardState):
-    index = 300
-    request = True
+    
+    
+# common functions for ACT_DIAG_TOWER, PAYLOAD
+def getData(channels,avgtime):
+    _data = cdsutils.getdata(channels,avgtime)
+    data = {channels[ii]:np.average(_data[ii].data) for ii in range(len(channels))}
+    std = {channels[ii]:np.std(_data[ii].data) for ii in range(len(channels))}
+    return data,std
 
-    def getData(self,channels,avgtime):
-        _data = cdsutils.getdata(channels,avgtime)
-        data = {channels[ii]:(max(_data[ii].data) + min(_data[ii].data))/2 for ii in range(len(channels))}
-        std = {channels[ii]:np.std(_data[ii].data) for ii in range(len(channels))}
-        return data,std
+def make_strresult(data, DoFList):
+    strresult = '('
+    for DoF in DoFList:
+        for key in data:
+            if DoF in key:
+                strresult += DoF + ':' + str(data[key]) + ','
+    strresult = strresult[:-1] + ')'
+    return strresult
 
-    def make_strresult(self,data, DoFList):
-        strresult = '('
-        for DoF in DoFList:
-            for key in data:
-                if DoF in key:
-                    strresult += DoF + ':' + str(data[key]) + ','
-        strresult = strresult[:-1] + ')'
-        return strresult
-
-    # diagonalization of actuator to sensor basis.
-    def main(self):
-        self.DoFindex = {'LEN':1,'TRA':2,'VER':3,'ROL':4,'PIT':5,'YAW':6}
-        self.stagelist = ['IP','BF','MN']
-        self.currentstage = 0
-        self.DoFlist = {
-            'IP':['LEN','TRA','YAW'],
-            'BF':['LEN','TRA','YAW'],
-            'MN':['LEN','TRA','ROL','PIT','YAW'],
-            'TM':['PIT','YAW'],
-                        }
-        self.currentDoF = 0
-        self.coillist = {
-            'IP':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
-            'BF':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
-            'MN':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
-            'IM':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
-            'TM':{'H1':1,'H2':2,'H3':3,'H4':4},
-                        }
-
-        # put offset so that the maximum input get this vlue
-        self.maxoutput_dict = {'IP':1000,'BF':5000,'MN':5000}
-
-        self.offset_dict = {}
-        self.TRAMP = {'IP':30,'BF':30,'MN':15}
-        self.avgtime = {'IP':40,'BF':40,'MN':15}
-        self.settletime = {'IP':15,'BF':15,'MN':15}
+# diagonalization of actuator to sensor basis.
+def diag_main(self):
+    self.DoFindex = {'LEN':1,'TRA':2,'VER':3,'ROL':4,'PIT':5,'YAW':6}
+    self.currentstage = 0
+    self.DoFlist = {
+        'IP':['LEN','TRA','YAW'],
+        'BF':['LEN','TRA','YAW'],
+        'MN':['LEN','TRA','ROL','PIT','YAW'],
+        'TM':['PIT','YAW'],
+    }
+    self.currentDoF = 0
+    self.coillist = {
+        'IP':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
+        'BF':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
+        'MN':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
+        'IM':{'V1':1,'V2':2,'V3':3,'H1':4,'H2':5,'H3':6},
+        'TM':{'H1':1,'H2':2,'H3':3,'H4':4},
+    }
+    
+    # put offset so that the maximum input get this vlue
+    self.maxoutput_dict = {'IP':1000,'BF':5000,'MN':10000}
+    
+    self.offset_dict = {}
+    self.TRAMP = {'IP':30,'BF':30,'MN':15}
+    self.avgtime = {'IP':40,'BF':40,'MN':15}
+    self.settletime = {'IP':15,'BF':15,'MN':15}
 
         
-        ##### Define logger
-        _t = time.localtime()
-        keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
-        self.time = {
-            keys[ii]:_t[ii] for ii in range(len(keys))
-            }
+    ##### Define logger
+    _t = time.localtime()
+    keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
+    self.time = {
+        keys[ii]:_t[ii] for ii in range(len(keys))
+    }
+    
+    self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
+    self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+    
+    kagralib.mkdir(self.figdir)
+    kagralib.mkdir(self.figdir_archive)
+    
+    self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
+                                     str(self.time['MON']).zfill(2),
+                                     str(self.time['DAY']).zfill(2),
+                                     str(self.time['HOUR']).zfill(2),
+                                     str(self.time['MIN']).zfill(2))
+    
+    #initialize logger
+    log_file = self.figdir_archive + self.fileprefix + 'measurement.log'
+    
+    self.logger=logging.getLogger('flogger')
+    self.logger.setLevel(logging.DEBUG)
+    handler=logging.StreamHandler()
+    self.logger.addHandler(handler)
+    handler=logging.FileHandler(filename=log_file)
+    self.logger.addHandler(handler)
+    
+    
+    self.counter = 0
+    self.timer['waiting'] = 0
+    self.timer['speaking'] = 0
+    
+def diag_run(self):
+    if ezca['VIS-%s_MTRX_LOCK'%OPTIC]:
+        if self.timer['speaking']:
+            kagralib.speak_aloud('Sensing and actuator matrices are locke. I cannot change it')
+            self.timer['speaking'] = 300
+        return True
 
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
-
-        kagralib.mkdir(self.figdir)
-        kagralib.mkdir(self.figdir_archive)
-
-        self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
-                                         str(self.time['MON']).zfill(2),
-                                         str(self.time['DAY']).zfill(2),
-                                         str(self.time['HOUR']).zfill(2),
-                                         str(self.time['MIN']).zfill(2))
-
-        #initialize logger
-        log_file = self.figdir_archive + self.fileprefix + 'measurement.log'
         
-        self.logger=logging.getLogger('flogger')
-        self.logger.setLevel(logging.DEBUG)
-        handler=logging.StreamHandler()
-        self.logger.addHandler(handler)
-        handler=logging.FileHandler(filename=log_file)
-        self.logger.addHandler(handler)
-
-
-        self.counter = 0
-        self.timer['waiting'] = 0
-        self.timer['speaking'] = 0
-
-    def run(self):
-        if ezca['VIS-%s_MTRX_LOCK'%OPTIC]:
-            if self.timer['speaking']:
-                kagralib.speak_aloud('Sensing and actuator matrices are locke. I cannot change it')
-                self.timer['speaking'] = 300
-            return True
-
-        
-        if not self.timer['waiting']:
-            return
-
-        if self.counter == 0:
-            #initialize SUMOUT
-            for stage in self.stagelist:
-                self.offset_dict[stage] = {}
-                for DoF in self.DoFlist[stage]:
-                    SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,stage,DoF))
-                    SUMOUT.ramp_offset(0,self.TRAMP[stage],False)
-                    
-                    # make ofsdict so that maximum coil output got max output
-                    decpl = np.zeros((6,6))
-                    eul2coil = np.zeros((len(self.coillist[stage]),6))
-                    for ii in range(len(decpl)):
-                        for jj in range(len(decpl[ii])):
-                            decpl[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)]
-                    for ii in range(len(eul2coil)):
-                        for jj in range(len(eul2coil[ii])):
-                            eul2coil[ii,jj] = ezca['MOD-%s_EUL2COIL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)]
-                    dof2coil = np.dot(eul2coil,decpl)
-                    _maximumoffset = []                                
-                    for coil in self.coillist[stage].keys():
-                        if not (stage=='IP' and 'V' in coil):
-                            _maximumoffset.append(abs(self.maxoutput_dict[stage]/
-                                                      SUMOUT.GAIN.get()/
-                                                      ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(OPTIC,stage,coil)]/
-                                                      dof2coil[self.coillist[stage][coil]-1,self.DoFindex[DoF]-1]))
+    if not self.timer['waiting']:
+        return
+    
+    if self.counter == 0:
+        #initialize SUMOUT
+        for stage in self.stagelist:
+            self.offset_dict[stage] = {}
+            for DoF in self.DoFlist[stage]:
+                SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,stage,DoF))
+                SUMOUT.ramp_offset(0,self.TRAMP[stage],False)
+                
+                # make ofsdict so that maximum coil output got max output
+                decpl = np.zeros((6,6))
+                eul2coil = np.zeros((len(self.coillist[stage]),6))
+                for ii in range(len(decpl)):
+                    for jj in range(len(decpl[ii])):
+                        decpl[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)]
+                for ii in range(len(eul2coil)):
+                    for jj in range(len(eul2coil[ii])):
+                        eul2coil[ii,jj] = ezca['MOD-%s_EUL2COIL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)]
+                dof2coil = np.dot(eul2coil,decpl)
+                _maximumoffset = []                                
+                for coil in self.coillist[stage].keys():
+                    if not (stage=='IP' and 'V' in coil):
+                        _maximumoffset.append(abs(self.maxoutput_dict[stage]/
+                                                  SUMOUT.GAIN.get()/
+                                                  ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(OPTIC,stage,coil)]/
+                                                  dof2coil[self.coillist[stage][coil]-1,self.DoFindex[DoF]-1]))
                             
-                    log('%s %s _maximumoffset=%s'%(stage,DoF,str(_maximumoffset)))
-                    self.offset_dict[stage][DoF] = min(_maximumoffset)
+                log('%s %s _maximumoffset=%s'%(stage,DoF,str(_maximumoffset)))
+                self.offset_dict[stage][DoF] = min(_maximumoffset)
 
-                    # yaw offset is reduced since our yaw actuator is too strong due to the super low resonant frequency
-                    if DoF == 'YAW':
-                        self.offset_dict[stage][DoF] /= 10.
+                # yaw offset is reduced since our yaw actuator is too strong due to the super low resonant frequency
+                if DoF == 'YAW':
+                    self.offset_dict[stage][DoF] /= 10.
                     
-                if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
-                    self.timer['waiting'] = self.TRAMP[stage]
+            if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
+                self.timer['waiting'] = self.TRAMP[stage]
             
-            self.counter += 1
+        self.counter += 1
             
 
-        elif self.counter == 1:
-            # take reference
-            self.stage = self.stagelist[self.currentstage]
-
-            if self.currentDoF == 0:
-                #initialize _t_actmat
-                self._t_actmat = np.identity(len(self.DoFlist[self.stage]))
+    elif self.counter == 1:
+        # take reference
+        self.stage = self.stagelist[self.currentstage]
+        
+        if self.currentDoF == 0:
+            #initialize _t_actmat
+            self._t_actmat = np.identity(len(self.DoFlist[self.stage]))
                 
             
-            self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_INMON'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
-            log(self.channels)
-            self.DoF = self.DoFlist[self.stage][self.currentDoF]
-            self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
+        self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_INMON'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
+        log(self.channels)
+        self.DoF = self.DoFlist[self.stage][self.currentDoF]
+        self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
 
-            # transpose of actuator matrix
+        # transpose of actuator matrix
             
 
 
-            self.ref,rev_norm_factor = self.getData(self.channels,self.avgtime[self.stage])
-            norm_factor = {key:1./rev_norm_factor[key] for key in rev_norm_factor.keys()}
-            self.logger.debug('Reference position')
-            strresult = self.make_strresult(self.ref,self.DoFlist[self.stage])
-            self.logger.debug(strresult)
-            '''
-            logger.debug('Normalization factor')
-            strresult = make_strresult(norm_factor)
-            logger.debug(strresult)    
-            '''
-            self.counter += 1
-
-        elif self.counter == 2:
-            # put offset
-            self.logger.debug('put offset of %f'%self.offset_dict[self.stage][self.DoF])
-            self.SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,self.stage,self.DoF))
-            self.SUMOUT.turn_on('OFFSET')
-            self.SUMOUT.ramp_offset(self.offset_dict[self.stage][self.DoF],self.TRAMP[self.stage],False)
-            self.timer['waiting'] = self.TRAMP[self.stage] + self.settletime[self.stage]
-            self.counter += 1
-
-        elif self.counter == 3:
-            # take difference from ref
-            shift,_ = self.getData(self.channels,self.avgtime[self.stage])
-            self.logger.debug('Shifted value from reference')
-            strresult = self.make_strresult(shift,self.DoFlist[self.stage])
-            self.logger.debug(strresult)
+        self.ref,rev_norm_factor = getData(self.channels,self.avgtime[self.stage])
+        norm_factor = {key:1./rev_norm_factor[key] for key in rev_norm_factor.keys()}
+        self.logger.debug('Reference position')
+        strresult = make_strresult(self.ref,self.DoFlist[self.stage])
+        self.logger.debug(strresult)
         
-            dif = {key:(shift[key]-self.ref[key]) for key in self.ref.keys()}
-            self.logger.debug('Difference from reference')
-            strresult = self.make_strresult(dif,self.DoFlist[self.stage])
-            self.logger.debug(strresult)
+        self.counter += 1
 
+    elif self.counter == 2:
+        # put offset
+        self.logger.debug('put offset of %f'%self.offset_dict[self.stage][self.DoF])
+        self.SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,self.stage,self.DoF))
+        self.SUMOUT.turn_on('OFFSET')
+        self.SUMOUT.ramp_offset(self.offset_dict[self.stage][self.DoF],self.TRAMP[self.stage],False)
+        self.timer['waiting'] = self.TRAMP[self.stage] + self.settletime[self.stage]
+        self.counter += 1
 
-            _actvec = []
-            for DoF2 in DoFList:
-                for key in dif.keys():
-                    if DoF2 in key:
-                        _actvec.append(dif[key])
-
-            actvec = np.array(_actvec) / self.offset_dict[self.stage][self.DoF]
-            self._t_actmat[self.currentDoF] = actvec
-            log(str(self._t_actmat))
+    elif self.counter == 3:
+        # take difference from ref
+        shift,_ = getData(self.channels,self.avgtime[self.stage])
+        self.logger.debug('Shifted value from reference')
+        strresult = make_strresult(shift,self.DoFlist[self.stage])
+        self.logger.debug(strresult)
         
-            self.SUMOUT.ramp_offset(0,self.TRAMP[self.stage],False)
-            self.timer['waiting'] = self.TRAMP[self.stage]+self.settletime[self.stage]
-            self.currentDoF += 1
-            if self.currentDoF >= len(self.DoFlist[self.stage]):
-                self.counter += 1
+        dif = {key:(shift[key]-self.ref[key]) for key in self.ref.keys()}
+        self.logger.debug('Difference from reference')
+        strresult = make_strresult(dif,self.DoFlist[self.stage])
+        self.logger.debug(strresult)
+        
+
+        _actvec = []
+        for DoF2 in DoFList:
+            for key in dif.keys():
+                if DoF2 in key:
+                    _actvec.append(dif[key])
+
+        actvec = np.array(_actvec) / (self.offset_dict[self.stage][self.DoF] * self.SUMOUT.GAIN.get())
+        self._t_actmat[self.currentDoF] = actvec
+        log(str(self._t_actmat))
+        
+        self.SUMOUT.ramp_offset(0,self.TRAMP[self.stage],False)
+        self.timer['waiting'] = self.TRAMP[self.stage]+self.settletime[self.stage]
+        self.currentDoF += 1
+        if self.currentDoF >= len(self.DoFlist[self.stage]):
+            self.counter += 1
+        else:
+            self.counter = 1
+
+            
+    elif self.counter == 4:
+        actmat = np.transpose(self._t_actmat)
+        norm_actmat = np.identity(len(actmat))
+        for ii in range(len(actmat)):
+            for jj in range(len(actmat)):
+                norm_actmat[ii,jj] = actmat[ii,jj] / (actmat[ii,ii])
+            
+        _DRIVEDECPL = np.linalg.inv(norm_actmat)
+    
+
+
+        # put missing DoF
+        missing_DoF = []
+        for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
+            if not DoF in self.DoFlist[self.stage]:
+                missing_DoF.append(self.DoFindex[DoF]-1)
+
+                    
+        DRIVEDECPL = np.identity(len(self.DoFlist[self.stage])+len(missing_DoF))
+    
+        iii = 0
+        for ii in range(len(self.DoFlist[self.stage])+len(missing_DoF)):
+            jjj = 0
+            if ii in missing_DoF:
+                DRIVEDECPL[ii] = np.zeros((1,len(self.DoFlist[self.stage])+len(missing_DoF)))
             else:
-                self.counter = 1
-
-                
-        elif self.counter == 4:
-            actmat = np.transpose(self._t_actmat)
-            norm_actmat = np.identity(len(actmat))
-            for ii in range(len(actmat)):
-                for jj in range(len(actmat)):
-                    norm_actmat[ii,jj] = actmat[ii,jj] / (actmat[ii,ii])
+                for jj in range(len(self.DoFlist[self.stage])+len(missing_DoF)):
+                    if jj in missing_DoF:
+                        DRIVEDECPL[ii,jj] = 0
+                    else:
+                        DRIVEDECPL[ii,jj] = _DRIVEDECPL[iii,jjj]
+                        jjj += 1
+                iii += 1
+        current_DRIVEDECPL = np.identity(6)
             
-            _DRIVEDECPL = np.linalg.inv(norm_actmat)
-    
+        for ii in range(6):
+            for jj in range(6):
+                current_DRIVEDECPL[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
+        _newDRIVEDECPL = np.dot(current_DRIVEDECPL,DRIVEDECPL)
 
-
-            # put missing DoF
-            missing_DoF = []
-            for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
-                if not DoF in self.DoFlist[self.stage]:
-                    missing_DoF.append(self.DoFindex[DoF]-1)
-
-                    
-            DRIVEDECPL = np.identity(len(self.DoFlist[self.stage])+len(missing_DoF))
-    
-            iii = 0
-            for ii in range(len(self.DoFlist[self.stage])+len(missing_DoF)):
-                jjj = 0
-                if ii in missing_DoF:
-                    DRIVEDECPL[ii] = np.zeros((1,len(self.DoFlist[self.stage])+len(missing_DoF)))
-                else:
-                    for jj in range(len(self.DoFlist[self.stage])+len(missing_DoF)):
-                        if jj in missing_DoF:
-                            DRIVEDECPL[ii,jj] = 0
-                        else:
-                            DRIVEDECPL[ii,jj] = _DRIVEDECPL[iii,jjj]
-                            jjj += 1
-                    iii += 1
-            current_DRIVEDECPL = np.identity(6)
-            
-            for ii in range(6):
-                for jj in range(6):
-                    current_DRIVEDECPL[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
-            _newDRIVEDECPL = np.dot(current_DRIVEDECPL,DRIVEDECPL)
-
-            self.newDRIVEDECPL = np.matrix(np.identity(6))
-            for ii in range(6):
-                for jj in range(6):
-                    if not _newDRIVEDECPL[jj,jj] == 0:
-                        self.newDRIVEDECPL[ii,jj] = _newDRIVEDECPL[ii,jj]/_newDRIVEDECPL[jj,jj]
+        self.newDRIVEDECPL = np.matrix(np.identity(6))
+        for ii in range(6):
+            for jj in range(6):
+                if not _newDRIVEDECPL[jj,jj] == 0:
+                    self.newDRIVEDECPL[ii,jj] = _newDRIVEDECPL[ii,jj]/_newDRIVEDECPL[jj,jj]
                         
 
-            self.logger.debug('New DRIVEDECPL:')
-            self.logger.debug(self.newDRIVEDECPL)
+        self.logger.debug('New DRIVEDECPL:')
+        self.logger.debug(self.newDRIVEDECPL)
+        
+        self.logger.debug('Differential DRIVEDECPL:')
+        self.logger.debug(DRIVEDECPL)
 
-            self.logger.debug('Differential DRIVEDECPL:')
-            self.logger.debug(DRIVEDECPL)
+    
+        for ii in range(6):
+            for jj in range(6):
+                ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)] = self.newDRIVEDECPL[ii,jj]
 
-            for ii in range(6):
-                for jj in range(6):
-                    ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)] = self.newDRIVEDECPL[ii,jj]
-
-            newactmat = np.dot(actmat, _DRIVEDECPL)
-            self.logger.debug('New Actuator matrix:')
-            self.logger.debug(newactmat)
-
-            ii = 0
-            for DoF in self.DoFlist[self.stage]:
-                SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,self.stage,DoF))
-                SUMOUT.ramp_gain(SUMOUT.GAIN.get()/newactmat[ii,ii],1,False)
-                ii += 1
+        newactmat = np.dot(actmat, _DRIVEDECPL)
+        self.logger.debug('New Actuator matrix:')
+        self.logger.debug(newactmat)
+        
+        ii = 0
+        for DoF in self.DoFlist[self.stage]:
+            SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,self.stage,DoF))
+            SUMOUT.ramp_gain(1./newactmat[ii,ii],1,False)
+            ii += 1
 
             
-            kagralib.speak_aloud('%s %s Diagonalized and Calibrated!'%(self.stage[0],self.stage[1]))
-            self.currentstage += 1
-            self.currentDoF = 0
-            if self.currentstage >= len(self.stagelist):
-                self.counter += 1
-            else:
-                self.counter = 1
+        kagralib.speak_aloud('%s %s Diagonalized and Calibrated!'%(self.stage[0],self.stage[1]))
+        self.currentstage += 1
+        self.currentDoF = 0
+        if self.currentstage >= len(self.stagelist):
+            self.counter += 1
+        else:
+            self.counter = 1
 
-        elif self.counter == 5:
-            return True
+    elif self.counter == 5:
+        return True
 
+class ACT_DIAG_TOWER(GuardState):
+    index = 300
+    request = True
+    
+    def main(self):
+        diag_main(self)
+        self.stagelist = ['IP',]
+        self.mycounter = 0
+        self.timer['my_waiting'] =0
+        
+    def run(self):
+        if not self.timer['my_waiting']:
+            return
+        
+        # disable DC path
+        if self.mycounter == 0:
+            for DoF in ['PIT','YAW']:
+                OLDC = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
+                OLDC.turn_off('INPUT')
+
+            for DoF in ['LEN','TRA','YAW']:
+                IPDC = ezca.get_LIGOFilter('MOD-%s_IPDC_%s'%(OPTIC,DoF))
+                IPDC.turn_off('INPUT')
+                TRAMP = IPDC.OUTPUT.get()/30
+                IPDC.ramp_gain(0,TRAMP,False)
+                if self.timer['my_waiting']:
+                    self.timer['my_waiting'] = TRAMP
+            self.mycounter += 1
+
+        elif self.mycounter == 1:
+            # clear history
+            for DoF in ['LEN','TRA','YAW']:
+                IPDC = ezca.get_LIGOFilter('MOD-%s_IPDC_%s'%(OPTIC,DoF))
+                IPDC.RSET.put(2)
+                IPDC.ramp_gain(1,0,False)
+
+            self.timer['my_waiting'] = self.settletime['IP']
+            self.mycounter += 1
+
+        elif self.mycounter == 2:
+            return diag_run(self)
+
+class ACT_DIAG_PAY(GuardState):
+    index = 305
+    request = True
+    
+    
+    def main(self):
+        diag_main(self)
+        self.stagelist = ['MN',]
+        self.mycounter = 0
+        self.timer['my_waiting'] =0
+        
+    def run(self):
+        if not self.timer['my_waiting']:
+            return
+        
+        # disable DC path
+        if self.mycounter == 0:
+            for DoF in ['PIT','YAW']:
+                OLDC_BF = ezca.get_LIGOFilter('MOD-%s_OLDC_BF_%s'%(OPTIC,DoF))
+                OLDC_BF.turn_off('INPUT')
+                OLDC_MN = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
+                OLDC_MN.turn_off('INPUT')
+                TRAMP = OLDC_MN.OUTPUT.get()/10
+                if self.timer['my_waiting']:
+                    self.timer['my_waiting'] = TRAMP
+                
+            self.mycounter += 1
+
+        elif self.mycounter == 1:
+            # clear history
+            for DoF in ['PIT','YAW']:
+                OLDC_MN = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
+                OLDC_MN.RSET.put(2)
+                OLDC_MN.ramp_gain(1,0,False)
+
+            self.timer['my_waiting'] = self.settletime['MN']
+            self.mycounter += 1
+
+        elif self.mycounter == 2:
+            return diag_run(self)
+                
+                    
+                
+            
+                
+        
+        
+    
+    
 
 ##################################################
 # EDGES
@@ -1557,7 +1659,8 @@ edges = [('INIT','STANDBY'),
          ('EXCITE_RESONANCE','RECORD_MEASUREMENT'),
          ('RECORD_MEASUREMENT','EXCITE_RESONANCE'),
          ('STANDBY','SENSOR_DIAGONALIZATION'),
-         ('SENSOR_DIAGONALIZATION','ACT_DIAGONALIZATION'),
-         ('ACT_DIAGONALIZATION','SENSOR_CALIBRATION'),
+         ('SENSOR_DIAGONALIZATION','ACT_DIAG_TOWER'),
+         ('ACT_DIAG_TOWER','ACT_DIAG_PAY'),
+         ('ACT_DIAG_PAY','SENSOR_CALIBRATION'),
          ('SENSOR_CALIBRATION','STANDBY')
 ]

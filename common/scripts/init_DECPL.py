@@ -4,6 +4,7 @@ import sys
 ezca = Ezca()
 
 OPTIC = sys.argv[1]
+MODEL = sys.argv[2]
 
 
 
@@ -46,5 +47,5 @@ for stage in initMatrix[OPTIC].keys():
     for ii in range(6):
         for jj in range(6):
             if not ezca['VIS-%s_MTRX_LOCK'%OPTIC]:
-                ezca['VIS-%s_DIAG_DECPL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)] = initMatrix[OPTIC][stage][ii][jj]
-                ezca['MOD-%s_DIAG_DECPL_%s_%d_%d'%(OPTIC,stage,ii+1,jj+1)] = initMatrix[OPTIC][stage][ii][jj]
+                ezca['%s-%s_DIAG_DECPL_%s_%d_%d'%(MODEL,OPTIC,stage,ii+1,jj+1)] = initMatrix[OPTIC][stage][ii][jj]
+

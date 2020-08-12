@@ -255,9 +255,14 @@ composite {
 		height=12
 	}
 	command[0] {
-		label="initialize"
+		label="mod"
 		name="python"
-		args="/opt/rtcds/userapps/release/vis/common/scripts/init_DECPL.py $(OPTIC)"
+		args="/opt/rtcds/userapps/release/vis/common/scripts/init_DECPL.py $(OPTIC) MOD &"
+	}
+	command[1] {
+		label="VIS"
+		name="python"
+		args="/opt/rtcds/userapps/release/vis/common/scripts/init_DECPL.py $(OPTIC) VIS &"
 	}
 	clr=14
 	bclr=4
