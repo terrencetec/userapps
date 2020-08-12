@@ -108,7 +108,10 @@ if __name__ == '__main__':
         fig,ax3 = plot_mode(ezca,stage,OPTIC,['TRA','YAW'],modelist_str=modelist,DoFlist=DoFlist,fig=fig,subplotpos=(1,3,3))
         ax3.legend(fontsize=10,bbox_to_anchor=(2,1))
         #fig,ax4 = plot_mode(ezca,stage,OPTIC,['YAW','LEN','PIT'],modelist_str=modelist,DoFlist=DoFlist,fig=fig,subplotpos=(1,4,4))
-
+    elif stage=='GAS': 
+        # FIXME (Miyo)
+        #fig,ax1 = plot_mode(ezca,stage,OPTIC,['M1','M2'],modelist_str=modelist,DoFlist=DoFlist,fig=fig,subplotpos=(1,3,1))
+        pass
     else:
         fig,ax1 = plot_mode(ezca,stage,OPTIC,['TRA','LEN'],modelist_str=modelist,DoFlist=DoFlist,fig=fig,subplotpos=(2,3,1))
         fig,ax2 = plot_mode(ezca,stage,OPTIC,['LEN','VER'],modelist_str=modelist,DoFlist=DoFlist,fig=fig,subplotpos=(2,3,2))
