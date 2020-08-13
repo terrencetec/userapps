@@ -1,14 +1,14 @@
 
 file {
-	name="LOCALDAMP.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/LOCALDAMP.adl"
 	version=030107
 }
 display {
 	object {
-		x=402
-		y=110
-		width=795
-		height=186
+		x=375
+		y=86
+		width=958
+		height=193
 	}
 	clr=14
 	bclr=4
@@ -136,4 +136,26 @@ composite {
 	}
 	"composite name"=""
 	"composite file"="./../prequa/VIS_6DOFS_MINI.adl;STAGE=TMDAMP,CHANNAME=$(IFO):MOD-$(OPTIC)_DAMP_TM"
+}
+composite {
+	object {
+		x=768
+		y=43
+		width=124
+		height=90
+	}
+	"composite name"=""
+	"composite file"="./../prequa/VIS_GASDOFS_MINI.adl;STAGE=GASDAMP,CHANNAME=$(IFO):MOD-$(OPTIC)_DAMP_GAS"
+}
+text {
+	object {
+		x=765
+		y=140
+		width=66
+		height=11
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="No EPICS channels for GAS DAMP"
 }
