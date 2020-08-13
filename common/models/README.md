@@ -66,9 +66,3 @@ Nazo files
  - GAS_MODAL_MASTER.mdl
  - GAS_TYPEB_MASTER.mdl
  - GAS_WD_MASTER.mdl
-
-Gomi files?
- - *.mdl.r2015a
- - *.mdl.r2018a
- - *backup*.mdl
- - *bak.mdl
