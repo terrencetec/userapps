@@ -1,9 +1,6 @@
 # VIS Userapps
 ## Directory Structure
 ./common : common files in VIS, which is used from ./k1.
- - burtfiles
- - daqfiles
- - filterfiles
  - guardian
  - medm
  - models
