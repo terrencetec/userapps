@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/overview/GRD_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/scripts/medm/overview/GRD_MINI.adl"
 	version=030107
 }
 display {
 	object {
-		x=941
-		y=915
+		x=2064
+		y=334
 		width=339
 		height=94
 	}
@@ -92,7 +92,7 @@ composite {
 		x=13
 		y=32
 		width=260
-		height=15
+		height=23
 	}
 	"composite name"=""
 	children {
@@ -101,7 +101,7 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=29
@@ -115,7 +115,7 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=38
@@ -123,7 +123,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=1"
-				chan="K1:GRD-$(SYSTEM)_MODE"
+				chan="K1:GRD-VIS_$(SYSTEM)_MODE"
 			}
 		}
 		rectangle {
@@ -131,7 +131,7 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=35
@@ -139,7 +139,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=2"
-				chan="K1:GRD-$(SYSTEM)_MODE"
+				chan="K1:GRD-VIS_$(SYSTEM)_MODE"
 			}
 		}
 		rectangle {
@@ -147,14 +147,14 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=24
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="K1:GRD-$(SYSTEM)_CONNECT"
+				chan="K1:GRD-VIS_$(SYSTEM)_CONNECT"
 			}
 		}
 		rectangle {
@@ -162,7 +162,7 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=30
@@ -170,7 +170,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=1"
-				chan="K1:GRD-$(SYSTEM)_OP"
+				chan="K1:GRD-VIS_$(SYSTEM)_OP"
 			}
 		}
 		rectangle {
@@ -178,14 +178,14 @@ composite {
 				x=14
 				y=32
 				width=259
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=20
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="K1:GRD-$(SYSTEM)_ERROR"
+				chan="K1:GRD-VIS_$(SYSTEM)_ERROR"
 			}
 		}
 		rectangle {
@@ -193,7 +193,7 @@ composite {
 				x=13
 				y=32
 				width=260
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=27
@@ -211,12 +211,12 @@ composite {
 		x=17
 		y=35
 		width=30
-		height=11
+		height=17
 	}
 	command[0] {
-		label="$(SYSTEM)"
+		label="VIS_$(SYSTEM)"
 		name="guardmedm"
-		args="$(SYSTEM) &"
+		args="VIS_$(SYSTEM) &"
 	}
 	clr=14
 	bclr=5
@@ -225,35 +225,35 @@ composite {
 composite {
 	object {
 		x=51
-		y=31
+		y=32
 		width=147
-		height=15
+		height=23
 	}
 	"composite name"=""
 	children {
 		rectangle {
 			object {
 				x=51
-				y=31
+				y=32
 				width=147
-				height=15
+				height=23
 			}
 			"basic attribute" {
 				clr=25
 			}
 			"dynamic attribute" {
-				chan="K1:GRD-$(SYSTEM)_STATE"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE"
 			}
 		}
 		"text update" {
 			object {
 				x=51
-				y=34
+				y=37
 				width=147
-				height=10
+				height=15
 			}
 			monitor {
-				chan="K1:GRD-$(SYSTEM)_STATE_S"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_S"
 				clr=14
 				bclr=25
 			}
@@ -269,7 +269,7 @@ composite {
 		x=202
 		y=35
 		width=11
-		height=11
+		height=17
 	}
 	"composite name"=""
 	children {
@@ -278,7 +278,7 @@ composite {
 				x=202
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=17
@@ -286,7 +286,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=0"
-				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+				chan="K1:GRD-VIS_$(SYSTEM)_NOTIFICATION"
 			}
 		}
 		rectangle {
@@ -294,7 +294,7 @@ composite {
 				x=202
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=30
@@ -302,7 +302,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A#0"
-				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+				chan="K1:GRD-VIS_$(SYSTEM)_NOTIFICATION"
 			}
 		}
 		rectangle {
@@ -310,7 +310,7 @@ composite {
 				x=202
 				y=35
 				width=12
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
@@ -328,7 +328,7 @@ composite {
 		x=214
 		y=35
 		width=11
-		height=11
+		height=17
 	}
 	"composite name"=""
 	children {
@@ -337,7 +337,7 @@ composite {
 				x=215
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=17
@@ -345,8 +345,8 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=B"
-				chan="K1:GRD-$(SYSTEM)_STATE_N"
-				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-VIS_$(SYSTEM)_REQUEST_N"
 			}
 		}
 		rectangle {
@@ -354,7 +354,7 @@ composite {
 				x=215
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=33
@@ -362,8 +362,8 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A#B"
-				chan="K1:GRD-$(SYSTEM)_STATE_N"
-				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-VIS_$(SYSTEM)_REQUEST_N"
 			}
 		}
 		rectangle {
@@ -371,7 +371,7 @@ composite {
 				x=214
 				y=35
 				width=12
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
@@ -389,7 +389,7 @@ composite {
 		x=227
 		y=35
 		width=11
-		height=11
+		height=17
 	}
 	"composite name"=""
 	children {
@@ -398,7 +398,7 @@ composite {
 				x=228
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=17
@@ -406,7 +406,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=0"
-				chan="K1:GRD-$(SYSTEM)_STALLED"
+				chan="K1:GRD-VIS_$(SYSTEM)_STALLED"
 			}
 		}
 		rectangle {
@@ -414,7 +414,7 @@ composite {
 				x=228
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=30
@@ -422,7 +422,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A#0"
-				chan="K1:GRD-$(SYSTEM)_STALLED"
+				chan="K1:GRD-VIS_$(SYSTEM)_STALLED"
 			}
 		}
 		rectangle {
@@ -430,7 +430,7 @@ composite {
 				x=227
 				y=35
 				width=12
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
@@ -448,7 +448,7 @@ composite {
 		x=241
 		y=35
 		width=11
-		height=11
+		height=17
 	}
 	"composite name"=""
 	children {
@@ -457,7 +457,7 @@ composite {
 				x=241
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=17
@@ -465,7 +465,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=1"
-				chan="K1:GRD-$(SYSTEM)_OK"
+				chan="K1:GRD-VIS_$(SYSTEM)_OK"
 			}
 		}
 		rectangle {
@@ -473,7 +473,7 @@ composite {
 				x=241
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=33
@@ -481,7 +481,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=0"
-				chan="K1:GRD-$(SYSTEM)_OK"
+				chan="K1:GRD-VIS_$(SYSTEM)_OK"
 			}
 		}
 		rectangle {
@@ -489,7 +489,7 @@ composite {
 				x=241
 				y=35
 				width=12
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
@@ -507,7 +507,7 @@ composite {
 		x=253
 		y=35
 		width=11
-		height=11
+		height=17
 	}
 	"composite name"=""
 	children {
@@ -516,7 +516,7 @@ composite {
 				x=254
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
@@ -524,7 +524,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A=0"
-				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_MONITOR"
 			}
 		}
 		rectangle {
@@ -532,7 +532,7 @@ composite {
 				x=254
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=17
@@ -540,7 +540,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A#0"
-				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_MONITOR"
 			}
 		}
 		rectangle {
@@ -548,7 +548,7 @@ composite {
 				x=254
 				y=35
 				width=11
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=30
@@ -556,7 +556,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A#0"
-				chan="K1:GRD-$(SYSTEM)_SPM_CHANGED"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_CHANGED"
 			}
 		}
 		rectangle {
@@ -564,7 +564,7 @@ composite {
 				x=253
 				y=35
 				width=12
-				height=11
+				height=17
 			}
 			"basic attribute" {
 				clr=10
