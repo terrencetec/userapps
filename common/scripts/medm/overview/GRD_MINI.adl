@@ -1,0 +1,579 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/overview/GRD_MINI.adl"
+	version=030107
+}
+display {
+	object {
+		x=941
+		y=915
+		width=339
+		height=94
+	}
+	clr=14
+	bclr=13
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+composite {
+	object {
+		x=13
+		y=32
+		width=260
+		height=15
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=29
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=38
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=2"
+				chan="K1:GRD-$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=24
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-$(SYSTEM)_CONNECT"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_OP"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=259
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-$(SYSTEM)_ERROR"
+			}
+		}
+		rectangle {
+			object {
+				x=13
+				y=32
+				width=260
+				height=15
+			}
+			"basic attribute" {
+				clr=27
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+"shell command" {
+	object {
+		x=17
+		y=35
+		width=30
+		height=11
+	}
+	command[0] {
+		label="$(SYSTEM)"
+		name="guardmedm"
+		args="$(SYSTEM) &"
+	}
+	clr=14
+	bclr=5
+	label="-GRD"
+}
+composite {
+	object {
+		x=51
+		y=31
+		width=147
+		height=15
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=51
+				y=31
+				width=147
+				height=15
+			}
+			"basic attribute" {
+				clr=25
+			}
+			"dynamic attribute" {
+				chan="K1:GRD-$(SYSTEM)_STATE"
+			}
+		}
+		"text update" {
+			object {
+				x=51
+				y=34
+				width=147
+				height=10
+			}
+			monitor {
+				chan="K1:GRD-$(SYSTEM)_STATE_S"
+				clr=14
+				bclr=25
+			}
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=202
+		y=35
+		width=11
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=202
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+			}
+		}
+		rectangle {
+			object {
+				x=202
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+			}
+		}
+		rectangle {
+			object {
+				x=202
+				y=35
+				width=12
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=214
+		y=35
+		width=11
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=215
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=B"
+				chan="K1:GRD-$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=215
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#B"
+				chan="K1:GRD-$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=214
+				y=35
+				width=12
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=227
+		y=35
+		width=11
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=228
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=228
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=227
+				y=35
+				width=12
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=241
+		y=35
+		width=11
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=241
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=241
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=241
+				y=35
+				width=12
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=253
+		y=35
+		width=11
+		height=11
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=254
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=254
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=254
+				y=35
+				width=11
+				height=11
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_SPM_CHANGED"
+			}
+		}
+		rectangle {
+			object {
+				x=253
+				y=35
+				width=12
+				height=11
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
