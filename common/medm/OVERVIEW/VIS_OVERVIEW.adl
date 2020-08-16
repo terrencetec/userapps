@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=479
-		y=67
+		x=2123
+		y=99
 		width=1360
 		height=958
 	}
@@ -132,21 +132,6 @@ text {
 	textix="AMATERASU"
 	align="horiz. centered"
 }
-"related display" {
-	object {
-		x=21
-		y=37
-		width=10
-		height=10
-	}
-	display[0] {
-		label="vis_overview_mni"
-		name="$(userapps)/vis/common/medm/VIS_ALL.adl"
-		args="IFO=$(IFO)"
-	}
-	clr=14
-	bclr=4
-}
 composite {
 	object {
 		x=36
@@ -156,4 +141,43 @@ composite {
 	}
 	"composite name"=""
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/VIS_MINI.adl"
+}
+"related display" {
+	object {
+		x=662
+		y=49
+		width=150
+		height=20
+	}
+	display[0] {
+		label="VIS"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_ALL.adl"
+		args="IFO=K1,ifo=k1,SITE=KAMIOKA,site=kamioka,userapps=/opt/rtcds/userapps/release,USERAPPS=/opt/rtcds/userapps/release"
+	}
+	display[1] {
+		label="VIS STATUS"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_MON.adl"
+		args="%(read /opt/rtcds/userapps/release/vis/common/medm/vis_mon_macro.txt)"
+	}
+	display[2] {
+		label="VIS STATUS OVERVIEW"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_MON_OVERVIEW.adl"
+		args="IFO=K1,ifo=k1,SITE=KAMIOKA,site=kamioka,userapps=/opt/rtcds/userapps/release,USERAPPS=/opt/rtcds/userapps/release"
+	}
+	display[3] {
+		label="VIS_COILOUT_ALERT"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COILOUT_ALERT.adl"
+	}
+	display[4] {
+		label="VIS_WORKSPACE"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_WORKSPACE.adl"
+	}
+	display[5] {
+		label="VIS_OVERVIEW"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/VIS_OVERVIEW.adl"
+		args="IFO=K1,ifo=k1,SITE=KAMIOKA,site=kamioka,userapps=/opt/rtcds/userapps/release,USERAPPS=/opt/rtcds/userapps/release"
+	}
+	clr=0
+	bclr=62
+	label="VIS"
 }
