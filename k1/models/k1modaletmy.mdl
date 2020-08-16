@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.51"
+    ComputedModelVersion    "1.53"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [3908.0, 28.0, 982.0, 1036.0]
+      Location		      [950.0, 28.0, 982.0, 1036.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -53,9 +53,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[928.0, 856.0]
-	ZoomFactor		[0.6]
-	Offset			[-371.24750564881083, 72.300139638605856]
+	Extents			[928.0, 834.0]
+	ZoomFactor		[1.0]
+	Offset			[24.919161017855913, 960.205601387047]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Aug 11 19:43:03 2020"
-  RTWModifiedTimeStamp	  519075782
-  ModelVersionFormat	  "1.%<AutoIncrement:51>"
+  LastModifiedDate	  "Sat Aug 15 15:15:39 2020"
+  RTWModifiedTimeStamp	  519405338
+  ModelVersionFormat	  "1.%<AutoIncrement:53>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -778,10 +778,13 @@ Model {
       OutputSignals	      "signal1,signal2,signal3"
       OutputAsBus	      off
     }
+    Block {
+      BlockType		      Ground
+    }
   }
   System {
     Name		    "k1modaletmy"
-    Location		    [3908, 28, 4890, 1064]
+    Location		    [950, 28, 1932, 1064]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -793,18 +796,18 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2413"
+    SIDHighWatermark	    "3965"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
-      SID		      "2383"
+      SID		      "2414"
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=0        "
       Ports		      [0, 1]
-      Position		      [125, 1112, 200, 1138]
-      ZOrder		      8000
+      Position		      [135, 1177, 210, 1203]
+      ZOrder		      8054
       ForegroundColor	      "red"
       DropShadow	      on
       AttributesFormatString  "%<Description>\\n%<Tag>"
@@ -817,12 +820,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "ADC1"
-      SID		      "2384"
+      SID		      "2415"
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=1        "
       Ports		      [0, 1]
-      Position		      [-185, 607, -115, 633]
-      ZOrder		      7998
+      Position		      [-175, 612, -105, 638]
+      ZOrder		      8052
       ForegroundColor	      "red"
       DropShadow	      on
       AttributesFormatString  "%<Description>\\n%<Tag>"
@@ -835,10 +838,10 @@ Model {
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector1"
-      SID		      "2385"
+      SID		      "2416"
       Ports		      [1, 4]
-      Position		      [280, 1283, 285, 1422]
-      ZOrder		      8002
+      Position		      [290, 1348, 295, 1487]
+      ZOrder		      8056
       ShowName		      off
       OutputSignals	      "adc_1_20,adc_1_21,adc_1_22,adc_1_23"
       Port {
@@ -869,10 +872,10 @@ Model {
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector2"
-      SID		      "2386"
+      SID		      "2417"
       Ports		      [1, 20]
-      Position		      [280, 278, 285, 957]
-      ZOrder		      7999
+      Position		      [290, 315, 295, 1050]
+      ZOrder		      8053
       ShowName		      off
       OutputSignals	      "adc_1_4,adc_1_5,adc_1_0,adc_1_1,adc_1_2,adc_1_3,adc_1_6,adc_1_7,adc_1_8,adc_1_9,adc_1_10,ad"
       "c_1_11,adc_1_12,adc_1_13,adc_1_14,adc_1_15,adc_1_16,adc_1_17,adc_1_18,adc_1_19"
@@ -1000,10 +1003,10 @@ Model {
     Block {
       BlockType		      BusSelector
       Name		      "Bus\nSelector3"
-      SID		      "2387"
+      SID		      "2418"
       Ports		      [1, 9]
-      Position		      [280, 970, 285, 1280]
-      ZOrder		      8001
+      Position		      [290, 1035, 295, 1345]
+      ZOrder		      8055
       ShowName		      off
       OutputSignals	      "adc_0_12,adc_0_13,adc_0_14,adc_0_16,adc_0_17,adc_0_18,adc_0_4,adc_0_5,adc_0_6"
       Port {
@@ -1062,26 +1065,73 @@ Model {
       }
     }
     Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector4"
+      SID		      "2419"
+      Ports		      [1, 5]
+      Position		      [290, 1495, 295, 1665]
+      ZOrder		      8062
+      ShowName		      off
+      OutputSignals	      "adc_0_7,adc_0_8,adc_0_9,adc_0_10,adc_0_11"
+      Port {
+	PortNumber		1
+	Name			"<adc_0_7>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		2
+	Name			"<adc_0_8>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		3
+	Name			"<adc_0_9>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		4
+	Name			"<adc_0_10>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+      Port {
+	PortNumber		5
+	Name			"<adc_0_11>"
+	RTWStorageClass		"Auto"
+	DataLoggingNameMode	"SignalName"
+      }
+    }
+    Block {
       BlockType		      Reference
       Name		      "ETMY"
-      SID		      "2388"
-      Ports		      [33, 24]
-      Position		      [370, 282, 590, 1408]
-      ZOrder		      7997
-      LibraryVersion	      "1.10"
-      SourceBlock	      "VISMODAL_MASTER/TYPEA"
+      SID		      "3965"
+      Ports		      [39, 29]
+      Position		      [390, 347, 605, 1683]
+      ZOrder		      8066
+      LibraryVersion	      "1.11"
+      SourceBlock	      "VISMODAL_MASTER/ITMY"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
     Block {
+      BlockType		      Ground
+      Name		      "Ground"
+      SID		      "2420"
+      Position		      [255, 1675, 275, 1695]
+      ZOrder		      8064
+    }
+    Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_H1"
-      SID		      "2389"
+      SID		      "3933"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 591, 710, 609]
-      ZOrder		      8021
+      Position		      [665, 646, 730, 664]
+      ZOrder		      8046
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1093,12 +1143,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_H2"
-      SID		      "2390"
+      SID		      "3934"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 636, 710, 654]
-      ZOrder		      8022
+      Position		      [665, 691, 730, 709]
+      ZOrder		      8047
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1110,12 +1160,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_H3"
-      SID		      "2391"
+      SID		      "3935"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 681, 710, 699]
-      ZOrder		      8023
+      Position		      [665, 736, 730, 754]
+      ZOrder		      8048
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1127,12 +1177,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_V1"
-      SID		      "2392"
+      SID		      "3936"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 456, 710, 474]
-      ZOrder		      8024
+      Position		      [665, 511, 730, 529]
+      ZOrder		      8049
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1144,12 +1194,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_V2"
-      SID		      "2393"
+      SID		      "3937"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 501, 710, 519]
-      ZOrder		      8025
+      Position		      [665, 556, 730, 574]
+      ZOrder		      8050
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1161,12 +1211,97 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_BF_COIL_V3"
-      SID		      "2394"
+      SID		      "3938"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 546, 710, 564]
-      ZOrder		      8026
+      Position		      [665, 601, 730, 619]
+      ZOrder		      8051
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_GAS_COIL_BF"
+      SID		      "3939"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [665, 1636, 730, 1654]
+      ZOrder		      8061
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_GAS_COIL_F0"
+      SID		      "3940"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [665, 1456, 730, 1474]
+      ZOrder		      8057
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_GAS_COIL_F1"
+      SID		      "3941"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [665, 1501, 730, 1519]
+      ZOrder		      8058
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_GAS_COIL_F2"
+      SID		      "3942"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [665, 1546, 730, 1564]
+      ZOrder		      8059
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_GAS_COIL_F3"
+      SID		      "3943"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [665, 1591, 730, 1609]
+      ZOrder		      8060
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1178,12 +1313,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_H1"
-      SID		      "2395"
+      SID		      "3944"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1131, 710, 1149]
-      ZOrder		      8012
+      Position		      [665, 1186, 730, 1204]
+      ZOrder		      8037
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1195,12 +1330,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_H2"
-      SID		      "2396"
+      SID		      "3945"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1176, 710, 1194]
-      ZOrder		      8013
+      Position		      [665, 1231, 730, 1249]
+      ZOrder		      8038
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1212,12 +1347,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_H3"
-      SID		      "2397"
+      SID		      "3946"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1221, 710, 1239]
-      ZOrder		      8014
+      Position		      [665, 1276, 730, 1294]
+      ZOrder		      8039
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1229,12 +1364,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_V1"
-      SID		      "2398"
+      SID		      "3947"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 996, 710, 1014]
-      ZOrder		      8009
+      Position		      [665, 1051, 730, 1069]
+      ZOrder		      8034
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1246,12 +1381,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_V2"
-      SID		      "2399"
+      SID		      "3948"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1041, 710, 1059]
-      ZOrder		      8010
+      Position		      [665, 1096, 730, 1114]
+      ZOrder		      8035
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1263,12 +1398,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IM_COIL_V3"
-      SID		      "2400"
+      SID		      "3949"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1086, 710, 1104]
-      ZOrder		      8011
+      Position		      [665, 1141, 730, 1159]
+      ZOrder		      8036
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1280,12 +1415,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IP_COIL_H1"
-      SID		      "2401"
+      SID		      "3950"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 321, 710, 339]
-      ZOrder		      8018
+      Position		      [665, 376, 730, 394]
+      ZOrder		      8043
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1297,12 +1432,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IP_COIL_H2"
-      SID		      "2402"
+      SID		      "3951"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 366, 710, 384]
-      ZOrder		      8019
+      Position		      [665, 421, 730, 439]
+      ZOrder		      8044
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1314,12 +1449,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_IP_COIL_H3"
-      SID		      "2403"
+      SID		      "3952"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 411, 710, 429]
-      ZOrder		      8020
+      Position		      [665, 466, 730, 484]
+      ZOrder		      8045
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1331,12 +1466,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_H1"
-      SID		      "2404"
+      SID		      "3953"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 861, 710, 879]
-      ZOrder		      8006
+      Position		      [665, 916, 730, 934]
+      ZOrder		      8031
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1348,12 +1483,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_H2"
-      SID		      "2405"
+      SID		      "3954"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 906, 710, 924]
-      ZOrder		      8007
+      Position		      [665, 961, 730, 979]
+      ZOrder		      8032
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1365,12 +1500,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_H3"
-      SID		      "2406"
+      SID		      "3955"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 951, 710, 969]
-      ZOrder		      8008
+      Position		      [665, 1006, 730, 1024]
+      ZOrder		      8033
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1382,12 +1517,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_V1"
-      SID		      "2407"
+      SID		      "3956"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 726, 710, 744]
-      ZOrder		      8003
+      Position		      [665, 781, 730, 799]
+      ZOrder		      8028
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1399,12 +1534,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_V2"
-      SID		      "2408"
+      SID		      "3957"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 771, 710, 789]
-      ZOrder		      8004
+      Position		      [665, 826, 730, 844]
+      ZOrder		      8029
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1416,12 +1551,29 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_MN_COIL_V3"
-      SID		      "2409"
+      SID		      "3958"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 816, 710, 834]
-      ZOrder		      8005
+      Position		      [665, 871, 730, 889]
+      ZOrder		      8030
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:VIS-ETMY_PREQUA_EXC"
+      SID		      "3959"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [300, 1674, 365, 1696]
+      ZOrder		      8063
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1433,12 +1585,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_TM_COIL_H1"
-      SID		      "2410"
+      SID		      "3960"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1266, 710, 1284]
-      ZOrder		      8015
+      Position		      [665, 1321, 730, 1339]
+      ZOrder		      8040
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1450,12 +1602,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_TM_COIL_H2"
-      SID		      "2411"
+      SID		      "3961"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1311, 710, 1329]
-      ZOrder		      8016
+      Position		      [665, 1366, 730, 1384]
+      ZOrder		      8041
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1467,12 +1619,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "K1:VIS-ETMY_TM_COIL_H3"
-      SID		      "2412"
+      SID		      "3962"
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [645, 1356, 710, 1374]
-      ZOrder		      8017
+      Position		      [665, 1411, 730, 1429]
+      ZOrder		      8042
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -1530,25 +1682,193 @@ Model {
       ContentPreviewEnabled   off
     }
     Line {
-      ZOrder		      613
+      ZOrder		      918
+      SrcBlock		      "ETMY"
+      SrcPort		      10
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_V1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      919
+      SrcBlock		      "ETMY"
+      SrcPort		      11
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_V2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      920
+      SrcBlock		      "ETMY"
+      SrcPort		      12
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_V3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      921
+      SrcBlock		      "ETMY"
+      SrcPort		      13
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_H1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      887
+      SrcBlock		      "ETMY"
+      SrcPort		      14
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_H2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      888
+      SrcBlock		      "ETMY"
+      SrcPort		      15
+      DstBlock		      "K1:VIS-ETMY_MN_COIL_H3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      889
+      SrcBlock		      "ETMY"
+      SrcPort		      16
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_V1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      922
+      SrcBlock		      "ETMY"
+      SrcPort		      17
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_V2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      923
+      SrcBlock		      "ETMY"
+      SrcPort		      18
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_V3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      908
+      SrcBlock		      "ETMY"
+      SrcPort		      19
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_H1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      943
+      SrcBlock		      "ETMY"
+      SrcPort		      20
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_H2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      944
+      SrcBlock		      "ETMY"
+      SrcPort		      21
+      DstBlock		      "K1:VIS-ETMY_IM_COIL_H3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      945
+      SrcBlock		      "ETMY"
+      SrcPort		      22
+      DstBlock		      "K1:VIS-ETMY_TM_COIL_H1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      946
+      SrcBlock		      "ETMY"
+      SrcPort		      23
+      DstBlock		      "K1:VIS-ETMY_TM_COIL_H2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      947
+      SrcBlock		      "ETMY"
+      SrcPort		      24
+      DstBlock		      "K1:VIS-ETMY_TM_COIL_H3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      896
+      SrcBlock		      "ETMY"
+      SrcPort		      1
+      DstBlock		      "K1:VIS-ETMY_IP_COIL_H1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      897
+      SrcBlock		      "ETMY"
+      SrcPort		      2
+      DstBlock		      "K1:VIS-ETMY_IP_COIL_H2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      911
+      SrcBlock		      "ETMY"
+      SrcPort		      3
+      DstBlock		      "K1:VIS-ETMY_IP_COIL_H3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      912
+      SrcBlock		      "ETMY"
+      SrcPort		      4
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_V1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      913
+      SrcBlock		      "ETMY"
+      SrcPort		      5
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_V2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      914
+      SrcBlock		      "ETMY"
+      SrcPort		      6
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_V3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      915
+      SrcBlock		      "ETMY"
+      SrcPort		      7
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_H1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      916
+      SrcBlock		      "ETMY"
+      SrcPort		      8
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_H2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      917
+      SrcBlock		      "ETMY"
+      SrcPort		      9
+      DstBlock		      "K1:VIS-ETMY_BF_COIL_H3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      700
       SrcBlock		      "ADC1"
       SrcPort		      1
-      Points		      [62, 0]
+      Points		      [62, 0; 0, 60]
       Branch {
-	ZOrder			612
+	ZOrder			699
 	Points			[0, 735]
 	DstBlock		"Bus\nSelector1"
 	DstPort			1
       }
       Branch {
-	ZOrder			611
+	ZOrder			698
 	DstBlock		"Bus\nSelector2"
 	DstPort			1
       }
     }
     Line {
       Name		      "<adc_1_4>"
-      ZOrder		      614
+      ZOrder		      910
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      1
@@ -1557,7 +1877,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_5>"
-      ZOrder		      615
+      ZOrder		      941
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      2
@@ -1566,7 +1886,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_0>"
-      ZOrder		      616
+      ZOrder		      931
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      3
@@ -1575,7 +1895,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_1>"
-      ZOrder		      617
+      ZOrder		      930
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      4
@@ -1584,7 +1904,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_2>"
-      ZOrder		      618
+      ZOrder		      942
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      5
@@ -1593,7 +1913,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_3>"
-      ZOrder		      619
+      ZOrder		      909
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      6
@@ -1602,7 +1922,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_6>"
-      ZOrder		      620
+      ZOrder		      932
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      7
@@ -1611,7 +1931,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_7>"
-      ZOrder		      621
+      ZOrder		      886
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      8
@@ -1620,7 +1940,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_8>"
-      ZOrder		      622
+      ZOrder		      885
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      9
@@ -1629,7 +1949,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_9>"
-      ZOrder		      623
+      ZOrder		      924
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      10
@@ -1638,7 +1958,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_10>"
-      ZOrder		      624
+      ZOrder		      925
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      11
@@ -1647,7 +1967,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_11>"
-      ZOrder		      625
+      ZOrder		      926
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      12
@@ -1656,7 +1976,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_12>"
-      ZOrder		      626
+      ZOrder		      927
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      13
@@ -1665,7 +1985,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_13>"
-      ZOrder		      627
+      ZOrder		      928
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      14
@@ -1674,7 +1994,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_14>"
-      ZOrder		      628
+      ZOrder		      929
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      15
@@ -1683,7 +2003,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_15>"
-      ZOrder		      629
+      ZOrder		      898
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      16
@@ -1692,7 +2012,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_16>"
-      ZOrder		      630
+      ZOrder		      899
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      17
@@ -1701,7 +2021,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_17>"
-      ZOrder		      631
+      ZOrder		      900
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      18
@@ -1710,7 +2030,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_18>"
-      ZOrder		      632
+      ZOrder		      901
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      19
@@ -1719,7 +2039,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_19>"
-      ZOrder		      633
+      ZOrder		      902
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      20
@@ -1727,15 +2047,25 @@ Model {
       DstPort		      20
     }
     Line {
-      ZOrder		      634
+      ZOrder		      723
       SrcBlock		      "ADC0"
       SrcPort		      1
-      DstBlock		      "Bus\nSelector3"
-      DstPort		      1
+      Points		      [25, 0]
+      Branch {
+	ZOrder			722
+	Points			[0, 390]
+	DstBlock		"Bus\nSelector4"
+	DstPort			1
+      }
+      Branch {
+	ZOrder			721
+	DstBlock		"Bus\nSelector3"
+	DstPort			1
+      }
     }
     Line {
       Name		      "<adc_0_12>"
-      ZOrder		      635
+      ZOrder		      903
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      1
@@ -1744,7 +2074,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_13>"
-      ZOrder		      636
+      ZOrder		      904
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      2
@@ -1753,7 +2083,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_14>"
-      ZOrder		      637
+      ZOrder		      905
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      3
@@ -1762,7 +2092,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_16>"
-      ZOrder		      638
+      ZOrder		      906
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      4
@@ -1771,7 +2101,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_17>"
-      ZOrder		      639
+      ZOrder		      933
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      5
@@ -1780,7 +2110,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_18>"
-      ZOrder		      640
+      ZOrder		      934
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      6
@@ -1789,7 +2119,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_4>"
-      ZOrder		      641
+      ZOrder		      935
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      7
@@ -1798,7 +2128,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_5>"
-      ZOrder		      642
+      ZOrder		      936
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      8
@@ -1807,7 +2137,7 @@ Model {
     }
     Line {
       Name		      "<adc_0_6>"
-      ZOrder		      643
+      ZOrder		      937
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector3"
       SrcPort		      9
@@ -1816,7 +2146,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_20>"
-      ZOrder		      644
+      ZOrder		      938
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      1
@@ -1825,7 +2155,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_21>"
-      ZOrder		      645
+      ZOrder		      939
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      2
@@ -1834,7 +2164,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_22>"
-      ZOrder		      646
+      ZOrder		      940
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      3
@@ -1843,7 +2173,7 @@ Model {
     }
     Line {
       Name		      "<adc_1_23>"
-      ZOrder		      647
+      ZOrder		      907
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      4
@@ -1851,171 +2181,102 @@ Model {
       DstPort		      33
     }
     Line {
-      ZOrder		      648
+      ZOrder		      948
       SrcBlock		      "ETMY"
-      SrcPort		      10
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_V1"
+      SrcPort		      25
+      DstBlock		      "K1:VIS-ETMY_GAS_COIL_F0"
       DstPort		      1
     }
     Line {
-      ZOrder		      649
+      ZOrder		      949
       SrcBlock		      "ETMY"
-      SrcPort		      11
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_V2"
+      SrcPort		      26
+      DstBlock		      "K1:VIS-ETMY_GAS_COIL_F1"
       DstPort		      1
     }
     Line {
-      ZOrder		      650
+      ZOrder		      950
       SrcBlock		      "ETMY"
-      SrcPort		      12
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_V3"
+      SrcPort		      27
+      DstBlock		      "K1:VIS-ETMY_GAS_COIL_F2"
       DstPort		      1
     }
     Line {
-      ZOrder		      651
+      ZOrder		      951
       SrcBlock		      "ETMY"
-      SrcPort		      13
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_H1"
+      SrcPort		      28
+      DstBlock		      "K1:VIS-ETMY_GAS_COIL_F3"
       DstPort		      1
     }
     Line {
-      ZOrder		      652
+      ZOrder		      952
       SrcBlock		      "ETMY"
-      SrcPort		      14
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_H2"
+      SrcPort		      29
+      DstBlock		      "K1:VIS-ETMY_GAS_COIL_BF"
       DstPort		      1
     }
     Line {
-      ZOrder		      653
-      SrcBlock		      "ETMY"
-      SrcPort		      15
-      DstBlock		      "K1:VIS-ETMY_MN_COIL_H3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      654
-      SrcBlock		      "ETMY"
-      SrcPort		      16
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_V1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      655
-      SrcBlock		      "ETMY"
-      SrcPort		      17
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_V2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      656
-      SrcBlock		      "ETMY"
-      SrcPort		      18
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_V3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      657
-      SrcBlock		      "ETMY"
-      SrcPort		      19
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_H1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      658
-      SrcBlock		      "ETMY"
-      SrcPort		      20
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_H2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      659
-      SrcBlock		      "ETMY"
-      SrcPort		      21
-      DstBlock		      "K1:VIS-ETMY_IM_COIL_H3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      660
-      SrcBlock		      "ETMY"
-      SrcPort		      22
-      DstBlock		      "K1:VIS-ETMY_TM_COIL_H1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      661
-      SrcBlock		      "ETMY"
-      SrcPort		      23
-      DstBlock		      "K1:VIS-ETMY_TM_COIL_H2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      662
-      SrcBlock		      "ETMY"
-      SrcPort		      24
-      DstBlock		      "K1:VIS-ETMY_TM_COIL_H3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      663
-      SrcBlock		      "ETMY"
+      Name		      "<adc_0_7>"
+      ZOrder		      890
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector4"
       SrcPort		      1
-      DstBlock		      "K1:VIS-ETMY_IP_COIL_H1"
-      DstPort		      1
+      Points		      [75, 0]
+      DstBlock		      "ETMY"
+      DstPort		      34
     }
     Line {
-      ZOrder		      664
-      SrcBlock		      "ETMY"
+      Name		      "<adc_0_8>"
+      ZOrder		      891
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector4"
       SrcPort		      2
-      DstBlock		      "K1:VIS-ETMY_IP_COIL_H2"
-      DstPort		      1
+      Points		      [75, 0]
+      DstBlock		      "ETMY"
+      DstPort		      35
     }
     Line {
-      ZOrder		      665
-      SrcBlock		      "ETMY"
+      Name		      "<adc_0_9>"
+      ZOrder		      892
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector4"
       SrcPort		      3
-      DstBlock		      "K1:VIS-ETMY_IP_COIL_H3"
-      DstPort		      1
+      Points		      [75, 0]
+      DstBlock		      "ETMY"
+      DstPort		      36
     }
     Line {
-      ZOrder		      666
-      SrcBlock		      "ETMY"
+      Name		      "<adc_0_10>"
+      ZOrder		      893
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector4"
       SrcPort		      4
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_V1"
-      DstPort		      1
+      Points		      [75, 0]
+      DstBlock		      "ETMY"
+      DstPort		      37
     }
     Line {
-      ZOrder		      667
-      SrcBlock		      "ETMY"
+      Name		      "<adc_0_11>"
+      ZOrder		      894
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector4"
       SrcPort		      5
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_V2"
-      DstPort		      1
+      Points		      [75, 0]
+      DstBlock		      "ETMY"
+      DstPort		      38
     }
     Line {
-      ZOrder		      668
-      SrcBlock		      "ETMY"
-      SrcPort		      6
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_V3"
-      DstPort		      1
+      ZOrder		      895
+      SrcBlock		      "K1:VIS-ETMY_PREQUA_EXC"
+      SrcPort		      1
+      DstBlock		      "ETMY"
+      DstPort		      39
     }
     Line {
-      ZOrder		      669
-      SrcBlock		      "ETMY"
-      SrcPort		      7
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_H1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      670
-      SrcBlock		      "ETMY"
-      SrcPort		      8
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_H2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      671
-      SrcBlock		      "ETMY"
-      SrcPort		      9
-      DstBlock		      "K1:VIS-ETMY_BF_COIL_H3"
+      ZOrder		      748
+      SrcBlock		      "Ground"
+      SrcPort		      1
+      DstBlock		      "K1:VIS-ETMY_PREQUA_EXC"
       DstPort		      1
     }
     Annotation {
@@ -2036,21 +2297,21 @@ Model {
       ZOrder		      -1
     }
     Annotation {
-      SID		      "2413"
+      SID		      "3963"
       Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }"
       "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-family:'Liberation Sans'; font-size:10px;\">[FIXME] IPC blocks need to be renamed</"
       "span></p></body></html>"
-      Position		      [622, 283, 802, 297]
+      Position		      [642, 288, 822, 302]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
       Interpreter	      "rich"
-      ZOrder		      -5
+      ZOrder		      -2
     }
   }
 }
