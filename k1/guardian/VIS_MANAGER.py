@@ -4,6 +4,8 @@ from guardian import GuardState
 from guardian import GuardStateDecorator
 from guardian import NodeManager
 import vislib
+import subprocess
+
 #from slack_util import PostMan
 
 # flags
@@ -18,8 +20,10 @@ nominal = 'ALL_ALIGNED'
 
 # slave optics
 optics = ['PR2', 'PR3', 'SR2', 'SR3', 'BS', 'ETMX', 'ITMX', 'ETMY', 'ITMY']
+managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
 
-
+nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
+            
 # ------------------------------------------------------------------------------
 def send_to_slack(text):
     ''' Need token. Plase
@@ -30,6 +34,10 @@ def send_to_slack(text):
     
 # ------------------------------------------------------------------------------
 
+def is_used(opt):
+    msg = ezca['VIS-'+opt+'_COMMISH_MESSAGE']
+    button = ezca['VIS-'+opt+'_COMMISH_STATUS']
+    return (msg!='') or button==1
 
 def is_pay_localdamped(opt):
     return ezca['GRD-VIS_'+opt+'_STATE']=='PAY_LOCALDAMPED'
@@ -83,11 +91,13 @@ class INIT(GuardState):
     def main(self):
         '''
         '''
+        nodes.set_managed()
+        log('set_managed')
         return True
     
     
 class ALL_ALIGNED(GuardState):
-    ''' The state to aligne the all suspensions
+    ''' Request the ALIGNED state for all suspensions.
     
     '''    
     index = 1
@@ -96,15 +106,34 @@ class ALL_ALIGNED(GuardState):
     @eq_check    
     def main(self):
         ''' All suspensions are requested to ALIGNED.
-        '''        
-        for opt in optics:
-            if opt in ['BS','SR2','SR3']:
-                ezca['GRD-VIS_'+opt+'_REQUEST'] = 'ALIGNED'                    
-            else:
-                ezca['GRD-VIS_'+opt+'_REQUEST'] = 'OBSERVATION'
-                
+        '''
+        someone_use = []        
+        # for opt in optics:
+        #     if opt in ['BS','SR2','SR3']:
+        #         ezca['GRD-VIS_'+opt+'_REQUEST'] = 'ALIGNED'                    
+        #     else:
+        #         ezca['GRD-VIS_'+opt+'_REQUEST'] = 'OBSERVATION'
+        
     @eq_check
     def run(self):
+        '''
+        Force to request the ALIGNED state if no one use the suspensions.
+        '''
+        # 1. Force to aligne the suspension
+        someone_use = []        
+        for opt in managed_optics:
+            if nodes['VIS_'+opt]!='ALIGNED':
+                if not is_used(opt):
+                    nodes['VIS_'+opt]='ALIGNED' 
+            if is_used(opt):
+                someone_use += [opt]
+        notify('Not managed: {0}'.format(','.join(someone_use)))
+
+        # 2. Revive all stalled nodes
+        #   (This may be needed in all State?)
+        for node in nodes.get_stalled_nodes():
+            node.revive()
+            
         return all([is_aligned(opt) for opt in optics])
     
         
@@ -166,6 +195,16 @@ class IDLING(GuardState):
     def run(self):
         return True
 
+class BUILD_MODEL(GuardState):
+    index = 20
+    request = True
+    def main(self):
+        # send
+        cmd = ['gnome-terminal -x ssh controls@k1ex1 "cd /opt/rtcds/kamioka/k1/rtbuild/current && make k1visetmxt"']
+        subprocess.check_output(cmd, shell=True)
+        
+        pass
+    
     
 # ------------------------------------------------------------------------------
 edges = [

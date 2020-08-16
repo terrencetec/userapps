@@ -27,6 +27,8 @@ initDECPL = {
           [0,0,0,0,0,1]],
 }
 
+# GAS DoF list which is working.
+workingGAS = ['M2','M3','M4','M5']
 
 ACTRATIO = {
     'LEN':{'IP':100000.0,'BF':100000.0,'MN':0.01,'IM':0.3,'TM':1},
