@@ -1,16 +1,18 @@
+#!/usr/bin/python3
+
 import requests
 import json
 
 
 class PostMan():
     '''
-    https://api.slack.com/apps/A013P2XTQCQ    
+
 
     '''
     def __init__(self,token):
         self.token = token
                 
-    def chat_post(self,text='no text'):
+    def chat_post(self,channel,text='no text'):
         '''
         Parameters
         ----------    
@@ -26,7 +28,7 @@ class PostMan():
         headers = {'Content-Type': 'application/json'}
         params = {
             'token':self.token,
-            'channel':'#general',
+            'channel':channel,
             'text': text, 
             }
         ans = requests.post(url, params=params, headers=headers)
@@ -53,7 +55,7 @@ class PostMan():
         files = {'file': open(fname, 'rb')}
         param = {
             'token':self.token, 
-            'channels':'general',
+            'channels':'test',
             'filename':fname,
             'initial_comment':text,
             'title':title,
@@ -83,15 +85,15 @@ def download_image_from_yamat(url,name,password):
 # ------------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    # download image file from yamat web site
-    url = 'https://www.icrr.u-tokyo.ac.jp/~yamat/KAGRA/capture/' +\
-          'img/k1mon2-0x0.jpg'
-    image = download_image_from_yamat(url,'kagra','cryogenic')
-    save_image('./tmp.jpeg',image)
+    import argparse
+    from _password import token
+    parser = argparse.ArgumentParser(description='Slack Bot')
+    parser.add_argument('channel', help='')
+    parser.add_argument('text', help='')
+    args = parser.parse_args()
+    channel = args.channel
+    text = args.text
     
-    # post
-    token = 'xoxb-1080666056055-1101472998803-gxTogkSEjPqvlLXoZ8VCPGKJ'
+    # Post messages
     postman = PostMan(token)
-    postman.files_upload('./tmp.jpeg',text='Seismic Noise')
-    #postman.chat_post('Hello!')
-    
+    ans = postman.chat_post(channel,text)
