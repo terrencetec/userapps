@@ -40,11 +40,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"326"
 	Extents			[574.0, 302.0]
-	ZoomFactor		[0.6]
-	Offset			[-70.666666666666686, -42.0]
+	ZoomFactor		[1.25]
+	Offset			[56.14811611955659, 772.40907211066656]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 13 14:10:19 2020"
-  RTWModifiedTimeStamp	  519228611
-  ModelVersionFormat	  "1.%<AutoIncrement:20>"
+  LastModifiedDate	  "Wed Aug 19 23:30:42 2020"
+  RTWModifiedTimeStamp	  519780641
+  ModelVersionFormat	  "1.%<AutoIncrement:21>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -756,7 +756,7 @@ Library {
   System {
     Name		    "GOODVAL_MASTER"
     Location		    [293, 626, 921, 1121]
-    Open		    on
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -767,9 +767,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "553"
+    SIDHighWatermark	    "556"
     Block {
       BlockType		      SubSystem
       Name		      "ASC"
@@ -1414,8 +1414,8 @@ Library {
       Variant		      off
       System {
 	Name			"TYPEA"
-	Location		[1071, 197, 2169, 1046]
-	Open			off
+	Location		[293, 626, 921, 1121]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2141,6 +2141,13 @@ Library {
 	  ZOrder		  5730
 	}
 	Block {
+	  BlockType		  Ground
+	  Name			  "Ground7"
+	  SID			  "554"
+	  Position		  [250, 895, 270, 915]
+	  ZOrder		  5733
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "IM"
 	  SID			  "360"
@@ -2553,6 +2560,29 @@ Library {
 	  Ports			  [1, 1]
 	  Position		  [295, 665, 370, 695]
 	  ZOrder		  5725
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MTRX_LOCK_MNOL"
+	  SID			  "555"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [295, 890, 370, 920]
+	  ZOrder		  5734
 	  BackgroundColor	  "darkGreen"
 	  DropShadow		  on
 	  AttributesFormatString  "%<Tag>"
@@ -5574,6 +5604,14 @@ Library {
 	}
 	Block {
 	  BlockType		  Terminator
+	  Name			  "Terminator14"
+	  SID			  "556"
+	  Position		  [385, 895, 410, 915]
+	  ZOrder		  5732
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
 	  Name			  "Terminator2"
 	  SID			  "531"
 	  Position		  [385, 390, 405, 410]
@@ -5792,6 +5830,20 @@ Library {
 	  SrcBlock		  "WD"
 	  SrcPort		  1
 	  DstBlock		  "Terminator2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  21
+	  SrcBlock		  "Ground7"
+	  SrcPort		  1
+	  DstBlock		  "MTRX_LOCK_MNOL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "MTRX_LOCK_MNOL"
+	  SrcPort		  1
+	  DstBlock		  "Terminator14"
 	  DstPort		  1
 	}
       }
