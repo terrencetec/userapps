@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=466
-		y=113
-		width=1331
-		height=876
+		x=270
+		y=76
+		width=1081
+		height=950
 	}
 	clr=14
 	bclr=4
@@ -97,42 +97,10 @@ image {
 	type="gif"
 	"image name"="suspension.gif"
 }
-"related display" {
-	object {
-		x=18
-		y=22
-		width=139
-		height=25
-	}
-	display[0] {
-		label="No1"
-		name="MODE_LIST.adl"
-		args="IFO=$(IFO),STATE=FREE,OPTIC=$(OPTIC),optic=$(optic)"
-	}
-	clr=14
-	bclr=4
-	label="Free Mode list"
-}
-"related display" {
-	object {
-		x=165
-		y=24
-		width=139
-		height=25
-	}
-	display[0] {
-		label="No1"
-		name="MODE_LIST.adl"
-		args="IFO=$(IFO),STATE=DAMPED,OPTIC=$(OPTIC),optic=$(optic)"
-	}
-	clr=14
-	bclr=4
-	label="Damped Mode list"
-}
 "shell command" {
 	object {
-		x=768
-		y=71
+		x=38
+		y=13
 		width=87
 		height=23
 	}
@@ -172,8 +140,8 @@ image {
 }
 text {
 	object {
-		x=986
-		y=46
+		x=295
+		y=613
 		width=68
 		height=24
 	}
@@ -184,8 +152,8 @@ text {
 }
 "text entry" {
 	object {
-		x=1123
-		y=44
+		x=393
+		y=611
 		width=56
 		height=20
 	}
@@ -199,62 +167,8 @@ text {
 }
 text {
 	object {
-		x=986
-		y=75
-		width=68
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Frequency sweep speed"
-}
-"text entry" {
-	object {
-		x=1123
-		y=73
-		width=56
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_FREQ_SWEEPER_SWEEP_SPEED"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=986
-		y=103
-		width=68
-		height=24
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Frequency sweep switch"
-}
-"text entry" {
-	object {
-		x=1123
-		y=101
-		width=56
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_FREQ_SWEEPER_SW"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=986
-		y=17
+		x=295
+		y=584
 		width=68
 		height=24
 	}
@@ -265,8 +179,8 @@ text {
 }
 "choice button" {
 	object {
-		x=1124
-		y=15
+		x=394
+		y=582
 		width=56
 		height=19
 	}
@@ -276,22 +190,6 @@ text {
 		bclr=4
 	}
 	stacking="column"
-}
-"related display" {
-	object {
-		x=865
-		y=68
-		width=79
-		height=27
-	}
-	display[0] {
-		label="MNPS"
-		name="QUAEXC.adl"
-		args="OPTIC=$(OPTIC),optic=$(optic),optic=$(optic),INDEX=26"
-	}
-	clr=14
-	bclr=4
-	label="QUA EXC"
 }
 composite {
 	object {
@@ -346,9 +244,9 @@ composite {
 composite {
 	object {
 		x=620
-		y=116
-		width=138
-		height=80
+		y=106
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=IP,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_IP"
@@ -357,8 +255,8 @@ composite {
 	object {
 		x=620
 		y=225
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=BF,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_BF"
@@ -367,8 +265,8 @@ composite {
 	object {
 		x=620
 		y=346
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=MN,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_MN"
@@ -377,15 +275,15 @@ composite {
 	object {
 		x=620
 		y=471
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=IM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_IM"
 }
 composite {
 	object {
-		x=812
+		x=940
 		y=219
 		width=124
 		height=108
@@ -395,7 +293,7 @@ composite {
 }
 composite {
 	object {
-		x=811
+		x=939
 		y=340
 		width=124
 		height=108
@@ -405,7 +303,7 @@ composite {
 }
 composite {
 	object {
-		x=811
+		x=939
 		y=465
 		width=124
 		height=108
@@ -415,7 +313,7 @@ composite {
 }
 composite {
 	object {
-		x=812
+		x=940
 		y=105
 		width=124
 		height=108
@@ -425,7 +323,7 @@ composite {
 }
 composite {
 	object {
-		x=814
+		x=942
 		y=589
 		width=124
 		height=108
@@ -435,8 +333,8 @@ composite {
 }
 "related display" {
 	object {
-		x=945
-		y=143
+		x=358
+		y=386
 		width=95
 		height=20
 	}
@@ -451,45 +349,18 @@ composite {
 }
 composite {
 	object {
-		x=444
-		y=23
+		x=142
+		y=5
 		width=310
 		height=56
 	}
 	"composite name"=""
 	"composite file"="/kagra/apps/guardian/lib/python2.7/site-packages/guardian/medm/screens/GRD_MINI_USERMSG.adl; IFO=$(IFO), SYSTEM=QUA_$(OPTIC)"
 }
-text {
-	object {
-		x=771
-		y=23
-		width=96
-		height=22
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="MODE index under measurement"
-}
-"text entry" {
-	object {
-		x=906
-		y=38
-		width=58
-		height=23
-	}
-	control {
-		chan="K1:QUA-$(OPTIC)_MODE_INDEX"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
 "related display" {
 	object {
-		x=947
-		y=263
+		x=359
+		y=417
 		width=95
 		height=20
 	}
@@ -504,8 +375,8 @@ text {
 }
 "related display" {
 	object {
-		x=951
-		y=513
+		x=354
+		y=481
 		width=95
 		height=20
 	}
@@ -520,8 +391,8 @@ text {
 }
 "related display" {
 	object {
-		x=949
-		y=389
+		x=359
+		y=448
 		width=95
 		height=20
 	}
@@ -536,8 +407,8 @@ text {
 }
 "related display" {
 	object {
-		x=951
-		y=636
+		x=356
+		y=511
 		width=95
 		height=20
 	}
@@ -552,8 +423,8 @@ text {
 }
 text {
 	object {
-		x=1062
-		y=147
+		x=12
+		y=659
 		width=37
 		height=15
 	}
@@ -564,8 +435,8 @@ text {
 }
 composite {
 	object {
-		x=1181
-		y=211
+		x=73
+		y=723
 		width=64
 		height=35
 	}
@@ -574,20 +445,20 @@ composite {
 }
 text {
 	object {
-		x=1064
-		y=219
+		x=14
+		y=731
 		width=37
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Resonant frequency"
+	textix="Res freq"
 }
 text {
 	object {
-		x=1064
-		y=258
+		x=14
+		y=770
 		width=37
 		height=15
 	}
@@ -598,8 +469,8 @@ text {
 }
 composite {
 	object {
-		x=1181
-		y=250
+		x=73
+		y=762
 		width=64
 		height=35
 	}
@@ -608,8 +479,8 @@ composite {
 }
 text {
 	object {
-		x=1064
-		y=297
+		x=14
+		y=809
 		width=37
 		height=15
 	}
@@ -620,20 +491,20 @@ text {
 }
 text {
 	object {
-		x=1064
-		y=179
+		x=14
+		y=691
 		width=37
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Reference Phase"
+	textix="Ref Phase"
 }
 composite {
 	object {
-		x=1181
-		y=171
+		x=73
+		y=683
 		width=64
 		height=35
 	}
@@ -642,8 +513,8 @@ composite {
 }
 composite {
 	object {
-		x=1181
-		y=290
+		x=73
+		y=802
 		width=64
 		height=35
 	}
@@ -652,8 +523,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1252
-		y=219
+		x=144
+		y=731
 		width=45
 		height=21
 	}
@@ -667,8 +538,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1253
-		y=262
+		x=145
+		y=774
 		width=45
 		height=21
 	}
@@ -682,8 +553,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1254
-		y=297
+		x=146
+		y=809
 		width=45
 		height=21
 	}
@@ -697,8 +568,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1204
-		y=435
+		x=259
+		y=693
 		width=38
 		height=19
 	}
@@ -712,8 +583,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1204
-		y=465
+		x=259
+		y=723
 		width=38
 		height=19
 	}
@@ -727,8 +598,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1204
-		y=495
+		x=259
+		y=753
 		width=38
 		height=19
 	}
@@ -742,8 +613,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1204
-		y=525
+		x=259
+		y=783
 		width=38
 		height=19
 	}
@@ -757,8 +628,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1204
-		y=555
+		x=259
+		y=813
 		width=38
 		height=19
 	}
@@ -772,8 +643,8 @@ composite {
 }
 text {
 	object {
-		x=1122
-		y=407
+		x=177
+		y=665
 		width=115
 		height=23
 	}
@@ -784,8 +655,8 @@ text {
 }
 text {
 	object {
-		x=1150
-		y=435
+		x=205
+		y=693
 		width=37
 		height=15
 	}
@@ -796,8 +667,8 @@ text {
 }
 text {
 	object {
-		x=1150
-		y=465
+		x=205
+		y=723
 		width=37
 		height=15
 	}
@@ -808,8 +679,8 @@ text {
 }
 text {
 	object {
-		x=1150
-		y=525
+		x=205
+		y=783
 		width=37
 		height=15
 	}
@@ -820,8 +691,8 @@ text {
 }
 text {
 	object {
-		x=1150
-		y=495
+		x=205
+		y=753
 		width=37
 		height=15
 	}
@@ -832,8 +703,8 @@ text {
 }
 text {
 	object {
-		x=1150
-		y=555
+		x=205
+		y=813
 		width=37
 		height=15
 	}
@@ -844,8 +715,8 @@ text {
 }
 "text update" {
 	object {
-		x=1201
-		y=648
+		x=425
+		y=690
 		width=38
 		height=19
 	}
@@ -859,8 +730,8 @@ text {
 }
 "text update" {
 	object {
-		x=1201
-		y=678
+		x=425
+		y=720
 		width=38
 		height=19
 	}
@@ -874,8 +745,8 @@ text {
 }
 "text update" {
 	object {
-		x=1201
-		y=708
+		x=425
+		y=750
 		width=38
 		height=19
 	}
@@ -889,8 +760,8 @@ text {
 }
 "text update" {
 	object {
-		x=1201
-		y=738
+		x=425
+		y=780
 		width=38
 		height=19
 	}
@@ -904,8 +775,8 @@ text {
 }
 "text update" {
 	object {
-		x=1201
-		y=768
+		x=425
+		y=810
 		width=38
 		height=19
 	}
@@ -919,20 +790,20 @@ text {
 }
 text {
 	object {
-		x=1117
-		y=620
+		x=341
+		y=662
 		width=115
 		height=23
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Relative phase to chosen stage"
+	textix="Relative phase"
 }
 text {
 	object {
-		x=1151
-		y=649
+		x=375
+		y=691
 		width=37
 		height=15
 	}
@@ -943,8 +814,8 @@ text {
 }
 text {
 	object {
-		x=1151
-		y=679
+		x=375
+		y=721
 		width=37
 		height=15
 	}
@@ -955,8 +826,8 @@ text {
 }
 text {
 	object {
-		x=1151
-		y=739
+		x=375
+		y=781
 		width=37
 		height=15
 	}
@@ -967,8 +838,8 @@ text {
 }
 text {
 	object {
-		x=1151
-		y=709
+		x=375
+		y=751
 		width=37
 		height=15
 	}
@@ -979,8 +850,8 @@ text {
 }
 text {
 	object {
-		x=1151
-		y=769
+		x=375
+		y=811
 		width=37
 		height=15
 	}
@@ -988,88 +859,6 @@ text {
 		clr=14
 	}
 	textix="TM"
-}
-"related display" {
-	object {
-		x=647
-		y=319
-		width=84
-		height=19
-	}
-	display[0] {
-		label="LEN"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=LEN,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[1] {
-		label="TRA"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=TRA,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[2] {
-		label="VER"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=VER,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[3] {
-		label="ROL"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=ROL,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[4] {
-		label="PIT"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=PIT,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[5] {
-		label="YAW"
-		name="SENSDIAG_PARAMS.adl"
-		args="DOF=YAW,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	clr=14
-	bclr=4
-	label="DIAG"
-}
-"related display" {
-	object {
-		x=647
-		y=89
-		width=84
-		height=19
-	}
-	display[0] {
-		label="LEN"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=LEN,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[1] {
-		label="TRA"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=TRA,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[2] {
-		label="VER"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=VER,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[3] {
-		label="ROL"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=ROL,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[4] {
-		label="PIT"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=PIT,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	display[5] {
-		label="YAW"
-		name="SENSDIAG_TOWER_PARAMS.adl"
-		args="DOF=YAW,OPTIC=$(OPTIC),IFO=$(IFO)"
-	}
-	clr=14
-	bclr=4
-	label="TOWER DIAG"
 }
 "shell command" {
 	object {
@@ -1090,7 +879,7 @@ text {
 "shell command" {
 	object {
 		x=745
-		y=831
+		y=927
 		width=16
 		height=12
 	}
@@ -1109,8 +898,8 @@ text {
 }
 composite {
 	object {
-		x=39
-		y=757
+		x=240
+		y=163
 		width=189
 		height=86
 	}
@@ -1119,8 +908,8 @@ composite {
 }
 composite {
 	object {
-		x=237
-		y=755
+		x=240
+		y=264
 		width=189
 		height=86
 	}
@@ -1129,8 +918,8 @@ composite {
 }
 composite {
 	object {
-		x=39
-		y=659
+		x=240
+		y=65
 		width=189
 		height=86
 	}
@@ -1139,8 +928,8 @@ composite {
 }
 "related display" {
 	object {
-		x=424
-		y=344
+		x=486
+		y=449
 		width=54
 		height=18
 	}
@@ -1160,26 +949,26 @@ composite {
 	object {
 		x=620
 		y=602
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=TM,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO)"
 }
 composite {
 	object {
-		x=620
-		y=725
-		width=138
-		height=80
+		x=619
+		y=835
+		width=260
+		height=90
 	}
 	"composite name"=""
 	"composite file"="DIAG_MTRX_GAS.adl;MODEL=VIS,STAGE=GAS,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_GAS"
 }
 composite {
 	object {
-		x=483
-		y=710
+		x=482
+		y=820
 		width=124
 		height=90
 	}
@@ -1188,8 +977,8 @@ composite {
 }
 composite {
 	object {
-		x=811
-		y=710
+		x=938
+		y=820
 		width=124
 		height=90
 	}
@@ -1198,8 +987,8 @@ composite {
 }
 "related display" {
 	object {
-		x=946
-		y=754
+		x=356
+		y=545
 		width=95
 		height=20
 	}
@@ -1214,8 +1003,8 @@ composite {
 }
 "text update" {
 	object {
-		x=1201
-		y=793
+		x=425
+		y=835
 		width=38
 		height=19
 	}
@@ -1229,8 +1018,8 @@ composite {
 }
 text {
 	object {
-		x=1151
-		y=794
+		x=375
+		y=836
 		width=37
 		height=15
 	}
@@ -1241,7 +1030,7 @@ text {
 }
 "choice button" {
 	object {
-		x=765
+		x=893
 		y=169
 		width=41
 		height=25
@@ -1255,7 +1044,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=141
 		width=49
 		height=20
@@ -1267,7 +1056,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=154
 		width=49
 		height=20
@@ -1279,7 +1068,7 @@ text {
 }
 "choice button" {
 	object {
-		x=765
+		x=893
 		y=279
 		width=41
 		height=25
@@ -1293,7 +1082,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=251
 		width=49
 		height=20
@@ -1305,7 +1094,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=264
 		width=49
 		height=20
@@ -1317,7 +1106,7 @@ text {
 }
 "choice button" {
 	object {
-		x=765
+		x=893
 		y=400
 		width=41
 		height=25
@@ -1331,7 +1120,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=372
 		width=49
 		height=20
@@ -1343,7 +1132,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=385
 		width=49
 		height=20
@@ -1355,7 +1144,7 @@ text {
 }
 "choice button" {
 	object {
-		x=765
+		x=893
 		y=524
 		width=41
 		height=25
@@ -1369,7 +1158,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=496
 		width=49
 		height=20
@@ -1381,7 +1170,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=509
 		width=49
 		height=20
@@ -1393,7 +1182,7 @@ text {
 }
 "choice button" {
 	object {
-		x=765
+		x=893
 		y=654
 		width=41
 		height=25
@@ -1407,7 +1196,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=626
 		width=49
 		height=20
@@ -1419,7 +1208,7 @@ text {
 }
 text {
 	object {
-		x=764
+		x=892
 		y=639
 		width=49
 		height=20
@@ -1431,8 +1220,8 @@ text {
 }
 "choice button" {
 	object {
-		x=765
-		y=777
+		x=892
+		y=887
 		width=41
 		height=25
 	}
@@ -1445,8 +1234,8 @@ text {
 }
 text {
 	object {
-		x=764
-		y=749
+		x=891
+		y=859
 		width=49
 		height=20
 	}
@@ -1457,8 +1246,8 @@ text {
 }
 text {
 	object {
-		x=764
-		y=762
+		x=891
+		y=872
 		width=49
 		height=20
 	}
@@ -1470,7 +1259,7 @@ text {
 text {
 	object {
 		x=711
-		y=829
+		y=925
 		width=49
 		height=20
 	}
@@ -1478,4 +1267,123 @@ text {
 		clr=14
 	}
 	textix="balus"
+}
+"related display" {
+	object {
+		x=717
+		y=72
+		width=71
+		height=23
+	}
+	display[0] {
+		label="IP"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=IP"
+	}
+	display[1] {
+		label="BF"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=BF"
+	}
+	display[2] {
+		label="MN"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=MN"
+	}
+	display[3] {
+		label="IM"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=IM"
+	}
+	display[4] {
+		label="TM"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=TM"
+	}
+	display[5] {
+		label="GAS"
+		name="/opt/rtcds/userapps/release/vis/common/medm/MODAL_DAMP/SENSING_GAS.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC)"
+	}
+	clr=14
+	bclr=4
+	label="SENSING"
+}
+composite {
+	object {
+		x=459
+		y=4
+		width=310
+		height=56
+	}
+	"composite name"=""
+	"composite file"="/kagra/apps/guardian/lib/python2.7/site-packages/guardian/medm/screens/GRD_MINI_USERMSG.adl; IFO=$(IFO), SYSTEM=NEW_$(OPTIC)"
+}
+composite {
+	object {
+		x=485
+		y=705
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6SENSORS_MINI.adl;STAGE=MNOL,SENSOR=OL,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_SENSIN_MNOL"
+}
+composite {
+	object {
+		x=944
+		y=703
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="VIS_6DOFS_MINI.adl;STAGE=MNOL,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):VIS-$(OPTIC)_DIAG_CAL_MNOL"
+}
+composite {
+	object {
+		x=622
+		y=716
+		width=268
+		height=108
+	}
+	"composite name"=""
+	"composite file"="DIAG_MTRX.adl;MODEL=VIS,STAGE=MNOL,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO)"
+}
+"choice button" {
+	object {
+		x=895
+		y=768
+		width=41
+		height=25
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_MTRX_LOCK_MNOL"
+		clr=14
+		bclr=4
+	}
+	stacking="column"
+}
+text {
+	object {
+		x=894
+		y=740
+		width=49
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="lock"
+}
+text {
+	object {
+		x=894
+		y=753
+		width=49
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="matrix"
 }

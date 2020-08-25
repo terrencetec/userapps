@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=780
-		y=68
-		width=1115
-		height=874
+		x=618
+		y=74
+		width=1064
+		height=972
 	}
 	clr=14
 	bclr=4
@@ -151,8 +151,8 @@ composite {
 	object {
 		x=622
 		y=116
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=IP,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_SENSIN_IP"
@@ -161,8 +161,8 @@ composite {
 	object {
 		x=622
 		y=227
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=BF,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_SENSIN_BF"
@@ -171,8 +171,8 @@ composite {
 	object {
 		x=622
 		y=348
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=MN,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_SENSIN_MN"
@@ -181,15 +181,15 @@ composite {
 	object {
 		x=622
 		y=473
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=IM,SENSOR=PS,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_SENSIN_IM"
 }
 composite {
 	object {
-		x=814
+		x=905
 		y=223
 		width=124
 		height=108
@@ -199,7 +199,7 @@ composite {
 }
 composite {
 	object {
-		x=813
+		x=904
 		y=344
 		width=124
 		height=108
@@ -209,8 +209,8 @@ composite {
 }
 composite {
 	object {
-		x=813
-		y=469
+		x=904
+		y=468
 		width=124
 		height=108
 	}
@@ -219,7 +219,7 @@ composite {
 }
 composite {
 	object {
-		x=814
+		x=905
 		y=105
 		width=124
 		height=108
@@ -229,8 +229,8 @@ composite {
 }
 composite {
 	object {
-		x=815
-		y=589
+		x=906
+		y=588
 		width=124
 		height=108
 	}
@@ -320,8 +320,8 @@ composite {
 	object {
 		x=622
 		y=604
-		width=138
-		height=80
+		width=268
+		height=108
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=TM,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO)"
@@ -329,7 +329,7 @@ composite {
 composite {
 	object {
 		x=483
-		y=713
+		y=822
 		width=124
 		height=90
 	}
@@ -338,10 +338,10 @@ composite {
 }
 composite {
 	object {
-		x=814
-		y=709
+		x=905
+		y=817
 		width=124
-		height=108
+		height=90
 	}
 	"composite name"=""
 	"composite file"="./../prequa/VIS_GASDOFS_MINI.adl;STAGE=GAS,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_CAL_GAS"
@@ -349,10 +349,60 @@ composite {
 composite {
 	object {
 		x=621
-		y=724
-		width=138
-		height=80
+		y=833
+		width=260
+		height=90
 	}
 	"composite name"=""
 	"composite file"="./../prequa/DIAG_MTRX_GAS.adl;MODEL=MOD,STAGE=GAS,SENSOR=LVDT,OPTIC=$(OPTIC),IFO=$(IFO)"
+}
+composite {
+	object {
+		x=483
+		y=707
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="./../prequa/VIS_6SENSORS_MINI.adl;STAGE=MNOL,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_SENSIN_MNOL"
+}
+composite {
+	object {
+		x=905
+		y=702
+		width=124
+		height=108
+	}
+	"composite name"=""
+	"composite file"="./../prequa/VIS_6DOFS_MINI.adl;STAGE=MNOL,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO),CHANNAME=$(IFO):MOD-$(OPTIC)_DIAG_CAL_MNOL"
+}
+"shell command" {
+	object {
+		x=747
+		y=942
+		width=16
+		height=12
+	}
+	command[0] {
+		label="mod"
+		name="python"
+		args="/opt/rtcds/userapps/release/vis/common/scripts/init_DECPL.py $(OPTIC) MOD &"
+	}
+	command[1] {
+		label="VIS"
+		name="python"
+		args="/opt/rtcds/userapps/release/vis/common/scripts/init_DECPL.py $(OPTIC) VIS &"
+	}
+	clr=14
+	bclr=4
+}
+composite {
+	object {
+		x=621
+		y=718
+		width=268
+		height=108
+	}
+	"composite name"=""
+	"composite file"="./../prequa/DIAG_MTRX.adl;MODEL=MOD,STAGE=MNOL,SENSOR=OPLEV,OPTIC=$(OPTIC),IFO=$(IFO)"
 }

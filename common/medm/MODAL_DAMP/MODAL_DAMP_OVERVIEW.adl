@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=639
-		y=178
+		x=621
+		y=162
 		width=1551
 		height=994
 	}
@@ -326,7 +326,7 @@ display {
 "related display" {
 	object {
 		x=1387
-		y=128
+		y=110
 		width=100
 		height=26
 	}
@@ -373,7 +373,7 @@ display {
 "related display" {
 	object {
 		x=1387
-		y=158
+		y=140
 		width=100
 		height=26
 	}
@@ -469,9 +469,9 @@ display {
 "shell command" {
 	object {
 		x=35
-		y=76
-		width=87
-		height=23
+		y=155
+		width=76
+		height=18
 	}
 	command[0] {
 		label="Envelope Payload"
@@ -520,7 +520,7 @@ composite {
 composite {
 	object {
 		x=1088
-		y=12
+		y=5
 		width=138
 		height=96
 	}
@@ -530,7 +530,7 @@ composite {
 composite {
 	object {
 		x=1400
-		y=26
+		y=19
 		width=136
 		height=80
 	}
@@ -540,7 +540,7 @@ composite {
 composite {
 	object {
 		x=1087
-		y=119
+		y=101
 		width=138
 		height=96
 	}
@@ -550,7 +550,7 @@ composite {
 composite {
 	object {
 		x=1244
-		y=11
+		y=4
 		width=138
 		height=96
 	}
@@ -560,7 +560,7 @@ composite {
 composite {
 	object {
 		x=1245
-		y=118
+		y=100
 		width=138
 		height=96
 	}
@@ -1072,7 +1072,7 @@ composite {
 "message button" {
 	object {
 		x=382
-		y=138
+		y=127
 		width=33
 		height=16
 	}
@@ -1087,7 +1087,7 @@ composite {
 "message button" {
 	object {
 		x=417
-		y=138
+		y=127
 		width=33
 		height=16
 	}
@@ -1102,7 +1102,7 @@ composite {
 "message button" {
 	object {
 		x=452
-		y=138
+		y=127
 		width=33
 		height=16
 	}
@@ -1117,7 +1117,7 @@ composite {
 "message button" {
 	object {
 		x=487
-		y=138
+		y=127
 		width=33
 		height=16
 	}
@@ -1132,7 +1132,7 @@ composite {
 "message button" {
 	object {
 		x=521
-		y=138
+		y=127
 		width=33
 		height=16
 	}
@@ -1253,8 +1253,8 @@ text {
 }
 text {
 	object {
-		x=357
-		y=160
+		x=499
+		y=175
 		width=54
 		height=20
 	}
@@ -1445,6 +1445,11 @@ text {
 	display[1] {
 		label="oldc"
 		name="OLDC.adl"
+		args="OPTIC=$(OPTIC),IFO=$(IFO),optic=$(optic)"
+	}
+	display[2] {
+		label="olservo"
+		name="OLSERVO.adl"
 		args="OPTIC=$(OPTIC),IFO=$(IFO),optic=$(optic)"
 	}
 	clr=14
@@ -2928,4 +2933,89 @@ text {
 		clr=14
 	}
 	textix="White noise"
+}
+composite {
+	object {
+		x=1218
+		y=199
+		width=310
+		height=56
+	}
+	"composite name"=""
+	"composite file"="/kagra/apps/guardian/lib/python2.7/site-packages/guardian/medm/screens/GRD_MINI_USERMSG.adl; IFO=$(IFO), SYSTEM=NEW_$(OPTIC)"
+}
+"message button" {
+	object {
+		x=417
+		y=144
+		width=33
+		height=16
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_QUAEXC_GAIN"
+		clr=14
+		bclr=4
+	}
+	label="0.1"
+	press_msg="0.1"
+}
+"message button" {
+	object {
+		x=452
+		y=144
+		width=33
+		height=16
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_QUAEXC_GAIN"
+		clr=14
+		bclr=4
+	}
+	label="0.01"
+	press_msg="0.01"
+}
+"message button" {
+	object {
+		x=487
+		y=144
+		width=33
+		height=16
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_QUAEXC_GAIN"
+		clr=14
+		bclr=4
+	}
+	label="0.001"
+	press_msg="0.001"
+}
+"message button" {
+	object {
+		x=521
+		y=144
+		width=33
+		height=16
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_QUAEXC_GAIN"
+		clr=14
+		bclr=4
+	}
+	label="e-4"
+	press_msg="1e-4"
+}
+"message button" {
+	object {
+		x=21
+		y=73
+		width=93
+		height=27
+	}
+	control {
+		chan="K1:GRD-QUA_$(OPTIC)_REQUEST"
+		clr=14
+		bclr=4
+	}
+	label="STANDBY"
+	press_msg="STANDBY"
 }

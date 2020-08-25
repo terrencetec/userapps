@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/scripts/medm/overview/GDS_MINI.adl"
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/OVERVIEW/MINI/GDS_MINI.adl"
 	version=030107
 }
 display {
 	object {
-		x=1119
-		y=487
+		x=1470
+		y=141
 		width=339
 		height=117
 	}
@@ -87,12 +87,74 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=29
+	}
+	"dynamic attribute" {
+		chan="BLAH"
+	}
+}
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=38
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
+	}
+}
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=35
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=2"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
+	}
+}
+rectangle {
+	object {
+		x=65
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=27
+		fill="outline"
+		width=1
+	}
+	"dynamic attribute" {
+		chan="BLAH"
+	}
+}
 "related display" {
 	object {
-		x=72
-		y=44
+		x=68
+		y=43
 		width=35
-		height=10
+		height=15
 	}
 	display[0] {
 		label="k1$(subsys)"
@@ -102,212 +164,139 @@ display {
 	bclr=5
 	label="GDS"
 }
-composite {
+byte {
 	object {
-		x=65
-		y=41
-		width=200
+		x=106
+		y=45
+		width=70
+		height=12
+	}
+	monitor {
+		chan="K1:FEC-$(FEC)_STATE_WORD"
+		clr=20
+		bclr=60
+	}
+	sbit=0
+	ebit=10
+}
+"message button" {
+	object {
+		x=179
+		y=45
+		width=12
+		height=12
+	}
+	control {
+		chan="K1:FEC-$(FEC)_DIAG_RESET"
+		clr=0
+		bclr=5
+	}
+	release_msg="1"
+}
+"shell command" {
+	object {
+		x=194
+		y=45
+		width=11
+		height=12
+	}
+	command[0] {
+		label="=== User command ==="
+		name=":"
+		args="&"
+	}
+	command[1] {
+		label="open in matlab"
+		name="/kagra/bin/RTPC/realTimeTools.sh matlab k1$(system)"
+		args="&"
+	}
+	command[2] {
+		label="SDF last accept"
+		name="/kagra/bin/RTPC/realTimeTools.sh sdfdiff k1$(system)"
+		args="&"
+	}
+	command[3] {
+		label=" "
+		name=":"
+		args="&"
+	}
+	command[4] {
+		label="=== Expert only ==="
+		name=":"
+		args="&"
+	}
+	command[5] {
+		label="EXC clear"
+		name="/kagra/bin/RTPC/realTimeTools.sh awgclear k1$(system)"
+		args="&"
+	}
+	command[6] {
+		label="TP clear"
+		name="/kagra/bin/RTPC/realTimeTools.sh tpclear k1$(system)"
+		args="&"
+	}
+	command[7] {
+		label=" "
+		name=":"
+		args="&"
+	}
+	command[8] {
+		label="=== Admin only ==="
+		name=":"
+		args="&"
+	}
+	command[9] {
+		label="start awgtpman"
+		name="/kagra/bin/RTPC/realTimeTools.sh awgtpman k1$(system)"
+		args="&"
+	}
+	clr=14
+	bclr=46
+	label=" "
+}
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
 		height=15
 	}
-	"composite name"=""
-	children {
-		byte {
-			object {
-				x=130
-				y=43
-				width=117
-				height=12
-			}
-			monitor {
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-				clr=20
-				bclr=60
-			}
-			sbit=0
-			ebit=10
-		}
-		"message button" {
-			object {
-				x=116
-				y=43
-				width=12
-				height=12
-			}
-			control {
-				chan="K1:FEC-$(FEC)_DIAG_RESET"
-				clr=0
-				bclr=5
-			}
-			release_msg="1"
-		}
-		"shell command" {
-			object {
-				x=250
-				y=43
-				width=11
-				height=12
-			}
-			command[0] {
-				label="=== User command ==="
-				name=":"
-				args="&"
-			}
-			command[1] {
-				label="open in matlab"
-				name="/kagra/bin/RTPC/realTimeTools.sh matlab k1$(subsys)"
-				args="&"
-			}
-			command[2] {
-				label=" "
-				name=":"
-				args="&"
-			}
-			command[3] {
-				label=" "
-				name=":"
-				args="&"
-			}
-			command[4] {
-				label=" "
-				name=":"
-				args="&"
-			}
-			command[5] {
-				label=" "
-				name=":"
-				args="&"
-			}
-			command[6] {
-				label="=== Experts only ==="
-				name=":"
-				args="&"
-			}
-			command[7] {
-				label="awg clear"
-				name="/kagra/bin/RTPC/realTimeTools.sh awgclear k1$(subsys)"
-				args="&"
-			}
-			command[8] {
-				label="tp clear"
-				name="/kagra/bin/RTPC/realTimeTools.sh tpclear k1$(subsys)"
-				args="&"
-			}
-			command[9] {
-				label="start awgtpman"
-				name="/kagra/bin/RTPC/realTimeTools.sh awgtpman k1$(subsys)"
-				args="&"
-			}
-			clr=14
-			bclr=46
-			label=" "
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=29
-			}
-			"dynamic attribute" {
-				chan="BLAH"
-			}
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=38
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A=1"
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-			}
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=35
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A=2"
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-			}
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=24
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-			}
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A=1"
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-			}
-		}
-		rectangle {
-			object {
-				x=66
-				y=41
-				width=199
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="K1:FEC-$(FEC)_STATE_WORD"
-			}
-		}
-		rectangle {
-			object {
-				x=65
-				y=41
-				width=200
-				height=15
-			}
-			"basic attribute" {
-				clr=27
-				fill="outline"
-				width=1
-			}
-			"dynamic attribute" {
-				chan="BLAH"
-			}
-		}
+	"basic attribute" {
+		clr=24
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
+	}
+}
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
+	}
+}
+rectangle {
+	object {
+		x=66
+		y=43
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
 	}
 }

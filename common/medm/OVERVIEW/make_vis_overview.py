@@ -92,8 +92,8 @@ display {
 common = '/opt/rtcds/userapps/release/vis/common'
 
 def grd_mini(x,y,system='ETMX'):
-    width = 300
-    height = 15
+    width = 270
+    height = 25
     txt = '''
     composite {{
     object {{
@@ -110,7 +110,7 @@ def grd_mini(x,y,system='ETMX'):
 
 
 def sdf_mini(x,y,fec='123',subsys='ETMXT'):
-    width = 250
+    width = 260
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
@@ -129,7 +129,7 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
     return txt,width,height
 
 def gds_mini(x,y,fec='123',subsys='ETMXT'):
-    width = 200
+    width = 150
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()    
@@ -203,10 +203,20 @@ if __name__=='__main__':
             txt,w1,h1 = usr_mini(x=width,y=height,system=system)
             contents += txt            
             width += w1+2
-            txt,w2,h = grd_mini(x=width,y=height,system=system)
+            txt,w2,h = grd_mini(x=width,y=height,system='VIS_'+system)
             contents += txt
             width += w2+2
-            _w = w1+w2+4
+            if system in ['ETMX','ETMY','ITMX','ITMY']:
+                txt,w3,h = grd_mini(x=width,y=height,system='QUA_'+system)
+                contents += txt                
+                txt,w3,h = grd_mini(x=width,y=height+(h+2),system='NEW_'+system)
+                contents += txt                
+                width += w3+2
+                _w = w1+w2+w3+6
+            else:
+                width += w2+2
+                _w = w1+w2+w2+6                
+                
             for model in models[system]:
                 model,fec = model
                 txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
