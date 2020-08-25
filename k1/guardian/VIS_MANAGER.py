@@ -6,8 +6,6 @@ from guardian import NodeManager
 import vislib
 import subprocess
 
-#from slack_util import PostMan
-
 # flags
 eq_alert_flag = False
 eq_calm_down_flag = False
@@ -23,18 +21,52 @@ optics = ['PR2', 'PR3', 'SR2', 'SR3', 'BS', 'ETMX', 'ITMX', 'ETMY', 'ITMY']
 managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
 
 nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
-            
-# ------------------------------------------------------------------------------
-def send_to_slack(text):
-    ''' Need token. Plase
+
+def manager_request(opt,state):
     '''
-    postman = PostMan(token='')
-    postman.chat_post(text)
-    return True    
+    '''
+    nodes['VIS_'+opt]=state
+
+def used_optics():
+    ''' Return name list of the optics which are not used someone
     
-# ------------------------------------------------------------------------------
+    Returns
+    -------
+    used : `list`
+        used optics name list as the set object.
+    '''
+    used = [opt for opt in managed_optics if is_used(opt)]
+    return used
+
+def unused_optics():
+    ''' Return name list of the optics which are not used someone
+    
+    Returns
+    -------
+    unused : `set`
+        unused optics name list as the set object.
+    '''
+    use = []
+    for opt in managed_optics:
+        if is_used(opt):
+            use += [opt]
+    unused = set(managed_optics)-set(use)
+    return unused
+
 
 def is_used(opt):
+    ''' check if someone use the optics
+
+    Parameters
+    ----------
+    opt : `str`
+        optics name.
+
+    Returns
+    -------
+    flag : `Bool`
+        return true if someone use.
+    '''
     msg = ezca['VIS-'+opt+'_COMMISH_MESSAGE']
     button = ezca['VIS-'+opt+'_COMMISH_STATUS']
     return (msg!='') or button==1
@@ -74,11 +106,15 @@ def is_earthquake():
 
     
 class eq_check(GuardStateDecorator):
-    """Decorator to check watchdog"""
     def pre_exec(self):
 	if is_earthquake():
             return 'EARTHQUAKE'
-        
+
+class revive(GuardStateDecorator):
+    def pre_exec(self):
+        for node in nodes.get_stalled_nodes():
+            node.revive()
+                
         
 # ------------------------------------------------------------------------------
 class INIT(GuardState):
@@ -94,47 +130,6 @@ class INIT(GuardState):
         nodes.set_managed()
         log('set_managed')
         return True
-    
-    
-class ALL_ALIGNED(GuardState):
-    ''' Request the ALIGNED state for all suspensions.
-    
-    '''    
-    index = 1
-    request = True
-
-    @eq_check    
-    def main(self):
-        ''' All suspensions are requested to ALIGNED.
-        '''
-        someone_use = []        
-        # for opt in optics:
-        #     if opt in ['BS','SR2','SR3']:
-        #         ezca['GRD-VIS_'+opt+'_REQUEST'] = 'ALIGNED'                    
-        #     else:
-        #         ezca['GRD-VIS_'+opt+'_REQUEST'] = 'OBSERVATION'
-        
-    @eq_check
-    def run(self):
-        '''
-        Force to request the ALIGNED state if no one use the suspensions.
-        '''
-        # 1. Force to aligne the suspension
-        someone_use = []        
-        for opt in managed_optics:
-            if nodes['VIS_'+opt]!='ALIGNED':
-                if not is_used(opt):
-                    nodes['VIS_'+opt]='ALIGNED' 
-            if is_used(opt):
-                someone_use += [opt]
-        notify('Not managed: {0}'.format(','.join(someone_use)))
-
-        # 2. Revive all stalled nodes
-        #   (This may be needed in all State?)
-        for node in nodes.get_stalled_nodes():
-            node.revive()
-            
-        return all([is_aligned(opt) for opt in optics])
     
         
 class EARTHQUAKE(GuardState):
@@ -200,16 +195,131 @@ class BUILD_MODEL(GuardState):
     request = True
     def main(self):
         # send
-        cmd = ['gnome-terminal -x ssh controls@k1ex1 "cd /opt/rtcds/kamioka/k1/rtbuild/current && make k1visetmxt"']
-        subprocess.check_output(cmd, shell=True)
+        #cmd = ['gnome-terminal -x ssh controls@k1ex1 "cd /opt/rtcds/kamioka/k1/rtbuild/current && make k1visetmxt"']
+        #subprocess.check_output(cmd, shell=True)
         
         pass
+
     
+class XARM_READY(GuardState):
+    index = 30
+    request = True
+
+    @eq_check    
+    def main(self):
+        ''' All suspensions are requested to ALIGNED.
+        '''
+        self.timer['test'] = 0
+        someone_use = []        
+        
+    @eq_check
+    @revive
+    def run(self):
+        '''
+        Force to request the ALIGNED state if no one use the suspensions.
+        '''
+        # 1. Force to aligne the suspension
+        someone_use = []
+        misaligned_optics = ['PRM','SRM']
+        aligned_optics = set(managed_optics) - set(misaligned_optics)
+        for opt in aligned_optics:
+            if nodes['VIS_'+opt]!='ALIGNED':
+                if not is_used(opt):
+                    nodes['VIS_'+opt]='ALIGNED' 
+            if is_used(opt):
+                someone_use += [opt]                
+        for opt in misaligned_optics:
+            if nodes['VIS_'+opt]!='MISALIGNED':
+                if not is_used(opt):
+                    nodes['VIS_'+opt]='MISALIGNED' 
+            if is_used(opt):
+                someone_use += [opt]                
+        notify('Not managed: {0}'.format(','.join(someone_use)))            
+        return True
+
+
+class ALL_ALIGNED(GuardState):
+    ''' Request the ALIGNED state for all suspensions.
+    
+    '''    
+    index = 1
+    request = True
+
+    @eq_check    
+    def main(self):
+        '''
+        '''
+        self.timer['test'] = 0
+                
+    @eq_check
+    @revive
+    def run(self):
+        ''' Force to request the ALIGNED state if no one use the suspensions.
+        '''
+        notify('Not managed: {0}'.format(','.join(used_optics())))
+        optics = unused_optics()
+        optics = [opt for opt in optics if nodes['VIS_'+opt]!='ALIGNED']
+        [manager_request(opt,'ALIGNED') for opt in optics]
+        return True
+
+    
+class ALL_SAFE(GuardState):
+    ''' Request the ALIGNED state for all suspensions.
+    
+    '''    
+    index = 2
+    request = True
+
+    @eq_check    
+    def main(self):
+        '''
+        '''
+        self.timer['test'] = 0
+        
+    @eq_check
+    @revive    
+    def run(self):
+        ''' Force to request the SAFE state if no one use the suspensions.
+        '''
+        notify('Not managed: {0}'.format(','.join(used_optics()))) 
+        optics = unused_optics()        
+        optics = [opt for opt in optics if nodes['VIS_'+opt]!='SAFE']   
+        [manager_request(opt,'SAFE') for opt in optics]
+        return True
+
+    
+class ALL_MISALIGNED(GuardState):
+    ''' Request the ALIGNED state for all suspensions.
+    
+    '''    
+    index = 3
+    request = True
+
+    @eq_check    
+    def main(self):
+        ''' All suspensions are requested to ALIGNED.
+        '''
+        self.timer['test'] = 0
+        
+    @eq_check
+    @revive
+    def run(self):
+        ''' Force to request the MISALIGNED state if no one use the suspensions.
+        '''
+        notify('Not managed: {0}'.format(','.join(used_optics())))
+        optics = unused_optics()
+        optics = [opt for opt in optics if nodes['VIS_'+opt]!='MISALIGNED']
+        [manager_request(opt,'MISALIGNED') for opt in optics]
+        return True
+        
     
 # ------------------------------------------------------------------------------
 edges = [
     ('INIT','ALL_ALIGNED'),
-    ('INIT','IDLING'),    
+    ('INIT','ALL_MISALIGNED'),
+    ('INIT','ALL_SAFE'),
+    ('INIT','IDLING'),        
     ('EARTHQUAKE','IDLING'),
     ('IDLING','ALL_ALIGNED'),
+    ('INIT','XARM_READY'),
 ]

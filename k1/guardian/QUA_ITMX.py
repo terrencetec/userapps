@@ -1,9 +1,9 @@
 from GRD_PREQUA import *
 
-MONDCUID = 78 # dcuid of k1visitmymon
-MODALDCUID = 11 # dcuid of k1vismodalitmy
-TDCUID = 62
-PDCUID = 63
+MONDCUID = 77 # dcuid of k1visitxmon
+MODALDCUID = 70 # dcuid of k1vismodalitmx
+TDCUID = 66
+PDCUID = 67
 
 SEN2EUL = {
     'MN':[[1,0,0,0,0,0],
@@ -29,7 +29,7 @@ initDECPL = {
 }
 
 # GAS DoF list which is working.
-workingGAS = ['M2','M3','M4','M5']
+workingGAS = ['M2','M3','M4']
 
 ACTRATIO = {
     'LEN':{'IP':100000.0,'BF':100000.0,'MN':0.01,'IM':0.3,'TM':1},

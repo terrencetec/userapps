@@ -130,11 +130,11 @@ OLSERVO = {
 MN_COIL_BALANCE = {
     'coils':['V3','H2','H3'],
     'freq':{'V3':5.0,'H2':1.3,'H3':1.3},
-    'oscAMP':{'V3':300.0,'H2':100.0,'H3':100.0},
+    'oscAMP':{'V3':3000.0,'H2':500.0,'H3':500.0},
     'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
-    'SettleDuration':5,
+    'SettleDuration':30,
     'oscTRAMP':10
 }
 
@@ -147,7 +147,7 @@ IM_COIL_BALANCE = {
     'sweeprange':[0.5,1.5],
     'Npoints':10,
     'duration':10,
-    'SettleDuration':5,
+    'SettleDuration':30,
     'oscTRAMP':10
 }
 
@@ -158,7 +158,7 @@ TM_COIL_BALANCE = {
     'sweeprange':[0.1,1.0],
     'Npoints':10,
     'duration':10,
-    'SettleDuration':5,
+    'SettleDuration':30,
     'oscTRAMP':10
 }
 

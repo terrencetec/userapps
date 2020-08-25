@@ -1,6 +1,30 @@
 from GRD_PREQUA import *
 
-DCUID = 79 # dcuid of k1visitmymon
+MONDCUID = 79 # dcuid of k1visitxmon
+MODALDCUID = 86 # dcuid of k1vismodalitmx
+TDCUID = 68
+PDCUID = 69
+
+SEN2EUL = {
+    'MN':[[1,0,0,0,0,0],
+          [0,0,0,1,0,0,],
+          [0,0,0,0,1,0,],
+          [0,0,0,0,0,1,],
+          [0,0,1,0,0,0,],
+          [0,1,0,0,0,0,],],
+    'IM':[[0,0,0,1,0,0],
+          [0,0,0,0,0,1],
+          [1,0,0,0,0,0],
+          [0,1,0,0,0,0],
+          [0,0,1,0,0,0],
+          [0,0,0,0,1,0]],
+    }
+initDECPL = {
+}
+
+# GAS DoF list which is working.
+workingGAS = ['M1','M2','M4','M5']
+
 
 ACTRATIO = {
     'LEN':{'IP':100000.0,'BF':100000.0,'MN':0.01,'IM':0.3,'TM':1},

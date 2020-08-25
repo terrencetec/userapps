@@ -391,6 +391,14 @@ class MISALIGNED(GuardState):
     @check_TWWD
     @check_WD
     def main(self):
+        if sustype in ['TypeA','TypeB']: # by Miyo
+            for suffix in ['P','T']: 
+                fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
+                sdflib.restore(fec,'misaligned')
+        else:
+            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
+            sdflib.restore(fec,'misaligned')
+        
         kagralib.speak_aloud('%s is misaligned'%(OPTIC))
 
     def run(self):

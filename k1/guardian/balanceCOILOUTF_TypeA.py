@@ -64,6 +64,7 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=5):
     coil_gain = {} # The void dict to put the gains of TM coils
     for ii in ['H1','H2','H3','H4']:
         logger.debug('Put %d cnts as offset in %s TM %s coil, ramp time = %d'%(default_offset, optic, ii, offTRAMP))
+        ezca['VIS-%s_TM_COILOUTF_%s_OFFSET'%(optic, ii)] = 0
         coil_offset = ezca.get_LIGOFilter('VIS-%s_TM_COILOUTF_%s'%(optic,ii))
         coil_offset.turn_on('OFFSET')
         coil_offset.ramp_offset(default_offset, ramp_time = offTRAMP, wait=True)
@@ -123,7 +124,7 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=5):
 
             else:
                 logger.debug('The sign of %s coil is negative(+)'%(ii))
-                coil_gain["%s"%(ii)] = default_gain*(-1.0)
+                coil_gain["%s"%(ii)] = default_gain
 
         print coil_gain
         ezca['VIS-%s_TM_COILOUTF_%s_GAIN'%(optic,ii)] = coil_gain[ii]
@@ -157,10 +158,11 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10.0,settleDuration=5,avgDurat
     logger.debug('%s sensor value before putting offset:(pitch,yaw,roll) = (%f,%f,%f)'%(stage,pit_before,yaw_before,roll_before))
 
     # put the offset in each coils and fetch the oplev value in this time one by one
-    default_offset = [{'H':50,'V': 150},{'H':5000,'V':5000}][stage=='IM']
+    default_offset = [{'H':50,'V': 150},{'H':5000,'V':10000}][stage=='IM']
     coil_gain = {} # The void dict to put the gains of MN coils
     for ii in ['V1','V2','V3','H1','H2','H3']:
         logger.debug('Put %d cnts as offset in %s %s %s coil, ramp time = %d'%(default_offset[ii[0]], optic, stage, ii, offTRAMP))
+        ezca['VIS-%s_%s_COILOUTF_%s_OFFSET'%(optic, stage, ii)] = 0
         coil_offset = ezca.get_LIGOFilter('VIS-%s_%s_COILOUTF_%s'%(optic, stage, ii))
         coil_offset.turn_on('OFFSET')
         coil_offset.ramp_offset(default_offset[ii[0]], ramp_time = offTRAMP, wait=True)

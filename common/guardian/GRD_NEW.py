@@ -54,8 +54,8 @@ def check_fault():
 ##################################################
 def DCSERVO():
     DCSERVO = {
-        'MN': {DoF:ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']},
-        'BF': {DoF:ezca.get_LIGOFilter('MOD-%s_OLDC_BF_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']},
+        'MN': {DoF:ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']},
+        'BF': {DoF:ezca.get_LIGOFilter('MOD-%s_TMOL_DC_BF_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']},
         'IP': {DoF:ezca.get_LIGOFilter('MOD-%s_IPDC_%s'%(OPTIC,DoF)) for DoF in ['LEN','TRA','YAW']},
         'GAS': {DoF:ezca.get_LIGOFilter('MOD-%s_GASDC_%s'%(OPTIC,DoF)) for DoF in ['F0','F1','F2','F3','BF']},
     }
@@ -65,6 +65,7 @@ def DAMPSERVO():
     DAMPSERVO = {
         stage: {DoF: ezca.get_LIGOFilter('MOD-%s_DAMP_%s_%s'%(OPTIC,stage,DoF)) for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']} for stage in ['IP','BF','MN','IM','TM']
     }
+    DAMPSERVO['GAS'] = {DoF: ezca.get_LIGOFilter('MOD-%s_DAMP_GAS_%s'%(OPTIC,DoF)) for DoF in ['M%d'%ii for ii in range(1,6)]}
 
     return DAMPSERVO
 
@@ -121,11 +122,17 @@ class SAFE(GuardState):
                 kagralib.speak_aloud('%s is not safe, although safe state was requested. It has output from some coils. Please check it'%OPTIC)
                 self.timer['speak'] = 300
 
+        else:
+            ezca['VIS-%s_MASTERSWITCH'%OPTIC] = 0
+                
         return True
                 
 class FLOAT(GuardState):
     request = True
     index = 5
+    @is_fault
+    def main(self):
+        ezca['VIS-%s_MASTERSWITCH'%OPTIC] = 1
     
     @is_fault
     def run(self):
@@ -140,7 +147,12 @@ class ENGAGE_LOCALDAMP(GuardState):
         self.timer['waiting'] = 0
         self.counter = 0
 
-        self.stagelist = ['IP','BF','MN','IM']
+        self.engagelist = {'IP':['LEN','TRA','YAW'],
+                           'BF':['YAW'],
+                           'GAS':['M4'],
+                           'MN':[],
+                           'IM':[]
+                           }
 
     @is_fault        
     def run(self):
@@ -148,8 +160,8 @@ class ENGAGE_LOCALDAMP(GuardState):
             return
         
         if self.counter == 0:
-            for stage in self.stagelist:
-                for DoF in DAMPSERVO()[stage].keys():
+            for stage in self.engagelist.keys():
+                for DoF in self.engagelist[stage]:
                     DAMPSERVO()[stage][DoF].ramp_gain(1,1,False)
             self.timer['waiting'] = 1
             self.counter += 1
@@ -173,7 +185,7 @@ class ENGAGE_TWRDC(GuardState):
 
         elif self.counter == 0:
             # engage DC servo
-            for stage in ['IP',]:
+            for stage in ['IP','GAS']:
                 for key in DCSERVO()[stage].keys():
                     DCSERVO()[stage][key].turn_on('INPUT')
                     
@@ -199,7 +211,7 @@ class DISABLE_TWRDC(GuardState):
 
         elif self.counter == 0:
             # disable DC servo
-            for stage in DCSERVO().keys():
+            for stage in ['BF','IP']:
                 for key in DCSERVO()[stage].keys():
                     DCSERVO()[stage][key].turn_off('INPUT')
 
@@ -259,7 +271,7 @@ class CLEAR_DC(GuardState):
                     DCSERVO()[stage][DoF].turn_off('INPUT')
                     output = DCSERVO()[stage][DoF].OUTPUT.get()
                     if output:
-                        _TRAMP = min([self.unitTRAMP*abs(output),150]) # if output is too large, TRAMP = 150
+                        _TRAMP = min([self.unitTRAMP*abs(output),60]) # if output is too large, TRAMP = 60
                         TRAMP.append(_TRAMP)
                         DCSERVO()[stage][DoF].ramp_gain(0,_TRAMP,False)
 
@@ -285,6 +297,81 @@ class LOCALDAMPED(GuardState):
 
     pass
 
+class ENGAGE_OLDC(GuardState):
+    request = False
+    index = 200
+
+    def is_oplev_inrange(self):
+        #[FIXME]function to check oplev is in range
+        return True
+        
+    @is_fault
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    @is_fault        
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            if self.is_oplev_inrange():
+                self.counter += 1
+            else:
+                notify('OPLEV is out of range. Please bring it in range')
+                if self.timer['speaking']:
+                    self.timer['speaking'] = 300
+                    kagralib.speak_aloud('OPLEV is out of range. Please bring it in range')
+                
+        elif self.counter == 1:
+            # engage DC servo
+            for stage in ['MN','BF']:
+                for key in DCSERVO()[stage].keys():
+                    DCSERVO()[stage][key].turn_on('INPUT')
+                    
+            self.counter += 1
+            self.timer['waiting'] = 1
+
+        elif self.counter == 2:
+            return True
+
+
+class DISABLE_OLDC(GuardState):
+    index = 490
+    request = False
+
+    @is_fault
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    @is_fault
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        elif self.counter == 0:
+            # disable DC servo
+            for stage in ['MN','BF']:
+                for key in DCSERVO()[stage].keys():
+                    DCSERVO()[stage][key].turn_off('INPUT')
+
+            self.counter += 1
+            self.timer['waiting'] = 1
+
+        elif self.counter == 1:
+            return True
+
+class ALIGNED(GuardState):
+    index = 500
+    request = True
+
+    @is_fault
+    def run(self):
+        return True
+    
+
 class OBSERVATION(GuardState):
     request = True
     index = 1000
@@ -299,6 +386,10 @@ edges = [('INIT','SAFE'),
          ('FLOAT','ENGAGE_LOCALDAMP'),
          ('ENGAGE_LOCALDAMP','ENGAGE_TWRDC'),
          ('ENGAGE_TWRDC','LOCALDAMPED'),
+         ('LOCALDAMPED','ENGAGE_OLDC'),
+         ('ENGAGE_OLDC','ALIGNED'),
+         ('ALIGNED','DISABLE_OLDC'),
+         ('DISABLE_OLDC','LOCALDAMPED'),
          ('LOCALDAMPED','DISABLE_TWRDC'),
          ('DISABLE_TWRDC','DISABLE_LOCALDAMP'),
          ('DISABLE_LOCALDAMP','FLOAT'),

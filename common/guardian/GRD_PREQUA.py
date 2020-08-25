@@ -29,13 +29,19 @@ chans = '/opt/rtcds/kamioka/k1/chans/'
 # Filter configuation
 ##################################################
 # frequency of BLP at SENSIN
-SENSIN_LPfreq = {'IP':10,'BF':1,'MN':100,'IM':100,'TM':100} 
+SENSIN_LPfreq = {'IP':10,'BF':1,'MN':100,'IM':100,'TM':100,'MNOL':100} 
 
 # gain for damping filter
-DAMP_gain = {'IP':[3,3,0,0,0,1],'BF':[0,0,0,0,0,30],'MN':[0,0,0,0,0,0],'IM':[0,0,0,0,0,0],'TM':[0,0,0,0,0,0],'GAS':[1,1,1,1,1]}
+DAMP_gain = {'IP':[5,5,0,0,0,1],'BF':[0,0,0,0,0,90],'MN':[.1,.1,0,0.1,0.1,0.1],'IM':[0,0,0,0,0,0],'GAS':[1,0.2,0.3,3,0.3]}
 
 # rolloff frequency for damping filter. Naively speaking, it should be around the highest resonance you want damp.
-DAMP_ROLLOFFfreq = {'IP':[1,1,1,1,1,1],'BF':[0.1,0.1,0.1,0.1,0.1,0.1],'MN':[3,3,3,3,3,3],'IM':[3,3,3,3,3,3],'TM':[3,3,3,3,3,3],'GAS':[1,1,1,1,1,]}
+DAMP_ROLLOFFfreq = {'IP':[0.6,0.6,1,1,1,0.5],'BF':[1,1,1,0.1,0.1,0.5],'MN':[3,3,3,3,3,3],'IM':[3,3,3,3,3,3],'GAS':[1,2,1,1,1,]}
+
+# OLSERVO gain [L,P,Y]
+OLSERVO_gain = {'BF':[1,1,1],'MN':[1,0.3,1],'IM':[1,1,1],'TM':[1,1,1],'MNOL':[1,1,1]}
+
+# rolloff frequency for olservo filter. Naively speaking, it should be around the highest resonance you want damp.
+OLSERVO_ROLLOFFfreq = {'BF':[10,10,10],'MN':[10,10,10],'IM':[10,10,10],'TM':[10,10,10],'MNOL':[10,10,10]}
 
 
 ##################################################
@@ -98,16 +104,22 @@ class INIT_SIGNAL_PROC(GuardState):
         self.MODAL_FBs = foton.FilterFile(chans+'K1MODAL%s.txt'%(OPTIC.upper()))
         
         # Initialize OL_PROC
-        OL_DoFs = ['PIT','YAW','SUM','CROSS']
+        OL_DoFs = ['VER','HOR','SUM','CROSS']
         for oplev in ['TM_LEN','TM_TILT','MN_TILT']:
             stage, ol = oplev.split('_')
 
             kagralib.foton_butter(self.QUA_FBs,'%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),0,freq = 1, force = True)
-            ezca.switch('MOD-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'FM1','ON')
-            ezca.switch('VIS-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'FM1','ON')
+            kagralib.foton_butter(self.MODAL_FBs,'%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),0,freq = 1, force = True)
+            ezca.switch('MOD-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','FM1','ON')
+            ezca.switch('VIS-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','FM1','ON')
+            
             for ii in range(4):
                 kagralib.copy_FB('VIS',self.PAYLOAD_FBs,'%s_%s_OPLEV_%s_SEG%d'%(OPTIC,stage,ol,ii+1),'VIS',self.QUA_FBs,'%s_DIAG_OL_PROC_%s_SEG%d'%(OPTIC,oplev,ii+1))
                 kagralib.copy_FB('VIS',self.PAYLOAD_FBs,'%s_%s_OPLEV_%s_SEG%d'%(OPTIC,stage,ol,ii+1),'MOD',self.MODAL_FBs,'%s_DIAG_OL_PROC_%s_SEG%d'%(OPTIC,oplev,ii+1))
+
+            for DoF in OL_DoFs:
+                ezca.switch('VIS-%s_DIAG_OL_PROC_%s_%s_%s'%(OPTIC,stage,ol,DoF),'INPUT','OUTPUT','ON')
+                ezca.switch('MOD-%s_DIAG_OL_PROC_%s_%s_%s'%(OPTIC,stage,ol,DoF),'INPUT','OUTPUT','ON')
 
             for model in ['VIS','MOD']:
                 OL2EUL = cdsutils.CDSMatrix(
@@ -124,7 +136,7 @@ class INIT_SIGNAL_PROC(GuardState):
             
         # Initialize SENSIN for each sensor
 
-        for stage in ['IP','BF','MN','IM','TM']:
+        for stage in ['IP','BF','MN','IM','TM','MNOL']:
             for sensor in ['H1','H2','H3','V1','V2','V3']:
                 kagralib.foton_comb(self.QUA_FBs,'%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),0,freq=60,Q=100,amplitude=-100,force=True)
                 kagralib.foton_butter(self.QUA_FBs,'%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),1,freq=SENSIN_LPfreq[stage],order=3,force=True)
@@ -135,8 +147,8 @@ class INIT_SIGNAL_PROC(GuardState):
                     kagralib.foton_zpk(self.QUA_FBs,'%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),2,z=[12.3,],p=[0.46,],k=1,name='de-white',force=True)
                     kagralib.foton_zpk(self.MODAL_FBs,'%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),2,z=[12.3,],p=[0.46,],k=1,name='de-white',force=True)
 
-                ezca.switch('VIS-%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),'FM1','FM2','FM3','ON')
-                ezca.switch('MOD-%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),'FM1','FM2','FM3','ON')
+                ezca.switch('VIS-%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),'FM1','FM2','FM3','INPUT','OUTPUT','ON')
+                ezca.switch('MOD-%s_DIAG_SENSIN_%s_%s'%(OPTIC,stage,sensor),'FM1','FM2','FM3','INPUT','OUTPUT','ON')
                 
         # GAS SENSIN
         for sensor in ['F0','F1','F2','F3','BF']:
@@ -144,8 +156,14 @@ class INIT_SIGNAL_PROC(GuardState):
             kagralib.foton_butter(self.MODAL_FBs,'%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),1,freq=10,order=3,force=True)
             kagralib.foton_comb(self.QUA_FBs,'%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),0,freq=28,harmonics=10,Q=100,amplitude=-100,force=True)
             kagralib.foton_comb(self.MODAL_FBs,'%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),0,freq=28,harmonics=10,Q=100,amplitude=-100,force=True)
-            ezca.switch('VIS-%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),'FM1','FM2','FM3','ON')
-            ezca.switch('MOD-%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),'FM1','FM2','FM3','ON')
+
+            # avoid 1 Hz excitation. klog14911
+            kagralib.foton_notch(self.QUA_FBs,'%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),2,freq=1,Q=10,force=True)
+            kagralib.foton_notch(self.QUA_FBs,'%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),2,freq=1,Q=10,force=True)
+
+            
+            ezca.switch('VIS-%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),'FM1','FM2','FM3','INPUT','OUTPUT','ON')
+            ezca.switch('MOD-%s_DIAG_SENSIN_GAS_%s'%(OPTIC,sensor),'FM1','FM2','FM3','INPUT','OUTPUT','ON')
 
 
         self.QUA_FBs.write()
@@ -157,8 +175,8 @@ class INIT_SIGNAL_PROC(GuardState):
                 '%s-%s_DIAG_SEN2EUL_%s'%(model,OPTIC,stage),
                 cols={ii+1: ii+1 for ii in range(6)},
                 rows={ii+1: ii+1 for ii in range(6)},
-            ) for stage in ['IP','BF','MN','IM','TM']}
-
+            ) for stage in ['IP','BF','MN','IM','TM','MNOL']}
+            
             if not ezca['VIS-%s_MTRX_LOCK_IP'%OPTIC]:
                 DIAG_SEN2EUL['IP'].put_matrix(
                     np.matrix([[0,0,0,2./3.,-1./3.,-1./3.],
@@ -180,17 +198,36 @@ class INIT_SIGNAL_PROC(GuardState):
                           ))
             
 
-            for stage in ['IM','MN']:
-                if not ezca['VIS-%s_MTRX_LOCK_%s'%(OPTIC,stage)]:                    
-                    DIAG_SEN2EUL[stage].put_matrix(
-                        np.matrix([[0,0,0,1./2.,1./2.,0],
-                                   [0,0,0,-1./2.,1./2.,1],
-                                   [-1./2.,0,-1./2.,0,0,0],
-                                   [1./2.,-1,1./2.,0,0,0],
-                                   [1./2.,0,-1./2.,0,0,0],
-                                   [0,0,0,1./2.,-1./2.,0]]
-                              ))
-                
+            if not ezca['VIS-%s_MTRX_LOCK_MN'%(OPTIC)]:                    
+                DIAG_SEN2EUL['MN'].put_matrix(
+                    np.matrix([[0,0,0,1./2.,1./2.,0],
+                               [0,0,0,-1./2.,1./2.,1],
+                               [-1./2.,0,-1./2.,0,0,0],
+                               [1./2.,-1,1./2.,0,0,0],
+                               [1./2.,0,-1./2.,0,0,0],
+                               [0,0,0,1./2.,-1./2.,0]]
+                    ))
+                try:
+                    DIAG_SEN2EUL['MN'].put_matrix(np.matrix(sysmod.SEN2EUL['MN']))
+                except KeyError:
+                    pass
+                        
+
+            if not ezca['VIS-%s_MTRX_LOCK_IM'%(OPTIC)]:
+                DIAG_SEN2EUL['IM'].put_matrix(
+                    np.matrix([[0,0,0,1./2.,1./2.,0],
+                               [0,0,0,-1./2.,1./2.,1],
+                               [-1./2.,0,-1./2.,0,0,0],
+                               [1./2.,-1,1./2.,0,0,0],
+                               [1./2.,0,-1./2.,0,0,0],
+                               [0,0,0,1./2.,-1./2.,0]]
+                    ))
+                try:
+                    DIAG_SEN2EUL['IM'].put_matrix(np.matrix(sysmod.SEN2EUL['IM']))
+                except KeyError:
+                    pass
+
+
                 
             if not ezca['VIS-%s_MTRX_LOCK_TM'%OPTIC]:
                 DIAG_SEN2EUL['TM'].put_matrix(
@@ -199,6 +236,16 @@ class INIT_SIGNAL_PROC(GuardState):
                                [0,0,0,0,0,0],
                                [0,0,0,0,0,0],
                                [1,0,0,0,0,0],
+                               [0,0,0,1,0,0],]
+                          ))
+                
+            if not ezca['VIS-%s_MTRX_LOCK_MNOL'%OPTIC]:
+                DIAG_SEN2EUL['MNOL'].put_matrix(
+                    np.matrix([[0,0,0,0,0,0],
+                               [0,0,0,0,0,0],
+                               [0,0,0,0,0,0],
+                               [0,0,0,0,0,0],
+                               [0,0,0,0,0,0],
                                [0,0,0,1,0,0],]
                           ))
 
@@ -219,7 +266,7 @@ class INIT_SIGNAL_PROC(GuardState):
                 '%s-%s_DIAG_DECPL_%s'%(model,OPTIC,stage),
                 cols={ii+1: ii+1 for ii in range(6)},
                 rows={ii+1: ii+1 for ii in range(6)},
-            ) for stage in ['IP','BF','MN','IM','TM']}
+            ) for stage in ['IP','BF','MN','IM','TM','MNOL']}
             
             DIAG_DECPL_GAS = cdsutils.CDSMatrix(            
                 '%s-%s_DIAG_DECPL_GAS'%(model,OPTIC),
@@ -227,7 +274,7 @@ class INIT_SIGNAL_PROC(GuardState):
                 rows={ii+1: ii+1 for ii in range(5)},
             )
 
-            for stage in ['IP','BF','MN','IM','TM']:
+            for stage in ['IP','BF','MN','IM','TM','MNOL']:
                 if not ezca['VIS-%s_MTRX_LOCK_%s'%(OPTIC,stage)]:
                     DIAG_DECPL[stage].put_matrix(np.matrix(np.identity(6)))
             if not ezca['VIS-%s_MTRX_LOCK_GAS'%(OPTIC)]:
@@ -237,6 +284,21 @@ class INIT_SIGNAL_PROC(GuardState):
             for key in sysmod.initDECPL.keys():
                 if not ezca['VIS-%s_MTRX_LOCK_%s'%(OPTIC,key)]:
                     DIAG_DECPL[key].put_matrix(np.matrix(sysmod.initDECPL[key]))
+                            
+
+            # Initialize CAL
+            for stage in ['IP','BF','MN','IM','TM','MNOL']:
+                for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
+                    for model in ['VIS','MOD']:
+                        ezca.switch('%s-%s_DIAG_CAL_%s_%s'%(model,OPTIC,stage,DoF),'INPUT','OUTPUT','ON')
+
+            
+            for DoF in ['M1','M2','M3','M4','M5']:
+                for model in ['VIS','MOD']:
+                    ezca.switch('%s-%s_DIAG_CAL_GAS_%s'%(model,OPTIC,DoF),'INPUT','OUTPUT','ON')
+                            
+                                                                
+                            
                 
         if int(ezca['FEC-%d_STATE_WORD'%sysmod.MONDCUID]) & 0b10000000000:
             ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1
@@ -322,16 +384,23 @@ class INIT_OUTPUT(GuardState):
         self.QUA_FBs = foton.FilterFile(chans+'K1VIS%sMON.txt'%(OPTIC.upper()))
         self.MODAL_FBs = foton.FilterFile(chans+'K1MODAL%s.txt'%(OPTIC.upper()))
         
-        
+        self.timer['speaking'] = 0
         self.timer['waiting'] = 0
         self.counter = 0
 
     def run(self):
         if not self.timer['waiting']:
             return
-
+        if ezca['VIS-%s_MASTERSWITCH'%OPTIC]:
+            if self.timer['speaking']:
+                kagralib.speak_aloud('MASTERSWITCH is on')
+                self.timer['speaking'] = 300
+            return
+            
         if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'SAFE':
-            kagralib.speak_aloud('Guardian need to be in safe state.')
+            if self.timer['speaking']:
+                self.timer['speaking'] = 300
+                kagralib.speak_aloud('Guardian need to be in safe state.')
             notify('Guardian need to be in safe state.')
             return
 
@@ -347,9 +416,13 @@ class INIT_OUTPUT(GuardState):
                     # Initialize anti-imaging filter                    
                     kagralib.foton_comb(FBs,'MOD_%s_AI_%s_%s'%(OPTIC,stage,DoF),0,freq=128,Q=10,amplitude=-100,harmonics=4,force=True)
                     kagralib.foton_ELP(FBs,'MOD_%s_AI_%s_%s'%(OPTIC,stage,DoF),1,freq=128,force=True)
-                    ezca.switch('MOD-%s_AI_%s_%s'%(OPTIC,stage,DoF),'FM1','FM2','ON',)
+                    kagralib.foton_gain(FBs,'MOD_%s_AI_%s_%s'%(OPTIC,stage,DoF),2,1./0.891319,force=True)
+                    ezca.switch('MOD-%s_AI_%s_%s'%(OPTIC,stage,DoF),'FM1','FM2','FM3','ON',)
 
                     # Initialize damping
+                    if stage in ['TM','MNOL']:
+                        break
+                    
                     kagralib.foton_gain(self.MODAL_FBs,'%s_DAMP_%s_%s'%(OPTIC,stage,DoF),0,-1)
                     kagralib.foton_zpk(self.MODAL_FBs,'%s_DAMP_%s_%s'%(OPTIC,stage,DoF),1,z=[0,],p=[DAMP_ROLLOFFfreq[stage][DoFindex],],k=DAMP_gain[stage][DoFindex],force=True)
                     ezca['MOD-%s_DAMP_%s_%s_GAIN'%(OPTIC,stage,DoF)] = 0
@@ -372,28 +445,58 @@ class INIT_OUTPUT(GuardState):
                 ezca.switch('MOD-%s_DAMP_%s_%s'%(OPTIC,stage,DoF),'FM1','FM2','ON')
                 DoFindex += 1
 
+            for stage in ['BF','MN','IM','TM']:
+                DoFindex = 0
+                for DoF in ['LEN','PIT','YAW']:
+                    kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_SERVO_%s_%s'%(OPTIC,stage,DoF),0,-1)
+                    kagralib.foton_zpk(self.MODAL_FBs,'%s_TMOL_SERVO_%s_%s'%(OPTIC,stage,DoF),1,z=[0,],p=[OLSERVO_ROLLOFFfreq[stage][DoFindex],],k=OLSERVO_gain[stage][DoFindex],force=True)
+                    ezca['MOD-%s_TMOL_SERVO_%s_%s_GAIN'%(OPTIC,stage,DoF)] = 0
+                    ezca.switch('MOD-%s_TMOL_SERVO_%s_%s'%(OPTIC,stage,DoF),'FM1','FM2','ON')
+                    DoFindex += 1
 
+            # specified LP
+            # to avoid the oscillation at 7.5 Hz
+            kagralib.foton_ELP(self.MODAL_FBs,'%s_TMOL_SERVO_MN_PIT'%(OPTIC,),2,freq=4.5,order=3,force=True)
+
+            
+
+
+            DoFindex = 0                
+            for DoF in ['LEN','PIT','YAW']:
+                stage = 'MN'
+                kagralib.foton_gain(self.MODAL_FBs,'%s_MNOL_SERVO_%s_%s'%(OPTIC,stage,DoF),0,-1)
+                kagralib.foton_zpk(self.MODAL_FBs,'%s_MNOL_SERVO_%s_%s'%(OPTIC,stage,DoF),1,z=[0,],p=[OLSERVO_ROLLOFFfreq['MNOL'][DoFindex],],k=OLSERVO_gain['MNOL'][DoFindex],force=True)
+                ezca['MOD-%s_MNOL_SERVO_%s_%s_GAIN'%(OPTIC,stage,DoF)] = 0
+                ezca.switch('MOD-%s_MNOL_SERVO_%s_%s'%(OPTIC,stage,DoF),'FM1','FM2','ON')
+                DoFindex += 1
+
+                
             self.counter += 1
 
         elif self.counter == 1:
-            # OLDC initialization
+            # OL_DC initialization
             for DoF in ['PIT','YAW']:
-                ezca['MOD-%s_OLDC_SETPOINT_%s_TRAMP'%(OPTIC,DoF)] = 0.5
-                ezca.switch('MOD-%s_OLDC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
-            
-                kagralib.foton_zpk(self.MODAL_FBs,'%s_OLDC_MN_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_OLDC_MN_%s'%(OPTIC,DoF),0,0.01,name='0.01Hz',force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_OLDC_MN_%s'%(OPTIC,DoF),1,0.1,name='0.1Hz',force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_OLDC_MN_%s'%(OPTIC,DoF),8,-1,force=True)
-                
-                kagralib.foton_zpk(self.MODAL_FBs,'%s_OLDC_BF_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_OLDC_BF_%s'%(OPTIC,DoF),0,0.001,'1mHz',force=True)
 
-                MN = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
-                BF = ezca.get_LIGOFilter('MOD-%s_OLDC_BF_%s'%(OPTIC,DoF))
+                MN = ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF))
+                BF = ezca.get_LIGOFilter('MOD-%s_TMOL_DC_BF_%s'%(OPTIC,DoF))
+
                 if MN.OUTPUT.get() or BF.OUTPUT.get():
-                    kagralib.speak_aloud('There is output in M N or B F D C loop. please check it.')
+                    if self.timer['speaking']:
+                        self.timer['speaking'] = 300
+                        kagralib.speak_aloud('There is output in M N or B F D C loop. please check it.')
+
                     return
+                ezca['MOD-%s_TMOL_DC_SETPOINT_%s_TRAMP'%(OPTIC,DoF)] = 0.5
+                ezca.switch('MOD-%s_TMOL_DC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
+            
+                kagralib.foton_zpk(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),0,0.001,name='1mHz',force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),1,0.01,name='10mHz',force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),8,-1,force=True)
+                
+                kagralib.foton_zpk(self.MODAL_FBs,'%s_TMOL_DC_BF_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_BF_%s'%(OPTIC,DoF),0,0.0001,'0.1mHz',force=True)
+
                 MN.turn_off('INPUT','OFFSET')
                 MN.turn_on('FM1','FM9','FM10')
                 MN.RSET.put(2)
@@ -411,6 +514,13 @@ class INIT_OUTPUT(GuardState):
 
             # IPDC initialization
             for DoF in ['LEN','TRA','YAW']:
+
+                if ezca['MOD-%s_IPDC_%s_OUTPUT'%(OPTIC,DoF)]:
+                    if self.timer['speaking']:
+                        self.timer['speaking'] = 300
+                    kagralib.speak_aloud('There is output in I P D C loop. please check it.')
+                    return
+
                 ezca['MOD-%s_IPDC_SETPOINT_%s_TRAMP'%(OPTIC,DoF)] = 0.5
                 ezca.switch('MOD-%s_IPDC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
             
@@ -418,11 +528,8 @@ class INIT_OUTPUT(GuardState):
                 kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),0,0.001,name='1mHz',force=True)
                 kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),1,0.01,name='10mHz',force=True)
                 kagralib.foton_gain(self.MODAL_FBs,'%s_IPDC_%s'%(OPTIC,DoF),8,-1,force=True)
-
+                
                 ezca.switch('MOD-%s_IPDC_%s'%(OPTIC,DoF),'FM2','FM9','FM10','ON','INPUT','OFF')
-                if ezca['MOD-%s_IPDC_%s_OUTPUT'%(OPTIC,DoF)]:
-                    kagralib.speak_aloud('There is output in I P D C loop. please check it.')
-                    return
                 ezca['MOD-%s_IPDC_%s_RSET'%(OPTIC,DoF)] = 2
                 time.sleep(0.3)
                 ezca['MOD-%s_IPDC_%s_GAIN'%(OPTIC,DoF)] = 1
@@ -431,6 +538,12 @@ class INIT_OUTPUT(GuardState):
         elif self.counter == 3:
             # GASDC initialization
             for DoF in ['F0','F1','F2','F3','BF']:
+                if ezca['MOD-%s_GASDC_%s_OUTPUT'%(OPTIC,DoF)]:
+                    if self.timer['speaking']:
+                        self.timer['speaking'] = 300
+                    kagralib.speak_aloud('There is output in GAS D C loop. please check it.')
+                    return
+
                 ezca['MOD-%s_GASDC_SETPOINT_%s_TRAMP'%(OPTIC,DoF)] = 0.5
                 ezca.switch('MOD-%s_GASDC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
                 kagralib.foton_zpk(self.MODAL_FBs,'%s_GASDC_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
@@ -438,10 +551,7 @@ class INIT_OUTPUT(GuardState):
                 kagralib.foton_gain(self.MODAL_FBs,'%s_GASDC_%s'%(OPTIC,DoF),1,0.01,name='10mHz',force=True)
                 kagralib.foton_gain(self.MODAL_FBs,'%s_GASDC_%s'%(OPTIC,DoF),8,-1,force=True)
                 
-                ezca.switch('MOD-%s_GASDC_%s'%(OPTIC,DoF),'FM2','FM9','FM10','ON','INPUT','OFF')
-                if ezca['MOD-%s_GASDC_%s_OUTPUT'%(OPTIC,DoF)]:
-                    kagralib.speak_aloud('There is output in GAS D C loop. please check it.')
-                    return
+                ezca.switch('MOD-%s_GASDC_%s'%(OPTIC,DoF),'FM1','FM9','FM10','ON','INPUT','OFF')
                 ezca['MOD-%s_GASDC_%s_RSET'%(OPTIC,DoF)] = 2
                 time.sleep(0.3)
                 ezca['MOD-%s_GASDC_%s_GAIN'%(OPTIC,DoF)] = 1
@@ -635,7 +745,7 @@ def QUArun(self,GAS=False):
                 _notchdesign = ''
                 if len(self.degenerate) > 0:
                     for mode in self.degenerate:
-                        notchfreq = ezca[self.prefix + 'PRE_FREQ']
+                        notchfreq = ezca['PRE-%s_MODE_NO%s_FREQ'%(OPTIC,mode)]
                         if notchfreq > 0:
                             _notchdesign += kagralib.foton_notch(self.FBs,
                                                                  fotonQUAname+'_PLL_DEMOD_SIG',
@@ -908,9 +1018,9 @@ class EXCITE_RESONANCE(GuardState):
         if not self.timer['waiting']:
             return
         
-        self.modeDoF = ezca['PRE-%s_MODE_GAS_NO%d_DOF'%(OPTIC,self.modeindex)]
-        self.Stage = ezca['PRE-%s_MODE_GAS_NO%d_STAGE'%(OPTIC,self.modeindex)]
-        self.pre_freq = ezca['PRE-%s_MODE_GAS_NO%d_PRE_FREQ'%(OPTIC,self.modeindex)]
+        self.modeDoF = ezca['PRE-%s_MODE_NO%d_DOF'%(OPTIC,self.modeindex)]
+        self.Stage = ezca['PRE-%s_MODE_NO%d_STAGE'%(OPTIC,self.modeindex)]
+        self.pre_freq = ezca['PRE-%s_MODE_NO%d_PRE_FREQ'%(OPTIC,self.modeindex)]
 
                     
         
@@ -1041,7 +1151,7 @@ class RECORD_MEASUREMENT(GuardState):
         
         
         ax2 = fig.add_subplot(2,1,2)
-        ax1.plot(self.tt[self.param_chans['Q_VAL']],self.data[self.param_chans['Q_VAL']])
+        ax2.plot(self.tt[self.param_chans['Q_VAL']],self.data[self.param_chans['Q_VAL']])
         ax2.set_xlabel('time [sec]')
         ax2.set_ylabel('Q Value')
         
@@ -1423,10 +1533,11 @@ class RECORD_MEASUREMENT(GuardState):
             ax1.hist(_mean_list[0], bins=5)# Always hard to determine a proper bins; if using the Sturges' rule, bins=5 for 24 data points.
             fig.savefig('/users/akutsu/test0.png')# Change the path!!
             '''
-            
-            self.counter += 1
-        elif self.counter == 3:
             ezca['PRE-%s_MODE_NO%d_PRE_FREQ'%(OPTIC,self.modeindex)] = ezca['PRE-%s_MODE_NO%d_FREQ'%(OPTIC,self.modeindex)]
+            self.counter += 1
+            
+        elif self.counter == 3:
+            
             
             self.counter += 1
             
@@ -1719,12 +1830,11 @@ class RECORD_MEASUREMENT_GAS(GuardState):
         elif self.counter == 4:
             return True
 
-class INIT_MODALDAMP(GuardState):
-    index = 210
+class DESIGN_MODALDAMP(GuardState):
+    index = 211
     request = True
 
     def main(self):
-        self.state = 'FREE'
         self.DoFlist = {'TM':['LEN','PIT','YAW'],
                         'MN':['LEN','TRA','VER','ROL','PIT','YAW'],
                         'IM':['LEN','TRA','VER','ROL','PIT','YAW'],
@@ -1734,12 +1844,85 @@ class INIT_MODALDAMP(GuardState):
         self.modeindex = ezca['QUA-%s_MODE_INDEX'%OPTIC]
         self.prefix = 'MOD-%s_MODE%d_'%(OPTIC, self.modeindex)
         
-        self.freq = ezca['VIS-%s_%s_MODE_LIST_NO%d_FREQ'%(OPTIC,self.state,self.modeindex)]
-        self.Q = max(10,ezca['VIS-%s_%s_MODE_LIST_NO%d_Q_VAL'%(OPTIC,self.state,self.modeindex)])
+        self.freq = ezca['PRE-%s_MODE_NO%d_FREQ'%(OPTIC,self.modeindex)]
+        self.freqband = self.freq * 0.1
         
-        self.modeDoF = ezca['VIS-%s_FREE_MODE_LIST_NO%d_DOF'%(OPTIC,self.modeindex)]
-        self.modestage = ezca['VIS-%s_FREE_MODE_LIST_NO%d_PLL_SENS'%(OPTIC,self.modeindex)]
+        self.modeDoF = ezca['PRE-%s_MODE_NO%d_DOF'%(OPTIC,self.modeindex)]
         
+        self.SENSMAT = cdsutils.CDSMatrix(            
+            'PRE-%s_MODE_NO%d_SENSMAT_RATIO'%(OPTIC,self.modeindex),
+            rows={['LEN','TRA','VER','ROL','PIT','YAW'][ii]:ii+1 for ii in range(6)},
+            cols={['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)},
+        )
+            
+        self.SENSMAT_PHASE = cdsutils.CDSMatrix(            
+            'PRE-%s_MODE_NO%d_SENSMAT_PHASE'%(OPTIC,self.modeindex),
+            rows={['LEN','TRA','VER','ROL','PIT','YAW'][ii]:ii+1 for ii in range(6)},
+            cols={['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)},
+        )
+
+        self.MOTIONVEC = cdsutils.CDSMatrix(            
+            'PRE-%s_MODE_NO%d_STAGE_MOTION_RATIO'%(OPTIC,self.modeindex),
+            rows={['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)},
+            cols={ii+1:ii+1 for ii in range(1)},
+        )
+            
+        self.MOTIONVEC_PHASE = cdsutils.CDSMatrix(            
+            'PRE-%s_MODE_NO%d_STAGE_MOTION_PHASE'%(OPTIC,self.modeindex),
+            rows={['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)},
+            cols={ii+1:ii+1 for ii in range(1)},
+        )
+
+        self.STAGEDIV = cdsutils.CDSMatrix(            
+            'MOD-%s_MODE%d_STAGE_DIVIDER'%(OPTIC,self.modeindex),
+            rows={['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)},
+            cols={ii+1:ii+1 for ii in range(1)},
+            ramping=True
+            )
+
+        DoFList_stage = {
+            'IP':['LEN','TRA','YAW'],
+            'BF':['LEN','TRA','VER','ROL','PIT','YAW'],
+            'MN':['LEN','TRA','VER','ROL','PIT','YAW'],
+            'IM':['LEN','TRA','VER','ROL','PIT','YAW'],
+            'TM':['LEN','PIT','YAW'],
+            }
+        
+        self.ACTVEC = {stage:cdsutils.CDSMatrix(            
+            'MOD-%s_MODE%d_%s_ACT_VECTOR'%(OPTIC,self.modeindex,stage),
+            rows={DoFList_stage[stage][ii]:ii+1 for ii in range(len(DoFList_stage[stage]))},
+            cols={ii+1:ii+1 for ii in range(1)},
+            ) for stage in ['IP','BF','MN','IM','TM']}
+
+        ACTVEC_PHASE_label = []
+        for stage in ['IP','BF','MN','IM','TM']:
+            for DoF in DoFList_stage[stage]:
+                ACTVEC_PHASE_label.append('%s_%s'%(stage,DoF))
+            
+        self.ACTVEC_PHASE = cdsutils.CDSMatrix(            
+            'MOD-%s_MODE%d_ACT_PHASE_SHIFT_DEG'%(OPTIC,self.modeindex),
+            rows={ACTVEC_PHASE_label[ii]:ii+1 for ii in range(len(ACTVEC_PHASE_label))},
+            cols={ii+1:ii+1 for ii in range(1)},
+            )
+
+        SENSVEC_PHASE_label = []
+        for stage in ['IP','BF','MN','IM','TM']:
+            for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
+                SENSVEC_PHASE_label.append('%s_%s'%(stage,DoF))
+        
+        self.SENSVEC = cdsutils.CDSMatrix(            
+            'MOD-%s_MODE%d_SENS_VECTOR'%(OPTIC,self.modeindex),
+            cols={SENSVEC_PHASE_label[ii]:ii+1 for ii in range(len(SENSVEC_PHASE_label))},
+            rows={ii+1:ii+1 for ii in range(1)},
+            )
+        
+        self.SENSVEC_PHASE = cdsutils.CDSMatrix(            
+            'MOD-%s_MODE%d_SENS_PHASE_SHIFT_DEG'%(OPTIC,self.modeindex),
+            rows={SENSVEC_PHASE_label[ii]:ii+1 for ii in range(len(SENSVEC_PHASE_label))},
+            cols={ii+1:ii+1 for ii in range(1)},
+            )
+
+        '''
         _degenerate = ezca['VIS-%s_FREE_MODE_LIST_NO%d_DEGEN_MODE'%(OPTIC,self.modeindex)].split(',')
         self.degenerate = []
         for modestr in _degenerate:
@@ -1747,16 +1930,11 @@ class INIT_MODALDAMP(GuardState):
                 self.degenerate.append(int(modestr))
             except:
                 pass
-
+        '''
         self.counter = 0
         self.timer['waiting'] = 0
 
     def run(self):
-        if 'self' in ezca['VIS-%s_FREE_MODE_LIST_NO%d_USER_DESCRIPTION'%(OPTIC,self.modeindex)]:
-            kagralib.speak_aloud('This filter is self designed. I don\'t change anyhing.')
-            return True
-
-        
         if not self.timer['waiting']:
             return
         
@@ -1764,61 +1942,44 @@ class INIT_MODALDAMP(GuardState):
             log( 'Measurement has not been done yet. Please ask PReQua to measure resonant frequency')
             return True
 
-        if self.counter == 1:
+        if self.counter == 0:
             ezca['MOD-%s_MODE%d_ACT_FREQ'%(OPTIC, self.modeindex)] = self.freq
-            ezca['MOD-%s_MODE%d_SENS_FREQ'%(OPTIC, self.modeindex)] = self.freq
+            ezca['MOD-%s_MODE%d_SENS_FREQ'%(OPTIC, self.modeindex)] = 1
 
+            for stage in self.STAGEDIV.rows.keys():
+                self.STAGEDIV[stage,1] = 0
 
-            ii = 1
-            for stage in ['IP','BF','MN','IM','TM']:
-                for DoF in self.DoFlist[stage]:
-                    if DoF == self.modeDoF:
-                        ezca[self.prefix + 'ACT_PHASE_SHIFT_DEG_%d_1'%(ii)] = - ezca['VIS-%s_%s_MODE_LIST_NO%d_REL_PHASE_%s'%(OPTIC,self.state,self.modeindex,stage)]
-                        ezca[self.prefix + 'ACT_VECTOR_%d_1'%(ii)] =  ezca['VIS-%s_%s_MODE_LIST_NO%d_CP_COEF_%s'%(OPTIC,self.state,self.modeindex,stage)] / sysmod.ACTRATIO[self.modeDoF][stage]
-                    else:
-                        ezca[self.prefix + 'ACT_PHASE_SHIFT_DEG_%d_1'%(ii)] = 0
-                        ezca[self.prefix + 'ACT_VECTOR_%d_1'%(ii)] = 0
-                    ii += 1
-            ii = 1
-            for stage in ['IP','BF','MN','IM','TM']:
-                for DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
-                    if DoF == self.modeDoF and stage == self.modestage:
-                        ezca[self.prefix + 'SENS_VECTOR_1_%d'%(ii)] = 1
-                    else:
-                        ezca[self.prefix + 'SENS_VECTOR_1_%d'%(ii)] = 0
-                    ii += 1
+            try:
+                self.STAGEDIV['TM',1] = self.MOTIONVEC['TM',1]
+                self.STAGEDIV['MN',1] = self.MOTIONVEC['MN',1] * ezca['MOD-%s_DIAG_CAL_MN_%s_GAIN'%(OPTIC,self.modeDoF)]
+                for stage in ['TM','MN']:
+                    self.ACTVEC[stage][self.modeDoF,1] = [1,-1][self.MOTIONVEC_PHASE[stage,1] <= -180]
+                    self.ACTVEC_PHASE['%s_%s'%(stage,self.modeDoF),1] = -np.mod(self.MOTIONVEC_PHASE[stage,1],-180)
+            except KeyError:
+                pass
+            self.STAGEDIV.load()
 
+            for dof in self.SENSVEC.cols.keys():
+                self.SENSVEC[1,dof] = 0
+            if self.modeDoF in ['LEN','PIT','YAW']:
+                log(self.SENSVEC)
+                self.SENSVEC[1,'TM_%s'%self.modeDoF] = 1/ezca['MOD-%s_DIAG_CAL_TM_%s_GAIN'%(OPTIC,self.modeDoF)]
+
+            self.SERVO = ezca.get_LIGOFilter(self.prefix+'SERVO')
+            self.SERVO.ramp_gain(0,2,False)
+            self.timer['waiting'] = 2
             self.counter += 1
 
-        elif self.counter == 0:
-            SERVO = ezca.get_LIGOFilter(self.prefix+'SERVO')
-            SERVO.ramp_gain(0,2,False)
-            SERVO.turn_on('INPUT','OUTPUT','FM1','FM2','FM10')
+
+        elif self.counter == 1:
+            self.SERVO.turn_on('INPUT','OUTPUT','FM1','FM2','FM10')
             
             FBs = foton.FilterFile(chans+'K1MODAL%s.txt'%OPTIC)
-            kagralib.foton_butter(FBs,'%s_MODE%d_SERVO'%(OPTIC, self.modeindex),Type='BandPass',index=1,order=3,freq=self.freq-self.freq/(self.Q/30),freq2=self.freq+self.freq/(self.Q/30),force=True)
+            kagralib.foton_butter(FBs,'%s_MODE%d_SERVO'%(OPTIC, self.modeindex),Type='BandPass',index=1,order=2,freq=self.freq-self.freqband,freq2=self.freq+self.freqband,force=True)
             kagralib.foton_zpk(FBs,'%s_MODE%d_SERVO'%(OPTIC, self.modeindex),index=0,z=[0,],p=[self.freq*10],k=-1)
 
-            _notchdesign = ''
-            if len(self.degenerate) > 0:
-                for mode in self.degenerate:
-                    notchfreq = ezca['VIS-%s_FREE_MODE_LIST_NO%d_PRE_FREQ'%(OPTIC,mode)]
-                    if notchfreq > 0:
-                        _notchdesign += kagralib.foton_notch(FBs,
-                                                            '%s_MODE%d_SERVO'%(OPTIC, self.modeindex),
-                                                            index=2,
-                                                            Q=100,
-                                                            attenuation=100,
-                                                            freq=notchfreq,
-                                                            force=True)
-                kagralib.foton_design(FBs,
-                                      '%s_MODE%d_SERVO'%(OPTIC, self.modeindex),
-                                      2,
-                                      _notchdesign,
-                                      'notch',
-                                      force=True)
-
             FBs.write()
+            time.sleep(0.5)
             ezca[self.prefix+'SERVO_RSET'] = 1
             self.counter += 1
 
@@ -1827,120 +1988,131 @@ class INIT_MODALDAMP(GuardState):
         elif self.counter == 2:
             return True
 
-class SENSOR_DIAGONALIZATION(GuardState):
+
+#######################################################################
+# Sensor diagonalization
+
+def calc_major_axis(A,B,theta):
+    # calc major axis of elliptic described as x = A*cos(t), y = B*cos(t+theta)
+    # 2020/08/02 by MN
+    # calculate t which X = x**2 + y**2 got maximum.
+    # dX/dt =  a*sin(2t)+b*cos(2t) = sqt(a**2+b**2)*sin(2t+alpha) = 0,
+    # where a, b and alpha is drived as in the script.
+    # major axis can be derived as x = A*cos(-alpha/2), y = B*cos(-alpha/2+theta)
+    
+    a = (A**2+B**2*np.cos(2*theta))
+    b = B**2*np.sin(2*theta)
+    alpha = np.arcsin(b/np.sqrt(a**2+b**2))
+    
+    x = A*np.cos(-alpha/2)
+    y = B*np.cos(-alpha/2+theta)
+        
+    return x,y
+
+def calc_SENSDIAG_matrix(stage):
+    _t_sensing_matrix = np.identity(6)
+    ii = 0
+    SENSING_MTRX_AMP = cdsutils.CDSMatrix(
+        'PRE-%s_SENSDIAG_%s_AMP'%(OPTIC,stage),
+        cols={['LEN','TRA','VER','ROL','PIT','YAW'][ii]: ii+1 for ii in range(6)},
+        rows={['LEN','TRA','VER','ROL','PIT','YAW'][ii]: ii+1 for ii in range(6)},                
+    )
+    SENSING_MTRX_PHASE = cdsutils.CDSMatrix(
+        'PRE-%s_SENSDIAG_%s_PHASE'%(OPTIC,stage),
+        cols={['LEN','TRA','VER','ROL','PIT','YAW'][ii]: ii+1 for ii in range(6)},
+        rows={['LEN','TRA','VER','ROL','PIT','YAW'][ii]: ii+1 for ii in range(6)},                
+    )
+    for motion_DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
+        _sensing_vector = []
+        _A = SENSING_MTRX_AMP[motion_DoF,motion_DoF]
+        _theta_a = SENSING_MTRX_PHASE[motion_DoF,motion_DoF]
+        if _A == 0:
+            log('skip this DoF')
+            
+        else:
+            for sensor_DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
+                _B = SENSING_MTRX_AMP[sensor_DoF,motion_DoF]
+                _theta_b = SENSING_MTRX_PHASE[sensor_DoF,motion_DoF]
+                
+                _theta = (_theta_a - _theta_b)/180*np.pi
+                
+                _AA,_BB = calc_major_axis(_A,_B,_theta)
+                _sensing_vector.append(_BB/_AA)
+                if abs(_sensing_vector[-1]) < 1e-3:
+                    _sensing_vector[-1] = 0
+
+            _t_sensing_matrix[ii] = _sensing_vector
+                
+        ii += 1
+    sensing_matrix = np.transpose(_t_sensing_matrix)
+    diag_matrix = np.linalg.inv(sensing_matrix)
+        
+    for ii in range(len(diag_matrix)):
+        diag_matrix[ii] = diag_matrix[ii]/diag_matrix[ii][ii]
+    return diag_matrix
+
+
+def sensdiag_run(self):
+    if self.counter == 0:
+        stage = self.stagelist[self.stage_counter]
+        
+        if ezca['VIS-%s_MTRX_LOCK_%s'%(OPTIC,stage)]:
+            notify('%s diagonalization matrix is locked. Skip.')
+        else:
+            for model in ['MOD','VIS']:
+                DECPL = cdsutils.CDSMatrix(
+                    '%s-%s_DIAG_DECPL_%s'%(model,OPTIC,stage),
+                    cols={ii+1: ii+1 for ii in range(6)},
+                    rows={ii+1: ii+1 for ii in range(6)},                
+                )
+
+                try:
+                    initMTRX = sysmod.initDECPL[stage]
+                except KeyError:
+                    initMTRX = np.matrix(np.identity(6))
+                DECPL.put_matrix(np.dot(calc_SENSDIAG_matrix(stage),initMTRX))
+                                     
+        self.stage_counter += 1
+        if self.stage_counter >= len(self.stagelist):
+            self.counter += 1
+
+    else:
+        return True
+
+class SENS_DIAG_TOWER(GuardState):
     index = 250
     request = True
 
-    def calc_major_axis(self,A,B,theta):
-        # calc major axis of elliptic described as x = A*cos(t), y = B*cos(t+theta)
-        # 2020/08/02 by MN
-        # calculate t which X = x**2 + y**2 got maximum.
-        # dX/dt =  a*sin(2t)+b*cos(2t) = sqt(a**2+b**2)*sin(2t+alpha) = 0,
-        # where a, b and alpha is drived as in the script.
-        # major axis can be derived as x = A*cos(-alpha/2), y = B*cos(-alpha/2+theta)
-    
-        a = (A**2+B**2*np.cos(2*theta))
-        b = B**2*np.sin(2*theta)
-        alpha = np.arcsin(b/np.sqrt(a**2+b**2))
-        
-        x = A*np.cos(-alpha/2)
-        y = B*np.cos(-alpha/2+theta)
-        
-        return x,y
-
-    def calc_SENSDIAG_matrix(self,stage):
-        _t_sensing_matrix = np.identity(6)
-        ii = 0
-            
-        for motion_DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
-            if stage in ['IP','BF','TM']:
-                SENDIAG = 'SENSDIAG_TOWER'
-                if stage == 'TM' and motion_DoF == 'PIT':
-                    log('hogehoge')
-                    SENDIAG = 'SENSDIAG'
-            else:
-                SENDIAG = 'SENSDIAG'            
-            _sensing_vector = []
-            _A = ezca['VIS-%s_%s_%s_%s_CP_COEF_%s'%(OPTIC,SENDIAG,motion_DoF,stage,motion_DoF)]
-            _theta_a = ezca['VIS-%s_%s_%s_%s_REL_PHASE_%s'%(OPTIC,SENDIAG,motion_DoF,stage,motion_DoF)]
-            if _A == 0:
-                log('skip this DoF')
-                
-            else:
-                for sensor_DoF in ['LEN','TRA','VER','ROL','PIT','YAW']:
-                    _B = ezca['VIS-%s_%s_%s_%s_CP_COEF_%s'%(OPTIC,SENDIAG,motion_DoF,stage,sensor_DoF)]
-                    _theta_b = ezca['VIS-%s_%s_%s_%s_REL_PHASE_%s'%(OPTIC,SENDIAG,motion_DoF,stage,sensor_DoF)]
-
-                    _theta = (_theta_a - _theta_b)/180*np.pi
-                    
-                    _AA,_BB = self.calc_major_axis(_A,_B,_theta)
-                    _sensing_vector.append(_BB/_AA)
-                    if abs(_sensing_vector[-1]) < 1e-3:
-                        _sensing_vector[-1] = 0
-
-                _t_sensing_matrix[ii] = _sensing_vector
-                
-            ii += 1
-        sensing_matrix = np.transpose(_t_sensing_matrix)
-        diag_matrix = np.linalg.inv(sensing_matrix)
-        
-        for ii in range(len(diag_matrix)):
-            diag_matrix[ii] = diag_matrix[ii]/diag_matrix[ii][ii]
-        return diag_matrix
 
 
     def main(self):
         self.counter = 0
         self.timer['waiting'] = 0
         self.timer['speaking'] = 0
+        self.stage_counter = 0
+        self.stagelist = ['IP','BF']
 
     def run(self):
-        if ezca['VIS-%s_MTRX_LOCK'%OPTIC]:
-            if self.timer['speaking']:
-                kagralib.speak_aloud('Sensing and actuator matrices are locke. I cannot change it')
-                self.timer['speaking'] = 300
-            return True
-        
-        if self.counter == 0:
-            for model in ['MOD','VIS']:
-                DECPL = {stage:cdsutils.CDSMatrix(
-                    '%s-%s_DIAG_DECPL_%s'%(model,OPTIC,stage),
-                    cols={ii+1: ii+1 for ii in range(6)},
-                    rows={ii+1: ii+1 for ii in range(6)},                
-                ) for stage in ['IP','BF','MN','IM','TM']}
-            
-                for stage in ['BF','MN','IM','TM']:
-                    if ezca['VIS-%s_MTRX_LOCK'%(OPTIC)]:
-                        kagralib.speak_aloud('Decoupling Matrix is locked. I cannot change it')
-                        self.counter += 1
-                        return 
-                    DECPL[stage].put_matrix(np.dot(self.calc_SENSDIAG_matrix(stage),DECPL[stage].get_matrix()),)
-            self.counter += 1
+        return sensdiag_run(self)
 
-        else:
-            return True
-
-
-class SENSOR_DIAGONALIZATION_GAS(GuardState):
+class SENS_DIAG_PAYLOAD(GuardState):
     index = 251
     request = True
 
-    def calc_major_axis(self,A,B,theta):
-        # calc major axis of elliptic described as x = A*cos(t), y = B*cos(t+theta)
-        # 2020/08/02 by MN
-        # calculate t which X = x**2 + y**2 got maximum.
-        # dX/dt =  a*sin(2t)+b*cos(2t) = sqt(a**2+b**2)*sin(2t+alpha) = 0,
-        # where a, b and alpha is drived as in the script.
-        # major axis can be derived as x = A*cos(-alpha/2), y = B*cos(-alpha/2+theta)
-    
-        a = (A**2+B**2*np.cos(2*theta))
-        b = B**2*np.sin(2*theta)
-        alpha = np.arcsin(b/np.sqrt(a**2+b**2))
-        
-        x = A*np.cos(-alpha/2)
-        y = B*np.cos(-alpha/2+theta)
-        
-        return x,y
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+        self.timer['speaking'] = 0
+        self.stage_counter = 0
+        self.stagelist = ['MN','IM','TM']
+
+    def run(self):
+        return sensdiag_run(self)
+
+
+class SENS_DIAG_GAS(GuardState):
+    index = 252
+    request = True
 
     def calc_SENSDIAG_matrix(self):
         _t_sensing_matrix = np.identity(5)
@@ -1962,7 +2134,7 @@ class SENSOR_DIAGONALIZATION_GAS(GuardState):
 
                     _theta = (_theta_a - _theta_b)/180*np.pi
                     
-                    _AA,_BB = self.calc_major_axis(_A,_B,_theta)
+                    _AA,_BB = calc_major_axis(_A,_B,_theta)
                     _sensing_vector.append(_BB/_AA)
                     if abs(_sensing_vector[-1]) < 1e-3:
                         _sensing_vector[-1] = 0
@@ -1997,15 +2169,19 @@ class SENSOR_DIAGONALIZATION_GAS(GuardState):
                     rows={ii+1: ii+1 for ii in range(5)},                
                 )
             
-
-                DECPL.put_matrix(np.dot(self.calc_SENSDIAG_matrix(),DECPL.get_matrix()),)
+                try:
+                    initMTRX = sysmod.initDECPL['GAS']
+                except KeyError:
+                    initMTRX = np.matrix(np.identity(5))
+                    
+                DECPL.put_matrix(np.dot(self.calc_SENSDIAG_matrix(),initMTRX))
             self.counter += 1
 
         else:
             return True
                 
 
-class SENSOR_CALIBRATION(GuardState):
+class SENSOR_CALIBRATION_PAY(GuardState):
     # Calibrate PIT YAW sensors in MN, IM at DC with the reference of TM sensor.
     # Then, ROL is calibrated so that ROL and PIT has same order of values when same counts is input to the actuator.
     # Same for YAW v.s. LEN and YAW v.s. TRA
@@ -2013,128 +2189,509 @@ class SENSOR_CALIBRATION(GuardState):
     request = True
 
     def get_data(self):
-        _data = cdsutils.getdata(self.chans,self.avgduration)
-        data = {self.chans[ii]: np.average(_data[ii].data) for ii in range(len(self.chans))}
+        _data = cdsutils.getdata(self.channels,self.avgduration)
+        data = {self.channels[ii]: np.average(_data[ii].data) for ii in range(len(self.channels))}
         return data
+
+    def make_resultstr(self,data):
+        resultstr = ''
+        for stage in self.chandict.keys():
+            resultstr += '%s: ('%stage
+            for DoF in self.chandict[stage].keys():
+                resultstr += '%s:%f, '%(DoF, data[self.chandict[stage][DoF]])
+            resultstr += ')\n'
+        return resultstr
+                
         
     def main(self):
-        self.ofs_dict = {
-            'LEN':20000,
-            'TRA':10000,
-            'ROL':5000,
-            'PIT':5000,
-            'YAW':1000
-        }
+        self.maxoutput_dict = {'LEN':4000,'PIT':2000,'YAW':250}
+        
         self.DoFlist = ['LEN','TRA','ROL','PIT','YAW']
         self.stagelist = ['MN','IM']
         
         self.counter = 0
         self.timer['waiting'] = 0
+        self.currentDoF = 0
+        self.stage = 'MN'
 
         
-        self.chans = ['K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF) for stage in ['MN','IM','TM'] for DoF in self.DoFlist]
 
         self.TRAMP = 15 #ramptime for offset
-        self.avgduration = 10 # average duration for each data
-        self.settletime = 5 # settle time after put/remove offset
-        self.DoFindex = 0
+        self.avgduration = 20 # average duration for each data
+        self.settletime = 15 # settle time after put/remove offset
+        self.DoFindex = {['LEN','TRA','VER','ROL','PIT','YAW'][ii]:ii for ii in range(6)}
         self.stageindex = 0
         self.dif = {stage:{} for stage in self.stagelist}
+        self.offset_dict = {}
+
+        self.IMcalib = {}
+
+        ##### Define logger
+        _t = time.localtime()
+        keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
+        self.time = {
+            keys[ii]:_t[ii] for ii in range(len(keys))
+        }
+        
+        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
+        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        
+        kagralib.mkdir(self.figdir)
+        kagralib.mkdir(self.figdir_archive)
+        
+        self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
+                                         str(self.time['MON']).zfill(2),
+                                         str(self.time['DAY']).zfill(2),
+                                         str(self.time['HOUR']).zfill(2),
+                                         str(self.time['MIN']).zfill(2))
+        
+        #initialize logger
+        log_file = self.figdir_archive + self.fileprefix + 'measurement.log'
+        
+        self.logger=logging.getLogger('flogger')
+        self.logger.setLevel(logging.DEBUG)
+        handler=logging.StreamHandler()
+        self.logger.addHandler(handler)
+        handler=logging.FileHandler(filename=log_file)
+        self.logger.addHandler(handler)
+
+        self.DoFlist = ['PIT','YAW']
+    
         
                                                                                                               
     def run(self):
         if not self.timer['waiting']:
             return
 
-        # initialize INF
+        
         if self.counter == 0:
-            #engage length oplev
-            ezca['VIS-%s_TM_DIAG_SEN2EUL_1_4'%OPTIC] = 1
-            for stage in self.stagelist:
-                for DoF in self.DoFlist:
-                    INF = ezca.get_LIGOFilter('VIS-%s_%s_DIAG_%s'%(OPTIC,stage,DoF))
-                    INF.ramp_gain(1,0,False)
-                    INF.ramp_offset(0,0,False)
+        #initialize SUMOUT
+            for DoF in self.maxoutput_dict.keys():
+                
 
-                    SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
-                    SUMOUT.ramp_gain(1,5,False)
-                    SUMOUT.ramp_offset(0,5,False)
-                    SUMOUT.turn_on('OFFSET')
+                SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_%s_%s'%(OPTIC,self.stage,DoF))
+                SUMOUT.ramp_offset(0,self.TRAMP,False)
+                
+                # make ofsdict so that maximum coil output got max output
+                coillist = ['V1','V2','V3','H1','H2','H3']
+                decpl = np.zeros((6,6))
+                eul2coil = np.zeros((len(coillist),6))
+                for ii in range(len(decpl)):
+                    for jj in range(len(decpl[ii])):
+                        decpl[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
+                for ii in range(len(eul2coil)):
+                    for jj in range(len(eul2coil[ii])):
+                        eul2coil[ii,jj] = ezca['MOD-%s_EUL2COIL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
+                dof2coil = np.dot(eul2coil,decpl)
+                _maximumoffset = []
 
-                    if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
-                        self.timer['waiting'] = 5
-            self.counter += 1 
+                for ii in range(len(coillist)):
+                    coil = coillist[ii]
+                    _maximumoffset.append(abs(self.maxoutput_dict[DoF]/
+                                              SUMOUT.GAIN.get()/
+                                              ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(OPTIC,self.stage,coil)]/
+                                              dof2coil[ii,self.DoFindex[DoF]-1]))
+                    
+                log('%s %s _maximumoffset=%s'%(self.stage,DoF,str(_maximumoffset)))
+                self.offset_dict[DoF] = min(_maximumoffset)
 
-        # take reference value
+                                
+                if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
+                    self.timer['waiting'] = self.TRAMP
+
+                #initialize _t_actmat
+                self._t_actmat = np.identity(len(self.DoFlist))
+            self.counter += 1
+
         elif self.counter == 1:
+            self.DoF = self.DoFlist[self.currentDoF]
+            self.channels = ['MOD-%s_DIAG_CAL_%s_%s_OUTPUT'%(OPTIC,stage,DoF) for stage in ['MN','IM','TM'] for DoF in self.DoFlist]
+            self.channels.append('MOD-%s_DIAG_CAL_MNOL_YAW_OUTPUT'%OPTIC)
+            self.chandict = {['MN','IM','TM'][jj]:{self.DoFlist[ii]:self.channels[len(self.DoFlist)*jj+ii] for ii in range(len(self.DoFlist))} for jj in range(3)}
+            self.chandict['MNOL'] = {'YAW':'MOD-%s_DIAG_CAL_MNOL_YAW_OUTPUT'%OPTIC}
+            
+            # take reference
+            self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
             self.ref = self.get_data()
+            self.logger.debug('Reference position:')
+            self.logger.debug(self.make_resultstr(self.ref))
+            
             self.counter += 1
 
-        # put offset
+            
         elif self.counter == 2:
-            DoF = self.DoFlist[self.DoFindex]
-            stage = 'MN'
-            SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
-            SUMOUT.ramp_offset(self.ofs_dict[DoF],self.TRAMP)
+            # put offset
+            self.logger.debug('put offset of %f'%self.offset_dict[self.DoF])
+            self.SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_MN_%s'%(OPTIC,self.DoF))
+            self.SUMOUT.turn_on('OFFSET')
+            self.SUMOUT.ramp_offset(self.offset_dict[self.DoF],self.TRAMP,False)
             self.timer['waiting'] = self.TRAMP + self.settletime
             self.counter += 1
 
-        # take average and remove offset
         elif self.counter == 3:
-            DoF = self.DoFlist[self.DoFindex]
-            stage = 'MN'
-            _data = self.get_data()
-            self.dif[DoF] = {key: _data[key] - self.ref[key] for key in _data.keys()}
-            SUMOUT = ezca.get_LIGOFilter('VIS-%s_%s_SUMOUT_%s'%(OPTIC,stage,DoF[0]))
-            SUMOUT.ramp_offset(0,self.TRAMP)
-            self.timer['waiting'] = self.TRAMP + self.settletime
-            self.counter += 1
+            # take difference from ref 
+            self.shift = self.get_data()
+            self.logger.debug('Shifted posion:')
+            self.logger.debug(self.make_resultstr(self.shift))
+            
+            self.dif = {key:(self.shift[key]-self.ref[key]) for key in self.ref.keys()}
+            self.logger.debug('Difference:')
+            self.logger.debug(self.make_resultstr(self.dif))
 
-        # if all DoF has been done, go next. Otherwise go back counter 2
-        elif self.counter == 4:
-            self.DoFindex += 1
-            if self.DoFindex >= len(self.DoFlist):
+            self.IMcalib[self.DoF] = self.dif[self.chandict['TM'][self.DoF]]/self.dif[self.chandict['IM'][self.DoF]]
+            
+            _actvec = []
+            for DoF2 in self.DoFlist:
+                _actvec.append(self.dif[self.chandict['TM'][DoF2]]/self.offset_dict[self.DoF])
+            log('_actvec' + str(_actvec))
+            
+            if self.DoF == 'YAW':
+                self.MNOLcalib = self.dif[self.chandict['TM'][self.DoF]]/self.dif[self.chandict['MNOL'][self.DoF]]
+
+            
+            actvec = np.array(_actvec)
+            
+            self._t_actmat[self.currentDoF] = actvec
+
+            self.SUMOUT.ramp_offset(0,self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP+self.settletime
+            self.currentDoF += 1
+            if self.currentDoF >= len(self.DoFlist):
                 self.counter += 1
             else:
-                self.counter = 2
+                self.counter = 1
+
+        elif self.counter == 4:
+            #calculate OL_DRIVEALIGN_MN
+            log('_t_actmat:' + str(self._t_actmat))
+            actmat = np.transpose(self._t_actmat)
+            log('actmat:' + str(actmat))
+            norm_actmat = np.identity(2)
+            for ii in range(len(self.DoFlist)):
+                for jj in range(len(self.DoFlist)):
+                    norm_actmat[ii,jj] = actmat[ii,jj] / actmat[ii,ii]
+            log('norm_actmat:' + str(norm_actmat))
+            _DRIVEDECPL = np.linalg.inv(norm_actmat)
+            log('_DRIVEDECPL:' + str(_DRIVEDECPL))
+
+
+            
+
+            newactmat = np.dot(actmat, _DRIVEDECPL)
+            self.logger.debug('New Actuator matrix:')
+            self.logger.debug(newactmat)
+
+            DoFindex = 0
+            for DoF in self.DoFlist:
+                ezca['MOD-%s_DIAG_CAL_MN_%s_TRAMP'%(OPTIC,DoF)] = 15
+                ezca['MOD-%s_DIAG_CAL_MN_%s_GAIN'%(OPTIC,DoF)] *= newactmat[DoFindex,DoFindex]
+                ezca['VIS-%s_DIAG_CAL_MN_%s_TRAMP'%(OPTIC,DoF)] = 15
+                ezca['VIS-%s_DIAG_CAL_MN_%s_GAIN'%(OPTIC,DoF)] *= newactmat[DoFindex,DoFindex]
+                ezca['MOD-%s_SUM_MN_%s_TRAMP'%(OPTIC,DoF)] = 15
+                ezca['MOD-%s_SUM_MN_%s_GAIN'%(OPTIC,DoF)] /= newactmat[DoFindex,DoFindex]
                 
-        elif self.counter == 5:
-            for stage in self.stagelist:
-                # take ratio of PS diffrence to OL difference
-                for DoF in ['PIT','YAW','LEN']:
-                    OLkey = 'K1:VIS-%s_TM_DIAG_%s_INMON'%(OPTIC,DoF)
-                    stagekey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
-                    log('Difference when move in %s'%DoF)
-                    log('OL: %f, %s: %f'%(self.dif[DoF][OLkey],stage,self.dif[DoF][stagekey]))
-                    toOL = self.dif[DoF][OLkey]/self.dif[DoF][stagekey]
-                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = toOL
+                ezca['MOD-%s_DIAG_CAL_IM_%s_TRAMP'%(OPTIC,DoF)] = 15                
+                ezca['MOD-%s_DIAG_CAL_IM_%s_GAIN'%(OPTIC,DoF)] *= self.IMcalib[DoF]
+                ezca['VIS-%s_DIAG_CAL_IM_%s_TRAMP'%(OPTIC,DoF)] = 15
+                ezca['VIS-%s_DIAG_CAL_IM_%s_GAIN'%(OPTIC,DoF)] *= self.IMcalib[DoF]
+                
+                DoFindex += 1
 
-                for DoF in ['TRA']:
-                    Lenkey = 'K1:VIS-%s_%s_DIAG_LEN_INMON'%(OPTIC,stage)
-                    DoFkey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
-                    
-                    log('Difference when move in %s'%DoF)
-                    log('%f'%(self.dif[DoF][OLkey]))
-                    
-                    toLen = (self.dif['LEN'][Lenkey]/self.ofs_dict['LEN'])/(self.dif[DoF][DoFkey]/self.ofs_dict[DoF])
-                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = ezca['VIS-%s_%s_DIAG_YAW_GAIN'%(OPTIC,stage)] * toLen
+            self.calibed_DRIVEDECPL = np.matrix(np.identity(len(self.DoFlist)))
+            for ii in range(len(self.DoFlist)):
+                for jj in range(len(self.DoFlist)):
+                    self.calibed_DRIVEDECPL[ii,jj] = _DRIVEDECPL[ii,jj]*newactmat[ii,ii]
+            
+            DRIVEDECPL = np.matrix(np.identity(3))
 
-                for DoF in ['ROL']:
-                    Pitkey = 'K1:VIS-%s_%s_DIAG_PIT_INMON'%(OPTIC,stage)
-                    DoFkey = 'K1:VIS-%s_%s_DIAG_%s_INMON'%(OPTIC,stage,DoF)
-
-                    log('Difference when move in %s'%DoF)
-                    log('%f'%(self.dif[DoF][OLkey]))
+            DoFlist = ['LEN','PIT','YAW']
+            iii = 0
+            for ii in range(3):
+                jjj = 0
+                if not DoFlist[ii] in self.DoFlist:
+                    DRIVEDECPL[ii] = [1,0,0]
+                else:
+                    for jj in range(3):
+                        if DoFlist[jj] in  self.DoFlist:
+                            DRIVEDECPL[ii,jj] = self.calibed_DRIVEDECPL[iii,jjj]/self.calibed_DRIVEDECPL[jjj,jjj]
+                            jjj += 1
+                        else:
+                            DRIVEDECPL[ii,jj] = 0
+                    iii += 1
                     
-                    toPit = (self.dif['PIT'][Pitkey]/self.ofs_dict['PIT'])/(self.dif[DoF][DoFkey]/self.ofs_dict[DoF])
-                    ezca['VIS-%s_%s_DIAG_%s_GAIN'%(OPTIC,stage,DoF)] = ezca['VIS-%s_%s_DIAG_PIT_GAIN'%(OPTIC,stage)] * toPit
+            log('DRIVEDECPL:' +str(DRIVEDECPL))
+
+            
+            for ii in range(3):
+                for jj in range(3):
+                    ezca['MOD-%s_TMOL_DRIVEALIGN_MN_%d_%d'%(OPTIC,ii+1,jj+1)] = DRIVEDECPL[ii,jj]
+                    
+            ezca['MOD-%s_DIAG_CAL_MNOL_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_DIAG_CAL_MNOL_YAW_GAIN'%(OPTIC)] *= self.MNOLcalib
+            ezca['VIS-%s_DIAG_CAL_MNOL_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['VIS-%s_DIAG_CAL_MNOL_YAW_GAIN'%(OPTIC)] *= self.MNOLcalib
             self.counter += 1
-            ezca['VIS-%s_TM_DIAG_SEN2EUL_1_4'%OPTIC] = 0
-        elif self.counter == 6:
-            return True
 
+
+        # LENGTH calibration and diagonalization
+        elif self.counter == 5:
+            self.DoF = 'LEN'
+            self.channels = ['MOD-%s_DIAG_CAL_%s_%s_OUTPUT'%(OPTIC,stage,DoF) for stage in ['MN','IM','TM'] for DoF in ['LEN','PIT','YAW']]
+            self.chandict = {['MN','IM','TM'][jj]:{['LEN','PIT','YAW'][ii]:self.channels[3*jj+ii] for ii in range(3)} for jj in range(3)}
+            
+            # take reference
+            self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
+            self.ref = self.get_data()
+            self.logger.debug('Reference position:')
+            self.logger.debug(self.make_resultstr(self.ref))
+            
+            self.counter += 1
+
+            
+        elif self.counter == 6:
+            # put offset
+            self.logger.debug('put offset of %f'%self.offset_dict[self.DoF])
+            self.SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_MN_%s'%(OPTIC,self.DoF))
+            self.SUMOUT.turn_on('OFFSET')
+            self.SUMOUT.ramp_offset(self.offset_dict[self.DoF],self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP + self.settletime
+            self.counter += 1
+
+        elif self.counter == 7:
+
+            # take difference from ref 
+            self.shift = self.get_data()
+            self.logger.debug('Shifted posion:')
+            self.logger.debug(self.make_resultstr(self.shift))
+            
+            self.dif = {key:(self.shift[key]-self.ref[key]) for key in self.ref.keys()}
+            self.logger.debug('Difference:')
+            self.logger.debug(self.make_resultstr(self.dif))
+
+            self.IMcalib[self.DoF] = self.dif[self.chandict['TM'][self.DoF]]/self.dif[self.chandict['IM'][self.DoF]]
+            
+            self.counter += 1
+
+        elif self.counter == 8:
+            actvec = np.array([self.dif[self.chandict['TM']['PIT']]/self.offset_dict[self.DoF],self.dif[self.chandict['TM']['YAW']]/self.offset_dict[self.DoF]])
+            calibfactor = self.dif[self.chandict['TM']['LEN']]/self.offset_dict[self.DoF]
+
+            self.DRIVEDECPL = np.matrix(np.identity(2))
+            for ii in range(2):
+                for jj in range(2):
+                    self.DRIVEDECPL[ii,jj] = ezca['MOD-ITMY_TMOL_DRIVEALIGN_MN_%d_%d'%(ii+2,jj+2)]
+            
+            diagvec = np.dot((self.DRIVEDECPL),actvec)
+
+            self.SUMOUT.ramp_offset(0,self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP
+            
+            self.counter += 1
+            
+        elif self.counter == 9:
+            return True
+            actvec = np.array([self.dif[self.chandict['TM']['PIT']]/self.offset_dict[self.DoF],self.dif[self.chandict['TM']['YAW']]/self.offset_dict[self.DoF]])
+            log(str(actvec))
+            log(str(np.dot((self.DRIVEDECPL),actvec)))
+            log(self.dif[self.chandict['TM']['LEN']]/self.offset_dict[self.DoF])
+            
+            ezca['MOD-%s_DIAG_CAL_MN_LEN_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_DIAG_CAL_MN_LEN_GAIN'%(OPTIC)] *= calibfactor
+            ezca['VIS-%s_DIAG_CAL_MN_LEN_TRAMP'%(OPTIC)] = 15
+            ezca['VIS-%s_DIAG_CAL_MN_LEN_GAIN'%(OPTIC)] *= calibfactor
+            ezca['MOD-%s_SUM_MN_LEN_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_SUM_MN_LEN_GAIN'%(OPTIC)] /= calibfactor
+            log(str(diagvec))
+            for ii in range(2):
+                ezca['MOD-ITMY_TMOL_DRIVEALIGN_MN_%d_1'%(ii+2)] = -diagvec[0,ii] / calibfactor
+
+            return True
+        
+        elif self.counter == 90:
+            self.counter = 8
+            
+            return True
+                             
+
+class SENSOR_CALIBRATION_TOWER(GuardState):
+    # Calibrate PIT YAW sensors in MN, IM at DC with the reference of TM sensor.
+    # Then, ROL is calibrated so that ROL and PIT has same order of values when same counts is input to the actuator.
+    # Same for YAW v.s. LEN and YAW v.s. TRA
+    index = 257
+    request = True
+
+    def get_data(self):
+        _data = cdsutils.getdata(self.channels,self.avgduration)
+        data = {self.channels[ii]: np.average(_data[ii].data) for ii in range(len(self.channels))}
+        return data
+
+    def make_resultstr(self,data):
+        resultstr = ''
+        for stage in self.chandict.keys():
+            resultstr += '%s:%f'%(stage,data[self.chandict[stage]])
+            resultstr += ')\n'
+        return resultstr
+                
+        
+    def main(self):
+        self.maxoutput_dict = 1
+        
+        self.counter = 0
+        self.timer['waiting'] = 0
+        self.timer['speaking'] = 0
+        self.stage = 'IP'
+
+        self.maxoutput = 3000
+
+        self.TRAMP = 60 #ramptime for offset
+        self.avgduration = 30 # average duration for each data
+        self.settletime = 30 # settle time after put/remove offset
+
+        ##### Define logger
+        _t = time.localtime()
+        keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
+        self.time = {
+            keys[ii]:_t[ii] for ii in range(len(keys))
+        }
+        
+        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
+        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        
+        kagralib.mkdir(self.figdir)
+        kagralib.mkdir(self.figdir_archive)
+        
+        self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
+                                         str(self.time['MON']).zfill(2),
+                                         str(self.time['DAY']).zfill(2),
+                                         str(self.time['HOUR']).zfill(2),
+                                         str(self.time['MIN']).zfill(2))
+        
+        #initialize logger
+        log_file = self.figdir_archive + self.fileprefix + 'TOWER_SENS_CALIB.log'
+        
+        self.logger=logging.getLogger('flogger')
+        self.logger.setLevel(logging.DEBUG)
+        handler=logging.StreamHandler()
+        self.logger.addHandler(handler)
+        handler=logging.FileHandler(filename=log_file)
+        self.logger.addHandler(handler)
     
-    
+        
+                                                                                                              
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            #disable IPDC loop
+            ezca.switch('MOD-ITMY_IPDC_YAW','INPUT','OFF')
+            #initialize SUMOUT
+            DoF = 'YAW'
+            self.stage = 'IP'
+            SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_IP_YAW'%(OPTIC,))
+            SUMOUT.ramp_offset(0,self.TRAMP,False)
+                
+            # make ofsdict so that maximum coil output got max output
+            coillist = ['V1','V2','V3','H1','H2','H3']
+            decpl = np.zeros((6,6))
+            eul2coil = np.zeros((len(coillist),6))
+            for ii in range(len(decpl)):
+                for jj in range(len(decpl[ii])):
+                    decpl[ii,jj] = ezca['MOD-%s_DRIVEDECPL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
+            for ii in range(len(eul2coil)):
+                for jj in range(len(eul2coil[ii])):
+                    eul2coil[ii,jj] = ezca['MOD-%s_EUL2COIL_%s_%d_%d'%(OPTIC,self.stage,ii+1,jj+1)]
+            dof2coil = np.dot(eul2coil,decpl)
+            _maximumoffset = []
+
+            for ii in range(3):
+                coil = coillist[ii+3]
+                _maximumoffset.append(abs(self.maxoutput/
+                                          SUMOUT.GAIN.get()/
+                                          ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(OPTIC,self.stage,coil)]/
+                                          dof2coil[ii+3,5]))
+                    
+            log('%s %s _maximumoffset=%s'%(self.stage,DoF,str(_maximumoffset)))
+            self.offset = min(_maximumoffset)
+
+                                
+            if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
+                self.timer['waiting'] = self.TRAMP
+
+            self.counter += 1
+
+        elif self.counter == 1:
+            self.DoF = 'YAW'
+            self.channels = ['MOD-%s_DIAG_CAL_%s_YAW_OUTPUT'%(OPTIC,stage) for stage in ['IP','BF','TM']]
+            self.channels.append('MOD-%s_DIAG_CAL_MNOL_YAW_OUTPUT'%OPTIC)
+            self.chandict = {['IP','BF','TM'][jj]:self.channels[jj] for jj in range(3)}
+            
+            # take reference
+            self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
+            self.ref = self.get_data()
+            self.logger.debug('Reference position:')
+            self.logger.debug(self.make_resultstr(self.ref))
+            
+            self.counter += 1
+
+            
+        elif self.counter == 2:
+            # put offset
+            self.logger.debug('put offset of %f'%self.offset)
+            self.SUMOUT = ezca.get_LIGOFilter('MOD-%s_SUM_IP_%s'%(OPTIC,self.DoF))
+            self.SUMOUT.turn_on('OFFSET')
+            self.SUMOUT.ramp_offset(self.offset,self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP + self.settletime
+            self.counter += 1
+
+        elif self.counter == 3:
+            # take difference from ref 
+            self.shift = self.get_data()
+            self.logger.debug('Shifted posion:')
+            self.logger.debug(self.make_resultstr(self.shift))
+            
+            self.dif = {key:(self.shift[key]-self.ref[key]) for key in self.ref.keys()}
+            self.logger.debug('Difference:')
+            self.logger.debug(self.make_resultstr(self.dif))
+
+            self.IPcalib = self.dif[self.chandict['TM']]/self.dif[self.chandict['IP']]
+            self.BFcalib = self.dif[self.chandict['TM']]/self.dif[self.chandict['BF']]
+
+            self.SUMOUT.ramp_offset(0,self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP+self.settletime
+            self.counter += 1
+
+        elif self.counter == 4:
+            # bring suspension to safe state
+            ezca['GRD-NEW_%s_REQUEST'%OPTIC] = 'SAFE'
+            self.counter += 1
+            
+        elif self.counter == 5:
+            if ezca['GRD-NEW_%s_STATE'%OPTIC] == 'SAFE':
+                self.counter += 1
+            else:
+                notify('waiting for suspension guardian')
+                
+        elif self.counter == 6:
+            ezca['MOD-%s_DIAG_CAL_IP_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_DIAG_CAL_IP_YAW_GAIN'%(OPTIC)] *= self.IPcalib
+            ezca['VIS-%s_DIAG_CAL_IP_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['VIS-%s_DIAG_CAL_IP_YAW_GAIN'%(OPTIC)] *= self.IPcalib
+            ezca['MOD-%s_SUM_IP_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_SUM_IP_YAW_GAIN'%(OPTIC)] /= self.IPcalib
+            
+            ezca['MOD-%s_DIAG_CAL_BF_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_DIAG_CAL_BF_YAW_GAIN'%(OPTIC)] *= self.BFcalib
+            ezca['VIS-%s_DIAG_CAL_BF_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['VIS-%s_DIAG_CAL_BF_YAW_GAIN'%(OPTIC)] *= self.BFcalib
+            ezca['MOD-%s_SUM_BF_YAW_TRAMP'%(OPTIC)] = 15
+            ezca['MOD-%s_SUM_BF_YAW_GAIN'%(OPTIC)] /= self.BFcalib
+            self.counter += 1
+
+
+        elif self.counter == 7:
+            return True
+                             
 # common functions for ACT_DIAG_TOWER, PAYLOAD
 def getData(channels,avgtime):
     _data = cdsutils.getdata(channels,avgtime)
@@ -2157,8 +2714,9 @@ def diag_main(self):
     self.currentstage = 0
     self.DoFlist = {
         'IP':['LEN','TRA','YAW'],
-        'BF':['LEN','TRA','YAW'],
+        'BF':['LEN','TRA','VER','YAW'],
         'MN':['LEN','TRA','ROL','PIT','YAW'],
+        'IM':['LEN','TRA','ROL','PIT','YAW'],
         'TM':['PIT','YAW'],
     }
     self.currentDoF = 0
@@ -2171,12 +2729,12 @@ def diag_main(self):
     }
     
     # put offset so that the maximum input get this vlue
-    self.maxoutput_dict = {'IP':1000,'BF':5000,'MN':10000}
+    self.maxoutput_dict = {'IP':1000,'BF':5000,'MN':10000,'IM':20000,'TM':20000}
     
     self.offset_dict = {}
-    self.TRAMP = {'IP':30,'BF':30,'MN':15}
-    self.avgtime = {'IP':40,'BF':40,'MN':15}
-    self.settletime = {'IP':15,'BF':15,'MN':15}
+    self.TRAMP = {'IP':30,'BF':30,'MN':15,'IM':15,'TM':15}
+    self.avgtime = {'IP':40,'BF':40,'MN':15,'IM':15,'TM':15}
+    self.settletime = {'IP':15,'BF':15,'MN':15,'IM':15,'TM':15}
 
         
     ##### Define logger
@@ -2214,13 +2772,6 @@ def diag_main(self):
     self.timer['speaking'] = 0
     
 def diag_run(self):
-    if ezca['VIS-%s_MTRX_LOCK'%OPTIC]:
-        if self.timer['speaking']:
-            kagralib.speak_aloud('Sensing and actuator matrices are locke. I cannot change it')
-            self.timer['speaking'] = 300
-        return True
-
-        
     if not self.timer['waiting']:
         return
     
@@ -2254,33 +2805,42 @@ def diag_run(self):
                 self.offset_dict[stage][DoF] = min(_maximumoffset)
 
                 # yaw offset is reduced since our yaw actuator is too strong due to the super low resonant frequency
-                if DoF == 'YAW':
-                    self.offset_dict[stage][DoF] /= 10.
+                if DoF == 'YAW' and not stage == 'TM':
+                    self.offset_dict[stage][DoF] /= 5.
                     
-            if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
-                self.timer['waiting'] = self.TRAMP[stage]
+                if SUMOUT.is_offset_ramping() or SUMOUT.is_gain_ramping():
+                    self.timer['waiting'] = self.TRAMP[stage]
             
         self.counter += 1
             
 
     elif self.counter == 1:
-        # take reference
+        log(self.stagelist)
+        log(self.currentstage)
         self.stage = self.stagelist[self.currentstage]
+
+        # if matrix is locked, skip.
+        if ezca['VIS-%s_MTRX_LOCK_%s'%(OPTIC,self.stage)]:
+            self.currentstage += 1
+            self.currentDoF = 0
+            if self.currentstage >= len(self.stagelist):
+                self.counter = 5
+            return 
+
+        
+
         
         if self.currentDoF == 0:
             #initialize _t_actmat
             self._t_actmat = np.identity(len(self.DoFlist[self.stage]))
                 
             
-        self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_INMON'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
+        self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_OUTPUT'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
         log(self.channels)
         self.DoF = self.DoFlist[self.stage][self.currentDoF]
+        
+        # take reference
         self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
-
-        # transpose of actuator matrix
-            
-
-
         self.ref,rev_norm_factor = getData(self.channels,self.avgtime[self.stage])
         norm_factor = {key:1./rev_norm_factor[key] for key in rev_norm_factor.keys()}
         self.logger.debug('Reference position')
@@ -2318,8 +2878,8 @@ def diag_run(self):
                     _actvec.append(dif[key])
 
         actvec = np.array(_actvec) / (self.offset_dict[self.stage][self.DoF] * self.SUMOUT.GAIN.get())
+        log(str(actvec))
         self._t_actmat[self.currentDoF] = actvec
-        log(str(self._t_actmat))
         
         self.SUMOUT.ramp_offset(0,self.TRAMP[self.stage],False)
         self.timer['waiting'] = self.TRAMP[self.stage]+self.settletime[self.stage]
@@ -2416,7 +2976,7 @@ class ACT_DIAG_TOWER(GuardState):
     
     def main(self):
         diag_main(self)
-        self.stagelist = ['IP',]
+        self.stagelist = ['IP','BF']
         self.mycounter = 0
         self.timer['my_waiting'] =0
         
@@ -2425,7 +2985,7 @@ class ACT_DIAG_TOWER(GuardState):
             return
         
         # check Guardian status
-        if not ezca['GRD-NEW_%s'%OPTIC] == 'FLOAT':
+        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
             if self.timer['speak']:
                 kagralib.speak_aloud('Guardian must be in float state.')
                 self.timer['speak'] = 300
@@ -2440,7 +3000,7 @@ class ACT_DIAG_PAY(GuardState):
     
     def main(self):
         diag_main(self)
-        self.stagelist = ['MN',]
+        self.stagelist = ['MN','TM']
         self.mycounter = 0
         self.timer['my_waiting'] =0
         
@@ -2451,11 +3011,11 @@ class ACT_DIAG_PAY(GuardState):
         # disable DC path
         if self.mycounter == 0:
             for DoF in ['PIT','YAW']:
-                OLDC_BF = ezca.get_LIGOFilter('MOD-%s_OLDC_BF_%s'%(OPTIC,DoF))
-                OLDC_BF.turn_off('INPUT')
-                OLDC_MN = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
-                OLDC_MN.turn_off('INPUT')
-                TRAMP = OLDC_MN.OUTPUT.get()/10
+                OL_DC_BF = ezca.get_LIGOFilter('MOD-%s_TMOL_DC_BF_%s'%(OPTIC,DoF))
+                OL_DC_BF.turn_off('INPUT')
+                OL_DC_MN = ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF))
+                OL_DC_MN.turn_off('INPUT')
+                TRAMP = OL_DC_MN.OUTPUT.get()/10
                 if self.timer['my_waiting']:
                     self.timer['my_waiting'] = TRAMP
                 
@@ -2464,9 +3024,9 @@ class ACT_DIAG_PAY(GuardState):
         elif self.mycounter == 1:
             # clear history
             for DoF in ['PIT','YAW']:
-                OLDC_MN = ezca.get_LIGOFilter('MOD-%s_OLDC_MN_%s'%(OPTIC,DoF))
-                OLDC_MN.RSET.put(2)
-                OLDC_MN.ramp_gain(1,0,False)
+                OL_DC_MN = ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF))
+                OL_DC_MN.RSET.put(2)
+                OL_DC_MN.ramp_gain(1,0,False)
 
             self.timer['my_waiting'] = self.settletime['MN']
             self.mycounter += 1
@@ -2577,6 +3137,7 @@ class ACT_DIAG_GAS(GuardState):
                     if not (stage=='IP' and 'V' in coil):
                         _maximumoffset.append(abs(self.maxoutput_dict[stage]/
                                                   SUMOUT.GAIN.get()/
+                                                  ezca['MOD-%s_COILOUT_GAS_%s_GAIN'%(OPTIC,coil)]/
                                                   ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(OPTIC,coil,stage)]/
                                                   dof2coil[self.coillist[stage][coil]-1,self.DoFindex[DoF]-1]))
                             
@@ -2599,7 +3160,7 @@ class ACT_DIAG_GAS(GuardState):
                 self._t_actmat = np.identity(len(self.DoFlist[self.stage]))
                 
             
-                self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_INMON'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
+                self.channels = ['K1:VIS-%s_DIAG_CAL_%s_%s_OUTPUT'%(OPTIC,self.stage,DoF) for DoF in self.DoFlist[self.stage]]
 
             self.DoF = self.DoFlist[self.stage][self.currentDoF]
             self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
@@ -2732,6 +3293,150 @@ class ACT_DIAG_GAS(GuardState):
 
         elif self.counter == 5:
             return True
+
+class CAL_GASDC(GuardState):
+    index = 315
+    request = True
+    
+    # diagonalization of actuator to sensor basis.
+    def main(self):
+        self.DoFindex = {'F0':1,'F1':2,'F2':3,'F3':4,'BF':5}
+        self.maincoil = {'M1':'F0','M2':'F1','M3':'F2','M4':'F3','M5':'BF'}
+        
+        self.currentstage = 0
+        self.DoFlist = {
+            'GAS':[self.maincoil[sysmod.workingGAS[ii-1]] for ii in range(1,1+len(sysmod.workingGAS))],
+        }
+        self.currentDoF = 0
+        self.coillist = {
+            'GAS':{'F0':1,'F1':2,'F2':3,'F3':4,'BF':5}
+        }
+        
+        # put offset so that the maximum input get this vlue
+        self.maxoutput_dict = {'GAS': 3000}
+        
+        self.offset_dict = {}
+        self.TRAMP = {'GAS':20}
+        self.avgtime = {'GAS':15}
+        self.settletime = {'GAS':30}
+        self.calibfactor = {}
+        
+        
+        ##### Define logger
+        _t = time.localtime()
+        keys = ['YEAR','MON','DAY','HOUR','MIN','SEC']
+        self.time = {
+            keys[ii]:_t[ii] for ii in range(len(keys))
+        }
+        
+        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
+        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        
+        kagralib.mkdir(self.figdir)
+        kagralib.mkdir(self.figdir_archive)
+        
+        self.fileprefix = '%s%s%s%s%s_'%(str(self.time['YEAR']),
+                                         str(self.time['MON']).zfill(2),
+                                         str(self.time['DAY']).zfill(2),
+                                         str(self.time['HOUR']).zfill(2),
+                                         str(self.time['MIN']).zfill(2))
+    
+        #initialize logger
+        log_file = self.figdir_archive + self.fileprefix + 'measurement.log'
+        
+        self.logger=logging.getLogger('flogger')
+        self.logger.setLevel(logging.DEBUG)
+        handler=logging.StreamHandler()
+        self.logger.addHandler(handler)
+        handler=logging.FileHandler(filename=log_file)
+        self.logger.addHandler(handler)
+        
+        
+        self.counter = 0
+        self.timer['waiting'] = 0
+        self.timer['speaking'] = 0
+    
+    def run(self):
+        # check Guardian status
+        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
+            if self.timer['speaking']:
+                kagralib.speak_aloud('Guardian must be in float state.')
+                self.timer['speaking'] = 300
+            return
+
+        
+        if not self.timer['waiting']:
+            return
+    
+        if self.counter == 0:
+            #initialize COILOUT
+            stage = 'GAS'
+            self.offset_dict[stage] = {}
+            for DoF in self.DoFlist[stage]:
+                COILOUT = ezca.get_LIGOFilter('MOD-%s_COILOUT_%s_%s'%(OPTIC,stage,DoF))
+                COILOUT.ramp_offset(0,self.TRAMP[stage],False)
+                self.offset_dict[stage][DoF] = self.maxoutput_dict[stage]/COILOUT.GAIN.get()/ezca['VIS-%s_%s_COILOUTF_GAS_GAIN'%(OPTIC,DoF)]
+                    
+            if COILOUT.is_offset_ramping() or COILOUT.is_gain_ramping():
+                self.timer['waiting'] = self.TRAMP[stage]
+            else:
+                self.counter += 1
+            
+
+        elif self.counter == 1:
+            # take reference
+            self.stage = 'GAS'
+            self.DoF = self.DoFlist[self.stage][self.currentDoF]
+            
+            self.channel = 'K1:VIS-%s_DIAG_SENSIN_%s_%s_OUTPUT'%(OPTIC,self.stage,self.DoF)
+            self.logger.debug('--------------- %s dif measurement ---------------------'%self.DoF)            
+            self.ref = cdsutils.getdata(self.channel,self.avgtime[self.stage])
+            self.ref = np.average(self.ref.data)
+            self.logger.debug('Reference position: %f'%self.ref)
+            self.counter += 1
+
+        elif self.counter == 2:
+            # put offset
+            self.logger.debug('put offset of %f'%self.offset_dict[self.stage][self.DoF])
+            self.COILOUT = ezca.get_LIGOFilter('MOD-%s_COILOUT_%s_%s'%(OPTIC,self.stage,self.DoF))
+            self.COILOUT.turn_on('OFFSET')
+            self.COILOUT.ramp_offset(self.offset_dict[self.stage][self.DoF],self.TRAMP[self.stage],False)
+            self.timer['waiting'] = self.TRAMP[self.stage] + self.settletime[self.stage]
+            self.counter += 1
+
+        elif self.counter == 3:
+            # take difference from ref
+            self.shift = cdsutils.getdata(self.channel,self.avgtime[self.stage])
+            self.shift = np.average(self.shift.data)
+            self.logger.debug('Shifted value from reference: %f'%self.shift)
+
+            
+            dif = self.shift-self.ref
+            self.logger.debug('Difference from reference:%f'%dif)
+
+            self.calibfactor[self.DoF] =1/( dif/self.offset_dict[self.stage][self.DoF])
+            
+            self.COILOUT.ramp_offset(0,self.TRAMP[self.stage],False)
+            self.timer['waiting'] = self.TRAMP[self.stage]+self.settletime[self.stage]
+            self.currentDoF += 1
+            if self.currentDoF >= len(self.DoFlist[self.stage]):
+                self.counter += 1
+            else:
+                self.counter = 1
+
+            
+        elif self.counter == 4:
+            ii = 0
+            for DoF in self.DoFlist[self.stage]:
+                COILOUT = ezca.get_LIGOFilter('MOD-%s_COILOUT_%s_%s'%(OPTIC,self.stage,DoF))
+                COILOUT.ramp_gain(self.calibfactor[DoF]*COILOUT.GAIN.get(),1,False)
+            
+            kagralib.speak_aloud('%s %s Calibrated!'%(self.stage[0],self.stage[1]))
+            
+            self.counter += 1
+
+        elif self.counter == 5:
+            return True
             
                 
         
@@ -2744,24 +3449,23 @@ class ACT_DIAG_GAS(GuardState):
 ##################################################
 
 edges = [('INIT','STANDBY'),
+         ('STANDBY','DESIGN_MODALDAMP'),
          ('STANDBY','INIT_SIGNAL_PROC'),
          ('INIT_SIGNAL_PROC','ZERO_SENSOFS'),
          ('ZERO_SENSOFS','INIT_OUTPUT'),
          ('STANDBY','INIT_PREQUA'),
          ('INIT_PREQUA','CLOSE_PLL'),
          ('CLOSE_PLL','EXCITE_RESONANCE'),
-         ('EXCITE_RESONANCE','STANDBY'),
          ('STANDBY','INIT_PREQUA_GAS'),
          ('INIT_PREQUA_GAS','CLOSE_PLL_GAS'),
          ('CLOSE_PLL_GAS','EXCITE_RESONANCE_GAS'),
-         ('EXCITE_RESONANCE_GAS','STANDBY'),
          ('EXCITE_RESONANCE_GAS','RECORD_MEASUREMENT_GAS'),
-         ('RECORD_MEASUREMENT_GAS','EXCITE_RESONANCE_GAS'),         
+         ('RECORD_MEASUREMENT_GAS','STANDBY'),
          ('EXCITE_RESONANCE','RECORD_MEASUREMENT'),
-         ('RECORD_MEASUREMENT','EXCITE_RESONANCE'),
-         ('STANDBY','SENSOR_DIAGONALIZATION'),
-         ('SENSOR_DIAGONALIZATION','ACT_DIAG_TOWER'),
+         ('RECORD_MEASUREMENT','STANDBY'),
+         ('STANDBY','SENS_DIAG_TOWER'),
+         ('SENS_DIAG_TOWER','ACT_DIAG_TOWER'),
          ('ACT_DIAG_TOWER','ACT_DIAG_PAY'),
-         ('ACT_DIAG_PAY','SENSOR_CALIBRATION'),
-         ('SENSOR_CALIBRATION','STANDBY')
+         #('ACT_DIAG_PAY','SENS_CAL'),
+         #('SENS_CAL','STANDBY')
 ]
