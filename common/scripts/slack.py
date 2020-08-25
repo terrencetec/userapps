@@ -90,10 +90,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Slack Bot')
     parser.add_argument('channel', help='')
     parser.add_argument('text', help='')
+    parser.add_argument('-mention', nargs='*',help='')
     args = parser.parse_args()
     channel = args.channel
     text = args.text
+    mention = args.mention
     
     # Post messages
     postman = PostMan(token)
+    mention = list(map(lambda x:'<@'+x+'>',mention))
+    text = ' '.join(mention)+' '+text
     ans = postman.chat_post(channel,text)

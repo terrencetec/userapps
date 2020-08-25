@@ -9,7 +9,10 @@ import sys
 
 
 def plot_mode(ezca,stage,OPTIC,axis,modelist_str=[],DoFlist=[],fig=plt.figure(),subplotpos=(1,1,1)):
+    DoFindex = {['LEN','TRA','VER','ROL','PIT','YAW'][ii]:ii+1 for ii in range(6)}
+    Stageindex = {['IP','BF','MN','IM','TM'][ii]:ii+1 for ii in range(5)}
 
+        
     _modelist = modelist_str.split(',')
     modelist = []
     for strnum in _modelist:
@@ -19,7 +22,7 @@ def plot_mode(ezca,stage,OPTIC,axis,modelist_str=[],DoFlist=[],fig=plt.figure(),
             pass
 
     for ii in range(1,25):
-        DoF = ezca['VIS-%s_FREE_MODE_LIST_NO%d_DOF'%(OPTIC,ii)]
+        DoF = ezca['PRE-%s_MODE_NO%d_DOF'%(OPTIC,ii)]
         if DoF in DoFlist and not DoF == '':
             modelist.append(ii)
                 
@@ -30,13 +33,13 @@ def plot_mode(ezca,stage,OPTIC,axis,modelist_str=[],DoFlist=[],fig=plt.figure(),
     if len(axis) == 2:
         ax = fig.add_subplot(*subplotpos)
         for modeindex in modelist:
-            amp_x = ezca['VIS-%s_FREE_MODE_LIST_NO%d_%s_CP_COEF_%s'%(OPTIC,modeindex,stage,axis[0])]
-            amp_y = ezca['VIS-%s_FREE_MODE_LIST_NO%d_%s_CP_COEF_%s'%(OPTIC,modeindex,stage,axis[1])]
-            theta_x = ezca['VIS-%s_FREE_MODE_LIST_NO%d_%s_REL_PHASE_%s'%(OPTIC,modeindex,stage,axis[0])]
-            theta_y = ezca['VIS-%s_FREE_MODE_LIST_NO%d_%s_REL_PHASE_%s'%(OPTIC,modeindex,stage,axis[1])]
+            amp_x = ezca['PRE-%s_MODE_NO%d_SENSMAT_RATIO_%s_%s'%(OPTIC,modeindex,DoFindex[axis[0]],Stageindex[stage])]
+            amp_y = ezca['PRE-%s_MODE_NO%d_SENSMAT_RATIO_%s_%s'%(OPTIC,modeindex,DoFindex[axis[1]],Stageindex[stage])]
+            theta_x = ezca['PRE-%s_MODE_NO%d_SENSMAT_PHASE_%s_%s'%(OPTIC,modeindex,DoFindex[axis[0]],Stageindex[stage])]
+            theta_y = ezca['PRE-%s_MODE_NO%d_SENSMAT_PHASE_%s_%s'%(OPTIC,modeindex,DoFindex[axis[1]],Stageindex[stage])]
 
-            freq = ezca['VIS-%s_FREE_MODE_LIST_NO%d_FREQ'%(OPTIC,modeindex)]
-            DoF = ezca['VIS-%s_FREE_MODE_LIST_NO%d_DOF'%(OPTIC,modeindex)]
+            freq = ezca['PRE-%s_MODE_NO%d_FREQ'%(OPTIC,modeindex)]
+            DoF = ezca['PRE-%s_MODE_NO%d_DOF'%(OPTIC,modeindex)]
             
             theta = np.arange(0,2*np.pi,2*np.pi/100.)
             
