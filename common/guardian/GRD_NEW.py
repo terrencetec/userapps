@@ -211,7 +211,7 @@ class DISABLE_TWRDC(GuardState):
 
         elif self.counter == 0:
             # disable DC servo
-            for stage in ['BF','IP']:
+            for stage in ['GAS','IP']:
                 for key in DCSERVO()[stage].keys():
                     DCSERVO()[stage][key].turn_off('INPUT')
 

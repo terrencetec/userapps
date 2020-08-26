@@ -715,14 +715,30 @@ def QUArun(self,GAS=False):
         if self.pre_freq == 0 or self.pre_Q == 0:
             notify('Invalid predicted frequency and Q. Please check PRE-%s_MODE_NO%d_PRE_FREQ'%(OPTIC,self.modeindex))
             return
-
+        
         ezca['VIS-%s_PREQUA_DEMOD_FREQ'%(OPTIC)] = self.pre_freq
             
         self.pre_tau = self.pre_Q/self.pre_freq/np.pi
 
+        if self.FB_load:
+            for stage in ['IP','BF','MN','IM','TM','GAS']:
+                if not stage == 'GAS':
+                    ezca.switch('VIS-%s_CP_COEF_%s'%(OPTIC,stage),'INPUT','OUTPUT','ON')
+                    ezca.switch('VIS-%s_REL_PHASE_%s'%(OPTIC,stage),'INPUT','OUTPUT','ON')
+                for DoF in doflist[stage=='GAS']:
+                    ezca.switch('VIS-%s_%s_CP_COEF_%s'%(OPTIC,stage,DoF),'INPUT','OUTPUT','ON')
+                    ezca.switch('VIS-%s_%s_REL_PHASE_%s'%(OPTIC,stage,DoF),'INPUT','OUTPUT','ON')
+                ezca.switch('VIS-%s_%s_PREQUA_FREQ'%(OPTIC,stage),'INPUT','OUTPUT','ON')
+                ezca.switch('VIS-%s_%s_PREQUA_Q_VAL'%(OPTIC,stage),'INPUT','OUTPUT','ON')
+                ezca.switch('VIS-%s_%s_PREQUA_DECAY_TIME'%(OPTIC,stage),'INPUT','OUTPUT','ON')
+
+            ezca.switch('VIS-%s_QUAEXC'%(OPTIC),'INPUT','OUTPUT','ON')
+            ezca.switch('VIS-%s_PREQUA_FREQ'%(OPTIC),'INPUT','OUTPUT','ON')
+            ezca.switch('VIS-%s_PREQUA_Q_VAL'%(OPTIC),'INPUT','OUTPUT','ON')
+            ezca.switch('VIS-%s_PREQUA_DECAY_TIME'%(OPTIC),'INPUT','OUTPUT','ON')
+                    
         edit_chans = []
         for stage in ['IP','BF','MN','IM','TM','GAS']:
-
             for DoF in doflist[stage=='GAS']:
                 # channel name 
                 QUAname = 'VIS-%s_%s_QUA%s'%(OPTIC,stage,DoF)
@@ -840,11 +856,26 @@ def QUArun(self,GAS=False):
                     DEMOD_SIG_RMS = ezca.get_LIGOFilter(QUAname+'_PLL_DEMOD_SIG_RMS')
                     DEMOD_SIG_RMS.only_on('OUTPUT','FM1','FM2','DECIMATION','INPUT')
                     DEMOD_SIG_RMS.ramp_gain(np.sqrt(2),0,False)
+                    
+                    DECAY = ezca.get_LIGOFilter(QUAname+'_DECAY_TIME')
+                    DECAY.only_on('OUTPUT','DECIMATION','INPUT')
+                    DECAY.ramp_gain(np.sqrt(1),0,False)
+
+                    FREQ = ezca.get_LIGOFilter(QUAname+'_FREQ')
+                    FREQ.only_on('OUTPUT','DECIMATION','INPUT')
+                    FREQ.ramp_gain(np.sqrt(1),0,False)
+
+                    ENVELOPE = ezca.get_LIGOFilter(QUAname+'_ENVELOPE')
+                    ENVELOPE.only_on('OUTPUT','DECIMATION','INPUT')
+                    ENVELOPE.ramp_gain(np.sqrt(1),0,False)
 
 
                 ezca[QUAname+'_PLL_OSC_AMP'] = 1
-                self.FBs.write()
-                    
+                
+        self.FBs.write()
+
+                
+        
         time.sleep(1)
         if int(ezca['FEC-%d_STATE_WORD'%sysmod.MONDCUID]) & 0b10000000000:
             ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1                    
@@ -1009,7 +1040,7 @@ class EXCITE_RESONANCE(GuardState):
 
         self.modeindex = ezca['QUA-%s_MODE_INDEX'%OPTIC]
 
-        self.QUAEXC = ezca.get_LIGOFilter('VIS-ITMY_QUAEXC')
+        self.QUAEXC = ezca.get_LIGOFilter('VIS-%s_QUAEXC'%(OPTIC))
         self.FBs = foton.FilterFile(chans+'K1VIS%sMON.txt'%OPTIC)
 
 
@@ -1085,7 +1116,7 @@ class EXCITE_RESONANCE_GAS(GuardState):
 
         self.modeindex = ezca['QUA-%s_MODE_INDEX'%OPTIC]
 
-        self.QUAEXC = ezca.get_LIGOFilter('VIS-ITMY_QUAEXC')
+        self.QUAEXC = ezca.get_LIGOFilter('VIS-%s_QUAEXC'%OPTIC)
         self.FBs = foton.FilterFile(chans+'K1VIS%sMON.txt'%OPTIC)
 
 
@@ -1355,8 +1386,8 @@ class RECORD_MEASUREMENT(GuardState):
             ezca['PRE-%s_MODE_NO%d_MEAS_DATE_'%(OPTIC,self.modeindex) + key] = self.time[key]
 
         # for plot
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/mode%d/'%int(self.modeindex)
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/mode%d/archive/'%int(self.modeindex)
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/mode%d/'%(OPTIC,int(self.modeindex))
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/mode%d/archive/'%(OPTIC,int(self.modeindex))
 
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir+'medm')
@@ -1645,8 +1676,8 @@ class RECORD_MEASUREMENT_GAS(GuardState):
             ezca['PRE-%s_MODE_GAS_NO%d_MEAS_DATE_'%(OPTIC,self.modeindex) + key] = self.time[key]
 
         # for plot
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/GAS_mode%d/'%int(self.modeindex)
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/GAS_mode%d/archive/'%int(self.modeindex)
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/GAS_mode%d/'%(OPTIC,int(self.modeindex))
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/GAS_mode%d/archive/'%(OPTIC,int(self.modeindex))
 
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir+'medm')
@@ -2233,8 +2264,8 @@ class SENSOR_CALIBRATION_PAY(GuardState):
             keys[ii]:_t[ii] for ii in range(len(keys))
         }
         
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization'%OPTIC
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization/archive/'%OPTIC
         
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir_archive)
@@ -2479,7 +2510,7 @@ class SENSOR_CALIBRATION_PAY(GuardState):
             self.DRIVEDECPL = np.matrix(np.identity(2))
             for ii in range(2):
                 for jj in range(2):
-                    self.DRIVEDECPL[ii,jj] = ezca['MOD-ITMY_TMOL_DRIVEALIGN_MN_%d_%d'%(ii+2,jj+2)]
+                    self.DRIVEDECPL[ii,jj] = ezca['MOD-%s_TMOL_DRIVEALIGN_MN_%d_%d'%(OPTIC,ii+2,jj+2)]
             
             diagvec = np.dot((self.DRIVEDECPL),actvec)
 
@@ -2503,7 +2534,7 @@ class SENSOR_CALIBRATION_PAY(GuardState):
             ezca['MOD-%s_SUM_MN_LEN_GAIN'%(OPTIC)] /= calibfactor
             log(str(diagvec))
             for ii in range(2):
-                ezca['MOD-ITMY_TMOL_DRIVEALIGN_MN_%d_1'%(ii+2)] = -diagvec[0,ii] / calibfactor
+                ezca['MOD-%s_TMOL_DRIVEALIGN_MN_%d_1'%(OPTIC,ii+2)] = -diagvec[0,ii] / calibfactor
 
             return True
         
@@ -2554,8 +2585,8 @@ class SENSOR_CALIBRATION_TOWER(GuardState):
             keys[ii]:_t[ii] for ii in range(len(keys))
         }
         
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization'%OPTIC
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization/archive/'%OPTIC
         
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir_archive)
@@ -2584,7 +2615,7 @@ class SENSOR_CALIBRATION_TOWER(GuardState):
 
         if self.counter == 0:
             #disable IPDC loop
-            ezca.switch('MOD-ITMY_IPDC_YAW','INPUT','OFF')
+            ezca.switch('MOD-%s_IPDC_YAW'%OPTIC,'INPUT','OFF')
             #initialize SUMOUT
             DoF = 'YAW'
             self.stage = 'IP'
@@ -2714,7 +2745,7 @@ def diag_main(self):
     self.currentstage = 0
     self.DoFlist = {
         'IP':['LEN','TRA','YAW'],
-        'BF':['LEN','TRA','VER','YAW'],
+        'BF':['LEN','TRA','YAW'],
         'MN':['LEN','TRA','ROL','PIT','YAW'],
         'IM':['LEN','TRA','ROL','PIT','YAW'],
         'TM':['PIT','YAW'],
@@ -2732,9 +2763,9 @@ def diag_main(self):
     self.maxoutput_dict = {'IP':1000,'BF':5000,'MN':10000,'IM':20000,'TM':20000}
     
     self.offset_dict = {}
-    self.TRAMP = {'IP':30,'BF':30,'MN':15,'IM':15,'TM':15}
+    self.TRAMP = {'IP':30,'BF':60,'MN':15,'IM':15,'TM':15}
     self.avgtime = {'IP':40,'BF':40,'MN':15,'IM':15,'TM':15}
-    self.settletime = {'IP':15,'BF':15,'MN':15,'IM':15,'TM':15}
+    self.settletime = {'IP':15,'BF':60,'MN':15,'IM':15,'TM':15}
 
         
     ##### Define logger
@@ -2744,8 +2775,8 @@ def diag_main(self):
         keys[ii]:_t[ii] for ii in range(len(keys))
     }
     
-    self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-    self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+    self.figdir = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization'%OPTIC
+    self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization/archive/'%OPTIC
     
     kagralib.mkdir(self.figdir)
     kagralib.mkdir(self.figdir_archive)
@@ -2986,9 +3017,9 @@ class ACT_DIAG_TOWER(GuardState):
         
         # check Guardian status
         if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
-            if self.timer['speak']:
+            if self.timer['speaking']:
                 kagralib.speak_aloud('Guardian must be in float state.')
-                self.timer['speak'] = 300
+                self.timer['speaking'] = 300
             return
 
         return diag_run(self)
@@ -3069,8 +3100,8 @@ class ACT_DIAG_GAS(GuardState):
             keys[ii]:_t[ii] for ii in range(len(keys))
         }
         
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization'%OPTIC
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization/archive/'%OPTIC
         
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir_archive)
@@ -3329,8 +3360,8 @@ class CAL_GASDC(GuardState):
             keys[ii]:_t[ii] for ii in range(len(keys))
         }
         
-        self.figdir = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization'
-        self.figdir_archive = '/users/Measurements/VIS/ITMY/PREQUA/suspension_initialization/archive/'
+        self.figdir = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization'%OPTIC
+        self.figdir_archive = '/users/Measurements/VIS/%s/PREQUA/suspension_initialization/archive/'%OPTIC
         
         kagralib.mkdir(self.figdir)
         kagralib.mkdir(self.figdir_archive)

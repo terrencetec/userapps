@@ -23,7 +23,7 @@ initDECPL = {
 }
 
 # GAS DoF list which is working.
-workingGAS = ['M1','M5']
+workingGAS = ['M1','M2','M3','M4','M5']
 
 ACTRATIO = {
     'LEN':{'IP':100000.0,'BF':100000.0,'MN':0.01,'IM':0.3,'TM':1},
