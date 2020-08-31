@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import epics
 
 
@@ -58,9 +60,9 @@ def init(chname):
     val = epics.caput('{0}.{1}'.format(chname,'HIHI'),hihi)
 
 
-def set_coilout_alert():    
-    suslist = sus_dict['typea']
-    stagelist = stage_dict['typea']    
+def set_coilout_alert(typename):    
+    suslist = sus_dict[typename]
+    stagelist = stage_dict[typename]    
     for sus in suslist:
         print(sus)
         for stage in stagelist:
@@ -105,12 +107,12 @@ etmx_lvdt_calib_param = {'ETMX_IP_H1':[-3900, -57],
                          'ETMX_BF_H2':[+2600, -6], # [1]
                          'ETMX_BF_H3':[+2800, -5]} # [1]
 
-
-
-                
-def hoge():
     
 
                 
 if __name__ == "__main__":
-    set_coilout_alert()
+    set_coilout_alert('typea')
+    set_coilout_alert('typeb')
+    set_coilout_alert('typebp')
+    set_coilout_alert('typec')
+    set_coilout_alert('typetms')

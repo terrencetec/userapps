@@ -32,7 +32,7 @@ chans = '/opt/rtcds/kamioka/k1/chans/'
 SENSIN_LPfreq = {'IP':10,'BF':1,'MN':100,'IM':100,'TM':100,'MNOL':100} 
 
 # gain for damping filter
-DAMP_gain = {'IP':[5,5,0,0,0,1],'BF':[0,0,0,0,0,90],'MN':[.1,.1,0,0.1,0.1,0.1],'IM':[0,0,0,0,0,0],'GAS':[1,0.2,0.3,3,0.3]}
+DAMP_gain = {'IP':[5,5,0,0,0,1],'BF':[0,0,0,0,0,100],'MN':[.1,.1,0,0.1,0.1,0.1],'IM':[0,0,0,0,0,0],'GAS':[1,0.2,0.3,3,0.3]}
 
 # rolloff frequency for damping filter. Naively speaking, it should be around the highest resonance you want damp.
 DAMP_ROLLOFFfreq = {'IP':[0.6,0.6,1,1,1,0.5],'BF':[1,1,1,0.1,0.1,0.5],'MN':[3,3,3,3,3,3],'IM':[3,3,3,3,3,3],'GAS':[1,2,1,1,1,]}
@@ -110,8 +110,8 @@ class INIT_SIGNAL_PROC(GuardState):
 
             kagralib.foton_butter(self.QUA_FBs,'%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),0,freq = 1, force = True)
             kagralib.foton_butter(self.MODAL_FBs,'%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),0,freq = 1, force = True)
-            ezca.switch('MOD-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','FM1','ON')
-            ezca.switch('VIS-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','FM1','ON')
+            ezca.switch('MOD-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','ON')
+            ezca.switch('VIS-%s_DIAG_OL_PROC_%s_SUM'%(OPTIC,oplev),'INPUT','OUTPUT','ON')
             
             for ii in range(4):
                 kagralib.copy_FB('VIS',self.PAYLOAD_FBs,'%s_%s_OPLEV_%s_SEG%d'%(OPTIC,stage,ol,ii+1),'VIS',self.QUA_FBs,'%s_DIAG_OL_PROC_%s_SEG%d'%(OPTIC,oplev,ii+1))
@@ -300,10 +300,9 @@ class INIT_SIGNAL_PROC(GuardState):
                                                                 
                             
                 
-        if int(ezca['FEC-%d_STATE_WORD'%sysmod.MONDCUID]) & 0b10000000000:
-            ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1
-        if int(ezca['FEC-%d_STATE_WORD'%sysmod.MODALDCUID]) & 0b10000000000:
-            ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MODALDCUID] = 1
+                    
+        ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1
+        ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MODALDCUID] = 1
 
 
         
@@ -490,15 +489,15 @@ class INIT_OUTPUT(GuardState):
                 ezca.switch('MOD-%s_TMOL_DC_SETPOINT_%s'%(OPTIC,DoF),'OFFSET','ON')
             
                 kagralib.foton_zpk(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),0,0.001,name='1mHz',force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),1,0.01,name='10mHz',force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),1,0.001,name='1mHz',force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),2,0.01,name='10mHz',force=True)
                 kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_MN_%s'%(OPTIC,DoF),8,-1,force=True)
                 
                 kagralib.foton_zpk(self.MODAL_FBs,'%s_TMOL_DC_BF_%s'%(OPTIC,DoF),9,z=[],p=[0,],k=1,force=True)
-                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_BF_%s'%(OPTIC,DoF),0,0.0001,'0.1mHz',force=True)
+                kagralib.foton_gain(self.MODAL_FBs,'%s_TMOL_DC_BF_%s'%(OPTIC,DoF),0,0.001,'1mHz',force=True)
 
                 MN.turn_off('INPUT','OFFSET')
-                MN.turn_on('FM1','FM9','FM10')
+                MN.turn_on('FM3','FM9','FM10')
                 MN.RSET.put(2)
                 time.sleep(0.3)
                 MN.ramp_gain(1,0,False)
@@ -646,8 +645,7 @@ class INIT_OUTPUT(GuardState):
                 MOD_EUL2COIL_GAS.put_matrix(np.matrix(np.identity(5)))
             
             for dcuid in [sysmod.MONDCUID,sysmod.MODALDCUID,sysmod.PDCUID,sysmod.TDCUID]:
-                if int(ezca['FEC-%d_STATE_WORD'%dcuid]) & 0b10000000000:
-                    ezca['FEC-%d_LOAD_NEW_COEFF'%dcuid] = 1
+                ezca['FEC-%d_LOAD_NEW_COEFF'%dcuid] = 1
 
             self.counter += 1
             
@@ -873,14 +871,9 @@ def QUArun(self,GAS=False):
                 ezca[QUAname+'_PLL_OSC_AMP'] = 1
                 
         self.FBs.write()
-
+        self.counter += 1
                 
         
-        time.sleep(1)
-        if int(ezca['FEC-%d_STATE_WORD'%sysmod.MONDCUID]) & 0b10000000000:
-            ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1                    
-        self.counter += 1
-
     elif self.counter == 1:
         for stage in ['IP','BF','MN','IM','TM','GAS']:
             for DoF in doflist[stage=='GAS']:
@@ -909,7 +902,9 @@ def QUArun(self,GAS=False):
             for ii in range(6):
                 ezca['VIS-%s_STAGE_SEL_%s_1_%d'%(OPTIC,param,ii+1)] = (['IP','BF','MN','IM','TM','GAS'][ii] == self.modeStage)
         self.counter += 1
-                
+        ezca['FEC-%d_LOAD_NEW_COEFF'%sysmod.MONDCUID] = 1                    
+        self.timer['waiting'] = 10
+
     elif self.counter == 2:
         if int(ezca['FEC-%d_STATE_WORD'%sysmod.MONDCUID]) & 0b10000000000:
             notify('Waiting to load coefficients!')
@@ -2235,7 +2230,7 @@ class SENSOR_CALIBRATION_PAY(GuardState):
                 
         
     def main(self):
-        self.maxoutput_dict = {'LEN':4000,'PIT':2000,'YAW':250}
+        self.maxoutput_dict = {'LEN':4000,'PIT':4000,'YAW':500}
         
         self.DoFlist = ['LEN','TRA','ROL','PIT','YAW']
         self.stagelist = ['MN','IM']
@@ -2504,8 +2499,15 @@ class SENSOR_CALIBRATION_PAY(GuardState):
             self.counter += 1
 
         elif self.counter == 8:
-            actvec = np.array([self.dif[self.chandict['TM']['PIT']]/self.offset_dict[self.DoF],self.dif[self.chandict['TM']['YAW']]/self.offset_dict[self.DoF]])
+            self.SUMOUT.ramp_offset(0,self.TRAMP,False)
+            self.timer['waiting'] = self.TRAMP
+            
+            self.counter += 1
+            
+
+        elif self.counter == 9:
             calibfactor = self.dif[self.chandict['TM']['LEN']]/self.offset_dict[self.DoF]
+            actvec = np.array([self.dif[self.chandict['TM']['PIT']]/self.offset_dict[self.DoF],self.dif[self.chandict['TM']['YAW']]/self.offset_dict[self.DoF]])
 
             self.DRIVEDECPL = np.matrix(np.identity(2))
             for ii in range(2):
@@ -2513,18 +2515,6 @@ class SENSOR_CALIBRATION_PAY(GuardState):
                     self.DRIVEDECPL[ii,jj] = ezca['MOD-%s_TMOL_DRIVEALIGN_MN_%d_%d'%(OPTIC,ii+2,jj+2)]
             
             diagvec = np.dot((self.DRIVEDECPL),actvec)
-
-            self.SUMOUT.ramp_offset(0,self.TRAMP,False)
-            self.timer['waiting'] = self.TRAMP
-            
-            self.counter += 1
-            
-        elif self.counter == 9:
-            return True
-            actvec = np.array([self.dif[self.chandict['TM']['PIT']]/self.offset_dict[self.DoF],self.dif[self.chandict['TM']['YAW']]/self.offset_dict[self.DoF]])
-            log(str(actvec))
-            log(str(np.dot((self.DRIVEDECPL),actvec)))
-            log(self.dif[self.chandict['TM']['LEN']]/self.offset_dict[self.DoF])
             
             ezca['MOD-%s_DIAG_CAL_MN_LEN_TRAMP'%(OPTIC)] = 15
             ezca['MOD-%s_DIAG_CAL_MN_LEN_GAIN'%(OPTIC)] *= calibfactor
@@ -2535,12 +2525,9 @@ class SENSOR_CALIBRATION_PAY(GuardState):
             log(str(diagvec))
             for ii in range(2):
                 ezca['MOD-%s_TMOL_DRIVEALIGN_MN_%d_1'%(OPTIC,ii+2)] = -diagvec[0,ii] / calibfactor
-
-            return True
+            self.counter += 1
         
-        elif self.counter == 90:
-            self.counter = 8
-            
+        elif self.counter == 10:
             return True
                              
 
@@ -2908,7 +2895,7 @@ def diag_run(self):
                 if DoF2 in key:
                     _actvec.append(dif[key])
 
-        actvec = np.array(_actvec) / (self.offset_dict[self.stage][self.DoF] * self.SUMOUT.GAIN.get())
+        actvec = np.array(_actvec) / (self.offset_dict[self.stage][self.DoF]*self.SUMOUT.GAIN.get())
         log(str(actvec))
         self._t_actmat[self.currentDoF] = actvec
         
@@ -2928,7 +2915,11 @@ def diag_run(self):
             for jj in range(len(actmat)):
                 norm_actmat[ii,jj] = actmat[ii,jj] / (actmat[ii,ii])
             
-        _DRIVEDECPL = np.linalg.inv(norm_actmat)
+        __DRIVEDECPL = np.linalg.inv(norm_actmat)
+        _DRIVEDECPL = np.matrix(np.identity(len(__DRIVEDECPL)))
+        for ii in range(len(_DRIVEDECPL)):
+            for jj in range(len(_DRIVEDECPL)):
+                _DRIVEDECPL[ii,jj] = __DRIVEDECPL[ii,jj]/__DRIVEDECPL[jj,jj]
     
 
 
@@ -3256,7 +3247,12 @@ class ACT_DIAG_GAS(GuardState):
                 for jj in range(len(actmat)):
                     norm_actmat[ii,jj] = actmat[ii,jj] / (actmat[ii,ii])
                     
-            _DRIVEDECPL = np.linalg.inv(norm_actmat)
+
+            __DRIVEDECPL = np.linalg.inv(norm_actmat)
+            _DRIVEDECPL = np.matrix(np.identity(len(__DRIVEDECPL)))
+            for ii in range(len(_DRIVEDECPL)):
+                for jj in range(len(_DRIVEDECPL)):
+                    _DRIVEDECPL[ii,jj] = __DRIVEDECPL[ii,jj]/__DRIVEDECPL[jj,jj]
                 
 
 

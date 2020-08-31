@@ -1,12 +1,12 @@
 
 file {
-	name="/kagra/Dropbox/Personal/Miyo/LOG/200401/VIS_COILOUT_ALERT.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COILOUT_ALERT.adl"
 	version=030107
 }
 display {
 	object {
-		x=3882
-		y=100
+		x=5884
+		y=153
 		width=1607
 		height=908
 	}
@@ -8440,4 +8440,23 @@ composite {
 	align="horiz. centered"
 	limits {
 	}
+}
+"shell command" {
+	object {
+		x=1098
+		y=308
+		width=25
+		height=12
+	}
+	command[0] {
+		label="a"
+		name="/usr/bin/python"
+		args="/opt/rtcds/userapps/release/vis/common/scripts/vis_io_alert.py &"
+	}
+	command[1] {
+		label="b"
+		name="/opt/rtcds/userapps/release/vis/common/scripts/vis_io_alert.py &"
+	}
+	clr=14
+	bclr=4
 }

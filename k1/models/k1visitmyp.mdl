@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.327"
+    ComputedModelVersion    "1.329"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2026.0, 399.0, 1080.0, 1097.0]
+      Location		      [2151.0, 399.0, 1080.0, 1097.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -54,8 +54,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1026.0, 895.0]
-	ZoomFactor		[1.25]
-	Offset			[279.5406865107588, 1351.5741748173161]
+	ZoomFactor		[0.5]
+	Offset			[310.21518473477641, 221.80532471736922]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 17 21:12:48 2020"
-  RTWModifiedTimeStamp	  519599566
-  ModelVersionFormat	  "1.%<AutoIncrement:327>"
+  LastModifiedDate	  "Fri Aug 28 23:11:53 2020"
+  RTWModifiedTimeStamp	  520557078
+  ModelVersionFormat	  "1.%<AutoIncrement:329>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -914,7 +914,7 @@ Model {
   }
   System {
     Name		    "k1visitmyp"
-    Location		    [2026, 399, 3106, 1496]
+    Location		    [2151, 399, 3231, 1496]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -926,9 +926,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "50"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1260"
+    SIDHighWatermark	    "1264"
     Block {
       BlockType		      From
       Name		      "ADC"
@@ -2708,6 +2708,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground50"
+      SID		      "1263"
+      Position		      [165, 2367, 185, 2383]
+      ZOrder		      7605
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground51"
       SID		      "867"
       Position		      [165, 1647, 185, 1663]
@@ -2845,17 +2853,9 @@ Model {
     Block {
       BlockType		      Ground
       Name		      "Ground67"
-      SID		      "1253"
-      Position		      [305, 2362, 325, 2378]
-      ZOrder		      6877
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground68"
-      SID		      "1254"
-      Position		      [305, 2407, 325, 2423]
-      ZOrder		      6878
+      SID		      "1264"
+      Position		      [165, 2412, 185, 2428]
+      ZOrder		      7606
       ShowName		      off
     }
     Block {
@@ -2915,7 +2915,7 @@ Model {
       ZOrder		      5542
       ForegroundColor	      "blue"
       BackgroundColor	      "cyan"
-      LibraryVersion	      "1.265"
+      LibraryVersion	      "1.266"
       SourceBlock	      "TYPEA_MASTER/TYPEA_PAYLOAD_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -4461,6 +4461,40 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "K1:ASC2-VISITMYP_FB_PIT"
+      SID		      "1261"
+      Tag		      "cdsIPCx_RFM"
+      Description	      "card=1"
+      Ports		      [1, 2]
+      Position		      [220, 2364, 285, 2386]
+      ZOrder		      7603
+      BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
+      DropShadow	      on
+      AttributesFormatString  "%<Description>\\n%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "K1:ASC2-VISITMYP_FB_YAW"
+      SID		      "1262"
+      Tag		      "cdsIPCx_RFM"
+      Description	      "card=1"
+      Ports		      [1, 2]
+      Position		      [220, 2409, 285, 2431]
+      ZOrder		      7604
+      BackgroundColor	      "[0.607843, 0.807843, 0.678431]"
+      DropShadow	      on
+      AttributesFormatString  "%<Description>\\n%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "K1:BPC-DITHER_PIT_VISITMY_PIT"
       SID		      "832"
       Tag		      "cdsIPCx_RFM"
@@ -5185,7 +5219,7 @@ Model {
       Variant		      off
       System {
 	Name			"MOD"
-	Location		[3231, 468, 4311, 1565]
+	Location		[2151, 399, 3231, 1496]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -5394,7 +5428,7 @@ Model {
 	  Ports			  [21, 19]
 	  Position		  [125, 12, 270, 918]
 	  ZOrder		  7116
-	  LibraryVersion	  "1.418"
+	  LibraryVersion	  "1.424"
 	  SourceBlock		  "VIS_LIB/MODAL/MOD_in_VISP"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -5678,7 +5712,6 @@ Model {
 	  ZOrder		  3087
 	  SrcBlock		  "ITMY"
 	  SrcPort		  1
-	  Points		  [0, 0]
 	  DstBlock		  "MNV1"
 	  DstPort		  1
 	}
@@ -5686,7 +5719,6 @@ Model {
 	  ZOrder		  3088
 	  SrcBlock		  "ITMY"
 	  SrcPort		  16
-	  Points		  [0, 0]
 	  DstBlock		  "TMH4"
 	  DstPort		  1
 	}
@@ -5694,7 +5726,6 @@ Model {
 	  ZOrder		  3089
 	  SrcBlock		  "ITMY"
 	  SrcPort		  2
-	  Points		  [0, 0]
 	  DstBlock		  "MNV2"
 	  DstPort		  1
 	}
@@ -5702,7 +5733,6 @@ Model {
 	  ZOrder		  3090
 	  SrcBlock		  "ITMY"
 	  SrcPort		  3
-	  Points		  [0, 0]
 	  DstBlock		  "MNV3"
 	  DstPort		  1
 	}
@@ -5745,7 +5775,6 @@ Model {
 	  ZOrder		  3096
 	  SrcBlock		  "ITMY"
 	  SrcPort		  9
-	  Points		  [0, 0]
 	  DstBlock		  "IMV3"
 	  DstPort		  1
 	}
@@ -5753,7 +5782,6 @@ Model {
 	  ZOrder		  3097
 	  SrcBlock		  "ITMY"
 	  SrcPort		  10
-	  Points		  [0, 0]
 	  DstBlock		  "IMH1"
 	  DstPort		  1
 	}
@@ -5768,7 +5796,6 @@ Model {
 	  ZOrder		  3099
 	  SrcBlock		  "ITMY"
 	  SrcPort		  12
-	  Points		  [0, 0]
 	  DstBlock		  "IMH3"
 	  DstPort		  1
 	}
@@ -5776,7 +5803,6 @@ Model {
 	  ZOrder		  3100
 	  SrcBlock		  "ITMY"
 	  SrcPort		  13
-	  Points		  [0, 0]
 	  DstBlock		  "TMH1"
 	  DstPort		  1
 	}
@@ -5784,7 +5810,6 @@ Model {
 	  ZOrder		  3101
 	  SrcBlock		  "ITMY"
 	  SrcPort		  14
-	  Points		  [0, 0]
 	  DstBlock		  "TMH2"
 	  DstPort		  1
 	}
@@ -5792,7 +5817,6 @@ Model {
 	  ZOrder		  3102
 	  SrcBlock		  "ITMY"
 	  SrcPort		  15
-	  Points		  [0, 0]
 	  DstBlock		  "TMH3"
 	  DstPort		  1
 	}
@@ -5842,7 +5866,6 @@ Model {
 	  ZOrder		  3118
 	  SrcBlock		  "ITMY"
 	  SrcPort		  17
-	  Points		  [0, 0]
 	  DstBlock		  "CAL_MN"
 	  DstPort		  1
 	}
@@ -5850,7 +5873,6 @@ Model {
 	  ZOrder		  3120
 	  SrcBlock		  "ITMY"
 	  SrcPort		  18
-	  Points		  [0, 0]
 	  DstBlock		  "CAL_IM"
 	  DstPort		  1
 	}
@@ -5858,7 +5880,6 @@ Model {
 	  ZOrder		  3119
 	  SrcBlock		  "ITMY"
 	  SrcPort		  19
-	  Points		  [0, 0]
 	  DstBlock		  "CAL_TM"
 	  DstPort		  1
 	}
@@ -7507,7 +7528,6 @@ Model {
       ZOrder		      2652
       SrcBlock		      "ITMY"
       SrcPort		      34
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      1
     }
@@ -7515,7 +7535,6 @@ Model {
       ZOrder		      2653
       SrcBlock		      "ITMY"
       SrcPort		      35
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      2
     }
@@ -7523,7 +7542,6 @@ Model {
       ZOrder		      2654
       SrcBlock		      "ITMY"
       SrcPort		      36
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      3
     }
@@ -7531,7 +7549,6 @@ Model {
       ZOrder		      2655
       SrcBlock		      "ITMY"
       SrcPort		      37
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      4
     }
@@ -7539,7 +7556,6 @@ Model {
       ZOrder		      2656
       SrcBlock		      "ITMY"
       SrcPort		      38
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      5
     }
@@ -7547,7 +7563,6 @@ Model {
       ZOrder		      2657
       SrcBlock		      "ITMY"
       SrcPort		      39
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      6
     }
@@ -7555,7 +7570,6 @@ Model {
       ZOrder		      2658
       SrcBlock		      "ITMY"
       SrcPort		      40
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      7
     }
@@ -7563,7 +7577,6 @@ Model {
       ZOrder		      2659
       SrcBlock		      "ITMY"
       SrcPort		      41
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      8
     }
@@ -7571,7 +7584,6 @@ Model {
       ZOrder		      2660
       SrcBlock		      "ITMY"
       SrcPort		      42
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      9
     }
@@ -7579,7 +7591,6 @@ Model {
       ZOrder		      2661
       SrcBlock		      "ITMY"
       SrcPort		      43
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      10
     }
@@ -7587,7 +7598,6 @@ Model {
       ZOrder		      2662
       SrcBlock		      "ITMY"
       SrcPort		      44
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      11
     }
@@ -7595,7 +7605,6 @@ Model {
       ZOrder		      2663
       SrcBlock		      "ITMY"
       SrcPort		      45
-      Points		      [5, 0]
       DstBlock		      "Mux2"
       DstPort		      12
     }
@@ -8120,20 +8129,6 @@ Model {
       DstPort		      16
     }
     Line {
-      ZOrder		      3193
-      SrcBlock		      "Ground67"
-      SrcPort		      1
-      DstBlock		      "MOD"
-      DstPort		      17
-    }
-    Line {
-      ZOrder		      3194
-      SrcBlock		      "Ground68"
-      SrcPort		      1
-      DstBlock		      "MOD"
-      DstPort		      18
-    }
-    Line {
       ZOrder		      3195
       SrcBlock		      "Ground69"
       SrcPort		      1
@@ -8286,6 +8281,34 @@ Model {
       SrcPort		      1
       DstBlock		      "ITMY"
       DstPort		      50
+    }
+    Line {
+      ZOrder		      3222
+      SrcBlock		      "K1:ASC2-VISITMYP_FB_PIT"
+      SrcPort		      1
+      DstBlock		      "MOD"
+      DstPort		      17
+    }
+    Line {
+      ZOrder		      3223
+      SrcBlock		      "K1:ASC2-VISITMYP_FB_YAW"
+      SrcPort		      1
+      DstBlock		      "MOD"
+      DstPort		      18
+    }
+    Line {
+      ZOrder		      3226
+      SrcBlock		      "Ground50"
+      SrcPort		      1
+      DstBlock		      "K1:ASC2-VISITMYP_FB_PIT"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      3227
+      SrcBlock		      "Ground67"
+      SrcPort		      1
+      DstBlock		      "K1:ASC2-VISITMYP_FB_YAW"
+      DstPort		      1
     }
     Annotation {
       SID		      "1106"
