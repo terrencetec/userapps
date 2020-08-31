@@ -577,6 +577,14 @@ class HBW_OLDC(GuardState):
     @is_fault
     def run(self):
         return True
+
+class LOCK_ACQUISITION(GuardState):
+    index = 800
+    request = True
+    
+    @is_fault
+    def run(self):
+        return True
     
 
 class OBSERVATION(GuardState):
@@ -610,5 +618,9 @@ edges = [('INIT','SAFE'),
          ('DISABLE_TWRDC','DISABLE_LOCALDAMP'),
          ('DISABLE_LOCALDAMP','FLOAT'),
          ('FLOAT','CLEAR_OUTPUT'),
+         ('OLDAMPED','LOCK_ACQUISITION'),
+         ('LOCK_ACQUISITION','OLDAMPED'),
+         ('LOCK_ACQUISITION','OBSERVATION'),
+         ('OBSERVATION','LOCK_ACQUISITION',),
          ('CLEAR_OUTPUT','SAFE'),
          ]

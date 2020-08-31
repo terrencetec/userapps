@@ -18,7 +18,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4513.0, 48.0, 1098.0, 1036.0]
+      Location		      [2147.0, 576.0, 1098.0, 1036.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -42,9 +42,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"310"
-	Extents			[1044.0, 865.0]
-	ZoomFactor		[1.5]
-	Offset			[-304.58001057195986, 338.74999999999977]
+	Extents			[1044.0, 843.0]
+	ZoomFactor		[0.8]
+	Offset			[183.83206778619805, 155.45049925983793]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 03 16:53:04 2020"
-  RTWModifiedTimeStamp	  518374364
-  ModelVersionFormat	  "1.%<AutoIncrement:101>"
+  LastModifiedDate	  "Mon Aug 31 19:37:06 2020"
+  RTWModifiedTimeStamp	  520803424
+  ModelVersionFormat	  "1.%<AutoIncrement:104>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -730,17 +730,6 @@ Library {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Abs
-      ZeroCross		      on
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-    }
-    Block {
       BlockType		      Constant
       Value		      "1"
       VectorParams1D	      on
@@ -793,15 +782,6 @@ Library {
       Interpolate	      on
     }
     Block {
-      BlockType		      Logic
-      Operator		      "AND"
-      Inputs		      "2"
-      IconShape		      "rectangular"
-      AllPortsSameDT	      on
-      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -839,14 +819,6 @@ Library {
       LockScale		      off
       RndMeth		      "Zero"
       SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      RelationalOperator
-      Operator		      ">="
-      InputSameDT	      on
-      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
-      ZeroCross		      on
       SampleTime	      "-1"
     }
     Block {
@@ -902,7 +874,7 @@ Library {
   }
   System {
     Name		    "CRYP_TM_MASTER"
-    Location		    [4513, 48, 5611, 1084]
+    Location		    [1071, 48, 2169, 1084]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -914,16 +886,17 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1026"
+    SIDHighWatermark	    "1035"
     Block {
       BlockType		      SubSystem
       Name		      "CRYP_TM_MASTER"
       SID		      "310"
-      Ports		      [27, 15]
+      Ports		      [16, 4]
       Position		      [225, 120, 415, 580]
       ZOrder		      4987
+      ForegroundColor	      "blue"
       BackgroundColor	      "cyan"
       DropShadow	      on
       LibraryVersion	      "*1.100"
@@ -931,7 +904,7 @@ Library {
       Variant		      off
       System {
 	Name			"CRYP_TM_MASTER"
-	Location		[4513, 48, 5611, 1084]
+	Location		[2147, 576, 3245, 1612]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -943,7 +916,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  Inport
 	  Name			  "OL_TILT_SEG1"
@@ -1025,268 +998,91 @@ Library {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "OLSERVO_L_In"
-	  SID			  "758"
-	  Position		  [800, 690, 820, 700]
-	  ZOrder		  4466
-	  BackgroundColor	  "yellow"
-	  Port			  "9"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "OLSERVO_P_In"
-	  SID			  "759"
-	  Position		  [800, 720, 820, 730]
-	  ZOrder		  4467
-	  BackgroundColor	  "yellow"
-	  Port			  "10"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "OLSERVO_Y_In"
-	  SID			  "760"
-	  Position		  [800, 750, 820, 760]
-	  ZOrder		  4468
-	  BackgroundColor	  "yellow"
-	  Port			  "11"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "COILOUTF_CTRL"
-	  SID			  "611"
-	  Position		  [1685, 570, 1705, 580]
-	  ZOrder		  4425
-	  ForegroundColor	  "red"
-	  BackgroundColor	  "yellow"
-	  Port			  "12"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "COILOUTF_MASK"
-	  SID			  "612"
-	  Position		  [1685, 605, 1705, 615]
-	  ZOrder		  4426
-	  ForegroundColor	  "blue"
-	  BackgroundColor	  "yellow"
-	  Port			  "13"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "MASTERSW_In"
-	  SID			  "606"
-	  Position		  [1685, 645, 1705, 655]
-	  ZOrder		  4420
-	  BackgroundColor	  "yellow"
-	  Port			  "14"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "BLOCKFLAG"
-	  SID			  "755"
-	  Position		  [1685, 695, 1705, 705]
-	  ZOrder		  4464
-	  BackgroundColor	  "yellow"
-	  Port			  "15"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "WD_RESET_In"
-	  SID			  "319"
-	  Position		  [750, 855, 770, 865]
-	  ZOrder		  106
-	  BackgroundColor	  "yellow"
-	  Port			  "16"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "ISC_L_In"
-	  SID			  "613"
-	  Position		  [-360, -80, -340, -70]
-	  ZOrder		  4427
-	  BackgroundColor	  "yellow"
-	  Port			  "17"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "ISC_P_In"
-	  SID			  "614"
-	  Position		  [-360, -50, -340, -40]
-	  ZOrder		  4428
-	  BackgroundColor	  "yellow"
-	  Port			  "18"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "ISC_Y_In"
-	  SID			  "615"
-	  Position		  [-360, -20, -340, -10]
-	  ZOrder		  4429
-	  BackgroundColor	  "yellow"
-	  Port			  "19"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "DITHER_P_In"
-	  SID			  "712"
-	  Position		  [610, 340, 630, 350]
-	  ZOrder		  4462
-	  BackgroundColor	  "yellow"
-	  Port			  "20"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "DITHER_Y_In"
-	  SID			  "713"
-	  Position		  [610, 360, 630, 370]
-	  ZOrder		  4463
-	  BackgroundColor	  "yellow"
-	  Port			  "21"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "CALLINE_L_In"
-	  SID			  "924"
-	  Position		  [800, 805, 820, 815]
-	  ZOrder		  5420
-	  BackgroundColor	  "yellow"
-	  Port			  "22"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "ISC_HoldFlag"
-	  SID			  "949"
-	  Position		  [-360, 140, -340, 150]
-	  ZOrder		  5477
-	  BackgroundColor	  "yellow"
-	  Port			  "23"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
 	  Name			  "MODAL_H1_In"
 	  SID			  "1015"
-	  Position		  [1805, 265, 1815, 285]
+	  Position		  [1795, 430, 1815, 440]
 	  ZOrder		  5546
-	  BlockRotation		  270
-	  BlockMirror		  on
 	  BackgroundColor	  "yellow"
-	  Port			  "24"
+	  NamePlacement		  "alternate"
+	  Port			  "9"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "MODAL_H2_In"
 	  SID			  "1016"
-	  Position		  [1830, 285, 1840, 305]
+	  Position		  [1820, 465, 1840, 475]
 	  ZOrder		  5548
-	  BlockRotation		  270
-	  BlockMirror		  on
 	  BackgroundColor	  "yellow"
-	  Port			  "25"
+	  NamePlacement		  "alternate"
+	  Port			  "10"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "MODAL_H3_In"
 	  SID			  "1017"
-	  Position		  [1860, 305, 1870, 325]
+	  Position		  [1850, 500, 1870, 510]
 	  ZOrder		  5550
-	  BlockRotation		  270
-	  BlockMirror		  on
 	  BackgroundColor	  "yellow"
-	  Port			  "26"
+	  NamePlacement		  "alternate"
+	  Port			  "11"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "MODAL_H4_In"
 	  SID			  "1024"
-	  Position		  [1890, 325, 1900, 345]
+	  Position		  [1880, 535, 1900, 545]
 	  ZOrder		  5551
-	  BlockRotation		  270
-	  BlockMirror		  on
 	  BackgroundColor	  "yellow"
-	  Port			  "27"
+	  NamePlacement		  "alternate"
+	  Port			  "12"
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "ADD"
-	  SID			  "792"
-	  Ports			  [15, 3]
-	  Position		  [1050, 360, 1230, 620]
-	  ZOrder		  4486
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/CrypParts/ADD_TM"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  BlockType		  Inport
+	  Name			  "coiloutf_control"
+	  SID			  "1027"
+	  Position		  [1805, 570, 1825, 580]
+	  ZOrder		  7295
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "13"
+	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "CALLINE"
-	  SID			  "923"
-	  Ports			  [1, 1]
-	  Position		  [875, 799, 985, 821]
-	  ZOrder		  5419
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/CALLINE"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  BlockType		  Inport
+	  Name			  "coiloutf_mask"
+	  SID			  "1028"
+	  Position		  [1810, 605, 1830, 615]
+	  ZOrder		  7296
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "14"
+	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "CASALIGN"
-	  SID			  "887"
-	  Tag			  "cdsMuxMatrix"
-	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
-	  Ports			  [1, 1]
-	  Position		  [160, 283, 205, 327]
-	  ZOrder		  5394
-	  BackgroundColor	  "green"
-	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.3"
-	  FontSize		  12
-	  SourceBlock		  "cdsMuxMatrix/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  BlockType		  Inport
+	  Name			  "mastersw"
+	  SID			  "1029"
+	  Position		  [2015, 645, 2035, 655]
+	  ZOrder		  7297
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "15"
+	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "CAS_SW"
-	  SID			  "888"
-	  Tag			  "cdsEpicsBinIn"
-	  Description		  "Purpose:                                                                            \nCreate an EPI"
-	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
-	  "                                          \nOperation:                                                             "
-	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
-	  "                                                                      \nUsage:                                     "
-	  "                                         \nName the part with the desired EPICS channel name.                      "
-	  "            "
-	  Ports			  [1, 1]
-	  Position		  [-285, 220, -210, 250]
-	  ZOrder		  5389
-	  BackgroundColor	  "darkGreen"
-	  DropShadow		  on
-	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.6"
-	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
+	  BlockType		  Inport
+	  Name			  "blockflag"
+	  SID			  "1030"
+	  Position		  [2015, 695, 2035, 705]
+	  ZOrder		  7298
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "16"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1295,7 +1091,7 @@ Library {
 	  Ports			  []
 	  Position		  [-168, 666, -68, 726]
 	  ZOrder		  7294
-	  LibraryVersion	  "1.314"
+	  LibraryVersion	  "1.432"
 	  SourceBlock		  "VIS_LIB/COILBAL_DATE"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -1850,492 +1646,6 @@ Library {
 	      }
 	    }
 	  }
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DAMP"
-	  SID			  "920"
-	  Ports			  [3, 4]
-	  Position		  [890, 500, 955, 555]
-	  ZOrder		  5417
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/DAMP"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DAMP_OUTSW"
-	  SID			  "916"
-	  Ports			  [3, 3]
-	  Position		  [970, 495, 1030, 545]
-	  ZOrder		  5415
-	  BackgroundColor	  "cyan"
-	  LibraryVersion	  "1.100"
-	  SourceBlock		  "CRYP_TM_MASTER/CRYP_TM_MASTER/LOCK_OUTSW"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DITHER"
-	  SID			  "367"
-	  Ports			  [2, 2]
-	  Position		  [695, 337, 820, 373]
-	  ZOrder		  55
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/DITHER"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DRIVEALIGN"
-	  SID			  "796"
-	  Ports			  [3, 3]
-	  Position		  [1480, 450, 1590, 530]
-	  ZOrder		  5357
-	  BackgroundColor	  "green"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/CrypParts/DRIVEALIGN"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Demux
-	  Name			  "Demux1"
-	  SID			  "401"
-	  Ports			  [1, 4]
-	  Position		  [1715, 418, 1720, 557]
-	  ZOrder		  -21
-	  BackgroundColor	  "black"
-	  ShowName		  off
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Demux
-	  Name			  "Demux6"
-	  SID			  "889"
-	  Ports			  [1, 2]
-	  Position		  [230, 279, 235, 326]
-	  ZOrder		  5396
-	  BackgroundColor	  "black"
-	  ShowName		  off
-	  Outputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Demux
-	  Name			  "Demux9"
-	  SID			  "403"
-	  Ports			  [1, 4]
-	  Position		  [1095, 849, 1100, 916]
-	  ZOrder		  -24
-	  BackgroundColor	  "black"
-	  ShowName		  off
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "EUL2COIL"
-	  SID			  "404"
-	  Tag			  "cdsMuxMatrix"
-	  Description		  "Any size matrix. Inputs and outputs must be connected using Mux and Demux parts."
-	  Ports			  [1, 1]
-	  Position		  [1650, 468, 1695, 512]
-	  ZOrder		  -25
-	  BackgroundColor	  "green"
-	  DropShadow		  on
-	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.3"
-	  FontSize		  12
-	  SourceBlock		  "cdsMuxMatrix/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  From
-	  Name			  "From7"
-	  SID			  "420"
-	  Position		  [1735, 847, 1855, 863]
-	  ZOrder		  73
-	  BackgroundColor	  "[0.666667, 0.666667, 1.000000]"
-	  ShowName		  off
-	  CloseFcn		  "tagdialog Close"
-	  GotoTag		  "DAMPSTATE"
-	}
-	Block {
-	  BlockType		  From
-	  Name			  "From8"
-	  SID			  "421"
-	  Position		  [1735, 887, 1855, 903]
-	  ZOrder		  72
-	  BackgroundColor	  "[0.666667, 0.666667, 1.000000]"
-	  ShowName		  off
-	  CloseFcn		  "tagdialog Close"
-	  GotoTag		  "LOCKSTATE"
-	}
-	Block {
-	  BlockType		  Goto
-	  Name			  "Goto1"
-	  SID			  "921"
-	  Position		  [1170, 667, 1260, 683]
-	  ZOrder		  5416
-	  BackgroundColor	  "[0.666667, 0.666667, 1.000000]"
-	  ShowName		  off
-	  GotoTag		  "DAMPSTATE"
-	}
-	Block {
-	  BlockType		  Goto
-	  Name			  "Goto4"
-	  SID			  "428"
-	  Position		  [1045, -83, 1140, -67]
-	  ZOrder		  79
-	  BackgroundColor	  "[0.666667, 0.666667, 1.000000]"
-	  ShowName		  off
-	  GotoTag		  "LOCKSTATE"
-	}
-	Block {
-	  BlockType		  Ground
-	  Name			  "Ground1"
-	  SID			  "893"
-	  Position		  [-360, 225, -340, 245]
-	  ZOrder		  5390
-	  ShowName		  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "ISCRAMPHOLD"
-	  SID			  "943"
-	  Ports			  [4, 3]
-	  Position		  [-155, 25, -50, 160]
-	  ZOrder		  5464
-	  LibraryVersion	  "1.198"
-	  SourceBlock		  "KAGRA_UTIL/ISCRAMPHOLD"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "LOCK"
-	  SID			  "449"
-	  Ports			  [3, 4]
-	  Position		  [695, -87, 820, -3]
-	  ZOrder		  86
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/LOCK"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "LOCK_OUTSW"
-	  SID			  "830"
-	  Ports			  [3, 3]
-	  Position		  [930, 310, 990, 360]
-	  ZOrder		  -60
-	  BackgroundColor	  "cyan"
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "LOCK_OUTSW"
-	    Location		    [2160, 13, 3618, 1089]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "L_In"
-	      SID		      "831"
-	      Position		      [-65, 13, -35, 27]
-	      ZOrder		      5365
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "P_In"
-	      SID		      "832"
-	      Position		      [-65, 143, -35, 157]
-	      ZOrder		      5366
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Y_In"
-	      SID		      "834"
-	      Position		      [-65, 288, -35, 302]
-	      ZOrder		      5368
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Ground
-	      Name		      "Ground1"
-	      SID		      "836"
-	      Position		      [-125, 55, -105, 75]
-	      ZOrder		      5369
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Ground
-	      Name		      "Ground2"
-	      SID		      "837"
-	      Position		      [-120, 190, -100, 210]
-	      ZOrder		      5373
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Ground
-	      Name		      "Ground3"
-	      SID		      "841"
-	      Position		      [-120, 335, -100, 355]
-	      ZOrder		      5377
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "L"
-	      SID		      "835"
-	      Tag		      "cdsEpicsBinIn"
-	      Description	      "Purpose:                                                                            \nCreate"
-	      " an EPICS binary (0 or 1) input channel to the FE realtime controls.          \n                               "
-	      "                                                     \nOperation:                                              "
-	      "                            \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record typ"
-	      "e).\n                                                                                    \nUsage:              "
-	      "                                                                \nName the part with the desired EPICS channel "
-	      "name.                                  "
-	      Ports		      [1, 1]
-	      Position		      [-90, 50, -15, 80]
-	      ZOrder		      5370
-	      BackgroundColor	      "darkGreen"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsEpicsBinIn/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "P"
-	      SID		      "838"
-	      Tag		      "cdsEpicsBinIn"
-	      Description	      "Purpose:                                                                            \nCreate"
-	      " an EPICS binary (0 or 1) input channel to the FE realtime controls.          \n                               "
-	      "                                                     \nOperation:                                              "
-	      "                            \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record typ"
-	      "e).\n                                                                                    \nUsage:              "
-	      "                                                                \nName the part with the desired EPICS channel "
-	      "name.                                  "
-	      Ports		      [1, 1]
-	      Position		      [-85, 185, -10, 215]
-	      ZOrder		      5374
-	      BackgroundColor	      "darkGreen"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsEpicsBinIn/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Product
-	      Name		      "Product"
-	      SID		      "829"
-	      Ports		      [2, 1]
-	      Position		      [70, 27, 100, 58]
-	      ZOrder		      5364
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Product
-	      Name		      "Product1"
-	      SID		      "839"
-	      Ports		      [2, 1]
-	      Position		      [75, 162, 105, 193]
-	      ZOrder		      5371
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Product
-	      Name		      "Product2"
-	      SID		      "843"
-	      Ports		      [2, 1]
-	      Position		      [75, 307, 105, 338]
-	      ZOrder		      5375
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Y"
-	      SID		      "842"
-	      Tag		      "cdsEpicsBinIn"
-	      Description	      "Purpose:                                                                            \nCreate"
-	      " an EPICS binary (0 or 1) input channel to the FE realtime controls.          \n                               "
-	      "                                                     \nOperation:                                              "
-	      "                            \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record typ"
-	      "e).\n                                                                                    \nUsage:              "
-	      "                                                                \nName the part with the desired EPICS channel "
-	      "name.                                  "
-	      Ports		      [1, 1]
-	      Position		      [-85, 330, -10, 360]
-	      ZOrder		      5378
-	      BackgroundColor	      "darkGreen"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsEpicsBinIn/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "L_Out"
-	      SID		      "833"
-	      Position		      [145, 38, 175, 52]
-	      ZOrder		      5367
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "P_Out"
-	      SID		      "840"
-	      Position		      [150, 173, 180, 187]
-	      ZOrder		      5372
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "Y_Out"
-	      SID		      "844"
-	      Position		      [150, 318, 180, 332]
-	      ZOrder		      5376
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "L_In"
-	      SrcPort		      1
-	      Points		      [48, 0; 0, 15]
-	      DstBlock		      "Product"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "Product"
-	      SrcPort		      1
-	      DstBlock		      "L_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      3
-	      SrcBlock		      "Ground1"
-	      SrcPort		      1
-	      DstBlock		      "L"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "L"
-	      SrcPort		      1
-	      Points		      [65, 0]
-	      DstBlock		      "Product"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "Ground2"
-	      SrcPort		      1
-	      DstBlock		      "P"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "P"
-	      SrcPort		      1
-	      Points		      [65, 0]
-	      DstBlock		      "Product1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      7
-	      SrcBlock		      "P_In"
-	      SrcPort		      1
-	      Points		      [50, 0; 0, 20]
-	      DstBlock		      "Product1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      8
-	      SrcBlock		      "Product1"
-	      SrcPort		      1
-	      DstBlock		      "P_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "Ground3"
-	      SrcPort		      1
-	      DstBlock		      "Y"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "Y"
-	      SrcPort		      1
-	      Points		      [65, 0]
-	      DstBlock		      "Product2"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      11
-	      SrcBlock		      "Y_In"
-	      SrcPort		      1
-	      Points		      [50, 0; 0, 20]
-	      DstBlock		      "Product2"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      12
-	      SrcBlock		      "Product2"
-	      SrcPort		      1
-	      DstBlock		      "Y_Out"
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "LogicalOperator"
-	  SID			  "900"
-	  Ports			  [1, 1]
-	  Position		  [795, 226, 825, 244]
-	  ZOrder		  5400
-	  ShowName		  off
-	  Operator		  "NOT"
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3199,301 +2509,6 @@ Library {
 	  }
 	}
 	Block {
-	  BlockType		  Mux
-	  Name			  "Mux1"
-	  SID			  "453"
-	  Ports			  [3, 1]
-	  Position		  [1610, 448, 1615, 532]
-	  ZOrder		  -40
-	  ShowName		  off
-	  Inputs		  "3"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux6"
-	  SID			  "894"
-	  Ports			  [2, 1]
-	  Position		  [125, 268, 130, 337]
-	  ZOrder		  5395
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux9"
-	  SID			  "455"
-	  Ports			  [2, 1]
-	  Position		  [865, 837, 870, 933]
-	  ZOrder		  108
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "OLSERVO"
-	  SID			  "801"
-	  Ports			  [3, 3]
-	  Position		  [875, 678, 985, 772]
-	  ZOrder		  5360
-	  BackgroundColor	  "lightBlue"
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "OLSERVO"
-	    Location		    [442, 24, 1929, 1056]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "150"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "LONG_In"
-	      SID		      "802"
-	      Position		      [60, 23, 90, 37]
-	      ZOrder		      -5
-	      BackgroundColor	      "yellow"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "PITCH_In"
-	      SID		      "806"
-	      Position		      [60, 153, 90, 167]
-	      ZOrder		      -3
-	      BackgroundColor	      "yellow"
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "YAW_In"
-	      SID		      "807"
-	      Position		      [60, 283, 90, 297]
-	      ZOrder		      -4
-	      BackgroundColor	      "yellow"
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "L_OUT"
-	      SID		      "808"
-	      Tag		      "Test Point"
-	      Ports		      [1]
-	      Position		      [185, -35, 225, -15]
-	      ZOrder		      1596
-	      BackgroundColor	      "green"
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsTP/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "L_OUTMON"
-	      SID		      "809"
-	      Tag		      "cdsEpicsOutput"
-	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
-	      "          \n                                                  \nOperation:                                     "
-	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
-	      "age:                                            \nName the part with the desired EPICS rrecord name."
-	      Ports		      [1, 1]
-	      Position		      [165, 15, 245, 45]
-	      ZOrder		      1595
-	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.2"
-	      SourceBlock	      "cdsEpicsOut/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "P_OUT"
-	      SID		      "810"
-	      Tag		      "Test Point"
-	      Ports		      [1]
-	      Position		      [185, 95, 225, 115]
-	      ZOrder		      1605
-	      BackgroundColor	      "green"
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsTP/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "P_OUTMON"
-	      SID		      "811"
-	      Tag		      "cdsEpicsOutput"
-	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
-	      "          \n                                                  \nOperation:                                     "
-	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
-	      "age:                                            \nName the part with the desired EPICS rrecord name."
-	      Ports		      [1, 1]
-	      Position		      [165, 145, 245, 175]
-	      ZOrder		      1600
-	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.2"
-	      SourceBlock	      "cdsEpicsOut/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Y_OUT"
-	      SID		      "818"
-	      Tag		      "Test Point"
-	      Ports		      [1]
-	      Position		      [185, 225, 225, 245]
-	      ZOrder		      1606
-	      BackgroundColor	      "green"
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.6"
-	      SourceBlock	      "cdsTP/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Y_OUTMON"
-	      SID		      "819"
-	      Tag		      "cdsEpicsOutput"
-	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
-	      "          \n                                                  \nOperation:                                     "
-	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
-	      "age:                                            \nName the part with the desired EPICS rrecord name."
-	      Ports		      [1, 1]
-	      Position		      [165, 275, 245, 305]
-	      ZOrder		      1601
-	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
-	      DropShadow	      on
-	      AttributesFormatString  "%<Tag>"
-	      LibraryVersion	      "1.2"
-	      SourceBlock	      "cdsEpicsOut/Subsystem"
-	      SourceType	      "SubSystem"
-	      ContentPreviewEnabled   off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "LONG_Out"
-	      SID		      "820"
-	      Position		      [270, 23, 300, 37]
-	      ZOrder		      -17
-	      BackgroundColor	      "yellow"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "PITCH_Out"
-	      SID		      "824"
-	      Position		      [270, 153, 300, 167]
-	      ZOrder		      -15
-	      BackgroundColor	      "yellow"
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "YAW_Out"
-	      SID		      "825"
-	      Position		      [270, 283, 300, 297]
-	      ZOrder		      -16
-	      BackgroundColor	      "yellow"
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "L_OUTMON"
-	      SrcPort		      1
-	      DstBlock		      "LONG_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "LONG_In"
-	      SrcPort		      1
-	      Points		      [35, 0]
-	      Branch {
-		ZOrder			3
-		Points			[0, -55]
-		DstBlock		"L_OUT"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			4
-		DstBlock		"L_OUTMON"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "P_OUTMON"
-	      SrcPort		      1
-	      DstBlock		      "PITCH_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "PITCH_In"
-	      SrcPort		      1
-	      Points		      [39, 0]
-	      Branch {
-		ZOrder			7
-		Points			[0, -55]
-		DstBlock		"P_OUT"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			8
-		DstBlock		"P_OUTMON"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "Y_OUTMON"
-	      SrcPort		      1
-	      DstBlock		      "YAW_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "YAW_In"
-	      SrcPort		      1
-	      Points		      [39, 0]
-	      Branch {
-		ZOrder			11
-		Points			[0, -55]
-		DstBlock		"Y_OUT"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			12
-		DstBlock		"Y_OUTMON"
-		DstPort			1
-	      }
-	    }
-	  }
-	}
-	Block {
 	  BlockType		  SubSystem
 	  Name			  "OLSET"
 	  SID			  "858"
@@ -3651,15 +2666,15 @@ Library {
 	  BlockType		  SubSystem
 	  Name			  "OPLEV"
 	  SID			  "457"
-	  Ports			  [12, 5]
-	  Position		  [300, 417, 445, 663]
+	  Ports			  [10, 5]
+	  Position		  [300, 419, 445, 666]
 	  ZOrder		  1180
 	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
 	    Name		    "OPLEV"
-	    Location		    [2160, 20, 3618, 1056]
+	    Location		    [2147, 576, 3245, 1612]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3671,7 +2686,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "60"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "TILT_SEG1_In"
@@ -3772,33 +2787,13 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
-	      BlockType		      Inport
-	      Name		      "ISC_P_In"
-	      SID		      "863"
-	      Position		      [880, 468, 910, 482]
-	      ZOrder		      1607
-	      BackgroundColor	      "yellow"
-	      Port		      "11"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "ISC_Y_In"
-	      SID		      "864"
-	      Position		      [880, 503, 910, 517]
-	      ZOrder		      1608
-	      BackgroundColor	      "yellow"
-	      Port		      "12"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
 	      BlockType		      Reference
 	      Name		      "BLRMS_L"
 	      SID		      "917"
 	      Ports		      [1]
 	      Position		      [945, -162, 990, -138]
 	      ZOrder		      5376
-	      LibraryVersion	      "1.100"
+	      LibraryVersion	      "1.103"
 	      SourceBlock	      "CRYP_TM_MASTER/CRYP_TM_MASTER/OPLEV/TILT_BLRMS_P"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -3810,7 +2805,7 @@ Library {
 	      Ports		      [1]
 	      Position		      [945, -117, 990, -93]
 	      ZOrder		      5377
-	      LibraryVersion	      "1.100"
+	      LibraryVersion	      "1.103"
 	      SourceBlock	      "CRYP_TM_MASTER/CRYP_TM_MASTER/OPLEV/TILT_BLRMS_P"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -3822,7 +2817,7 @@ Library {
 	      Ports		      [1]
 	      Position		      [945, -72, 990, -48]
 	      ZOrder		      5378
-	      LibraryVersion	      "1.100"
+	      LibraryVersion	      "1.103"
 	      SourceBlock	      "CRYP_TM_MASTER/CRYP_TM_MASTER/OPLEV/TILT_BLRMS_P"
 	      SourceType	      "SubSystem"
 	      ContentPreviewEnabled   off
@@ -5004,34 +3999,6 @@ Library {
 	      ShowName		      off
 	      IconShape		      "round"
 	      Inputs		      "|+-"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum2"
-	      SID		      "876"
-	      Ports		      [2, 1]
-	      Position		      [980, 380, 1000, 400]
-	      ZOrder		      5374
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum3"
-	      SID		      "877"
-	      Ports		      [2, 1]
-	      Position		      [1005, 500, 1025, 520]
-	      ZOrder		      5375
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "++|"
 	      InputSameDT	      off
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
@@ -6480,625 +5447,62 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      60
+	      ZOrder		      67
 	      SrcBlock		      "OLSET_P_In"
 	      SrcPort		      1
-	      DstBlock		      "Sum2"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      61
-	      SrcBlock		      "ISC_P_In"
-	      SrcPort		      1
-	      Points		      [75, 0]
-	      DstBlock		      "Sum2"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      62
-	      SrcBlock		      "Sum2"
-	      SrcPort		      1
-	      Points		      [55, 0]
+	      Points		      [145, 0]
 	      DstBlock		      "Sum"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      63
+	      ZOrder		      66
 	      SrcBlock		      "OLSET_Y_In"
 	      SrcPort		      1
-	      Points		      [100, 0]
-	      DstBlock		      "Sum3"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      64
-	      SrcBlock		      "ISC_Y_In"
-	      SrcPort		      1
-	      DstBlock		      "Sum3"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      65
-	      SrcBlock		      "Sum3"
-	      SrcPort		      1
-	      Points		      [65, 0]
+	      Points		      [180, 0]
 	      DstBlock		      "Sum1"
 	      DstPort		      2
 	    }
 	  }
 	}
 	Block {
-	  BlockType		  Product
-	  Name			  "P_MS_V1"
-	  SID			  "895"
-	  Ports			  [2, 1]
-	  Position		  [80, 275, 100, 295]
-	  ZOrder		  5391
-	  ShowName		  off
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Product
-	  Name			  "P_MS_V2"
-	  SID			  "896"
-	  Ports			  [2, 1]
-	  Position		  [80, 310, 100, 330]
-	  ZOrder		  5392
-	  ShowName		  off
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Product
-	  Name			  "P_MS_V3"
-	  SID			  "901"
-	  Ports			  [2, 1]
-	  Position		  [877, 250, 888, 270]
-	  ZOrder		  5401
-	  BlockRotation		  270
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  ShowName		  off
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Product
-	  Name			  "P_MS_V4"
-	  SID			  "902"
-	  Ports			  [2, 1]
-	  Position		  [857, 250, 868, 270]
-	  ZOrder		  5402
-	  BlockRotation		  270
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  ShowName		  off
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "SERVO"
-	  SID			  "653"
-	  Ports			  [3, 4]
-	  Position		  [660, 543, 785, 652]
-	  ZOrder		  4431
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/DAMP"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "SUMOUT"
-	  SID			  "800"
-	  Ports			  [3, 3]
-	  Position		  [1345, 449, 1450, 531]
-	  ZOrder		  5359
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/CrypParts/SUMOUT_TM"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum1"
-	  SID			  "1025"
-	  Ports			  [2, 1]
-	  Position		  [1885, 530, 1905, 550]
-	  ZOrder		  5552
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum3"
-	  SID			  "1020"
-	  Ports			  [2, 1]
-	  Position		  [1825, 460, 1845, 480]
-	  ZOrder		  5547
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum4"
-	  SID			  "1021"
-	  Ports			  [2, 1]
-	  Position		  [1855, 495, 1875, 515]
-	  ZOrder		  5549
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum9"
-	  SID			  "1023"
-	  Ports			  [2, 1]
-	  Position		  [1800, 425, 1820, 445]
-	  ZOrder		  5545
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "++|"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "TEST"
-	  SID			  "799"
-	  Ports			  [0, 3]
-	  Position		  [695, 452, 820, 498]
-	  ZOrder		  5358
-	  BackgroundColor	  "[1.000000, 0.333333, 0.498039]"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/CrypParts/TEST_TM"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator1"
-	  SID			  "922"
-	  Position		  [815, 625, 835, 645]
-	  ZOrder		  5418
+	  SID			  "1035"
+	  Position		  [490, 635, 510, 655]
+	  ZOrder		  7303
 	  ShowName		  off
-	  FontSize		  12
 	}
 	Block {
 	  BlockType		  Terminator
-	  Name			  "Terminator14"
-	  SID			  "564"
-	  Position		  [1955, 885, 1975, 905]
-	  ZOrder		  4419
+	  Name			  "Terminator5"
+	  SID			  "1031"
+	  Position		  [490, 485, 510, 505]
+	  ZOrder		  7302
 	  ShowName		  off
-	  FontSize		  12
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator6"
+	  SID			  "1032"
+	  Position		  [490, 535, 510, 555]
+	  ZOrder		  7301
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator7"
+	  SID			  "1033"
+	  Position		  [490, 585, 510, 605]
+	  ZOrder		  7300
+	  ShowName		  off
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator8"
-	  SID			  "572"
-	  Position		  [1955, 845, 1975, 865]
-	  ZOrder		  4417
+	  SID			  "1034"
+	  Position		  [490, 435, 510, 455]
+	  ZOrder		  7299
 	  ShowName		  off
-	  FontSize		  12
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "WATCHDOG"
-	  SID			  "574"
-	  Tag			  "cdsFunctionCall"
-	  Description		  "inline OSEMWATCHDOG /opt/rtcds/userapps/release/vis/common/src/WATCHDOG.c"
-	  Ports			  [1, 1]
-	  Position		  [970, 855, 1010, 915]
-	  ZOrder		  112
-	  BackgroundColor	  "red"
-	  AttributesFormatString  "%<Tag>\\n%<Description>"
-	  LibraryVersion	  "1.4"
-	  SourceBlock		  "cdsFunctionCall/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "WD"
-	  SID			  "575"
-	  Ports			  [2, 1]
-	  Position		  [695, 892, 825, 928]
-	  ZOrder		  104
-	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "WD"
-	    Location		    [3993, 26, 5480, 1058]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "OL_T_In"
-	      SID		      "576"
-	      Position		      [40, 140, 60, 150]
-	      ZOrder		      -1
-	      BackgroundColor	      "yellow"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "OL_L_In"
-	      SID		      "577"
-	      Position		      [40, 200, 60, 210]
-	      ZOrder		      -2
-	      BackgroundColor	      "yellow"
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      SubSystem
-	      Name		      "OLDC"
-	      SID		      "578"
-	      Ports		      [2, 1]
-	      Position		      [145, 116, 250, 234]
-	      ZOrder		      -11
-	      BackgroundColor	      "gray"
-	      RequestExecContextInheritance off
-	      Variant		      off
-	      System {
-		Name			"OLDC"
-		Location		[3993, 26, 5480, 1058]
-		Open			off
-		ModelBrowserVisibility	off
-		ModelBrowserWidth	200
-		ScreenColor		"white"
-		PaperOrientation	"landscape"
-		PaperPositionMode	"auto"
-		PaperType		"usletter"
-		PaperUnits		"inches"
-		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
-		TiledPageScale		1
-		ShowPageBoundaries	off
-		ZoomFactor		"100"
-		Block {
-		  BlockType		  Inport
-		  Name			  "T_In"
-		  SID			  "579"
-		  Position		  [245, 98, 275, 112]
-		  ZOrder		  -1
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Inport
-		  Name			  "L_In"
-		  SID			  "580"
-		  Position		  [245, 218, 275, 232]
-		  ZOrder		  -2
-		  Port			  "2"
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Abs
-		  Name			  "Abs1"
-		  SID			  "581"
-		  Position		  [450, 98, 475, 112]
-		  ZOrder		  -5
-		  SaturateOnIntegerOverflow off
-		}
-		Block {
-		  BlockType		  Abs
-		  Name			  "Abs2"
-		  SID			  "582"
-		  Position		  [450, 218, 475, 232]
-		  ZOrder		  -6
-		  SaturateOnIntegerOverflow off
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "DC_MAX"
-		  SID			  "595"
-		  Tag			  "cdsEpicsIn"
-		  Description		  "Purpose:                                                                              \nCreate an "
-		  "EPICS input channel connection to the FE realtime controls.                 \n                                    "
-		  "                                                  \nOperation:                                                    "
-		  "                        \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n"
-		  "                                                                                      \nUsage:                    "
-		  "                                                            \nName the part with the desired EPICS channel name.  "
-		  "                                  "
-		  Ports			  [0, 1]
-		  Position		  [465, 315, 495, 345]
-		  ZOrder		  -20
-		  BackgroundColor	  "green"
-		  DropShadow		  on
-		  AttributesFormatString  "%<Tag>"
-		  LibraryVersion	  "1.3"
-		  SourceBlock		  "cdsEpicsIn/Subsystem"
-		  SourceType		  "SubSystem"
-		  ContentPreviewEnabled	  off
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "L_DC"
-		  SID			  "591"
-		  Tag			  "Test Point"
-		  Ports			  [1]
-		  Position		  [310, 180, 350, 200]
-		  ZOrder		  -11
-		  BackgroundColor	  "green"
-		  AttributesFormatString  "%<Tag>"
-		  LibraryVersion	  "1.6"
-		  SourceBlock		  "cdsTP/Subsystem"
-		  SourceType		  "SubSystem"
-		  ContentPreviewEnabled	  off
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "L_DCMON"
-		  SID			  "592"
-		  Tag			  "cdsEpicsOutput"
-		  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.       "
-		  "    \n                                                  \nOperation:                                        \nTake"
-		  "s input value and passes it to EPICS record.  \n                                                  \nUsage:        "
-		  "                                    \nName the part with the desired EPICS rrecord name."
-		  Ports			  [1, 1]
-		  Position		  [365, 214, 410, 236]
-		  ZOrder		  -12
-		  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
-		  DropShadow		  on
-		  AttributesFormatString  "%<Tag>"
-		  LibraryVersion	  "1.2"
-		  SourceBlock		  "cdsEpicsOut/Subsystem"
-		  SourceType		  "SubSystem"
-		  ContentPreviewEnabled	  off
-		}
-		Block {
-		  BlockType		  RelationalOperator
-		  Name			  "Operator1"
-		  SID			  "593"
-		  Ports			  [2, 1]
-		  Position		  [570, 83, 590, 112]
-		  ZOrder		  3
-		  Operator		  ">"
-		  InputSameDT		  off
-		  OutDataTypeStr	  "boolean"
-		}
-		Block {
-		  BlockType		  RelationalOperator
-		  Name			  "Operator2"
-		  SID			  "594"
-		  Ports			  [2, 1]
-		  Position		  [570, 203, 590, 232]
-		  ZOrder		  4
-		  Operator		  ">"
-		  InputSameDT		  off
-		  OutDataTypeStr	  "boolean"
-		}
-		Block {
-		  BlockType		  Sum
-		  Name			  "Sum1"
-		  SID			  "596"
-		  Ports			  [2, 1]
-		  Position		  [655, 38, 680, 282]
-		  ZOrder		  -21
-		  ShowName		  off
-		  InputSameDT		  off
-		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-		  SaturateOnIntegerOverflow off
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "T_DC"
-		  SID			  "598"
-		  Tag			  "Test Point"
-		  Ports			  [1]
-		  Position		  [310, 60, 350, 80]
-		  ZOrder		  -23
-		  BackgroundColor	  "green"
-		  AttributesFormatString  "%<Tag>"
-		  LibraryVersion	  "1.6"
-		  SourceBlock		  "cdsTP/Subsystem"
-		  SourceType		  "SubSystem"
-		  ContentPreviewEnabled	  off
-		}
-		Block {
-		  BlockType		  Reference
-		  Name			  "T_DCMON"
-		  SID			  "599"
-		  Tag			  "cdsEpicsOutput"
-		  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.       "
-		  "    \n                                                  \nOperation:                                        \nTake"
-		  "s input value and passes it to EPICS record.  \n                                                  \nUsage:        "
-		  "                                    \nName the part with the desired EPICS rrecord name."
-		  Ports			  [1, 1]
-		  Position		  [365, 94, 410, 116]
-		  ZOrder		  -24
-		  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
-		  DropShadow		  on
-		  AttributesFormatString  "%<Tag>"
-		  LibraryVersion	  "1.2"
-		  SourceBlock		  "cdsEpicsOut/Subsystem"
-		  SourceType		  "SubSystem"
-		  ContentPreviewEnabled	  off
-		}
-		Block {
-		  BlockType		  Outport
-		  Name			  "FLAG"
-		  SID			  "600"
-		  Position		  [780, 152, 810, 168]
-		  ZOrder		  -28
-		  IconDisplay		  "Port number"
-		}
-		Line {
-		  ZOrder		  1
-		  SrcBlock		  "Sum1"
-		  SrcPort		  1
-		  DstBlock		  "FLAG"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  2
-		  SrcBlock		  "T_In"
-		  SrcPort		  1
-		  Points		  [15, 0]
-		  Branch {
-		    ZOrder		    3
-		    DstBlock		    "T_DCMON"
-		    DstPort		    1
-		  }
-		  Branch {
-		    ZOrder		    4
-		    DstBlock		    "T_DC"
-		    DstPort		    1
-		  }
-		}
-		Line {
-		  ZOrder		  5
-		  SrcBlock		  "L_In"
-		  SrcPort		  1
-		  Points		  [15, 0]
-		  Branch {
-		    ZOrder		    6
-		    DstBlock		    "L_DCMON"
-		    DstPort		    1
-		  }
-		  Branch {
-		    ZOrder		    7
-		    DstBlock		    "L_DC"
-		    DstPort		    1
-		  }
-		}
-		Line {
-		  ZOrder		  8
-		  SrcBlock		  "DC_MAX"
-		  SrcPort		  1
-		  Points		  [16, 0; 0, -120]
-		  Branch {
-		    ZOrder		    9
-		    DstBlock		    "Operator2"
-		    DstPort		    1
-		  }
-		  Branch {
-		    ZOrder		    10
-		    Points		    [0, -120]
-		    DstBlock		    "Operator1"
-		    DstPort		    1
-		  }
-		}
-		Line {
-		  ZOrder		  11
-		  SrcBlock		  "Operator2"
-		  SrcPort		  1
-		  DstBlock		  "Sum1"
-		  DstPort		  2
-		}
-		Line {
-		  ZOrder		  12
-		  SrcBlock		  "Operator1"
-		  SrcPort		  1
-		  DstBlock		  "Sum1"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  13
-		  SrcBlock		  "T_DCMON"
-		  SrcPort		  1
-		  DstBlock		  "Abs1"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  14
-		  SrcBlock		  "L_DCMON"
-		  SrcPort		  1
-		  DstBlock		  "Abs2"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  15
-		  SrcBlock		  "Abs2"
-		  SrcPort		  1
-		  DstBlock		  "Operator2"
-		  DstPort		  2
-		}
-		Line {
-		  ZOrder		  16
-		  SrcBlock		  "Abs1"
-		  SrcPort		  1
-		  DstBlock		  "Operator1"
-		  DstPort		  2
-		}
-	      }
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "OL_DC_FLAG_Out"
-	      SID		      "601"
-	      Position		      [345, 168, 375, 182]
-	      ZOrder		      -16
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "OLDC"
-	      SrcPort		      1
-	      DstBlock		      "OL_DC_FLAG_Out"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "OL_T_In"
-	      SrcPort		      1
-	      DstBlock		      "OLDC"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      3
-	      SrcBlock		      "OL_L_In"
-	      SrcPort		      1
-	      DstBlock		      "OLDC"
-	      DstPort		      2
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "WDMON"
-	  SID			  "602"
-	  Ports			  [4]
-	  Position		  [1150, 851, 1250, 914]
-	  ZOrder		  83
-	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.314"
-	  SourceBlock		  "VIS_LIB/WDMON"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Outport
@@ -7139,310 +5543,39 @@ Library {
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "OL_L_Out"
-	  SID			  "603"
-	  Position		  [610, 435, 630, 445]
-	  ZOrder		  1150
-	  BackgroundColor	  "yellow"
-	  Port			  "5"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "OL_P_Out"
-	  SID			  "604"
-	  Position		  [610, 485, 630, 495]
-	  ZOrder		  1151
-	  BackgroundColor	  "yellow"
-	  Port			  "6"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "OL_Y_Out"
-	  SID			  "657"
-	  Position		  [610, 535, 630, 545]
-	  ZOrder		  4455
-	  BackgroundColor	  "yellow"
-	  Port			  "7"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "TM_WD"
-	  SID			  "663"
-	  Position		  [2050, 760, 2070, 770]
-	  ZOrder		  4461
-	  BackgroundColor	  "yellow"
-	  Port			  "8"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "LOCK_L_Out"
-	  SID			  "826"
-	  Position		  [1060, -60, 1080, -50]
-	  ZOrder		  5361
-	  BackgroundColor	  "yellow"
-	  Port			  "9"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "LOCK_P_Out"
-	  SID			  "827"
-	  Position		  [1120, -40, 1140, -30]
-	  ZOrder		  5362
-	  BackgroundColor	  "yellow"
-	  Port			  "10"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "LOCK_Y_Out"
-	  SID			  "828"
-	  Position		  [1185, -20, 1205, -10]
-	  ZOrder		  5363
-	  BackgroundColor	  "yellow"
-	  Port			  "11"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "CAS_SW_Out"
-	  SID			  "912"
-	  Position		  [610, 400, 630, 410]
-	  ZOrder		  5411
-	  BackgroundColor	  "yellow"
-	  Port			  "12"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "DAMP_L_Out"
-	  SID			  "913"
-	  Position		  [865, 570, 885, 580]
-	  ZOrder		  5412
-	  BackgroundColor	  "yellow"
-	  Port			  "13"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "DAMP_P_Out"
-	  SID			  "914"
-	  Position		  [865, 595, 885, 605]
-	  ZOrder		  5413
-	  BackgroundColor	  "yellow"
-	  Port			  "14"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "DAMP_Y_Out"
-	  SID			  "915"
-	  Position		  [865, 625, 885, 635]
-	  ZOrder		  5414
-	  BackgroundColor	  "yellow"
-	  Port			  "15"
-	  IconDisplay		  "Port number"
-	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "ADD"
-	  SrcPort		  3
-	  Points		  [53, 0; 0, -60]
-	  DstBlock		  "SUMOUT"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  2
-	  SrcBlock		  "ADD"
-	  SrcPort		  2
-	  DstBlock		  "SUMOUT"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "ADD"
-	  SrcPort		  1
-	  Points		  [55, 0; 0, 60]
-	  DstBlock		  "SUMOUT"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Demux1"
-	  SrcPort		  4
-	  DstBlock		  "Sum1"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  5
+	  ZOrder		  185
 	  SrcBlock		  "MODAL_H4_In"
 	  SrcPort		  1
-	  DstBlock		  "Sum1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  6
-	  SrcBlock		  "Sum1"
-	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  4
 	}
 	Line {
-	  ZOrder		  7
-	  SrcBlock		  "Demux1"
-	  SrcPort		  3
-	  DstBlock		  "Sum4"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  8
-	  SrcBlock		  "Demux1"
-	  SrcPort		  2
-	  DstBlock		  "Sum3"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  9
+	  ZOrder		  184
 	  SrcBlock		  "MODAL_H3_In"
-	  SrcPort		  1
-	  DstBlock		  "Sum4"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  10
-	  SrcBlock		  "Sum4"
 	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  11
+	  ZOrder		  183
 	  SrcBlock		  "MODAL_H2_In"
 	  SrcPort		  1
-	  DstBlock		  "Sum3"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  12
-	  SrcBlock		  "Sum3"
-	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  13
-	  SrcBlock		  "Demux1"
-	  SrcPort		  1
-	  DstBlock		  "Sum9"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  14
+	  ZOrder		  182
 	  SrcBlock		  "MODAL_H1_In"
 	  SrcPort		  1
-	  DstBlock		  "Sum9"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  15
-	  SrcBlock		  "Sum9"
-	  SrcPort		  1
 	  DstBlock		  "COILOUTF"
 	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  16
-	  SrcBlock		  "ISC_P_In"
-	  SrcPort		  1
-	  Points		  [85, 0]
-	  Branch {
-	    ZOrder		    17
-	    DstBlock		    "LOCK"
-	    DstPort		    2
-	  }
-	  Branch {
-	    ZOrder		    18
-	    Points		    [0, 120]
-	    DstBlock		    "ISCRAMPHOLD"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  19
-	  SrcBlock		  "ISCRAMPHOLD"
-	  SrcPort		  1
-	  Points		  [951, 0; 0, 270]
-	  DstBlock		  "LOCK_OUTSW"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  20
-	  SrcBlock		  "ISCRAMPHOLD"
-	  SrcPort		  3
-	  Points		  [14, 0; 0, 175]
-	  DstBlock		  "P_MS_V2"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  21
-	  SrcBlock		  "ISCRAMPHOLD"
-	  SrcPort		  2
-	  Points		  [40, 0; 0, 185]
-	  DstBlock		  "P_MS_V1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  22
-	  SrcBlock		  "ISC_HoldFlag"
-	  SrcPort		  1
-	  DstBlock		  "ISCRAMPHOLD"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  23
-	  SrcBlock		  "ISC_Y_In"
-	  SrcPort		  1
-	  Points		  [113, 0]
-	  Branch {
-	    ZOrder		    24
-	    DstBlock		    "LOCK"
-	    DstPort		    3
-	  }
-	  Branch {
-	    ZOrder		    25
-	    Points		    [0, 125]
-	    DstBlock		    "ISCRAMPHOLD"
-	    DstPort		    3
-	  }
-	}
-	Line {
-	  ZOrder		  26
-	  SrcBlock		  "LOCK"
-	  SrcPort		  2
-	  Points		  [80, 0]
-	  Branch {
-	    ZOrder		    27
-	    Points		    [0, -54; -1092, 0; 0, 149]
-	    DstBlock		    "ISCRAMPHOLD"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    28
-	    DstBlock		    "LOCK_L_Out"
-	    DstPort		    1
-	  }
 	}
 	Line {
 	  ZOrder		  29
 	  SrcBlock		  "OL_TILT_SEG3"
 	  SrcPort		  1
-	  Points		  [89, 0; 0, 25]
+	  Points		  [89, 0; 0, 35]
 	  DstBlock		  "OPLEV"
 	  DstPort		  3
 	}
@@ -7450,6 +5583,7 @@ Library {
 	  ZOrder		  30
 	  SrcBlock		  "OL_LEN_SEG4"
 	  SrcPort		  1
+	  Points		  [29, 0; 0, 4; 150, 0; 0, 31]
 	  DstBlock		  "OPLEV"
 	  DstPort		  8
 	}
@@ -7457,7 +5591,7 @@ Library {
 	  ZOrder		  31
 	  SrcBlock		  "OL_LEN_SEG3"
 	  SrcPort		  1
-	  Points		  [63, 0; 0, 5]
+	  Points		  [63, 0; 0, 22; 122, 0]
 	  DstBlock		  "OPLEV"
 	  DstPort		  7
 	}
@@ -7465,7 +5599,7 @@ Library {
 	  ZOrder		  32
 	  SrcBlock		  "OL_LEN_SEG2"
 	  SrcPort		  1
-	  Points		  [67, 0; 0, 10]
+	  Points		  [67, 0; 0, 35]
 	  DstBlock		  "OPLEV"
 	  DstPort		  6
 	}
@@ -7473,7 +5607,7 @@ Library {
 	  ZOrder		  33
 	  SrcBlock		  "OL_LEN_SEG1"
 	  SrcPort		  1
-	  Points		  [73, 0; 0, 15]
+	  Points		  [73, 0; 0, 35]
 	  DstBlock		  "OPLEV"
 	  DstPort		  5
 	}
@@ -7481,7 +5615,7 @@ Library {
 	  ZOrder		  34
 	  SrcBlock		  "OL_TILT_SEG4"
 	  SrcPort		  1
-	  Points		  [81, 0; 0, 20]
+	  Points		  [81, 0; 0, 35]
 	  DstBlock		  "OPLEV"
 	  DstPort		  4
 	}
@@ -7489,7 +5623,7 @@ Library {
 	  ZOrder		  35
 	  SrcBlock		  "OL_TILT_SEG2"
 	  SrcPort		  1
-	  Points		  [96, 0; 0, 30]
+	  Points		  [96, 0; 0, 35]
 	  DstBlock		  "OPLEV"
 	  DstPort		  2
 	}
@@ -7499,27 +5633,6 @@ Library {
 	  SrcPort		  1
 	  Points		  [104, 0; 0, 35]
 	  DstBlock		  "OPLEV"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  37
-	  SrcBlock		  "COILOUTF_CTRL"
-	  SrcPort		  1
-	  DstBlock		  "COILOUTF"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  38
-	  SrcBlock		  "COILOUTF_MASK"
-	  SrcPort		  1
-	  DstBlock		  "COILOUTF"
-	  DstPort		  6
-	}
-	Line {
-	  ZOrder		  39
-	  SrcBlock		  "WD_RESET_In"
-	  SrcPort		  1
-	  DstBlock		  "Mux9"
 	  DstPort		  1
 	}
 	Line {
@@ -7551,86 +5664,6 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  44
-	  SrcBlock		  "Demux9"
-	  SrcPort		  1
-	  Points		  [18, 0]
-	  Branch {
-	    ZOrder		    45
-	    Points		    [0, -95]
-	    DstBlock		    "TM_WD"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    46
-	    DstBlock		    "WDMON"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  47
-	  SrcBlock		  "Mux9"
-	  SrcPort		  1
-	  DstBlock		  "WATCHDOG"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  48
-	  SrcBlock		  "WATCHDOG"
-	  SrcPort		  1
-	  DstBlock		  "Demux9"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  49
-	  SrcBlock		  "Demux9"
-	  SrcPort		  4
-	  DstBlock		  "WDMON"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  50
-	  SrcBlock		  "Demux9"
-	  SrcPort		  3
-	  DstBlock		  "WDMON"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  51
-	  SrcBlock		  "Demux9"
-	  SrcPort		  2
-	  DstBlock		  "WDMON"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  52
-	  SrcBlock		  "EUL2COIL"
-	  SrcPort		  1
-	  DstBlock		  "Demux1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  53
-	  SrcBlock		  "Mux1"
-	  SrcPort		  1
-	  DstBlock		  "EUL2COIL"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  54
-	  SrcBlock		  "DITHER_P_In"
-	  SrcPort		  1
-	  DstBlock		  "DITHER"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  55
-	  SrcBlock		  "DITHER_Y_In"
-	  SrcPort		  1
-	  DstBlock		  "DITHER"
-	  DstPort		  2
-	}
-	Line {
 	  ZOrder		  56
 	  SrcBlock		  "MASTER"
 	  SrcPort		  1
@@ -7659,341 +5692,10 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  60
-	  SrcBlock		  "MASTERSW_In"
-	  SrcPort		  1
-	  DstBlock		  "MASTER"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  61
-	  SrcBlock		  "From7"
-	  SrcPort		  1
-	  DstBlock		  "Terminator8"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  62
-	  SrcBlock		  "From8"
-	  SrcPort		  1
-	  DstBlock		  "Terminator14"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  63
-	  SrcBlock		  "LOCK"
-	  SrcPort		  1
-	  DstBlock		  "Goto4"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  64
-	  SrcBlock		  "WD"
-	  SrcPort		  1
-	  DstBlock		  "Mux9"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  65
-	  SrcBlock		  "ISC_L_In"
-	  SrcPort		  1
-	  DstBlock		  "LOCK"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  66
-	  SrcBlock		  "BLOCKFLAG"
-	  SrcPort		  1
-	  DstBlock		  "MASTER"
-	  DstPort		  6
-	}
-	Line {
-	  ZOrder		  67
-	  SrcBlock		  "OPLEV"
-	  SrcPort		  1
-	  Points		  [84, 0]
-	  Branch {
-	    ZOrder		    68
-	    Points		    [0, 125]
-	    DstBlock		    "SERVO"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    69
-	    DstBlock		    "OL_L_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  70
-	  SrcBlock		  "OPLEV"
-	  SrcPort		  2
-	  Points		  [98, 0]
-	  Branch {
-	    ZOrder		    71
-	    Points		    [0, 110]
-	    DstBlock		    "SERVO"
-	    DstPort		    2
-	  }
-	  Branch {
-	    ZOrder		    72
-	    DstBlock		    "OL_P_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  73
-	  SrcBlock		  "OPLEV"
-	  SrcPort		  3
-	  Points		  [112, 0]
-	  Branch {
-	    ZOrder		    74
-	    Points		    [0, 95]
-	    DstBlock		    "SERVO"
-	    DstPort		    3
-	  }
-	  Branch {
-	    ZOrder		    75
-	    DstBlock		    "OL_Y_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  76
-	  SrcBlock		  "OPLEV"
-	  SrcPort		  4
-	  Points		  [68, 0; 0, 310]
-	  DstBlock		  "WD"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  77
-	  SrcBlock		  "OPLEV"
-	  SrcPort		  5
-	  Points		  [61, 0; 0, 280]
-	  DstBlock		  "WD"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  78
-	  SrcBlock		  "LOCK"
-	  SrcPort		  4
-	  Points		  [40, 0]
-	  Branch {
-	    ZOrder		    79
-	    DstBlock		    "LOCK_Y_Out"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    80
-	    DstBlock		    "P_MS_V4"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  81
-	  SrcBlock		  "LOCK"
-	  SrcPort		  3
-	  Points		  [60, 0]
-	  Branch {
-	    ZOrder		    82
-	    DstBlock		    "LOCK_P_Out"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    83
-	    DstBlock		    "P_MS_V3"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  84
-	  SrcBlock		  "DITHER"
-	  SrcPort		  2
-	  Points		  [6, 0; 0, 80]
-	  DstBlock		  "ADD"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  85
-	  SrcBlock		  "DITHER"
-	  SrcPort		  1
-	  Points		  [18, 0; 0, 85]
-	  DstBlock		  "ADD"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  86
-	  SrcBlock		  "TEST"
-	  SrcPort		  3
-	  DstBlock		  "ADD"
-	  DstPort		  8
-	}
-	Line {
-	  ZOrder		  87
-	  SrcBlock		  "TEST"
-	  SrcPort		  2
-	  DstBlock		  "ADD"
-	  DstPort		  7
-	}
-	Line {
-	  ZOrder		  88
-	  SrcBlock		  "TEST"
-	  SrcPort		  1
-	  DstBlock		  "ADD"
-	  DstPort		  6
-	}
-	Line {
-	  ZOrder		  89
-	  SrcBlock		  "SERVO"
-	  SrcPort		  2
-	  Points		  [37, 0]
-	  Branch {
-	    ZOrder		    90
-	    Points		    [0, -55]
-	    DstBlock		    "DAMP"
-	    DstPort		    2
-	  }
-	  Branch {
-	    ZOrder		    91
-	    Points		    [21, 0; 0, 15]
-	    DstBlock		    "DAMP_P_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  92
-	  SrcBlock		  "SERVO"
-	  SrcPort		  3
-	  Points		  [52, 0]
-	  Branch {
-	    ZOrder		    93
-	    Points		    [0, -60]
-	    DstBlock		    "DAMP"
-	    DstPort		    3
-	  }
-	  Branch {
-	    ZOrder		    94
-	    Points		    [8, 0]
-	    DstBlock		    "DAMP_Y_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  95
-	  SrcBlock		  "SUMOUT"
-	  SrcPort		  2
-	  DstBlock		  "DRIVEALIGN"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  96
-	  SrcBlock		  "SUMOUT"
-	  SrcPort		  1
-	  DstBlock		  "DRIVEALIGN"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  97
-	  SrcBlock		  "SUMOUT"
-	  SrcPort		  3
-	  DstBlock		  "DRIVEALIGN"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  98
-	  SrcBlock		  "DRIVEALIGN"
-	  SrcPort		  3
-	  DstBlock		  "Mux1"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  99
-	  SrcBlock		  "DRIVEALIGN"
-	  SrcPort		  1
-	  DstBlock		  "Mux1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  100
-	  SrcBlock		  "DRIVEALIGN"
-	  SrcPort		  2
-	  DstBlock		  "Mux1"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  101
-	  SrcBlock		  "OLSERVO_L_In"
-	  SrcPort		  1
-	  DstBlock		  "OLSERVO"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  102
-	  SrcBlock		  "OLSERVO_P_In"
-	  SrcPort		  1
-	  DstBlock		  "OLSERVO"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  103
-	  SrcBlock		  "OLSERVO_Y_In"
-	  SrcPort		  1
-	  DstBlock		  "OLSERVO"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  104
-	  SrcBlock		  "OLSERVO"
-	  SrcPort		  1
-	  Points		  [7, 0; 0, -145]
-	  DstBlock		  "ADD"
-	  DstPort		  12
-	}
-	Line {
-	  ZOrder		  105
-	  SrcBlock		  "OLSERVO"
-	  SrcPort		  2
-	  Points		  [19, 0; 0, -160]
-	  DstBlock		  "ADD"
-	  DstPort		  13
-	}
-	Line {
-	  ZOrder		  106
-	  SrcBlock		  "OLSERVO"
-	  SrcPort		  3
-	  Points		  [24, 0; 0, -175]
-	  DstBlock		  "ADD"
-	  DstPort		  14
-	}
-	Line {
-	  ZOrder		  107
-	  SrcBlock		  "LOCK_OUTSW"
-	  SrcPort		  1
-	  Points		  [28, 0; 0, 65]
-	  DstBlock		  "ADD"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  108
-	  SrcBlock		  "LOCK_OUTSW"
-	  SrcPort		  2
-	  Points		  [21, 0; 0, 65]
-	  DstBlock		  "ADD"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  109
-	  SrcBlock		  "LOCK_OUTSW"
-	  SrcPort		  3
-	  Points		  [13, 0; 0, 65]
-	  DstBlock		  "ADD"
-	  DstPort		  3
-	}
-	Line {
 	  ZOrder		  110
 	  SrcBlock		  "OLSET"
 	  SrcPort		  1
+	  Points		  [23, 0; 0, 40]
 	  DstBlock		  "OPLEV"
 	  DstPort		  9
 	}
@@ -8001,225 +5703,78 @@ Library {
 	  ZOrder		  111
 	  SrcBlock		  "OLSET"
 	  SrcPort		  2
+	  Points		  [9, 0; 0, 45]
 	  DstBlock		  "OPLEV"
 	  DstPort		  10
 	}
 	Line {
-	  ZOrder		  112
-	  SrcBlock		  "Ground1"
+	  ZOrder		  186
+	  SrcBlock		  "coiloutf_control"
 	  SrcPort		  1
-	  DstBlock		  "CAS_SW"
+	  DstBlock		  "COILOUTF"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  188
+	  SrcBlock		  "coiloutf_mask"
+	  SrcPort		  1
+	  DstBlock		  "COILOUTF"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  189
+	  SrcBlock		  "mastersw"
+	  SrcPort		  1
+	  DstBlock		  "MASTER"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  190
+	  SrcBlock		  "blockflag"
+	  SrcPort		  1
+	  DstBlock		  "MASTER"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  195
+	  SrcBlock		  "OPLEV"
+	  SrcPort		  1
+	  DstBlock		  "Terminator8"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  113
-	  SrcBlock		  "P_MS_V1"
-	  SrcPort		  1
-	  DstBlock		  "Mux6"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  114
-	  SrcBlock		  "P_MS_V2"
-	  SrcPort		  1
-	  DstBlock		  "Mux6"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  115
-	  SrcBlock		  "Mux6"
-	  SrcPort		  1
-	  DstBlock		  "CASALIGN"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  116
-	  SrcBlock		  "CASALIGN"
-	  SrcPort		  1
-	  DstBlock		  "Demux6"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  117
-	  SrcBlock		  "Demux6"
-	  SrcPort		  1
-	  Points		  [19, 0; 0, 340]
-	  DstBlock		  "OPLEV"
-	  DstPort		  11
-	}
-	Line {
-	  ZOrder		  118
-	  SrcBlock		  "Demux6"
+	  ZOrder		  196
+	  SrcBlock		  "OPLEV"
 	  SrcPort		  2
-	  Points		  [33, 0; 0, 335]
-	  DstBlock		  "OPLEV"
-	  DstPort		  12
+	  DstBlock		  "Terminator5"
+	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  119
-	  SrcBlock		  "P_MS_V4"
-	  SrcPort		  1
-	  Points		  [0, 75]
-	  DstBlock		  "LOCK_OUTSW"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  120
-	  SrcBlock		  "P_MS_V3"
-	  SrcPort		  1
-	  Points		  [0, 60]
-	  DstBlock		  "LOCK_OUTSW"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  121
-	  SrcBlock		  "LogicalOperator"
-	  SrcPort		  1
-	  Points		  [30, 0]
-	  Branch {
-	    ZOrder		    122
-	    DstBlock		    "P_MS_V4"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    123
-	    DstBlock		    "P_MS_V3"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  124
-	  SrcBlock		  "CAS_SW"
-	  SrcPort		  1
-	  Points		  [243, 0]
-	  Branch {
-	    ZOrder		    125
-	    Points		    [0, 55]
-	    Branch {
-	      ZOrder		      126
-	      Points		      [0, 35]
-	      DstBlock		      "P_MS_V2"
-	      DstPort		      2
-	    }
-	    Branch {
-	      ZOrder		      127
-	      DstBlock		      "P_MS_V1"
-	      DstPort		      2
-	    }
-	  }
-	  Branch {
-	    ZOrder		    128
-	    Points		    [496, 0]
-	    Branch {
-	      ZOrder		      129
-	      Points		      [0, 170]
-	      DstBlock		      "CAS_SW_Out"
-	      DstPort		      1
-	    }
-	    Branch {
-	      ZOrder		      130
-	      DstBlock		      "LogicalOperator"
-	      DstPort		      1
-	    }
-	  }
-	}
-	Line {
-	  ZOrder		  131
-	  SrcBlock		  "SERVO"
-	  SrcPort		  1
-	  Points		  [15, 0]
-	  Branch {
-	    ZOrder		    132
-	    Points		    [0, -50]
-	    DstBlock		    "DAMP"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    133
-	    Points		    [30, 0; 0, 15]
-	    DstBlock		    "DAMP_L_Out"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  134
-	  SrcBlock		  "DAMP_OUTSW"
-	  SrcPort		  1
-	  DstBlock		  "ADD"
-	  DstPort		  9
-	}
-	Line {
-	  ZOrder		  135
-	  SrcBlock		  "DAMP_OUTSW"
-	  SrcPort		  2
-	  DstBlock		  "ADD"
-	  DstPort		  10
-	}
-	Line {
-	  ZOrder		  136
-	  SrcBlock		  "DAMP_OUTSW"
+	  ZOrder		  198
+	  SrcBlock		  "OPLEV"
 	  SrcPort		  3
-	  DstBlock		  "ADD"
-	  DstPort		  11
+	  DstBlock		  "Terminator6"
+	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  137
-	  SrcBlock		  "SERVO"
+	  ZOrder		  197
+	  SrcBlock		  "OPLEV"
 	  SrcPort		  4
+	  DstBlock		  "Terminator7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  200
+	  SrcBlock		  "OPLEV"
+	  SrcPort		  5
 	  DstBlock		  "Terminator1"
 	  DstPort		  1
 	}
-	Line {
-	  ZOrder		  138
-	  SrcBlock		  "DAMP"
-	  SrcPort		  4
-	  Points		  [1, 0; 0, 90; 162, 0; 0, 35]
-	  DstBlock		  "Goto1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  139
-	  SrcBlock		  "DAMP"
-	  SrcPort		  1
-	  DstBlock		  "DAMP_OUTSW"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  140
-	  SrcBlock		  "DAMP"
-	  SrcPort		  2
-	  DstBlock		  "DAMP_OUTSW"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  141
-	  SrcBlock		  "DAMP"
-	  SrcPort		  3
-	  DstBlock		  "DAMP_OUTSW"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  142
-	  SrcBlock		  "CALLINE_L_In"
-	  SrcPort		  1
-	  DstBlock		  "CALLINE"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  143
-	  SrcBlock		  "CALLINE"
-	  SrcPort		  1
-	  Points		  [39, 0; 0, -215]
-	  DstBlock		  "ADD"
-	  DstPort		  15
-	}
 	Annotation {
 	  SID			  "605"
-	  Name			  "#DAQ Channels\nLOCK_L_OUT 2048\nLOCK_P_OUT 2048\nLOCK_Y_OUT 2048\nDAMP_L_IN1 1024\nDAMP_P_IN1 1024\nDAMP_"
-	  "Y_IN1 1024\nOPLEV_LEN_DIAG* 1024\nOPLEV_PIT_DIAG* 1024\nOPLEV_YAW_DIAG* 1024\nOPLEV_LEN_YAW_OUT 1024\nOPLEV_TILT_PI"
-	  "T_OUT 1024\nOPLEV_TILT_YAW_OUT 1024\nDAMP_L_OUT 1024\nDAMP_P_OUT 1024\nDAMP_Y_OUT 1024\nMASTER_OUT_H1 1024\nMASTER_"
-	  "OUT_H2 1024\nMASTER_OUT_H3 1024\nMASTER_OUT_H4 1024\nSUMOUT_L_OUT 512\nSUMOUT_P_OUT 512\nSUMOUT_Y_OUT 512"
-	  Position		  [1428, 199, 1682, 622]
+	  Name			  "#DAQ Channels\nOPLEV_LEN_DIAG* 1024\nOPLEV_PIT_DIAG* 1024\nOPLEV_YAW_DIAG* 1024\nOPLEV_LEN_YAW_OUT 1024\n"
+	  "OPLEV_TILT_PIT_OUT 1024\nOPLEV_TILT_YAW_OUT 1024\n"
+	  Position		  [1348, 209, 1602, 552]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  on
 	  FixedWidth		  on
