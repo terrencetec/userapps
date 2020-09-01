@@ -140,6 +140,8 @@ def DiagChan(optic,DOF):
     '''
     if optic in TypeList[TypeC]:
         return 'VIS-%s_TM_OPLEV_%s_OUT16'%(optic,DOF)
+    elif optic in TypeList[TypeA]:
+        return 'MOD-%s_DIAG_CAL_TM_%s_OUTPUT'%(optic,DOF)
     else:
         return 'VIS-%s_TM_OPLEV_%s_DIAGMON'%(optic,DOF)
 
