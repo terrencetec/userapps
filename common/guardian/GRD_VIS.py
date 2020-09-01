@@ -6,6 +6,7 @@ import kagralib
 
 import importlib
 import time
+import numpy as np
 
 sysmod = importlib.import_module(SYSTEM)
 
@@ -578,6 +579,91 @@ class HBW_OLDC(GuardState):
     def run(self):
         return True
 
+
+class MISALIGNING(GuardState):
+    index = 760
+    request = False
+
+    @is_fault
+    def main(self):
+        self.OLDC = {DoF:ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']}
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    @is_fault
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            for DoF in ['YAW']:
+                # decide the direction and value of misalignment.
+                misal_sign = -np.sign(ezca['VIS-%s_DIAG_CAL_TM_%s_OUTPUT'%(OPTIC,DoF)])
+                misal_angle = 0.8 * ezca['VIS-%s_DIAG_CAL_TM_%s_GAIN'%(OPTIC,DoF)]
+                if self.OLDC[DoF].is_off('OFFSET'):
+                    self.OLDC[DoF].ramp_offset(0,0,False)
+                    self.OLDC[DoF].turn_on('OFFSET')
+                ofsvalue = -misal_sign*misal_angle + ezca['MOD-%s_TMOL_DC_SETPOINT_%s_OFFSET'%(OPTIC,DoF)]
+                self.OLDC[DoF].ramp_offset(ofsvalue,5,False)
+            self.timer['checking'] = 3
+            self.counter += 1
+
+        elif self.counter == 1:
+            # if oplev value is close enough to the misal position return True
+            if not all([abs(self.OLDC[DoF].INMON.get()+self.OLDC[DoF].OFFSET.get())<5 for DoF in ['PIT','YAW']]):
+                self.timer['checking'] = 3
+                
+            if self.timer['checking']:
+                return True
+
+class MISALIGNED(GuardState):
+    index = 770
+    request = True
+
+    @is_fault
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    @is_fault
+    def run(self):
+        if self.counter == 0:
+            kagralib.speak_aloud('%s has been misaligned'%OPTIC)
+            self.counter += 1
+
+        else:
+            return True
+            
+class REALIGNING(GuardState):
+    index = 780
+    request = False
+
+    @is_fault
+    def main(self):
+        self.OLDC = {DoF:ezca.get_LIGOFilter('MOD-%s_TMOL_DC_MN_%s'%(OPTIC,DoF)) for DoF in ['PIT','YAW']}
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    @is_fault
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            for DoF in ['YAW']:
+                self.OLDC[DoF].ramp_offset(0,5,False)
+            self.timer['checking'] = 3
+            self.counter += 1
+
+        elif self.counter == 1:
+            # if oplev value is close enough to the misal position return True
+            if not all([abs(self.OLDC[DoF].INMON.get()+self.OLDC[DoF].OFFSET.get())<5 for DoF in ['PIT','YAW']]):
+                self.timer['checking'] = 3
+                
+            if self.timer['checking']:
+                return True
+            
+                
 class LOCK_ACQUISITION(GuardState):
     index = 800
     request = True
@@ -608,6 +694,10 @@ edges = [('INIT','SAFE'),
          ('ENGAGE_OLDC','ALIGNED'),
          ('ALIGNED','ENGAGE_HBWOLDC'),
          ('ENGAGE_HBWOLDC','HBW_OLDC'),
+         ('HBW_OLDC','MISALIGNING'),
+         ('MISALIGNING','MISALIGNED'),
+         ('MISALIGNED','REALIGNING'),
+         ('REALIGNING','HBW_OLDC'),
          ('HBW_OLDC','DISABLE_HBWOLDC'),
          ('DISABLE_HBWOLDC','ALIGNED'),
          ('ALIGNED','DISABLE_OLDC'),
