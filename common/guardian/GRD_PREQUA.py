@@ -396,7 +396,7 @@ class INIT_OUTPUT(GuardState):
                 self.timer['speaking'] = 300
             return
             
-        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'SAFE':
+        if not ezca['GRD-VIS_%s_STATE'%OPTIC] == 'SAFE':
             if self.timer['speaking']:
                 self.timer['speaking'] = 300
                 kagralib.speak_aloud('Guardian need to be in safe state.')
@@ -2681,11 +2681,11 @@ class SENSOR_CALIBRATION_TOWER(GuardState):
 
         elif self.counter == 4:
             # bring suspension to safe state
-            ezca['GRD-NEW_%s_REQUEST'%OPTIC] = 'SAFE'
+            ezca['GRD-VIS_%s_REQUEST'%OPTIC] = 'SAFE'
             self.counter += 1
             
         elif self.counter == 5:
-            if ezca['GRD-NEW_%s_STATE'%OPTIC] == 'SAFE':
+            if ezca['GRD-VIS_%s_STATE'%OPTIC] == 'SAFE':
                 self.counter += 1
             else:
                 notify('waiting for suspension guardian')
@@ -3007,7 +3007,7 @@ class ACT_DIAG_TOWER(GuardState):
             return
         
         # check Guardian status
-        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
+        if not ezca['GRD-VIS_%s_STATE'%OPTIC] == 'FLOAT':
             if self.timer['speaking']:
                 kagralib.speak_aloud('Guardian must be in float state.')
                 self.timer['speaking'] = 300
@@ -3120,7 +3120,7 @@ class ACT_DIAG_GAS(GuardState):
     
     def run(self):
         # check Guardian status
-        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
+        if not ezca['GRD-VIS_%s_STATE'%OPTIC] == 'FLOAT':
             if self.timer['speaking']:
                 kagralib.speak_aloud('Guardian must be in float state.')
                 self.timer['speaking'] = 300
@@ -3385,7 +3385,7 @@ class CAL_GASDC(GuardState):
     
     def run(self):
         # check Guardian status
-        if not ezca['GRD-NEW_%s_STATE'%OPTIC] == 'FLOAT':
+        if not ezca['GRD-VIS_%s_STATE'%OPTIC] == 'FLOAT':
             if self.timer['speaking']:
                 kagralib.speak_aloud('Guardian must be in float state.')
                 self.timer['speaking'] = 300
