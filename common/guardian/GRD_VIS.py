@@ -77,6 +77,11 @@ def OPAL():
     }
     return OPAL
 
+def ISC():
+    ISC = {
+        filt:{DoF:ezca.get_LIGOFilter('MOD-%s_ISC_%s_%s'%(OPTIC,filt,DoF)) for DoF in ['LEN','PIT','YAW']} for filt in ['COM1','COM2','MN','IM','TM','FB_MN','FB_IM','FB_TM']
+    }
+    return ISC
 ##################################################
 # Decolators
 class check_WD(GuardStateDecorator):
@@ -353,6 +358,15 @@ class CLEAR_OUTPUT(GuardState):
                     _TRAMP = min([self.unitTRAMP*abs(output),30]) # if output is too large, TRAMP = 30
                     TRAMP.append(_TRAMP)
                     OPAL()[stage][DoF].ramp_gain(0,_TRAMP,False)
+
+            for filt in ISC().keys():
+                for DoF in ISC()[filt].keys():
+                    output = ISC()[filt][DoF].OUTPUT.get()
+                    _TRAMP = min([self.unitTRAMP*abs(output),30]) # if output is too large, TRAMP = 30
+                    TRAMP.append(_TRAMP)
+                    ISC()[filt][DoF].ramp_gain(0,_TRAMP,False)
+
+                
                 
             self.timer['waiting'] = max(TRAMP)
             self.counter += 1
@@ -363,6 +377,12 @@ class CLEAR_OUTPUT(GuardState):
                     DCSERVO()[stage][DoF].RSET.put(2)
                     time.sleep(0.1)
                     DCSERVO()[stage][DoF].ramp_gain(1,0,False)
+            for filt in ISC().keys():
+                for DoF in ISC()[filt].keys():
+                    ISC()[filt][DoF].RSET.put(2)
+                    time.sleep(0.1)
+                    ISC()[filt][DoF].ramp_gain(1,0,False)
+
             self.counter += 1
 
         elif self.counter == 2:
