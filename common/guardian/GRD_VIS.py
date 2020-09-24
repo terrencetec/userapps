@@ -79,15 +79,19 @@ def OPAL():
 
 def ISC():
     ISC = {
-        filt:{DoF:ezca.get_LIGOFilter('MOD-%s_ISC_%s_%s'%(OPTIC,filt,DoF)) for DoF in ['LEN','PIT','YAW']} for filt in ['COM1','COM2','MN','IM','TM','FB_MN','FB_IM','FB_TM']
+        filt:{DoF:ezca.get_LIGOFilter('MOD-%s_ISC_%s_%s'%(OPTIC,filt,DoF)) for DoF in ['LEN','PIT','YAW']} for filt in ['COM1','COM2','COM3','BF','MN','IM','TM','FB_MN','FB_IM','FB_TM']
     }
     return ISC
 ##################################################
 # Decolators
-class check_WD(GuardStateDecorator):
+class check_iscWD(GuardStateDecorator):
     #[FIXME] decorator to check WDs
     def pre_exec(self):
-        pass
+        for DoF in ['LEN','PIT','YAW']:
+            for stage in ['BF','MN','IM','TM']:
+                if ezca['MOD-%s_ISC_WD_%s_%s_STATE'%(OPTIC,stage,DoF)]:
+                    kagralib.speak_aloud('%s ISC watch dog has been tripped.'%OPTIC)
+                    return 'CLEAR_ISCWD'
 
 class is_fault(GuardStateDecorator):
     def pre_exec(self):
@@ -170,7 +174,7 @@ class ENGAGE_LOCALDAMP(GuardState):
         self.timer['waiting'] = 0
         self.counter = 0
 
-        self.engagelist = {'IP':['LEN','TRA','YAW'],
+        self.engagelist = {#'IP':['LEN','TRA','YAW'],
                            'BF':['YAW'],
                            }
 
@@ -189,12 +193,21 @@ class ENGAGE_LOCALDAMP(GuardState):
                     ezca.get_LIGOFilter('MOD-%s_DAMP_GAS_%s'%(OPTIC,DoF)).ramp_gain(1,1,False)
             except NameError:
                 pass
-
+            ezca.get_LIGOFilter('MOD-%s_DAMP_MN_LEN'%OPTIC).ramp_gain(0.3,1,False)
+            ezca.get_LIGOFilter('MOD-%s_DAMP_MN_TRA'%OPTIC).ramp_gain(0.3,1,False)
             self.timer['waiting'] = 1
             self.counter += 1
 
 
         elif self.counter == 1:
+            for DoF in ['L','T','Y']:
+                ezca.get_LIGOFilter('VIS-%s_IP_DAMP_%s'%(OPTIC,DoF)).RSET.put(2)
+                time.sleep(0.3)
+                ezca.get_LIGOFilter('VIS-%s_IP_DAMP_%s'%(OPTIC,DoF)).ramp_gain(1,10,False)
+            self.timer['waiting'] = 10
+            self.counter += 1
+
+        else:
             return True
 
 class ENGAGE_TWRDC(GuardState):
@@ -213,7 +226,7 @@ class ENGAGE_TWRDC(GuardState):
 
         elif self.counter == 0:
             # engage DC servo
-            for stage in ['IP','GAS']:
+            for stage in ['GAS']:
                 for key in DCSERVO()[stage].keys():
                     DCSERVO()[stage][key].turn_on('INPUT')
                     
@@ -320,6 +333,13 @@ class DISABLE_LOCALDAMP(GuardState):
             self.counter += 1
 
         elif self.counter == 1:
+            for DoF in ['L','T','Y']:
+                ezca.get_LIGOFilter('VIS-%s_IP_DAMP_%s'%(OPTIC,DoF)).ramp_gain(0,10,False)
+            self.timer['waiting'] = 10
+            self.counter += 1
+
+        else:
+            
             return True
 
     
@@ -332,6 +352,11 @@ class CLEAR_OUTPUT(GuardState):
     def main(self):
         self.counter = 0
         self.timer['waiting'] = 0
+
+        # offload the outputs to OPAL to make recovery easy
+        self.OPALval_BFYAW = ezca['MOD-%s_SUM_BF_YAW_INMON'%OPTIC]
+        self.OPALval_MNPIT = ezca['MOD-%s_SUM_MN_PIT_INMON'%OPTIC]
+        self.OPALval_MNYAW = ezca['MOD-%s_SUM_MN_YAW_INMON'%OPTIC]
 
         self.unitTRAMP = 0.3 # [sec/urad] ramptime for 1 urad when zero output of DC servo when there is output. ex.) if ther is x urad output TRAMP will be x*unitTRAMP
         
@@ -383,6 +408,9 @@ class CLEAR_OUTPUT(GuardState):
                     time.sleep(0.1)
                     ISC()[filt][DoF].ramp_gain(1,0,False)
 
+            OPAL()['MN']['PIT'].ramp_offset(self.OPALval_MNPIT,0,False)
+            OPAL()['MN']['YAW'].ramp_offset(self.OPALval_MNYAW,0,False)
+            OPAL()['BF']['YAW'].ramp_offset(self.OPALval_BFYAW,0,False)
             self.counter += 1
 
         elif self.counter == 2:
@@ -473,6 +501,7 @@ class OLDAMPED(GuardState):
     request = True
     index = 200
     
+    @check_iscWD    
     @is_fault
     def run(self):
         return True
@@ -594,9 +623,26 @@ class DISABLE_HBWOLDC(GuardState):
 class HBW_OLDC(GuardState):
     index = 750
     request = True
-    
+
+    @is_fault
+    def main(self):
+        self.avgN = 0
+        self.avgval = {'PIT':0,'YAW':0}
+        self.timer['averaging'] = 10
+
     @is_fault
     def run(self):
+        if self.timer['averaging']:
+            for DoF in ['PIT','YAW']:
+                ezca.get_LIGOFilter('MOD-%s_ISC_OL_%s'%(OPTIC,DoF)).ramp_offset(-self.avgval[DoF]/self.avgN,0,False)
+            self.avgval = {'PIT':0,'YAW':0}
+            self.avgN = 0
+            self.timer['averaging'] = 10
+
+        else:
+            self.avgN += 1.
+            for DoF in ['PIT','YAW']:
+                self.avgval[DoF] += ezca.get_LIGOFilter('MOD-%s_ISC_OL_%s'%(OPTIC,DoF)).INMON.get()
         return True
 
 
@@ -616,6 +662,8 @@ class MISALIGNING(GuardState):
             return
 
         if self.counter == 0:
+            # disable BF loop
+            ezca.switch('MOD-ETMY_TMOL_DC_BF_YAW','INPUT','OFF')
             for DoF in ['YAW']:
                 # decide the direction and value of misalignment.
                 misal_sign = -np.sign(ezca['VIS-%s_DIAG_CAL_TM_%s_OUTPUT'%(OPTIC,DoF)])
@@ -670,29 +718,198 @@ class REALIGNING(GuardState):
             return
 
         if self.counter == 0:
+
             for DoF in ['YAW']:
                 self.OLDC[DoF].ramp_offset(0,5,False)
             self.timer['checking'] = 3
             self.counter += 1
 
         elif self.counter == 1:
-            # if oplev value is close enough to the misal position return True
+            # if oplev value is close enough to the nomisal position return True
             if not all([abs(self.OLDC[DoF].INMON.get()+self.OLDC[DoF].OFFSET.get())<5 for DoF in ['PIT','YAW']]):
+                # engage BF loop
+                ezca.switch('MOD-ETMY_TMOL_DC_BF_YAW','INPUT','ON')
                 self.timer['checking'] = 3
                 
             if self.timer['checking']:
                 return True
-            
+
+class ENGAGE_LOCKAQ_OLLOOP(GuardState):
+    index = 790
+    request = False
+
+    @check_iscWD
+    def main(self):
+        self.counter = 1 # skip averaging
+        self.timer['waiting'] = 0
+        self.OLY = ezca.get_LIGOFilter('MOD-%s_ISC_OL_PIT'%OPTIC)
+        self.MNOLY = ezca.get_LIGOFilter('MOD-%s_ISC_MNOL_YAW'%OPTIC)
+        self.OLP = ezca.get_LIGOFilter('MOD-%s_ISC_OL_YAW'%OPTIC)
+        self.avgval = {'PIT':0,'YAW':0}
+        self.avgN = 0
+        self.timer['averaging'] = 3
+        
+    @check_iscWD
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            #average input value
+            if self.timer['averaging']:
+                self.OLY.ramp_offset(-self.avgval['YAW']/self.avgN,0,False)
+                self.OLP.ramp_offset(-self.avgval['PIT']/self.avgN,0,False)
+                time.sleep(0.1)
+                self.OLP.RSET.put(2)
+                self.OLY.RSET.put(2)
+                self.timer['waiting'] = 0.5
+                self.counter += 1
+            else:
+                self.avgN += 1.
+                self.avgval['PIT'] += self.OLP.INMON.get()
+                self.avgval['YAW'] += self.OLY.INMON.get()
+                notify('averaging OL INPUT')
+
+        elif self.counter == 1:
+            # engage MNOLY and TMOLP loop
+            self.MNOLY.ramp_gain(1,2,False)            
+            self.OLP.ramp_gain(1,2,False)
+            self.counter += 1
+            self.timer['waiting'] = 3
+
+        elif self.counter == 2:
+            # engage TMOLY loop
+            self.OLY.ramp_gain(1,2,False)
+            # turn BF path on
+            ezca.switch('MOD-%s_ISC_BF_YAW'%OPTIC,'INPUT','ON')
+            self.counter += 1
+            self.timer['waiting'] = 2
+
+        else:
+            return True
+                
+
+class DISABLE_LOCKAQ_OLLOOP(GuardState):
+    index = 795
+    request = False
+
+    @check_iscWD
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+        self.OLY = ezca.get_LIGOFilter('MOD-%s_ISC_OL_PIT'%OPTIC)
+        self.OLP = ezca.get_LIGOFilter('MOD-%s_ISC_OL_YAW'%OPTIC)
+        self.MNOLY = ezca.get_LIGOFilter('MOD-%s_ISC_MNOL_YAW'%OPTIC)
+        
+    @check_iscWD
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            # turn BF path off
+            ezca.switch('MOD-%s_ISC_BF_YAW'%OPTIC,'INPUT','OFF')
+
+            # turn off
+            self.MNOLY.ramp_gain(0,2,False)
+            self.OLY.ramp_gain(0,2,False)
+            self.OLP.ramp_gain(0,2,False) 
+            self.timer['waiting'] = 3
+            self.counter += 1
+
+        else:
+            return True
+
+        
                 
 class LOCK_ACQUISITION(GuardState):
     index = 800
     request = True
     
+    @check_iscWD
     @is_fault
     def run(self):
         return True
     
+class CLEAR_ISCWD(GuardState):
+    index = 810
+    request = False
 
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+        #check which DoF is tripped
+        self.tripped = {DoF:any([ezca['MOD-%s_ISC_WD_%s_%s_STATE'%(OPTIC,stage,DoF)]>0. for stage in ['BF','MN','IM','TM']]) for DoF in ['LEN','PIT','YAW']}
+        
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            # turn BF path off
+            ezca.switch('MOD-%s_ISC_BF_YAW'%OPTIC,'INPUT','OFF')
+            # turn LOCKAQ OL loop off
+            for DoF in ['PIT','YAW']:
+                OL = ezca.get_LIGOFilter('MOD-%s_ISC_OL_%s'%(OPTIC,DoF))
+                OL.ramp_gain(0,0,False)
+            MNOLY = ezca.get_LIGOFilter('MOD-%s_ISC_MNOL_YAW'%OPTIC)
+            MNOLY.ramp_gain(0,2,False)
+            ezca.get_LIGOFilter('MOD-%s_TMOL_SERVO_TM_YAW'%OPTIC).ramp_gain(0,2,False)
+            
+            # clear filter output
+            for DoF in self.tripped.keys():
+                if self.tripped[DoF]:
+                    ezca.switch('MOD-%s_ISC_COM1_%s'%(OPTIC,DoF),'INPUT','OFF')
+                    for fil in ['COM1','TM','COM2','IM','COM3','MN','BF']:
+                        ezca['MOD-%s_ISC_%s_%s_RSET'%(OPTIC,fil,DoF)] = 2
+                        time.sleep(0.2)
+
+            self.counter += 1
+
+        elif self.counter == 1:
+            flag = True
+            for DoF in self.tripped.keys():
+                if self.tripped[DoF]:
+                    for stage in ['BF','MN','IM','TM']:
+                        if ezca['MOD-%s_ISC_WD_RMS_%s_%s'%(OPTIC,stage,DoF)] <= ezca['MOD-%s_ISC_WD_RMS_THR_%s_%s'%(OPTIC,stage,DoF)]:
+                            # reset WD
+                            ezca['MOD-%s_ISC_WD_%s_%s_TRAMP'%(OPTIC,stage,DoF)] = 5
+                            ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 1
+                            time.sleep(0.1)
+                            ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 0
+                        else:
+                            flag = False
+
+            if flag:
+                self.timer['check'] = 5.5
+                self.timer['waiting'] = 5
+                self.counter += 1
+
+        elif self.counter == 2:
+            # check COM input and if it is zero for 0.5 sec, turn on input switch
+            for DoF in ['LEN','PIT','YAW']:
+                if ezca['MOD-%s_ISC_COM1_%s_INMON'%(OPTIC,DoF)]:
+                    self.timer['check'] = 0.5
+
+            if self.timer['check']:
+                self.counter += 1
+
+        elif self.counter == 3:
+            # if LOCKAQ OL loop has been turned off, return True
+            flag = True
+            for chan in ['MOD-%s_ISC_OL_PIT'%OPTIC,]:
+                OL = ezca.get_LIGOFilter(chan)
+                if kagralib.is_FM_ramping(OL):
+                    flag = False
+            if flag:
+                for DoF in self.tripped.keys():
+                    ezca.switch('MOD-%s_ISC_COM1_%s'%(OPTIC,DoF),'INPUT','ON')
+                self.counter += 1
+
+        else:
+            return True
+    
 class OBSERVATION(GuardState):
     request = True
     index = 1000
@@ -728,9 +945,12 @@ edges = [('INIT','SAFE'),
          ('DISABLE_TWRDC','DISABLE_LOCALDAMP'),
          ('DISABLE_LOCALDAMP','FLOAT'),
          ('FLOAT','CLEAR_OUTPUT'),
-         ('OLDAMPED','LOCK_ACQUISITION'),
-         ('LOCK_ACQUISITION','OLDAMPED'),
+         ('OLDAMPED','ENGAGE_LOCKAQ_OLLOOP'),
+         ('ENGAGE_LOCKAQ_OLLOOP','LOCK_ACQUISITION'),
+         ('LOCK_ACQUISITION','DISABLE_LOCKAQ_OLLOOP'),
+         ('DISABLE_LOCKAQ_OLLOOP','OLDAMPED'),
          ('LOCK_ACQUISITION','OBSERVATION'),
          ('OBSERVATION','LOCK_ACQUISITION',),
          ('CLEAR_OUTPUT','SAFE'),
+         ('CLEAR_ISCWD','OLDAMPED'),
          ]

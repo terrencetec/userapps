@@ -102,11 +102,11 @@ IM_LOCALDAMP = {
     'ramptime':3,
     'integrator':False,
     'init_FM':{
-        'LEN':['FM1','FM2','FM3','FM9'],
-        'TRANS':['FM1','FM2','FM3','FM9'],
+        #'LEN':['FM1','FM2','FM3','FM9'],
+        #'TRANS':['FM1','FM2','FM3','FM9'],
         #'VERT':['FM2','FM5','FM6'],
-        'ROLL':['FM1','FM2','FM3','FM4','FM9'],
-        'PIT':['FM2','FM3','FM4','FM5','FM6','FM9'],
+        #'ROLL':['FM1','FM2','FM3','FM4','FM9'],
+        #'PIT':['FM2','FM3','FM4','FM5','FM6','FM9'],
         'YAW':['FM1','FM2','FM3','FM4','FM9'],
     },
     'bst_FM':{

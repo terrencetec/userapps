@@ -32,7 +32,7 @@ chans = '/opt/rtcds/kamioka/k1/chans/'
 SENSIN_LPfreq = {'IP':10,'BF':1,'MN':100,'IM':100,'TM':100,'MNOL':100} 
 
 # gain for damping filter
-DAMP_gain = {'IP':[5,5,0,0,0,1],'BF':[0,0,0,0,0,100],'MN':[.1,.1,0,0.1,0.1,0.1],'IM':[0,0,0,0,0,0],'GAS':[1,0.2,0.3,3,0.3]}
+DAMP_gain = {'IP':[100,100,0,0,0,6],'BF':[0,0,0,0,0,100],'MN':[.1,.1,0,0.1,0.1,0.1],'IM':[0,0,0,0,0,0],'GAS':[1,0.2,0.3,3,0.3]}
 
 # rolloff frequency for damping filter. Naively speaking, it should be around the highest resonance you want damp.
 DAMP_ROLLOFFfreq = {'IP':[0.6,0.6,1,1,1,0.5],'BF':[1,1,1,0.1,0.1,0.5],'MN':[3,3,3,3,3,3],'IM':[3,3,3,3,3,3],'GAS':[1,2,1,1,1,]}

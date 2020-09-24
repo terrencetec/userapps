@@ -9,32 +9,25 @@ void RAMPHOLD(double *argin, int nargin, double *argout, int nargout){
    * argin[0] = Input
    * argin[1] = Hold flag
    * argin[2] = Ramp time
-   * argin[3] = Sampling rate of the model
-   * argin[4] = Holded Value input
-   * argin[5] = Input weight input
-   * argin[6] = Holded value weight input
-   * argin[7] = State input
-   * argin[8] = Output value of this block one tick before
    * 
-   * OUTPUTS:
-   * argout[0] = Output: need to be connected to argin[8] with unit delay
+   * OUTPUTS
+   * argout[0] = Output
    * argout[1] = Ramping flag
-   * argout[2] = Holded value output: need to be connected to argin[4] with unit delay
-   * argout[3] = Input weight output: need to be connected to argin[5] with unit delay
-   * argout[4] = Holded value weight output: need to be connected to argin[6] with unit delay
-   * argout[5] = State ouptut: need to be connected to argin[7] with unit delay
+   * argout[2] = Holded value output
+   * argout[3] = Input weight output
+   * argout[4] = Holded value weight output
+   * argout[5] = State ouptut
    */
-
   // Read inputs
   double Input = argin[0];
   int HoldFlag = argin[1];
   double RampTime = argin[2];
-  double SampF = argin[3];
-  double HoldValue = argin[4];
-  double InputWeight = argin[5];
-  double HoldValWeight = argin[6];
-  int State = argin[7];
-  double BlockOutIn = argin[8];
+  double SampF = FE_RATE;
+  static double HoldValue = 0;
+  static double InputWeight = 1;
+  static double HoldValWeight = 0;
+  static int State = 0;
+  static double OUTPUT = 0;
   
   double defRampTime = 3.;
   double defSampF = 16348.;
@@ -76,7 +69,7 @@ void RAMPHOLD(double *argin, int nargin, double *argout, int nargout){
       State = 0;
     }
     else if(!!HoldFlag) {
-      HoldValue = BlockOutIn;
+      HoldValue = OUTPUT;
       InputWeight = 0.;
       HoldValWeight = 1.;
       State = 1;
@@ -89,7 +82,8 @@ void RAMPHOLD(double *argin, int nargin, double *argout, int nargout){
   }
   
   // Output
-  argout[0] = Input*InputWeight + HoldValue*HoldValWeight;
+  OUTPUT = Input*InputWeight + HoldValue*HoldValWeight; 
+  argout[0] = OUTPUT;
   argout[1] = (State == 2);
   argout[2] = HoldValue;
   argout[3] = InputWeight;

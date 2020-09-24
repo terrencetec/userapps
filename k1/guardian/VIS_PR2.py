@@ -84,10 +84,10 @@ BF_LOCALDAMP = {
     'init_FM':{
         'LEN':['FM1','FM2','FM3','FM4'],
         'TRANS':['FM1','FM2','FM3','FM4'],
-        'VERT':['FM1','FM2','FM3','FM4'],
-        'ROLL':['FM1','FM2','FM3','FM4','FM5'],
-        'PIT':['FM1','FM2','FM3','FM4','FM5',],
-        'YAW':['FM1','FM2','FM3','FM4','FM5',],
+        #'VERT':['FM1','FM2','FM3','FM4'],
+        'ROLL':['FM1','FM2','FM3','FM4'],
+        'PIT':['FM1','FM2','FM3','FM4'],
+        'YAW':['FM1','FM2','FM3','FM4',],
     },
     'bst_FM':{
         'LEN':[],
@@ -104,12 +104,11 @@ IM_LOCALDAMP = {
     'ramptime':3,
     'integrator':False,
     'init_FM':{
-        'LEN':['FM1','FM2','FM3'],
-        'TRANS':['FM1','FM2','FM3'],
-        'VERT':['FM1','FM2','FM3'],
-        'ROLL':['FM1','FM2','FM3','FM4'],
+        #'LEN':['FM1','FM2','FM3','FM4',],
+        #'TRANS':['FM1','FM2','FM3','FM4'],
+        #'ROLL':['FM1','FM2','FM3','FM4','FM5'],
         'PIT':['FM1','FM2','FM3','FM4'],
-        'YAW':['FM1','FM2','FM3','FM4'],
+        'YAW':['FM1','FM2','FM3','FM4','FM9'],
     },
     'bst_FM':{
         'LEN':[],
