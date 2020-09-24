@@ -9,7 +9,6 @@
 
 ./k1 : files running in KAGRA system.
  - burtfiles
- - daqfiles
  - filterfiles
  - guardian
  - medm
