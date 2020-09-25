@@ -143,9 +143,9 @@ IM_OLDAMP = {
     'gain':1,
     'ramptime':1,
     'integrator':False,
-    'init_FM':{'LEN':['FM1','FM2'],'PIT':['FM1','FM2','FM3'],'YAW':['FM1','FM2','FM3','FM9']},
+    'init_FM':{'LEN':['FM1','FM2'],'PIT':['FM1','FM2','FM3'],'YAW':['FM1','FM2','FM3','FM4','FM8']},
     'bst_FM':{'LEN':['FM3'],'PIT':[],'YAW':[]},
-    'DC_FM':{'LEN':[],'PIT':[['FM1',],['FM10',]],'YAW':[['FM1',],['FM10',]]},
+    'DC_FM':{'LEN':[],'PIT':[['FM1',],['FM10',]],'YAW':[['FM1',],['FM9',]]},
 }
 
 #K1:VIS-PRM_TM_OPLEV_SERVO
