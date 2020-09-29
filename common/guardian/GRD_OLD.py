@@ -492,6 +492,27 @@ class ENGAGE_MN_OLDAMP(engage_damping_for_PAY):
             integrator = sysmod.MN_OLDAMP['integrator'],
         )
 
+class ENGAGE_BF_OLDAMP(GuardState):
+    index = 129
+    request = False
+
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            ezca.get_LIGOFilter('VIS-%s_BF_OLDAMP_L'%OPTIC).ramp_gain(1,2)
+            self.counter += 1
+            self.timer['waiting'] = 2
+
+        else:
+            return True
+
+
 class ENGAGE_IM_OLDAMP(engage_damping_for_PAY):
     index = 130
     request = False
@@ -905,6 +926,25 @@ class DISABLE_MN_OLDAMP(disable_damping_for_PAY):
             integrator = sysmod.MN_OLDAMP['integrator'],
         )
 
+class DISABLE_BF_OLDAMP(GuardState):
+    index = 259
+    request = False
+
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        if self.counter == 0:
+            ezca.get_LIGOFilter('VIS-%s_BF_OLDAMP_L'%OPTIC).ramp_gain(0,2)
+            self.counter += 1
+            self.timer['waiting'] = 2
+
+        else:
+            return True
 
 class DISABLE_MN_MNOLDAMP(disable_damping_for_PAY):
     index = 250
@@ -1342,6 +1382,7 @@ elif sustype == 'TypeBp':
         ('DISABLE_OLSERVO','ENGAGE_OLSERVO'),
         ('DISABLE_OLSERVO','PAY_LOCALDAMPED'),
 
+
         ('ENGAGE_OLSERVO','ENGAGE_IM_OLDAMP'),
         ('ENGAGE_IM_OLDAMP','DISABLE_IM_OLDAMP'),
         ('DISABLE_IM_OLDAMP','ENGAGE_IM_OLDAMP'),
@@ -1351,9 +1392,14 @@ elif sustype == 'TypeBp':
         ('ENGAGE_TM_OLDAMP','DISABLE_TM_OLDAMP'),
         ('DISABLE_TM_OLDAMP','ENGAGE_TM_OLDAMP'),
         ('DISABLE_TM_OLDAMP','DISABLE_IM_OLDAMP'),
+        
+        ('ENGAGE_TM_OLDAMP','ENGAGE_BF_OLDAMP'),
+        ('ENGAGE_BF_OLDAMP','DISABLE_BF_OLDAMP'),
+        ('DISABLE_BF_OLDAMP','ENGAGE_BF_OLDAMP'),
+        ('DISABLE_BF_OLDAMP','DISABLE_TM_OLDAMP'),
 
-        ('ENGAGE_TM_OLDAMP','OLDAMPED'),
-        ('OLDAMPED','DISABLE_TM_OLDAMP'),
+        ('ENGAGE_BF_OLDAMP','OLDAMPED'),
+        ('OLDAMPED','DISABLE_BF_OLDAMP'),
 
         ('OLDAMPED','ENGAGE_IM_OLDC'),
         ('ENGAGE_IM_OLDC','DISABLE_IM_OLDC'),

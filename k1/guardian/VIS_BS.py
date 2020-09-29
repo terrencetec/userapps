@@ -64,17 +64,16 @@ IM_LOCALDAMP = {
     'ramptime':3,
     'integrator':False,
     'init_FM':{
-        'LEN':['FM6','FM7'],
-        'TRANS':['FM6','FM7'],
-        'VERT':['FM6','FM7'],
-        'ROLL':['FM6','FM7'],
-        'PIT':['FM6','FM7','FM9'],
-        'YAW':['FM6','FM7'],
+        'LEN':['FM6','FM7','FM8'],
+        'TRANS':['FM6','FM7','FM8'],
+        'VER':['FM6','FM7','FM8'],
+        'ROLL':['FM6','FM7','FM8'],
+        'PIT':['FM6','FM7','FM9','FM8'],
+        'YAW':['FM6','FM7','FM8'],
     },
     'bst_FM':{
         'LEN':[],
         'TRANS':[],
-        'VERT':[],
         'ROLL':[],
         'PIT':[],
         'YAW':[],
@@ -85,8 +84,8 @@ IM_LOCALDAMP = {
 TM_OLDAMP = {
     'ramptime':0,
     'integrator':False,
-    'init_FM':{'PIT':[],'YAW':[],'LEN':['FM1','FM2','FM9']},
-    'bst_FM':{'PIT':[['FM6','FM7']],'YAW':[['FM6','FM8']],'LEN':[['FM3','FM4']]},
+    'init_FM':{'PIT':[],'YAW':[],'LEN':['FM3','FM4']},
+    'bst_FM':{'PIT':[['FM6','FM7']],'YAW':[['FM6','FM8']],'LEN':[[]]},
 }
 
 # K1:VIS-$(OPTIC)_IM_OLDAMP_$(DOF)
@@ -101,8 +100,8 @@ IM_OLDAMP = {
 OLSERVO = {
     'ramptime':3,
     'integrator':False,
-    'init_FM':{'PIT':['FM1','FM2','FM7','FM9'],'YAW':['FM1','FM2','FM7','FM9'],'LEN':[]},
-    'bst_FM':{'PIT':[['FM2',],['FM8',]],'YAW':[['FM2',],['FM8',],['FM3','FM4']],'LEN':[]},
+    'init_FM':{'PIT':['FM1','FM2','FM7','FM9'],'YAW':['FM1','FM2','FM7','FM9'],'LEN':['FM1','FM2','FM9']},
+    'bst_FM':{'PIT':[['FM2',],['FM8',]],'YAW':[['FM2',],['FM8',],['FM4',]],'LEN':[]},
 }
 
 

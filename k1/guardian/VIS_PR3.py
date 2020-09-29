@@ -102,11 +102,11 @@ IM_LOCALDAMP = {
     'ramptime':3,
     'integrator':False,
     'init_FM':{
-        #'LEN':['FM1','FM2','FM3','FM9'],
-        #'TRANS':['FM1','FM2','FM3','FM9'],
+        'LEN':['FM1','FM2','FM3','FM9'],
+        'TRANS':['FM1','FM2','FM3','FM9'],
         #'VERT':['FM2','FM5','FM6'],
-        #'ROLL':['FM1','FM2','FM3','FM4','FM9'],
-        #'PIT':['FM2','FM3','FM4','FM5','FM6','FM9'],
+        'ROLL':['FM1','FM2','FM3','FM4','FM9'],
+        'PIT':['FM2','FM3','FM4','FM5','FM6','FM9'],
         'YAW':['FM1','FM2','FM3','FM4','FM9'],
     },
     'bst_FM':{
@@ -124,7 +124,7 @@ TM_OLDAMP = {
     'gain':1,
     'ramptime':1,
     'integrator':False,
-    'init_FM':{'LEN':['FM1','FM2','FM9'],'PIT':[],'YAW':[]},
+    'init_FM':{'LEN':[],'PIT':[],'YAW':[]},
     'bst_FM':{'LEN':[],'PIT':[],'YAW':[]},
     'DC_FM':{'LEN':[],'PIT':[],'YAW':[]},
 }
@@ -135,7 +135,7 @@ IM_OLDAMP = {
     'gain':1,
     'ramptime':0,
     'integrator':False,
-    'init_FM':{'LEN':['FM1','FM2'],'PIT':['FM1','FM2','FM3'],'YAW':['FM1','FM2','FM3']},
+    'init_FM':{'PIT':['FM1','FM2','FM3'],'YAW':['FM1','FM2','FM3']},
     'bst_FM':{'LEN':[],'PIT':[],'YAW':[]},
     'DC_FM':{'LEN':[],'PIT':[['FM1',],['FM10']],'YAW':[['FM1'],['FM10']]},
 }
@@ -145,11 +145,11 @@ OLSERVO = {
     'gain':1,
     'ramptime':3,
     'integrator':False,
-    'init_FM':{'LEN':[],'PIT':['FM1','FM2','FM4','FM7','FM9'],'YAW':['FM1','FM2','FM7']},
+    'init_FM':{'LEN':['FM1','FM2','FM9'],'PIT':['FM1','FM2','FM4','FM7','FM9'],'YAW':['FM1','FM2','FM7']},
     'bst_FM':{'LEN':[],'PIT':[],'YAW':[]},
     'DC_FM':{'LEN':[],'PIT':[['FM1'],['FM3','FM8',]],'YAW':[['FM1'],['FM8']]},
 }
 
 
 from TypeBp import INIT, SAFE, TRIPPED, nominal
-from GRD_OLD import ENGAGE_GAS_LOCALDAMP, ENGAGE_BF_LOCALDAMP, TWR_DAMPED, DISABLE_BF_LOCALDAMP, DISABLE_GAS_LOCALDAMP, ENGAGE_IM_LOCALDAMP, PAY_LOCALDAMPED,  ENGAGE_TM_OLDAMP, ENGAGE_IM_OLDAMP, ENGAGE_OLSERVO, ALIGNED, DISABLE_OLSERVO, DISABLE_IM_OLDAMP, DISABLE_TM_OLDAMP, PAY_LOCALDAMPED, TRANSIT_TO_OBS, OBSERVATION, BACK_TO_ALIGNED, TWR_IDLE, DISABLE_IM_LOCALDAMP, edges, MISALIGNING, MISALIGNED, REALIGNING, check_WD, check_TWWD, OLDAMPED, ENGAGE_IM_OLDC, DISABLE_IM_OLDC, ENGAGE_OLSERVO_DC, DISABLE_OLSERVO_DC, TRANSIT_TO_LOCKACQ, LOCK_ACQUISITION, BACK_TO_LOCKACQ
+from GRD_OLD import ENGAGE_GAS_LOCALDAMP, ENGAGE_BF_LOCALDAMP, TWR_DAMPED, DISABLE_BF_LOCALDAMP, DISABLE_GAS_LOCALDAMP, ENGAGE_IM_LOCALDAMP, PAY_LOCALDAMPED,  ENGAGE_TM_OLDAMP, ENGAGE_IM_OLDAMP, ENGAGE_OLSERVO, ALIGNED, DISABLE_OLSERVO, DISABLE_IM_OLDAMP, DISABLE_TM_OLDAMP, PAY_LOCALDAMPED, TRANSIT_TO_OBS, OBSERVATION, BACK_TO_ALIGNED, TWR_IDLE, DISABLE_IM_LOCALDAMP, edges, MISALIGNING, MISALIGNED, REALIGNING, check_WD, check_TWWD, OLDAMPED, ENGAGE_IM_OLDC, DISABLE_IM_OLDC, ENGAGE_OLSERVO_DC, DISABLE_OLSERVO_DC, TRANSIT_TO_LOCKACQ, LOCK_ACQUISITION, BACK_TO_LOCKACQ, ENGAGE_BF_OLDAMP, DISABLE_BF_OLDAMP

@@ -84,7 +84,7 @@ IM_LOCALDAMP = {
 TM_OLDAMP = {
     'ramptime':1,
     'integrator':False,
-    'init_FM':{'LEN':['FM1','FM2','FM9'],'PIT':['FM1'],'YAW':['FM1']},
+    'init_FM':{'LEN':[],'PIT':['FM1'],'YAW':['FM1']},
     'bst_FM':{'LEN':[],'PIT':[],'YAW':[]},
 }
 
@@ -92,7 +92,7 @@ TM_OLDAMP = {
 IM_OLDAMP = {
     'ramptime':0,
     'integrator':True,
-    'init_FM':{'PIT':['FM10'],'YAW':['FM1','FM2','FM10']},
+    'init_FM':{'PIT':['FM10'],'YAW':['FM1','FM2','FM3','FM10']},
     'bst_FM':{'PIT':[],'YAW':[]}
 }
 
@@ -100,8 +100,8 @@ IM_OLDAMP = {
 OLSERVO = {
     'ramptime':3,
     'integrator':False,
-    'init_FM':{'LEN':[],'PIT':['FM1','FM2','FM3','FM9'],'YAW':['FM1','FM2','FM9']},
-    'bst_FM':{'LEN':[],'PIT':[['FM1',],['FM8',]],'YAW':[['FM2',],['FM8',],['FM3','FM4']]},
+    'init_FM':{'LEN':['FM1','FM2','FM8','FM9'],'PIT':['FM1','FM2','FM3','FM9'],'YAW':['FM1','FM2','FM9']},
+    'bst_FM':{'LEN':[],'PIT':[['FM1',],['FM8',]],'YAW':[['FM2',],['FM8',],['FM4']]},
 }
 
 
