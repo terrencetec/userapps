@@ -66,7 +66,7 @@ IM_LOCALDAMP = {
     'init_FM':{
         'LEN':['FM6','FM7','FM8'],
         'TRANS':['FM6','FM7','FM8'],
-        'VER':['FM6','FM7','FM8'],
+        'VER':['FM6','FM7'],
         'ROLL':['FM6','FM7','FM8'],
         'PIT':['FM6','FM7','FM9','FM8'],
         'YAW':['FM6','FM7','FM8'],
@@ -74,6 +74,7 @@ IM_LOCALDAMP = {
     'bst_FM':{
         'LEN':[],
         'TRANS':[],
+        'VER':[],
         'ROLL':[],
         'PIT':[],
         'YAW':[],
