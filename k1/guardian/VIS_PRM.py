@@ -216,9 +216,7 @@ class MISALIGNING(GuardState):
         self.counter = 0
         self.OPAL = {DoF:vislib.OpticAlign('PRM',DoF) for DoF in ['PIT','YAW']}
         self.IM_TEST = {DoF:ezca.get_LIGOFilter('VIS-PRM_IM_TEST_%s'%DoF[0]) for DoF in ['PIT','YAW']}
-        self.IM_OFFSET = {'PIT':-1500,'YAW':-3000}
         self.BF_TEST = ezca.get_LIGOFilter('VIS-PRM_BF_TEST_Y')
-        self.BF_OFFSET = 70000
         self.timer['checking'] = 0
 
     @check_TWWD
@@ -227,7 +225,7 @@ class MISALIGNING(GuardState):
         if not self.timer['waiting']:
             return
 
-        if bool(ezca['PSL-BEAM_SHUTTER_STATE']):
+        if bool(ezca['PSL-BEAM_SHUTTER_STATE']) and self.counter < 3:
             if self.timer['warning']:
                 kagralib.speak_aloud('PSL shutter is open. Please close it to misalign PRM')
                 notify('PSL shutter is open. Please close it to misalign PRM')
@@ -237,16 +235,16 @@ class MISALIGNING(GuardState):
         if self.counter == 0:
             for key in self.OPAL:
                 self.OPAL[key].turn_off('OFFSET')
+                self.IM_TEST[key].TRAMP.put(3)
                 self.IM_TEST[key].turn_on('OFFSET')
                 self.IM_TEST[key].ramp_gain(1,0,False)
-                self.IM_TEST[key].ramp_offset(self.IM_OFFSET[key],3,False)
             self.counter += 1
             self.timer['waiting'] = 1
 
         elif self.counter == 1:
+            self.BF_TEST.TRAMP.put(3)
             self.BF_TEST.turn_on('OFFSET')
             self.BF_TEST.ramp_gain(1,0,False)
-            self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
             self.timer['warning'] = 120
             self.counter += 1
             
@@ -322,22 +320,23 @@ class REALIGNING(GuardState):
             for key in self.OPAL:
                 self.OPAL[key].turn_on('OFFSET')
                 self.IM_TEST[key].turn_off('OFFSET')
+            self.IM_TEST['PIT'].ramp_offset(self.IM_TEST['PIT'].OFFSET.get()+ezca['VIS-PRM_IM_PSD_P_OUTPUT'],1,False)
             self.counter += 1
             self.timer['waiting'] = 1
 
         elif self.counter == 1:
-            self.BF_TEST.turn_on('OFFSET')
-            self.BF_TEST.ramp_offset(self.BF_OFFSET,10,False)
+            self.BF_TEST.turn_off('OFFSET')
+            self.BF_TEST.ramp_offset(self.BF_TEST.OFFSET.get() + ezca['VIS-PRM_BF_PSD_Y_OUTPUT'],1,False)
             self.timer['warning'] = 120
             self.counter += 1
             
         elif self.counter == 2 and not self.BF_TEST.is_offset_ramping():
             # diable PSD loop in IM_PIT and BF_YAW
             filt = ezca.get_LIGOFilter('VIS-PRM_BF_PSD_Y')
-            filt.switch('FM3','FM7','FM8','FM9','OFF')
+            filt.switch('FM3','FM4','FM7','FM8','FM9','OFF')
             filt.ramp_gain(0,ramp_time=5,wait=True)
             filt = ezca.get_LIGOFilter('VIS-PRM_IM_PSD_P')
-            filt.switch('FM3','FM7','FM8','FM9','OFF')
+            filt.switch('FM3','FM4','FM7','FM8','FM9','OFF')
             filt.ramp_gain(0,ramp_time=5,wait=True)
             
             if self.timer['warning']:

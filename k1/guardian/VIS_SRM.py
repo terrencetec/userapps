@@ -65,10 +65,10 @@ IM_LOCALDAMP = {
     'ramptime':3,
     'integrator':False,
     'init_FM':{
-        'LEN':['FM6','FM7'],
-        'TRANS':['FM6','FM7'],
+        'LEN':['FM6','FM7','FM8'],
+        'TRANS':['FM6','FM7','FM8'],
         'ROLL':['FM6','FM7'],
-        'PIT':['FM6','FM7','FM9'],
+        'PIT':['FM6','FM7','FM8','FM9'],
         'YAW':['FM6','FM7'],
     },
     'bst_FM':{
