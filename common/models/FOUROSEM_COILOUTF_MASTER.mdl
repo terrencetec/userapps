@@ -1,6 +1,6 @@
 Library {
   Name			  "FOUROSEM_COILOUTF_MASTER"
-  Version		  8.5
+  Version		  8.6
   MdlSubVersion		  0
   SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
@@ -42,9 +42,9 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"1"
-	Extents			[588.0, 417.0]
-	ZoomFactor		[1.0]
-	Offset			[0.0, 125.0]
+	Extents			[574.0, 420.0]
+	ZoomFactor		[1.25]
+	Offset			[388.84937410544785, 24.0]
       }
     }
   }
@@ -54,9 +54,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Oct 12 13:51:00 2015"
-  RTWModifiedTimeStamp	  366558652
-  ModelVersionFormat	  "1.%<AutoIncrement:7>"
+  LastModifiedDate	  "Mon Oct 05 21:34:05 2020"
+  RTWModifiedTimeStamp	  523834444
+  ModelVersionFormat	  "1.%<AutoIncrement:8>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -74,6 +74,7 @@ Library {
   SortedOrder		  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
+  ShowVisualizeInsertedRTB on
   ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
@@ -91,25 +92,6 @@ Library {
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
-  RecordCoverage	  off
-  CovSaveName		  "covdata"
-  CovMetricSettings	  "dw"
-  CovNameIncrementing	  off
-  CovHtmlReporting	  on
-  CovForceBlockReductionOff on
-  CovEnableCumulative	  on
-  covSaveCumulativeToWorkspaceVar on
-  CovSaveSingleToWorkspaceVar on
-  CovCumulativeReport	  off
-  CovReportOnPause	  on
-  CovModelRefEnable	  "Off"
-  CovExternalEMLEnable	  off
-  CovSFcnEnable		  on
-  CovBoundaryAbsTol	  0.000010
-  CovBoundaryRelTol	  0.010000
-  CovUseTimeInterval	  off
-  CovStartTime		  0
-  CovStopTime		  0
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -138,13 +120,13 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      6
-      Version		      "1.15.0"
+      Version		      "1.15.1"
       Array {
 	Type			"Handle"
-	Dimension		8
+	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  7
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -171,6 +153,8 @@ Library {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverInfoToggleStatus  off
+	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
 	  AutoInsertRateTranBlk	  off
@@ -179,7 +163,7 @@ Library {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  8
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -198,6 +182,8 @@ Library {
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
 	  VisualizeSimOutput	  on
+	  StreamToWorkspace	  off
+	  StreamVariableName	  "streamout"
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -209,10 +195,11 @@ Library {
 	  OutputTimes		  "[]"
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
+	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  9
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    7
@@ -228,7 +215,7 @@ Library {
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
-	  InlineParams		  off
+	  DefaultParameterBehavior "Tunable"
 	  UseDivisionForNetSlopeComputation "off"
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
@@ -268,7 +255,7 @@ Library {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  10
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -295,7 +282,6 @@ Library {
 	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
-	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "error"
 	  MultiTaskCondExecSysMsg "error"
 	  MultiTaskRateTransMsg	  "error"
@@ -328,6 +314,7 @@ Library {
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
+	  AllowSymbolicDim	  off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
@@ -343,6 +330,7 @@ Library {
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
+	  SymbolicDimMinMaxWarning "warning"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -357,7 +345,7 @@ Library {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  11
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -397,8 +385,9 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  12
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  EnableRefExpFcnMdlSchedulingChecks on
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
 	  ParallelModelReferenceErrorOnInvalidPool on
@@ -412,8 +401,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  13
-	  Version		  "1.15.0"
-	  SFSimOverflowDetection  on
+	  Version		  "1.15.1"
 	  SFSimEcho		  on
 	  SimCtrlC		  on
 	  SimIntegrity		  on
@@ -425,7 +413,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  14
-	  Version		  "1.15.0"
+	  Version		  "1.15.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    6
@@ -443,7 +431,6 @@ Library {
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
-	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
 	  PostCodeGenCommand	  ""
 	  Description		  ""
@@ -457,13 +444,6 @@ Library {
 	  TLCAssert		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
-	  CustomSourceCode	  ""
-	  CustomHeaderCode	  ""
-	  CustomInclude		  ""
-	  CustomSource		  ""
-	  CustomLibrary		  ""
-	  CustomInitializer	  ""
-	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
 	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
@@ -495,7 +475,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      15
-	      Version		      "1.15.0"
+	      Version		      "1.15.1"
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -562,7 +542,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      16
-	      Version		      "1.15.0"
+	      Version		      "1.15.1"
 	      Array {
 		Type			"Cell"
 		Dimension		15
@@ -628,6 +608,7 @@ Library {
 	      AutosarCompliant	      off
 	      GRTInterface	      on
 	      GenerateAllocFcn	      off
+	      UseToolchainInfoCompliant	on
 	      GenerateSharedConstants on
 	      UseMalloc		      off
 	      ExtMode		      off
@@ -646,6 +627,33 @@ Library {
 	    }
 	    PropName		    "Components"
 	  }
+	}
+	SlCovCC.ConfigComp {
+	  $ObjectID		  17
+	  Version		  "1.15.1"
+	  Description		  "Simulink Coverage Configuration Component"
+	  Name			  "Simulink Coverage"
+	  RecordCoverage	  off
+	  CovPath		  "/"
+	  CovSaveName		  "covdata"
+	  CovMetricSettings	  "dw"
+	  CovNameIncrementing	  off
+	  CovHtmlReporting	  on
+	  CovForceBlockReductionOff on
+	  CovEnableCumulative	  on
+	  CovSaveCumulativeToWorkspaceVar on
+	  CovSaveSingleToWorkspaceVar on
+	  CovCumulativeVarName	  "covCumulativeData"
+	  CovCumulativeReport	  off
+	  CovReportOnPause	  on
+	  CovModelRefEnable	  "Off"
+	  CovExternalEMLEnable	  off
+	  CovSFcnEnable		  on
+	  CovBoundaryAbsTol	  1e-05
+	  CovBoundaryRelTol	  0.01
+	  CovUseTimeInterval	  off
+	  CovStartTime		  0
+	  CovStopTime		  0
 	}
 	PropName		"Components"
       }
@@ -769,7 +777,6 @@ Library {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
-      Variant		      off
       GeneratePreprocessorConditionals off
       ContentPreviewEnabled   off
       IsWebBlock	      off
@@ -792,9 +799,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "175"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "38"
+    SIDHighWatermark	    "39"
     Block {
       BlockType		      SubSystem
       Name		      "COILOUTF"
@@ -804,6 +811,7 @@ Library {
       ZOrder		      -1
       BackgroundColor	      "lightBlue"
       RequestExecContextInheritance off
+      Variant		      off
       System {
 	Name			"COILOUTF"
 	Location		[1227, 158, 1855, 771]
@@ -818,7 +826,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  Inport
 	  Name			  "H1_In"
@@ -930,9 +938,10 @@ Library {
 	  ZOrder		  -13
 	  BackgroundColor	  "darkGreen"
 	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.8"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "cdsFiltCtrl/IIR FM with control"
 	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -990,9 +999,10 @@ Library {
 	  ZOrder		  -7
 	  BackgroundColor	  "darkGreen"
 	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.8"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "cdsFiltCtrl/IIR FM with control"
 	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -1050,9 +1060,10 @@ Library {
 	  ZOrder		  -14
 	  BackgroundColor	  "darkGreen"
 	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.8"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "cdsFiltCtrl/IIR FM with control"
 	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -1110,9 +1121,10 @@ Library {
 	  ZOrder		  -8
 	  BackgroundColor	  "darkGreen"
 	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.8"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "cdsFiltCtrl/IIR FM with control"
 	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Terminator
@@ -1330,6 +1342,18 @@ Library {
 	      }
 	    }
 	  }
+	}
+	Annotation {
+	  SID			  "39"
+	  Name			  "#DAQ Channels\nH1_OUT 2048"
+	  Position		  [517, 120, 620, 158]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  HorizontalAlignment	  "left"
+	  DropShadow		  on
+	  ZOrder		  -2
+	  FontSize		  14
 	}
       }
     }

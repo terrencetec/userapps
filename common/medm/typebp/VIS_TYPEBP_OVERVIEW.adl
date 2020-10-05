@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2161
-		y=78
-		width=1939
-		height=1062
+		x=1920
+		y=39
+		width=1920
+		height=1041
 	}
 	clr=40
 	bclr=26
@@ -85,6 +85,18 @@ display {
 		3cb420,
 		289315,
 		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=1152
+		y=185
+		width=203
+		height=65
+	}
+	"basic attribute" {
+		clr=33
+		width=2
 	}
 }
 "related display" {
@@ -54236,4 +54248,450 @@ rectangle {
 		calc="(Abs(A)>=30000)"
 		chan="$(IFO):VIS-$(OPTIC)_BF_OLDAMP_L_INMON"
 	}
+}
+"related display" {
+	object {
+		x=1192
+		y=204
+		width=145
+		height=40
+	}
+	display[0] {
+		label="DISP2CEN"
+		name="/opt/rtcds/userapps/release/vis/common/medm/typebp/VIS_CUST_TYPEBP_BF_LOCK.adl"
+		args="%(read $(USERAPPS)/vis/common/medm/vis$(optic)_overview_macro.txt),userapps=$(userapps),USERAPPS=$(USERAPPS),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),optic=$(optic),FEC=$(FEC),CHAN=K1:VIS-$(OPTIC)_BF_LOCK"
+	}
+	clr=14
+	bclr=14
+	visual="invisible"
+}
+text {
+	object {
+		x=1166
+		y=217
+		width=20
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="PIT"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1166
+		y=233
+		width=20
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="YAW"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=1189
+		y=224
+		width=12
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(1190,225)
+		(1199,225)
+	}
+}
+polyline {
+	object {
+		x=1189
+		y=238
+		width=12
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(1190,239)
+		(1199,239)
+	}
+}
+rectangle {
+	object {
+		x=1189
+		y=230
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+"text update" {
+	object {
+		x=1209
+		y=231
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_Y_INMON"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1259
+		y=231
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_Y_OUTPUT"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=1192
+		y=232
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="IN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1324
+		y=232
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1204
+		y=232
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_Y_INMON"
+	}
+}
+rectangle {
+	object {
+		x=1313
+		y=231
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_Y_INMON"
+	}
+}
+rectangle {
+	object {
+		x=1189
+		y=216
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+"text update" {
+	object {
+		x=1209
+		y=216
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_P_INMON"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1259
+		y=216
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_P_OUTPUT"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=1192
+		y=219
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="IN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1324
+		y=217
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1204
+		y=217
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_P_INMON"
+	}
+}
+rectangle {
+	object {
+		x=1313
+		y=216
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_P_INMON"
+	}
+}
+text {
+	object {
+		x=1166
+		y=202
+		width=20
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="LONG"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=1189
+		y=209
+		width=12
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(1190,210)
+		(1199,210)
+	}
+}
+rectangle {
+	object {
+		x=1189
+		y=202
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+"text update" {
+	object {
+		x=1209
+		y=202
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_L_INMON"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=1259
+		y=202
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_L_OUTPUT"
+		clr=31
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=1192
+		y=203
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="IN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1324
+		y=203
+		width=10
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="OUT"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1204
+		y=203
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_L_INMON"
+	}
+}
+rectangle {
+	object {
+		x=1313
+		y=202
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		clr="discrete"
+		vis="calc"
+		calc="(Abs(A)>=30000)"
+		chan="$(IFO):VIS-$(OPTIC)_BF_LOCK_L_INMON"
+	}
+}
+text {
+	object {
+		x=1309
+		y=187
+		width=40
+		height=8
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="LOCK"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1156
+		y=185
+		width=58
+		height=11
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Temporal (BF LOCK)"
 }

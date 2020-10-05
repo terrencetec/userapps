@@ -225,7 +225,7 @@ class MISALIGNING(GuardState):
         if not self.timer['waiting']:
             return
 
-        if bool(ezca['PSL-BEAM_SHUTTER_STATE']) and self.counter < 3:
+        if bool(ezca['PSL-BEAM_SHUTTER_STATE']) and self.counter < 1:
             if self.timer['warning']:
                 kagralib.speak_aloud('PSL shutter is open. Please close it to misalign PRM')
                 notify('PSL shutter is open. Please close it to misalign PRM')
@@ -308,7 +308,7 @@ class REALIGNING(GuardState):
         if not self.timer['waiting']:
             return
 
-        if bool(ezca['PSL-BEAM_SHUTTER_STATE']):
+        if bool(ezca['PSL-BEAM_SHUTTER_STATE']) and self.counter < 1:
             if self.timer['warning']:
                 kagralib.speak_aloud('PSL shutter is open. Please close it to realign PRM')
                 notify('PSL shutter is open. Please close it to realign PRM')
