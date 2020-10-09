@@ -302,20 +302,13 @@ def is_WD_tripped(optic, payload=True):
 
 
     ######################################
-    # Needs to be removed.
-    if optic.lower() in ['bs','srm']:
-        WDs = []
-    elif optic.lower() in ['itmx','itmy','etmx','etmy','pr3','prm']:
-        WDs = []
-
-    ######################################
 
 
     # reference for check WD. from 16 bit to 19 bit are for the WD readback
     ref = 0
     for ii in range(16,20):
         ref += 2**ii
-    return any([(int(ezca['VIS-%s_BIO_%s_MON'%(optic,BIO)]) & ref) for BIO in WDs])
+    return False
 
 DGWDList = {
     'TypeC':['TM',],

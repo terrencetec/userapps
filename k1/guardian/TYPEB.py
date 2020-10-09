@@ -112,6 +112,7 @@ setSnapDict={
 ##################################################
 # functions
 def is_tripped_BIO(BIO):
+    return False
     AnalogWD_state = False
     for name in BIO:
         AnalogWD_state = AnalogWD_state or ( (int(ezca['VIS-'+OPTIC+'_BIO_'+name+'_MON']) & 983040) != 0 ) # check if any coil driver is tripped or not

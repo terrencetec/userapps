@@ -157,9 +157,6 @@ class SAFE(GuardState):
 class FLOAT(GuardState):
     request = True
     index = 5
-    @is_fault
-    def main(self):
-        ezca['VIS-%s_MASTERSWITCH'%OPTIC] = 1
     
     @is_fault
     def run(self):
@@ -242,6 +239,7 @@ class ENGAGE_OPAL(GuardState):
     
     @is_fault    
     def main(self):
+        ezca['VIS-%s_MASTERSWITCH'%OPTIC] = 1
         self.counter = 0
         self.timer['waiting'] = 0
 
@@ -262,7 +260,11 @@ class ENGAGE_OPAL(GuardState):
                     TRAMP.append(_TRAMP)
                     OPAL()[stage][DoF].ramp_gain(1,_TRAMP,False)
                     OPAL()[stage][DoF].turn_on('OFFSET')
-                
+      
+            for DoF in ['L','T','Y']:
+                ezca.get_LIGOFilter('VIS-%s_IP_TEST_%s'%(OPTIC,DoF)).ramp_gain(1,5,False)
+                ezca.get_LIGOFilter('VIS-%s_IP_TEST_%s'%(OPTIC,DoF)).turn_on('OFFSET')
+          
             self.timer['waiting'] = max(TRAMP)
             self.counter += 1
 
@@ -334,6 +336,10 @@ class DISABLE_LOCALDAMP(GuardState):
 
         elif self.counter == 1:
             for DoF in ['L','T','Y']:
+                ezca.get_LIGOFilter('VIS-%s_IP_TEST_%s'%(OPTIC,DoF)).ramp_offset(
+                    ezca['VIS-%s_IP_SUMOUT_%s_OUTPUT'%(OPTIC,DoF)],1,False)
+
+            for DoF in ['L','T','Y']:                
                 ezca.get_LIGOFilter('VIS-%s_IP_DAMP_%s'%(OPTIC,DoF)).ramp_gain(0,10,False)
             self.timer['waiting'] = 10
             self.counter += 1
@@ -384,6 +390,10 @@ class CLEAR_OUTPUT(GuardState):
                     TRAMP.append(_TRAMP)
                     OPAL()[stage][DoF].ramp_gain(0,_TRAMP,False)
 
+            for DoF in ['L','T','Y']:
+                ezca.get_LIGOFilter('VIS-%s_IP_TEST_%s'%(OPTIC,DoF)).TRAMP.put(5)
+                ezca.get_LIGOFilter('VIS-%s_IP_TEST_%s'%(OPTIC,DoF)).turn_off('OFFSET')
+                    
             for filt in ISC().keys():
                 for DoF in ISC()[filt].keys():
                     output = ISC()[filt][DoF].OUTPUT.get()
@@ -920,11 +930,11 @@ class OBSERVATION(GuardState):
 # Edges
 edges = [('INIT','SAFE'),
          ('FAULT','SAFE'),
-         ('SAFE','FLOAT'),
+         ('SAFE','ENGAGE_OPAL'),
+         ('ENGAGE_OPAL','FLOAT'),
          ('FLOAT','ENGAGE_LOCALDAMP'),
          ('ENGAGE_LOCALDAMP','ENGAGE_TWRDC'),
-         ('ENGAGE_TWRDC','ENGAGE_OPAL'),
-         ('ENGAGE_OPAL','LOCALDAMPED'),
+         ('ENGAGE_TWRDC','LOCALDAMPED'),
          ('LOCALDAMPED','ENGAGE_OLSERVO'),
          ('ENGAGE_OLSERVO','OLDAMPED'),
          ('OLDAMPED','ENGAGE_OLDC'),

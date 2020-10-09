@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.40"
+    ComputedModelVersion    "1.41"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -53,9 +53,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1886.0, 892.0]
+	Extents			[1886.0, 870.0]
 	ZoomFactor		[1.25]
-	Offset			[-72.869531625300482, 49.118175334105565]
+	Offset			[486.36380170803261, 472.23365883780872]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 06 20:46:41 2020"
-  RTWModifiedTimeStamp	  518647597
-  ModelVersionFormat	  "1.%<AutoIncrement:40>"
+  LastModifiedDate	  "Wed Oct 07 23:32:33 2020"
+  RTWModifiedTimeStamp	  524014246
+  ModelVersionFormat	  "1.%<AutoIncrement:41>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -827,7 +827,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "887"
+    SIDHighWatermark	    "889"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -1344,6 +1344,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground13"
+      SID		      "888"
+      Position		      [1040, 965, 1060, 985]
+      ZOrder		      6730
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground18"
       SID		      "678"
       Position		      [1865, 585, 1885, 605]
@@ -1512,6 +1520,23 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "K1:VIS_SR3P_ISC_IM_OUT"
+      SID		      "889"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [1100, 964, 1165, 986]
+      ZOrder		      6729
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "K1:VIS_SR3_TOP_BLF"
       SID		      "850"
       Tag		      "cdsIPCx_SHMEM"
@@ -1587,11 +1612,11 @@ Model {
       BlockType		      Reference
       Name		      "SR3"
       SID		      "849"
-      Ports		      [16, 11]
-      Position		      [1250, 226, 1430, 759]
+      Ports		      [17, 11]
+      Position		      [1250, 228, 1430, 762]
       ZOrder		      5465
       BackgroundColor	      "magenta"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/TYPEB_TOP_MASTER_shutdown"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -1604,7 +1629,7 @@ Model {
       Position		      [390, 731, 550, 939]
       ZOrder		      5454
       BackgroundColor	      "green"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/BIO_DECODE_TOP_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -1617,7 +1642,7 @@ Model {
       Position		      [400, 1001, 540, 1209]
       ZOrder		      5457
       BackgroundColor	      "green"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/BIO_ENCODE_TOP_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -2671,6 +2696,21 @@ Model {
       SrcPort		      2
       DstBlock		      "Terminator6"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      916
+      SrcBlock		      "Ground13"
+      SrcPort		      1
+      DstBlock		      "K1:VIS_SR3P_ISC_IM_OUT"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      917
+      SrcBlock		      "K1:VIS_SR3P_ISC_IM_OUT"
+      SrcPort		      1
+      Points		      [3, 0; 0, -235]
+      DstBlock		      "SR3"
+      DstPort		      17
     }
     Annotation {
       SID		      "692"

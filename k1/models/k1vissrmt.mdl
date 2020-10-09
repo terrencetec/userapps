@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.47"
+    ComputedModelVersion    "1.48"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -54,9 +54,9 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1886.0, 851.0]
+	  Extents		  [1886.0, 829.0]
 	  ZoomFactor		  [1.5]
-	  Offset		  [534.85503122247371, -463.937605481492]
+	  Offset		  [579.23836455580647, 620.23102292791032]
 	}
 	Object {
 	  $ObjectID		  6
@@ -77,9 +77,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 06 20:48:55 2020"
-  RTWModifiedTimeStamp	  518647733
-  ModelVersionFormat	  "1.%<AutoIncrement:47>"
+  LastModifiedDate	  "Thu Oct 08 00:20:48 2020"
+  RTWModifiedTimeStamp	  524017246
+  ModelVersionFormat	  "1.%<AutoIncrement:48>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -839,7 +839,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "854"
+    SIDHighWatermark	    "856"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -1363,6 +1363,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground13"
+      SID		      "855"
+      Position		      [1020, 950, 1040, 970]
+      ZOrder		      6730
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground18"
       SID		      "678"
       Position		      [1865, 585, 1885, 605]
@@ -1532,6 +1540,23 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "K1:VIS_SRMP_ISC_IM_OUT"
+      SID		      "856"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [1080, 949, 1145, 971]
+      ZOrder		      6729
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "K1:VIS_SRM_TOP_BLF"
       SID		      "771"
       Tag		      "cdsIPCx_SHMEM"
@@ -1607,11 +1632,11 @@ Model {
       BlockType		      Reference
       Name		      "SRM"
       SID		      "770"
-      Ports		      [16, 11]
+      Ports		      [17, 11]
       Position		      [1235, 231, 1425, 749]
       ZOrder		      5459
       BackgroundColor	      "magenta"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/TYPEB_TOP_MASTER_shutdown"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -1624,7 +1649,7 @@ Model {
       Position		      [375, 746, 535, 954]
       ZOrder		      5454
       BackgroundColor	      "green"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/BIO_DECODE_TOP_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -1637,7 +1662,7 @@ Model {
       Position		      [385, 1016, 525, 1224]
       ZOrder		      5457
       BackgroundColor	      "green"
-      LibraryVersion	      "1.207"
+      LibraryVersion	      "1.209"
       SourceBlock	      "TYPEB_MASTER/BIO_ENCODE_TOP_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -2689,6 +2714,21 @@ Model {
       SrcPort		      2
       DstBlock		      "Terminator6"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      948
+      SrcBlock		      "Ground13"
+      SrcPort		      1
+      DstBlock		      "K1:VIS_SRMP_ISC_IM_OUT"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      949
+      SrcBlock		      "K1:VIS_SRMP_ISC_IM_OUT"
+      SrcPort		      1
+      Points		      [67, 0; 0, -225]
+      DstBlock		      "SRM"
+      DstPort		      17
     }
     Annotation {
       SID		      "692"
