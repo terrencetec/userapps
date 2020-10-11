@@ -1,3 +1,9 @@
+from guardian import GuardState
+import kagralib
+import vislib
+import numpy as np
+
+
 ###########
 # Misalign
 ###########
@@ -110,3 +116,62 @@ OLSERVO = {
 After complete the new guardian code, import everyghing from GRD_VIS
 '''
 from GRD_OLD import ENGAGE_TM_OLDAMP, ENGAGE_IM_OLDAMP, ENGAGE_OLSERVO, DISABLE_TM_OLDAMP, DISABLE_IM_OLDAMP, DISABLE_OLSERVO, ENGAGE_IM_LOCALDAMP, PAY_LOCALDAMPED, TWR_DAMPED, ALIGNED, DISABLE_IM_LOCALDAMP, edges, TRANSIT_TO_OBS, OBSERVATION, BACK_TO_ALIGNED, MISALIGNING, MISALIGNED, REALIGNING
+
+
+class MISALIGNING_FOR_RSE(GuardState):
+    index = 99
+    request = False
+
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        elif self.counter == 0:
+            ezca.get_LIGOFilter('VIS-SRM_TM_OPLEV_SERVO_YAW').ramp_offset(np.sign(ezca['VIS-SRM_IM_OLSET_Y_OUTPUT'])*200,5,False)
+            self.counter += 1
+            self.timer['waiting'] = 5
+
+        elif self.counter == 1:
+            return True
+
+    
+
+class MISALIGNED_FOR_RSE(GuardState):
+    index = 97
+    request = True
+
+
+    def run(self):
+        return True
+
+class REALIGNING_FOR_RSE(GuardState):
+    index = 98
+    request = False
+
+    def main(self):
+        self.counter = 0
+        self.timer['waiting'] = 0
+
+    def run(self):
+        if not self.timer['waiting']:
+            return
+
+        elif self.counter == 0:
+            ezca.get_LIGOFilter('VIS-SRM_TM_OPLEV_SERVO_YAW').ramp_offset(0,5,False)
+            self.counter += 1
+            self.timer['waiting'] = 5
+
+        elif self.counter == 1:
+            return True
+
+
+edges += (
+    ('ALIGNED','MISALIGNING_FOR_RSE'),
+    ('MISALIGNING_FOR_RSE','MISALIGNED_FOR_RSE'),
+    ('MISALIGNED_FOR_RSE','REALIGNING_FOR_RSE'),
+    ('REALIGNING_FOR_RSE','ALIGNED'),
+    )

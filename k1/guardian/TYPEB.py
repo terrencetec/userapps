@@ -458,6 +458,7 @@ def checkPayloadSafe():
 class watchdog_check(GuardStateDecorator):
     """Decorator to check watchdog"""
     def pre_exec(self):
+
 #        if optic == 'bs':
 #            return None
         global visObj
@@ -466,14 +467,17 @@ class watchdog_check(GuardStateDecorator):
 #            if i in TWR_WD:
 #                return 'TRIPPED'
         if any([i in visObj.trippedWds() for i in TWR_WD]) or any([i in visObj.trippedBioWds() for i in TWR_BIO]):
-            return 'TRIPPED'
+            pass
+            #return 'TRIPPED'
         if any([i in visObj.trippedWds() for i in PAY_WD]) or any([i in visObj.trippedBioWds() for i in PAY_BIO]):
             if state == 'PAYLOAD':
-                return 'PAY_TRIPPED'
+                pass
+                #return 'PAY_TRIPPED'
 #            elif state == 'OBSERVATION': # Added by Terrence for teaching Fabian. This clause is not necessary when the tower trips in OBSERVATION state.
 #                return 'OBSERVATION_TRIPPED'
             else:
-                return 'TRIPPED'
+                pass
+                #return 'TRIPPED'
 
 ##################################################
 class INIT(GuardState):
@@ -794,7 +798,8 @@ class ENGAGING_GAS_CONTROL(GuardState):
         state = 'TOWER'
         for level in ['BF','F1','F0']:
             if(beginControlSequence(self,level=level) == 'TRIPPED'):
-                return 'TRIPPED'
+                pass
+                #return 'TRIPPED'
         return True
 
 class DISENGAGING_GAS_CONTROL(GuardState):

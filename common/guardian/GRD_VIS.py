@@ -848,15 +848,30 @@ class CLEAR_ISCWD(GuardState):
     def main(self):
         self.counter = 0
         self.timer['waiting'] = 0
-
-        #check which DoF is tripped
-        self.tripped = {DoF:any([ezca['MOD-%s_ISC_WD_%s_%s_STATE'%(OPTIC,stage,DoF)]>0. for stage in ['BF','MN','IM','TM']]) for DoF in ['LEN','PIT','YAW']}
+        self.WDlist = {DoF: True for DoF in ['LEN','PIT','YAW']}
         
     def run(self):
         if not self.timer['waiting']:
             return
 
         if self.counter == 0:
+            # turn olservo off
+            OLSERVO = [ezca.get_LIGOFilter('MOD-%s_TMOL_SERVO_MN_PIT'%OPTIC),
+                       ezca.get_LIGOFilter('MOD-%s_MNOL_SERVO_MN_YAW'%OPTIC)]
+            try:
+                for mode in sysmod.DAMPMODE_LIST:
+                    OLSERVO.append(ezca.get_LIGOFilter('MOD-%s_MODE%d_SERVO'%(OPTIC,mode)))
+            except NameError:
+                pass
+            
+            for servo in OLSERVO:
+                servo.ramp_gain(0,1,False)
+
+            # engage PSdamp for Y, P
+            ezca['MOD-%s_DAMP_MN_PIT_GAIN'%OPTIC] = 1
+            ezca['MOD-%s_DAMP_MN_YAW_GAIN'%OPTIC] = 1
+            
+            
             # turn BF path off
             ezca.switch('MOD-%s_ISC_BF_YAW'%OPTIC,'INPUT','OFF')
             # turn LOCKAQ OL loop off
@@ -868,8 +883,8 @@ class CLEAR_ISCWD(GuardState):
             ezca.get_LIGOFilter('MOD-%s_TMOL_SERVO_TM_YAW'%OPTIC).ramp_gain(0,2,False)
             
             # clear filter output
-            for DoF in self.tripped.keys():
-                if self.tripped[DoF]:
+            for DoF in self.WDlist.keys():
+                if self.WDlist[DoF]:
                     ezca.switch('MOD-%s_ISC_COM1_%s'%(OPTIC,DoF),'INPUT','OFF')
                     for fil in ['COM1','TM','COM2','IM','COM3','MN','BF']:
                         ezca['MOD-%s_ISC_%s_%s_RSET'%(OPTIC,fil,DoF)] = 2
@@ -879,23 +894,27 @@ class CLEAR_ISCWD(GuardState):
 
         elif self.counter == 1:
             flag = True
-            for DoF in self.tripped.keys():
-                if self.tripped[DoF]:
+            # check tripped WD
+            for DoF in self.WDlist.keys():
+                if self.WDlist[DoF]:
                     for stage in ['BF','MN','IM','TM']:
-                        if ezca['MOD-%s_ISC_WD_RMS_%s_%s'%(OPTIC,stage,DoF)] <= ezca['MOD-%s_ISC_WD_RMS_THR_%s_%s'%(OPTIC,stage,DoF)]:
-                            # reset WD
-                            ezca['MOD-%s_ISC_WD_%s_%s_TRAMP'%(OPTIC,stage,DoF)] = 5
-                            ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 1
-                            time.sleep(0.1)
-                            ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 0
-                        else:
+                        if ezca['MOD-%s_ISC_WD_%s_%s_STATE'%(OPTIC,stage,DoF)] == 1:
+                            # if ISCWD is tripped
                             flag = False
+                            if ezca['MOD-%s_ISC_WD_RMS_%s_%s'%(OPTIC,stage,DoF)] <= ezca['MOD-%s_ISC_WD_RMS_THR_%s_%s'%(OPTIC,stage,DoF)]:
+                                # reset WD
+                                ezca['MOD-%s_ISC_WD_%s_%s_TRAMP'%(OPTIC,stage,DoF)] = 3
+                                ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 1
+                                time.sleep(0.1)
+                                ezca['MOD-%s_ISC_WD_%s_%s_RSET'%(OPTIC,stage,DoF)] = 0
+                                self.timer['checking'] = 5
+                            
 
-            if flag:
-                self.timer['check'] = 5.5
-                self.timer['waiting'] = 5
+            if flag and self.timer['checking']:
+                self.timer['check'] = 1
                 self.counter += 1
 
+                        
         elif self.counter == 2:
             # check COM input and if it is zero for 0.5 sec, turn on input switch
             for DoF in ['LEN','PIT','YAW']:
@@ -913,9 +932,21 @@ class CLEAR_ISCWD(GuardState):
                 if kagralib.is_FM_ramping(OL):
                     flag = False
             if flag:
-                for DoF in self.tripped.keys():
+                for DoF in self.WDlist.keys():
                     ezca.switch('MOD-%s_ISC_COM1_%s'%(OPTIC,DoF),'INPUT','ON')
                 self.counter += 1
+
+            self.timer['OLcheck'] = 3
+
+        elif self.counter == 4:
+            # if oplev is in range for more than 3 sec, disable PS damp and return True
+            if is_oplev_outofrange():
+                self.timer['OLcheck'] = 3
+
+            if self.timer['OLcheck']:
+                ezca['MOD-%s_DAMP_MN_PIT_GAIN'%OPTIC] = 0
+                ezca['MOD-%s_DAMP_MN_YAW_GAIN'%OPTIC] = 0
+                self.counter += 1 
 
         else:
             return True
@@ -962,5 +993,5 @@ edges = [('INIT','SAFE'),
          ('LOCK_ACQUISITION','OBSERVATION'),
          ('OBSERVATION','LOCK_ACQUISITION',),
          ('CLEAR_OUTPUT','SAFE'),
-         ('CLEAR_ISCWD','OLDAMPED'),
+         ('CLEAR_ISCWD','LOCALDAMPED'),
          ]

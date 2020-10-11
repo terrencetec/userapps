@@ -1,6 +1,7 @@
 from guardian import GuardState
 import kagralib
 import vislib
+import numpy as np
 
 ###########
 # Misalign
@@ -174,16 +175,23 @@ class MISALIGNING_FOR_PRFPMI(GuardState):
     @check_TWWD
     @check_WD
     def main(self):
-        self.ofschan = ezca.get_LIGOFilter(MISALIGN_CHAN)
-        self.ofschan.turn_on('OFFSET')
-        init_ofs = self.ofschan.OFFSET.get()
-        self.ofschan.ramp_offset(init_ofs + MISALIGN_OFFSET_FOR_PRFPMI, MISALIGN_TRAMP_FOR_PRFPMI, False)
-        self.ofschan.ramp_gain(1, MISALIGN_TRAMP_FOR_PRFPMI, False)
+        self.counter = 0
+        self.timer['waiting'] = 0
 
     @check_TWWD
     @check_WD
     def run(self):
-        return not self.ofschan.is_offset_ramping()
+        if not self.timer['waiting']:
+            return
+
+        elif self.counter == 0:
+            ezca.get_LIGOFilter('VIS-PRM_TM_OPLEV_SERVO_YAW').ramp_offset(np.sign(ezca['VIS-PRM_TM_OLSET_Y_OUTPUT'])*400,5,False)
+            self.counter += 1
+            self.timer['waiting'] = 5
+
+        elif self.counter == 1:
+            return True
+
     
 
 class MISALIGNED_FOR_PRFPMI(GuardState):
@@ -362,19 +370,27 @@ class REALIGNING_FOR_PRFPMI(GuardState):
     @check_TWWD
     @check_WD
     def main(self):
-        self.ofschan = ezca.get_LIGOFilter(MISALIGN_CHAN)
-        init_ofs = self.ofschan.OFFSET.get()
-        log(init_ofs)
-        self.ofschan.ramp_offset(init_ofs - MISALIGN_OFFSET_FOR_PRFPMI, MISALIGN_TRAMP_FOR_PRFPMI, False)
+        self.counter = 0
+        self.timer['waiting'] = 0
 
     @check_TWWD
     @check_WD
     def run(self):
-        return not self.ofschan.is_offset_ramping()
+        if not self.timer['waiting']:
+            return
+
+        elif self.counter == 0:
+            ezca.get_LIGOFilter('VIS-PRM_TM_OPLEV_SERVO_YAW').ramp_offset(0,5,False)
+            self.counter += 1
+            self.timer['waiting'] = 5
+
+        elif self.counter == 1:
+            return True
+
 
 edges += (
-    ('PAY_LOCALDAMPED','MISALIGNING_FOR_PRFPMI'),
+    ('ALIGNED','MISALIGNING_FOR_PRFPMI'),
     ('MISALIGNING_FOR_PRFPMI','MISALIGNED_FOR_PRFPMI'),
     ('MISALIGNED_FOR_PRFPMI','REALIGNING_FOR_PRFPMI'),
-    ('REALIGNING_FOR_PRFPMI','PAY_LOCALDAMPED'),
+    ('REALIGNING_FOR_PRFPMI','ALIGNED'),
     )

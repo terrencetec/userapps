@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/prequa/VIS_3DOFS.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/prequa/VIS_3DOFS.adl"
 	version=030107
 }
 display {
@@ -4014,4 +4014,50 @@ text {
 		clr=54
 	}
 	textix="YAW"
+}
+valuator {
+	object {
+		x=204
+		y=395
+		width=50
+		height=17
+	}
+	control {
+		chan="$(CHANNAME)_YAW_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	dPrecision=0.100000
+	limits {
+		loprSrc="default"
+		loprDefault=-100
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=3
+	}
+}
+valuator {
+	object {
+		x=199
+		y=228
+		width=58
+		height=17
+	}
+	control {
+		chan="$(CHANNAME)_PIT_OFFSET"
+		clr=35
+		bclr=14
+	}
+	clrmod="alarm"
+	dPrecision=1.000000
+	limits {
+		loprSrc="default"
+		loprDefault=-100
+		hoprSrc="default"
+		hoprDefault=100
+		precSrc="default"
+		precDefault=3
+	}
 }
