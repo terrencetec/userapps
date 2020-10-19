@@ -11,7 +11,7 @@ eq_alert_flag = False
 eq_calm_down_flag = False
 
 # initial REQUEST state
-request = 'INIT'
+request = 'IDLING'
 
 # NOMINAL state, which determines when node is OK
 nominal = 'ALL_ALIGNED'
@@ -107,7 +107,7 @@ def is_earthquake():
     
 class eq_check(GuardStateDecorator):
     def pre_exec(self):
-	if is_earthquake():
+        if is_earthquake():
             return 'EARTHQUAKE'
 
 class revive(GuardStateDecorator):

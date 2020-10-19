@@ -124,7 +124,7 @@ class SAFE(GuardState):
             ezca.get_LIGOFilter('VIS-%s_TM_OPLEV_SERVO_YAW'%optic).ramp_gain(0,0,False)
             log('Turning off the master switch')
             ezca['VIS-'+optic+'_MASTERSWITCH'] = 'OFF'
-            subprocess.call(['burtrb', '-f', reqfile, '-o', snapfile, '-l','/tmp/controls.read.log', '-v'])
+            #subprocess.call(['burtrb', '-f', reqfile, '-o', snapfile, '-l','/tmp/controls.read.log', '-v'])
             return True
 	
 
@@ -141,7 +141,7 @@ class OUTPUT_ON(GuardState):
         ezca.switch('VIS-'+optic+'_IM_TEST_P','OFFSET','OFF')
         ezca.switch('VIS-'+optic+'_IM_TEST_Y','OFFSET','OFF')
 
-	log('Turning on the TEST filters')
+        log('Turning on the TEST filters')
 	## GAS ##
         for DOF in ['BF','SF']:
             ezca['VIS-'+optic+'_%s_TEST_GAS_TRAMP'%DOF] = 5.0
@@ -155,7 +155,7 @@ class OUTPUT_ON(GuardState):
             ezca['VIS-'+optic+'_IM_TEST_%s_GAIN'%DOF] = 1.0
         ## TM ##
         for DOF in ['L','P','Y']:
-	    ezca['VIS-'+optic+'_TM_TEST_%s_TRAMP'%DOF] = 5.0
+            ezca['VIS-'+optic+'_TM_TEST_%s_TRAMP'%DOF] = 5.0
             ezca['VIS-'+optic+'_TM_TEST_%s_GAIN'%DOF] = 1.0
         return True            
 #        for DOF in ['P','Y']:
@@ -221,10 +221,10 @@ class DAMPING_OFF(GuardState):
     def main(self):
         self.TRAMP = 10
         vf.im_offload_off(optic, self.TRAMP)
-	log('Turning on the damping filters')
-	vf.im_damp_off(optic)
-	vf.bf_damp_off(optic)
-	vf.gas_damp_off(optic)
+        log('Turning on the damping filters')
+        vf.im_damp_off(optic)
+        vf.bf_damp_off(optic)
+        vf.gas_damp_off(optic)
         self.timer['waiting'] = 10
         
     @watchdog_check
@@ -317,7 +317,7 @@ class ENGAGE_OLDAMP(GuardState):
         self.TRAMP = 2
         self.IMlimit = 24000
         self.TMlimit = 8000
-	log('Turning on the oplev controls')
+        log('Turning on the oplev controls')
         
     @watchdog_check
     def run(self):
@@ -369,7 +369,7 @@ class OLDAMP_OFF(GuardState):
     request = False
     @watchdog_check
     def main(self):
-	log('Turning off the oplev controls')
+        log('Turning off the oplev controls')
         self.TRAMP = 2
         self.timer['waiting'] = 0
         self.counter = 0
@@ -420,7 +420,7 @@ class ENGAGE_OLDCCTRL(GuardState):
         self.TRAMP = 10
         self.IMlimit = 24000
         self.TMlimit = 8000
-	log('Turning on the oplev controls')
+        log('Turning on the oplev controls')
         
     @watchdog_check
     def run(self):
@@ -450,8 +450,8 @@ class ALIGNED(GuardState):
 
     @watchdog_check
     def run(self):
-	log('All controlled')
-	# Add DC alignment values with ramp time!
+        log('All controlled')
+        # Add DC alignment values with ramp time!
         return True
 
 class DISABLE_OLDCCTRL(GuardState):

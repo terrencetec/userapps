@@ -61,47 +61,45 @@ def is_tripped2(optic,WD):
     WD_state = False
     for name in WD:
         WD_state = WD_state or (ezca['VIS-'+optic+'_'+name+'_WDMON_STATE'] != 1) # check if any WD is tripped or not
-
-#    AnalogWD_state = False
-#    for name in BIO:
-#        AnalogWD_state = AnalogWD_state or ( (int(ezca['VIS-'+optic+'_BIO_'+name+'_MON']) & 983040) != #0 ) # check if any AnalogWD is tripped or not
-#        if WD_state or AnalogWD_state:
-	if WD_state: 
-            return True
-
+        #    AnalogWD_state = False
+        #    for name in BIO:
+        #        AnalogWD_state = AnalogWD_state or ( (int(ezca['VIS-'+optic+'_BIO_'+name+'_MON']) & 983040) != #0 ) # check if any AnalogWD is tripped or not
+        #        if WD_state or AnalogWD_state:
+    if WD_state:
+        return True
     else:
         return False
 
 
 def is_pretripped(optic):
-        if ezca['VIS-'+optic+'_IM_WD_OSEMAC_V1_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_V2_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_V3_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H1_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H2_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H3_RMSMON'] > 2000.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V1_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V2_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V3_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H1_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H2_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H3_RMSMON'] > 100.0:
-                return True
-        elif ezca['VIS-'+optic+'_SF_WD_AC_GAS_RMSMON'] > 100.0:
-                return True
-	else:
-	        return False
+    if ezca['VIS-'+optic+'_IM_WD_OSEMAC_V1_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_V2_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_V3_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H1_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H2_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_IM_WD_OSEMAC_H3_RMSMON'] > 2000.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V1_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V2_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_V3_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H1_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H2_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_BF_WD_AC_LVDT_H3_RMSMON'] > 100.0:
+        return True
+    elif ezca['VIS-'+optic+'_SF_WD_AC_GAS_RMSMON'] > 100.0:
+        return True
+    else:
+        return False
 
 
 def tm_damp_off(optic):
@@ -144,7 +142,7 @@ def gas_damp_off(optic):
             ezca['VIS-'+optic+'_%s_DAMP_GAS_TRAMP'%DOF] = 10.0
             ezca.switch('VIS-'+optic+'_%s_DAMP_GAS'%DOF,'INPUT','OFF')
     elif (optic == 'BS') or (optic == 'SRM') or (optic == 'SR2') or (optic == 'SR3'):
-	for DOF in ['BF','F0','F1']:
+        for DOF in ['BF','F0','F1']:
             ezca['VIS-'+optic+'_%s_DAMP_GAS_TRAMP'%DOF] = 10.0
             ezca['VIS-'+optic+'_%s_DAMP_GAS_GAIN'%DOF] = 0
 
@@ -164,16 +162,16 @@ def test_off(optic):
         ezca['VIS-'+optic+'_IM_TEST_%s_GAIN'%DOF] = 0
         ezca.switch('VIS-'+optic+'_IM_TEST_%s'%DOF,'OFFSET','OFF')
     if (optic == 'PRM') or (optic == 'PR2') or (optic == 'PR3'):
-    	for DOF in ['L','T','V','R','P','Y']:
+        for DOF in ['L','T','V','R','P','Y']:
             ezca['VIS-'+optic+'_BF_TEST_%s_TRAMP'%DOF] = 5.0
             ezca['VIS-'+optic+'_BF_TEST_%s_GAIN'%DOF] = 0
             ezca.switch('VIS-'+optic+'_BF_TEST_%s'%DOF,'OFFSET','OFF')
-    	for DOF in ['BF','SF']:
+        for DOF in ['BF','SF']:
             ezca['VIS-'+optic+'_%s_TEST_GAS_TRAMP'%DOF] = 10.0
             ezca['VIS-'+optic+'_%s_TEST_GAS_GAIN'%DOF] = 0
             ezca.switch('VIS-'+optic+'_%s_TEST_GAS'%DOF,'OFFSET','OFF')
     elif (optic == 'BS') or (optic == 'SRM') or (optic == 'SR2') or (optic == 'SR3'):
-	for DOF in ['BF','F0','F1']:
+        for DOF in ['BF','F0','F1']:
             ezca['VIS-'+optic+'_%s_TEST_GAS_TRAMP'%DOF] = 10.0
             ezca['VIS-'+optic+'_%s_TEST_GAS_GAIN'%DOF] = 0
 

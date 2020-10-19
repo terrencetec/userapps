@@ -20,7 +20,7 @@ sustype = vislib.get_Type(OPTIC)
 state = 'INIT' # For determining where the guardian state is.
 
 # initial REQUEST state
-request = 'INIT'
+request = 'SAFE'
 
 # NOMINAL state, which determines when node is OK
 nominal = 'OBSERVATION'

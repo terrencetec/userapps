@@ -126,7 +126,6 @@ def SIGN_TM_COILOUT(optic,logger,offTRAMP=10,settleDuration=5,avgDuration=5):
                 logger.debug('The sign of %s coil is negative(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
 
-        print coil_gain
         ezca['VIS-%s_TM_COILOUTF_%s_GAIN'%(optic,ii)] = coil_gain[ii]
     return coil_gain
 
@@ -246,7 +245,6 @@ def SIGN_MNIM_COILOUT(optic,stage,logger,offTRAMP=10.0,settleDuration=5,avgDurat
                 logger.debug('The sign of %s coil is positive(+)'%(ii))
                 coil_gain["%s"%(ii)] = default_gain
 
-        print coil_gain
         ezca['VIS-%s_%s_COILOUTF_%s_GAIN'%(optic,stage,ii)] = coil_gain[ii]
         time.sleep(settleDuration)
     return coil_gain
@@ -363,7 +361,7 @@ def Balancing(optic,stage,coil,freq,oscAMP,coil_gain,sweeprange,logger,Np=10,avg
     sweepstep = (max(sw_range)-min(sw_range))/((Np-1)*1.)
     gg = np.arange(min(sw_range),max(sw_range),sweepstep) # sweepgain list
     gg = np.append(gg,max(sw_range))
-    print gg
+
     avgI = [] # Void list to put output of I filter
     avgQ = [] # Void list to put output of Q filter
     stdI = [] # Void list to put standard diviation of output of I filter
@@ -438,7 +436,7 @@ e.g. balanceCOILOUTF.py ITMY
             'TM']
     else:
         if not args.STAGE in ['IM','MN','TM']:
-            print 'Invalid Stage.'
+            print('Invalid Stage.')
         stages = [args.STAGE,]
 
     if args.COIL == 'ALL':
@@ -449,7 +447,7 @@ e.g. balanceCOILOUTF.py ITMY
             }
     else:
         if not args.COIL in ['V3','H2','H3','H4']:
-            print 'Invalid coil.'
+            print('Invalid coil.')
         elif args.COIL in ['V3','H3']:
             stages = ['MN','IM']
             coils = {

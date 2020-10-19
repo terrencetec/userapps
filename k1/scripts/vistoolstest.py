@@ -543,7 +543,7 @@ class Vis(object):
         for pv in pvs:
             resultbit = 0
             resultsuffix = ''
-            for suffix, mask in masks.iteritems():
+            for suffix, mask in masks.items():
                 if dorw>=1:
                     resultbit = bool(resultbit|bool(int(self.read(pv+suffix, dorw=dorw))&mask))
                 else:
@@ -567,7 +567,7 @@ class Vis(object):
         for pv in pvs:
             resultbit = 0
             resultsuffix = ''
-            for suffix, mask in masks.iteritems():
+            for suffix, mask in masks.items():
                 if dorw>=1:
                     resultbit = bool(resultbit|bool(int(self.read(pv+suffix, dorw=dorw))&mask))
                 else:
