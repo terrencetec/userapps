@@ -149,7 +149,7 @@ def gds_mini(x,y,fec='123',subsys='ETMXT'):
 
 
 def usr_mini(x,y,fec='123',system='ETMX'):
-    width = 250
+    width = 290
     height = 15
     txt = '''
     composite {{
@@ -194,8 +194,8 @@ if __name__=='__main__':
               'TMSY':[['VISTMSY',114]],              
     }
     
-    height = 100
-    width = 50
+    height = 10
+    width = 10
     contents = header    
     with open('./MINI/VIS_MINI.adl','w') as f:
         for system in systems:

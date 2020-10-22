@@ -1,12 +1,12 @@
 
 file {
-	name="newDisplay.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/USER_MINI.adl"
 	version=030107
 }
 display {
 	object {
-		x=1050
-		y=150
+		x=2692
+		y=184
 		width=400
 		height=400
 	}
@@ -119,60 +119,49 @@ rectangle {
 		chanB="K1:FEC-$(FEC)_TIME_DIAG"
 	}
 }
-composite {
+rectangle {
 	object {
 		x=150
 		y=135
-		width=160
+		width=200
 		height=30
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=150
-				y=135
-				width=160
-				height=30
-			}
-			"basic attribute" {
-				clr=50
-				style="dash"
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A"
-				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
-			}
-		}
-		"text entry" {
-			object {
-				x=207
-				y=139
-				width=100
-				height=24
-			}
-			control {
-				chan="K1:VIS-$(SYSTEM)_COMMISH_MESSAGE"
-				clr=60
-				bclr=14
-			}
-			limits {
-			}
-		}
-		"choice button" {
-			object {
-				x=154
-				y=139
-				width=50
-				height=24
-			}
-			control {
-				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
-				clr=0
-				bclr=14
-			}
-			stacking="column"
-		}
+	"basic attribute" {
+		clr=50
+		style="dash"
 	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A"
+		chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+	}
+}
+"text entry" {
+	object {
+		x=207
+		y=139
+		width=140
+		height=24
+	}
+	control {
+		chan="K1:VIS-$(SYSTEM)_COMMISH_MESSAGE"
+		clr=60
+		bclr=14
+	}
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=154
+		y=139
+		width=50
+		height=24
+	}
+	control {
+		chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+		clr=0
+		bclr=14
+	}
+	stacking="column"
 }
