@@ -1,0 +1,432 @@
+
+file {
+	name="/users/ikeda/Git/pcas-controller/medm/steppingmotor/OFFLOAD/OFFLOAD_OVERVIEW_TYPEBP.adl"
+	version=030109
+}
+display {
+	object {
+		x=4308
+		y=540
+		width=782
+		height=400
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=20
+		y=20
+		width=280
+		height=70
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=300
+		height=90
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=6
+		y=4
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(SYSTEM)"
+}
+"shell command" {
+	object {
+		x=20
+		y=20
+		width=90
+		height=20
+	}
+	command[0] {
+		label="GAS Current Monitor"
+		name="ndscope"
+		args="-k $(IFO):VIS-$(SYSTEM)_SF_COILOUTF_GAS_OUTPUT $(IFO):VIS-$(SYSTEM)_BF_COILOUTF_GAS_OUTPUT &"
+	}
+	command[1] {
+		label="GAS LVDTINF INMON"
+		name="ndscope"
+		args="-k $(IFO):VIS-$(SYSTEM)_SF_LVDTINF_GAS_INMON $(IFO):VIS-$(SYSTEM)_BF_LVDTINF_GAS_INMON &"
+	}
+	command[2] {
+		label="GAS COILOUTF OUT16"
+		name="ndscope"
+		args="-k $(IFO):VIS-$(SYSTEM)_SF_COILOUTF_GAS_OUT16 $(IFO):VIS-$(SYSTEM)_BF_COILOUTF_GAS_OUT16 &"
+	}
+	command[3] {
+		label="GAS DAMP OUTMON"
+		name="ndscope"
+		args="-k $(IFO):VIS-$(SYSTEM)_SF_DAMP_GAS_OUTPUT $(IFO):VIS-$(SYSTEM)_BF_DAMP_GAS_OUTPUT &"
+	}
+	clr=14
+	bclr=5
+	label="GAS(ndscope)"
+}
+rectangle {
+	object {
+		x=25
+		y=40
+		width=275
+		height=45
+	}
+	"basic attribute" {
+		clr=10
+	}
+}
+indicator {
+	object {
+		x=90
+		y=42
+		width=110
+		height=20
+	}
+	monitor {
+		chan="$(IFO):VIS-$(SYSTEM)_SF_COILOUTF_GAS_OUTPUT"
+		clr=15
+		bclr=10
+	}
+	direction="left"
+	limits {
+		loprSrc="default"
+		loprDefault=-30000
+		hoprSrc="default"
+		hoprDefault=30000
+	}
+}
+indicator {
+	object {
+		x=90
+		y=64
+		width=110
+		height=20
+	}
+	monitor {
+		chan="$(IFO):VIS-$(SYSTEM)_BF_COILOUTF_GAS_OUTPUT"
+		clr=15
+		bclr=10
+	}
+	direction="left"
+	limits {
+		loprSrc="default"
+		loprDefault=-30000
+		hoprSrc="default"
+		hoprDefault=30000
+	}
+}
+"message button" {
+	object {
+		x=70
+		y=42
+		width=20
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(SF)_REV"
+		clr=14
+		bclr=4
+	}
+	label="<<"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=70
+		y=64
+		width=20
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(BF)_REV"
+		clr=14
+		bclr=4
+	}
+	label="<<"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=200
+		y=42
+		width=20
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(SF)_FWD"
+		clr=14
+		bclr=4
+	}
+	label=">>"
+	press_msg="1"
+	release_msg="0"
+}
+"message button" {
+	object {
+		x=200
+		y=64
+		width=20
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(BF)_FWD"
+		clr=14
+		bclr=4
+	}
+	label=">>"
+	press_msg="1"
+	release_msg="0"
+}
+polyline {
+	object {
+		x=135
+		y=38
+		width=2
+		height=49
+	}
+	"basic attribute" {
+		clr=30
+		width=2
+	}
+	points {
+		(136,39)
+		(136,86)
+	}
+}
+polyline {
+	object {
+		x=142
+		y=38
+		width=2
+		height=49
+	}
+	"basic attribute" {
+		clr=15
+		width=2
+	}
+	points {
+		(143,39)
+		(143,86)
+	}
+}
+polyline {
+	object {
+		x=149
+		y=38
+		width=2
+		height=49
+	}
+	"basic attribute" {
+		clr=30
+		width=2
+	}
+	points {
+		(150,39)
+		(150,86)
+	}
+}
+polyline {
+	object {
+		x=190
+		y=38
+		width=2
+		height=49
+	}
+	"basic attribute" {
+		clr=20
+		width=2
+	}
+	points {
+		(191,39)
+		(191,86)
+	}
+}
+polyline {
+	object {
+		x=100
+		y=38
+		width=2
+		height=49
+	}
+	"basic attribute" {
+		clr=20
+		width=2
+	}
+	points {
+		(101,39)
+		(101,86)
+	}
+}
+"text entry" {
+	object {
+		x=225
+		y=42
+		width=70
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(SF)_FLUCTUATION"
+		clr=0
+		bclr=11
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=225
+		y=64
+		width=70
+		height=20
+	}
+	control {
+		chan="$(IFO):STEPPER-$(SYSTEM)_GAS_$(BF)_FLUCTUATION"
+		clr=0
+		bclr=11
+	}
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=225
+		y=2
+		width=74
+		height=17
+	}
+	control {
+		chan="K1:GRD-VIS_$(SYSTEM)_STATE_S"
+		clr=15
+		bclr=14
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=35
+		y=42
+		width=30
+		height=42
+	}
+	display[0] {
+		label="SF"
+		name="../steppingmotor/CUST_STEP.adl"
+		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(STEPID),DOF=$(SF)"
+	}
+	display[1] {
+		label="BF"
+		name="../steppingmotor/CUST_STEP.adl"
+		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(STEPID),DOF=$(BF)"
+	}
+	clr=14
+	bclr=4
+	visual="a column of buttons"
+}
+"shell command" {
+	object {
+		x=253
+		y=20
+		width=45
+		height=20
+	}
+	command[0] {
+		label="log"
+		name="emacs"
+		args="kagra/Dropbox/Subsystems/VIS/Scripts/StepMotor/LogFiles/$(SYSTEM)_GAS_log"
+	}
+	clr=14
+	bclr=4
+	label="Log"
+}
