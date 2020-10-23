@@ -89,82 +89,27 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=913
-		y=564
-		width=288
-		height=85
-	}
-	"basic attribute" {
-		clr=13
-	}
-}
-text {
-	object {
-		x=942
-		y=582
-		width=200
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="1. Go to OFFLOAD state"
-}
-text {
-	object {
-		x=942
-		y=598
-		width=200
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="2. Move the FB signal to the green"
-}
-text {
-	object {
-		x=931
-		y=566
-		width=200
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="If FB signal is large, please offload it."
-}
-text {
-	object {
-		x=942
-		y=615
-		width=200
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="3. Go to ALIGNED state and check FB signal"
-}
-text {
-	object {
-		x=931
-		y=632
-		width=200
-		height=15
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="If FB signal is small, work is done."
-}
-
 '''
 
 #common = '/opt/rtcds/userapps/release/vis/common'
 common = './'
+
+def top(x,y):
+    width = 300
+    height = 100
+    txt = '''
+    composite {{
+    object {{
+    x={x}
+    y={y}
+    width=300
+    height=30
+    }}
+    "composite name"=""
+    "composite file"="./OFFLOAD_TOP.adl"
+    }}
+    '''.format(common=common,x=x,y=y)
+    return txt,width,height
 
 
 def mini(x,y,system,stage,dof,damp):
@@ -251,44 +196,58 @@ if __name__=='__main__':
             'F3':['GAS'],
             'BF':['GAS'],
             'SF':['GAS'],}
-    
-    height = 0
-    width = 0
-    contents = header
 
+
+    def mtype_is(system):
+        if 'TM' in system:
+            mtype = 'TM'
+        elif 'BS' == system:
+            mtype = 'BS'
+        elif 'SR' in system:
+            mtype = 'SR'
+        else:            
+            mtype = None
+        return mtype
+
+    def damp_is(stage):
+        if stage in ['BS','SR2','SR3','SRM']:
+            damp = 'DCCTRL'
+        else:
+            damp = 'DAMP'                        
+        return damp        
+    
+    height = 10
+    width = 10
+    _h0 = height
+    _w0 = width
+    contents = header
     _h = 0
     _w = 0
     with open('./OFFLOAD_OVERVIEW.adl','w') as f:
-        for column,system in enumerate(systems):
-            if 'TM' in system:
-                mtype = 'TM'
-            elif 'BS' == system:
-                mtype = 'BS'
-            elif 'SR' in system:
-                 mtype = 'SR'
-            else:
-                pass
-                
+        txt,w0,h0 = top(width,height)
+        contents += txt         
+        height += h0
+        _h0 = height
+        for num,system in enumerate(systems):
+            print('{0}'.format(system))
+            mtype = mtype_is(system)                
             txt,w0,h0 = head(width,height,system,mtype)
             contents += txt         
             _h = h0
             for stage in stages[system]:
+                print(' - ',stage,dofs[stage])
                 for dof in dofs[stage]:
-                    if stage in ['BS','SR2','SR3','SRM']:
-                        damp = 'DCCTRL'
-                    else:
-                        damp = 'DAMP'                        
+                    damp = damp_is(stage)
                     txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp)
                     _h += h1
                     contents += txt
             txt,w2,h2 = foot(width,height+_h,system)
-            contents += txt            
-            _h += h2 + 10
+            contents += txt
+            _h += h2
             _w = max(w0,w1,w2)
             
-            q,mod = divmod(column+1,4)
-            height = q*300
-            width = mod*_w
-            print(system,q,mod,width,height)                        
+            q,mod = divmod(num+1,4)
+            height = q*300 + _h0
+            width = mod*_w + _w0
                 
         f.write(contents)    

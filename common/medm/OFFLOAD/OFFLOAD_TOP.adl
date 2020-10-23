@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/FOOT_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/OFFLOAD_TOP.adl"
 	version=030107
 }
 display {
 	object {
-		x=1995
-		y=452
-		width=289
-		height=49
+		x=1114
+		y=165
+		width=400
+		height=400
 	}
 	clr=14
-	bclr=5
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,59 +87,74 @@ display {
 		1a7309,
 	}
 }
-"shell command" {
+rectangle {
 	object {
-		x=4
-		y=24
-		width=90
-		height=20
+		x=45
+		y=76
+		width=288
+		height=90
 	}
-	command[0] {
-		label="IP ERROR SIG"
-		name="ndscope"
-		args="$(IFO):VIS-$(SYSTEM)_IP_$(DAMP)_L_INMON $(IFO):VIS-$(SYSTEM)_IP_$(DAMP)_T_INMON  $(IFO):VIS-$(SYSTEM)_IP_$(DAMP)_Y_INMON  &"
+	"basic attribute" {
+		clr=13
 	}
-	clr=14
-	bclr=5
-	label="IP(ndscope)"
-}
-"shell command" {
-	object {
-		x=96
-		y=24
-		width=45
-		height=20
-	}
-	command[0] {
-		label="log"
-		name="emacs"
-		args="/kagra/Dropbox/Subsystems/VIS/Scripts/StepMotor/LogFiles/$(IFO):STEPPER-$(SYSTEM)_IP_.log"
-	}
-	clr=14
-	bclr=4
-	label="Log"
 }
 text {
 	object {
 		x=67
-		y=6
-		width=20
+		y=98
+		width=200
 		height=15
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="-300"
+	textix="1. Go to OFFLOAD state"
 }
 text {
 	object {
-		x=163
-		y=4
-		width=20
+		x=67
+		y=114
+		width=200
 		height=15
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="300"
+	textix="2. Move the ERROR SIGNAL within yellow line"
+}
+text {
+	object {
+		x=56
+		y=81
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Please keep the Error signal small"
+}
+text {
+	object {
+		x=67
+		y=131
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="3. Go back to previous state"
+}
+text {
+	object {
+		x=67
+		y=148
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="4. Done"
 }
