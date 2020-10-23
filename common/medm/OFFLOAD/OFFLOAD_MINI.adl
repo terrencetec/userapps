@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2427
-		y=249
+		x=2400
+		y=225
 		width=278
 		height=49
 	}
@@ -85,6 +85,22 @@ display {
 		3cb420,
 		289315,
 		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=51
+		y=18
+		width=5
+		height=16
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="abs(A)<100"
+		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
 	}
 }
 indicator {
@@ -267,5 +283,37 @@ composite {
 				(88,38)
 			}
 		}
+	}
+}
+rectangle {
+	object {
+		x=51
+		y=18
+		width=5
+		height=16
+	}
+	"basic attribute" {
+		clr=31
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="abs(A)>100"
+		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
+	}
+}
+rectangle {
+	object {
+		x=51
+		y=18
+		width=5
+		height=16
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="abs(A)>300"
+		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
 	}
 }

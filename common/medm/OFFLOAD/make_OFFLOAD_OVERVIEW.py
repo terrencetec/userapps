@@ -209,8 +209,8 @@ if __name__=='__main__':
             mtype = None
         return mtype
 
-    def damp_is(stage):
-        if stage in ['BS','SR2','SR3','SRM']:
+    def damp_is(system):
+        if system in ['BS','SR2','SR3','SRM']:
             damp = 'DCCTRL'
         else:
             damp = 'DAMP'                        
@@ -237,7 +237,8 @@ if __name__=='__main__':
             for stage in stages[system]:
                 print(' - ',stage,dofs[stage])
                 for dof in dofs[stage]:
-                    damp = damp_is(stage)
+                    damp = damp_is(system)
+                    print(damp)
                     txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp)
                     _h += h1
                     contents += txt

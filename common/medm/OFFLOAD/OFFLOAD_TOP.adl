@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=1114
-		y=165
-		width=400
-		height=400
+		x=2632
+		y=282
+		width=659
+		height=210
 	}
 	clr=14
 	bclr=4
@@ -157,4 +157,45 @@ text {
 		clr=0
 	}
 	textix="4. Done"
+}
+"shell command" {
+	object {
+		x=348
+		y=88
+		width=90
+		height=20
+	}
+	command[0] {
+		label="Type-A IP"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/typea_ip.yml &"
+	}
+	command[1] {
+		label="Type-B IP"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/typeb_ip.yml &"
+	}
+	command[2] {
+		label="Vacuum"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/vac.yml &"
+	}
+	command[3] {
+		label="Type-A GAS"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/typea_gas.yml &"
+	}
+	command[4] {
+		label="Type-B GAS"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/typeb_gas.yml &"
+	}
+	command[5] {
+		label="Type-Bp GAS"
+		name="ndscope"
+		args="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/typebp_gas.yml &"
+	}
+	clr=14
+	bclr=5
+	label="ndscope"
 }
