@@ -9,7 +9,7 @@ display {
 	object {
 		x=1996
 		y=56
-		width=1208
+		width=1300
 		height=900
 	}
 	clr=14
@@ -112,7 +112,7 @@ def top(x,y):
     return txt,width,height
 
 
-def mini(x,y,system,stage,dof,damp):
+def mini(x,y,system,stage,dof,damp,bio,stepname):
     width = 300
     height = 25
     txt = '''
@@ -124,9 +124,9 @@ def mini(x,y,system,stage,dof,damp):
     height=30
     }}
     "composite name"=""
-    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},DOF={dof},DAMP={damp}"
+    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},DOF={dof},DAMP={damp},BIO={bio},STEPNAME={stepname}"
     }}
-    '''.format(common=common,x=x,y=y,system=system,stage=stage,dof=dof,damp=damp)
+    '''.format(common=common,x=x,y=y,system=system,stage=stage,dof=dof,damp=damp,bio=bio,stepname=stepname)
     return txt,width,height
 
 def head(x,y,system,mtype):
@@ -214,7 +214,20 @@ if __name__=='__main__':
             damp = 'DCCTRL'
         else:
             damp = 'DAMP'                        
-        return damp        
+        return damp
+
+    def bio_is(system):
+        if system in ['BS','SR2','SR3','SRM']:
+            bio = 'BIO'
+        else:
+            bio = 'BO'
+        return bio
+        
+    def stepname_is(dof):
+        if dof == 'GAS':
+            return 'STEP_GAS'
+        else:
+            return 'STEP_IP'
     
     height = 10
     width = 10
@@ -239,13 +252,15 @@ if __name__=='__main__':
                 for dof in dofs[stage]:
                     damp = damp_is(system)
                     print(damp)
-                    txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp)
+                    bio = bio_is(system)
+                    stepname = stepname_is(dof)
+                    txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp,bio,stepname)
                     _h += h1
                     contents += txt
             txt,w2,h2 = foot(width,height+_h,system)
             contents += txt
             _h += h2
-            _w = max(w0,w1,w2)
+            _w = max(w0,w1,w2) +10
             
             q,mod = divmod(num+1,4)
             height = q*300 + _h0
