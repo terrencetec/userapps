@@ -131,7 +131,7 @@ indicator {
 		height=20
 	}
 	control {
-		chan="$(IFO):STEPPER-$(STEPID)_$(MOTOR)_REV"
+		chan="$(IFO):STEPPER-$(SYSTEM)_$(STAGE)_$(DOF)_REV"
 		clr=14
 		bclr=4
 	}
@@ -147,7 +147,7 @@ indicator {
 		height=20
 	}
 	control {
-		chan="$(IFO):STEPPER-$(STEPID)_$(MOTOR)_FWD"
+		chan="$(IFO):STEPPER-$(SYSTEM)_$(STAGE)_$(DOF)_FWD"
 		clr=14
 		bclr=4
 	}
@@ -163,7 +163,7 @@ indicator {
 		height=20
 	}
 	control {
-		chan="$(IFO):STEPPER-$(STEPID)_$(MOTOR)_FLUCTUATION"
+		chan="$(IFO):STEPPER-$(SYSTEM)_$(STAGE)_$(DOF)_FLUCTUATION"
 		clr=0
 		bclr=11
 	}
@@ -330,25 +330,4 @@ rectangle {
 		bclr=4
 	}
 	stacking="column"
-}
-"shell command" {
-	object {
-		x=310
-		y=19
-		width=50
-		height=16
-	}
-	command[0] {
-		label="Start"
-		name="xterm"
-		args="-e ssh controls@k1script 'source /kagra/apps/etc/client-user-env.sh && step_start $(STEPID)' &"
-	}
-	command[1] {
-		label="Stop"
-		name="xterm"
-		args="-e ssh controls@k1script 'source /kagra/apps/etc/client-user-env.sh && step_start $(STEPID) -kill'"
-	}
-	clr=14
-	bclr=4
-	label="script"
 }

@@ -95,9 +95,14 @@ display {
 		height=20
 	}
 	command[0] {
-		label="log"
+		label="IP log"
 		name="emacs"
-		args="/kagra/Dropbox/Subsystems/VIS/Scripts/StepMotor/LogFiles/$(IFO):STEPPER-$(SYSTEM)_IP_.log"
+		args="/kagra/Dropbox/Subsystems/VIS/Scripts/StepMotor/LogFiles/$(IFO):STEPPER-$(STEPPERID)_IP_.log &"
+	}
+	command[1] {
+		label="GAS log"
+		name="emacs"
+		args="/kagra/Dropbox/Subsystems/VIS/Scripts/StepMotor/LogFiles/$(IFO):STEPPER-$(STEPPERID)_GAS_.log &"
 	}
 	clr=14
 	bclr=4

@@ -9,7 +9,7 @@ display {
 	object {
 		x=1996
 		y=56
-		width=1300
+		width=1500
 		height=900
 	}
 	clr=14
@@ -91,6 +91,58 @@ display {
 }
 '''
 
+channel_dict = {
+    'ETMX_F0_GAS': 0,
+    'ETMX_F1_GAS': 1,
+    'ETMX_F2_GAS': 5,
+    'ETMX_F3_GAS': 3,
+    'ETMX_BF_GAS': 4,
+    
+    'ITMX_F0_GAS': 0,
+    'ITMX_F1_GAS': 1,
+    'ITMX_F2_GAS': 2,
+    'ITMX_F3_GAS': 5,
+    'ITMX_BF_GAS': 4,
+
+    'ETMY_F0_GAS': 0,
+    'ETMY_F1_GAS': 1,
+    'ETMY_F2_GAS': 2,
+    'ETMY_F3_GAS': 5,
+    'ETMY_BF_GAS': 4,
+
+    'ITMY_F0_GAS': 0,
+    'ITMY_F1_GAS': 1,
+    'ITMY_F2_GAS': 2,
+    'ITMY_F3_GAS': 3,
+    'ITMY_BF_GAS': 4,
+
+    'BS_F0_GAS': 3,
+    'BS_F1_GAS': 1,
+    'BS_BF_GAS': 0,
+
+    'SR2_F0_GAS': 2,
+    'SR2_F1_GAS': 1,
+    'SR2_BF_GAS': 0,
+
+    'SR3_F0_GAS': 2,
+    'SR3_F1_GAS': 1,
+    'SR3_BF_GAS': 0,
+
+    'SRM_F0_GAS': 3,
+    'SRM_F1_GAS': 1,
+    'SRM_BF_GAS': 0,
+
+    'PR2_BF_GAS': 1, 
+    'PR2_SF_GAS': 2,
+    
+    'PR3_BF_GAS': 0,    # STEPPER PR0
+    'PR3_SF_GAS': 1,    # STEPPER PR0
+    
+    'PRM_BF_GAS': 2,    # STEPPER PR0
+    'PRM_SF_GAS': 3     # STEPPER PR0
+}
+
+
 #common = '/opt/rtcds/userapps/release/vis/common'
 common = './'
 
@@ -112,8 +164,8 @@ def top(x,y):
     return txt,width,height
 
 
-def mini(x,y,system,stage,dof,damp,bio,stepname):
-    width = 300
+def mini(x,y,system,stage,dof,damp,bio,stepname,stepid,motor,mode='ERR'):
+    width = 350
     height = 25
     txt = '''
     composite {{
@@ -124,9 +176,9 @@ def mini(x,y,system,stage,dof,damp,bio,stepname):
     height=30
     }}
     "composite name"=""
-    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},DOF={dof},DAMP={damp},BIO={bio},STEPNAME={stepname}"
+    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},DOF={dof},DAMP={damp},BIO={bio},STEPNAME={stepname},STEPID={stepid},MOTOR={motor}"
     }}
-    '''.format(common=common,x=x,y=y,system=system,stage=stage,dof=dof,damp=damp,bio=bio,stepname=stepname)
+    '''.format(common=common,x=x,y=y,system=system,stage=stage,dof=dof,damp=damp,bio=bio,stepname=stepname,stepid=stepid,motor=motor)
     return txt,width,height
 
 def head(x,y,system,mtype):
@@ -146,7 +198,7 @@ def head(x,y,system,mtype):
     '''.format(common=common,x=x,y=y,system=system,mtype=mtype)
     return txt,width,height
 
-def foot(x,y,system):
+def foot(x,y,stepperid):
     width = 300
     height = 50
     txt = '''
@@ -158,25 +210,85 @@ def foot(x,y,system):
     height=30
     }}
     "composite name"=""
-    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},DAMP={damp}"
+    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),STEPPERID={stepperid}"
     }}
-    '''.format(common=common,x=x,y=y,system=system,damp=damp)
+    '''.format(common=common,x=x,y=y,stepperid=stepperid)
     return txt,width,height
 
 
+def mtype_is(system):
+    if 'TM' in system:
+        mtype = 'TM'
+    elif 'BS' == system:
+        mtype = 'BS'
+    elif 'SR' in system:
+        mtype = 'SR'
+    else:            
+        mtype = None
+    return mtype
+    
+def damp_is(system,mode='ERR'):
+    if system in ['BS','SR2','SR3','SRM']:
+        damp = 'DCCTRL'
+    else:
+        damp = 'DAMP'                        
+    return damp
+    
+def bio_is(system):
+    if system in ['BS','SR2','SR3','SRM']:
+        bio = 'BIO'
+    else:
+        bio = 'BO'
+    return bio
+    
+def stepname_is(dof):
+    if dof == 'GAS':
+        return 'STEP_GAS'
+    else:
+        return 'STEP_IP'
+
+def stepperid_is(system):
+    if system == 'PRM' or system == 'PR3':
+        return 'PR0'
+    else:
+        return system
+
+def stepid_is(system,stage):
+    if stage == 'IP':
+        return system+'_IP'
+    else:
+        return stepperid_is(system)+'_GAS'
+
+def motor_is(system,stage,dof):
+    if stage == 'IP':
+        return dof
+    else:
+        return channel_dict[system+'_'+stage+'_'+dof]
 
 if __name__=='__main__':
     systems = ['ETMX', 'ITMX', 'ETMY', 'ITMY', 'BS', 'SRM', 'SR2', 'SR3', 'PRM', 'PR2', 'PR3']
     #systems = ['TEST', 'TESTSR'] # TEST
     #systems = ['ETMX', 'ITMX', 'ETMY', 'ITMY']
 
-
-    # K1:VIS-ITMY_IP_DAMP_L_INMON
-    # K1:VIS-ITMY_F0_DAMP_GAS_INMON
-    # K1:VIS-BS_IP_DCCTRL_L_INMON
-    # K1:VIS-BS_F0_DCCTRL_GAS_INMON
-    # K1:VIS-PR2_BF_DAMP_GAS_INMON
-
+    # ERROR mode
+    # TypeA
+    #   K1:VIS-ITMY_IP_DAMP_L_INMON
+    #   K1:VIS-ITMY_F0_DAMP_GAS_INMON
+    # TypeB    
+    #   K1:VIS-BS_IP_DCCTRL_L_INMON
+    #   K1:VIS-BS_F0_DCCTRL_GAS_INMON
+    # TypeBp
+    #   K1:VIS-PR2_BF_DAMP_GAS_INMON
+    #
+    # FB mode 
+    # TypeA
+    #   K1:VIS-ETMY_IP_SUMOUT_L_OUTMON
+    #   K1:VIS-ETMY_F0_SUMOUT_GAS_OUTMON
+    # TypeB
+    #   K1:VIS-BS_IP_DCCTRL_L_OUTMON
+    #   K1:VIS-BS_F0_COILOUTF_GAS_OUTMON
+    # TypeBp
+    #   K1:VIS-PR2_SF_DAMP_GAS_OUTMON
 
     stages = {'ETMX':['IP','F0','F1','F2','F3','BF'],
               'ITMX':['IP','F0','F1','F2','F3','BF'],
@@ -188,7 +300,7 @@ if __name__=='__main__':
               'SRM':['IP','F0','F1','BF'],
               'PR2':['SF','BF'],
               'PR3':['SF','BF'],
-              'PRM':['SF','BF']}    
+              'PRM':['SF','BF']}
     dofs = {'IP':['L','T','Y'],
             'F0':['GAS'],
             'F1':['GAS'],
@@ -197,37 +309,7 @@ if __name__=='__main__':
             'BF':['GAS'],
             'SF':['GAS'],}
 
-
-    def mtype_is(system):
-        if 'TM' in system:
-            mtype = 'TM'
-        elif 'BS' == system:
-            mtype = 'BS'
-        elif 'SR' in system:
-            mtype = 'SR'
-        else:            
-            mtype = None
-        return mtype
-
-    def damp_is(system):
-        if system in ['BS','SR2','SR3','SRM']:
-            damp = 'DCCTRL'
-        else:
-            damp = 'DAMP'                        
-        return damp
-
-    def bio_is(system):
-        if system in ['BS','SR2','SR3','SRM']:
-            bio = 'BIO'
-        else:
-            bio = 'BO'
-        return bio
-        
-    def stepname_is(dof):
-        if dof == 'GAS':
-            return 'STEP_GAS'
-        else:
-            return 'STEP_IP'
+    mode = 'ERR'
     
     height = 10
     width = 10
@@ -238,12 +320,13 @@ if __name__=='__main__':
     _w = 0
     with open('./OFFLOAD_OVERVIEW.adl','w') as f:
         txt,w0,h0 = top(width,height)
-        contents += txt         
+        contents += txt
         height += h0
         _h0 = height
         for num,system in enumerate(systems):
             print('{0}'.format(system))
-            mtype = mtype_is(system)                
+            mtype = mtype_is(system)
+            stepperid = stepperid_is(system)                
             txt,w0,h0 = head(width,height,system,mtype)
             contents += txt         
             _h = h0
@@ -251,17 +334,17 @@ if __name__=='__main__':
                 print(' - ',stage,dofs[stage])
                 for dof in dofs[stage]:
                     damp = damp_is(system)
-                    print(damp)
                     bio = bio_is(system)
                     stepname = stepname_is(dof)
-                    txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp,bio,stepname)
+                    stepid = stepid_is(system,stage)
+                    motor = motor_is(system,stage,dof)
+                    txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp,bio,stepname,stepid,motor,mode=mode)
                     _h += h1
                     contents += txt
-            txt,w2,h2 = foot(width,height+_h,system)
+            txt,w2,h2 = foot(width,height+_h,stepperid)
             contents += txt
             _h += h2
-            _w = max(w0,w1,w2) +10
-            
+            _w = max(w0,w1,w2) +10            
             q,mod = divmod(num+1,4)
             height = q*300 + _h0
             width = mod*_w + _w0
