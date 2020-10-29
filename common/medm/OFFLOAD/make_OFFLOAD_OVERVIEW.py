@@ -164,7 +164,7 @@ def top(x,y):
     return txt,width,height
 
 
-def mini(x,y,system,stage,dof,damp,bio,stepname,stepid,motor,mode='ERR'):
+def mini(x,y,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,mode='ERR'):
     width = 350
     height = 25
     txt = '''
@@ -176,9 +176,9 @@ def mini(x,y,system,stage,dof,damp,bio,stepname,stepid,motor,mode='ERR'):
     height=30
     }}
     "composite name"=""
-    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},DOF={dof},DAMP={damp},BIO={bio},STEPNAME={stepname},STEPID={stepid},MOTOR={motor}"
+    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},SENSOR_STAGE={sensor_stage},DOF={dof},SENSOR_DOF={sensor_dof},DAMP={damp},BIO={bio},STEPNAME={stepname},STEPID={stepid},MOTOR={motor}"
     }}
-    '''.format(common=common,x=x,y=y,system=system,stage=stage,dof=dof,damp=damp,bio=bio,stepname=stepname,stepid=stepid,motor=motor)
+    '''.format(common=common,x=x,y=y,system=system,stage=stage,sensor_stage=sensor_stage,dof=dof,sensor_dof=sensor_dof,damp=damp,bio=bio,stepname=stepname,stepid=stepid,motor=motor)
     return txt,width,height
 
 def head(x,y,system,mtype):
@@ -226,10 +226,22 @@ def mtype_is(system):
     else:            
         mtype = None
     return mtype
-    
-def damp_is(system,mode='ERR'):
+
+def sensor_stage_is(system,mtype,stage,dof):
+    if stage == 'IP' and dof == 'F0Y':
+        if mtype == 'TM': 
+            stage = 'BF'
+        else:
+            stage = 'TM'
+        dof = "Y"
+    return stage, dof
+
+def damp_is(system,dof,mode='ERR'):
     if system in ['BS','SR2','SR3','SRM']:
-        damp = 'DCCTRL'
+        if dof == 'F0Y':
+            damp = 'DAMP'                        
+        else:
+            damp = 'DCCTRL'
     else:
         damp = 'DAMP'                        
     return damp
@@ -301,7 +313,7 @@ if __name__=='__main__':
               'PR2':['SF','BF'],
               'PR3':['SF','BF'],
               'PRM':['SF','BF']}
-    dofs = {'IP':['L','T','Y'],
+    dofs = {'IP':['L','T','Y','F0Y'],
             'F0':['GAS'],
             'F1':['GAS'],
             'F2':['GAS'],
@@ -333,12 +345,13 @@ if __name__=='__main__':
             for stage in stages[system]:
                 print(' - ',stage,dofs[stage])
                 for dof in dofs[stage]:
-                    damp = damp_is(system)
+                    damp = damp_is(system,dof)
                     bio = bio_is(system)
                     stepname = stepname_is(dof)
                     stepid = stepid_is(system,stage)
                     motor = motor_is(system,stage,dof)
-                    txt,w1,h1 = mini(width,height+_h,system,stage,dof,damp,bio,stepname,stepid,motor,mode=mode)
+                    sensor_stage, sensor_dof = sensor_stage_is(system,mtype,stage,dof)
+                    txt,w1,h1 = mini(width,height+_h,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,mode=mode)
                     _h += h1
                     contents += txt
             txt,w2,h2 = foot(width,height+_h,stepperid)
@@ -346,7 +359,7 @@ if __name__=='__main__':
             _h += h2
             _w = max(w0,w1,w2) +10            
             q,mod = divmod(num+1,4)
-            height = q*300 + _h0
+            height = q*320 + _h0
             width = mod*_w + _w0
                 
         f.write(contents)    

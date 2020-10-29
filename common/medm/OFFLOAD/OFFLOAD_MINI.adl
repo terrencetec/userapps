@@ -1,7 +1,7 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/OFFLOAD_MINI.adl"
-	version=030107
+	name="/users/ikeda/Git/pcas-controller/medm/OFFLOAD/OFFLOAD_MINI.adl"
+	version=030109
 }
 display {
 	object {
@@ -100,7 +100,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="abs(A)<100"
-		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
+		chan="$(IFO):VIS-$(SYSTEM)_$(SENSOR_STAGE)_$(DAMP)_$(SENSOR_DOF)_INMON"
 	}
 }
 indicator {
@@ -111,7 +111,7 @@ indicator {
 		height=20
 	}
 	monitor {
-		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
+		chan="$(IFO):VIS-$(SYSTEM)_$(SENSOR_STAGE)_$(DAMP)_$(SENSOR_DOF)_INMON"
 		clr=15
 		bclr=10
 	}
@@ -298,7 +298,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="abs(A)>100"
-		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
+		chan="$(IFO):VIS-$(SYSTEM)_$(SENSOR_STAGE)_$(DAMP)_$(SENSOR_DOF)_INMON"
 	}
 }
 rectangle {
@@ -314,7 +314,7 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="abs(A)>300"
-		chan="$(IFO):VIS-$(SYSTEM)_$(STAGE)_$(DAMP)_$(DOF)_INMON"
+		chan="$(IFO):VIS-$(SYSTEM)_$(SENSOR_STAGE)_$(DAMP)_$(SENSOR_DOF)_INMON"
 	}
 }
 "choice button" {
