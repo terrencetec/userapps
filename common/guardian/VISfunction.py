@@ -230,16 +230,16 @@ def all_off(optic, self):
 
 def get_dcuid(optic):
     # tower payload
-    dcuids = {"ETMX": [68, 69],
-              "ETMY": [65, 64],
-              "ITMX": [66, 67],
-              "ITMY": [62, 63],
-              "BS":   [93, 92],
-              "SR2":  [54, 55],
-              "SR3":  [56, 57],
+    dcuids = {"ETMX": [102, 103],
+              "ETMY": [107, 108],
+              "ITMX": [92, 93],
+              "ITMY": [97, 98],
+              "BS":   [60, 61],
+              "SR2":  [65, 66],
+              "SR3":  [70, 71],
               "SRM":  [],
-              "PR2":  [91],
-              "PR3":  [23],
+              "PR2":  [45],
+              "PR3":  [50],
               "PRM":  []}
     return dcuids[optic]
 
