@@ -1,12 +1,12 @@
 
 file {
-	name="/users/ikeda/Git/pcas-controller/medm/OFFLOAD/HEAD_MINI.adl"
-	version=030109
+	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/HEAD_MINI.adl"
+	version=030107
 }
 display {
 	object {
-		x=4143
-		y=171
+		x=176
+		y=536
 		width=332
 		height=61
 	}
@@ -87,10 +87,21 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=4
+		y=6
+		width=32
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
 text {
 	object {
 		x=6
-		y=4
+		y=8
 		width=20
 		height=20
 	}
@@ -101,8 +112,8 @@ text {
 }
 text {
 	object {
-		x=93
-		y=25
+		x=106
+		y=28
 		width=50
 		height=15
 	}
@@ -113,8 +124,8 @@ text {
 }
 text {
 	object {
-		x=202
-		y=24
+		x=195
+		y=27
 		width=50
 		height=15
 	}
@@ -125,8 +136,8 @@ text {
 }
 text {
 	object {
-		x=83
-		y=40
+		x=96
+		y=43
 		width=70
 		height=15
 	}
@@ -137,8 +148,8 @@ text {
 }
 text {
 	object {
-		x=207
-		y=40
+		x=200
+		y=43
 		width=40
 		height=15
 	}
@@ -149,10 +160,10 @@ text {
 }
 "text entry" {
 	object {
-		x=32
-		y=2
+		x=41
+		y=6
 		width=100
-		height=17
+		height=20
 	}
 	control {
 		chan="K1:GRD-VIS_$(SYSTEM)_STATE_S"
@@ -161,25 +172,4 @@ text {
 	}
 	limits {
 	}
-}
-"related display" {
-	object {
-		x=260
-		y=25
-		width=50
-		height=30
-	}
-	display[0] {
-		label="IP"
-		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
-		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_IP"
-	}
-	display[1] {
-		label="GAS"
-		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
-		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_GAS"
-	}
-	clr=14
-	bclr=4
-	visual="a column of buttons"
 }

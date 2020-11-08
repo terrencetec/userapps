@@ -5,9 +5,9 @@ file {
 }
 display {
 	object {
-		x=1987
-		y=357
-		width=289
+		x=175
+		y=675
+		width=382
 		height=72
 	}
 	clr=14
@@ -136,7 +136,7 @@ polyline {
 	object {
 		x=2
 		y=47
-		width=251
+		width=299
 		height=2
 	}
 	"basic attribute" {
@@ -145,6 +145,27 @@ polyline {
 	}
 	points {
 		(3,48)
-		(252,48)
+		(300,48)
 	}
+}
+"related display" {
+	object {
+		x=211
+		y=23
+		width=50
+		height=20
+	}
+	display[0] {
+		label="IP"
+		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
+		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_IP"
+	}
+	display[1] {
+		label="GAS"
+		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
+		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_GAS"
+	}
+	clr=14
+	bclr=4
+	label="old"
 }

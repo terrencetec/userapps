@@ -356,8 +356,8 @@ if __name__=='__main__':
                     contents += txt
             txt,w2,h2 = foot(width,height+_h,stepperid)
             contents += txt
-            _h += h2
-            _w = max(w0,w1,w2) +10            
+            _h += h2 + 10
+            _w = max(w0,w1,w2) +10
             q,mod = divmod(num+1,4)
             height = q*320 + _h0
             width = mod*_w + _w0

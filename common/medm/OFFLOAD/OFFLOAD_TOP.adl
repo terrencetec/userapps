@@ -1,12 +1,12 @@
 
 file {
-	name="/users/ikeda/Git/pcas-controller/medm/OFFLOAD/OFFLOAD_TOP.adl"
-	version=030109
+	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/OFFLOAD_TOP.adl"
+	version=030107
 }
 display {
 	object {
-		x=4494
-		y=59
+		x=1260
+		y=67
 		width=659
 		height=210
 	}
@@ -160,10 +160,10 @@ text {
 }
 "shell command" {
 	object {
-		x=348
-		y=88
-		width=90
-		height=20
+		x=349
+		y=104
+		width=50
+		height=40
 	}
 	command[0] {
 		label="Type-A IP"
@@ -197,14 +197,14 @@ text {
 	}
 	clr=14
 	bclr=5
-	label="ndscope"
+	label="-ndscope"
 }
 "choice button" {
 	object {
-		x=495
-		y=110
-		width=40
-		height=13
+		x=457
+		y=124
+		width=45
+		height=20
 	}
 	control {
 		chan="K1:VIS-PR0_BO_ENCODE_STEP_GAS_SW"
@@ -215,10 +215,10 @@ text {
 }
 "shell command" {
 	object {
-		x=535
-		y=110
-		width=50
-		height=16
+		x=505
+		y=124
+		width=55
+		height=20
 	}
 	command[0] {
 		label="Start"
@@ -236,8 +236,8 @@ text {
 }
 text {
 	object {
-		x=495
-		y=89
+		x=457
+		y=103
 		width=92
 		height=16
 	}
@@ -245,4 +245,23 @@ text {
 		clr=0
 	}
 	textix="PRM & PR3 (provisional)"
+}
+polyline {
+	object {
+		x=424
+		y=83
+		width=3
+		height=81
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="K1:VIS-PR0_BO_ENCODE_STEP_GAS_SW"
+	}
+	points {
+		(425,84)
+		(425,162)
+	}
 }
