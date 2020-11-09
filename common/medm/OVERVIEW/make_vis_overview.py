@@ -206,17 +206,16 @@ if __name__=='__main__':
             txt,w2,h = grd_mini(x=width,y=height,system='VIS_'+system)
             contents += txt
             width += w2+2
-            if system in ['ETMX','ETMY','ITMX','ITMY']:
-                txt,w3,h = grd_mini(x=width,y=height,system='QUA_'+system)
-                contents += txt                
-                txt,w3,h = grd_mini(x=width,y=height+(h+2),system='NEW_'+system)
-                contents += txt                
-                width += w3+2
-                _w = w1+w2+w3+6
-            else:
-                width += w2+2
-                _w = w1+w2+w2+6                
-                
+            # if system in ['ETMX','ETMY','ITMX','ITMY']:
+            #     txt,w3,h = grd_mini(x=width,y=height,system='QUA_'+system)
+            #     contents += txt                
+            #     txt,w3,h = grd_mini(x=width,y=height+(h+2),system='NEW_'+system)
+            #     contents += txt                
+            #     width += w3+2
+            #     _w = w1+w2+w3+6
+            # else:
+            #     width += w2+2
+            _w = w1+w2+4
             for model in models[system]:
                 model,fec = model
                 txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
