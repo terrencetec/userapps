@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=2692
-		y=184
-		width=400
-		height=400
+		x=173
+		y=180
+		width=406
+		height=66
 	}
 	clr=14
 	bclr=13
@@ -87,24 +87,27 @@ display {
 		1a7309,
 	}
 }
-text {
+"related display" {
 	object {
-		x=68
-		y=140
-		width=80
-		height=20
+		x=19
+		y=20
+		width=50
+		height=22
 	}
-	"basic attribute" {
-		clr=56
+	display[0] {
+		label="Tower"
+		name="$(ctrladl)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
 	}
-	textix="$(SYSTEM)"
-	align="horiz. centered"
+	clr=0
+	bclr=14
+	label="$(SYSTEM)"
 }
 rectangle {
 	object {
-		x=68
-		y=135
-		width=80
+		x=14
+		y=16
+		width=60
 		height=30
 	}
 	"basic attribute" {
@@ -121,9 +124,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=150
-		y=135
-		width=200
+		x=80
+		y=16
+		width=305
 		height=30
 	}
 	"basic attribute" {
@@ -138,9 +141,9 @@ rectangle {
 }
 "text entry" {
 	object {
-		x=207
-		y=139
-		width=140
+		x=134
+		y=19
+		width=250
 		height=24
 	}
 	control {
@@ -153,8 +156,8 @@ rectangle {
 }
 "choice button" {
 	object {
-		x=154
-		y=139
+		x=81
+		y=19
 		width=50
 		height=24
 	}
