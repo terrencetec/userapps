@@ -17,10 +17,48 @@ request = 'IDLING'
 nominal = 'ALL_ALIGNED'
 
 # slave optics
-optics = ['PR2', 'PR3', 'SR2', 'SR3', 'BS', 'ETMX', 'ITMX', 'ETMY', 'ITMY']
-managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+#optics = ['PR2', 'PR3', 'SR2', 'SR3', 'BS', 'ETMX', 'ITMX', 'ETMY', 'ITMY']
+optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3',
+          'MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2','OSTM','TMSX','TMSY']
+managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
+                  'PR2','PR3']
 
 nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
+
+
+# ---------
+# should be moved somewhere.
+models = {'ETMX':[['VISETMXT',102],['VISETMXP',103],['VISETMXMON',104],
+                  ['MODALETMX',105]],
+          'ETMY':[['VISETMYT',107],['VISETMYP',108],['VISETMYMON',109],
+                  ['MODALETMY',110]],
+          'ITMX':[['VISITMXT',92],['VISITMXP',93],['VISITMXMON',94],
+                  ['MODALITMX',95]],
+          'ITMY':[['VISITMYT',97],['VISITMYP',98],['VISITMYMON',99],
+                  ['MODALITMY',100]],
+          'BS':[['VISBST',60],['VISBSP',61]],
+          'SRM':[['VISSRMT',75],['VISSRMP',76]],
+          'SR2':[['VISSR2T',65],['VISSR2P',66]],
+          'SR3':[['VISSR3T',70],['VISSR3P',71]],
+          'PRM':[['VISPRM',55]],
+          'PR2':[['VISPR2',45]],
+          'PR3':[['VISPR3',50]],
+          'MCI':[['VISMCI',38]],
+          'MCE':[['VISMCE',39]],
+          'MCO':[['VISMCO',40]],
+          'IMMT1':[['VISIMMT1',42]],
+          'IMMT2':[['VISIMMT2',43]],
+          'OMMT1':[['VISOMMT1',80]],
+          'OMMT2':[['VISOMMT2',81]],
+          'OSTM':[['VISOSTM',82]],
+          'TMSX':[['VISTMSX',117]],
+          'TMSY':[['VISTMSY',122]]}
+sus_types = {'TypeA':['ETMX','ETMY','ITMX','ITMY'],
+             'TypeB':['BS','SR2','SR3','SRM'],
+             'TypeBp':['PR2','PR3','PRM'],
+             'TypeC':['MCI','MCO','MCE','IMMT1','IMMT2','OSTM','OMMT1','OMMT2'],
+             'TypeTMS':['TMSX','TMSY']}
+# ---------
 
 def manager_request(opt,state):
     '''
@@ -105,10 +143,44 @@ def is_earthquake():
         return False
 
     
+def is_there_difference():
+    return True
+    
 class eq_check(GuardStateDecorator):
     def pre_exec(self):
         if is_earthquake():
             return 'EARTHQUAKE'
+
+class sdf_check(GuardStateDecorator):
+    def pre_exec(self):
+        txt = 'SDF diff: '
+        for optic in optics:
+            for model in models[optic]:
+                name, fec = model
+                diffs = ezca['FEC-{fec}_SDF_DIFF_CNT'.format(fec=fec)]
+                if diffs != 0:
+                    txt += '{0} {1}, '.format(name,int(diffs))
+                    flag = False
+                else:
+                    pass
+        if flag==False:
+            notify(txt)
+        
+class gds_check(GuardStateDecorator):
+    def pre_exec(self):
+        txt = 'GDS error: '
+        for optic in optics:
+            for model in models[optic]:
+                name, fec = model
+                err = ezca['FEC-{fec}_STATE_WORD'.format(fec=fec)]
+                if err != 0:
+                    txt += '{0} {1}, '.format(name,int(err))
+                    flag = False
+                else:
+                    pass
+        if flag==False:
+            notify(txt)
+        
 
 class revive(GuardStateDecorator):
     def pre_exec(self):
@@ -214,6 +286,8 @@ class XARM_READY(GuardState):
         
     @eq_check
     @revive
+    @sdf_check
+    @gds_check    
     def run(self):
         '''
         Force to request the ALIGNED state if no one use the suspensions.
@@ -253,6 +327,8 @@ class ALL_ALIGNED(GuardState):
                 
     @eq_check
     @revive
+    @sdf_check
+    @gds_check    
     def run(self):
         ''' Force to request the ALIGNED state if no one use the suspensions.
         '''
@@ -264,7 +340,7 @@ class ALL_ALIGNED(GuardState):
 
     
 class ALL_SAFE(GuardState):
-    ''' Request the ALIGNED state for all suspensions.
+    ''' Request the SAFE state for all suspensions.
     
     '''    
     index = 2
@@ -277,7 +353,9 @@ class ALL_SAFE(GuardState):
         self.timer['test'] = 0
         
     @eq_check
-    @revive    
+    @revive
+    @sdf_check
+    @gds_check
     def run(self):
         ''' Force to request the SAFE state if no one use the suspensions.
         '''
@@ -303,6 +381,8 @@ class ALL_MISALIGNED(GuardState):
         
     @eq_check
     @revive
+    @sdf_check
+    @gds_check    
     def run(self):
         ''' Force to request the MISALIGNED state if no one use the suspensions.
         '''
