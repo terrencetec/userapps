@@ -1,14 +1,14 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/HEAD_MINI.adl"
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/OFFLOAD/HEAD_MINI.adl"
 	version=030107
 }
 display {
 	object {
-		x=176
-		y=536
+		x=879
+		y=294
 		width=332
-		height=61
+		height=85
 	}
 	clr=14
 	bclr=5
@@ -91,8 +91,8 @@ rectangle {
 	object {
 		x=4
 		y=6
-		width=32
-		height=20
+		width=60
+		height=23
 	}
 	"basic attribute" {
 		clr=14
@@ -100,20 +100,20 @@ rectangle {
 }
 text {
 	object {
-		x=6
-		y=8
+		x=14
+		y=11
 		width=20
 		height=20
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="$(SYSTEM)"
+	textix="VIS_$(SYSTEM)"
 }
 text {
 	object {
 		x=106
-		y=28
+		y=31
 		width=50
 		height=15
 	}
@@ -125,7 +125,7 @@ text {
 text {
 	object {
 		x=195
-		y=27
+		y=30
 		width=50
 		height=15
 	}
@@ -137,7 +137,7 @@ text {
 text {
 	object {
 		x=96
-		y=43
+		y=46
 		width=70
 		height=15
 	}
@@ -149,7 +149,7 @@ text {
 text {
 	object {
 		x=200
-		y=43
+		y=46
 		width=40
 		height=15
 	}
@@ -158,18 +158,493 @@ text {
 	}
 	textix="[steps]"
 }
-"text entry" {
+composite {
 	object {
-		x=41
-		y=6
-		width=100
-		height=20
+		x=66
+		y=5
+		width=260
+		height=23
 	}
-	control {
-		chan="K1:GRD-VIS_$(SYSTEM)_STATE_S"
-		clr=15
-		bclr=14
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=29
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=38
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-VIS_$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=2"
+				chan="K1:GRD-VIS_$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=24
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-VIS_$(SYSTEM)_CONNECT"
+			}
+		}
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-VIS_$(SYSTEM)_OP"
+			}
+		}
+		rectangle {
+			object {
+				x=67
+				y=5
+				width=259
+				height=23
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-VIS_$(SYSTEM)_ERROR"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=5
+				width=260
+				height=23
+			}
+			"basic attribute" {
+				clr=27
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
 	}
-	limits {
+}
+"shell command" {
+	object {
+		x=70
+		y=8
+		width=30
+		height=17
+	}
+	command[0] {
+		label="VIS_$(SYSTEM)"
+		name="guardmedm"
+		args="VIS_$(SYSTEM) &"
+	}
+	clr=14
+	bclr=5
+	label="-GRD"
+}
+composite {
+	object {
+		x=104
+		y=5
+		width=147
+		height=23
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=104
+				y=5
+				width=147
+				height=23
+			}
+			"basic attribute" {
+				clr=25
+			}
+			"dynamic attribute" {
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE"
+			}
+		}
+		"text update" {
+			object {
+				x=104
+				y=10
+				width=147
+				height=15
+			}
+			monitor {
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_S"
+				clr=14
+				bclr=25
+			}
+			align="horiz. centered"
+			format="string"
+			limits {
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=255
+		y=8
+		width=11
+		height=17
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=255
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-VIS_$(SYSTEM)_NOTIFICATION"
+			}
+		}
+		rectangle {
+			object {
+				x=255
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-VIS_$(SYSTEM)_NOTIFICATION"
+			}
+		}
+		rectangle {
+			object {
+				x=255
+				y=8
+				width=12
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=267
+		y=8
+		width=11
+		height=17
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=268
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=B"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-VIS_$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=268
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#B"
+				chan="K1:GRD-VIS_$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-VIS_$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=267
+				y=8
+				width=12
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=280
+		y=8
+		width=11
+		height=17
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=281
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-VIS_$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=281
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-VIS_$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=280
+				y=8
+				width=12
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=294
+		y=8
+		width=11
+		height=17
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=294
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-VIS_$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=294
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-VIS_$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=294
+				y=8
+				width=12
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=306
+		y=8
+		width=11
+		height=17
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=307
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=307
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=307
+				y=8
+				width=11
+				height=17
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-VIS_$(SYSTEM)_SPM_CHANGED"
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=8
+				width=12
+				height=17
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
 	}
 }
