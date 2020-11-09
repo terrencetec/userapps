@@ -7,6 +7,7 @@ import kagralib
 import importlib
 import time
 import numpy as np
+import subprocess
 
 sysmod = importlib.import_module(SYSTEM)
 
@@ -49,6 +50,18 @@ def check_fault():
     msg += ']'
 
     return flag,msg
+
+def turn_on_offload_script():
+    for stage in ['IP', 'GAS']:
+        ID=OPTIC + '_' + stage
+        subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID])
+    return True
+
+def turn_off_offload_script():
+    for stage in ['IP', 'GAS']:
+        ID=OPTIC + '_' + stage
+        subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID, "-kill"])
+    return True
 
 ##################################################
 # LIGO Filter objects
@@ -141,7 +154,45 @@ class SAFE(GuardState):
     @is_fault
     def main(self):
         self.timer['speak'] = 0
+        turn_off_offload_script()
 
+    @is_fault        
+    def run(self):
+        if not self.is_output_off():
+            notify('CHECK OUTPUT!!!')
+            if self.timer['speak']:
+                kagralib.speak_aloud('%s is not safe, although safe state was requested. It has output from some coils. Please check it'%OPTIC)
+                self.timer['speak'] = 300
+
+        else:
+            ezca['VIS-%s_MASTERSWITCH'%OPTIC] = 0
+            return True
+
+class OFFLOAD(GuardState):
+    request = True
+    index = 2
+
+    def is_output_off(self):
+        #check output
+        flag = True
+        coillist = {
+            stage:['H1','H2','H3','V1','V2','V3'] for stage in ['IP','BF','MN','IM','TM']
+            }
+        coillist['TM'] = ['H1','H2','H3','H4']
+
+        for stage in coillist.keys():
+            for coil in coillist[stage]:
+                if abs(ezca['MOD-%s_COILOUT_%s_%s_OUTPUT'%(OPTIC,stage,coil)]) > 1.:
+                    flag = False
+        return flag
+
+    #++ @check_IP_range_for_offload
+    @is_fault
+    def main(self):
+        self.timer['speak'] = 0
+        turn_on_offload_script()
+
+    #++ @check_IP_range_for_offload
     @is_fault        
     def run(self):
         if not self.is_output_off():
@@ -961,6 +1012,8 @@ class OBSERVATION(GuardState):
 # Edges
 edges = [('INIT','SAFE'),
          ('FAULT','SAFE'),
+         ('SAFE', 'OFFLOAD'),
+         ('OFFLOAD', 'SAFE'),
          ('SAFE','ENGAGE_OPAL'),
          ('ENGAGE_OPAL','FLOAT'),
          ('FLOAT','ENGAGE_LOCALDAMP'),
