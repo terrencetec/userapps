@@ -51,16 +51,18 @@ def check_fault():
 
     return flag,msg
 
-def turn_on_offload_script():
-    for stage in ['IP', 'GAS']:
-        ID=OPTIC + '_' + stage
-        subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID])
+def turn_on_offload_script(optic):
+    if optic == 'ITMY':
+        for stage in ['IP', 'GAS']:
+            ID=OPTIC + '_' + stage
+            subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID])
     return True
 
-def turn_off_offload_script():
-    for stage in ['IP', 'GAS']:
-        ID=OPTIC + '_' + stage
-        subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID, "-kill"])
+def turn_off_offload_script(optic):
+    if optic == 'ITMY':    
+        for stage in ['IP', 'GAS']:
+            ID=OPTIC + '_' + stage
+            subprocess.Popen(["/usr/bin/ssh", "-oControlMaster=yes", "-oControlPath=~/.ssh/vis_offload_%C", "-oControlPersist=120", "-i", "/home/controls/.ssh/id_ed25519_vis_offloading", "controls@k1script", ID, "-kill"])
     return True
 
 ##################################################
@@ -154,7 +156,7 @@ class SAFE(GuardState):
     @is_fault
     def main(self):
         self.timer['speak'] = 0
-        turn_off_offload_script()
+        turn_off_offload_script(optic)
 
     @is_fault        
     def run(self):

@@ -22,6 +22,7 @@ optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3',
           'MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2','OSTM','TMSX','TMSY']
 managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
                   'PR2','PR3']
+managed_optics = optics
 
 nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
 
@@ -154,12 +155,13 @@ class eq_check(GuardStateDecorator):
 class sdf_check(GuardStateDecorator):
     def pre_exec(self):
         txt = 'SDF diff: '
+        flag = True
         for optic in optics:
             for model in models[optic]:
                 name, fec = model
                 diffs = ezca['FEC-{fec}_SDF_DIFF_CNT'.format(fec=fec)]
                 if diffs != 0:
-                    txt += '{0} {1}, '.format(name,int(diffs))
+                    txt += '{0} {1},'.format(name,int(diffs))
                     flag = False
                 else:
                     pass
@@ -169,6 +171,7 @@ class sdf_check(GuardStateDecorator):
 class gds_check(GuardStateDecorator):
     def pre_exec(self):
         txt = 'GDS error: '
+        flag = True        
         for optic in optics:
             for model in models[optic]:
                 name, fec = model
