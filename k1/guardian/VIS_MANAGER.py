@@ -368,6 +368,30 @@ class ALL_SAFE(GuardState):
         [manager_request(opt,'SAFE') for opt in optics]
         return True
 
+
+class ALL_LOAD(GuardState):
+    ''' Load all VIS guardian
+    
+    '''    
+    index = 8
+    request = True
+
+    @eq_check    
+    def main(self):
+        '''
+        '''
+        for optic in optics:
+            ezca['GRD-VIS_%s_OP'%optic]='STOP'
+        for optic in optics:
+            ezca['GRD-VIS_%s_OP'%optic]='EXEC'        
+        
+    @eq_check
+    @revive
+    #@sdf_check
+    #@gds_check
+    def run(self):
+        return True
+    
     
 class ALL_MISALIGNED(GuardState):
     ''' Request the ALIGNED state for all suspensions.
@@ -401,6 +425,8 @@ edges = [
     ('INIT','ALL_ALIGNED'),
     ('INIT','ALL_MISALIGNED'),
     ('INIT','ALL_SAFE'),
+    ('ALL_SAFE','ALL_LOAD'),
+    ('ALL_LOAD','ALL_SAFE'),
     ('INIT','IDLING'),        
     ('EARTHQUAKE','IDLING'),
     ('IDLING','ALL_ALIGNED'),
