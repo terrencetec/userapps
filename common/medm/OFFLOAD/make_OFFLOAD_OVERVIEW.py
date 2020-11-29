@@ -132,7 +132,7 @@ channel_dict = {
     'SRM_F1_GAS': 1,
     'SRM_BF_GAS': 0,
 
-    'PR2_BF_GAS': 1, 
+    'PR2_BF_GAS': 0, 
     'PR2_SF_GAS': 2,
     
     'PR3_BF_GAS': 0,    # STEPPER PR0
