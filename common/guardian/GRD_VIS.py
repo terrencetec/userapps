@@ -192,7 +192,7 @@ class OFFLOAD(GuardState):
     @is_fault
     def main(self):
         self.timer['speak'] = 0
-        turn_on_offload_script()
+        #turn_on_offload_script(optic)
 
     #++ @check_IP_range_for_offload
     @is_fault        
