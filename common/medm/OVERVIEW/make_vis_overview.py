@@ -166,7 +166,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl = '{common}/medm/{sustype}/VIS_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     elif sustype=='typec':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
-        ctrladl = '{common}/medm/{sustype}/VIS_CUST_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl = '{common}/medm/VIS_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE)
     elif sustype=='typetms':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
         ctrladl = '{common}/medm/TMS/VIS_TMS_OVERVIEW.adl'.format(common=common)          
