@@ -5,6 +5,7 @@ from guardian import GuardStateDecorator
 from guardian import NodeManager
 import vislib
 import subprocess
+import rcglib
 
 # flags
 eq_alert_flag = False
@@ -269,12 +270,15 @@ class BUILD_MODEL(GuardState):
     index = 20
     request = True
     def main(self):
-        # send
-        #cmd = ['gnome-terminal -x ssh controls@k1ex1 "cd /opt/rtcds/kamioka/k1/rtbuild/current && make k1visetmxt"']
-        #subprocess.check_output(cmd, shell=True)
-        
         pass
+        for optic in optics:
+            rcglib.buildoptic(optic.lower())
+            #if ezca['VIS-' + optic + '_MASTERSWITCH'] == 0:
+            #    K1:VIS-TMSX_WD_RESET
 
+    def run(self):
+        ezca['GRD-VIS_MANAGER_REQUEST'] = "ALL_SAFE"
+        return True
     
 class XARM_READY(GuardState):
     index = 30
@@ -427,6 +431,8 @@ edges = [
     ('INIT','ALL_SAFE'),
     ('ALL_SAFE','ALL_LOAD'),
     ('ALL_LOAD','ALL_SAFE'),
+    ('ALL_SAFE','BUILD_MODEL'),
+    ('BUILD_MODEL','ALL_SAFE'),
     ('INIT','IDLING'),        
     ('EARTHQUAKE','IDLING'),
     ('IDLING','ALL_ALIGNED'),
