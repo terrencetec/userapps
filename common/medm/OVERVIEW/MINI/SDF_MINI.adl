@@ -1,13 +1,13 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/OVERVIEW/MINI/SDF_MINI.adl"
-	version=030107
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/SDF_MINI.adl"
+	version=030109
 }
 display {
 	object {
-		x=2096
-		y=210
-		width=328
+		x=1265
+		y=843
+		width=490
 		height=129
 	}
 	clr=14
@@ -87,190 +87,159 @@ display {
 		1a7309,
 	}
 }
-text {
-	object {
-		x=11
-		y=50
-		width=45
-		height=15
-	}
-	"basic attribute" {
-		clr=56
-	}
-	textix="$(SUBSYS)"
-}
 composite {
 	object {
-		x=82
+		x=11
 		y=51
-		width=180
+		width=250
 		height=15
 	}
 	"composite name"=""
 	children {
+		text {
+			object {
+				x=11
+				y=51
+				width=42
+				height=15
+			}
+			"basic attribute" {
+				clr=56
+			}
+			textix="$(SUBSYS)"
+		}
 		composite {
 			object {
-				x=82
+				x=79
 				y=51
-				width=180
+				width=182
 				height=15
 			}
 			"composite name"=""
 			children {
-				rectangle {
+				composite {
 					object {
-						x=83
-						y=52
-						width=179
-						height=14
-					}
-					"basic attribute" {
-						clr=9
-					}
-				}
-				rectangle {
-					object {
-						x=83
-						y=52
-						width=179
-						height=14
-					}
-					"basic attribute" {
-						clr=32
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=B"
-						chan="K1:FEC-$(FEC)_SDF_FULL_CNT"
-						chanB="K1:FEC-$(FEC)_SDF_UNMON_CNT"
-					}
-				}
-				rectangle {
-					object {
-						x=83
-						y=52
-						width=179
-						height=14
-					}
-					"basic attribute" {
-						clr=20
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="K1:FEC-$(FEC)_SDF_DIFF_CNT"
-					}
-				}
-				rectangle {
-					object {
-						x=82
+						x=79
 						y=51
-						width=180
+						width=182
 						height=15
 					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-			}
-		}
-		"related display" {
-			object {
-				x=88
-				y=51
-				width=38
-				height=15
-			}
-			display[0] {
-				name="/opt/rtcds/kamioka/k1/medm/k1$(subsys)/K1$(SUBSYS)_SDF_TABLE.adl"
-			}
-			clr=14
-			bclr=5
-			label="-SDF"
-		}
-		"text update" {
-			object {
-				x=193
-				y=51
-				width=38
-				height=15
-			}
-			monitor {
-				chan="K1:FEC-$(FEC)_SDF_DIFF_CNT"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="compact"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=128
-				y=51
-				width=63
-				height=15
-			}
-			monitor {
-				chan="K1:FEC-$(FEC)_SDF_LOADED"
-				clr=0
-				bclr=14
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="compact"
-			limits {
-			}
-		}
-		composite {
-			object {
-				x=235
-				y=53
-				width=6
-				height=11
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=235
-						y=53
-						width=6
-						height=11
-					}
-					"basic attribute" {
-						clr=39
-					}
-					"dynamic attribute" {
-						vis="if zero"
-						chan="K1:FEC-$(FEC)_SDF_MON_ALL"
+					"composite name"=""
+					children {
+						rectangle {
+							object {
+								x=80
+								y=52
+								width=181
+								height=14
+							}
+							"basic attribute" {
+								clr=9
+							}
+						}
+						rectangle {
+							object {
+								x=80
+								y=52
+								width=181
+								height=14
+							}
+							"basic attribute" {
+								clr=32
+							}
+							"dynamic attribute" {
+								vis="calc"
+								calc="A=B"
+								chan="K1:FEC-$(FEC)_SDF_FULL_CNT"
+								chanB="K1:FEC-$(FEC)_SDF_UNMON_CNT"
+							}
+						}
+						rectangle {
+							object {
+								x=80
+								y=52
+								width=181
+								height=14
+							}
+							"basic attribute" {
+								clr=20
+							}
+							"dynamic attribute" {
+								vis="if not zero"
+								chan="K1:FEC-$(FEC)_SDF_DIFF_CNT"
+							}
+						}
+						rectangle {
+							object {
+								x=79
+								y=51
+								width=182
+								height=15
+							}
+							"basic attribute" {
+								clr=10
+								fill="outline"
+								width=1
+							}
+							"dynamic attribute" {
+								chan="BLAH"
+							}
+						}
 					}
 				}
-				rectangle {
+				"related display" {
 					object {
-						x=235
-						y=53
-						width=6
-						height=11
+						x=85
+						y=51
+						width=38
+						height=15
 					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
+					display[0] {
+						name="/opt/rtcds/kamioka/k1/medm/k1$(subsys)/K1$(SUBSYS)_SDF_TABLE.adl"
 					}
-					"dynamic attribute" {
-						chan="BLAH"
+					clr=14
+					bclr=5
+					label="-SDF"
+				}
+				"text update" {
+					object {
+						x=192
+						y=51
+						width=38
+						height=15
+					}
+					monitor {
+						chan="K1:FEC-$(FEC)_SDF_DIFF_CNT"
+						clr=0
+						bclr=14
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="compact"
+					limits {
+					}
+				}
+				"text update" {
+					object {
+						x=126
+						y=51
+						width=63
+						height=15
+					}
+					monitor {
+						chan="K1:FEC-$(FEC)_SDF_LOADED"
+						clr=0
+						bclr=14
+					}
+					clrmod="alarm"
+					align="horiz. centered"
+					format="compact"
+					limits {
 					}
 				}
 				composite {
 					object {
-						x=235
+						x=234
 						y=53
 						width=6
 						height=11
@@ -279,142 +248,22 @@ composite {
 					children {
 						rectangle {
 							object {
-								x=235
+								x=234
 								y=53
 								width=6
 								height=11
 							}
 							"basic attribute" {
-								clr=35
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="K1:FEC-$(FEC)_SDF_MON_ALL"
-							}
-						}
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=244
-				y=53
-				width=6
-				height=11
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=244
-						y=54
-						width=6
-						height=10
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="if zero"
-						chan="K1:FEC-$(FEC)_SDF_UNINIT_CNT"
-					}
-				}
-				rectangle {
-					object {
-						x=244
-						y=53
-						width=6
-						height=11
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-				composite {
-					object {
-						x=244
-						y=54
-						width=6
-						height=10
-					}
-					"composite name"=""
-					children {
-						rectangle {
-							object {
-								x=244
-								y=54
-								width=6
-								height=10
-							}
-							"basic attribute" {
-								clr=30
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="K1:FEC-$(FEC)_SDF_UNINIT_CNT"
-							}
-						}
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=253
-				y=53
-				width=6
-				height=11
-			}
-			"composite name"=""
-			children {
-				composite {
-					object {
-						x=253
-						y=53
-						width=6
-						height=11
-					}
-					"composite name"=""
-					children {
-						rectangle {
-							object {
-								x=253
-								y=54
-								width=6
-								height=10
-							}
-							"basic attribute" {
-								clr=17
+								clr=39
 							}
 							"dynamic attribute" {
 								vis="if zero"
-								chan="K1:FEC-$(FEC)_SDF_DROP_CNT"
+								chan="K1:FEC-$(FEC)_SDF_MON_ALL"
 							}
 						}
 						rectangle {
 							object {
-								x=253
-								y=54
-								width=6
-								height=10
-							}
-							"basic attribute" {
-								clr=30
-							}
-							"dynamic attribute" {
-								vis="if not zero"
-								chan="K1:FEC-$(FEC)_SDF_DROP_CNT"
-							}
-						}
-						rectangle {
-							object {
-								x=253
+								x=234
 								y=53
 								width=6
 								height=11
@@ -426,6 +275,168 @@ composite {
 							}
 							"dynamic attribute" {
 								chan="BLAH"
+							}
+						}
+						composite {
+							object {
+								x=234
+								y=53
+								width=6
+								height=11
+							}
+							"composite name"=""
+							children {
+								rectangle {
+									object {
+										x=234
+										y=53
+										width=6
+										height=11
+									}
+									"basic attribute" {
+										clr=35
+									}
+									"dynamic attribute" {
+										vis="if not zero"
+										chan="K1:FEC-$(FEC)_SDF_MON_ALL"
+									}
+								}
+							}
+						}
+					}
+				}
+				composite {
+					object {
+						x=243
+						y=53
+						width=6
+						height=11
+					}
+					"composite name"=""
+					children {
+						rectangle {
+							object {
+								x=243
+								y=54
+								width=6
+								height=10
+							}
+							"basic attribute" {
+								clr=17
+							}
+							"dynamic attribute" {
+								vis="if zero"
+								chan="K1:FEC-$(FEC)_SDF_UNINIT_CNT"
+							}
+						}
+						rectangle {
+							object {
+								x=243
+								y=53
+								width=6
+								height=11
+							}
+							"basic attribute" {
+								clr=10
+								fill="outline"
+								width=1
+							}
+							"dynamic attribute" {
+								chan="BLAH"
+							}
+						}
+						composite {
+							object {
+								x=243
+								y=54
+								width=6
+								height=10
+							}
+							"composite name"=""
+							children {
+								rectangle {
+									object {
+										x=243
+										y=54
+										width=6
+										height=10
+									}
+									"basic attribute" {
+										clr=30
+									}
+									"dynamic attribute" {
+										vis="if not zero"
+										chan="K1:FEC-$(FEC)_SDF_UNINIT_CNT"
+									}
+								}
+							}
+						}
+					}
+				}
+				composite {
+					object {
+						x=252
+						y=53
+						width=6
+						height=11
+					}
+					"composite name"=""
+					children {
+						composite {
+							object {
+								x=252
+								y=53
+								width=6
+								height=11
+							}
+							"composite name"=""
+							children {
+								rectangle {
+									object {
+										x=252
+										y=54
+										width=6
+										height=10
+									}
+									"basic attribute" {
+										clr=17
+									}
+									"dynamic attribute" {
+										vis="if zero"
+										chan="K1:FEC-$(FEC)_SDF_DROP_CNT"
+									}
+								}
+								rectangle {
+									object {
+										x=252
+										y=54
+										width=6
+										height=10
+									}
+									"basic attribute" {
+										clr=30
+									}
+									"dynamic attribute" {
+										vis="if not zero"
+										chan="K1:FEC-$(FEC)_SDF_DROP_CNT"
+									}
+								}
+								rectangle {
+									object {
+										x=252
+										y=53
+										width=6
+										height=11
+									}
+									"basic attribute" {
+										clr=10
+										fill="outline"
+										width=1
+									}
+									"dynamic attribute" {
+										chan="BLAH"
+									}
+								}
 							}
 						}
 					}

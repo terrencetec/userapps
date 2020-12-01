@@ -1,13 +1,13 @@
 
 file {
 	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/USER_MINI.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
-		x=173
-		y=180
-		width=406
+		x=65
+		y=924
+		width=700
 		height=66
 	}
 	clr=14
@@ -87,84 +87,93 @@ display {
 		1a7309,
 	}
 }
-"related display" {
-	object {
-		x=19
-		y=20
-		width=50
-		height=22
-	}
-	display[0] {
-		label="Tower"
-		name="$(ctrladl)"
-		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-	}
-	clr=0
-	bclr=14
-	label="$(SYSTEM)"
-}
-rectangle {
+composite {
 	object {
 		x=14
 		y=16
-		width=60
+		width=440
 		height=30
 	}
-	"basic attribute" {
-		clr=50
-		fill="outline"
-		width=3
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=14
+				y=16
+				width=61
+				height=30
+			}
+			"basic attribute" {
+				clr=50
+				fill="outline"
+				width=3
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A && B % 2"
+				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+				chanB="K1:FEC-$(FEC)_TIME_DIAG"
+			}
+		}
+		"related display" {
+			object {
+				x=19
+				y=20
+				width=50
+				height=22
+			}
+			display[0] {
+				label="Tower"
+				name="$(ctrladl)"
+				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+			}
+			clr=0
+			bclr=14
+			label="$(SYSTEM)"
+		}
+		"text entry" {
+			object {
+				x=133
+				y=19
+				width=249
+				height=24
+			}
+			control {
+				chan="K1:VIS-$(SYSTEM)_COMMISH_MESSAGE"
+				clr=60
+				bclr=14
+			}
+			limits {
+			}
+		}
+		"choice button" {
+			object {
+				x=82
+				y=19
+				width=50
+				height=24
+			}
+			control {
+				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+				clr=0
+				bclr=14
+			}
+			stacking="column"
+		}
+		"text entry" {
+			object {
+				x=388
+				y=19
+				width=66
+				height=24
+			}
+			control {
+				chan="K1:VIS-$(SYSTEM)_HEALTHCHECKED_DATE"
+				clr=60
+				bclr=14
+			}
+			limits {
+			}
+		}
 	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A && B % 2"
-		chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
-		chanB="K1:FEC-$(FEC)_TIME_DIAG"
-	}
-}
-rectangle {
-	object {
-		x=80
-		y=16
-		width=305
-		height=30
-	}
-	"basic attribute" {
-		clr=50
-		style="dash"
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A"
-		chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
-	}
-}
-"text entry" {
-	object {
-		x=134
-		y=19
-		width=250
-		height=24
-	}
-	control {
-		chan="K1:VIS-$(SYSTEM)_COMMISH_MESSAGE"
-		clr=60
-		bclr=14
-	}
-	limits {
-	}
-}
-"choice button" {
-	object {
-		x=81
-		y=19
-		width=50
-		height=24
-	}
-	control {
-		chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
-		clr=0
-		bclr=14
-	}
-	stacking="column"
 }

@@ -1,12 +1,12 @@
 
 file {
 	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/GRD_MINI.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
-		x=1294
-		y=368
+		x=498
+		y=1404
 		width=339
 		height=94
 	}
@@ -91,499 +91,488 @@ composite {
 	object {
 		x=13
 		y=32
-		width=260
+		width=150
 		height=25
 	}
 	"composite name"=""
 	children {
-		composite {
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=29
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=38
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=2"
+				chan="K1:GRD-$(SYSTEM)_MODE"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=24
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-$(SYSTEM)_CONNECT"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_OP"
+			}
+		}
+		rectangle {
+			object {
+				x=14
+				y=32
+				width=149
+				height=25
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:GRD-$(SYSTEM)_ERROR"
+			}
+		}
+		rectangle {
 			object {
 				x=13
 				y=32
-				width=260
+				width=150
 				height=25
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=29
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=38
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=1"
-						chan="K1:GRD-$(SYSTEM)_MODE"
-					}
-				}
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=35
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=2"
-						chan="K1:GRD-$(SYSTEM)_MODE"
-					}
-				}
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=24
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="K1:GRD-$(SYSTEM)_CONNECT"
-					}
-				}
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=30
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=1"
-						chan="K1:GRD-$(SYSTEM)_OP"
-					}
-				}
-				rectangle {
-					object {
-						x=14
-						y=32
-						width=259
-						height=25
-					}
-					"basic attribute" {
-						clr=20
-					}
-					"dynamic attribute" {
-						vis="if not zero"
-						chan="K1:GRD-$(SYSTEM)_ERROR"
-					}
-				}
-				rectangle {
-					object {
-						x=13
-						y=32
-						width=260
-						height=25
-					}
-					"basic attribute" {
-						clr=27
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
+			"basic attribute" {
+				clr=27
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
 			}
 		}
-		"shell command" {
+	}
+}
+"shell command" {
+	object {
+		x=15
+		y=35
+		width=25
+		height=18
+	}
+	command[0] {
+		label="$(SYSTEM)"
+		name="guardmedm"
+		args="$(SYSTEM) &"
+	}
+	clr=14
+	bclr=5
+	label="-GRD"
+}
+composite {
+	object {
+		x=122
+		y=35
+		width=6
+		height=18
+	}
+	"composite name"=""
+	children {
+		rectangle {
 			object {
-				x=17
+				x=122
 				y=35
-				width=30
+				width=6
 				height=18
 			}
-			command[0] {
-				label="$(SYSTEM)"
-				name="guardmedm"
-				args="$(SYSTEM) &"
+			"basic attribute" {
+				clr=17
 			}
-			clr=14
-			bclr=5
-			label="-GRD"
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+			}
 		}
-		composite {
+		rectangle {
 			object {
-				x=51
-				y=32
-				width=147
+				x=122
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
+			}
+		}
+		rectangle {
+			object {
+				x=122
+				y=35
+				width=7
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=129
+		y=35
+		width=6
+		height=18
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=130
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=B"
+				chan="K1:GRD-$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=130
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#B"
+				chan="K1:GRD-$(SYSTEM)_STATE_N"
+				chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
+			}
+		}
+		rectangle {
+			object {
+				x=129
+				y=35
+				width=7
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=137
+		y=35
+		width=6
+		height=18
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=138
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=138
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_STALLED"
+			}
+		}
+		rectangle {
+			object {
+				x=137
+				y=35
+				width=7
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=144
+		y=35
+		width=6
+		height=18
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=144
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:GRD-$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=144
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=33
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_OK"
+			}
+		}
+		rectangle {
+			object {
+				x=144
+				y=35
+				width=7
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=152
+		y=35
+		width=6
+		height=18
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=153
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=0"
+				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=153
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=17
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
+			}
+		}
+		rectangle {
+			object {
+				x=153
+				y=35
+				width=6
+				height=18
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A#0"
+				chan="K1:GRD-$(SYSTEM)_SPM_CHANGED"
+			}
+		}
+		rectangle {
+			object {
+				x=152
+				y=35
+				width=7
+				height=18
+			}
+			"basic attribute" {
+				clr=10
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=43
+		y=31
+		width=75
+		height=25
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=43
+				y=31
+				width=75
 				height=25
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=51
-						y=32
-						width=147
-						height=25
-					}
-					"basic attribute" {
-						clr=25
-					}
-					"dynamic attribute" {
-						chan="K1:GRD-$(SYSTEM)_STATE"
-					}
-				}
-				"text update" {
-					object {
-						x=51
-						y=37
-						width=147
-						height=16
-					}
-					monitor {
-						chan="K1:GRD-$(SYSTEM)_STATE_S"
-						clr=14
-						bclr=25
-					}
-					align="horiz. centered"
-					format="string"
-					limits {
-					}
-				}
+			"basic attribute" {
+				clr=25
+			}
+			"dynamic attribute" {
+				chan="K1:GRD-$(SYSTEM)_STATE"
 			}
 		}
-		composite {
+		"text update" {
 			object {
-				x=202
-				y=35
-				width=11
-				height=18
+				x=43
+				y=36
+				width=75
+				height=16
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=202
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0"
-						chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
-					}
-				}
-				rectangle {
-					object {
-						x=202
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=30
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A#0"
-						chan="K1:GRD-$(SYSTEM)_NOTIFICATION"
-					}
-				}
-				rectangle {
-					object {
-						x=202
-						y=35
-						width=12
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
+			monitor {
+				chan="K1:GRD-$(SYSTEM)_STATE_S"
+				clr=14
+				bclr=25
 			}
-		}
-		composite {
-			object {
-				x=214
-				y=35
-				width=11
-				height=18
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=215
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=B"
-						chan="K1:GRD-$(SYSTEM)_STATE_N"
-						chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
-					}
-				}
-				rectangle {
-					object {
-						x=215
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=33
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A#B"
-						chan="K1:GRD-$(SYSTEM)_STATE_N"
-						chanB="K1:GRD-$(SYSTEM)_REQUEST_N"
-					}
-				}
-				rectangle {
-					object {
-						x=214
-						y=35
-						width=12
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=227
-				y=35
-				width=11
-				height=18
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=228
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0"
-						chan="K1:GRD-$(SYSTEM)_STALLED"
-					}
-				}
-				rectangle {
-					object {
-						x=228
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=30
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A#0"
-						chan="K1:GRD-$(SYSTEM)_STALLED"
-					}
-				}
-				rectangle {
-					object {
-						x=227
-						y=35
-						width=12
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=241
-				y=35
-				width=11
-				height=18
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=241
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=1"
-						chan="K1:GRD-$(SYSTEM)_OK"
-					}
-				}
-				rectangle {
-					object {
-						x=241
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=33
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0"
-						chan="K1:GRD-$(SYSTEM)_OK"
-					}
-				}
-				rectangle {
-					object {
-						x=241
-						y=35
-						width=12
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
-			}
-		}
-		composite {
-			object {
-				x=253
-				y=35
-				width=11
-				height=18
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=254
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A=0"
-						chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
-					}
-				}
-				rectangle {
-					object {
-						x=254
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=17
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A#0"
-						chan="K1:GRD-$(SYSTEM)_SPM_MONITOR"
-					}
-				}
-				rectangle {
-					object {
-						x=254
-						y=35
-						width=11
-						height=18
-					}
-					"basic attribute" {
-						clr=30
-					}
-					"dynamic attribute" {
-						vis="calc"
-						calc="A#0"
-						chan="K1:GRD-$(SYSTEM)_SPM_CHANGED"
-					}
-				}
-				rectangle {
-					object {
-						x=253
-						y=35
-						width=12
-						height=18
-					}
-					"basic attribute" {
-						clr=10
-						fill="outline"
-						width=1
-					}
-					"dynamic attribute" {
-						chan="BLAH"
-					}
-				}
+			align="horiz. centered"
+			format="string"
+			limits {
 			}
 		}
 	}

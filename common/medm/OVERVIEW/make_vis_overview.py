@@ -92,7 +92,7 @@ display {
 common = '/opt/rtcds/userapps/release/vis/common'
 
 def grd_mini(x,y,system='ETMX'):
-    width = 270
+    width = 150
     height = 25
     txt = '''
     composite {{
@@ -110,7 +110,7 @@ def grd_mini(x,y,system='ETMX'):
 
 
 def sdf_mini(x,y,fec='123',subsys='ETMXT'):
-    width = 260
+    width = 250
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
@@ -128,11 +128,13 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS)
     return txt,width,height
 
-def gds_mini(x,y,fec='123',subsys='ETMXT'):
+def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT'):
     width = 150
     height = 15
     subsys = subsys.lower()
-    SUBSYS = subsys.upper()    
+    SUBSYS = subsys.upper()
+    system = system.lower()
+    SYSTEM = system.upper()
     txt = '''
     composite {{
     object {{
@@ -142,14 +144,14 @@ def gds_mini(x,y,fec='123',subsys='ETMXT'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS)
+    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM)
     return txt,width,height
 
 
 def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
-    width = 400
+    width = 440
     height = 25
     sustype = sus_type_is(system).lower()
     SUSTYPE = sustype.upper()
@@ -173,7 +175,6 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
     else:
         raise ValueError('!')
 
-    print(macroname)
     txt = '''
     composite {{
     object {{
@@ -208,6 +209,10 @@ def trip_mini(x,y,optic='ETMX'):
 
 
 if __name__=='__main__':
+    no_installed_date_model = ['VISETMXT','VISETMYT','VISITMXT','VISITMYT',
+                               'VISETMXMON','VISETMYMON','VISITMXMON','VISITMYMON',
+                               'MODALETMX','MODALETMY','MODALITMX','MODALITMY',
+                               'VISBSP','VISSRMP','VISSR2P','VISSR3P']
     systems = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
                'PR2','PR3','MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2',
                'OSTM','TMSX','TMSY']
@@ -274,24 +279,33 @@ if __name__=='__main__':
             model,fec = models[system][0]
             txt,w1,h1 = user_mini(x=width,y=height,system=system)
             contents += txt            
-            width += w1+2
+            width += w1+5
             txt,w2,h = grd_mini(x=width,y=height,system='VIS_'+system)
             contents += txt
-            width += w2+2
+            width += w2+5
             _w = w1+w2+4
             txt,w3,h = trip_mini(x=width,y=height,optic=system)
             contents += txt
-            width += w3+2
-            _w = w1+w2+w3+6            
+            width += w3+5
+            _w = w1+w2+w3+15            
             for model in models[system]:
                 model,fec = model
                 txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
                 contents += txt
-                txt,w,h = gds_mini(x=width+w+2,y=height,fec=fec,subsys=model)
+                if model in no_installed_date_model:
+                    _system = 'NONE'
+                else:
+                    _system = system
+                    pass
+                txt,w,h = gds_mini(x=width+w+5,y=height,fec=fec,subsys=model,system=_system)
                 contents += txt                
                 height += h+2
-            if len(models[system])==1:
-                height += h                
+            try:
+                if len(models[system])==1:
+                    height += h
+            except:
+                pass
+            
             width -= _w
             
         f.write(contents)    
