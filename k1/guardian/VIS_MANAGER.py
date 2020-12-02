@@ -21,8 +21,7 @@ nominal = 'ALL_ALIGNED'
 #optics = ['PR2', 'PR3', 'SR2', 'SR3', 'BS', 'ETMX', 'ITMX', 'ETMY', 'ITMY']
 optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3',
           'MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2','OSTM','TMSX','TMSY']
-managed_optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
-                  'PR2','PR3']
+managed_optics = ['IMMT2','OSTM']
 managed_optics = optics
 
 nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
@@ -86,11 +85,11 @@ def unused_optics():
     unused : `set`
         unused optics name list as the set object.
     '''
-    use = []
+    unused = []
     for opt in managed_optics:
-        if is_used(opt):
-            use += [opt]
-    unused = set(managed_optics)-set(use)
+        msg = ezca['VIS-'+opt+'_COMMISH_MESSAGE']
+        if 'Admin' in msg:
+            unused += [opt]            
     return unused
 
 
@@ -280,8 +279,8 @@ class BUILD_MODEL(GuardState):
         ezca['GRD-VIS_MANAGER_REQUEST'] = "ALL_SAFE"
         return True
     
-class XARM_READY(GuardState):
-    index = 30
+class ALIGN_XARM(GuardState):
+    index = 300
     request = True
 
     @eq_check    
@@ -315,9 +314,35 @@ class XARM_READY(GuardState):
                     nodes['VIS_'+opt]='MISALIGNED' 
             if is_used(opt):
                 someone_use += [opt]                
-        notify('Not managed: {0}'.format(','.join(someone_use)))            
+        notify('Not managed: {0}'.format(','.join(someone_use)))
         return True
 
+class ALIGN_IO(GuardState):
+    index = 100
+    request = True
+
+    @eq_check    
+    def main(self):
+        pass
+        
+    @eq_check
+    @revive
+    @sdf_check
+    @gds_check
+    def run(self):
+        '''
+        Force to request the ALIGNED state if no one use the suspensions.
+        '''
+        # 1. Force to aligne the suspension for Type-C
+        someone_use = []
+        aligned_optics = ['MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2','OSTM']
+        for opt in aligned_optics:
+            if nodes['VIS_'+opt]!='ALIGNED':
+                if opt in unused_optics():
+                    nodes['VIS_'+opt]='ALIGNED' 
+            if is_used(opt):
+                someone_use += [opt]                
+        return True
 
 class ALL_ALIGNED(GuardState):
     ''' Request the ALIGNED state for all suspensions.
@@ -436,5 +461,6 @@ edges = [
     ('INIT','IDLING'),        
     ('EARTHQUAKE','IDLING'),
     ('IDLING','ALL_ALIGNED'),
-    ('INIT','XARM_READY'),
+    ('ALIGN_IO','ALIGN_XARM'),
+    ('ALL_SAFE','ALIGN_IO'),
 ]
