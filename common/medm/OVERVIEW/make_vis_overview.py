@@ -159,10 +159,10 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
     OPTIC = system.upper()
     if sustype == 'typea':
         macroname = '{common}/medm/macro/vis{optic}t_overview_macro.txt'.format(common=common,optic=optic)
-        ctrladl = '{common}/medm/{sustype}/VIS_{SUSTYPE}_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     elif sustype=='typeb':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
-        ctrladl = '{common}/medm/{sustype}/VIS_CUST_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl = '{common}/medm/VIS_IP_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     elif sustype=='typebp':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
         ctrladl = '{common}/medm/{sustype}/VIS_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
@@ -236,7 +236,7 @@ if __name__=='__main__':
               'OMMT1':[['VISOMMT1',80]],
               'OMMT2':[['VISOMMT2',81]],
               'OSTM':[['VISOSTM',82]],
-              'TMSX':[['VISTMSX',117]],
+              'TMSX':[['VISTMSX',113]],
               'TMSY':[['VISTMSY',122]],              
     }
     sus_types = {'TypeA':['ETMX','ETMY','ITMX','ITMY'],

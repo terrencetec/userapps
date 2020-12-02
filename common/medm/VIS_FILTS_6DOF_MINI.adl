@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/3DOF_FILTER_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS_6DOF_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=1447
-		y=638
+		x=1054
+		y=663
 		width=238
 		height=164
 	}
@@ -90,13 +90,13 @@ display {
 "related display" {
 	object {
 		x=91
-		y=57
+		y=18
 		width=51
-		height=50
+		height=100
 	}
 	display[0] {
-		name="./typec/VIS_CUST_TYPEC_TM_$(FUNC).adl"
-		args="OPTIC=$(OPTIC),FEC=$(FEC),USERAPPS=/opt/rtcds/userapps/release,userapps=/opt/rtcds/userapps/release,SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),optic=$(optic),FEC=$(FEC)"
+		name="VIS_FILTS_6DOF.adl"
+		args="USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=IP,FUNC=BLEND,FUNCTION=BLEND,DOF1=LVDTL,DOF2=LVDTT,DOF3=LVDTY,DOF4=ACCL,DOF5=ACCT,DOF6=ACCY"
 	}
 	clr=14
 	bclr=25
@@ -106,12 +106,12 @@ display {
 "text update" {
 	object {
 		x=102
-		y=58
+		y=19
 		width=40
 		height=15
 	}
 	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF1)_OUTPUT"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -123,12 +123,12 @@ display {
 "text update" {
 	object {
 		x=102
-		y=75
+		y=36
 		width=40
 		height=15
 	}
 	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF2)_OUTPUT"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -140,12 +140,12 @@ display {
 "text update" {
 	object {
 		x=102
-		y=92
+		y=53
 		width=40
 		height=15
 	}
 	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF3)_OUTPUT"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -157,7 +157,7 @@ display {
 rectangle {
 	object {
 		x=91
-		y=58
+		y=19
 		width=10
 		height=15
 	}
@@ -172,7 +172,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=59
+		y=20
 		width=8
 		height=13
 	}
@@ -187,7 +187,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=59
+		y=20
 		width=8
 		height=13
 	}
@@ -198,15 +198,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF1)_SW1R"
-		chanB="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF1)_SW2R"
-		chanC="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF1)_GAIN"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_GAIN"
 	}
 }
 rectangle {
 	object {
 		x=91
-		y=75
+		y=36
 		width=10
 		height=15
 	}
@@ -221,7 +221,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=76
+		y=37
 		width=8
 		height=13
 	}
@@ -236,7 +236,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=76
+		y=37
 		width=8
 		height=13
 	}
@@ -247,15 +247,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF2)_SW1R"
-		chanB="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF2)_SW2R"
-		chanC="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF2)_GAIN"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_GAIN"
 	}
 }
 rectangle {
 	object {
 		x=91
-		y=92
+		y=53
 		width=10
 		height=15
 	}
@@ -270,7 +270,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=93
+		y=54
 		width=8
 		height=13
 	}
@@ -285,7 +285,7 @@ rectangle {
 rectangle {
 	object {
 		x=92
-		y=93
+		y=54
 		width=8
 		height=13
 	}
@@ -296,15 +296,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF3)_SW1R"
-		chanB="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF3)_SW2R"
-		chanC="$(IFO):VIS-$(OPTIC)_TM_$(FUNC)_$(DOF3)_GAIN"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_GAIN"
 	}
 }
 text {
 	object {
 		x=74
-		y=58
+		y=19
 		width=15
 		height=15
 	}
@@ -317,7 +317,7 @@ text {
 text {
 	object {
 		x=74
-		y=75
+		y=36
 		width=15
 		height=15
 	}
@@ -330,7 +330,7 @@ text {
 text {
 	object {
 		x=74
-		y=92
+		y=53
 		width=15
 		height=15
 	}
@@ -343,7 +343,7 @@ text {
 text {
 	object {
 		x=88
-		y=108
+		y=121
 		width=60
 		height=15
 	}
@@ -352,4 +352,241 @@ text {
 	}
 	textix="$(FUNC)"
 	align="horiz. centered"
+}
+"text update" {
+	object {
+		x=102
+		y=69
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=102
+		y=86
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF5)_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=102
+		y=103
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF6)_OUTPUT"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	format="truncated"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=91
+		y=69
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="l"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=70
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		chan="a"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=70
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_GAIN"
+	}
+}
+rectangle {
+	object {
+		x=91
+		y=86
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="l"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=87
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		chan="a"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=87
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF5)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF5)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF5)_GAIN"
+	}
+}
+rectangle {
+	object {
+		x=91
+		y=103
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="l"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=104
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=20
+		width=3
+	}
+	"dynamic attribute" {
+		chan="a"
+	}
+}
+rectangle {
+	object {
+		x=92
+		y=104
+		width=8
+		height=13
+	}
+	"basic attribute" {
+		clr=16
+		width=3
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="(A&4)&&(B&1024)&&(C!=0)"
+		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF6)_SW1R"
+		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF6)_SW2R"
+		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF6)_GAIN"
+	}
+}
+text {
+	object {
+		x=74
+		y=69
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(DOF4)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=74
+		y=86
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(DOF5)"
+	align="horiz. right"
+}
+text {
+	object {
+		x=74
+		y=103
+		width=15
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="$(DOF6)"
+	align="horiz. right"
 }

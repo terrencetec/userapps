@@ -1,20 +1,20 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_TYPEC_OVERVIEW.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_TOWER_OVERVIEW.adl"
 	version=030109
 }
 display {
 	object {
-		x=330
-		y=533
-		width=1322
-		height=358
+		x=360
+		y=53
+		width=1371
+		height=955
 	}
-	clr=52
-	bclr=52
+	clr=14
+	bclr=4
 	cmap=""
 	gridSpacing=5
-	gridOn=1
+	gridOn=0
 	snapToGrid=0
 }
 "color map" {
@@ -87,64 +87,13 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=0
-		y=0
-		width=1941
-		height=23
-	}
-	"basic attribute" {
-		clr=14
-	}
-}
-text {
-	object {
-		x=45
-		y=2
-		width=209
-		height=16
-	}
-	"basic attribute" {
-		clr=30
-	}
-	textix="$(IFO) $(OPTIC) SUSPENSION"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=15
-		y=2
-		width=44
-		height=16
-	}
-	"basic attribute" {
-		clr=30
-	}
-	textix="$(IFO)"
-}
-"text update" {
-	object {
-		x=282
-		y=2
-		width=205
-		height=16
-	}
-	monitor {
-		chan="$(IFO):FEC-$(FEC)_TIME_STRING"
-		clr=30
-		bclr=14
-	}
-	limits {
-	}
-}
 composite {
 	object {
-		x=12
-		y=55
-		width=1300
-		height=260
+		x=136
+		y=244
+		width=74
+		height=50
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_TM_OVERVIEW.adl;IFO=$(IFO),OPTIC=$(OPTIC)"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_IP_OVERVIEW.adl;USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),IFO=$(IFO),OPTIC=$(OPTIC)"
 }
