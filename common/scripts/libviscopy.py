@@ -15,19 +15,19 @@ import shutil
 
 ### Source file path
 # /opt/rtcds/kamioka/k1/chans/K1(optics).txt
-chans_src_fullpath = '/opt/rtcds/kamioka/k1/chans/K1VIS%s.txt'
+foton_src_fullpath = '/opt/rtcds/kamioka/k1/chans/K1VIS%s.txt'
 
 # /opt/rtcds/kamioka/k1/target/k1vis(optics)/k1vis(optics)epics/burt/'
 # aligned.snap, misaligned.snap, safe.snap
-foton_src_dir = '/opt/rtcds/kamioka/k1/target/k1vis%s/k1vis%sepics/burt/'
-aligned_src_fullpath = foton_src_dir + 'aligned.snap'
-misaligned_src_fullpath = foton_src_dir + 'misaligned.snap'
-safe_src_fullpath = foton_src_dir + 'safe.snap'
+snap_src_dir = '/opt/rtcds/kamioka/k1/target/k1vis%s/k1vis%sepics/burt/'
+aligned_src_fullpath = snap_src_dir + 'aligned.snap'
+misaligned_src_fullpath = snap_src_dir + 'misaligned.snap'
+safe_src_fullpath = snap_src_dir + 'safe.snap'
 
 ### Dist directory
 dst_fullpath = '/opt/rtcds/userapps/release/vis/k1/'
-chans_dst_fullpath = dst_fullpath + 'snapfiles/'
-foton_dst_fullpath = dst_fullpath + 'fotonfiles/k1vis%s/'
+snap_dst_fullpath = dst_fullpath + 'snapfiles/k1vis%s/'
+foton_dst_fullpath = dst_fullpath + 'fotonfiles/'
 
 '''
     Common Function
@@ -49,18 +49,21 @@ def common_copying_to_userapps(src, dst):
 '''
     Copying the chans file to userapps directory
 '''
-def chans_copying_to_userapps(optics):
-    print('Start chans file copy')
-    src = chans_src_fullpath % optics.upper()
-    dst = chans_dst_fullpath
+def foton_copying_to_userapps(optics):
+    print('Start snap file copy')
+    src = foton_src_fullpath % optics.upper()
+    dst = foton_dst_fullpath
+    print(src)
+    print(dst)
+    #exit()    
     return common_copying_to_userapps(src, dst)
 
 '''
     Copying the foton files to userapps directory
 '''
-def foton_copying_to_userapps(optics):
+def snap_copying_to_userapps(optics):
     print('Start foton file copy')
-    dst = foton_dst_fullpath % optics.lower()
+    dst = snap_dst_fullpath % optics.lower()
     if os.path.isdir(dst) == False:
         print('mkdir ' + dst)
         os.mkdir(dst)
@@ -83,10 +86,10 @@ def foton_copying_to_userapps(optics):
     return True
 
 '''
-    Copying the chans and foton files to userapps directory
+    Copying the snap and foton files to userapps directory
 '''
-def chans_foton_copying_to_userapps(optics):
-    if chans_copying_to_userapps(optics) == False:
+def snap_foton_copying_to_userapps(optics):
+    if snap_copying_to_userapps(optics) == False:
         return False
     
     if foton_copying_to_userapps(optics) == False:
@@ -94,11 +97,11 @@ def chans_foton_copying_to_userapps(optics):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print('Chans and Foton files copy to userapps.')
+        print('Snap and Foton files copy to userapps.')
         print('$ libviscopy [optics]')
         print(' optics: etmxp or ETMXP...')
         sys.exit(1)
 
     optics = sys.argv[1]
     print('optics', optics)
-    chans_foton_copying_to_userapps(optics)
+    snap_foton_copying_to_userapps(optics)
