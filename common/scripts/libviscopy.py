@@ -96,18 +96,9 @@ def snap_foton_copying_to_userapps(optics):
         return False
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print('Snap and Foton files copy to userapps.')
-        print('$ libviscopy [optics]')
-        print(' optics: etmxp or ETMXP...')
-        sys.exit(1)
-
-    optics = sys.argv[1]
-    print('optics', optics)
     sys.path.append('/opt/rtcds/userapps/release/sys/common/guardian')
     import cdslib
     model_names = [model.name for model in list(cdslib.get_all_models())]
     vismodel_names = filter(lambda x:'vis' in x or 'modal' in x, model_names)
     for optics in vismodel_names:
-        print(optics)
         snap_foton_copying_to_userapps(optics)
