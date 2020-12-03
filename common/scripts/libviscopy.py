@@ -15,18 +15,18 @@ import shutil
 
 ### Source file path
 # /opt/rtcds/kamioka/k1/chans/K1(optics).txt
-foton_src_fullpath = '/opt/rtcds/kamioka/k1/chans/K1VIS%s.txt'
+foton_src_fullpath = '/opt/rtcds/kamioka/k1/chans/K1%s.txt'
 
-# /opt/rtcds/kamioka/k1/target/k1vis(optics)/k1vis(optics)epics/burt/'
+# /opt/rtcds/kamioka/k1/target/k1(optics)/k1(optics)epics/burt/'
 # aligned.snap, misaligned.snap, safe.snap
-snap_src_dir = '/opt/rtcds/kamioka/k1/target/k1vis%s/k1vis%sepics/burt/'
+snap_src_dir = '/opt/rtcds/kamioka/k1/target/k1%s/k1%sepics/burt/'
 aligned_src_fullpath = snap_src_dir + 'aligned.snap'
 misaligned_src_fullpath = snap_src_dir + 'misaligned.snap'
 safe_src_fullpath = snap_src_dir + 'safe.snap'
 
 ### Dist directory
 dst_fullpath = '/opt/rtcds/userapps/release/vis/k1/'
-snap_dst_fullpath = dst_fullpath + 'snapfiles/k1vis%s/'
+snap_dst_fullpath = dst_fullpath + 'snapfiles/k1%s/'
 foton_dst_fullpath = dst_fullpath + 'fotonfiles/'
 
 '''
@@ -104,4 +104,10 @@ if __name__ == "__main__":
 
     optics = sys.argv[1]
     print('optics', optics)
-    snap_foton_copying_to_userapps(optics)
+    sys.path.append('/opt/rtcds/userapps/release/sys/common/guardian')
+    import cdslib
+    model_names = [model.name for model in list(cdslib.get_all_models())]
+    vismodel_names = filter(lambda x:'vis' in x or 'modal' in x, model_names)
+    for optics in vismodel_names:
+        print(optics)
+        snap_foton_copying_to_userapps(optics)
