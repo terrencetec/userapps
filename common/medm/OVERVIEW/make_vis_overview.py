@@ -151,7 +151,7 @@ def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT'):
 
 
 def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
-    width = 440
+    width = 445
     height = 25
     sustype = sus_type_is(system).lower()
     SUSTYPE = sustype.upper()
