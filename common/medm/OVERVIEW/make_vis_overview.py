@@ -128,7 +128,7 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS)
     return txt,width,height
 
-def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT'):
+def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT',part='TWR'):
     width = 150
     height = 15
     subsys = subsys.lower()
@@ -144,9 +144,9 @@ def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM},PART={part},PICOOP={picoop},PICOOP={pico},PICOBF={picobf},
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM)
+    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM,part=part)
     return txt,width,height
 
 
@@ -234,10 +234,8 @@ def trip_mini(x,y,optic='ETMX'):
 
 
 if __name__=='__main__':
-    no_installed_date_model = ['VISETMXT','VISETMYT','VISITMXT','VISITMYT',
-                               'VISETMXMON','VISETMYMON','VISITMXMON','VISITMYMON',
-                               'MODALETMX','MODALETMY','MODALITMX','MODALITMY',
-                               'VISBSP','VISSRMP','VISSR2P','VISSR3P']
+    no_installed_date_model = ['VISETMXMON','VISETMYMON','VISITMXMON','VISITMYMON',
+                               'MODALETMX','MODALETMY','MODALITMX','MODALITMY']
     systems = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
                'PR2','PR3','MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2',
                'OSTM','TMSX','TMSY']
@@ -322,7 +320,11 @@ if __name__=='__main__':
                 else:
                     _system = system
                     pass
-                txt,w,h = gds_mini(x=width+w+5,y=height,fec=fec,subsys=model,system=_system)
+                if 'T'==model[-1]:
+                    part = 'TWR'
+                else:
+                    part = 'PAY'
+                txt,w,h = gds_mini(x=width+w+5,y=height,fec=fec,subsys=model,system=_system,part=part)
                 contents += txt                
                 height += h+2
             try:

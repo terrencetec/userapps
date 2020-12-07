@@ -5,7 +5,7 @@ file {
 }
 display {
 	object {
-		x=1310
+		x=1404
 		y=511
 		width=339
 		height=117
@@ -308,10 +308,176 @@ rectangle {
 		height=15
 	}
 	control {
-		chan="K1:VIS-$(SYSTEM)_INSTALLED_DATE"
+		chan="K1:VIS-$(SYSTEM)_INSTALLED_DATE_$(PART)"
 		clr=60
 		bclr=14
 	}
 	limits {
+	}
+}
+rectangle {
+	object {
+		x=279
+		y=43
+		width=25
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+rectangle {
+	object {
+		x=279
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:VIS-$(SYSTEM)_PICO_OP_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=284
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:VIS-$(SYSTEM)_PICO_IM_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=289
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:VIS-$(SYSTEM)_PICO_BF_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=294
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:VIS-$(SYSTEM)_STEP_GAS_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=299
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:VIS-$(SYSTEM)_STEP_IP_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=279
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A=1"
+		chan="K1:VIS-$(SYSTEM)_PICO_OP_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=284
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A=1"
+		chan="K1:VIS-$(SYSTEM)_PICO_IM_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=289
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A=1"
+		chan="K1:VIS-$(SYSTEM)_PICO_BF_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=294
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A=1"
+		chan="K1:VIS-$(SYSTEM)_STEP_GAS_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=299
+		y=43
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:VIS-$(SYSTEM)_STEP_IP_STATUS"
 	}
 }
