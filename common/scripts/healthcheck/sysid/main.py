@@ -1,6 +1,5 @@
 import subprocess
 
-
 fname = 'OSTM_TM_H1_EXC.xml'
 optic,stage,dof,prefix = fname.replace('.xml','').split('_')
 print(optic,stage,dof,prefix)
@@ -35,3 +34,5 @@ for _optic in optics:
             print('{0} -> {1}'.format(fname,_fname))
             subprocess.run(cmd,shell=True,check=True)
             huge(_fname)        
+
+            
