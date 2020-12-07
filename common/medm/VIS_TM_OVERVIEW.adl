@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_TM_OVERVIEW.adl"
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/VIS_TM_OVERVIEW.adl"
 	version=030109
 }
 display {
@@ -2365,7 +2365,7 @@ composite {
 		height=59
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_4X4_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=TM,FUNC=EUL2OSEM,FUNCTION=EULER2OSEM_MTRX,FROM1=SEG1,FROM2=SEG2,FROM3=SEG3,FROM4=SEG4,TO1=PIT,TO2=YAW,TO3=SUM,TO4=CRS"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_4X4_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=TM,FUNC=EUL2OSEM,FUNCTION=EULER2OSEM_MTRX,FROM1=L,FROM2=P,FROM3=Y,FROM4=NONE,TO1=COIL1,TO2=COIL2,TO3=COIL3,TO4=COIL4"
 }
 composite {
 	object {
@@ -3404,5 +3404,20 @@ composite {
 				chan="l"
 			}
 		}
+	}
+}
+rectangle {
+	object {
+		x=781
+		y=64
+		width=145
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="K1:FEC-$(FEC)_STATE_WORD"
 	}
 }
