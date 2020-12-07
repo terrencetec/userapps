@@ -1,3 +1,5 @@
+
+
 picoDict = {
     "MCE"      :"10.68.150.22",
     "MCI"      :"10.68.150.3",
@@ -63,3 +65,7 @@ stepperDict = {
     "TEST_GAS"  :"10.68.150.63",
     "TESTSR_IP" :"10.68.150.63"
 }
+
+optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM',
+          'PR2','PR3','MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2',
+          'OSTM','TMSX','TMSY']
