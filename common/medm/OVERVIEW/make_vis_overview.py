@@ -181,14 +181,22 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)        
-    elif sustype=='typec':
+    elif sustype=='typec-imc':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
         ctrladl = '{common}/medm/VIS_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE)
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)        
+        ctrladl6 = '{common}/medm/VIS_IMC_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+    elif sustype=='typec-omc':
+        macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
+        ctrladl = '{common}/medm/VIS_{SUSTYPE}_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE)
+        ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl6 = '{common}/medm/VIS_OMC_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)                
     elif sustype=='typetms':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
         ctrladl = '{common}/medm/TMS/VIS_TMS_OVERVIEW.adl'.format(common=common)
@@ -265,11 +273,12 @@ if __name__=='__main__':
     sus_types = {'TypeA':['ETMX','ETMY','ITMX','ITMY'],
                 'TypeB':['BS','SR2','SR3','SRM'],
                 'TypeBp':['PR2','PR3','PRM'],
-                'TypeC':['MCI','MCO','MCE','IMMT1','IMMT2','OSTM','OMMT1','OMMT2'],
+                'TypeC-IMC':['MCI','MCO','MCE','IMMT1','IMMT2'],
+                'TypeC-OMC':['OSTM','OMMT1','OMMT2'],                 
                 'TypeTMS':['TMSX','TMSY']}
     
     def sus_type_is(optic):
-        for sus_type in ['TypeA','TypeB','TypeBp','TypeC','TypeTMS']:
+        for sus_type in ['TypeA','TypeB','TypeBp','TypeC-IMC','TypeC-OMC','TypeTMS']:
             if optic in sus_types[sus_type]:
                 return sus_type
             else:
@@ -285,8 +294,10 @@ if __name__=='__main__':
             adl = 'tripped_microB.adl'
         elif sus_type == 'TypeBp':
             adl = 'tripped_microBp.adl'            
-        elif sus_type == 'TypeC':
-            adl = 'tripped_microC.adl'            
+        elif sus_type == 'TypeC-IMC':
+            adl = 'tripped_microC.adl'
+        elif sus_type == 'TypeC-OMC':
+            adl = 'tripped_microC.adl'                        
         elif sus_type == 'TypeTMS':
             adl = 'tripped_microT.adl'            
         else:
