@@ -48,8 +48,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4592"
 	Extents			[1886.0, 920.0]
-	ZoomFactor		[1.25]
-	Offset			[-133.29455537410934, 84.098376880443254]
+	ZoomFactor		[1.5]
+	Offset			[-396.66774546590852, -298.02899850523249]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -82,9 +82,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 08 13:26:07 2020"
-  RTWModifiedTimeStamp	  529334756
-  ModelVersionFormat	  "1.%<AutoIncrement:280>"
+  LastModifiedDate	  "Tue Dec 08 13:43:46 2020"
+  RTWModifiedTimeStamp	  529335800
+  ModelVersionFormat	  "1.%<AutoIncrement:281>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1048,15 +1048,15 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "91"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5852"
+    SIDHighWatermark	    "5962"
     Block {
       BlockType		      SubSystem
       Name		      "BFMASTER"
       SID		      "4592"
-      Ports		      [31, 22]
-      Position		      [655, -48, 835, 878]
+      Ports		      [37, 22]
+      Position		      [655, -36, 835, 896]
       ZOrder		      5714
       BackgroundColor	      "[0.737255, 0.647059, 1.000000]"
       RequestExecContextInheritance off
@@ -1075,7 +1075,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "LVDT_GAS_In"
@@ -1401,6 +1401,66 @@ Library {
 	  ZOrder		  7296
 	  BackgroundColor	  "yellow"
 	  Port			  "31"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLDAMP_LONG"
+	  SID			  "5853"
+	  Position		  [-275, -115, -255, -105]
+	  ZOrder		  7298
+	  BackgroundColor	  "yellow"
+	  Port			  "32"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLDAMP_PIT"
+	  SID			  "5854"
+	  Position		  [-275, -90, -255, -80]
+	  ZOrder		  7297
+	  BackgroundColor	  "yellow"
+	  Port			  "33"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "OLDAMP_YAW"
+	  SID			  "5855"
+	  Position		  [-275, -65, -255, -55]
+	  ZOrder		  7299
+	  BackgroundColor	  "yellow"
+	  Port			  "34"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "ISC_LONG"
+	  SID			  "5856"
+	  Position		  [-275, -245, -255, -235]
+	  ZOrder		  7305
+	  BackgroundColor	  "yellow"
+	  Port			  "35"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "ISC_PIT"
+	  SID			  "5857"
+	  Position		  [-275, -210, -255, -200]
+	  ZOrder		  7304
+	  BackgroundColor	  "yellow"
+	  Port			  "36"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "ISC_YAW"
+	  SID			  "5858"
+	  Position		  [-275, -175, -255, -165]
+	  ZOrder		  7306
+	  BackgroundColor	  "yellow"
+	  Port			  "37"
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -6300,6 +6360,911 @@ Library {
 	  }
 	}
 	Block {
+	  BlockType		  SubSystem
+	  Name			  "DRIVEALIGN"
+	  SID			  "5859"
+	  Ports			  [3, 3]
+	  Position		  [180, -126, 280, -64]
+	  ZOrder		  7302
+	  BackgroundColor	  "green"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "DRIVEALIGN"
+	    Location		    [5760, 0, 7680, 1080]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "LONG_In"
+	      SID		      "5932"
+	      Position		      [30, 43, 60, 57]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "PITCH_In"
+	      SID		      "5933"
+	      Position		      [260, 43, 290, 57]
+	      ZOrder		      -2
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "YAW_In"
+	      SID		      "5934"
+	      Position		      [470, 43, 500, 57]
+	      ZOrder		      -3
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L2L"
+	      SID		      "5935"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [155, 133, 225, 157]
+	      ZOrder		      -4
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L2P"
+	      SID		      "5936"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [155, 263, 225, 287]
+	      ZOrder		      -5
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L2Y"
+	      SID		      "5937"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [155, 393, 225, 417]
+	      ZOrder		      -6
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_IN"
+	      SID		      "5938"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [170, 75, 210, 95]
+	      ZOrder		      -7
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_INMON"
+	      SID		      "5939"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [80, 40, 120, 60]
+	      ZOrder		      -8
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_OUT"
+	      SID		      "5940"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [805, 110, 845, 130]
+	      ZOrder		      -9
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_OUTMON"
+	      SID		      "5941"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [805, 165, 845, 185]
+	      ZOrder		      -10
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P2L"
+	      SID		      "5942"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [385, 163, 455, 187]
+	      ZOrder		      -11
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P2P"
+	      SID		      "5943"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [385, 293, 455, 317]
+	      ZOrder		      -12
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P2Y"
+	      SID		      "5944"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [385, 423, 455, 447]
+	      ZOrder		      -13
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_IN"
+	      SID		      "5945"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [400, 80, 440, 100]
+	      ZOrder		      -14
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_INMON"
+	      SID		      "5946"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [310, 40, 350, 60]
+	      ZOrder		      -15
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_OUT"
+	      SID		      "5947"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [805, 235, 845, 255]
+	      ZOrder		      -16
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_OUTMON"
+	      SID		      "5948"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [805, 295, 845, 315]
+	      ZOrder		      -17
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "5949"
+	      Ports		      [3, 1]
+	      Position		      [720, 133, 740, 217]
+	      ZOrder		      -18
+	      ShowName		      off
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      SID		      "5950"
+	      Ports		      [3, 1]
+	      Position		      [720, 263, 740, 347]
+	      ZOrder		      -19
+	      ShowName		      off
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum2"
+	      SID		      "5951"
+	      Ports		      [3, 1]
+	      Position		      [720, 393, 740, 477]
+	      ZOrder		      -20
+	      ShowName		      off
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y2L"
+	      SID		      "5952"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [595, 193, 665, 217]
+	      ZOrder		      -21
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y2P"
+	      SID		      "5953"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [595, 323, 665, 347]
+	      ZOrder		      -22
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y2Y"
+	      SID		      "5954"
+	      Tag		      "cdsFilt"
+	      Description	      "Purpose:                                                                                    "
+	      "                                                                                                               "
+	      "                               \nStandard CDS IIR filter module.                                               "
+	      "                                                                                                               "
+	      "                                             \n                                                                "
+	      "                                                                                                               "
+	      "                                                           \nOperation:                                        "
+	      "                                                                                                               "
+	      "                                                                         \nConsists of 10 second order section "
+	      "IIR filters, plus a ramped gain stage. In FE code, also provides pre-defined test points and excitation channel"
+	      " inputs. The filter coefficients are defined in the LIGO system using the 'foton' tool.\n                      "
+	      "                                                                                                               "
+	      "                                                                                                     \nUsage:  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "    \nName the part with the desired filter module name.                                                       "
+	      "                                                                                                               "
+	      "                  "
+	      Ports		      [1, 1]
+	      Position		      [595, 453, 665, 477]
+	      ZOrder		      -23
+	      BackgroundColor	      "darkGreen"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsFilt/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_IN"
+	      SID		      "5955"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [610, 80, 650, 100]
+	      ZOrder		      -24
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_INMON"
+	      SID		      "5956"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [520, 40, 560, 60]
+	      ZOrder		      -25
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_OUT"
+	      SID		      "5957"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [805, 360, 845, 380]
+	      ZOrder		      -26
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_OUTMON"
+	      SID		      "5958"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [805, 425, 845, 445]
+	      ZOrder		      -27
+	      BackgroundColor	      "[0.686275, 0.372549, 0.313725]"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "LONG_Out"
+	      SID		      "5959"
+	      Position		      [905, 168, 935, 182]
+	      ZOrder		      -28
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "PITCH_Out"
+	      SID		      "5960"
+	      Position		      [910, 298, 940, 312]
+	      ZOrder		      -29
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "YAW_Out"
+	      SID		      "5961"
+	      Position		      [905, 428, 935, 442]
+	      ZOrder		      -30
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "YAW_In"
+	      SrcPort		      1
+	      DstBlock		      "Y_INMON"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "PITCH_In"
+	      SrcPort		      1
+	      DstBlock		      "P_INMON"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "LONG_In"
+	      SrcPort		      1
+	      DstBlock		      "L_INMON"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Sum2"
+	      SrcPort		      1
+	      Points		      [35, 0]
+	      Branch {
+		ZOrder			5
+		DstBlock		"Y_OUTMON"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			6
+		Points			[0, -65]
+		DstBlock		"Y_OUT"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      Points		      [35, 0]
+	      Branch {
+		ZOrder			8
+		DstBlock		"P_OUTMON"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			9
+		Points			[0, -60]
+		DstBlock		"P_OUT"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      Points		      [35, 0]
+	      Branch {
+		ZOrder			11
+		DstBlock		"L_OUTMON"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			12
+		Points			[0, -55]
+		DstBlock		"L_OUT"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "L2Y"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "P2Y"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "Y2Y"
+	      SrcPort		      1
+	      DstBlock		      "Sum2"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "L2P"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "P2P"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "Y2P"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Y2L"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "P2L"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "L2L"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "L_INMON"
+	      SrcPort		      1
+	      Points		      [5, 0; 0, 35]
+	      Branch {
+		ZOrder			23
+		Points			[0, 60]
+		Branch {
+		  ZOrder		  24
+		  DstBlock		  "L2L"
+		  DstPort		  1
+		}
+		Branch {
+		  ZOrder		  25
+		  Points		  [0, 130]
+		  Branch {
+		    ZOrder		    26
+		    DstBlock		    "L2P"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    27
+		    Points		    [0, 130]
+		    DstBlock		    "L2Y"
+		    DstPort		    1
+		  }
+		}
+	      }
+	      Branch {
+		ZOrder			28
+		DstBlock		"L_IN"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "P_INMON"
+	      SrcPort		      1
+	      Points		      [5, 0; 0, 40]
+	      Branch {
+		ZOrder			30
+		Points			[0, 85]
+		Branch {
+		  ZOrder		  31
+		  Points		  [0, 130]
+		  Branch {
+		    ZOrder		    32
+		    DstBlock		    "P2P"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    33
+		    Points		    [0, 130]
+		    DstBlock		    "P2Y"
+		    DstPort		    1
+		  }
+		}
+		Branch {
+		  ZOrder		  34
+		  DstBlock		  "P2L"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		ZOrder			35
+		DstBlock		"P_IN"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      36
+	      SrcBlock		      "Y_INMON"
+	      SrcPort		      1
+	      Points		      [5, 0; 0, 40]
+	      Branch {
+		ZOrder			37
+		Points			[0, 115]
+		Branch {
+		  ZOrder		  38
+		  Points		  [0, 130]
+		  Branch {
+		    ZOrder		    39
+		    DstBlock		    "Y2P"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    40
+		    Points		    [0, 130]
+		    DstBlock		    "Y2Y"
+		    DstPort		    1
+		  }
+		}
+		Branch {
+		  ZOrder		  41
+		  DstBlock		  "Y2L"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		ZOrder			42
+		DstBlock		"Y_IN"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      43
+	      SrcBlock		      "L_OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "LONG_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      44
+	      SrcBlock		      "P_OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "PITCH_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      45
+	      SrcBlock		      "Y_OUTMON"
+	      SrcPort		      1
+	      DstBlock		      "YAW_Out"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "5962"
+	      Name		      "This could/should be replaced by\nthe CDS_PART cdsFiltMuxMatrix,\nbut I'm not sure how that works "
+	      "\nin MEDM land just yet \n-- JSK Feb 2011"
+	      Position		      [737, 24, 888, 86]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      ZOrder		      -1
+	    }
+	  }
+	}
+	Block {
 	  BlockType		  Demux
 	  Name			  "Demux1"
 	  SID			  "4950"
@@ -6400,7 +7365,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From14"
 	  SID			  "4958"
-	  Position		  [735, 277, 865, 293]
+	  Position		  [735, 392, 865, 408]
 	  ZOrder		  4338
 	  BackgroundColor	  "magenta"
 	  ShowName		  off
@@ -6518,7 +7483,7 @@ Library {
 	  BlockType		  Goto
 	  Name			  "Goto13"
 	  SID			  "4969"
-	  Position		  [865, 47, 975, 63]
+	  Position		  [815, 47, 925, 63]
 	  ZOrder		  4630
 	  BackgroundColor	  "[0.666667, 0.666667, 1.000000]"
 	  ShowName		  off
@@ -6563,34 +7528,813 @@ Library {
 	}
 	Block {
 	  BlockType		  Ground
-	  Name			  "Ground1"
-	  SID			  "4974"
-	  Position		  [955, 245, 975, 255]
-	  ZOrder		  4581
-	  ShowName		  off
-	}
-	Block {
-	  BlockType		  Ground
 	  Name			  "Ground15"
 	  SID			  "4975"
 	  Position		  [-275, 155, -255, 175]
 	  ZOrder		  4315
 	}
 	Block {
-	  BlockType		  Ground
-	  Name			  "Ground2"
-	  SID			  "4976"
-	  Position		  [955, 260, 975, 270]
-	  ZOrder		  4582
-	  ShowName		  off
-	}
-	Block {
-	  BlockType		  Ground
-	  Name			  "Ground3"
-	  SID			  "4977"
-	  Position		  [955, 275, 975, 285]
-	  ZOrder		  4583
-	  ShowName		  off
+	  BlockType		  SubSystem
+	  Name			  "LOCK"
+	  SID			  "5860"
+	  Ports			  [3, 4]
+	  Position		  [-180, -259, -25, -156]
+	  ZOrder		  7303
+	  BackgroundColor	  "lightBlue"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "LOCK"
+	    Location		    [2187, 53, 3285, 1089]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "LONG_In"
+	      SID		      "5867"
+	      Position		      [60, 58, 90, 72]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "PITCH_In"
+	      SID		      "5868"
+	      Position		      [60, 188, 90, 202]
+	      ZOrder		      -2
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "YAW_In"
+	      SID		      "5869"
+	      Position		      [60, 318, 90, 332]
+	      ZOrder		      -3
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground1"
+	      SID		      "5870"
+	      Position		      [110, 88, 135, 102]
+	      ZOrder		      1
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground2"
+	      SID		      "5871"
+	      Position		      [110, 218, 135, 232]
+	      ZOrder		      2
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground3"
+	      SID		      "5872"
+	      Position		      [110, 348, 135, 362]
+	      ZOrder		      3
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground4"
+	      SID		      "5873"
+	      Position		      [110, 203, 135, 217]
+	      ZOrder		      -4
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground5"
+	      SID		      "5874"
+	      Position		      [110, 333, 135, 347]
+	      ZOrder		      -5
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground6"
+	      SID		      "5875"
+	      Position		      [110, 73, 135, 87]
+	      ZOrder		      -6
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L"
+	      SID		      "5876"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [170, 56, 230, 104]
+	      ZOrder		      -7
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_GOOD"
+	      SID		      "5877"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [455, 59, 505, 81]
+	      ZOrder		      -8
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_NOW"
+	      SID		      "5878"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [360, 85, 405, 105]
+	      ZOrder		      -9
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_OK"
+	      SID		      "5879"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [585, 75, 630, 95]
+	      ZOrder		      -10
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator"
+	      SID		      "5880"
+	      Ports		      [2, 1]
+	      Position		      [535, 58, 555, 107]
+	      ZOrder		      -11
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator4"
+	      SID		      "5881"
+	      Ports		      [2, 1]
+	      Position		      [540, 188, 560, 237]
+	      ZOrder		      -12
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator5"
+	      SID		      "5882"
+	      Ports		      [2, 1]
+	      Position		      [540, 318, 560, 367]
+	      ZOrder		      -13
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P"
+	      SID		      "5883"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [170, 186, 230, 234]
+	      ZOrder		      -14
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_GOOD"
+	      SID		      "5884"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [460, 189, 510, 211]
+	      ZOrder		      -15
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_NOW"
+	      SID		      "5885"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [365, 215, 410, 235]
+	      ZOrder		      -16
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_OK"
+	      SID		      "5886"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [585, 205, 630, 225]
+	      ZOrder		      -17
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product"
+	      SID		      "5887"
+	      Ports		      [3, 1]
+	      Position		      [660, 16, 690, 414]
+	      ZOrder		      -18
+	      Inputs		      "3"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "STATE_OK"
+	      SID		      "5888"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [740, 205, 785, 225]
+	      ZOrder		      -19
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y"
+	      SID		      "5889"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [170, 316, 230, 364]
+	      ZOrder		      -20
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_GOOD"
+	      SID		      "5890"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [460, 319, 510, 341]
+	      ZOrder		      -21
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_NOW"
+	      SID		      "5891"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [365, 345, 410, 365]
+	      ZOrder		      -22
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_OK"
+	      SID		      "5892"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [585, 335, 630, 355]
+	      ZOrder		      -23
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "LOCK_STATE_Out"
+	      SID		      "5893"
+	      Position		      [830, 208, 860, 222]
+	      ZOrder		      -24
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "LONG_Out"
+	      SID		      "5894"
+	      Position		      [270, 63, 300, 77]
+	      ZOrder		      -25
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "PITCH_Out"
+	      SID		      "5895"
+	      Position		      [275, 193, 305, 207]
+	      ZOrder		      -26
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "YAW_Out"
+	      SID		      "5896"
+	      Position		      [275, 323, 305, 337]
+	      ZOrder		      -27
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Ground3"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Ground2"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "Ground1"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Ground6"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "L_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "L"
+	      SrcPort		      2
+	      DstBlock		      "L_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "L"
+	      SrcPort		      1
+	      DstBlock		      "LONG_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "LONG_In"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "P"
+	      SrcPort		      1
+	      DstBlock		      "PITCH_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "Ground4"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "PITCH_In"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "P_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "P"
+	      SrcPort		      2
+	      DstBlock		      "P_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "Ground5"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "YAW_In"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "Y_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "Y"
+	      SrcPort		      2
+	      DstBlock		      "Y_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "Y"
+	      SrcPort		      1
+	      DstBlock		      "YAW_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Operator"
+	      SrcPort		      1
+	      DstBlock		      "L_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "Operator4"
+	      SrcPort		      1
+	      DstBlock		      "P_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "Operator5"
+	      SrcPort		      1
+	      DstBlock		      "Y_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Product"
+	      SrcPort		      1
+	      DstBlock		      "STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "P_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "L_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      25
+	      SrcBlock		      "Y_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "LOCK_STATE_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "L_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      28
+	      SrcBlock		      "Y_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator5"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "P_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator4"
+	      DstPort		      2
+	    }
+	    Annotation {
+	      SID		      "5898"
+	      Name		      "#DAQ Channels\n\nL_IN1 2048"
+	      Position		      [377, 537, 480, 587]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      DropShadow	      on
+	      ZOrder		      -1
+	      FontSize		      14
+	    }
+	    Annotation {
+	      SID		      "5897"
+	      Name		      "1 (one) if OK\n0 (zero) if BAD"
+	      Position		      [726, 101, 793, 127]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      ZOrder		      -2
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -9187,6 +10931,817 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "OLDAMP"
+	  SID			  "5861"
+	  Ports			  [3, 4]
+	  Position		  [-180, -126, -30, -44]
+	  ZOrder		  7300
+	  BackgroundColor	  "orange"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "OLDAMP"
+	    Location		    [1911, 33, 3456, 1045]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "LONG_In"
+	      SID		      "5899"
+	      Position		      [50, 53, 80, 67]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "PITCH_In"
+	      SID		      "5900"
+	      Position		      [50, 148, 80, 162]
+	      ZOrder		      -5
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "YAW_In"
+	      SID		      "5901"
+	      Position		      [50, 243, 80, 257]
+	      ZOrder		      -6
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground1"
+	      SID		      "5902"
+	      Position		      [100, 83, 125, 97]
+	      ZOrder		      1
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground2"
+	      SID		      "5903"
+	      Position		      [95, 178, 120, 192]
+	      ZOrder		      2
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground3"
+	      SID		      "5904"
+	      Position		      [95, 273, 120, 287]
+	      ZOrder		      3
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground4"
+	      SID		      "5905"
+	      Position		      [95, 163, 120, 177]
+	      ZOrder		      -10
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground5"
+	      SID		      "5906"
+	      Position		      [95, 258, 120, 272]
+	      ZOrder		      -11
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Ground
+	      Name		      "Ground6"
+	      SID		      "5907"
+	      Position		      [100, 68, 125, 82]
+	      ZOrder		      -12
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L"
+	      SID		      "5908"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [160, 51, 220, 99]
+	      ZOrder		      -13
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_GOOD"
+	      SID		      "5909"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [445, 54, 495, 76]
+	      ZOrder		      -14
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_NOW"
+	      SID		      "5910"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [345, 80, 390, 100]
+	      ZOrder		      -15
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "L_STATE_OK"
+	      SID		      "5911"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [580, 70, 625, 90]
+	      ZOrder		      -16
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator"
+	      SID		      "5912"
+	      Ports		      [2, 1]
+	      Position		      [525, 53, 545, 102]
+	      ZOrder		      -17
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator4"
+	      SID		      "5913"
+	      Ports		      [2, 1]
+	      Position		      [525, 148, 545, 197]
+	      ZOrder		      -21
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Operator5"
+	      SID		      "5914"
+	      Ports		      [2, 1]
+	      Position		      [525, 243, 545, 292]
+	      ZOrder		      -22
+	      ShowName		      off
+	      Operator		      "=="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P"
+	      SID		      "5915"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [155, 146, 215, 194]
+	      ZOrder		      -23
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_GOOD"
+	      SID		      "5916"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [445, 149, 495, 171]
+	      ZOrder		      -24
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_NOW"
+	      SID		      "5917"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [345, 175, 390, 195]
+	      ZOrder		      -25
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "P_STATE_OK"
+	      SID		      "5918"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [580, 165, 625, 185]
+	      ZOrder		      -26
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "Product"
+	      SID		      "5919"
+	      Ports		      [3, 1]
+	      Position		      [665, 35, 700, 315]
+	      ZOrder		      -27
+	      Inputs		      "3"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "STATE_OK"
+	      SID		      "5920"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [795, 165, 840, 185]
+	      ZOrder		      -32
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y"
+	      SID		      "5921"
+	      Tag		      "cdsFiltCtrl"
+	      Description	      "cdsFiltCntrl is the standard IIR filter module (exactly the same as cdsFilt) but with added "
+	      "control data output 'Ctrl'. Filter module digital signal output appears on the first output, which is called 'V"
+	      "al'. 'Ctrl' output has a bit pattern encoding the state of filter's on/off switches (FM1 through FM10). The bit"
+	      " values are:\n                                                                                                 "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "       \nmodule 	hex	dec                                                                                       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "  \n-----------------------                                                                                    "
+	      "                                                                                                               "
+	      "                                                                                                            \nF"
+	      "M1	0x20                    32                                                                                  "
+	      "                                                                                                               "
+	      "                                                                                                       \nFM2	0x"
+	      "80                     128                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                                  \nFM3	0x200  "
+	      "                 512                                                                                           "
+	      "                                                                                                               "
+	      "                                                                                             \nFM4	0x800       "
+	      "            2048                                                                                               "
+	      "                                                                                                               "
+	      "                                                                                        \nFM5	0x2000           "
+	      "      8192                                                                                                     "
+	      "                                                                                                               "
+	      "                                                                                   \nFM6	0x8000                "
+	      " 32768                                                                                                         "
+	      "                                                                                                               "
+	      "                                                                              \nFM7	0x20000                1310"
+	      "72                                                                                                             "
+	      "                                                                                                               "
+	      "                                                                         \nFM8	0x80000                 524288  "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                                    \nFM9	0x200000               2097152       "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                               \nFM10	0x800000               8388608           "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                          \n                                                   "
+	      "                                                                                                               "
+	      "                                                                                                               "
+	      "                                                     \nThis bit data can be used to drive some other switches o"
+	      "r it can be output using a binary I/O module.                                                                  "
+	      "                                                                                                               "
+	      "                                                "
+	      Ports		      [3, 2]
+	      Position		      [155, 241, 215, 289]
+	      ZOrder		      -41
+	      BackgroundColor	      "darkGreen"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.9"
+	      SourceBlock	      "cdsFiltCtrl/IIR FM with control"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_GOOD"
+	      SID		      "5922"
+	      Tag		      "cdsEpicsIn"
+	      Description	      "Purpose:                                                                              \nCrea"
+	      "te an EPICS input channel connection to the FE realtime controls.                 \n                           "
+	      "                                                           \nOperation:                                        "
+	      "                                    \nOutputs value from an EPICS ai record. Value is floating point with a pre"
+	      "cision of 3..\n                                                                                      \nUsage:  "
+	      "                                                                              \nName the part with the desired "
+	      "EPICS channel name.                                    "
+	      Ports		      [0, 1]
+	      Position		      [445, 244, 495, 266]
+	      ZOrder		      -42
+	      BackgroundColor	      "green"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.3"
+	      SourceBlock	      "cdsEpicsIn/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_NOW"
+	      SID		      "5923"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [345, 270, 390, 290]
+	      ZOrder		      -43
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      NamePlacement	      "alternate"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_STATE_OK"
+	      SID		      "5924"
+	      Tag		      "cdsEpicsOutput"
+	      Description	      "Purpose:                                          \nOutput a FE signal to an EPICS channel. "
+	      "          \n                                                  \nOperation:                                     "
+	      "   \nTakes input value and passes it to EPICS record.  \n                                                  \nUs"
+	      "age:                                            \nName the part with the desired EPICS rrecord name."
+	      Ports		      [1, 1]
+	      Position		      [580, 260, 625, 280]
+	      ZOrder		      -44
+	      BackgroundColor	      "[1.000000, 0.600000, 0.600000]"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.2"
+	      SourceBlock	      "cdsEpicsOut/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "LONG_Out"
+	      SID		      "5925"
+	      Position		      [250, 58, 280, 72]
+	      ZOrder		      -45
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "PITCH_Out"
+	      SID		      "5926"
+	      Position		      [255, 153, 285, 167]
+	      ZOrder		      -49
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "YAW_Out"
+	      SID		      "5927"
+	      Position		      [255, 248, 285, 262]
+	      ZOrder		      -50
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "DAMP_STATE_Out"
+	      SID		      "5928"
+	      Position		      [890, 168, 920, 182]
+	      ZOrder		      -51
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Ground3"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Ground2"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "Ground1"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "P"
+	      SrcPort		      1
+	      DstBlock		      "PITCH_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "Y"
+	      SrcPort		      1
+	      DstBlock		      "YAW_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "Ground6"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "Ground4"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "Ground5"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "LONG_In"
+	      SrcPort		      1
+	      DstBlock		      "L"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "L"
+	      SrcPort		      1
+	      DstBlock		      "LONG_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "YAW_In"
+	      SrcPort		      1
+	      DstBlock		      "Y"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "PITCH_In"
+	      SrcPort		      1
+	      DstBlock		      "P"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "L_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "L"
+	      SrcPort		      2
+	      DstBlock		      "L_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "P_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "P"
+	      SrcPort		      2
+	      DstBlock		      "P_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "Y_STATE_GOOD"
+	      SrcPort		      1
+	      DstBlock		      "Operator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "Y"
+	      SrcPort		      2
+	      DstBlock		      "Y_STATE_NOW"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "Product"
+	      SrcPort		      1
+	      DstBlock		      "STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "Operator"
+	      SrcPort		      1
+	      DstBlock		      "L_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "Operator4"
+	      SrcPort		      1
+	      DstBlock		      "P_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "Operator5"
+	      SrcPort		      1
+	      DstBlock		      "Y_STATE_OK"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "L_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "P_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      25
+	      SrcBlock		      "Y_STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "Product"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "L_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "P_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator4"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      28
+	      SrcBlock		      "Y_STATE_NOW"
+	      SrcPort		      1
+	      DstBlock		      "Operator5"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "STATE_OK"
+	      SrcPort		      1
+	      DstBlock		      "DAMP_STATE_Out"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "5931"
+	      Name		      "Each DAMP filter output bitword is \ncompared against a known good state.\nIf equal to good state,"
+	      " then a 1 is output \nand multiplied into the product. So, if any DOF\nis not in its good state, the whole prod"
+	      "uct is 0."
+	      Position		      [717, 254, 923, 316]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      ZOrder		      -1
+	    }
+	    Annotation {
+	      SID		      "5930"
+	      Name		      "1 (one) if GOOD\n0 (zero) if BAD"
+	      Position		      [782, 61, 856, 87]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      ZOrder		      -2
+	    }
+	    Annotation {
+	      SID		      "5929"
+	      Name		      "1 (one) if GOOD\n0 (zero) if BAD"
+	      Position		      [572, 26, 646, 52]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      ZOrder		      -3
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "PAYOL"
 	  SID			  "5095"
 	  Ports			  [4, 4]
@@ -9606,7 +12161,7 @@ Library {
 	  Name			  "SEISFF"
 	  SID			  "5113"
 	  Ports			  [3, 4]
-	  Position		  [705, 1, 845, 64]
+	  Position		  [640, 1, 780, 64]
 	  ZOrder		  4629
 	  BackgroundColor	  "lightBlue"
 	  RequestExecContextInheritance	off
@@ -11699,7 +14254,7 @@ Library {
 	  Name			  "Sum"
 	  SID			  "5205"
 	  Ports			  [2, 1]
-	  Position		  [890, 235, 910, 255]
+	  Position		  [865, 350, 885, 370]
 	  ZOrder		  4336
 	  ShowName		  off
 	  IconShape		  "round"
@@ -11746,6 +14301,48 @@ Library {
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|++"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum2"
+	  SID			  "5862"
+	  Ports			  [2, 1]
+	  Position		  [140, -125, 160, -105]
+	  ZOrder		  7307
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum3"
+	  SID			  "5863"
+	  Ports			  [2, 1]
+	  Position		  [95, -105, 115, -85]
+	  ZOrder		  7308
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum4"
+	  SID			  "5864"
+	  Ports			  [2, 1]
+	  Position		  [40, -85, 60, -65]
+	  ZOrder		  7309
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
 	  InputSameDT		  off
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
@@ -11825,7 +14422,7 @@ Library {
 	  Name			  "TEST"
 	  SID			  "5217"
 	  Ports			  [0, 7]
-	  Position		  [710, 143, 850, 257]
+	  Position		  [710, 258, 850, 372]
 	  ZOrder		  1595
 	  BackgroundColor	  "[1.000000, 0.333333, 0.498039]"
 	  RequestExecContextInheritance	off
@@ -12351,6 +14948,22 @@ Library {
 	  SID			  "5243"
 	  Position		  [-200, 152, -180, 178]
 	  ZOrder		  4553
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator3"
+	  SID			  "5865"
+	  Position		  [5, -68, 25, -42]
+	  ZOrder		  7301
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator4"
+	  SID			  "5866"
+	  Position		  [-5, -258, 15, -232]
+	  ZOrder		  7310
 	  ShowName		  off
 	}
 	Block {
@@ -12940,30 +15553,6 @@ Library {
 	  DstPort		  7
 	}
 	Line {
-	  ZOrder		  75
-	  SrcBlock		  "SEISFF"
-	  SrcPort		  2
-	  Points		  [10, 0; 0, 242; 89, 0; 0, 28]
-	  DstBlock		  "ADD"
-	  DstPort		  5
-	}
-	Line {
-	  ZOrder		  76
-	  SrcBlock		  "SEISFF"
-	  SrcPort		  1
-	  Points		  [5, 0; 0, 93; 88, 0; 0, 196; 52, 0; 0, -19]
-	  DstBlock		  "ADD"
-	  DstPort		  4
-	}
-	Line {
-	  ZOrder		  77
-	  SrcBlock		  "SEISFF"
-	  SrcPort		  3
-	  Points		  [147, 0; 0, 270]
-	  DstBlock		  "ADD"
-	  DstPort		  6
-	}
-	Line {
 	  ZOrder		  78
 	  SrcBlock		  "From3"
 	  SrcPort		  1
@@ -12974,7 +15563,7 @@ Library {
 	  ZOrder		  79
 	  SrcBlock		  "Sum"
 	  SrcPort		  1
-	  Points		  [3, 0; 0, 170]
+	  Points		  [7, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  13
 	}
@@ -12982,7 +15571,7 @@ Library {
 	  ZOrder		  80
 	  SrcBlock		  "TEST"
 	  SrcPort		  6
-	  Points		  [75, 0; 0, 170]
+	  Points		  [45, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  12
 	}
@@ -12990,7 +15579,7 @@ Library {
 	  ZOrder		  81
 	  SrcBlock		  "TEST"
 	  SrcPort		  5
-	  Points		  [24, 0; 0, 170]
+	  Points		  [48, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  11
 	}
@@ -12998,7 +15587,7 @@ Library {
 	  ZOrder		  82
 	  SrcBlock		  "TEST"
 	  SrcPort		  4
-	  Points		  [127, 0; 0, 170]
+	  Points		  [51, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  10
 	}
@@ -13006,7 +15595,7 @@ Library {
 	  ZOrder		  83
 	  SrcBlock		  "TEST"
 	  SrcPort		  3
-	  Points		  [134, 0; 0, 170]
+	  Points		  [56, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  9
 	}
@@ -13014,7 +15603,7 @@ Library {
 	  ZOrder		  84
 	  SrcBlock		  "TEST"
 	  SrcPort		  2
-	  Points		  [12, 0; 0, 170]
+	  Points		  [63, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  8
 	}
@@ -13022,7 +15611,7 @@ Library {
 	  ZOrder		  85
 	  SrcBlock		  "TEST"
 	  SrcPort		  1
-	  Points		  [18, 0; 0, 170]
+	  Points		  [68, 0; 0, 55]
 	  DstBlock		  "ADD"
 	  DstPort		  7
 	}
@@ -13146,30 +15735,6 @@ Library {
 	  SrcBlock		  "OL_DCCTRL_Y_In"
 	  SrcPort		  1
 	  DstBlock		  "PAYOL"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  111
-	  SrcBlock		  "Ground3"
-	  SrcPort		  1
-	  Points		  [7, 0; 0, -15]
-	  DstBlock		  "ADD"
-	  DstPort		  3
-	}
-	Line {
-	  ZOrder		  112
-	  SrcBlock		  "Ground2"
-	  SrcPort		  1
-	  Points		  [7, 0; 0, -15]
-	  DstBlock		  "ADD"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  113
-	  SrcBlock		  "Ground1"
-	  SrcPort		  1
-	  Points		  [6, 0; 0, -15]
-	  DstBlock		  "ADD"
 	  DstPort		  1
 	}
 	Line {
@@ -13826,7 +16391,7 @@ Library {
 	  ZOrder		  207
 	  SrcBlock		  "From14"
 	  SrcPort		  1
-	  Points		  [30, 0]
+	  Points		  [5, 0]
 	  DstBlock		  "Sum"
 	  DstPort		  2
 	}
@@ -14209,6 +16774,176 @@ Library {
 	    DstPort		    13
 	  }
 	}
+	Line {
+	  ZOrder		  281
+	  SrcBlock		  "OLDAMP"
+	  SrcPort		  4
+	  DstBlock		  "Terminator3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  282
+	  SrcBlock		  "OLDAMP_YAW"
+	  SrcPort		  1
+	  DstBlock		  "OLDAMP"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  283
+	  SrcBlock		  "OLDAMP_PIT"
+	  SrcPort		  1
+	  DstBlock		  "OLDAMP"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  284
+	  SrcBlock		  "OLDAMP_LONG"
+	  SrcPort		  1
+	  DstBlock		  "OLDAMP"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  288
+	  SrcBlock		  "ISC_YAW"
+	  SrcPort		  1
+	  DstBlock		  "LOCK"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  289
+	  SrcBlock		  "ISC_PIT"
+	  SrcPort		  1
+	  DstBlock		  "LOCK"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  290
+	  SrcBlock		  "ISC_LONG"
+	  SrcPort		  1
+	  DstBlock		  "LOCK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  291
+	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  DstBlock		  "DRIVEALIGN"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  292
+	  SrcBlock		  "OLDAMP"
+	  SrcPort		  1
+	  DstBlock		  "Sum2"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  293
+	  SrcBlock		  "LOCK"
+	  SrcPort		  2
+	  Points		  [170, 0]
+	  DstBlock		  "Sum2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  294
+	  SrcBlock		  "OLDAMP"
+	  SrcPort		  2
+	  DstBlock		  "Sum3"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  295
+	  SrcBlock		  "OLDAMP"
+	  SrcPort		  3
+	  DstBlock		  "Sum4"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  296
+	  SrcBlock		  "Sum4"
+	  SrcPort		  1
+	  DstBlock		  "DRIVEALIGN"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  297
+	  SrcBlock		  "LOCK"
+	  SrcPort		  3
+	  Points		  [125, 0]
+	  DstBlock		  "Sum3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  298
+	  SrcBlock		  "LOCK"
+	  SrcPort		  4
+	  Points		  [70, 0]
+	  DstBlock		  "Sum4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  299
+	  SrcBlock		  "Sum3"
+	  SrcPort		  1
+	  DstBlock		  "DRIVEALIGN"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  300
+	  SrcBlock		  "LOCK"
+	  SrcPort		  1
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  301
+	  SrcBlock		  "SEISFF"
+	  SrcPort		  3
+	  Points		  [153, 0; 0, 270]
+	  DstBlock		  "ADD"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  302
+	  SrcBlock		  "SEISFF"
+	  SrcPort		  2
+	  Points		  [159, 0; 0, 270]
+	  DstBlock		  "ADD"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  303
+	  SrcBlock		  "SEISFF"
+	  SrcPort		  1
+	  Points		  [166, 0; 0, 270]
+	  DstBlock		  "ADD"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  304
+	  SrcBlock		  "DRIVEALIGN"
+	  SrcPort		  3
+	  Points		  [672, 0; 0, 340]
+	  DstBlock		  "ADD"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  305
+	  SrcBlock		  "DRIVEALIGN"
+	  SrcPort		  2
+	  Points		  [676, 0; 0, 345]
+	  DstBlock		  "ADD"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  306
+	  SrcBlock		  "DRIVEALIGN"
+	  SrcPort		  1
+	  Points		  [683, 0; 0, 350]
+	  DstBlock		  "ADD"
+	  DstPort		  1
+	}
 	Annotation {
 	  SID			  "5272"
 	  Name			  "Oscillator for GAS LVDT efficiency monitor (added on 10/26 by Masayuki Nakano)"
@@ -14273,7 +17008,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  Inport
 	  Name			  "LVDT_H1_In"
