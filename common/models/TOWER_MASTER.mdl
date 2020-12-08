@@ -46,10 +46,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"4651"
+	LoadSaveID		"5308"
 	Extents			[1886.0, 920.0]
-	ZoomFactor		[0.8]
-	Offset			[-189.15239046151009, -372.64254076926596]
+	ZoomFactor		[1.0]
+	Offset			[8.2976190476190368, -129.8857142857143]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -82,9 +82,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 08 11:14:43 2020"
-  RTWModifiedTimeStamp	  529326878
-  ModelVersionFormat	  "1.%<AutoIncrement:276>"
+  LastModifiedDate	  "Tue Dec 08 11:42:59 2020"
+  RTWModifiedTimeStamp	  529328576
+  ModelVersionFormat	  "1.%<AutoIncrement:278>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1050,7 +1050,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "91"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5841"
+    SIDHighWatermark	    "5845"
     Block {
       BlockType		      SubSystem
       Name		      "BFMASTER"
@@ -14207,7 +14207,7 @@ Library {
       System {
 	Name			"IPMASTER"
 	Location		[5760, 0, 7680, 1080]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -14218,7 +14218,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  Inport
 	  Name			  "LVDT_H1_In"
@@ -14739,7 +14739,7 @@ Library {
 	  System {
 	    Name		    "ADD"
 	    Location		    [5760, 0, 7680, 1080]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -15247,6 +15247,21 @@ Library {
 	      GotoTag		      "TMOLDAMP_Y"
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "L_OUT"
+	      SID		      "5842"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [560, -40, 600, -20]
+	      ZOrder		      1612
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum1"
 	      SID		      "5360"
@@ -15286,10 +15301,40 @@ Library {
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
+	      BlockType		      Reference
+	      Name		      "T_OUT"
+	      SID		      "5843"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [575, 135, 615, 155]
+	      ZOrder		      1613
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Y_OUT"
+	      SID		      "5844"
+	      Tag		      "Test Point"
+	      Ports		      [1]
+	      Position		      [575, 310, 615, 330]
+	      ZOrder		      1614
+	      BackgroundColor	      "green"
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsTP/Subsystem"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "LONG_MAIN_Out"
 	      SID		      "5363"
-	      Position		      [520, 13, 550, 27]
+	      Position		      [520, 23, 550, 37]
 	      ZOrder		      67
 	      BackgroundColor	      "yellow"
 	      IconDisplay	      "Port number"
@@ -15416,9 +15461,18 @@ Library {
 	      ZOrder		      27
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
-	      Points		      [28, 0; 0, -10]
-	      DstBlock		      "LONG_MAIN_Out"
-	      DstPort		      1
+	      Points		      [42, 0]
+	      Branch {
+		ZOrder			66
+		Points			[0, -60]
+		DstBlock		"L_OUT"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			60
+		DstBlock		"LONG_MAIN_Out"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      ZOrder		      28
@@ -15466,15 +15520,35 @@ Library {
 	      ZOrder		      34
 	      SrcBlock		      "Sum2"
 	      SrcPort		      1
-	      DstBlock		      "TRANS_MAIN_Out"
-	      DstPort		      1
+	      Points		      [37, 0]
+	      Branch {
+		ZOrder			63
+		Points			[0, -45]
+		DstBlock		"T_OUT"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			62
+		DstBlock		"TRANS_MAIN_Out"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      ZOrder		      35
 	      SrcBlock		      "Sum3"
 	      SrcPort		      1
-	      DstBlock		      "YAW_MAIN_Out"
-	      DstPort		      1
+	      Points		      [37, 0]
+	      Branch {
+		ZOrder			65
+		Points			[0, -55]
+		DstBlock		"Y_OUT"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			64
+		DstBlock		"YAW_MAIN_Out"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      ZOrder		      47
@@ -15559,6 +15633,18 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      5
+	    }
+	    Annotation {
+	      SID		      "5845"
+	      Name		      "#DAQ Channels\n\nL_OUT 256\nT_OUT 256\nY_OUT 256"
+	      Position		      [771, -38, 874, 44]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      DropShadow	      on
+	      ZOrder		      -1
+	      FontSize		      14
 	    }
 	  }
 	}
@@ -18747,7 +18833,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "DRIVEALIGN"
-	    Location		    [2560, 0, 5120, 1440]
+	    Location		    [5760, 0, 7680, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -18759,7 +18845,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "185"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "LONG_In"
@@ -23465,7 +23551,7 @@ Library {
 	  Variant		  off
 	  System {
 	    Name		    "SUMOUT"
-	    Location		    [4170, 120, 5615, 1037]
+	    Location		    [5760, 0, 7680, 1080]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
