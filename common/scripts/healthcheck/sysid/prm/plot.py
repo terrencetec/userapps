@@ -100,23 +100,23 @@ def hoge(exc,hor):
 
     # for H1_EXC
     if hor=='L':
-        w0,Q0,k0 = 1.3  ,4  , 1.0e-0 # Len
-        w1,Q1,k1 = 8    ,5  , 1.0e-1 #
-        w2,Q2,k2 = 15   ,50 ,-1.0e-0 # Len
+        w0,Q0,k0 = 1.3  ,4  , 3.0e-0 # Len
+        w1,Q1,k1 = 8    ,5  , 3.0e-1 #
+        w2,Q2,k2 = 15   ,30 , 1.0e-1 # Len
         w3,Q3,k3 = 20   ,20 , 1.0e-4 #
         w4,Q4,k4 = 15   ,20 , 3.0e-4 #
         w5,Q5,k5 = 17   ,20 , 2.0e-4 # 
     elif hor=='P':
-        w0,Q0,k0 = 1.3  ,4  , 1.5e-0
+        w0,Q0,k0 = 1.3  ,4  , 3.0e-0
         w1,Q1,k1 = 8    ,5  ,-1.0e-4
         w2,Q2,k2 = 20   ,7  , 2.0e-4
         w3,Q3,k3 = 20   ,20 , 2.0e-4 #
         w4,Q4,k4 = 15   ,20 , 1.0e-4 #
-        w5,Q5,k5 = 17   ,20 ,-1.0e-4 #
+        w5,Q5,k5 = 17   ,20 ,-1.0e-4 #         
     elif hor=='Y':
-        w0,Q0,k0 = 1.3  ,4  , 1.0e-0
+        w0,Q0,k0 = 1.3  ,4  , 1.5e-1
         w1,Q1,k1 = 8    ,5  ,-8.0e-4
-        w2,Q2,k2 = 20   ,7  , 1.5e-4 
+        w2,Q2,k2 = 20   ,7  , 1.5e-4
         w3,Q3,k3 = 20   ,20 ,-1.0e-4 #
         w4,Q4,k4 = 15   ,20 , 1.0e-4 #
         w5,Q5,k5 = 17   ,20 ,-7.0e-4 #
@@ -133,13 +133,12 @@ def hoge(exc,hor):
     # unknown Delay
     if hor=='L':
         _w1,delay = freqs_zpk([-0.46],[-12.3],-7,w) # de-white
-        _w1,delay = freqs_zpk([-0.1],[-10],-8,w) # de-white and minus sign caused from dtt2hdf
+        _w1,delay = freqs_zpk([-0.5],[-10],-8,w) # de-white and minus sign caused from dtt2hdf
     else:
         _w1,delay = freqs_zpk([-0.46],[-12.3],-7,w) # de-white
-        _w1,delay = freqs_zpk([-0.1],[-10],-8,w) # de-white
+        _w1,delay = freqs_zpk([-0.5],[-10],-8,w) # de-white
     
     _w,h = _w1,(h1+h2+h3+h4+h5+h6)*delay
-    _w,h = _w1,(h1+h2+h3)*delay
     
     if hor=='L':
         hor1 = hor1
@@ -168,9 +167,9 @@ if __name__=='__main__':
         ax[0][i].loglog(_w1,np.abs(h1),'k--',alpha=0.4)
         ax[0][i].loglog(_w2,np.abs(h2),'k--',alpha=0.4)
         ax[0][i].loglog(_w3,np.abs(h3),'k--',alpha=0.4)
-        #ax[0][i].loglog(_w4,np.abs(h4),'k--',alpha=0.4)
-        #ax[0][i].loglog(_w5,np.abs(h5),'k--',alpha=0.4)
-        #ax[0][i].loglog(_w6,np.abs(h6),'k--',alpha=0.4)
+        ax[0][i].loglog(_w4,np.abs(h4),'k--',alpha=0.4)
+        ax[0][i].loglog(_w5,np.abs(h5),'k--',alpha=0.4)
+        ax[0][i].loglog(_w6,np.abs(h6),'k--',alpha=0.4)
         ax[0][i].loglog(_w,np.abs(h),'k')
         ax[0][i].set_ylim(1e-5,5e-1)
         ax[0][i].set_ylim(1e-5,5e1)

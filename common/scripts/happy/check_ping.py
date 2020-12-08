@@ -45,7 +45,7 @@ if __name__=='__main__':
             except:
                 print('No Channel VIS-{0}_{1}_STATUS'.format(optic,drivername))
                 pass
-    exit()
+    #exit()
     for name,ipaddr in list(driverDict.items()):
         cmd = 'ping -w 1 {0}'.format(ipaddr)
         with open('out','w') as out:
