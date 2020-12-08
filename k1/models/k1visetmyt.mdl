@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.183"
+    ComputedModelVersion    "1.184"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -40,7 +40,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4292.0, 23.0, 1098.0, 981.0]
+      Location		      [3901.0, 15.0, 2102.0, 1063.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -62,11 +62,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1060.0, 809.0]
-	ZoomFactor		[1.25]
-	Offset			[917.1911442598963, 1367.2916773367479]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"693"
+	Extents			[2064.0, 891.0]
+	ZoomFactor		[0.8]
+	Offset			[344.945905755118, 78.5]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -86,7 +86,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABeAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAKAD///8AAARGAAADYwAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAKAD///8AAAgyAAADtQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOH/////wAAAAAAAAAA/"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Oct 29 16:36:47 2020"
-  RTWModifiedTimeStamp	  525890207
-  ModelVersionFormat	  "1.%<AutoIncrement:183>"
+  LastModifiedDate	  "Tue Dec 08 10:12:46 2020"
+  RTWModifiedTimeStamp	  529323145
+  ModelVersionFormat	  "1.%<AutoIncrement:184>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -927,6 +927,19 @@ Model {
       OutputAsBus	      off
     }
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -967,6 +980,15 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Logic
+      Operator		      "AND"
+      Inputs		      "2"
+      IconShape		      "rectangular"
+      AllPortsSameDT	      on
+      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -992,6 +1014,15 @@ Model {
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      RelationalOperator
+      Operator		      ">="
+      InputSameDT	      on
+      OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
+      ZeroCross		      on
+      SampleTime	      "-1"
+      RndMeth		      "Nearest"
     }
     Block {
       BlockType		      SubSystem
@@ -1031,8 +1062,8 @@ Model {
   }
   System {
     Name		    "k1visetmyt"
-    Location		    [4292, 23, 5390, 1004]
-    Open		    on
+    Location		    [3901, 15, 6003, 1078]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1043,7 +1074,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "1150"
     Block {
@@ -1561,7 +1592,7 @@ Model {
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      SubSystem
       Name		      "ETMY"
       SID		      "693"
       Ports		      [51, 21]
@@ -1569,10 +1600,4653 @@ Model {
       ZOrder		      5542
       ForegroundColor	      "blue"
       BackgroundColor	      "cyan"
-      LibraryVersion	      "1.268"
-      SourceBlock	      "TYPEA_MASTER/TYPEA_TOWER_MASTER"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
+      AncestorBlock	      "TYPEA_MASTER/TYPEA_TOWER_MASTER"
+      LibraryVersion	      "*1.271"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"ETMY"
+	Location		[3901, 15, 6003, 1078]
+	Open			on
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"80"
+	SIDHighWatermark	"4577"
+	SIDPrevWatermark	"4575"
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_ACC_H1_In"
+	  SID			  "693:3315"
+	  Position		  [830, 218, 860, 232]
+	  ZOrder		  4209
+	  BackgroundColor	  "yellow"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_ACC_H2_In"
+	  SID			  "693:3316"
+	  Position		  [830, 248, 860, 262]
+	  ZOrder		  4210
+	  BackgroundColor	  "yellow"
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_ACC_H3_In"
+	  SID			  "693:3317"
+	  Position		  [830, 278, 860, 292]
+	  ZOrder		  4211
+	  BackgroundColor	  "yellow"
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_LVDT_H1_In"
+	  SID			  "693:3318"
+	  Position		  [830, 128, 860, 142]
+	  ZOrder		  4206
+	  BackgroundColor	  "yellow"
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_LVDT_H2_In"
+	  SID			  "693:3319"
+	  Position		  [830, 158, 860, 172]
+	  ZOrder		  4207
+	  BackgroundColor	  "yellow"
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_LVDT_H3_In"
+	  SID			  "693:3320"
+	  Position		  [830, 188, 860, 202]
+	  ZOrder		  4208
+	  BackgroundColor	  "yellow"
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F0_LVDT_GAS_In"
+	  SID			  "693:3321"
+	  Position		  [1555, 148, 1585, 162]
+	  ZOrder		  4321
+	  BackgroundColor	  "yellow"
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F1_LVDT_GAS_In"
+	  SID			  "693:3322"
+	  Position		  [1560, 408, 1590, 422]
+	  ZOrder		  4322
+	  BackgroundColor	  "yellow"
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F2_LVDT_GAS_In"
+	  SID			  "693:3323"
+	  Position		  [1560, 653, 1590, 667]
+	  ZOrder		  4323
+	  BackgroundColor	  "yellow"
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F3_LVDT_GAS_In"
+	  SID			  "693:3324"
+	  Position		  [1570, 898, 1600, 912]
+	  ZOrder		  4324
+	  BackgroundColor	  "yellow"
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_GAS_In"
+	  SID			  "693:3325"
+	  Position		  [2260, 148, 2290, 162]
+	  ZOrder		  4325
+	  BackgroundColor	  "yellow"
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_V1_In"
+	  SID			  "693:3326"
+	  Position		  [2260, 178, 2290, 192]
+	  ZOrder		  4326
+	  BackgroundColor	  "yellow"
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_V2_In"
+	  SID			  "693:3327"
+	  Position		  [2260, 208, 2290, 222]
+	  ZOrder		  4327
+	  BackgroundColor	  "yellow"
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_V3_In"
+	  SID			  "693:3328"
+	  Position		  [2260, 238, 2290, 252]
+	  ZOrder		  4328
+	  BackgroundColor	  "yellow"
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_H1_In"
+	  SID			  "693:3329"
+	  Position		  [2260, 268, 2290, 282]
+	  ZOrder		  4329
+	  BackgroundColor	  "yellow"
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_H2_In"
+	  SID			  "693:3330"
+	  Position		  [2260, 298, 2290, 312]
+	  ZOrder		  4330
+	  BackgroundColor	  "yellow"
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_LVDT_H3_In"
+	  SID			  "693:3331"
+	  Position		  [2260, 328, 2290, 342]
+	  ZOrder		  4331
+	  BackgroundColor	  "yellow"
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_PI_ISC_CTRL_In"
+	  SID			  "693:3352"
+	  Position		  [2955, 523, 2985, 537]
+	  ZOrder		  4407
+	  BackgroundColor	  "yellow"
+	  Port			  "18"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_PI_MON_In"
+	  SID			  "693:3353"
+	  Position		  [2955, 583, 2985, 597]
+	  ZOrder		  4406
+	  BackgroundColor	  "yellow"
+	  Port			  "19"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_GAS_ISC_CTRL_In"
+	  SID			  "693:3354"
+	  Position		  [2955, 643, 2985, 657]
+	  ZOrder		  4411
+	  BackgroundColor	  "yellow"
+	  Port			  "20"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_GAS_MON_In"
+	  SID			  "693:3355"
+	  Position		  [2955, 703, 2985, 717]
+	  ZOrder		  4410
+	  BackgroundColor	  "yellow"
+	  Port			  "21"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_BFV_ISC_CTRL_In"
+	  SID			  "693:3356"
+	  Position		  [2955, 763, 2985, 777]
+	  ZOrder		  4409
+	  BackgroundColor	  "yellow"
+	  Port			  "22"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_BFV_MON_In"
+	  SID			  "693:3357"
+	  Position		  [2955, 823, 2985, 837]
+	  ZOrder		  4408
+	  BackgroundColor	  "yellow"
+	  Port			  "23"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_BFH_ISC_CTRL_In"
+	  SID			  "693:3358"
+	  Position		  [2955, 883, 2985, 897]
+	  ZOrder		  4464
+	  BackgroundColor	  "yellow"
+	  Port			  "24"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BI_BFH_MON_In"
+	  SID			  "693:3359"
+	  Position		  [2955, 943, 2985, 957]
+	  ZOrder		  4463
+	  BackgroundColor	  "yellow"
+	  Port			  "25"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_TIDAL_L_In"
+	  SID			  "693:4073"
+	  Position		  [360, 748, 390, 762]
+	  ZOrder		  5304
+	  BackgroundColor	  "yellow"
+	  Port			  "26"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_OPLEV_L_In"
+	  SID			  "693:4012"
+	  Position		  [360, 788, 390, 802]
+	  ZOrder		  5284
+	  BackgroundColor	  "yellow"
+	  Port			  "27"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "TM_OPLEV_Y_In"
+	  SID			  "693:4011"
+	  Position		  [360, 823, 390, 837]
+	  ZOrder		  5283
+	  BackgroundColor	  "yellow"
+	  Port			  "28"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MN_OLDC_Y_In"
+	  SID			  "693:3653"
+	  Position		  [360, 863, 390, 877]
+	  ZOrder		  5202
+	  BackgroundColor	  "yellow"
+	  Port			  "29"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PAY_OLSERVO_BFL_In"
+	  SID			  "693:3990"
+	  Position		  [360, 898, 390, 912]
+	  ZOrder		  5267
+	  BackgroundColor	  "yellow"
+	  Port			  "30"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PAY_OLSERVO_BFT_In"
+	  SID			  "693:3991"
+	  Position		  [360, 933, 390, 947]
+	  ZOrder		  5268
+	  BackgroundColor	  "yellow"
+	  Port			  "31"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PAY_OLSERVO_BFY_In"
+	  SID			  "693:3738"
+	  Position		  [360, 968, 390, 982]
+	  ZOrder		  5236
+	  BackgroundColor	  "yellow"
+	  Port			  "32"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PEM_SEIS_X_In"
+	  SID			  "693:3992"
+	  Position		  [845, 1168, 875, 1182]
+	  ZOrder		  5269
+	  BackgroundColor	  "yellow"
+	  Port			  "33"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PEM_SEIS_Y_In"
+	  SID			  "693:3993"
+	  Position		  [845, 1213, 875, 1227]
+	  ZOrder		  5270
+	  BackgroundColor	  "yellow"
+	  Port			  "34"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "PEM_SEIS_Z_In"
+	  SID			  "693:3994"
+	  Position		  [845, 1258, 875, 1272]
+	  ZOrder		  5271
+	  BackgroundColor	  "yellow"
+	  Port			  "35"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "ISC_L"
+	  SID			  "693:3669"
+	  Position		  [360, 1023, 390, 1037]
+	  ZOrder		  5210
+	  BackgroundColor	  "yellow"
+	  Port			  "36"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "GIF_ARM_STRAIN"
+	  SID			  "693:4018"
+	  Position		  [845, 1338, 875, 1352]
+	  ZOrder		  5290
+	  BackgroundColor	  "yellow"
+	  Port			  "37"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_MODAL_H1_In"
+	  SID			  "693:4128"
+	  Position		  [810, 760, 830, 770]
+	  ZOrder		  5575
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "38"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_MODAL_H2_In"
+	  SID			  "693:4129"
+	  Position		  [810, 790, 830, 800]
+	  ZOrder		  5576
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "39"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "IP_MODAL_H3_In"
+	  SID			  "693:4130"
+	  Position		  [810, 820, 830, 830]
+	  ZOrder		  5577
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "40"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_V1_In"
+	  SID			  "693:4116"
+	  Position		  [2240, 870, 2260, 880]
+	  ZOrder		  5563
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "41"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_V2_In"
+	  SID			  "693:4123"
+	  Position		  [2240, 900, 2260, 910]
+	  ZOrder		  5570
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "42"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_V3_In"
+	  SID			  "693:4124"
+	  Position		  [2240, 930, 2260, 940]
+	  ZOrder		  5571
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "43"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_H1_In"
+	  SID			  "693:4125"
+	  Position		  [2240, 960, 2260, 970]
+	  ZOrder		  5572
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "44"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_H2_In"
+	  SID			  "693:4126"
+	  Position		  [2240, 990, 2260, 1000]
+	  ZOrder		  5573
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "45"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "BF_MODAL_H3_In"
+	  SID			  "693:4127"
+	  Position		  [2240, 1020, 2260, 1030]
+	  ZOrder		  5574
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "46"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MODAL_F0"
+	  SID			  "693:4204"
+	  Position		  [1575, 348, 1605, 362]
+	  ZOrder		  5578
+	  BackgroundColor	  "yellow"
+	  Port			  "47"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MODAL_F1"
+	  SID			  "693:4205"
+	  Position		  [1590, 608, 1620, 622]
+	  ZOrder		  5579
+	  BackgroundColor	  "yellow"
+	  Port			  "48"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MODAL_F2"
+	  SID			  "693:4206"
+	  Position		  [1590, 853, 1620, 867]
+	  ZOrder		  5580
+	  BackgroundColor	  "yellow"
+	  Port			  "49"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "MODAL_F3"
+	  SID			  "693:4207"
+	  Position		  [1595, 1098, 1625, 1112]
+	  ZOrder		  5581
+	  BackgroundColor	  "yellow"
+	  Port			  "50"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "GAS_MODAL_BF"
+	  SID			  "693:4208"
+	  Position		  [2240, 1050, 2260, 1060]
+	  ZOrder		  5582
+	  BackgroundColor	  "yellow"
+	  NamePlacement		  "alternate"
+	  Port			  "51"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "BF"
+	  SID			  "693:4577"
+	  Ports			  [31, 22]
+	  Position		  [2385, 142, 2565, 1068]
+	  ZOrder		  5759
+	  BackgroundColor	  "[0.737255, 0.647059, 1.000000]"
+	  LibraryVersion	  "1.272"
+	  SourceBlock		  "TOWER_MASTER/BFMASTER"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "BFH_COILOUTF_CTRL"
+	  SID			  "693:3386"
+	  Position		  [3505, 952, 3655, 968]
+	  ZOrder		  4462
+	  BackgroundColor	  "yellow"
+	  GotoTag		  "BFH_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "BFH_COILOUTF_CTRL\n"
+	  SID			  "693:3387"
+	  Position		  [2145, 567, 2290, 583]
+	  ZOrder		  4466
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "BFH_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "BFH_COILOUTF_MASK"
+	  SID			  "693:3388"
+	  Position		  [3360, 912, 3510, 928]
+	  ZOrder		  4461
+	  BackgroundColor	  "[0.533333, 0.619608, 1.000000]"
+	  GotoTag		  "BFH_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "BFH_COILOUTF_MASK\n"
+	  SID			  "693:3389"
+	  Position		  [2145, 597, 2290, 613]
+	  ZOrder		  4465
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "BFH_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "BFV_COILOUTF_CTRL"
+	  SID			  "693:3390"
+	  Position		  [3505, 832, 3655, 848]
+	  ZOrder		  4432
+	  BackgroundColor	  "yellow"
+	  GotoTag		  "BFV_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "BFV_COILOUTF_CTRL\n"
+	  SID			  "693:3391"
+	  Position		  [2145, 507, 2290, 523]
+	  ZOrder		  4446
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "BFV_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "BFV_COILOUTF_MASK"
+	  SID			  "693:3392"
+	  Position		  [3360, 792, 3510, 808]
+	  ZOrder		  4431
+	  BackgroundColor	  "[0.533333, 0.619608, 1.000000]"
+	  GotoTag		  "BFV_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "BFV_COILOUTF_MASK\n"
+	  SID			  "693:3393"
+	  Position		  [2145, 537, 2290, 553]
+	  ZOrder		  4445
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "BFV_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "BIO"
+	  SID			  "693:3648"
+	  Ports			  [8, 12]
+	  Position		  [3065, 499, 3235, 981]
+	  ZOrder		  5196
+	  BackgroundColor	  "[0.000000, 0.000000, 0.498039]"
+	  LibraryVersion	  "1.13"
+	  SourceBlock		  "BIO_TYPEA_MASTER/BIO_TYPEA_TOWER"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  "693:3687"
+	  Position		  [3135, 260, 3165, 290]
+	  ZOrder		  5226
+	  Value			  "2"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "F0"
+	  SID			  "693:3401"
+	  Ports			  [9, 4]
+	  Position		  [1650, 147, 1830, 363]
+	  ZOrder		  5088
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  LibraryVersion	  "1.15"
+	  SourceBlock		  "GAS_MODAL_MASTER/GAS_MODAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "F1"
+	  SID			  "693:3402"
+	  Ports			  [9, 4]
+	  Position		  [1650, 407, 1830, 623]
+	  ZOrder		  5089
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  LibraryVersion	  "1.15"
+	  SourceBlock		  "GAS_MODAL_MASTER/GAS_MODAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "F2"
+	  SID			  "693:3403"
+	  Ports			  [9, 4]
+	  Position		  [1650, 652, 1830, 868]
+	  ZOrder		  5090
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  LibraryVersion	  "1.15"
+	  SourceBlock		  "GAS_MODAL_MASTER/GAS_MODAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "F3"
+	  SID			  "693:3404"
+	  Ports			  [9, 4]
+	  Position		  [1650, 897, 1830, 1113]
+	  ZOrder		  5091
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  LibraryVersion	  "1.15"
+	  SourceBlock		  "GAS_MODAL_MASTER/GAS_MODAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From"
+	  SID			  "693:3405"
+	  Position		  [255, 146, 325, 164]
+	  ZOrder		  5100
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F0_GASINF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From1"
+	  SID			  "693:3406"
+	  Position		  [255, 186, 325, 204]
+	  ZOrder		  5101
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F1_GASINF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From10"
+	  SID			  "693:3407"
+	  Position		  [255, 476, 320, 494]
+	  ZOrder		  5132
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "IPY_COIL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From11"
+	  SID			  "693:3408"
+	  Position		  [255, 511, 320, 529]
+	  ZOrder		  5133
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BFY_COIL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From12"
+	  SID			  "693:3409"
+	  Position		  [255, 546, 320, 564]
+	  ZOrder		  5157
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "IPY_MEAS"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From13"
+	  SID			  "693:3410"
+	  Position		  [255, 581, 320, 599]
+	  ZOrder		  5158
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From14"
+	  SID			  "693:3688"
+	  Position		  [3080, 318, 3190, 332]
+	  ZOrder		  5227
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  GotoTag		  "TWR_ShutState"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From15"
+	  SID			  "693:3690"
+	  Position		  [2180, 748, 2290, 762]
+	  ZOrder		  5229
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From16"
+	  SID			  "693:3691"
+	  Position		  [1415, 323, 1525, 337]
+	  ZOrder		  5230
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From17"
+	  SID			  "693:3692"
+	  Position		  [1415, 583, 1525, 597]
+	  ZOrder		  5231
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From18"
+	  SID			  "693:3693"
+	  Position		  [1415, 828, 1525, 842]
+	  ZOrder		  5232
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From19"
+	  SID			  "693:3694"
+	  Position		  [1415, 1073, 1525, 1087]
+	  ZOrder		  5233
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From2"
+	  SID			  "693:3411"
+	  Position		  [255, 226, 325, 244]
+	  ZOrder		  5102
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F2_GASINF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From20"
+	  SID			  "693:3695"
+	  Position		  [715, 698, 825, 712]
+	  ZOrder		  5234
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  ShowName		  off
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From21"
+	  SID			  "693:3971"
+	  Position		  [780, 306, 860, 324]
+	  ZOrder		  5247
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_X"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From22"
+	  SID			  "693:3978"
+	  Position		  [780, 336, 860, 354]
+	  ZOrder		  5254
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From23"
+	  SID			  "693:3979"
+	  Position		  [2210, 836, 2290, 854]
+	  ZOrder		  5259
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Z"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From24"
+	  SID			  "693:3981"
+	  Position		  [2210, 776, 2290, 794]
+	  ZOrder		  5257
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_X"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From25"
+	  SID			  "693:3982"
+	  Position		  [2210, 806, 2290, 824]
+	  ZOrder		  5258
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From26"
+	  SID			  "693:4008"
+	  Position		  [805, 516, 870, 534]
+	  ZOrder		  5280
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From27"
+	  SID			  "693:4009"
+	  Position		  [805, 486, 870, 504]
+	  ZOrder		  5281
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_T"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From28"
+	  SID			  "693:4010"
+	  Position		  [805, 456, 870, 474]
+	  ZOrder		  5282
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_L"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From29"
+	  SID			  "693:4021"
+	  Position		  [795, 726, 875, 744]
+	  ZOrder		  5293
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "GIF_ARM_L"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From3"
+	  SID			  "693:3412"
+	  Position		  [255, 266, 325, 284]
+	  ZOrder		  5103
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F3_GASINF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From30"
+	  SID			  "693:4061"
+	  Position		  [1415, 196, 1495, 214]
+	  ZOrder		  5298
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Z"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From31"
+	  SID			  "693:4062"
+	  Position		  [1415, 456, 1495, 474]
+	  ZOrder		  5299
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Z"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From4"
+	  SID			  "693:3413"
+	  Position		  [255, 306, 325, 324]
+	  ZOrder		  5104
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "BF_GASINF"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From5"
+	  SID			  "693:3414"
+	  Position		  [1415, 171, 1520, 189]
+	  ZOrder		  5111
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F0_MODALOUT"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From6"
+	  SID			  "693:3415"
+	  Position		  [1415, 431, 1520, 449]
+	  ZOrder		  5112
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F1_MODALOUT"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From7"
+	  SID			  "693:3416"
+	  Position		  [1420, 676, 1525, 694]
+	  ZOrder		  5113
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F2_MODALOUT"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From8"
+	  SID			  "693:3417"
+	  Position		  [1420, 921, 1525, 939]
+	  ZOrder		  5114
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F3_MODALOUT"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From9"
+	  SID			  "693:3418"
+	  Position		  [2185, 356, 2290, 374]
+	  ZOrder		  5115
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "BF_MODALOUT"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "GASMODAL"
+	  SID			  "693:3419"
+	  Ports			  [5, 5]
+	  Position		  [385, 132, 565, 338]
+	  ZOrder		  5087
+	  ForegroundColor	  "[0.000000, 0.333333, 0.000000]"
+	  BackgroundColor	  "[0.666667, 0.000000, 0.498039]"
+	  LibraryVersion	  "1.9"
+	  FontName		  "Liberation Sans"
+	  FontSize		  12
+	  SourceBlock		  "TYPEA_GAS_MODAL_MASTER/GASMODAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GAS_COILOUTF_CTRL"
+	  SID			  "693:3420"
+	  Position		  [3505, 712, 3655, 728]
+	  ZOrder		  4428
+	  BackgroundColor	  "yellow"
+	  GotoTag		  "GAS_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_CTRL1"
+	  SID			  "693:3421"
+	  Position		  [1415, 482, 1560, 498]
+	  ZOrder		  4440
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_CTRL2"
+	  SID			  "693:3422"
+	  Position		  [1415, 727, 1560, 743]
+	  ZOrder		  4442
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_CTRL3"
+	  SID			  "693:3423"
+	  Position		  [1415, 972, 1560, 988]
+	  ZOrder		  4444
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_CTRL4"
+	  SID			  "693:3424"
+	  Position		  [2145, 627, 2290, 643]
+	  ZOrder		  4474
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GAS_COILOUTF_MASK"
+	  SID			  "693:3425"
+	  Position		  [3360, 672, 3510, 688]
+	  ZOrder		  4427
+	  BackgroundColor	  "[0.532845, 0.618917, 1.000000]"
+	  GotoTag		  "GAS_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_MASK1"
+	  SID			  "693:3426"
+	  Position		  [1415, 507, 1560, 523]
+	  ZOrder		  4439
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_MASK2"
+	  SID			  "693:3427"
+	  Position		  [1415, 752, 1560, 768]
+	  ZOrder		  4441
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_MASK3"
+	  SID			  "693:3428"
+	  Position		  [1415, 997, 1560, 1013]
+	  ZOrder		  4443
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "GAS_COILOUTF_MASK4"
+	  SID			  "693:3429"
+	  Position		  [2145, 657, 2290, 673]
+	  ZOrder		  4473
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "GAS_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "GIF_ARM_L"
+	  SID			  "693:4019"
+	  Tag			  "cdsFilt"
+	  Description		  "Purpose:                                                                                           "
+	  "                                                                                                                   "
+	  "                    \nStandard CDS IIR filter module.                                                              "
+	  "                                                                                                                   "
+	  "                          \n                                                                                       "
+	  "                                                                                                                   "
+	  "                                \nOperation:                                                                       "
+	  "                                                                                                                   "
+	  "                                      \nConsists of 10 second order section IIR filters, plus a ramped gain stage. "
+	  "In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients are define"
+	  "d in the LIGO system using the 'foton' tool.\n                                                                     "
+	  "                                                                                                                   "
+	  "                                                  \nUsage:                                                         "
+	  "                                                                                                                   "
+	  "                                                        \nName the part with the desired filter module name.       "
+	  "                                                                                                                   "
+	  "                                                              "
+	  Ports			  [1, 1]
+	  Position		  [1005, 1333, 1075, 1357]
+	  ZOrder		  5291
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsFilt/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto"
+	  SID			  "693:3668"
+	  Position		  [455, 1022, 570, 1038]
+	  ZOrder		  5209
+	  GotoTag		  "ISC_L"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto1"
+	  SID			  "693:3739"
+	  Position		  [455, 967, 600, 983]
+	  ZOrder		  5235
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "PAY_OLSERVO_BFY_In"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto10"
+	  SID			  "693:4074"
+	  Position		  [455, 747, 565, 763]
+	  ZOrder		  5305
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "IP_TIDAL_L"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto14"
+	  SID			  "693:3431"
+	  Position		  [455, 640, 565, 660]
+	  ZOrder		  4316
+	  BackgroundColor	  "red"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto2"
+	  SID			  "693:3984"
+	  Position		  [455, 897, 600, 913]
+	  ZOrder		  5261
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "PAY_OLSERVO_BFL_In"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto3"
+	  SID			  "693:3654"
+	  Position		  [455, 862, 565, 878]
+	  ZOrder		  5201
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "MN_OLDC_Y"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto4"
+	  SID			  "693:3085"
+	  Position		  [470, 1167, 580, 1183]
+	  ZOrder		  5213
+	  BackgroundColor	  "[0.807843, 1.000000, 0.823529]"
+	  ShowName		  off
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto5"
+	  SID			  "693:3985"
+	  Position		  [455, 932, 600, 948]
+	  ZOrder		  5262
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "PAY_OLSERVO_BFT_In"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto6"
+	  SID			  "693:4013"
+	  Position		  [455, 787, 565, 803]
+	  ZOrder		  5285
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "TM_OPLEV_L"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto7"
+	  SID			  "693:3684"
+	  Position		  [3480, -118, 3575, -102]
+	  ZOrder		  5223
+	  BackgroundColor	  "[1.000000, 0.286275, 0.286275]"
+	  GotoTag		  "TWR_ShutDown"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto8"
+	  SID			  "693:3685"
+	  Position		  [3480, -43, 3575, -27]
+	  ZOrder		  5224
+	  BackgroundColor	  "[1.000000, 0.329412, 0.329412]"
+	  GotoTag		  "TWR_ShutState"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto9"
+	  SID			  "693:4014"
+	  Position		  [455, 822, 565, 838]
+	  ZOrder		  5286
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "TM_OPLEV_Y"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD1"
+	  SID			  "693:3433"
+	  Position		  [1215, 730, 1285, 750]
+	  ZOrder		  4307
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "IP_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD10"
+	  SID			  "693:3434"
+	  Position		  [1915, 205, 1985, 225]
+	  ZOrder		  5095
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F0_GASINF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD11"
+	  SID			  "693:3435"
+	  Position		  [1920, 465, 1990, 485]
+	  ZOrder		  5096
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F1_GASINF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD12"
+	  SID			  "693:3436"
+	  Position		  [1920, 710, 1990, 730]
+	  ZOrder		  5097
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F2_GASINF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD13"
+	  SID			  "693:3437"
+	  Position		  [1920, 955, 1990, 975]
+	  ZOrder		  5098
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "F3_GASINF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD14"
+	  SID			  "693:3438"
+	  Position		  [2650, 440, 2720, 460]
+	  ZOrder		  5099
+	  BackgroundColor	  "magenta"
+	  ShowName		  off
+	  GotoTag		  "BF_GASINF"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD15"
+	  SID			  "693:3439"
+	  Position		  [625, 145, 720, 165]
+	  ZOrder		  5106
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F0_MODALOUT"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD16"
+	  SID			  "693:3440"
+	  Position		  [625, 185, 720, 205]
+	  ZOrder		  5107
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F1_MODALOUT"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD17"
+	  SID			  "693:3441"
+	  Position		  [625, 225, 720, 245]
+	  ZOrder		  5108
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F2_MODALOUT"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD18"
+	  SID			  "693:3442"
+	  Position		  [625, 265, 720, 285]
+	  ZOrder		  5109
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "F3_MODALOUT"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD19"
+	  SID			  "693:3443"
+	  Position		  [625, 305, 720, 325]
+	  ZOrder		  5110
+	  BackgroundColor	  "[1.000000, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "BF_MODALOUT"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD2"
+	  SID			  "693:3444"
+	  Position		  [1915, 260, 1985, 280]
+	  ZOrder		  4350
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  GotoTag		  "F0_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD20"
+	  SID			  "693:3445"
+	  Position		  [1220, 470, 1290, 490]
+	  ZOrder		  5130
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "IPY_MEAS"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD21"
+	  SID			  "693:4006"
+	  Position		  [2650, 480, 2730, 500]
+	  ZOrder		  5278
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_L"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD22"
+	  SID			  "693:4005"
+	  Position		  [2650, 680, 2730, 700]
+	  ZOrder		  5277
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_Y"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD23"
+	  SID			  "693:4007"
+	  Position		  [2650, 520, 2730, 540]
+	  ZOrder		  5279
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BF_LVDT_T"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD24"
+	  SID			  "693:3447"
+	  Position		  [1215, 665, 1285, 685]
+	  ZOrder		  5142
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "IPY_COIL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD25"
+	  SID			  "693:3448"
+	  Position		  [2650, 920, 2725, 940]
+	  ZOrder		  5143
+	  BackgroundColor	  "[0.666667, 1.000000, 0.498039]"
+	  ShowName		  off
+	  GotoTag		  "BFY_COIL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD26"
+	  SID			  "693:4020"
+	  Position		  [1195, 1337, 1275, 1353]
+	  ZOrder		  5292
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "GIF_ARM_L"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD3"
+	  SID			  "693:3449"
+	  Position		  [1920, 520, 1990, 540]
+	  ZOrder		  4351
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  GotoTag		  "F1_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD4"
+	  SID			  "693:3450"
+	  Position		  [1920, 765, 1990, 785]
+	  ZOrder		  4352
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  GotoTag		  "F2_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD5"
+	  SID			  "693:3451"
+	  Position		  [1920, 1010, 1990, 1030]
+	  ZOrder		  4353
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  GotoTag		  "F3_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD6"
+	  SID			  "693:3452"
+	  Position		  [2650, 960, 2720, 980]
+	  ZOrder		  4354
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "BF_WD"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD7"
+	  SID			  "693:3970"
+	  Position		  [1195, 1167, 1275, 1183]
+	  ZOrder		  5246
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_X"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD8"
+	  SID			  "693:3972"
+	  Position		  [1195, 1212, 1275, 1228]
+	  ZOrder		  5248
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Y"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "GotoWD9"
+	  SID			  "693:3973"
+	  Position		  [1195, 1257, 1275, 1273]
+	  ZOrder		  5249
+	  BackgroundColor	  "[0.333333, 0.666667, 1.000000]"
+	  ShowName		  off
+	  GotoTag		  "PEM_SEIS_Z"
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground1"
+	  SID			  "693:4068"
+	  Position		  [275, 640, 295, 660]
+	  ZOrder		  5301
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground2"
+	  SID			  "693:4539"
+	  Position		  [330, 1265, 350, 1285]
+	  ZOrder		  5592
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground3"
+	  SID			  "693:4059"
+	  Position		  [1595, 705, 1615, 715]
+	  ZOrder		  5296
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground4"
+	  SID			  "693:4060"
+	  Position		  [1595, 950, 1615, 960]
+	  ZOrder		  5297
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground7"
+	  SID			  "693:3120"
+	  Position		  [265, 1165, 285, 1185]
+	  ZOrder		  5212
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "INSTALLED_DATE_TWR"
+	  SID			  "693:4538"
+	  Tag			  "cdsEpicsStringIn"
+	  Description		  "cdsEpicsStringIn"
+	  Ports			  [1]
+	  Position		  [425, 1260, 475, 1290]
+	  ZOrder		  5593
+	  BackgroundColor	  "[0.000000, 0.501961, 0.250980]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.4"
+	  SourceBlock		  "cdsEpicsStringIn/EpicsStringIn"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "IP"
+	  SID			  "693:4576"
+	  Ports			  [24, 11]
+	  Position		  [955, 110, 1125, 850]
+	  ZOrder		  5758
+	  BackgroundColor	  "[1.000000, 0.850980, 1.000000]"
+	  LibraryVersion	  "1.272"
+	  SourceBlock		  "TOWER_MASTER/IPMASTER"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "ISC_L3"
+	  SID			  "693:3484"
+	  Position		  [715, 667, 860, 683]
+	  ZOrder		  5178
+	  BackgroundColor	  "[0.670588, 0.862745, 0.901961]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "ISC_L"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "KALMAN"
+	  SID			  "693:3491"
+	  Ports			  [4, 6]
+	  Position		  [400, 468, 545, 602]
+	  ZOrder		  5127
+	  BackgroundColor	  "[0.631373, 1.000000, 0.815686]"
+	  LibraryVersion	  "1.10"
+	  SourceBlock		  "KALMAN_MASTER/KALMAN"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "LogicalOperator"
+	  SID			  "693:3678"
+	  Ports			  [1, 1]
+	  Position		  [3320, 342, 3350, 368]
+	  ZOrder		  5217
+	  ShowName		  off
+	  Operator		  "NOT"
+	  AllPortsSameDT	  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW"
+	  SID			  "693:3493"
+	  Position		  [715, 607, 860, 623]
+	  ZOrder		  4302
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW1"
+	  SID			  "693:3494"
+	  Position		  [1415, 272, 1560, 288]
+	  ZOrder		  4332
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW2"
+	  SID			  "693:3495"
+	  Position		  [1415, 532, 1560, 548]
+	  ZOrder		  4334
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW3"
+	  SID			  "693:3496"
+	  Position		  [1415, 777, 1560, 793]
+	  ZOrder		  4336
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW4"
+	  SID			  "693:3497"
+	  Position		  [1415, 1022, 1560, 1038]
+	  ZOrder		  4338
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "MASTERSW5"
+	  SID			  "693:3498"
+	  Position		  [2145, 687, 2290, 703]
+	  ZOrder		  4340
+	  BackgroundColor	  "red"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MASTERSWITCH"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "MASTERSWITCH"
+	  SID			  "693:4069"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [340, 638, 385, 662]
+	  ZOrder		  5300
+	  BackgroundColor	  "red"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "PEM"
+	  SID			  "693:3869"
+	  Ports			  [3, 3]
+	  Position		  [950, 1150, 1125, 1290]
+	  ZOrder		  5245
+	  BackgroundColor	  "[0.113725, 0.556863, 0.690196]"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "PEM"
+	    Location		    [4003, 37, 5424, 1063]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "SEIS_X_In"
+	      SID		      "693:3870"
+	      Position		      [130, 98, 160, 112]
+	      ZOrder		      19
+	      BackgroundColor	      "yellow"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "SEIS_Y_In"
+	      SID		      "693:3871"
+	      Position		      [130, 133, 160, 147]
+	      ZOrder		      5144
+	      BackgroundColor	      "yellow"
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "SEIS_Z_In"
+	      SID		      "693:3872"
+	      Position		      [130, 168, 160, 182]
+	      ZOrder		      5151
+	      BackgroundColor	      "yellow"
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "SEISINF"
+	      SID		      "693:3856"
+	      Ports		      [3, 3]
+	      Position		      [240, 89, 400, 191]
+	      ZOrder		      5245
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"SEISINF"
+		Location		[4003, 37, 5424, 1063]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "SEIS_X_In"
+		  SID			  "693:3857"
+		  Position		  [85, 120, 105, 130]
+		  ZOrder		  1599
+		  BackgroundColor	  "yellow"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "SEIS_Y_In"
+		  SID			  "693:3858"
+		  Position		  [85, 190, 105, 200]
+		  ZOrder		  1598
+		  BackgroundColor	  "yellow"
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "SEIS_Z_In"
+		  SID			  "693:3859"
+		  Position		  [85, 260, 105, 270]
+		  ZOrder		  1597
+		  BackgroundColor	  "yellow"
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "X"
+		  SID			  "693:3861"
+		  Tag			  "cdsFilt"
+		  Description		  "Purpose:                                                                                          "
+		  "                                                                                                                  "
+		  "                      \nStandard CDS IIR filter module.                                                           "
+		  "                                                                                                                  "
+		  "                              \n                                                                                  "
+		  "                                                                                                                  "
+		  "                                      \nOperation:                                                                "
+		  "                                                                                                                  "
+		  "                                              \nConsists of 10 second order section IIR filters, plus a ramped gai"
+		  "n stage. In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients "
+		  "are defined in the LIGO system using the 'foton' tool.\n                                                          "
+		  "                                                                                                                  "
+		  "                                                              \nUsage:                                            "
+		  "                                                                                                                  "
+		  "                                                                      \nName the part with the desired filter modu"
+		  "le name.                                                                                                          "
+		  "                                                                              "
+		  Ports			  [1, 1]
+		  Position		  [185, 113, 255, 137]
+		  ZOrder		  4324
+		  BackgroundColor	  "darkGreen"
+		  DropShadow		  on
+		  AttributesFormatString  "%<Tag>"
+		  LibraryVersion	  "1.3"
+		  SourceBlock		  "cdsFilt/Subsystem"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "Y"
+		  SID			  "693:3862"
+		  Tag			  "cdsFilt"
+		  Description		  "Purpose:                                                                                          "
+		  "                                                                                                                  "
+		  "                      \nStandard CDS IIR filter module.                                                           "
+		  "                                                                                                                  "
+		  "                              \n                                                                                  "
+		  "                                                                                                                  "
+		  "                                      \nOperation:                                                                "
+		  "                                                                                                                  "
+		  "                                              \nConsists of 10 second order section IIR filters, plus a ramped gai"
+		  "n stage. In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients "
+		  "are defined in the LIGO system using the 'foton' tool.\n                                                          "
+		  "                                                                                                                  "
+		  "                                                              \nUsage:                                            "
+		  "                                                                                                                  "
+		  "                                                                      \nName the part with the desired filter modu"
+		  "le name.                                                                                                          "
+		  "                                                                              "
+		  Ports			  [1, 1]
+		  Position		  [185, 183, 255, 207]
+		  ZOrder		  4325
+		  BackgroundColor	  "darkGreen"
+		  DropShadow		  on
+		  AttributesFormatString  "%<Tag>"
+		  LibraryVersion	  "1.3"
+		  SourceBlock		  "cdsFilt/Subsystem"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Reference
+		  Name			  "Z"
+		  SID			  "693:3863"
+		  Tag			  "cdsFilt"
+		  Description		  "Purpose:                                                                                          "
+		  "                                                                                                                  "
+		  "                      \nStandard CDS IIR filter module.                                                           "
+		  "                                                                                                                  "
+		  "                              \n                                                                                  "
+		  "                                                                                                                  "
+		  "                                      \nOperation:                                                                "
+		  "                                                                                                                  "
+		  "                                              \nConsists of 10 second order section IIR filters, plus a ramped gai"
+		  "n stage. In FE code, also provides pre-defined test points and excitation channel inputs. The filter coefficients "
+		  "are defined in the LIGO system using the 'foton' tool.\n                                                          "
+		  "                                                                                                                  "
+		  "                                                              \nUsage:                                            "
+		  "                                                                                                                  "
+		  "                                                                      \nName the part with the desired filter modu"
+		  "le name.                                                                                                          "
+		  "                                                                              "
+		  Ports			  [1, 1]
+		  Position		  [185, 253, 255, 277]
+		  ZOrder		  4323
+		  BackgroundColor	  "darkGreen"
+		  DropShadow		  on
+		  AttributesFormatString  "%<Tag>"
+		  LibraryVersion	  "1.3"
+		  SourceBlock		  "cdsFilt/Subsystem"
+		  SourceType		  "SubSystem"
+		  ContentPreviewEnabled	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "SEIS_X_Out"
+		  SID			  "693:3865"
+		  Position		  [340, 120, 360, 130]
+		  ZOrder		  1605
+		  BackgroundColor	  "yellow"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "SEIS_Y_Out"
+		  SID			  "693:3866"
+		  Position		  [340, 190, 360, 200]
+		  ZOrder		  1606
+		  BackgroundColor	  "yellow"
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "SEIS_Z_Out"
+		  SID			  "693:3867"
+		  Position		  [340, 260, 360, 270]
+		  ZOrder		  1607
+		  BackgroundColor	  "yellow"
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "SEIS_Y_In"
+		  SrcPort		  1
+		  DstBlock		  "Y"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "SEIS_X_In"
+		  SrcPort		  1
+		  DstBlock		  "X"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "SEIS_Z_In"
+		  SrcPort		  1
+		  DstBlock		  "Z"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "X"
+		  SrcPort		  1
+		  DstBlock		  "SEIS_X_Out"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  5
+		  SrcBlock		  "Y"
+		  SrcPort		  1
+		  DstBlock		  "SEIS_Y_Out"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "Z"
+		  SrcPort		  1
+		  DstBlock		  "SEIS_Z_Out"
+		  DstPort		  1
+		}
+		Annotation {
+		  SID			  "693:4022"
+		  Name			  "#DAQ Channels\n\nX_OUT 2048\nY_OUT 2048\nZ_OUT 2048"
+		  Position		  [166, 0, 269, 82]
+		  InternalMargins	  [0, 0, 0, 0]
+		  FixedHeight		  off
+		  FixedWidth		  off
+		  HorizontalAlignment	  "left"
+		  DropShadow		  on
+		  ZOrder		  -1
+		  FontSize		  14
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "SEIS_X_Out"
+	      SID		      "693:3962"
+	      Position		      [460, 98, 490, 112]
+	      ZOrder		      30
+	      BackgroundColor	      "yellow"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "SEIS_Y_Out"
+	      SID		      "693:3963"
+	      Position		      [460, 133, 490, 147]
+	      ZOrder		      5146
+	      BackgroundColor	      "yellow"
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "SEIS_Z_Out"
+	      SID		      "693:3964"
+	      Position		      [460, 168, 490, 182]
+	      ZOrder		      5147
+	      BackgroundColor	      "yellow"
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "SEISINF"
+	      SrcPort		      1
+	      DstBlock		      "SEIS_X_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "SEISINF"
+	      SrcPort		      3
+	      DstBlock		      "SEIS_Z_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "SEISINF"
+	      SrcPort		      2
+	      DstBlock		      "SEIS_Y_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "SEIS_Z_In"
+	      SrcPort		      1
+	      DstBlock		      "SEISINF"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "SEIS_Y_In"
+	      SrcPort		      1
+	      DstBlock		      "SEISINF"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "SEIS_X_In"
+	      SrcPort		      1
+	      DstBlock		      "SEISINF"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PICO_BF_STATUS"
+	  SID			  "693:4573"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [415, 1350, 480, 1380]
+	  ZOrder		  5594
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "PI_COILOUTF_CTRL"
+	  SID			  "693:3515"
+	  Position		  [3505, 592, 3655, 608]
+	  ZOrder		  4434
+	  BackgroundColor	  "yellow"
+	  GotoTag		  "PI_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "PI_COILOUTF_CTRL1\n"
+	  SID			  "693:3516"
+	  Position		  [715, 547, 860, 563]
+	  ZOrder		  4436
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PI_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "PI_COILOUTF_CTRL2"
+	  SID			  "693:3517"
+	  Position		  [1415, 222, 1560, 238]
+	  ZOrder		  4472
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PI_COILOUTF_CTRL"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "PI_COILOUTF_MASK"
+	  SID			  "693:3518"
+	  Position		  [3360, 552, 3510, 568]
+	  ZOrder		  4433
+	  BackgroundColor	  "[0.533333, 0.619608, 1.000000]"
+	  GotoTag		  "PI_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "PI_COILOUTF_MASK1\n"
+	  SID			  "693:3519"
+	  Position		  [715, 577, 860, 593]
+	  ZOrder		  4435
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PI_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "PI_COILOUTF_MASK2"
+	  SID			  "693:3520"
+	  Position		  [1415, 247, 1560, 263]
+	  ZOrder		  4471
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "[0.529412, 0.611765, 0.988235]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PI_COILOUTF_MASK"
+	}
+	Block {
+	  BlockType		  RelationalOperator
+	  Name			  "RO"
+	  SID			  "693:3686"
+	  Ports			  [2, 1]
+	  Position		  [3240, 292, 3270, 323]
+	  ZOrder		  5225
+	  Operator		  "=="
+	  InputSameDT		  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STEP_GAS_STATUS"
+	  SID			  "693:4574"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [415, 1425, 480, 1455]
+	  ZOrder		  5595
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "STEP_IP_STATUS"
+	  SID			  "693:4575"
+	  Tag			  "cdsEpicsIn"
+	  Description		  "Purpose:                                                                              \nCreate an E"
+	  "PICS input channel connection to the FE realtime controls.                 \n                                      "
+	  "                                                \nOperation:                                                       "
+	  "                     \nOutputs value from an EPICS ai record. Value is floating point with a precision of 3..\n    "
+	  "                                                                                  \nUsage:                         "
+	  "                                                       \nName the part with the desired EPICS channel name.        "
+	  "                            "
+	  Ports			  [0, 1]
+	  Position		  [415, 1510, 480, 1540]
+	  ZOrder		  5596
+	  BackgroundColor	  "green"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.3"
+	  SourceBlock		  "cdsEpicsIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TWR_DACKILL"
+	  SID			  "693:3675"
+	  Description		  "cdsDacKill"
+	  Ports			  [2, 2]
+	  Position		  [3475, 330, 3580, 425]
+	  ZOrder		  5221
+	  ForegroundColor	  "red"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Description>"
+	  LibraryVersion	  "1.8"
+	  FontName		  "times"
+	  FontSize		  12
+	  SourceBlock		  "cdsDacKill/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "TWR_DACKILL_BYPASS_TIME"
+	  SID			  "693:3676"
+	  Position		  [3140, 391, 3165, 409]
+	  ZOrder		  5219
+	  ForegroundColor	  "blue"
+	  Value			  "0"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TWR_DACKILL_BYPASS_TIMEMON"
+	  SID			  "693:3677"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [3310, 389, 3355, 411]
+	  ZOrder		  5218
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TWR_SHUTDOWN"
+	  SID			  "693:3683"
+	  Ports			  [1, 2]
+	  Position		  [3325, -150, 3440, 5]
+	  ZOrder		  5222
+	  LibraryVersion	  "1.1"
+	  SourceBlock		  "SHUTDOWN/SHUTDOWN"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "TWR_SHUTDOWN_TRIG"
+	  SID			  "693:3645"
+	  Ports			  [6, 1]
+	  Position		  [3045, -185, 3245, 45]
+	  ZOrder		  5193
+	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
+	  LibraryVersion	  "1.474"
+	  SourceBlock		  "VIS_LIB/DACKILL_TYPEA_TOWER"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator"
+	  SID			  "693:3545"
+	  Position		  [1225, 797, 1245, 813]
+	  ZOrder		  4368
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  "693:3546"
+	  Position		  [1915, 315, 1935, 335]
+	  ZOrder		  4369
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator11"
+	  SID			  "693:3679"
+	  Position		  [3645, 345, 3665, 365]
+	  ZOrder		  5220
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator12"
+	  SID			  "693:3680"
+	  Position		  [3645, 390, 3665, 410]
+	  ZOrder		  5216
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator13"
+	  SID			  "693:3550"
+	  Position		  [2650, 560, 2670, 580]
+	  ZOrder		  5119
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator14"
+	  SID			  "693:3551"
+	  Position		  [2650, 600, 2670, 620]
+	  ZOrder		  5120
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator17"
+	  SID			  "693:3554"
+	  Position		  [2650, 640, 2670, 660]
+	  ZOrder		  5121
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator18"
+	  SID			  "693:3555"
+	  Position		  [595, 477, 615, 493]
+	  ZOrder		  5160
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator2"
+	  SID			  "693:4554"
+	  Position		  [535, 1355, 555, 1375]
+	  ZOrder		  5583
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator20"
+	  SID			  "693:3558"
+	  Position		  [1220, 342, 1240, 358]
+	  ZOrder		  5146
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator21"
+	  SID			  "693:3559"
+	  Position		  [1220, 407, 1240, 423]
+	  ZOrder		  5147
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator22"
+	  SID			  "693:3560"
+	  Position		  [595, 497, 615, 513]
+	  ZOrder		  5161
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator23"
+	  SID			  "693:3561"
+	  Position		  [595, 517, 615, 533]
+	  ZOrder		  5162
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator24"
+	  SID			  "693:3562"
+	  Position		  [595, 537, 615, 553]
+	  ZOrder		  5163
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator25"
+	  SID			  "693:3563"
+	  Position		  [595, 557, 615, 573]
+	  ZOrder		  5164
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator26"
+	  SID			  "693:3564"
+	  Position		  [595, 577, 615, 593]
+	  ZOrder		  5165
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator27"
+	  SID			  "693:3565"
+	  Position		  [1220, 537, 1240, 553]
+	  ZOrder		  5148
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator28"
+	  SID			  "693:3566"
+	  Position		  [1220, 602, 1240, 618]
+	  ZOrder		  5149
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator29"
+	  SID			  "693:3567"
+	  Position		  [2650, 800, 2670, 820]
+	  ZOrder		  5152
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator3"
+	  SID			  "693:3568"
+	  Position		  [1925, 575, 1945, 595]
+	  ZOrder		  4370
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator30"
+	  SID			  "693:3569"
+	  Position		  [2650, 840, 2670, 860]
+	  ZOrder		  5153
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator31"
+	  SID			  "693:3570"
+	  Position		  [2650, 880, 2670, 900]
+	  ZOrder		  5154
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator32"
+	  SID			  "693:3571"
+	  Position		  [2650, 720, 2670, 740]
+	  ZOrder		  5150
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator33"
+	  SID			  "693:3572"
+	  Position		  [2650, 760, 2670, 780]
+	  ZOrder		  5151
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator4"
+	  SID			  "693:3573"
+	  Position		  [1925, 819, 1945, 841]
+	  ZOrder		  4371
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator5"
+	  SID			  "693:3574"
+	  Position		  [1925, 1065, 1945, 1085]
+	  ZOrder		  4372
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator6"
+	  SID			  "693:3575"
+	  Position		  [2650, 1000, 2670, 1020]
+	  ZOrder		  4373
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator7"
+	  SID			  "693:4567"
+	  Position		  [535, 1430, 555, 1450]
+	  ZOrder		  5586
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator8"
+	  SID			  "693:4572"
+	  Position		  [535, 1515, 555, 1535]
+	  ZOrder		  5589
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET"
+	  SID			  "693:3579"
+	  Position		  [715, 637, 860, 653]
+	  ZOrder		  4303
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET1"
+	  SID			  "693:3580"
+	  Position		  [1415, 297, 1560, 313]
+	  ZOrder		  4333
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET10"
+	  SID			  "693:4016"
+	  Position		  [760, 397, 870, 413]
+	  ZOrder		  5288
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "TM_OPLEV_L"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET11"
+	  SID			  "693:4017"
+	  Position		  [760, 427, 870, 443]
+	  ZOrder		  5289
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "TM_OPLEV_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET12"
+	  SID			  "693:4075"
+	  Position		  [760, 367, 870, 383]
+	  ZOrder		  5306
+	  BackgroundColor	  "[0.000000, 0.666667, 0.498039]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "IP_TIDAL_L"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET2"
+	  SID			  "693:3581"
+	  Position		  [1415, 557, 1560, 573]
+	  ZOrder		  4335
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET3"
+	  SID			  "693:3582"
+	  Position		  [1415, 802, 1560, 818]
+	  ZOrder		  4337
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET4"
+	  SID			  "693:3583"
+	  Position		  [1415, 1047, 1560, 1063]
+	  ZOrder		  4339
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET5"
+	  SID			  "693:3584"
+	  Position		  [2145, 717, 2290, 733]
+	  ZOrder		  4341
+	  BackgroundColor	  "[0.635294, 0.901961, 0.623529]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "WD_RESET"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET6"
+	  SID			  "693:3740"
+	  Position		  [2145, 477, 2290, 493]
+	  ZOrder		  5237
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PAY_OLSERVO_BFY_In"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET7"
+	  SID			  "693:3988"
+	  Position		  [2145, 417, 2290, 433]
+	  ZOrder		  5265
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PAY_OLSERVO_BFL_In"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET8"
+	  SID			  "693:3659"
+	  Position		  [2145, 387, 2290, 403]
+	  ZOrder		  5207
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "MN_OLDC_Y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDRESET9"
+	  SID			  "693:3989"
+	  Position		  [2145, 447, 2290, 463]
+	  ZOrder		  5266
+	  BackgroundColor	  "[1.000000, 0.666667, 0.000000]"
+	  ShowName		  off
+	  CloseFcn		  "tagdialog Close"
+	  GotoTag		  "PAY_OLSERVO_BFT_In"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "WD_RESET"
+	  SID			  "693:3672"
+	  Tag			  "cdsEpicsMomentary"
+	  Ports			  [1, 1]
+	  Position		  [360, 1163, 400, 1187]
+	  ZOrder		  5215
+	  BackgroundColor	  "[0.501961, 1.000000, 0.501961]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsMomentary/EpicsMomentary"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom"
+	  SID			  "693:3589"
+	  Position		  [2925, -179, 2980, -161]
+	  ZOrder		  4387
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "IP_WD"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom1"
+	  SID			  "693:3590"
+	  Position		  [2925, -139, 2980, -121]
+	  ZOrder		  4389
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "F0_WD"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom2"
+	  SID			  "693:3591"
+	  Position		  [2925, -99, 2980, -81]
+	  ZOrder		  4390
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "F1_WD"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom3"
+	  SID			  "693:3592"
+	  Position		  [2925, -59, 2980, -41]
+	  ZOrder		  4391
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "F2_WD"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom4"
+	  SID			  "693:3593"
+	  Position		  [2925, -19, 2980, -1]
+	  ZOrder		  4392
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "F3_WD"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "WDfrom5"
+	  SID			  "693:3594"
+	  Position		  [2925, 21, 2980, 39]
+	  ZOrder		  4393
+	  BackgroundColor	  "[0.666667, 0.333333, 0.000000]"
+	  ShowName		  off
+	  GotoTag		  "BF_WD"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_COIL_H1_Out"
+	  SID			  "693:3598"
+	  Position		  [1215, 148, 1245, 162]
+	  ZOrder		  4304
+	  BackgroundColor	  "yellow"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_COIL_H2_Out"
+	  SID			  "693:3599"
+	  Position		  [1215, 213, 1245, 227]
+	  ZOrder		  4305
+	  BackgroundColor	  "yellow"
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "IP_COIL_H3_Out"
+	  SID			  "693:3600"
+	  Position		  [1215, 278, 1245, 292]
+	  ZOrder		  4306
+	  BackgroundColor	  "yellow"
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "F0_COIL_GAS_Out"
+	  SID			  "693:3601"
+	  Position		  [1915, 153, 1945, 167]
+	  ZOrder		  4355
+	  BackgroundColor	  "yellow"
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "F1_COIL_GAS_Out"
+	  SID			  "693:3602"
+	  Position		  [1920, 413, 1950, 427]
+	  ZOrder		  4356
+	  BackgroundColor	  "yellow"
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "F2_COIL_GAS_Out"
+	  SID			  "693:3603"
+	  Position		  [1920, 658, 1950, 672]
+	  ZOrder		  4357
+	  BackgroundColor	  "yellow"
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "F3_COIL_GAS_Out"
+	  SID			  "693:3604"
+	  Position		  [1920, 903, 1950, 917]
+	  ZOrder		  4358
+	  BackgroundColor	  "yellow"
+	  Port			  "7"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_GAS_Out"
+	  SID			  "693:3605"
+	  Position		  [2650, 163, 2680, 177]
+	  ZOrder		  4360
+	  BackgroundColor	  "yellow"
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_V1_Out"
+	  SID			  "693:3606"
+	  Position		  [2650, 203, 2680, 217]
+	  ZOrder		  4361
+	  BackgroundColor	  "yellow"
+	  Port			  "9"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_V2_Out"
+	  SID			  "693:3607"
+	  Position		  [2650, 243, 2680, 257]
+	  ZOrder		  4362
+	  BackgroundColor	  "yellow"
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_V3_Out"
+	  SID			  "693:3608"
+	  Position		  [2650, 283, 2680, 297]
+	  ZOrder		  4363
+	  BackgroundColor	  "yellow"
+	  Port			  "11"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_H1_Out"
+	  SID			  "693:3609"
+	  Position		  [2650, 323, 2680, 337]
+	  ZOrder		  4365
+	  BackgroundColor	  "yellow"
+	  Port			  "12"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_H2_Out"
+	  SID			  "693:3610"
+	  Position		  [2650, 363, 2680, 377]
+	  ZOrder		  4366
+	  BackgroundColor	  "yellow"
+	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BF_COIL_H3_Out"
+	  SID			  "693:3611"
+	  Position		  [2650, 403, 2680, 417]
+	  ZOrder		  4367
+	  BackgroundColor	  "yellow"
+	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BO_PI_CTRL"
+	  SID			  "693:3628"
+	  Position		  [3295, 513, 3325, 527]
+	  ZOrder		  4421
+	  BackgroundColor	  "yellow"
+	  Port			  "15"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BO_GAS_CTRL"
+	  SID			  "693:3629"
+	  Position		  [3295, 633, 3325, 647]
+	  ZOrder		  4420
+	  BackgroundColor	  "yellow"
+	  Port			  "16"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BO_BFV_CTRL"
+	  SID			  "693:3630"
+	  Position		  [3295, 753, 3325, 767]
+	  ZOrder		  4419
+	  BackgroundColor	  "yellow"
+	  Port			  "17"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "BO_BFH_CTRL"
+	  SID			  "693:3631"
+	  Position		  [3295, 873, 3325, 887]
+	  ZOrder		  4460
+	  BackgroundColor	  "yellow"
+	  Port			  "18"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "MASTERSWITCH_CTRL"
+	  SID			  "693:4070"
+	  Position		  [495, 708, 525, 722]
+	  ZOrder		  5302
+	  BackgroundColor	  "yellow"
+	  Port			  "19"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TWR_WD_OUT"
+	  SID			  "693:3646"
+	  Position		  [3390, 63, 3420, 77]
+	  ZOrder		  5194
+	  BackgroundColor	  "yellow"
+	  Port			  "20"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "WATCHDOG_RESET"
+	  SID			  "693:3313"
+	  Position		  [510, 1133, 540, 1147]
+	  ZOrder		  5214
+	  BackgroundColor	  "yellow"
+	  Port			  "21"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "Ground2"
+	  SrcPort		  1
+	  DstBlock		  "INSTALLED_DATE_TWR"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "STEP_IP_STATUS"
+	  SrcPort		  1
+	  DstBlock		  "Terminator8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "STEP_GAS_STATUS"
+	  SrcPort		  1
+	  DstBlock		  "Terminator7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "PICO_BF_STATUS"
+	  SrcPort		  1
+	  DstBlock		  "Terminator2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "IP_TIDAL_L_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto10"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  234
+	  SrcBlock		  "From20"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  20
+	}
+	Line {
+	  ZOrder		  232
+	  SrcBlock		  "WDRESET"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  18
+	}
+	Line {
+	  ZOrder		  230
+	  SrcBlock		  "PI_COILOUTF_MASK1\n"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  16
+	}
+	Line {
+	  ZOrder		  229
+	  SrcBlock		  "PI_COILOUTF_CTRL1\n"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  15
+	}
+	Line {
+	  ZOrder		  231
+	  SrcBlock		  "MASTERSW"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  17
+	}
+	Line {
+	  ZOrder		  233
+	  SrcBlock		  "ISC_L3"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  19
+	}
+	Line {
+	  ZOrder		  260
+	  SrcBlock		  "WDRESET11"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  11
+	}
+	Line {
+	  ZOrder		  259
+	  SrcBlock		  "WDRESET10"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  10
+	}
+	Line {
+	  ZOrder		  261
+	  SrcBlock		  "From28"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  12
+	}
+	Line {
+	  ZOrder		  262
+	  SrcBlock		  "From27"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  13
+	}
+	Line {
+	  ZOrder		  228
+	  SrcBlock		  "From26"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  14
+	}
+	Line {
+	  ZOrder		  235
+	  SrcBlock		  "From29"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  21
+	}
+	Line {
+	  ZOrder		  258
+	  SrcBlock		  "WDRESET12"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  19
+	  SrcBlock		  "Ground1"
+	  SrcPort		  1
+	  DstBlock		  "MASTERSWITCH"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  20
+	  SrcBlock		  "From30"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  21
+	  SrcBlock		  "From31"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "From19"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  23
+	  SrcBlock		  "WDRESET4"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  24
+	  SrcBlock		  "MASTERSW4"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  25
+	  SrcBlock		  "GAS_COILOUTF_MASK3"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  26
+	  SrcBlock		  "GAS_COILOUTF_CTRL3"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  27
+	  SrcBlock		  "Ground4"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  28
+	  SrcBlock		  "From18"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  29
+	  SrcBlock		  "GAS_COILOUTF_CTRL2"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  30
+	  SrcBlock		  "WDRESET3"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  31
+	  SrcBlock		  "MASTERSW3"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  32
+	  SrcBlock		  "GAS_COILOUTF_MASK2"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  33
+	  SrcBlock		  "Ground3"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  34
+	  SrcBlock		  "From17"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  35
+	  SrcBlock		  "WDRESET2"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  36
+	  SrcBlock		  "MASTERSW2"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  37
+	  SrcBlock		  "GAS_COILOUTF_MASK1"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  38
+	  SrcBlock		  "GAS_COILOUTF_CTRL1"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  39
+	  SrcBlock		  "From16"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  40
+	  SrcBlock		  "WDRESET1"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  41
+	  SrcBlock		  "PI_COILOUTF_MASK2"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  42
+	  SrcBlock		  "PI_COILOUTF_CTRL2"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  43
+	  SrcBlock		  "MASTERSW1"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  44
+	  SrcBlock		  "GIF_ARM_STRAIN"
+	  SrcPort		  1
+	  DstBlock		  "GIF_ARM_L"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  45
+	  SrcBlock		  "GIF_ARM_L"
+	  SrcPort		  1
+	  DstBlock		  "GotoWD26"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  46
+	  SrcBlock		  "TM_OPLEV_Y_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto9"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  47
+	  SrcBlock		  "TM_OPLEV_L_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  48
+	  SrcBlock		  "PEM_SEIS_Z_In"
+	  SrcPort		  1
+	  DstBlock		  "PEM"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  49
+	  SrcBlock		  "PEM_SEIS_X_In"
+	  SrcPort		  1
+	  DstBlock		  "PEM"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  50
+	  SrcBlock		  "PEM_SEIS_Y_In"
+	  SrcPort		  1
+	  DstBlock		  "PEM"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  51
+	  SrcBlock		  "PAY_OLSERVO_BFT_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  52
+	  SrcBlock		  "PAY_OLSERVO_BFL_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  276
+	  SrcBlock		  "BFV_COILOUTF_MASK\n"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  14
+	}
+	Line {
+	  ZOrder		  279
+	  SrcBlock		  "GAS_COILOUTF_CTRL4"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  17
+	}
+	Line {
+	  ZOrder		  275
+	  SrcBlock		  "BFV_COILOUTF_CTRL\n"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  13
+	}
+	Line {
+	  ZOrder		  278
+	  SrcBlock		  "BFH_COILOUTF_MASK\n"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  16
+	}
+	Line {
+	  ZOrder		  281
+	  SrcBlock		  "MASTERSW5"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  19
+	}
+	Line {
+	  ZOrder		  274
+	  SrcBlock		  "WDRESET6"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  12
+	}
+	Line {
+	  ZOrder		  282
+	  SrcBlock		  "WDRESET5"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  20
+	}
+	Line {
+	  ZOrder		  283
+	  SrcBlock		  "From15"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  21
+	}
+	Line {
+	  ZOrder		  280
+	  SrcBlock		  "GAS_COILOUTF_MASK4"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  18
+	}
+	Line {
+	  ZOrder		  277
+	  SrcBlock		  "BFH_COILOUTF_CTRL\n"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  15
+	}
+	Line {
+	  ZOrder		  286
+	  SrcBlock		  "From23"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  24
+	}
+	Line {
+	  ZOrder		  273
+	  SrcBlock		  "WDRESET9"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  11
+	}
+	Line {
+	  ZOrder		  284
+	  SrcBlock		  "From24"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  22
+	}
+	Line {
+	  ZOrder		  285
+	  SrcBlock		  "From25"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  23
+	}
+	Line {
+	  ZOrder		  272
+	  SrcBlock		  "WDRESET7"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  10
+	}
+	Line {
+	  ZOrder		  257
+	  SrcBlock		  "From22"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  69
+	  SrcBlock		  "PEM"
+	  SrcPort		  3
+	  DstBlock		  "GotoWD9"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  70
+	  SrcBlock		  "PEM"
+	  SrcPort		  2
+	  DstBlock		  "GotoWD8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  256
+	  SrcBlock		  "From21"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  72
+	  SrcBlock		  "PEM"
+	  SrcPort		  1
+	  DstBlock		  "GotoWD7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  303
+	  SrcBlock		  "BF"
+	  SrcPort		  22
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  74
+	  SrcBlock		  "PAY_OLSERVO_BFY_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  271
+	  SrcBlock		  "WDRESET8"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  251
+	  SrcBlock		  "IP_LVDT_H2_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  254
+	  SrcBlock		  "IP_ACC_H2_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  250
+	  SrcBlock		  "IP_LVDT_H1_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  253
+	  SrcBlock		  "IP_ACC_H1_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  252
+	  SrcBlock		  "IP_LVDT_H3_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  255
+	  SrcBlock		  "IP_ACC_H3_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  239
+	  SrcBlock		  "IP"
+	  SrcPort		  1
+	  DstBlock		  "IP_COIL_H1_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  240
+	  SrcBlock		  "IP"
+	  SrcPort		  2
+	  DstBlock		  "IP_COIL_H2_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  84
+	  SrcBlock		  "MASTERSWITCH"
+	  SrcPort		  1
+	  Points		  [35, 0]
+	  Branch {
+	    ZOrder		    85
+	    DstBlock		    "Goto14"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    86
+	    Points		    [0, 65]
+	    DstBlock		    "MASTERSWITCH_CTRL"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  263
+	  SrcBlock		  "BF_LVDT_GAS_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  264
+	  SrcBlock		  "BF_LVDT_V1_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  265
+	  SrcBlock		  "BF_LVDT_V2_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  268
+	  SrcBlock		  "BF_LVDT_H2_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  266
+	  SrcBlock		  "BF_LVDT_V3_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  269
+	  SrcBlock		  "BF_LVDT_H3_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  267
+	  SrcBlock		  "BF_LVDT_H1_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  94
+	  SrcBlock		  "F1"
+	  SrcPort		  3
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  95
+	  SrcBlock		  "F2"
+	  SrcPort		  3
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  96
+	  SrcBlock		  "F3"
+	  SrcPort		  3
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  97
+	  SrcBlock		  "F1"
+	  SrcPort		  1
+	  Points		  [27, 0; 0, -15]
+	  DstBlock		  "F1_COIL_GAS_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  98
+	  SrcBlock		  "F2"
+	  SrcPort		  1
+	  Points		  [27, 0; 0, -15]
+	  DstBlock		  "F2_COIL_GAS_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  99
+	  SrcBlock		  "F3"
+	  SrcPort		  1
+	  Points		  [27, 0; 0, -15]
+	  DstBlock		  "F3_COIL_GAS_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  100
+	  SrcBlock		  "F1"
+	  SrcPort		  4
+	  Points		  [43, 0; 0, -15]
+	  DstBlock		  "Terminator3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  101
+	  SrcBlock		  "F2"
+	  SrcPort		  4
+	  Points		  [43, 0; 0, -15]
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  102
+	  SrcBlock		  "F3"
+	  SrcPort		  4
+	  Points		  [43, 0; 0, -15]
+	  DstBlock		  "Terminator5"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  103
+	  SrcBlock		  "WDfrom"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  104
+	  SrcBlock		  "WDfrom1"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  105
+	  SrcBlock		  "WDfrom2"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  106
+	  SrcBlock		  "WDfrom3"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  107
+	  SrcBlock		  "WDfrom4"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  108
+	  SrcBlock		  "WDfrom5"
+	  SrcPort		  1
+	  DstBlock		  "TWR_SHUTDOWN_TRIG"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  109
+	  SrcBlock		  "BI_BFV_ISC_CTRL_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  110
+	  SrcBlock		  "BI_GAS_ISC_CTRL_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  111
+	  SrcBlock		  "BI_BFV_MON_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  112
+	  SrcBlock		  "BI_GAS_MON_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  113
+	  SrcBlock		  "BI_PI_ISC_CTRL_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  114
+	  SrcBlock		  "BI_PI_MON_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  115
+	  SrcBlock		  "BIO"
+	  SrcPort		  1
+	  DstBlock		  "BO_PI_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  116
+	  SrcBlock		  "BIO"
+	  SrcPort		  4
+	  DstBlock		  "BO_GAS_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  117
+	  SrcBlock		  "BIO"
+	  SrcPort		  7
+	  DstBlock		  "BO_BFV_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  118
+	  SrcBlock		  "BIO"
+	  SrcPort		  2
+	  DstBlock		  "PI_COILOUTF_MASK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  119
+	  SrcBlock		  "BIO"
+	  SrcPort		  5
+	  DstBlock		  "GAS_COILOUTF_MASK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  120
+	  SrcBlock		  "BIO"
+	  SrcPort		  8
+	  DstBlock		  "BFV_COILOUTF_MASK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  121
+	  SrcBlock		  "BIO"
+	  SrcPort		  3
+	  DstBlock		  "PI_COILOUTF_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  122
+	  SrcBlock		  "BIO"
+	  SrcPort		  6
+	  DstBlock		  "GAS_COILOUTF_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  123
+	  SrcBlock		  "BIO"
+	  SrcPort		  9
+	  DstBlock		  "BFV_COILOUTF_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  124
+	  SrcBlock		  "BIO"
+	  SrcPort		  11
+	  DstBlock		  "BFH_COILOUTF_MASK"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  125
+	  SrcBlock		  "BIO"
+	  SrcPort		  12
+	  DstBlock		  "BFH_COILOUTF_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  126
+	  SrcBlock		  "BIO"
+	  SrcPort		  10
+	  DstBlock		  "BO_BFH_CTRL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  127
+	  SrcBlock		  "BI_BFH_ISC_CTRL_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  128
+	  SrcBlock		  "BI_BFH_MON_In"
+	  SrcPort		  1
+	  DstBlock		  "BIO"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  129
+	  SrcBlock		  "F0"
+	  SrcPort		  1
+	  Points		  [24, 0; 0, -15]
+	  DstBlock		  "F0_COIL_GAS_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  130
+	  SrcBlock		  "F0"
+	  SrcPort		  4
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  131
+	  SrcBlock		  "F0"
+	  SrcPort		  3
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  132
+	  SrcBlock		  "F0_LVDT_GAS_In"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  133
+	  SrcBlock		  "F1_LVDT_GAS_In"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  134
+	  SrcBlock		  "F2_LVDT_GAS_In"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  135
+	  SrcBlock		  "F3_LVDT_GAS_In"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  136
+	  SrcBlock		  "F0"
+	  SrcPort		  2
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD10"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  137
+	  SrcBlock		  "F1"
+	  SrcPort		  2
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD11"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  138
+	  SrcBlock		  "F2"
+	  SrcPort		  2
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD12"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  139
+	  SrcBlock		  "F3"
+	  SrcPort		  2
+	  Points		  [40, 0; 0, -15]
+	  DstBlock		  "GotoWD13"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  140
+	  SrcBlock		  "From2"
+	  SrcPort		  1
+	  DstBlock		  "GASMODAL"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  141
+	  SrcBlock		  "From3"
+	  SrcPort		  1
+	  DstBlock		  "GASMODAL"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  142
+	  SrcBlock		  "From1"
+	  SrcPort		  1
+	  DstBlock		  "GASMODAL"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  143
+	  SrcBlock		  "From"
+	  SrcPort		  1
+	  DstBlock		  "GASMODAL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  144
+	  SrcBlock		  "From4"
+	  SrcPort		  1
+	  DstBlock		  "GASMODAL"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  145
+	  SrcBlock		  "GASMODAL"
+	  SrcPort		  1
+	  DstBlock		  "GotoWD15"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  146
+	  SrcBlock		  "GASMODAL"
+	  SrcPort		  5
+	  DstBlock		  "GotoWD19"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  147
+	  SrcBlock		  "GASMODAL"
+	  SrcPort		  3
+	  DstBlock		  "GotoWD17"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  148
+	  SrcBlock		  "GASMODAL"
+	  SrcPort		  2
+	  DstBlock		  "GotoWD16"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  149
+	  SrcBlock		  "GASMODAL"
+	  SrcPort		  4
+	  DstBlock		  "GotoWD18"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  150
+	  SrcBlock		  "From5"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  151
+	  SrcBlock		  "From6"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  152
+	  SrcBlock		  "From7"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  153
+	  SrcBlock		  "From8"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  270
+	  SrcBlock		  "From9"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  294
+	  SrcBlock		  "BF"
+	  SrcPort		  1
+	  Points		  [24, 0; 0, -15]
+	  DstBlock		  "BF_COIL_GAS_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  295
+	  SrcBlock		  "BF"
+	  SrcPort		  2
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_V1_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  304
+	  SrcBlock		  "BF"
+	  SrcPort		  3
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_V2_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  305
+	  SrcBlock		  "BF"
+	  SrcPort		  4
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_V3_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  306
+	  SrcBlock		  "BF"
+	  SrcPort		  5
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_H1_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  307
+	  SrcBlock		  "BF"
+	  SrcPort		  6
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_H2_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  308
+	  SrcBlock		  "BF"
+	  SrcPort		  7
+	  Points		  [26, 0; 0, -15]
+	  DstBlock		  "BF_COIL_H3_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  309
+	  SrcBlock		  "BF"
+	  SrcPort		  8
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD14"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  310
+	  SrcBlock		  "BF"
+	  SrcPort		  9
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD21"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  311
+	  SrcBlock		  "BF"
+	  SrcPort		  10
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD23"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  312
+	  SrcBlock		  "BF"
+	  SrcPort		  11
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator13"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  313
+	  SrcBlock		  "BF"
+	  SrcPort		  12
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator14"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  314
+	  SrcBlock		  "BF"
+	  SrcPort		  13
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator17"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  168
+	  SrcBlock		  "From10"
+	  SrcPort		  1
+	  DstBlock		  "KALMAN"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  169
+	  SrcBlock		  "From11"
+	  SrcPort		  1
+	  DstBlock		  "KALMAN"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  170
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  1
+	  DstBlock		  "Terminator18"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  171
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  2
+	  DstBlock		  "Terminator22"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  172
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  3
+	  DstBlock		  "Terminator23"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  173
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  4
+	  DstBlock		  "Terminator24"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  174
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  5
+	  DstBlock		  "Terminator25"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  175
+	  SrcBlock		  "KALMAN"
+	  SrcPort		  6
+	  DstBlock		  "Terminator26"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  241
+	  SrcBlock		  "IP"
+	  SrcPort		  3
+	  DstBlock		  "IP_COIL_H3_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  244
+	  SrcBlock		  "IP"
+	  SrcPort		  6
+	  DstBlock		  "GotoWD20"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  245
+	  SrcBlock		  "IP"
+	  SrcPort		  7
+	  DstBlock		  "Terminator27"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  246
+	  SrcBlock		  "IP"
+	  SrcPort		  8
+	  DstBlock		  "Terminator28"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  247
+	  SrcBlock		  "IP"
+	  SrcPort		  9
+	  DstBlock		  "GotoWD24"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  242
+	  SrcBlock		  "IP"
+	  SrcPort		  4
+	  DstBlock		  "Terminator20"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  243
+	  SrcBlock		  "IP"
+	  SrcPort		  5
+	  DstBlock		  "Terminator21"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  248
+	  SrcBlock		  "IP"
+	  SrcPort		  10
+	  DstBlock		  "GotoWD1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  249
+	  SrcBlock		  "IP"
+	  SrcPort		  11
+	  DstBlock		  "Terminator"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  315
+	  SrcBlock		  "BF"
+	  SrcPort		  14
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD22"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  302
+	  SrcBlock		  "BF"
+	  SrcPort		  21
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD6"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  296
+	  SrcBlock		  "BF"
+	  SrcPort		  15
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator32"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  297
+	  SrcBlock		  "BF"
+	  SrcPort		  16
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator33"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  299
+	  SrcBlock		  "BF"
+	  SrcPort		  18
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator30"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  300
+	  SrcBlock		  "BF"
+	  SrcPort		  19
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator31"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  298
+	  SrcBlock		  "BF"
+	  SrcPort		  17
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "Terminator29"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  301
+	  SrcBlock		  "BF"
+	  SrcPort		  20
+	  Points		  [38, 0; 0, -15]
+	  DstBlock		  "GotoWD25"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  193
+	  SrcBlock		  "From13"
+	  SrcPort		  1
+	  DstBlock		  "KALMAN"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  194
+	  SrcBlock		  "From12"
+	  SrcPort		  1
+	  DstBlock		  "KALMAN"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  195
+	  SrcBlock		  "MN_OLDC_Y_In"
+	  SrcPort		  1
+	  DstBlock		  "Goto3"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  196
+	  SrcBlock		  "ISC_L"
+	  SrcPort		  1
+	  DstBlock		  "Goto"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  197
+	  SrcBlock		  "Ground7"
+	  SrcPort		  1
+	  DstBlock		  "WD_RESET"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  198
+	  SrcBlock		  "WD_RESET"
+	  SrcPort		  1
+	  Points		  [37, 0]
+	  Branch {
+	    ZOrder		    199
+	    Points		    [0, -35]
+	    DstBlock		    "WATCHDOG_RESET"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    200
+	    DstBlock		    "Goto4"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  201
+	  SrcBlock		  "LogicalOperator"
+	  SrcPort		  1
+	  DstBlock		  "TWR_DACKILL"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  202
+	  SrcBlock		  "TWR_DACKILL_BYPASS_TIMEMON"
+	  SrcPort		  1
+	  DstBlock		  "TWR_DACKILL"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  203
+	  SrcBlock		  "TWR_DACKILL_BYPASS_TIME"
+	  SrcPort		  1
+	  DstBlock		  "TWR_DACKILL_BYPASS_TIMEMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  204
+	  SrcBlock		  "TWR_DACKILL"
+	  SrcPort		  1
+	  DstBlock		  "Terminator11"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  205
+	  SrcBlock		  "TWR_DACKILL"
+	  SrcPort		  2
+	  DstBlock		  "Terminator12"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  206
+	  SrcBlock		  "TWR_SHUTDOWN_TRIG"
+	  SrcPort		  1
+	  Points		  [24, 0]
+	  Branch {
+	    ZOrder		    207
+	    Points		    [0, 140]
+	    DstBlock		    "TWR_WD_OUT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    208
+	    DstBlock		    "TWR_SHUTDOWN"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  209
+	  SrcBlock		  "TWR_SHUTDOWN"
+	  SrcPort		  1
+	  DstBlock		  "Goto7"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  210
+	  SrcBlock		  "TWR_SHUTDOWN"
+	  SrcPort		  2
+	  DstBlock		  "Goto8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  211
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  Points		  [34, 0; 0, 25]
+	  DstBlock		  "RO"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  212
+	  SrcBlock		  "From14"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -10]
+	  DstBlock		  "RO"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  213
+	  SrcBlock		  "RO"
+	  SrcPort		  1
+	  Points		  [29, 0; 0, 45]
+	  DstBlock		  "LogicalOperator"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  289
+	  SrcBlock		  "BF_MODAL_V3_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  27
+	}
+	Line {
+	  ZOrder		  288
+	  SrcBlock		  "BF_MODAL_V2_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  26
+	}
+	Line {
+	  ZOrder		  287
+	  SrcBlock		  "BF_MODAL_V1_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  25
+	}
+	Line {
+	  ZOrder		  292
+	  SrcBlock		  "BF_MODAL_H3_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  30
+	}
+	Line {
+	  ZOrder		  291
+	  SrcBlock		  "BF_MODAL_H2_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  29
+	}
+	Line {
+	  ZOrder		  290
+	  SrcBlock		  "BF_MODAL_H1_In"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  28
+	}
+	Line {
+	  ZOrder		  238
+	  SrcBlock		  "IP_MODAL_H3_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  24
+	}
+	Line {
+	  ZOrder		  237
+	  SrcBlock		  "IP_MODAL_H2_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  23
+	}
+	Line {
+	  ZOrder		  236
+	  SrcBlock		  "IP_MODAL_H1_In"
+	  SrcPort		  1
+	  DstBlock		  "IP"
+	  DstPort		  22
+	}
+	Line {
+	  ZOrder		  223
+	  SrcBlock		  "MODAL_F0"
+	  SrcPort		  1
+	  DstBlock		  "F0"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  224
+	  SrcBlock		  "MODAL_F1"
+	  SrcPort		  1
+	  DstBlock		  "F1"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  225
+	  SrcBlock		  "MODAL_F2"
+	  SrcPort		  1
+	  DstBlock		  "F2"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  226
+	  SrcBlock		  "MODAL_F3"
+	  SrcPort		  1
+	  DstBlock		  "F3"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  293
+	  SrcBlock		  "GAS_MODAL_BF"
+	  SrcPort		  1
+	  DstBlock		  "BF"
+	  DstPort		  31
+	}
+	Annotation {
+	  SID			  "693:4023"
+	  Name			  "#DAQ Channels\nGIF_ARM_L_OUT 2048"
+	  Position		  [966, 1402, 1118, 1436]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  HorizontalAlignment	  "left"
+	  DropShadow		  on
+	  ZOrder		  -1
+	  FontSize		  14
+	}
+	Annotation {
+	  SID			  "693:3642"
+	  Name			  "0 if OK, 1 if BAD"
+	  Position		  [3273, 70, 3347, 84]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  ZOrder		  -2
+	}
+	Annotation {
+	  SID			  "693:3681"
+	  Name			  "1 if OK, 0 if BAD"
+	  Position		  [3358, 370, 3432, 384]
+	  InternalMargins	  [0, 0, 0, 0]
+	  FixedHeight		  off
+	  FixedWidth		  off
+	  ZOrder		  -3
+	}
+      }
     }
     Block {
       BlockType		      Reference
