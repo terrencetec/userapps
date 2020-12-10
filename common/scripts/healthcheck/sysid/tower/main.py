@@ -15,16 +15,15 @@ def huge(_fname):
             with open('./log/tmp_err','w') as tmp_err:
                 ret = subprocess.run('diag',shell=True,check=True,
                                      stdin=tmp_in,stdout=tmp_out,stderr=tmp_err)                
-    print(' - Fnished {0} {1}'.format(_fname,ret))    
+    print(' - Fnished {0} {1}'.format(_fname,ret))
 
 # ------------------------------------------------------------------------------
 # Generate other diaggui files by copying the template file.
 # 
-optics = ['SRM']
+optics = ['ETMX']
 _stage = stage
 _func = func
 dofs = ['L','T','Y']
-dofs = ['Y']
 for _optic in optics:
     for _dof in dofs:
         _fname = './measurements/{0}_{1}_{2}_LVDT{3}_{4}.xml'.format(_optic,_stage,_func,_dof,suffix)
@@ -36,4 +35,4 @@ for _optic in optics:
             #print(_fname)
             print('{0} -> {1}'.format(fname,_fname))
             subprocess.run(cmd,shell=True,check=True)
-            huge(_fname)
+            #huge(_fname)
