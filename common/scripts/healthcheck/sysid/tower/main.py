@@ -24,16 +24,16 @@ optics = ['SRM']
 _stage = stage
 _func = func
 dofs = ['L','T','Y']
+dofs = ['Y']
 for _optic in optics:
     for _dof in dofs:
-        _fname = './measurements/{0}_{1}_{2}_{3}_{4}.xml'.format(_optic,_stage,_func,_dof,suffix)
-        if fname!=_fname:        
+        _fname = './measurements/{0}_{1}_{2}_LVDT{3}_{4}.xml'.format(_optic,_stage,_func,_dof,suffix)
+        if fname!=_fname:
             cmd  = "cp -rf {0} {1}".format(fname,_fname)
             cmd += "; sed -i -e 's/{2}/{3}/' {1}".format(None,_fname,optic,_optic)
-            cmd += "; sed -i -e 's/LVDT{4}/LVDT{5}/' {1}".format(None,_fname,None,None,dof,_dof)
-            cmd += "; sed -i -e 's/TEST_{4}/TEST_{5}/' {1}".format(None,_fname,None,None,dof,_dof)            
+            cmd += "; sed -i -e 's/TEST_{4}/TEST_{5}/' {1}".format(None,_fname,None,None,dof,_dof)
+            #print(cmd)
+            #print(_fname)
             print('{0} -> {1}'.format(fname,_fname))
             subprocess.run(cmd,shell=True,check=True)
-            huge(_fname)        
-
-            
+            huge(_fname)

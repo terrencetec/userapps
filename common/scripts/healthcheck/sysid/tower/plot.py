@@ -5,8 +5,8 @@ from dtt2hdf import read_diaggui,DiagAccess
 
 import matplotlib.pyplot as plt
 # ------------------------------------------------------------------------------
-def hoge(exc,hor):
-    fname = './SRM_IP_BLEND_{0}_EXC.xml'.format(exc)
+def hoge(exc,hor,params):
+    fname = './measurements/SRM_IP_BLEND_LVDT{0}_EXC.xml'.format(exc)
     data = DiagAccess(fname)    
     hor1 = data.xfer('K1:VIS-SRM_IP_BLEND_LVDTL_IN1',
                      'K1:VIS-SRM_IP_TEST_{0}_EXC'.format(exc)).xfer
@@ -22,42 +22,33 @@ def hoge(exc,hor):
         p2 = -w0/(2*Q)-1j*np.sqrt((w0)**2-w0**2/(4*Q**2))
         return [p1,p2]
 
-    # for H1_EXC
-    _w0,_Q0 = 0.06 ,8
-    _w1,_Q1 = 0.41 ,50
-    _w2,_Q2 = 0.52 ,50
-    _w3,_Q3 = 0.67 ,50
-    if hor=='L':
-        w0,Q0,k0 = _w0, _Q0, 9.0e-4 #
-        w1,Q1,k1 = _w1, _Q1, 3.0e-4 #
-        w2,Q2,k2 = _w2, _Q2, 2.0e-5 #
-        w3,Q3,k3 = _w3, _Q3, 9.0e-5 #
-    elif hor=='P':
-        w0,Q0,k0 = _w0, _Q0, 9.0e-5 #
-        w1,Q1,k1 = _w1, _Q1, 9.0e-6 #
-        w2,Q2,k2 = _w2, _Q2, 2.0e-6 #
-        w3,Q3,k3 = _w3, _Q3, 9.0e-6 #
-    elif hor=='Y':
-        w0,Q0,k0 = _w0, _Q0, 9.0e-6 #
-        w1,Q1,k1 = _w1, _Q1, 3.0e-8 #
-        w2,Q2,k2 = _w2, _Q2, 2.0e-8 #
-        w3,Q3,k3 = _w3, _Q3, 9.0e-8 #
-    else:
-        pass
-    
+    _exc = '{0}_{1}_{2}_EXC'.format('SRM','IP',exc)
+    print(_exc,hor)
+    w0,Q0,k0 = params[_exc][hor][0]
+    w1,Q1,k1 = params[_exc][hor][1]
+    w2,Q2,k2 = params[_exc][hor][2]
+    w3,Q3,k3 = params[_exc][hor][3]
+    try:
+        w4,Q4,k4 = params[_exc][hor][4]
+    except:
+        w4,Q4,k4 = 0,0,0
     _w1,h1 = freqs_zpk([],p(w0,Q0),k0,w)
     _w2,h2 = freqs_zpk([],p(w1,Q1),k1,w)
     _w3,h3 = freqs_zpk([],p(w2,Q2),k2,w)
     _w4,h4 = freqs_zpk([],p(w3,Q3),k3,w)
-    
-    _w,h = _w1,(h1+h2+h3+h4)#*delay
+    try:
+        _w5,h5 = freqs_zpk([],p(w4,Q4),k4,w)
+    except:
+        _w5,h5 = 0,0
+        
+    _w,h = _w1,(h1+h2+h3+h4+h5)
     print(h[0])
     
     if hor=='L':
         hor1 = hor1
         coh = data.xfer('K1:VIS-SRM_IP_BLEND_LVDTL_IN1',
                         'K1:VIS-SRM_IP_TEST_{0}_EXC'.format(exc)).coh    
-    elif hor=='P':
+    elif hor=='T':
         hor1 = hor2
         coh = data.xfer('K1:VIS-SRM_IP_BLEND_LVDTT_IN1',
                         'K1:VIS-SRM_IP_TEST_{0}_EXC'.format(exc)).coh    
@@ -70,13 +61,14 @@ def hoge(exc,hor):
 
     return w,hor1,w1,_w1,h1,_w2,h2,_w3,h3,_w4,h4,_w,h,coh
 
-
 if __name__=='__main__':
-    exc = 'L'
-    hors = ['L','P','Y']
+    exc = 'Y'
+    hors = ['L','T','Y']
     fig,ax = plt.subplots(3,4,figsize=(16,6),sharex=True)
+
+    from params import params
     for i,hor in enumerate(hors):
-        w,hor1,w1,_w1,h1,_w2,h2,_w3,h3,_w4,h4,_w,h,coh = hoge(exc,hor)
+        w,hor1,w1,_w1,h1,_w2,h2,_w3,h3,_w4,h4,_w,h,coh = hoge(exc,hor,params)
         ax[0][i].loglog(w,np.abs(hor1),'ro',markersize=1)
         ax[0][i].loglog(_w1,np.abs(h1),'k--',alpha=0.4)
         ax[0][i].loglog(_w2,np.abs(h2),'k--',alpha=0.4)
