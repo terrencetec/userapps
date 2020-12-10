@@ -1,13 +1,13 @@
 
 file {
 	name="/opt/rtcds/userapps/release/vis/common/medm/typebp/VIS_TYPEBP_OVERVIEW.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
-		x=1920
-		y=39
-		width=1920
+		x=1922
+		y=37
+		width=1916
 		height=1041
 	}
 	clr=40
@@ -683,7 +683,7 @@ rectangle {
 rectangle {
 	object {
 		x=1383
-		y=103
+		y=102
 		width=175
 		height=935
 	}
@@ -11666,7 +11666,7 @@ composite {
 }
 rectangle {
 	object {
-		x=1529
+		x=1521
 		y=161
 		width=10
 		height=800
@@ -11695,7 +11695,7 @@ text {
 }
 composite {
 	object {
-		x=1523
+		x=1513
 		y=133
 		width=20
 		height=20
@@ -11704,7 +11704,7 @@ composite {
 	children {
 		"related display" {
 			object {
-				x=1523
+				x=1513
 				y=134
 				width=19
 				height=18
@@ -11720,7 +11720,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1523
+				x=1513
 				y=133
 				width=20
 				height=20
@@ -11732,7 +11732,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1523
+				x=1513
 				y=133
 				width=20
 				height=20
@@ -11744,7 +11744,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1523
+				x=1513
 				y=134
 				width=19
 				height=18
@@ -11758,7 +11758,7 @@ composite {
 }
 composite {
 	object {
-		x=1525
+		x=1515
 		y=135
 		width=15
 		height=15
@@ -11767,7 +11767,7 @@ composite {
 	children {
 		rectangle {
 			object {
-				x=1526
+				x=1516
 				y=135
 				width=14
 				height=15
@@ -11778,7 +11778,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1526
+				x=1516
 				y=135
 				width=14
 				height=15
@@ -11794,7 +11794,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=1525
+				x=1515
 				y=135
 				width=15
 				height=15
@@ -49317,7 +49317,7 @@ composite {
 }
 rectangle {
 	object {
-		x=1446
+		x=1443
 		y=162
 		width=10
 		height=800
@@ -49333,7 +49333,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=1446
+		x=1443
 		y=162
 		width=10
 		height=800
@@ -54694,4 +54694,381 @@ text {
 		clr=0
 	}
 	textix="Temporal (BF LOCK)"
+}
+"text entry" {
+	object {
+		x=1469
+		y=184
+		width=35
+		height=18
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_TWR_SHUTDOWN_RAMPT"
+		clr=31
+		bclr=14
+	}
+	format="truncated"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=1472
+		y=580
+		width=35
+		height=18
+	}
+	control {
+		chan="$(IFO):VIS-$(OPTIC)_PAY_SHUTDOWN_RAMPT"
+		clr=31
+		bclr=14
+	}
+	format="truncated"
+	limits {
+	}
+}
+text {
+	object {
+		x=1475
+		y=541
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="SHUTDOWN"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1475
+		y=552
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="RAMP"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=1475
+		y=564
+		width=25
+		height=13
+	}
+	"basic attribute" {
+		clr=31
+	}
+	textix="TIME"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=1454
+		y=162
+		width=10
+		height=350
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A==1"
+		chan="$(IFO):VIS-$(OPTIC)_TWR_SHUTDOWN_STATE"
+	}
+}
+rectangle {
+	object {
+		x=1454
+		y=594
+		width=10
+		height=380
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A==1"
+		chan="$(IFO):VIS-$(OPTIC)_PAY_SHUTDOWN_STATE"
+	}
+}
+rectangle {
+	object {
+		x=1454
+		y=594
+		width=10
+		height=380
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A==2"
+		chan="$(IFO):VIS-$(OPTIC)_PAY_SHUTDOWN_STATE"
+	}
+}
+rectangle {
+	object {
+		x=1454
+		y=162
+		width=10
+		height=350
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A==2"
+		chan="$(IFO):VIS-$(OPTIC)_TWR_SHUTDOWN_STATE"
+	}
+}
+rectangle {
+	object {
+		x=1540
+		y=161
+		width=10
+		height=350
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A!=1"
+		chan="$(IFO):VIS-$(OPTIC)_TWR_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=1540
+		y=594
+		width=10
+		height=380
+	}
+	"basic attribute" {
+		clr=21
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A!=1"
+		chan="$(IFO):VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+"related display" {
+	object {
+		x=1536
+		y=134
+		width=19
+		height=18
+	}
+	display[0] {
+		label="IOP dackill"
+		name="VIS_CUST_TYPEBP_TWR_DACKILL.adl"
+		args="userapps=$(userapps),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),optic=$(optic),OPTIC=$(OPTIC)"
+	}
+	clr=14
+	bclr=14
+	visual="invisible"
+}
+rectangle {
+	object {
+		x=1535
+		y=133
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=13
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=1535
+		y=133
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=31
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=1535
+		y=134
+		width=19
+		height=18
+	}
+	"basic attribute" {
+		clr=28
+		width=3
+	}
+}
+composite {
+	object {
+		x=1537
+		y=135
+		width=15
+		height=15
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=1538
+				y=135
+				width=14
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+		}
+		rectangle {
+			object {
+				x=1538
+				y=135
+				width=14
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A!=0"
+				chan="$(IFO):VIS-$(OPTIC)_TWR_DACKILL_STATE"
+			}
+		}
+		rectangle {
+			object {
+				x=1537
+				y=135
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			"dynamic attribute" {
+				chan="l"
+			}
+		}
+	}
+}
+"related display" {
+	object {
+		x=1536
+		y=574
+		width=19
+		height=18
+	}
+	display[0] {
+		label="IOP dackill"
+		name="VIS_CUST_TYPEBP_PAY_DACKILL.adl"
+		args="userapps=$(userapps),USERAPPS=$(USERAPPS),userapps=$(userapps),SITE=$(SITE),site=$(site),IFO=$(IFO),ifo=$(ifo),optic=$(optic),OPTIC=$(OPTIC)"
+	}
+	clr=14
+	bclr=14
+	visual="invisible"
+}
+rectangle {
+	object {
+		x=1535
+		y=573
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=13
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=1535
+		y=573
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=31
+		width=3
+	}
+}
+rectangle {
+	object {
+		x=1535
+		y=574
+		width=19
+		height=18
+	}
+	"basic attribute" {
+		clr=28
+		width=3
+	}
+}
+composite {
+	object {
+		x=1537
+		y=575
+		width=15
+		height=15
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=1538
+				y=575
+				width=14
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+		}
+		rectangle {
+			object {
+				x=1538
+				y=575
+				width=14
+				height=15
+			}
+			"basic attribute" {
+				clr=15
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A!=0"
+				chan="$(IFO):VIS-$(OPTIC)_PAY_DACKILL_STATE"
+			}
+		}
+		rectangle {
+			object {
+				x=1537
+				y=575
+				width=15
+				height=15
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+			}
+			"dynamic attribute" {
+				chan="l"
+			}
+		}
+	}
 }

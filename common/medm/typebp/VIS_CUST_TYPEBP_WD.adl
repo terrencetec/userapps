@@ -1,12 +1,12 @@
 
 file {
 	name="/opt/rtcds/userapps/release/vis/common/medm/typebp/VIS_CUST_TYPEBP_WD.adl"
-	version=030107
+	version=030109
 }
 display {
 	object {
-		x=69
-		y=56
+		x=4006
+		y=101
 		width=1007
 		height=905
 	}
@@ -105,7 +105,7 @@ display {
 polyline {
 	object {
 		x=719
-		y=501
+		y=315
 		width=199
 		height=3
 	}
@@ -114,8 +114,8 @@ polyline {
 		width=3
 	}
 	points {
-		(720,502)
-		(916,502)
+		(720,316)
+		(916,316)
 	}
 }
 composite {
@@ -1493,7 +1493,7 @@ text {
 polyline {
 	object {
 		x=914
-		y=500
+		y=314
 		width=3
 		height=52
 	}
@@ -1502,27 +1502,27 @@ polyline {
 		width=3
 	}
 	points {
-		(915,550)
-		(915,501)
+		(915,364)
+		(915,315)
 	}
 }
 text {
 	object {
-		x=784
-		y=413
+		x=799
+		y=227
 		width=60
 		height=13
 	}
 	"basic attribute" {
 		clr=0
 	}
-	textix="Combined"
+	textix="TOWER"
 	align="horiz. centered"
 }
 "shell command" {
 	object {
-		x=761
-		y=227
+		x=756
+		y=39
 		width=200
 		height=176
 	}
@@ -1540,126 +1540,79 @@ text {
 	bclr=29
 	label="-RESET ALL"
 }
-composite {
+"related display" {
 	object {
-		x=797
-		y=464
+		x=813
+		y=278
 		width=34
 		height=75
 	}
-	"composite name"=""
-	children {
-		"related display" {
-			object {
-				x=797
-				y=464
-				width=34
-				height=75
-			}
-			display[0] {
-				label="Call R0 WD"
-				name="SUS_CUST_QUAD_R0_WD.adl"
-				args="%(read $(USERAPPS)/sus/common/medm/sus$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),SITE=$(SITE),site=$(site),IFO=K1,ifo=$(ifo)"
-			}
-			clr=14
-			bclr=55
-			visual="invisible"
-		}
-		rectangle {
-			object {
-				x=799
-				y=465
-				width=30
-				height=73
-			}
-			"basic attribute" {
-				clr=15
-			}
-		}
-		rectangle {
-			object {
-				x=799
-				y=465
-				width=30
-				height=73
-			}
-			"basic attribute" {
-				clr=22
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A"
-				chan="K1:VIS-$(OPTIC)_DACKILL_TRIG_STATE"
-			}
-		}
-		rectangle {
-			object {
-				x=797
-				y=464
-				width=34
-				height=75
-			}
-			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=2
-			}
-		}
+	display[0] {
+		label="Call R0 WD"
+		name="SUS_CUST_QUAD_R0_WD.adl"
+		args="%(read $(USERAPPS)/sus/common/medm/sus$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),SITE=$(SITE),site=$(site),IFO=K1,ifo=$(ifo)"
+	}
+	clr=14
+	bclr=55
+	visual="invisible"
+}
+rectangle {
+	object {
+		x=815
+		y=279
+		width=30
+		height=73
+	}
+	"basic attribute" {
+		clr=15
 	}
 }
-composite {
+rectangle {
+	object {
+		x=815
+		y=279
+		width=30
+		height=73
+	}
+	"basic attribute" {
+		clr=22
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A"
+		chan="K1:VIS-$(OPTIC)_TWR_SHUTDOWN_TRIG_STATE"
+	}
+}
+rectangle {
+	object {
+		x=813
+		y=278
+		width=34
+		height=75
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
 	object {
 		x=863
-		y=522
+		y=336
 		width=100
 		height=60
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=865
-				y=524
-				width=98
-				height=58
-			}
-			"basic attribute" {
-				clr=0
-				width=3
-			}
-		}
-		text {
-			object {
-				x=874
-				y=542
-				width=80
-				height=25
-			}
-			"basic attribute" {
-				clr=21
-			}
-			textix="DACKILL"
-			align="horiz. centered"
-		}
-		rectangle {
-			object {
-				x=863
-				y=522
-				width=100
-				height=60
-			}
-			"basic attribute" {
-				clr=21
-				fill="outline"
-				width=2
-			}
-		}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
 	}
 }
 composite {
 	object {
 		x=731
-		y=488
+		y=302
 		width=54
 		height=29
 	}
@@ -1668,7 +1621,7 @@ composite {
 		rectangle {
 			object {
 				x=733
-				y=490
+				y=304
 				width=50
 				height=25
 			}
@@ -1679,7 +1632,7 @@ composite {
 		rectangle {
 			object {
 				x=731
-				y=488
+				y=302
 				width=54
 				height=29
 			}
@@ -1692,7 +1645,7 @@ composite {
 		text {
 			object {
 				x=737
-				y=493
+				y=307
 				width=40
 				height=20
 			}
@@ -1706,8 +1659,8 @@ composite {
 }
 text {
 	object {
-		x=784
-		y=429
+		x=799
+		y=243
 		width=60
 		height=13
 	}
@@ -1719,8 +1672,8 @@ text {
 }
 text {
 	object {
-		x=784
-		y=445
+		x=799
+		y=259
 		width=60
 		height=13
 	}
@@ -1730,61 +1683,10 @@ text {
 	textix="STATE"
 	align="horiz. centered"
 }
-polygon {
-	object {
-		x=908
-		y=426
-		width=14
-		height=19
-	}
-	"basic attribute" {
-		clr=53
-		width=3
-	}
-	"dynamic attribute" {
-		chan="H1"
-	}
-	points {
-		(908,445)
-		(915,426)
-		(922,445)
-		(908,445)
-	}
-}
-polyline {
-	object {
-		x=914
-		y=438
-		width=3
-		height=64
-	}
-	"basic attribute" {
-		clr=53
-		fill="outline"
-		width=3
-	}
-	points {
-		(915,500)
-		(915,439)
-	}
-}
-text {
-	object {
-		x=891
-		y=412
-		width=50
-		height=14
-	}
-	"basic attribute" {
-		clr=53
-	}
-	textix="TO ISI"
-	align="horiz. centered"
-}
 rectangle {
 	object {
 		x=860
-		y=594
+		y=408
 		width=50
 		height=50
 	}
@@ -1794,13 +1696,13 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=1"
-		chan="K1:VIS-$(OPTIC)_DACKILL_STATE"
+		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
 	}
 }
 rectangle {
 	object {
 		x=916
-		y=594
+		y=408
 		width=50
 		height=50
 	}
@@ -1810,13 +1712,13 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=0"
-		chan="K1:VIS-$(OPTIC)_DACKILL_STATE"
+		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
 	}
 }
 rectangle {
 	object {
 		x=858
-		y=592
+		y=406
 		width=54
 		height=54
 	}
@@ -1834,7 +1736,7 @@ rectangle {
 rectangle {
 	object {
 		x=914
-		y=592
+		y=406
 		width=54
 		height=54
 	}
@@ -1852,7 +1754,7 @@ rectangle {
 text {
 	object {
 		x=859
-		y=658
+		y=472
 		width=50
 		height=13
 	}
@@ -1865,7 +1767,7 @@ text {
 text {
 	object {
 		x=917
-		y=658
+		y=472
 		width=50
 		height=13
 	}
@@ -5239,4 +5141,353 @@ polyline {
 		(49,874)
 		(297,874)
 	}
+}
+polyline {
+	object {
+		x=719
+		y=644
+		width=199
+		height=3
+	}
+	"basic attribute" {
+		clr=0
+		width=3
+	}
+	points {
+		(720,645)
+		(916,645)
+	}
+}
+polyline {
+	object {
+		x=914
+		y=643
+		width=3
+		height=52
+	}
+	"basic attribute" {
+		clr=0
+		width=3
+	}
+	points {
+		(915,693)
+		(915,644)
+	}
+}
+text {
+	object {
+		x=799
+		y=556
+		width=60
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="PAYLOAD"
+	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=812
+		y=607
+		width=34
+		height=75
+	}
+	display[0] {
+		label="Call R0 WD"
+		name="SUS_CUST_QUAD_R0_WD.adl"
+		args="%(read $(USERAPPS)/sus/common/medm/sus$(optic)_overview_macro.txt),USERAPPS=$(USERAPPS),SITE=$(SITE),site=$(site),IFO=K1,ifo=$(ifo)"
+	}
+	clr=14
+	bclr=55
+	visual="invisible"
+}
+rectangle {
+	object {
+		x=814
+		y=608
+		width=30
+		height=73
+	}
+	"basic attribute" {
+		clr=15
+	}
+}
+rectangle {
+	object {
+		x=814
+		y=608
+		width=30
+		height=73
+	}
+	"basic attribute" {
+		clr=22
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A"
+		chan="K1:VIS-$(OPTIC)_PAY_SHUTDOWN_TRIG_STATE"
+	}
+}
+rectangle {
+	object {
+		x=812
+		y=607
+		width=34
+		height=75
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=863
+		y=665
+		width=100
+		height=60
+	}
+	"basic attribute" {
+		clr=21
+		fill="outline"
+		width=2
+	}
+}
+composite {
+	object {
+		x=731
+		y=631
+		width=54
+		height=29
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=733
+				y=633
+				width=50
+				height=25
+			}
+			"basic attribute" {
+				clr=51
+			}
+		}
+		rectangle {
+			object {
+				x=731
+				y=631
+				width=54
+				height=29
+			}
+			"basic attribute" {
+				clr=54
+				fill="outline"
+				width=2
+			}
+		}
+		text {
+			object {
+				x=737
+				y=636
+				width=40
+				height=20
+			}
+			"basic attribute" {
+				clr=14
+			}
+			textix="AND"
+			align="horiz. centered"
+		}
+	}
+}
+text {
+	object {
+		x=799
+		y=572
+		width=60
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="WATCHDOG"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=799
+		y=588
+		width=60
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="STATE"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=860
+		y=737
+		width=50
+		height=50
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=916
+		y=737
+		width=50
+		height=50
+	}
+	"basic attribute" {
+		clr=22
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=858
+		y=735
+		width=54
+		height=54
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:VIS-$(OPTIC)_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=914
+		y=735
+		width=54
+		height=54
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0"
+		chan="K1:VIS-$(OPTIC)_R0_WDMON_STATE"
+	}
+}
+text {
+	object {
+		x=859
+		y=801
+		width=50
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="ARMED"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=917
+		y=801
+		width=50
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TRIPPED"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=793
+		y=315
+		width=3
+		height=314
+	}
+	"basic attribute" {
+		clr=0
+		width=3
+	}
+	points {
+		(794,316)
+		(794,627)
+	}
+}
+polygon {
+	object {
+		x=787
+		y=626
+		width=14
+		height=19
+	}
+	"basic attribute" {
+		clr=0
+		width=3
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	points {
+		(787,626)
+		(794,645)
+		(801,626)
+		(787,626)
+	}
+}
+"message button" {
+	object {
+		x=865
+		y=667
+		width=96
+		height=56
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_RESET"
+		clr=20
+		bclr=0
+	}
+	label="PAY DACKILL"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=865
+		y=338
+		width=96
+		height=56
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_RESET"
+		clr=20
+		bclr=0
+	}
+	label="TWR DACKILL"
+	press_msg="1"
 }

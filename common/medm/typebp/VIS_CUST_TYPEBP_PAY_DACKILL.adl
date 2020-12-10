@@ -1,0 +1,443 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/typec/VIS_CUST_TYPEC_IOP_DACKILL.adl"
+	version=030109
+}
+display {
+	object {
+		x=2235
+		y=62
+		width=235
+		height=334
+	}
+	clr=14
+	bclr=9
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=0
+		y=0
+		width=350
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=39
+		y=5
+		width=150
+		height=14
+	}
+	"basic attribute" {
+		clr=30
+	}
+	textix="K1:IOP-VIS_$(COMP) IOP DACKILL WATCHDOG"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=63
+		y=38
+		width=90
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="DACKILL STATE"
+}
+rectangle {
+	object {
+		x=25
+		y=66
+		width=30
+		height=30
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=25
+		y=101
+		width=30
+		height=30
+	}
+	"basic attribute" {
+		clr=22
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+text {
+	object {
+		x=67
+		y=73
+		width=100
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="STATE 1: ARMED"
+}
+text {
+	object {
+		x=67
+		y=108
+		width=100
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="STATE 2: TRIPPED"
+}
+"message button" {
+	object {
+		x=6
+		y=244
+		width=120
+		height=50
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_RESET"
+		clr=14
+		bclr=32
+	}
+	label="RESET"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=38
+		y=315
+		width=50
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+		clr=14
+		bclr=40
+	}
+	clrmod="discrete"
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+	}
+}
+rectangle {
+	object {
+		x=5
+		y=28
+		width=222
+		height=190
+	}
+	"basic attribute" {
+		clr=0
+		fill="outline"
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A&1"
+		chan="K1:IOP-SUS_$(COMP)_R0_WD_LEDFLAGMON"
+	}
+}
+rectangle {
+	object {
+		x=25
+		y=64
+		width=32
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=1"
+		chan="K1:IOP-SUS_$(COMP)_R0_WDMON_STATE"
+	}
+}
+rectangle {
+	object {
+		x=25
+		y=99
+		width=32
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=2"
+		chan="K1:IOP-SUS_$(COMP)_R0_WDMON_STATE"
+	}
+}
+text {
+	object {
+		x=16
+		y=297
+		width=99
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TRIGGER STATUS"
+}
+composite {
+	object {
+		x=2147483555
+		y=-2147483588
+		width=1
+		height=1
+	}
+	"composite name"=""
+	children {
+	}
+}
+rectangle {
+	object {
+		x=25
+		y=136
+		width=30
+		height=30
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=2"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+text {
+	object {
+		x=67
+		y=143
+		width=100
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="STATE 3: BYPASSED"
+}
+rectangle {
+	object {
+		x=25
+		y=135
+		width=32
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=2"
+		chan="K1:IOP-SUS_$(COMP)_R0_WDMON_STATE"
+	}
+}
+"text update" {
+	object {
+		x=28
+		y=144
+		width=25
+		height=13
+	}
+	monitor {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_BPTIME"
+		clr=14
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+		precSrc="default"
+	}
+}
+"related display" {
+	object {
+		x=142
+		y=304
+		width=70
+		height=22
+	}
+	display[0] {
+		label="DACKILL OVERVIEW"
+		name="$(userapps)/cds/common/medm/CDS_VIS_SWWD_LAUNCHER_CUST.adl"
+		args="USERAPPS=$(USERAPPS),IFO=K1,ifo=$(ifo)"
+	}
+	clr=14
+	bclr=55
+	label="OVERVIEW"
+}
+rectangle {
+	object {
+		x=25
+		y=173
+		width=30
+		height=30
+	}
+	"basic attribute" {
+		clr=37
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>2"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
+	}
+}
+rectangle {
+	object {
+		x=25
+		y=171
+		width=32
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=2"
+		chan="K1:IOP-SUS_$(COMP)_R0_WDMON_STATE"
+	}
+}
+text {
+	object {
+		x=67
+		y=181
+		width=100
+		height=13
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="STATE 4: COUNT DOWN"
+}
+"choice button" {
+	object {
+		x=141
+		y=262
+		width=70
+		height=30
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_PANIC"
+		clr=0
+		bclr=20
+	}
+}
+"message button" {
+	object {
+		x=141
+		y=245
+		width=70
+		height=15
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_BPSET"
+		clr=14
+		bclr=30
+	}
+	label="BYPASS"
+	press_msg="1"
+}
