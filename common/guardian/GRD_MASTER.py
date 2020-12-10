@@ -9,18 +9,56 @@ state = 'INIT'
 request = 'SAFE'
 nominal = 'ALIGNED'
 
+# --------------------------------------------------------------------
+def is_isolated():
+    l = abs(ezca['VIS-SRM_IP_DAMP_L_INMON']) < 5
+    t = abs(ezca['VIS-SRM_IP_DAMP_T_INMON']) < 5
+    y = abs(ezca['VIS-SRM_IP_DAMP_Y_INMON']) < 5
+    return l and t and y
+
+def sus_type_is():
+    if OPTIC in ['ETMX','ETMY','ITMX','ITMY']:
+        return 'Type-A'
+    elif OPTIC in ['BS','SRM','SR2','SR3']:
+        return 'Type-B'
+    elif OPTIC in ['PRM','PR2','PR3']:
+        return 'Type-Bp'
+    elif OPTIC in ['MCI','MCO','MCE','IMMT1','IMMT2']:
+        return 'Type-C'
+    elif OPTIC in ['OSTM','OMMT1','OMMT2']:
+        return 'Type-Cp'
+    else:    
+        return False
+
+def has_tower():
+    if OPTIC in ['ETMX','ETMY','ITMX','ITMY',
+                 'BS','SRM','SR2','SR3',
+                 'PRM','PR2','PR3']:
+        return True
+    else:
+        return False
+    
+
 def large_rms():
     return ezca['VIS-{0}_TM_WDMON_CURRENTTRIG'.format(OPTIC)]==1
 
 def tripped():
     wd = ezca['VIS-{0}_TM_WDMON_STATE'.format(OPTIC)]==2
-    dk = ezca['VIS-{0}_DACKILL_STATE'.format(OPTIC)]==0
+    dk = ezca['VIS-{0}_PAY_DACKILL_STATE'.format(OPTIC)]==0
+    if has_tower():
+        dk = dk or ezca['VIS-{0}_TWR_DACKILL_STATE'.format(OPTIC)]==0
+        
     return wd or dk
 
 class WDcheck(GuardStateDecorator):
     def pre_exec(self):
         if tripped():
             return 'TRIPPED'
+
+class IsolatedCheck(GuardStateDecorator):
+    def pre_exec(self):
+        if not is_isolated():
+            return 'ISOLATING'
         
 class SAFE(GuardState):
     request = True
@@ -216,12 +254,29 @@ class ISOLATING(GuardState):
 
     @WDcheck    
     def main(self):
+        self.counter = 0                
+        ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 1        
         pass
-
+    
     @WDcheck
     def run(self):
-        ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 1        
-        return True
+        if self.counter==0:
+            for dof in ['L','T','Y']:
+                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+                filt.turn_on('FM3','INPUT') # for miyodamp
+                filt.ramp_gain(1,10,False)
+            self.counter += 1
+        elif self.counter==1:
+            for dof in ['L','T','Y']:
+                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+                filt.turn_on('FM2') # for miyodc
+                #filt.ramp_gain(1,10,True)
+            if is_isolated():
+                return True   
+        else:                        
+            pass
 
 class TO_SAFE(GuardState):
     request = False
@@ -230,27 +285,56 @@ class TO_SAFE(GuardState):
     @WDcheck        
     def main(self):
         self.counter = 0
+        self.ramp = []
 
     @WDcheck
     def run(self):
         if self.counter == 0:
             # SDF
-            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
-            sdflib.restore(fec,'safe')                        
+            for PART in ['T','P']:
+                fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+PART)
+                sdflib.restore(fec,'safe')
             self.counter += 1
-
-        else:
+            
+        elif self.counter==1:
             is_ramped_count = 0
-            for dof in ['P','Y']:
-                filtname = 'VIS-{0}_TM_OPTICALIGN_{1}'.format(OPTIC,dof)
-                filt = ezca.get_LIGOFilter(filtname)
-                if filt.is_offset_ramping() == False:
-                    is_ramped_count += 1
+            # Fix me..
+            if sus_type_is()=='Type-C':
+                for dof in ['P','Y']:
+                    filtname = 'VIS-{0}_TM_OPTICALIGN_{1}'.format(OPTIC,dof)
+                    filt = ezca.get_LIGOFilter(filtname)
+                    if filt.is_offset_ramping() == False:
+                        is_ramped_count += 1
+                if is_ramped_count == 2:
+                    # Disconnect the master switch after ramping.
+                    ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 0
+                    return True                
+            elif sus_type_is()=='Type-B':
+                log('!!!!')
+                for dof in ['L','T','Y']:
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filt = ezca.get_LIGOFilter(filtname)
+                    filt.ramp_gain(0,30,False)
+                    
+                for dof in ['L','T','Y']:
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filt = ezca.get_LIGOFilter(filtname)
+                    if not filt.is_gain_ramping():
+                        filt.turn_off('FM2','FM1') # for miyodc
 
-            if is_ramped_count == 2:
-                # Disconnect the master switch after ramping.
-                ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 0
-                return True
+                ramp = []
+                for dof in ['L','T','Y']:
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filt = ezca.get_LIGOFilter(filtname)
+                    ramp += [not filt.is_gain_ramping()]
+                if all(ramp):
+                    self.counter += 1
+        elif self.counter==2:
+            ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 0
+            return True
+        else:
+            pass
+
 
 class ISOLATED(GuardState):
     request = True
@@ -260,7 +344,8 @@ class ISOLATED(GuardState):
     def main(self):
         pass  
 
-    @WDcheck        
+    @WDcheck
+    @IsolatedCheck
     def run(self):
         return True    
     
