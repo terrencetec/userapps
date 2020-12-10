@@ -391,7 +391,7 @@ class MISALIGNED(GuardState):
     @check_TWWD
     @check_WD
     def main(self):
-        if sustype in ['TypeA','TypeB']: # by Miyo
+        if sustype in ['TypeA','TypeB','TypeBp']: # by Miyo
             for suffix in ['P','T']: 
                 fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
                 sdflib.restore(fec,'misaligned')
@@ -671,7 +671,7 @@ class ALIGNED(GuardState):
                     OPAL.turn_on('OFFSET')
 
             vislib.offload2OPAL(self, OPTIC, gain=sysmod.offload_gain, functype='main')
-        if sustype in ['TypeA','TypeB']: # by Miyo
+        if sustype in ['TypeA','TypeB','TypeBp']: # by Miyo
             for suffix in ['P','T']: 
                 fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+suffix)
                 sdflib.restore(fec,'aligned')

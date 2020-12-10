@@ -45,8 +45,12 @@ def is_tripped(optic,WD,BIO):
         AnalogWD_state = AnalogWD_state or ( (int(ezca['VIS-'+optic+'_BIO_'+name+'_MON']) & 983040) != 0 ) # check if any AnalogWD is tripped or not
 
     #check if DACKILL is tripped or not
-    DACKILL_state = (ezca['VIS-'+optic+'_DACKILL_STATE'] != 1)
-
+    if optic != 'PRM':
+        DACKILL_state = (ezca['VIS-'+optic+'_DACKILL_STATE'] != 1)
+    else:
+        DACKILL_state = (ezca['VIS-'+optic+'_TWR'+'_DACKILL_STATE'] != 1)
+        DACKILL_state = DACKILL_state and (ezca['VIS-'+optic+'_PAY'+'_DACKILL_STATE'] != 1)
+        
     if WD_state or AnalogWD_state or DACKILL_state:
         return True
 

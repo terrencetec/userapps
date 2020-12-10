@@ -110,9 +110,14 @@ class SAFE(GuardState):
         self.timer['waiting'] = 0
         self.TRAMP = 10
         # by Miyo
-        fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
-        sdflib.restore(fec,'safe') 
-
+        if OPTIC != 'PRM':
+            fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC)
+            sdflib.restore(fec,'safe') 
+        else:
+            for PART in ['P','T']:
+                fec = cdslib.ezca_get_dcuid('K1VIS'+OPTIC+PART)
+                sdflib.restore(fec,'safe')            
+            
         
     @watchdog_check
     def run(self):
