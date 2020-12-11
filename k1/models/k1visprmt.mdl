@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.196"
+    ComputedModelVersion    "1.197"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1668.0, 868.0]
-	ZoomFactor		[0.5]
-	Offset			[-456.00216039014737, 283.88257951339051]
+	ZoomFactor		[1.5]
+	Offset			[392.49783960985246, 1459.7992461800575]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Dec 10 15:49:54 2020"
-  RTWModifiedTimeStamp	  529516181
-  ModelVersionFormat	  "1.%<AutoIncrement:196>"
+  LastModifiedDate	  "Fri Dec 11 11:29:43 2020"
+  RTWModifiedTimeStamp	  529586980
+  ModelVersionFormat	  "1.%<AutoIncrement:197>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1071,7 +1071,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "50"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "2403"
     Block {
@@ -1753,6 +1753,22 @@ Model {
       BackgroundColor	      "yellow"
       LibraryVersion	      "1.2"
       SourceBlock	      "BO_TYPEBP_MASTER/TYPEBP_BO_ENCODE"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "PRM"
+      SID		      "2403"
+      Description	      "TYPEBP MASTER"
+      Ports		      [29, 14]
+      Position		      [740, 371, 925, 1899]
+      ZOrder		      6770
+      BackgroundColor	      "yellow"
+      DropShadow	      on
+      AttributesFormatString  "%<Description>"
+      LibraryVersion	      "1.86"
+      SourceBlock	      "TYPEBP_MASTER/TYPEBPMASTER_TWR"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
@@ -4988,22 +5004,6 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "TYPEBPMASTER_TWR"
-      SID		      "2403"
-      Description	      "TYPEBP MASTER"
-      Ports		      [29, 14]
-      Position		      [740, 371, 925, 1899]
-      ZOrder		      6770
-      BackgroundColor	      "yellow"
-      DropShadow	      on
-      AttributesFormatString  "%<Description>"
-      LibraryVersion	      "1.86"
-      SourceBlock	      "TYPEBP_MASTER/TYPEBPMASTER_TWR"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
-    }
-    Block {
-      BlockType		      Reference
       Name		      "site=K1\nrate=16K\ndcuid=55\nhost=k1prm\nspecific_cpu=2\nadcSlave=1\nshmem_daq=1"
       SID		      "336"
       Tag		      "cdsParameters"
@@ -5052,7 +5052,7 @@ Model {
     }
     Line {
       ZOrder		      3403
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      1
       Points		      [187, 0; 0, 455]
       DstBlock		      "DAC_0"
@@ -5060,7 +5060,7 @@ Model {
     }
     Line {
       ZOrder		      3405
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      3
       Points		      [34, 0; 0, 25]
       DstBlock		      "Mux1"
@@ -5068,7 +5068,7 @@ Model {
     }
     Line {
       ZOrder		      3406
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      4
       Points		      [7, 0; 0, 50]
       DstBlock		      "Mux1"
@@ -5076,7 +5076,7 @@ Model {
     }
     Line {
       ZOrder		      3407
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      5
       Points		      [7, 0; 0, 75]
       DstBlock		      "Mux1"
@@ -5091,7 +5091,7 @@ Model {
     }
     Line {
       ZOrder		      3402
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      6
       Points		      [13, 0; 0, 60]
       DstBlock		      "Mux2"
@@ -5099,7 +5099,7 @@ Model {
     }
     Line {
       ZOrder		      3400
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      7
       Points		      [62, 0; 0, 10]
       DstBlock		      "Mux2"
@@ -5107,7 +5107,7 @@ Model {
     }
     Line {
       ZOrder		      3401
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      8
       Points		      [43, 0; 0, -40]
       DstBlock		      "Mux2"
@@ -5178,7 +5178,7 @@ Model {
     }
     Line {
       ZOrder		      3408
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      9
       Points		      [54, 0; 0, -30]
       DstBlock		      "Mux3"
@@ -5186,7 +5186,7 @@ Model {
     }
     Line {
       ZOrder		      3409
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      10
       Points		      [80, 0; 0, -25]
       DstBlock		      "Mux3"
@@ -5194,7 +5194,7 @@ Model {
     }
     Line {
       ZOrder		      3410
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      11
       Points		      [105, 0; 0, -20]
       DstBlock		      "Mux3"
@@ -5270,7 +5270,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      1
       Points		      [93, 0; 0, -45]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      7
     }
     Line {
@@ -5287,7 +5287,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      6
       Points		      [88, 0; 0, 55]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      12
     }
     Line {
@@ -5296,7 +5296,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      1
     }
     Line {
@@ -5305,7 +5305,7 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector2"
       SrcPort		      2
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      2
     }
     Line {
@@ -5315,7 +5315,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      2
       Points		      [130, 0; 0, -25]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      8
     }
     Line {
@@ -5325,7 +5325,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      3
       Points		      [85, 0; 0, -5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      9
     }
     Line {
@@ -5335,7 +5335,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      4
       Points		      [85, 0; 0, 15]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      10
     }
     Line {
@@ -5345,7 +5345,7 @@ Model {
       SrcBlock		      "Bus\nSelector4"
       SrcPort		      5
       Points		      [130, 0; 0, 35]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      11
     }
     Line {
@@ -5361,7 +5361,7 @@ Model {
       SrcBlock		      "Demux"
       SrcPort		      1
       Points		      [100, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      16
     }
     Line {
@@ -5369,7 +5369,7 @@ Model {
       SrcBlock		      "Demux"
       SrcPort		      2
       Points		      [100, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      17
     }
     Line {
@@ -5377,21 +5377,21 @@ Model {
       SrcBlock		      "Demux"
       SrcPort		      3
       Points		      [100, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      18
     }
     Line {
       ZOrder		      3396
       SrcBlock		      "Ground11"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      15
     }
     Line {
       ZOrder		      3395
       SrcBlock		      "Ground9"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      14
     }
     Line {
@@ -5399,7 +5399,7 @@ Model {
       SrcBlock		      "Ground10"
       SrcPort		      1
       Points		      [40, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      13
     }
     Line {
@@ -5418,7 +5418,7 @@ Model {
     }
     Line {
       ZOrder		      3404
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      2
       Points		      [180, 0; 0, 415]
       DstBlock		      "DAC_0"
@@ -5477,7 +5477,7 @@ Model {
 	Points			[0, 50]
 	Branch {
 	  ZOrder		  3376
-	  DstBlock		  "TYPEBPMASTER_TWR"
+	  DstBlock		  "PRM"
 	  DstPort		  4
 	}
 	Branch {
@@ -5486,19 +5486,19 @@ Model {
 	  Branch {
 	    ZOrder		    3378
 	    Points		    [0, 50]
-	    DstBlock		    "TYPEBPMASTER_TWR"
+	    DstBlock		    "PRM"
 	    DstPort		    6
 	  }
 	  Branch {
 	    ZOrder		    3377
-	    DstBlock		    "TYPEBPMASTER_TWR"
+	    DstBlock		    "PRM"
 	    DstPort		    5
 	  }
 	}
       }
       Branch {
 	ZOrder			3375
-	DstBlock		"TYPEBPMASTER_TWR"
+	DstBlock		"PRM"
 	DstPort			3
       }
     }
@@ -5543,7 +5543,7 @@ Model {
       SrcBlock		      "K1:ASC_GND_X2_VIS_X"
       SrcPort		      1
       Points		      [195, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      19
     }
     Line {
@@ -5551,7 +5551,7 @@ Model {
       SrcBlock		      "K1:ASC_GND_Y2_VIS_Y"
       SrcPort		      1
       Points		      [195, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      20
     }
     Line {
@@ -5559,7 +5559,7 @@ Model {
       SrcBlock		      "K1:ASC_GND_Z2_VIS_Z"
       SrcPort		      1
       Points		      [195, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      21
     }
     Line {
@@ -5567,7 +5567,7 @@ Model {
       SrcBlock		      "K1:VIS-PRM_TM_PSD_Y_OUT"
       SrcPort		      1
       Points		      [198, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      23
     }
     Line {
@@ -5575,12 +5575,12 @@ Model {
       SrcBlock		      "K1:VIS-PRM_TM_PSD_P_OUT"
       SrcPort		      1
       Points		      [198, 0; 0, 5]
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      22
     }
     Line {
       ZOrder		      3411
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      12
       Points		      [38, 0; 0, -20]
       DstBlock		      "K1:VIS-PRM_MASTERSWITCH_OUT"
@@ -5588,7 +5588,7 @@ Model {
     }
     Line {
       ZOrder		      3412
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      13
       Points		      [38, 0; 0, -25]
       DstBlock		      "K1:VIS-PRM_WDRESET"
@@ -5596,7 +5596,7 @@ Model {
     }
     Line {
       ZOrder		      3413
-      SrcBlock		      "TYPEBPMASTER_TWR"
+      SrcBlock		      "PRM"
       SrcPort		      14
       Points		      [38, 0; 0, -30]
       DstBlock		      "K1:VIS-PRM_TOWER_WD_FLAG"
@@ -5606,42 +5606,42 @@ Model {
       ZOrder		      3383
       SrcBlock		      "Ground1"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      24
     }
     Line {
       ZOrder		      3384
       SrcBlock		      "Ground2"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      25
     }
     Line {
       ZOrder		      3389
       SrcBlock		      "Ground3"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      26
     }
     Line {
       ZOrder		      3390
       SrcBlock		      "Ground4"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      27
     }
     Line {
       ZOrder		      3391
       SrcBlock		      "Ground5"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      28
     }
     Line {
       ZOrder		      3379
       SrcBlock		      "Ground6"
       SrcPort		      1
-      DstBlock		      "TYPEBPMASTER_TWR"
+      DstBlock		      "PRM"
       DstPort		      29
     }
     Line {
