@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=1404
-		y=511
+		x=1184
+		y=667
 		width=339
 		height=117
 	}
@@ -167,7 +167,7 @@ rectangle {
 byte {
 	object {
 		x=106
-		y=45
+		y=44
 		width=70
 		height=12
 	}
@@ -181,8 +181,8 @@ byte {
 }
 "message button" {
 	object {
-		x=179
-		y=45
+		x=184
+		y=44
 		width=12
 		height=12
 	}
@@ -195,8 +195,8 @@ byte {
 }
 "shell command" {
 	object {
-		x=194
-		y=45
+		x=199
+		y=44
 		width=11
 		height=12
 	}
@@ -479,5 +479,35 @@ rectangle {
 		vis="calc"
 		calc="A==1"
 		chan="K1:VIS-$(SYSTEM)_STEP_IP_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=177
+		y=45
+		width=5
+		height=11
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
+	}
+}
+rectangle {
+	object {
+		x=177
+		y=45
+		width=5
+		height=11
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
 	}
 }

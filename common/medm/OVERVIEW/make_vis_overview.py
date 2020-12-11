@@ -144,9 +144,9 @@ def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT',part='TWR'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM},PART={part}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM},PART={part},K1SUBSYS={K1SUBSYS}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM,part=part)
+    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM,part=part,K1SUBSYS='K1'+SUBSYS)
     return txt,width,height
 
 
