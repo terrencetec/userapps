@@ -67,7 +67,7 @@ class TRIPPED(GuardState):
     def main(self):
 
         self.counter = 1
-        self.TRAMP = ezca['VIS-'+optic+'_SHUTDOWN_RAMPT']
+        self.TRAMP = ezca['VIS-'+optic+'_PAY'+'_SHUTDOWN_RAMPT'] # should look TWR too.
         self.timer['waiting'] = self.TRAMP
         self.counter = 1
 
