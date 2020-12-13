@@ -163,7 +163,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     elif sustype=='typeb':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
@@ -171,7 +171,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)        
     elif sustype=='typebp':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
@@ -179,7 +179,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)        
     elif sustype=='typec-imc':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
@@ -187,7 +187,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_IMC_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     elif sustype=='typec-omc':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
@@ -195,7 +195,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_OMC_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)                
     elif sustype=='typetms':
         macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(common=common,optic=optic)
@@ -203,7 +203,7 @@ def user_mini(x,y,fec='123',system='ETMX',suffix='TOWER_OVERVIEW'):
         ctrladl2  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl3 = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl4 = '{common}/medm/VIS_PFMN_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-        ctrladl5 = '{common}/medm/VIS_IM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+        ctrladl5 = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
         ctrladl6 = '{common}/medm/VIS_TM_OVERVIEW.adl'.format(common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)        
     else:
         raise ValueError('!')
