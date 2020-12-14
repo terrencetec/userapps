@@ -51,9 +51,9 @@ def make_ip_lvdt(f,unit='disp'):
 
 
 def make_l4c(f,unit='velo'):    
-    data = np.array([[1e-3, 2e1], # Freq [Hz.0], PSD (m/s^2)^2/Hz [dB.0]
-                     [1e-2, 1e1],
-                     [1e-1, 1e-2],
+    data = np.array([[1e-3, 5e+1], # Freq [Hz.0], PSD (m/s^2)^2/Hz [dB.0]
+                     [1e-2, 5e-1],
+                     [1e-1, 5e-3],
                      [1e0 , 5e-5],
                      [1e1 , 5e-5],
                      [1e2 , 5e-5]]) # read from the actual ASD
