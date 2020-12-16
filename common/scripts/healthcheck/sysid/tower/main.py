@@ -1,38 +1,80 @@
+import threading
 import subprocess
+import argparse
+import ezca
 
-fname = 'SRM_IP_BLEND_LVDTL_EXC.xml'
-optic,stage,func,dof,suffix = fname.replace('.xml','').split('_')
-dof = dof[-1]
-print(optic,stage,dof,suffix)
+ezca = ezca.Ezca(timeout=2)
 
-def huge(_fname):
-    with open('./log/tmp_in','w') as f:
-        txt = 'open\nrestore {0}\nrun -w\nsave {0}\nquit\n'.format(_fname)
+parser = argparse.ArgumentParser()
+parser.add_argument('fname')
+parser.add_argument('-optics',nargs='+',required=True)
+parser.add_argument('-dofs',nargs='+',required=True)
+parser.add_argument('--rundiag',action='store_true')
+parser.add_argument('--runcp',action='store_true')
+args = parser.parse_args()
+fname = 'PLANT_SRM_IP_BLEND_LEXC.xml'
+fname = 'PLANT_SRM_IP_IDAMP_LEXC.xml'
+fname = args.fname
+runcp = args.runcp
+rundiag = args.rundiag
+prefix,optic,stage,func,dof,suffix = fname.replace('.xml','').split('_')
+
+def huge(fname):
+    _fname = fname.split('/')[2].replace('.xml','')
+    with open('./log/tmp_{0}_in'.format(_fname),'w') as f:
+        txt = 'open\nrestore {0}\nrun -w\nsave {0}\nquit\n'.format(fname)
         f.write(txt)
-    print(' - Run {0}'.format(_fname))
-    with open('./log/tmp_in','r') as tmp_in:
-        with open('./log/tmp_out','w') as tmp_out:
-            with open('./log/tmp_err','w') as tmp_err:
+    print(' - Run {0}'.format(fname))
+    with open('./log/tmp_{0}_in'.format(_fname),'r') as tmp_in:
+        with open('./log/tmp_{0}_out'.format(_fname),'w') as tmp_out:
+            with open('./log/tmp_{0}_err'.format(_fname),'w') as tmp_err:
                 ret = subprocess.run('diag',shell=True,check=True,
-                                     stdin=tmp_in,stdout=tmp_out,stderr=tmp_err)                
-    print(' - Fnished {0} {1}'.format(_fname,ret))
+                                     stdin=tmp_in,stdout=tmp_out,stderr=tmp_err)   
+    print(' - Fnished {0} {1}'.format(fname,ret))
 
 # ------------------------------------------------------------------------------
 # Generate other diaggui files by copying the template file.
-# 
-optics = ['ETMX']
+#
+
+def masterswitch_is_open(optic):
+    return ezca['VIS-{0}_MASTERSWITCH'.format(optic)]==True
+
+def is_safe(optic):
+    return ezca['GRD-VIS_{0}_STATE_S'.format(optic)]=='SAFE'
+
+def is_ready_to_measure(optic):
+    if is_safe(optic) and masterswitch_is_open(optic):
+        return True
+    else:
+        raise ValueError('Please request SAFE, and open the Master Switch.')
+
+# ------------------------------------------------------------------------------    
+def run_tf_measurement(target_optic,target_dofs):
+    for _dof in target_dofs:
+        _fname = './measurements/' + fname.replace(optic,target_optic).\
+            replace('_'+dof+'_','_'+_dof+'_')
+        cmd  = "cp -rf {0} {1}".format(fname,_fname)
+        cmd += "; sed -i -e 's/{2}/{3}/' {1}".format(None,_fname,optic,
+                                                     target_optic)
+        cmd += "; sed -i -e 's/TEST_{4}/TEST_{5}/' {1}".format(None,_fname,
+                                                               None,None,dof,
+                                                               _dof)
+        print('{0} -> {1}'.format(fname,_fname))
+        if runcp:
+            subprocess.run(cmd,shell=True,check=True)
+        if rundiag and is_ready_to_measure(target_optic):            
+            print('run',target_optic)
+            huge(_fname)
+    
+optics = args.optics
+dofs = args.dofs
+
 _stage = stage
 _func = func
-dofs = ['L','T','Y']
+
+t = []
 for _optic in optics:
-    for _dof in dofs:
-        _fname = './measurements/{0}_{1}_{2}_LVDT{3}_{4}.xml'.format(_optic,_stage,_func,_dof,suffix)
-        if fname!=_fname:
-            cmd  = "cp -rf {0} {1}".format(fname,_fname)
-            cmd += "; sed -i -e 's/{2}/{3}/' {1}".format(None,_fname,optic,_optic)
-            cmd += "; sed -i -e 's/TEST_{4}/TEST_{5}/' {1}".format(None,_fname,None,None,dof,_dof)
-            #print(cmd)
-            #print(_fname)
-            print('{0} -> {1}'.format(fname,_fname))
-            subprocess.run(cmd,shell=True,check=True)
-            #huge(_fname)
+    _t = threading.Thread(target=run_tf_measurement,args=(_optic,dofs))
+    _t.start()
+    #_t.join()
+    t += [_t]
