@@ -37,7 +37,8 @@ def make_ip_lvdt(f,unit='disp'):
                      [1e0 , 2e-2],
                      [1e1 , 2e-2],
                      [1e2 , 2e-2]]) # read from the actual ASD
-    _f,selfnoise = data[:,0],data[:,1]
+    _f,selfnoise = data[:,0],data[:,1]/2 # for SRM
+    _f,selfnoise = data[:,0],data[:,1]*np.sqrt(3)#for L,T,Y    
     if unit=='disp':
         pass
     elif unit=='velo':
@@ -51,13 +52,15 @@ def make_ip_lvdt(f,unit='disp'):
 
 
 def make_l4c(f,unit='velo'):    
-    data = np.array([[1e-3, 5e+1], # Freq [Hz.0], PSD (m/s^2)^2/Hz [dB.0]
-                     [1e-2, 5e-1],
-                     [1e-1, 5e-3],
+    data = np.array([[1e-3, 300e+1], # Freq [Hz.0], PSD (m/s^2)^2/Hz [dB.0]
+                     [1e-2, 100e-1],
+                     #[1e-1, 25e-3],
                      [1e0 , 5e-5],
                      [1e1 , 5e-5],
                      [1e2 , 5e-5]]) # read from the actual ASD
-    _f,selfnoise = data[:,0],data[:,1]#*10 # TypeB is 10 times larger than TypeA
+    _f,selfnoise = data[:,0],data[:,1]
+    #_f,selfnoise = _f,selfnoise*10 # for SRM
+    _f,selfnoise = _f,selfnoise*np.sqrt(3) # for L,T,Y
     if unit=='disp':
         _f, selfnoise = _f, selfnoise/(2.0*np.pi*_f)        
     elif unit=='velo':
