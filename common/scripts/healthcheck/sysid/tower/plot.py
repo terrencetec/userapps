@@ -33,7 +33,8 @@ def get_tf(_from,_to):
         optic = optic1
     else:
         raise ValueError('!')
-    fname = './measurements/PLANT_{0}_IP_{1}_{2}_EXC.xml'.format(optic,test,dof_exc)
+    fname = './measurements/PLANT_{0}_IP_{1}_{2}_EXC.xml'.format(optic,test,
+                                                                 dof_exc)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
     chname_from = 'K1:VIS-{0}_{1}_TEST_{2}_EXC'
@@ -49,11 +50,65 @@ def get_fitted_tf(omega_measured,tf_measured,coh_measured,_exc,dof):
         __tf = control.tf(*zpk2tf([],p(w0,Q0),k0))
         _tf += __tf
     #
-    mag, phase, omega = _tf.freqresp(w)
+    mag, phase, omega = _tf.freqresp(omega_measured)
     _w = omega
     h = mag*np.exp(1j*phase)
     h = np.squeeze(h)
     return _w,h
+
+def plot(optic,func,exc):
+    fig,ax = plt.subplots(3,3,figsize=(16,6),sharex=True,sharey='row')
+    fig.suptitle('{0} {1}'.format(optic,func,exc))
+    plt.subplots_adjust(wspace=0.1,hspace=0.1)
+    for i,dof in enumerate(dofs):
+        if func=='BLEND':
+            _dof = 'LVDT'+dof
+        else:
+            _dof = dof
+        w,tf, coh = get_tf('{0}_IP_TEST_{1}_EXC'.format(optic,
+                                                        exc,func),
+                           '{0}_IP_{2}_{1}_IN1'.format(optic,
+                                                       _dof,func))
+        w,hor1, coh = get_tf('{0}_IP_TEST_{1}_EXC'.format(optic,
+                                                          exc,func),
+                             '{0}_IP_{2}_{1}_IN1'.format(optic,
+                                                         _dof,func))
+        _w,tf_fit = get_fitted_tf(w,tf,coh,
+                                  '{0}_IP_{2}_{1}_EXC'.format(
+                                      optic,_dof,func),dof)
+        _w,h = get_fitted_tf(w,hor1,coh,
+                             '{0}_IP_{2}_{1}_EXC'.format(
+                                 optic,_dof,func),dof)
+        idx = np.where(coh>0.9)
+        _idx = np.where(coh<0.9)        
+        ax[0][i].loglog(w[idx],np.abs(hor1[idx]),'ro',markersize=2)
+        ax[0][i].loglog(w[_idx],np.abs(hor1[_idx]),'ro',alpha=0.1,
+                        markersize=2)
+        ax[0][i].loglog(_w,np.abs(h),'k')
+        ax[0][i].set_ylim(1e-5,5e-1)
+        ax[0][i].set_ylim(1e-5,5e1)        
+        ax[0][i].set_title('{0} -> {1}'.format(exc,dof))
+        ax[1][i].semilogx(w[idx],np.rad2deg(np.angle(hor1[idx]))*-1,
+                          'ro',markersize=2)
+        ax[1][i].semilogx(w[_idx],np.rad2deg(np.angle(hor1[_idx]))*-1,
+                          'ro',alpha=0.1,markersize=2)        
+        # -1 comes from dtt2hdf's bug???    
+        ax[1][i].semilogx(_w,np.rad2deg(np.angle(h)),'k')
+        ax[1][i].set_ylim(-180,180)
+        ax[1][i].set_yticks(range(-180,181,90))
+        ax[2][i].semilogx(w[idx],coh[idx],'ro',markersize=2)
+        ax[2][i].semilogx(w[_idx],coh[_idx],'ro',markersize=2,
+                          alpha=0.1)
+        ax[2][i].set_ylim(0,1)
+        ax[2][i].set_xlim(1e-2,1e1)
+        [ax[j][i].grid(which='both',linestyle='dashed') for j in range(3)]
+    [ax[2][i].set_xlabel('Frequency [Hz]') for i in range(3)]
+    ax[0][0].set_ylabel('Magnitude [count/count]')
+    ax[1][0].set_ylabel('Phase [Degree]')
+    ax[2][0].set_ylabel('Coherence')
+    #plt.tight_layout()
+    plt.savefig('./measurements/PLANT_{0}_IP_{1}_{2}.png'.format(optic,func,exc))
+    plt.close()
 
 if __name__=='__main__':
     optics = ['SR2','SRM']
@@ -64,30 +119,5 @@ if __name__=='__main__':
     for optic in optics:
         for func in funcs:
             for exc in excs:
-                print(optic,func,exc)            
-                fig,ax = plt.subplots(3,3,figsize=(16,6),sharex=True)
-                plt.title(optic)                    
-                for i,dof in enumerate(dofs):
-                    if func=='BLEND':
-                        _dof = 'LVDT'+dof
-                    else:
-                        _dof = dof
-                    w,tf, coh = get_tf('{0}_IP_TEST_{1}_EXC'.format(optic,exc,func),
-                                       '{0}_IP_{2}_{1}_IN1'.format(optic,_dof,func))
-                    w,hor1, coh = get_tf('{0}_IP_TEST_{1}_EXC'.format(optic,exc,func),
-                                         '{0}_IP_{2}_{1}_IN1'.format(optic,_dof,func))
-                    _w,tf_fit = get_fitted_tf(w,tf,coh,'{0}_IP_{2}_{1}_EXC'.format(optic,_dof,func),dof)
-                    _w,h = get_fitted_tf(w,hor1,coh,'{0}_IP_{2}_{1}_EXC'.format(optic,_dof,func),dof)
-                    ax[0][i].loglog(w,np.abs(hor1),'ro',markersize=1)
-                    ax[0][i].loglog(_w,np.abs(h),'k')
-                    ax[0][i].set_ylim(1e-5,5e-1)
-                    ax[0][i].set_ylim(1e-5,5e1)
-                    ax[1][i].semilogx(w,np.rad2deg(np.angle(hor1))*-1,'ro',markersize=1) # -1 comes from dtt2hdf's bug???    
-                    ax[1][i].semilogx(_w,np.rad2deg(np.angle(h)),'k')
-                    ax[1][i].set_ylim(-180,180)        
-                    ax[2][i].semilogx(w,coh,'ro',markersize=1)
-                    ax[2][i].set_ylim(0,1)
-                    ax[2][i].set_xlim(1e-2,1e1)
-                plt.tight_layout()
-                plt.savefig('{0}_{2}_{1}.png'.format(optic,exc,func))
-                plt.close()            
+                print(optic,func,exc)
+                plot(optic,func,exc)
