@@ -133,8 +133,8 @@ def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
-    optic = 'k1vis'+optic.lower()
-    print(optic)
+    system = subsys
+    optic = optic.lower()
     OPTIC = optic.upper()
     txt = '''
     composite {{
@@ -145,9 +145,9 @@ def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},PART={part},K1SUBSYS={K1SUBSYS},optic={optic}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},PART={part},K1SUBSYS={K1SUBSYS},system={subsys}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,part=part,K1SUBSYS='K1'+SUBSYS,optic=optic)
+    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,part=part,K1SUBSYS='K1'+SUBSYS)
     return txt,width,height
 
 
