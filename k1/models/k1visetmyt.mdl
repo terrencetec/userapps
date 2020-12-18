@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.196"
+    ComputedModelVersion    "1.197"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -40,7 +40,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1963.0, 1088.0, 1694.0, 1064.0]
+      Location		      [1928.0, 8.0, 1694.0, 1064.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1656.0, 892.0]
-	ZoomFactor		[0.8]
-	Offset			[-26.479701099560543, 645.12268468933848]
+	ZoomFactor		[2.0]
+	Offset			[229.57029890043941, 811.37268468933848]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Dec 18 12:33:56 2020"
-  RTWModifiedTimeStamp	  530195628
-  ModelVersionFormat	  "1.%<AutoIncrement:196>"
+  LastModifiedDate	  "Fri Dec 18 13:39:27 2020"
+  RTWModifiedTimeStamp	  530199565
+  ModelVersionFormat	  "1.%<AutoIncrement:197>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1017,7 +1017,7 @@ Model {
   }
   System {
     Name		    "k1visetmyt"
-    Location		    [1963, 1088, 3657, 2152]
+    Location		    [1928, 8, 3622, 1072]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1029,7 +1029,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "200"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "1211"
     Block {
@@ -2810,6 +2810,23 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "K1:VIS-ETMYP_ISC_MN_OUT"
+      SID		      "1181"
+      Tag		      "cdsIPCx_SHMEM"
+      Description	      "Inter-Process Communication via Shared memory."
+      Ports		      [1, 2]
+      Position		      [400, 919, 465, 941]
+      ZOrder		      8042
+      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "cdsIPCx/SignalName"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "K1:VIS-ETMY_MASTERSWITCH_OUT"
       SID		      "747"
       Tag		      "cdsIPCx_SHMEM"
@@ -2851,23 +2868,6 @@ Model {
       Ports		      [1, 2]
       Position		      [1000, 1226, 1065, 1244]
       ZOrder		      5590
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
-      DropShadow	      on
-      AttributesFormatString  "%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsIPCx/SignalName"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "K1:VIS_ETMYP_ISC_MN_OUT"
-      SID		      "1181"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
-      Ports		      [1, 2]
-      Position		      [400, 919, 465, 941]
-      ZOrder		      8042
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
       AttributesFormatString  "%<Tag>"
@@ -4056,7 +4056,7 @@ Model {
     }
     Line {
       ZOrder		      3330
-      SrcBlock		      "K1:VIS_ETMYP_ISC_MN_OUT"
+      SrcBlock		      "K1:VIS-ETMYP_ISC_MN_OUT"
       SrcPort		      1
       DstBlock		      "ETMY"
       DstPort		      37
@@ -4219,7 +4219,7 @@ Model {
       ZOrder		      3329
       SrcBlock		      "Ground39"
       SrcPort		      1
-      DstBlock		      "K1:VIS_ETMYP_ISC_MN_OUT"
+      DstBlock		      "K1:VIS-ETMYP_ISC_MN_OUT"
       DstPort		      1
     }
     Line {
