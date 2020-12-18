@@ -11,9 +11,10 @@ nominal = 'ALIGNED'
 
 # --------------------------------------------------------------------
 def is_isolated():
-    l = abs(ezca['VIS-SRM_IP_DAMP_L_INMON']) < 5
-    t = abs(ezca['VIS-SRM_IP_DAMP_T_INMON']) < 5
-    y = abs(ezca['VIS-SRM_IP_DAMP_Y_INMON']) < 5
+    # should read RMS value.
+    l = abs(ezca['VIS-{0}_IP_IDAMP_L_INMON'.format(OPTIC)]) < 5
+    t = abs(ezca['VIS-{0}_IP_IDAMP_T_INMON'.format(OPTIC)]) < 5
+    y = abs(ezca['VIS-{0}_IP_IDAMP_Y_INMON'.format(OPTIC)]) < 5
     return l and t and y
 
 def sus_type_is():
@@ -262,16 +263,16 @@ class ISOLATING(GuardState):
     def run(self):
         if self.counter==0:
             for dof in ['L','T','Y']:
-                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
                 filt = ezca.get_LIGOFilter(filtname)
-                filt.turn_on('FM3','INPUT') # for miyodamp
+                filt.turn_on('FM4','INPUT') # for miyodamp
                 filt.ramp_gain(1,10,False)
             self.counter += 1
         elif self.counter==1:
             for dof in ['L','T','Y']:
-                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
                 filt = ezca.get_LIGOFilter(filtname)
-                filt.turn_on('FM2') # for miyodc
+                filt.turn_on('FM3') # for miyodc
                 #filt.ramp_gain(1,10,True)
             if is_isolated():
                 return True   
@@ -312,19 +313,19 @@ class TO_SAFE(GuardState):
             elif sus_type_is()=='Type-B':
                 log('!!!!')
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
                     filt = ezca.get_LIGOFilter(filtname)
                     filt.ramp_gain(0,30,False)
                     
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
                     filt = ezca.get_LIGOFilter(filtname)
                     if not filt.is_gain_ramping():
-                        filt.turn_off('FM2','FM1') # for miyodc
+                        filt.turn_off('FM3','FM4') # for miyodc
 
                 ramp = []
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof)
+                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
                     filt = ezca.get_LIGOFilter(filtname)
                     ramp += [not filt.is_gain_ramping()]
                 if all(ramp):
