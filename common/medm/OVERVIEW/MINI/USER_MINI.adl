@@ -111,7 +111,7 @@ composite {
 			"dynamic attribute" {
 				vis="calc"
 				calc="A && B % 2"
-				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+				chan="K1:VIS-$(OPTIC)_COMMISH_STATUS"
 				chanB="K1:FEC-$(FEC)_TIME_DIAG"
 			}
 		}
@@ -124,32 +124,17 @@ composite {
 			}
 			display[1] {
 				label="TOWER"
-				name="$(ctrladl2)"
+				name="$(ctrladl)"
 				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
 			}
 			display[2] {
-				label="GAS"
-				name="$(ctrladl3)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}
-			display[3] {
-				label="PFMN"
-				name="$(ctrladl4)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}
-			display[4] {
-				label="IM"
-				name="$(ctrladl5)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}
-			display[5] {
-				label="TM"
-				name="$(ctrladl6)"
+				label="PAYLOAD"
+				name="$(ctrladl2)"
 				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
 			}
 			clr=0
 			bclr=14
-			label="$(SYSTEM)"
+			label="$(OPTIC)"
 		}
 		"text entry" {
 			object {
@@ -159,7 +144,7 @@ composite {
 				height=24
 			}
 			control {
-				chan="K1:VIS-$(SYSTEM)_COMMISH_MESSAGE"
+				chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
 				clr=60
 				bclr=14
 			}
@@ -174,7 +159,7 @@ composite {
 				height=24
 			}
 			control {
-				chan="K1:VIS-$(SYSTEM)_COMMISH_STATUS"
+				chan="K1:VIS-$(OPTIC)_COMMISH_STATUS"
 				clr=0
 				bclr=14
 			}
@@ -188,7 +173,7 @@ composite {
 				height=24
 			}
 			control {
-				chan="K1:VIS-$(SYSTEM)_HEALTHCHECKED_DATE"
+				chan="K1:VIS-$(OPTIC)_HEALTHCHECKED_DATE"
 				clr=60
 				bclr=14
 			}
