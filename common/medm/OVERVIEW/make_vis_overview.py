@@ -133,7 +133,8 @@ def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT',part='TWR'):
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
-    system = system.lower()
+    system = 'k1vis'+system.lower()
+    print(system)
     SYSTEM = system.upper()
     txt = '''
     composite {{
@@ -144,9 +145,9 @@ def gds_mini(x,y,fec='123',system='ETMX',subsys='ETMXT',part='TWR'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},SYSTEM={SYSTEM},PART={part},K1SUBSYS={K1SUBSYS}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},PART={part},K1SUBSYS={K1SUBSYS},system={system}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,SYSTEM=SYSTEM,part=part,K1SUBSYS='K1'+SUBSYS)
+    '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,part=part,K1SUBSYS='K1'+SUBSYS,system=system)
     return txt,width,height
 
 
@@ -248,10 +249,10 @@ if __name__=='__main__':
                'PR2','PR3','MCI','MCE','MCO','IMMT1','IMMT2','OMMT1','OMMT2',
                'OSTM','TMSX','TMSY']
     
-    models = {'ETMX':[['VISETMXT',102],['VISETMXP',103],['VISETMXMON',104],['MODALETMX',105]],
-              'ETMY':[['VISETMYT',107],['VISETMYP',108],['VISETMYMON',109],['MODALETMY',110]],
-              'ITMX':[['VISITMXT',92],['VISITMXP',93],['VISITMXMON',94],['MODALITMX',95]],
-              'ITMY':[['VISITMYT',97],['VISITMYP',98],['VISITMYMON',99],['MODALITMY',100]],
+    models = {'ETMX':[['VISETMXT',102],['VISETMXP',103]],
+              'ETMY':[['VISETMYT',107],['VISETMYP',108]],
+              'ITMX':[['VISITMXT',92],['VISITMXP',93]],
+              'ITMY':[['VISITMYT',97],['VISITMYP',98]],
               'BS':[['VISBST',60],['VISBSP',61]],
               'SRM':[['VISSRMT',75],['VISSRMP',76]],
               'SR2':[['VISSR2T',65],['VISSR2P',66]],
