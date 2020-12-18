@@ -23,7 +23,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4606.0, 51.0, 1885.0, 1023.0]
+      Location		      [284.0, 190.0, 1885.0, 1023.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -45,11 +45,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"9372"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1847.0, 860.0]
-	ZoomFactor		[0.24999999999999997]
-	Offset			[-3775.4405048076924, -408.08653846153948]
+	ZoomFactor		[0.8]
+	Offset			[-1822.0084478021972, 791.38814102564038]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -82,9 +82,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Dec 15 11:54:36 2020"
-  RTWModifiedTimeStamp	  529934073
-  ModelVersionFormat	  "1.%<AutoIncrement:313>"
+  LastModifiedDate	  "Thu Dec 17 15:08:09 2020"
+  RTWModifiedTimeStamp	  530118487
+  ModelVersionFormat	  "1.%<AutoIncrement:320>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1051,8 +1051,8 @@ Library {
   }
   System {
     Name		    "PAYLOAD_MASTER"
-    Location		    [4606, 51, 6491, 1074]
-    Open		    off
+    Location		    [284, 190, 2169, 1213]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -1063,9 +1063,9 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "11247"
+    SIDHighWatermark	    "11281"
     Block {
       BlockType		      Reference
       Name		      "DocBlock1"
@@ -1170,18 +1170,16 @@ Library {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "PAYLOADIM"
-      SID		      "7597"
-      Description	      "SIXOSEMSTAGE_FACE_MASTER"
-      Ports		      [24, 13]
-      Position		      [-130, 928, 110, 1652]
-      ZOrder		      5759
-      BackgroundColor	      "[0.000000, 0.400000, 1.000000]"
+      Name		      "PAYLOADCAL"
+      SID		      "11257"
+      Ports		      [0, 2]
+      Position		      [-1270, 935, -1185, 970]
+      ZOrder		      -38
       RequestExecContextInheritance off
       Variant		      off
       System {
-	Name			"PAYLOADIM"
-	Location		[4606, 51, 6491, 1074]
+	Name			"PAYLOADCAL"
+	Location		[33, 70, 1918, 1093]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1193,7 +1191,297 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"60"
+	ZoomFactor		"125"
+	Block {
+	  BlockType		  Reference
+	  Name			  "COSMON"
+	  SID			  "11252"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [240, 205, 320, 235]
+	  ZOrder		  6718
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "EXC"
+	  SID			  "11262"
+	  Tag			  "Excitation"
+	  Ports			  [0, 1]
+	  Position		  [325, 356, 365, 374]
+	  ZOrder		  6727
+	  BackgroundColor	  "green"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.8"
+	  SourceBlock		  "cdsEXC/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "EXCMON"
+	  SID			  "11259"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [430, 350, 510, 380]
+	  ZOrder		  6724
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "EXC_OUT"
+	  SID			  "11261"
+	  Tag			  "Test Point"
+	  Ports			  [1]
+	  Position		  [430, 290, 470, 310]
+	  ZOrder		  6726
+	  BackgroundColor	  "green"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsTP/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground2"
+	  SID			  "11248"
+	  Position		  [20, 140, 40, 160]
+	  ZOrder		  6715
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "LINE"
+	  SID			  "11249"
+	  Tag			  "cdsOscFixedPhase"
+	  Description		  "ADL=OSC.adl"
+	  Ports			  [1, 3]
+	  Position		  [100, 46, 200, 254]
+	  ZOrder		  6714
+	  BackgroundColor	  "[0.623529, 0.121569, 0.819608]"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.10"
+	  SourceBlock		  "cdsOscFixedPhase/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "LINEMON"
+	  SID			  "11250"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [240, 65, 320, 95]
+	  ZOrder		  6716
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "LINE_OUT"
+	  SID			  "11253"
+	  Tag			  "Test Point"
+	  Ports			  [1]
+	  Position		  [390, 20, 430, 40]
+	  ZOrder		  6719
+	  BackgroundColor	  "green"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsTP/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "SINMON"
+	  SID			  "11251"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [240, 135, 320, 165]
+	  ZOrder		  6717
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator"
+	  SID			  "11254"
+	  Position		  [385, 140, 405, 160]
+	  ZOrder		  6720
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  "11255"
+	  Position		  [385, 210, 405, 230]
+	  ZOrder		  6721
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "CAL_L_LINE_Out"
+	  SID			  "11258"
+	  Position		  [410, 73, 440, 87]
+	  ZOrder		  6723
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "CAL_L_EXC_Out"
+	  SID			  "11260"
+	  Position		  [565, 358, 595, 372]
+	  ZOrder		  6725
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "LINEMON"
+	  SrcPort		  1
+	  Points		  [26, 0]
+	  Branch {
+	    ZOrder		    11
+	    DstBlock		    "CAL_L_LINE_Out"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    10
+	    Points		    [0, -50]
+	    DstBlock		    "LINE_OUT"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "SINMON"
+	  SrcPort		  1
+	  DstBlock		  "Terminator"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "LINE"
+	  SrcPort		  1
+	  DstBlock		  "LINEMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "LINE"
+	  SrcPort		  2
+	  DstBlock		  "SINMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "COSMON"
+	  SrcPort		  1
+	  DstBlock		  "Terminator1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "LINE"
+	  SrcPort		  3
+	  DstBlock		  "COSMON"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "Ground2"
+	  SrcPort		  1
+	  DstBlock		  "LINE"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  "EXCMON"
+	  SrcPort		  1
+	  DstBlock		  "CAL_L_EXC_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "EXC"
+	  SrcPort		  1
+	  Points		  [25, 0]
+	  Branch {
+	    ZOrder		    15
+	    Points		    [0, -65]
+	    DstBlock		    "EXC_OUT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    14
+	    DstBlock		    "EXCMON"
+	    DstPort		    1
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "PAYLOADIM"
+      SID		      "7597"
+      Description	      "SIXOSEMSTAGE_FACE_MASTER"
+      Ports		      [24, 14]
+      Position		      [-130, 928, 110, 1652]
+      ZOrder		      5759
+      BackgroundColor	      "[0.000000, 0.400000, 1.000000]"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"PAYLOADIM"
+	Location		[0, 23, 1885, 1046]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"200"
 	Block {
 	  BlockType		  Inport
 	  Name			  "OSEM_V1_In"
@@ -2432,7 +2720,7 @@ Library {
 	  Name			  "ADDISC"
 	  SID			  "7700"
 	  Ports			  [9, 3]
-	  Position		  [465, 428, 620, 522]
+	  Position		  [480, 428, 635, 522]
 	  ZOrder		  1165
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -5010,20 +5298,6 @@ Library {
 	  BackgroundColor	  "[0.864000, 0.720000, 0.900000]"
 	  ShowName		  off
 	  GotoTag		  "LOCKSTATE"
-	}
-	Block {
-	  BlockType		  Ground
-	  Name			  "Ground"
-	  SID			  "11238"
-	  Position		  [415, 425, 435, 445]
-	  ZOrder		  4614
-	}
-	Block {
-	  BlockType		  Ground
-	  Name			  "Ground1"
-	  SID			  "11239"
-	  Position		  [415, 435, 435, 455]
-	  ZOrder		  4615
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -8798,6 +9072,18 @@ Library {
 	  }
 	}
 	Block {
+	  BlockType		  Reference
+	  Name			  "PAYLOADCAL"
+	  SID			  "11265"
+	  Ports			  [0, 2]
+	  Position		  [365, 394, 450, 421]
+	  ZOrder		  4616
+	  LibraryVersion	  "1.318"
+	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADCAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "PSD"
 	  SID			  "8025"
@@ -9663,7 +9949,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_LOCK_L_Out"
+	  Name			  "ISC_LOCK_LONG_Out"
 	  SID			  "8083"
 	  Position		  [2045, 270, 2065, 280]
 	  ZOrder		  4
@@ -9672,7 +9958,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_LOCK_P_Out"
+	  Name			  "ISC_LOCK_PITCH_Out"
 	  SID			  "8084"
 	  Position		  [2045, 295, 2065, 305]
 	  ZOrder		  3
@@ -9682,7 +9968,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_LOCK_Y_Out"
+	  Name			  "ISC_LOCK_YAW_Out"
 	  SID			  "8085"
 	  Position		  [2045, 320, 2065, 330]
 	  ZOrder		  2
@@ -9788,6 +10074,16 @@ Library {
 	  ZOrder		  4612
 	  BackgroundColor	  "yellow"
 	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "CAL_L_LINE_OUTPUT"
+	  SID			  "11266"
+	  Position		  [520, 365, 540, 375]
+	  ZOrder		  4617
+	  BackgroundColor	  "yellow"
+	  Port			  "14"
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -9992,7 +10288,7 @@ Library {
 	  }
 	  Branch {
 	    ZOrder		    276
-	    DstBlock		    "ISC_LOCK_Y_Out"
+	    DstBlock		    "ISC_LOCK_YAW_Out"
 	    DstPort		    1
 	  }
 	}
@@ -10009,7 +10305,7 @@ Library {
 	  }
 	  Branch {
 	    ZOrder		    274
-	    DstBlock		    "ISC_LOCK_P_Out"
+	    DstBlock		    "ISC_LOCK_PITCH_Out"
 	    DstPort		    1
 	  }
 	}
@@ -10026,7 +10322,7 @@ Library {
 	  }
 	  Branch {
 	    ZOrder		    272
-	    DstBlock		    "ISC_LOCK_L_Out"
+	    DstBlock		    "ISC_LOCK_LONG_Out"
 	    DstPort		    1
 	  }
 	}
@@ -10883,7 +11179,7 @@ Library {
 	  ZOrder		  281
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  2
-	  Points		  [160, 0]
+	  Points		  [170, 0; 0, -65]
 	  DstBlock		  "ADDISC"
 	  DstPort		  9
 	}
@@ -10923,18 +11219,30 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  413
-	  SrcBlock		  "Ground"
-	  SrcPort		  1
-	  DstBlock		  "ADDISC"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  414
-	  SrcBlock		  "Ground1"
-	  SrcPort		  1
+	  ZOrder		  419
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  2
+	  Points		  [4, 0; 0, 30]
 	  DstBlock		  "ADDISC"
 	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  418
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  1
+	  Points		  [3, 0]
+	  Branch {
+	    ZOrder		    420
+	    Points		    [10, 0; 0, 35]
+	    DstBlock		    "ADDISC"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    417
+	    Points		    [0, -30]
+	    DstBlock		    "CAL_L_LINE_OUTPUT"
+	    DstPort		    1
+	  }
 	}
 	Annotation {
 	  SID			  "8095"
@@ -10963,7 +11271,7 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOADMASTER"
-	Location		[4119, 56, 5634, 1042]
+	Location		[-63, 71, 1822, 1094]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -11817,7 +12125,7 @@ Library {
       Name		      "PAYLOADMN"
       SID		      "8876"
       Description	      "SIXOSEMSTAGE_FACE_MASTER"
-      Ports		      [24, 13]
+      Ports		      [24, 14]
       Position		      [-130, 128, 110, 862]
       ZOrder		      6705
       BackgroundColor	      "green"
@@ -11825,7 +12133,7 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOADMN"
-	Location		[4076, 63, 5591, 1049]
+	Location		[0, 23, 1885, 1046]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -11837,7 +12145,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "OSEM_V1_In"
@@ -13076,7 +13384,7 @@ Library {
 	  Name			  "ADDISC"
 	  SID			  "8971"
 	  Ports			  [9, 3]
-	  Position		  [465, 428, 620, 522]
+	  Position		  [480, 428, 635, 522]
 	  ZOrder		  1165
 	  RequestExecContextInheritance	off
 	  Variant		  off
@@ -19428,6 +19736,18 @@ Library {
 	  }
 	}
 	Block {
+	  BlockType		  Reference
+	  Name			  "PAYLOADCAL"
+	  SID			  "11263"
+	  Ports			  [0, 2]
+	  Position		  [360, 392, 445, 418]
+	  ZOrder		  4614
+	  LibraryVersion	  "1.318"
+	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADCAL"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "PSD"
 	  SID			  "9274"
@@ -20418,6 +20738,16 @@ Library {
 	  ZOrder		  4612
 	  BackgroundColor	  "yellow"
 	  Port			  "13"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "CAL_L_LINE_OUTPUT"
+	  SID			  "11264"
+	  Position		  [515, 365, 535, 375]
+	  ZOrder		  4615
+	  BackgroundColor	  "yellow"
+	  Port			  "14"
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -21513,7 +21843,7 @@ Library {
 	  ZOrder		  157
 	  SrcBlock		  "OLDAMP"
 	  SrcPort		  2
-	  Points		  [160, 0]
+	  Points		  [170, 0; 0, -65]
 	  DstBlock		  "ADDISC"
 	  DstPort		  9
 	}
@@ -21551,6 +21881,32 @@ Library {
 	  SrcPort		  1
 	  DstBlock		  "DAMP_STATE_Out1"
 	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  163
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  2
+	  Points		  [4, 0; 0, 35]
+	  DstBlock		  "ADDISC"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  164
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  1
+	  Points		  [3, 0]
+	  Branch {
+	    ZOrder		    166
+	    Points		    [0, -30]
+	    DstBlock		    "CAL_L_LINE_OUTPUT"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    165
+	    Points		    [10, 0; 0, 35]
+	    DstBlock		    "ADDISC"
+	    DstPort		    1
+	  }
 	}
 	Annotation {
 	  SID			  "9331"
@@ -22761,7 +23117,7 @@ Library {
       BlockType		      SubSystem
       Name		      "PAYLOADTM"
       SID		      "8110"
-      Ports		      [20, 14]
+      Ports		      [20, 15]
       Position		      [-125, 1735, 115, 2460]
       ZOrder		      5760
       ForegroundColor	      "blue"
@@ -22771,7 +23127,7 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOADTM"
-	Location		[4606, 51, 6491, 1074]
+	Location		[0, 23, 1885, 1046]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -22783,7 +23139,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"50"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  Inport
 	  Name			  "ISC_LONG_In"
@@ -22929,7 +23285,7 @@ Library {
 	  BlockType		  Inport
 	  Name			  "ASC_PIT_DITHER"
 	  SID			  "8126"
-	  Position		  [180, 260, 200, 270]
+	  Position		  [180, 265, 200, 275]
 	  ZOrder		  110
 	  BackgroundColor	  "yellow"
 	  Port			  "15"
@@ -23545,14 +23901,14 @@ Library {
 	  BlockType		  SubSystem
 	  Name			  "ADDASC"
 	  SID			  "8157"
-	  Ports			  [4, 2]
-	  Position		  [790, 205, 905, 300]
+	  Ports			  [7, 3]
+	  Position		  [925, 161, 1050, 299]
 	  ZOrder		  53
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
 	    Name		    "ADDASC"
-	    Location		    [82, 55, 2002, 1135]
+	    Location		    [0, 23, 1885, 1046]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -23564,22 +23920,49 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "CAL_OSC_L_In"
+	      SID		      "11273"
+	      Position		      [20, -87, 50, -73]
+	      ZOrder		      26
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "CAL_EXC_L_In"
+	      SID		      "11274"
+	      Position		      [20, -52, 50, -38]
+	      ZOrder		      28
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "ISC_L_In"
+	      SID		      "11281"
+	      Position		      [20, -17, 50, -3]
+	      ZOrder		      33
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "ISC_P_In"
 	      SID		      "8158"
 	      Position		      [20, 48, 50, 62]
 	      ZOrder		      17
+	      Port		      "4"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "ISC_Y_In"
 	      SID		      "8159"
-	      Position		      [20, 273, 50, 287]
+	      Position		      [20, 168, 50, 182]
 	      ZOrder		      18
-	      Port		      "2"
+	      Port		      "5"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -23588,24 +23971,37 @@ Library {
 	      SID		      "8160"
 	      Position		      [20, 93, 50, 107]
 	      ZOrder		      23
-	      Port		      "3"
+	      Port		      "6"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "DITHER_Y_In"
 	      SID		      "8161"
-	      Position		      [20, 318, 50, 332]
+	      Position		      [20, 213, 50, 227]
 	      ZOrder		      24
-	      Port		      "4"
+	      Port		      "7"
 	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      SID		      "11275"
+	      Ports		      [3, 1]
+	      Position		      [110, -96, 135, 6]
+	      ZOrder		      25
+	      ShowName		      off
+	      Inputs		      "+++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum3"
 	      SID		      "8162"
 	      Ports		      [2, 1]
-	      Position		      [110, 257, 130, 348]
+	      Position		      [110, 152, 130, 243]
 	      ZOrder		      12
 	      ShowName		      off
 	      InputSameDT	      off
@@ -23626,19 +24022,28 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Outport
+	      Name		      "LONG_Out"
+	      SID		      "11276"
+	      Position		      [210, -52, 240, -38]
+	      ZOrder		      27
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
 	      Name		      "PITCH_Out"
 	      SID		      "8164"
 	      Position		      [210, 73, 240, 87]
 	      ZOrder		      21
+	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "YAW_Out"
 	      SID		      "8165"
-	      Position		      [210, 298, 240, 312]
+	      Position		      [210, 193, 240, 207]
 	      ZOrder		      22
-	      Port		      "2"
+	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
@@ -23666,7 +24071,6 @@ Library {
 	      ZOrder		      4
 	      SrcBlock		      "Sum4"
 	      SrcPort		      1
-	      Points		      [0, 0]
 	      DstBlock		      "PITCH_Out"
 	      DstPort		      1
 	    }
@@ -23683,6 +24087,34 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Sum3"
 	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "CAL_OSC_L_In"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      DstBlock		      "LONG_Out"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "CAL_EXC_L_In"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "ISC_L_In"
+	      SrcPort		      1
+	      DstBlock		      "Sum1"
+	      DstPort		      3
 	    }
 	  }
 	}
@@ -23789,7 +24221,7 @@ Library {
 	  Name			  "DITHER"
 	  SID			  "8171"
 	  Ports			  [2, 2]
-	  Position		  [545, 252, 695, 303]
+	  Position		  [545, 259, 695, 301]
 	  ZOrder		  55
 	  BackgroundColor	  "lightBlue"
 	  LibraryVersion	  "1.474"
@@ -23802,7 +24234,7 @@ Library {
 	  Name			  "DRIVEALIGN"
 	  SID			  "8172"
 	  Ports			  [3, 3]
-	  Position		  [1035, 163, 1130, 297]
+	  Position		  [1090, 163, 1185, 297]
 	  ZOrder		  4415
 	  BackgroundColor	  "green"
 	  NamePlacement		  "alternate"
@@ -24055,7 +24487,7 @@ Library {
 	  Position		  [1890, 170, 1970, 565]
 	  ZOrder		  6722
 	  BackgroundColor	  "gray"
-	  LibraryVersion	  "1.311"
+	  LibraryVersion	  "1.318"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADMASTER"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -24141,7 +24573,7 @@ Library {
 	  Position		  [340, 809, 485, 1006]
 	  ZOrder		  6721
 	  BackgroundColor	  "cyan"
-	  LibraryVersion	  "1.311"
+	  LibraryVersion	  "1.318"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADOPLEV"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -24154,8 +24586,20 @@ Library {
 	  Position		  [340, 541, 480, 769]
 	  ZOrder		  6720
 	  BackgroundColor	  "cyan"
-	  LibraryVersion	  "1.311"
+	  LibraryVersion	  "1.318"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADOPLEV"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PAYLOADCAL"
+	  SID			  "11271"
+	  Ports			  [0, 2]
+	  Position		  [800, 129, 885, 156]
+	  ZOrder		  6732
+	  LibraryVersion	  "1.318"
+	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADCAL"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -24182,7 +24626,7 @@ Library {
 	  Name			  "TEST"
 	  SID			  "8308"
 	  Ports			  [0, 3]
-	  Position		  [1035, 298, 1130, 432]
+	  Position		  [1090, 298, 1185, 432]
 	  ZOrder		  -50
 	  BackgroundColor	  "lightBlue"
 	  RequestExecContextInheritance	off
@@ -24483,7 +24927,7 @@ Library {
 	  Position		  [895, 1313, 1120, 1477]
 	  ZOrder		  6723
 	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
-	  LibraryVersion	  "1.311"
+	  LibraryVersion	  "1.318"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADWD"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -24496,7 +24940,7 @@ Library {
 	  Position		  [1660, 1274, 1785, 1381]
 	  ZOrder		  6725
 	  BackgroundColor	  "lightBlue"
-	  LibraryVersion	  "1.311"
+	  LibraryVersion	  "1.318"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADIM/WDMON"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -24827,7 +25271,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_DIST_LONG_Out1"
+	  Name			  "ISC_OFFLOAD_LONG_Out"
 	  SID			  "8348"
 	  Position		  [1860, -105, 1880, -95]
 	  ZOrder		  5410
@@ -24837,7 +25281,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_DIST_PITCH_Out1"
+	  Name			  "ISC_OFFLOAD_PITCH_Out"
 	  SID			  "8349"
 	  Position		  [1860, -80, 1880, -70]
 	  ZOrder		  5411
@@ -24847,7 +25291,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "ISC_DIST_YAW_Out1"
+	  Name			  "ISC_OFFLOAD_YAW_Out"
 	  SID			  "8350"
 	  Position		  [1860, -55, 1880, -45]
 	  ZOrder		  5412
@@ -24883,6 +25327,16 @@ Library {
 	  ZOrder		  6702
 	  BackgroundColor	  "yellow"
 	  Port			  "14"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "CAL_L_LINE_OUTPUT"
+	  SID			  "11272"
+	  Position		  [970, 100, 990, 110]
+	  ZOrder		  6733
+	  BackgroundColor	  "yellow"
+	  Port			  "15"
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -25109,14 +25563,14 @@ Library {
 	Line {
 	  ZOrder		  42
 	  SrcBlock		  "ADDASC"
-	  SrcPort		  2
+	  SrcPort		  3
 	  DstBlock		  "DRIVEALIGN"
 	  DstPort		  3
 	}
 	Line {
 	  ZOrder		  43
 	  SrcBlock		  "ADDASC"
-	  SrcPort		  1
+	  SrcPort		  2
 	  DstBlock		  "DRIVEALIGN"
 	  DstPort		  2
 	}
@@ -25146,14 +25600,14 @@ Library {
 	  SrcBlock		  "DITHER"
 	  SrcPort		  2
 	  DstBlock		  "ADDASC"
-	  DstPort		  4
+	  DstPort		  7
 	}
 	Line {
 	  ZOrder		  51
 	  SrcBlock		  "DITHER"
 	  SrcPort		  1
 	  DstBlock		  "ADDASC"
-	  DstPort		  3
+	  DstPort		  6
 	}
 	Line {
 	  ZOrder		  53
@@ -25308,16 +25762,16 @@ Library {
 	  ZOrder		  161
 	  SrcBlock		  "LOCK"
 	  SrcPort		  2
-	  Points		  [116, 0]
+	  Points		  [82, 0]
 	  Branch {
-	    ZOrder		    178
-	    Points		    [0, 285]
-	    DstBlock		    "DRIVEALIGN"
-	    DstPort		    1
+	    ZOrder		    847
+	    Points		    [0, 310]
+	    DstBlock		    "ADDASC"
+	    DstPort		    3
 	  }
 	  Branch {
 	    ZOrder		    166
-	    DstBlock		    "ISC_DIST_LONG_Out1"
+	    DstBlock		    "ISC_OFFLOAD_LONG_Out"
 	    DstPort		    1
 	  }
 	}
@@ -25325,16 +25779,16 @@ Library {
 	  ZOrder		  164
 	  SrcBlock		  "LOCK"
 	  SrcPort		  3
-	  Points		  [60, 0]
+	  Points		  [54, 0]
 	  Branch {
 	    ZOrder		    180
-	    Points		    [0, 290]
+	    Points		    [0, 305]
 	    DstBlock		    "ADDASC"
-	    DstPort		    1
+	    DstPort		    4
 	  }
 	  Branch {
 	    ZOrder		    179
-	    DstBlock		    "ISC_DIST_PITCH_Out1"
+	    DstBlock		    "ISC_OFFLOAD_PITCH_Out"
 	    DstPort		    1
 	  }
 	}
@@ -25345,13 +25799,13 @@ Library {
 	  Points		  [31, 0]
 	  Branch {
 	    ZOrder		    182
-	    Points		    [0, 290]
+	    Points		    [0, 300]
 	    DstBlock		    "ADDASC"
-	    DstPort		    2
+	    DstPort		    5
 	  }
 	  Branch {
 	    ZOrder		    181
-	    DstBlock		    "ISC_DIST_YAW_Out1"
+	    DstBlock		    "ISC_OFFLOAD_YAW_Out"
 	    DstPort		    1
 	  }
 	}
@@ -25869,6 +26323,39 @@ Library {
 	  SrcPort		  8
 	  DstBlock		  "WD"
 	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  848
+	  SrcBlock		  "ADDASC"
+	  SrcPort		  1
+	  DstBlock		  "DRIVEALIGN"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  854
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  2
+	  Points		  [10, 0; 0, 40]
+	  DstBlock		  "ADDASC"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  852
+	  SrcBlock		  "PAYLOADCAL"
+	  SrcPort		  1
+	  Points		  [11, 0]
+	  Branch {
+	    ZOrder		    853
+	    Points		    [9, 0]
+	    DstBlock		    "ADDASC"
+	    DstPort		    1
+	  }
+	  Branch {
+	    ZOrder		    850
+	    Points		    [0, -30]
+	    DstBlock		    "CAL_L_LINE_OUTPUT"
+	    DstPort		    1
+	  }
 	}
       }
     }
@@ -27693,8 +28180,8 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOAD_MASTER"
-	Location		[4606, 51, 6491, 1074]
-	Open			on
+	Location		[5693, 52, 7578, 1075]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -27705,7 +28192,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"25"
+	ZoomFactor		"60"
 	Block {
 	  BlockType		  Inport
 	  Name			  "MN_OSEM_V1_In"
@@ -30015,11 +30502,12 @@ Library {
     Annotation {
       SID		      "9371"
       Name		      "#DAQ Channels\nTM_ISCINF_L_IN1*\nTM_MASTER_OUT_H1\nTM_MASTER_OUT_H2\nTM_MASTER_OUT_H3\nTM_MASTER_OU"
-      "T_H4\n\nTM_DRIVEALIGN_L_OUT* 4096\n\nTM_ISCINF_P_IN1* 2048\nTM_ISCINF_Y_IN1* 2048\n\nTM_CAL_LINE_OUT* 512\n\nTM_"
-      "OPLEV_SEG1_OUT* 256\nTM_OPLEV_SEG2_OUT* 256\nTM_OPLEV_SEG3_OUT* 256\nTM_OPLEV_SEG4_OUT* 256\n\nTM_OPLEV_TILT_PIT"
-      "_OUT* 256\nTM_OPLEV_TILT_YAW_OUT* 256\nTM_OPLEV_TILT_SUM_OUT* 256\nTM_OPLEV_LEN_PIT_OUT* 256\nTM_OPLEV_LEN_YAW_O"
-      "UT* 256\nTM_OPLEV_LEN_SUM_OUT* 256\n\nTM_MASTER_OUT_DC* 256\n"
-      Position		      [279, 1995, 500, 2445]
+      "T_H4\n\nTM_DRIVEALIGN_L_OUT* 4096\n\nTM_ISCINF_P_IN1* 2048\nTM_ISCINF_Y_IN1* 2048\n\nTM_OPLEV_TILT_SEG1_OUT* 256"
+      "\nTM_OPLEV_TILT_SEG2_OUT* 256\nTM_OPLEV_TILT_SEG3_OUT* 256\nTM_OPLEV_TILT_SEG4_OUT* 256\nTM_OPLEV_LEN_SEG1_OUT* "
+      "256\nTM_OPLEV_LEN_SEG2_OUT* 256\nTM_OPLEV_LEN_SEG3_OUT* 256\nTM_OPLEV_LEN_SEG4_OUT* 256\n\nTM_OPLEV_TILT_PIT_OUT"
+      "* 256\nTM_OPLEV_TILT_YAW_OUT* 256\nTM_OPLEV_TILT_SUM_OUT* 256\nTM_OPLEV_LEN_PIT_OUT* 256\nTM_OPLEV_LEN_YAW_OUT* "
+      "256\nTM_OPLEV_LEN_SUM_OUT* 256"
+      Position		      [279, 2003, 506, 2437]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
