@@ -14,3 +14,6 @@
  - medm
  - models
  - scripts
+
+## Gantt chart
+Using JIRA app: https://kagra-vis-software.atlassian.net/secure/RapidBoard.jspa?rapidView=2&projectKey=UO4&selectedIssue=UO4-15&atlOrigin=eyJpIjoiY2NiZDE4YmUxMWNiNDIwMjgxNDJjYzFjNTZmZTRlZTYiLCJwIjoiaiJ9
