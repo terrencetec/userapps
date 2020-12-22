@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.25"
+    ComputedModelVersion    "1.26"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1411.0, 853.0]
-	ZoomFactor		[2.0]
-	Offset			[-66.874949526497119, -94.017984777913853]
+	ZoomFactor		[1.3095238095238095]
+	Offset			[-138.24545454545455, -169.69090909090909]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Oct 29 14:56:52 2020"
-  RTWModifiedTimeStamp	  525884212
-  ModelVersionFormat	  "1.%<AutoIncrement:25>"
+  LastModifiedDate	  "Tue Dec 22 10:20:27 2020"
+  RTWModifiedTimeStamp	  530533220
+  ModelVersionFormat	  "1.%<AutoIncrement:26>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -922,6 +922,21 @@ Model {
       OutputSignals	      "signal1,signal2,signal3"
       OutputAsBus	      off
     }
+    Block {
+      BlockType		      From
+      GotoTag		      "A"
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Goto
+      GotoTag		      "A"
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Terminator
+    }
   }
   System {
     Name		    "k1visitmxmon"
@@ -937,9 +952,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "200"
+    ZoomFactor		    "131"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1272"
+    SIDHighWatermark	    "1278"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -947,7 +962,7 @@ Model {
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=0        "
       Ports		      [0, 1]
-      Position		      [300, 1292, 375, 1318]
+      Position		      [45, -78, 120, -52]
       ZOrder		      8000
       ForegroundColor	      "red"
       DropShadow	      on
@@ -965,7 +980,7 @@ Model {
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=1        "
       Ports		      [0, 1]
-      Position		      [70, 787, 140, 813]
+      Position		      [45, 32, 115, 58]
       ZOrder		      7998
       ForegroundColor	      "red"
       DropShadow	      on
@@ -983,7 +998,7 @@ Model {
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=2        "
       Ports		      [0, 1]
-      Position		      [380, 157, 455, 183]
+      Position		      [45, 157, 120, 183]
       ZOrder		      7994
       ForegroundColor	      "red"
       DropShadow	      on
@@ -1000,7 +1015,7 @@ Model {
       SID		      "770"
       Description	      "ADC Selector"
       Ports		      [1, 16]
-      Position		      [535, -120, 540, 455]
+      Position		      [505, -120, 510, 455]
       ZOrder		      7993
       ShowName		      off
       AttributesFormatString  "%<Description>"
@@ -1104,316 +1119,52 @@ Model {
       }
     }
     Block {
-      BlockType		      BusSelector
-      Name		      "Bus\nSelector2"
-      SID		      "771"
-      Ports		      [1, 4]
-      Position		      [535, 1463, 540, 1602]
-      ZOrder		      8002
+      BlockType		      From
+      Name		      "From"
+      SID		      "1276"
+      Position		      [385, 160, 450, 180]
+      ZOrder		      8217
+      BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
       ShowName		      off
-      OutputSignals	      "adc_1_20,adc_1_21,adc_1_22,adc_1_23"
-      Port {
-	PortNumber		1
-	Name			"<adc_1_20>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		2
-	Name			"<adc_1_21>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		3
-	Name			"<adc_1_22>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		4
-	Name			"<adc_1_23>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
+      GotoTag		      "ADC2"
     }
     Block {
-      BlockType		      BusSelector
-      Name		      "Bus\nSelector3"
-      SID		      "772"
-      Ports		      [1, 20]
-      Position		      [535, 458, 540, 1137]
-      ZOrder		      7999
+      BlockType		      Goto
+      Name		      "Goto29"
+      SID		      "1275"
+      Position		      [195, 160, 260, 180]
+      ZOrder		      8216
+      BackgroundColor	      "[1.000000, 0.000000, 0.498039]"
       ShowName		      off
-      OutputSignals	      "adc_1_4,adc_1_5,adc_1_0,adc_1_1,adc_1_2,adc_1_3,adc_1_6,adc_1_7,adc_1_8,adc_1_9,adc_1_10,ad"
-      "c_1_11,adc_1_12,adc_1_13,adc_1_14,adc_1_15,adc_1_16,adc_1_17,adc_1_18,adc_1_19"
-      Port {
-	PortNumber		1
-	Name			"<adc_1_4>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		2
-	Name			"<adc_1_5>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		3
-	Name			"<adc_1_0>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		4
-	Name			"<adc_1_1>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		5
-	Name			"<adc_1_2>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		6
-	Name			"<adc_1_3>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		7
-	Name			"<adc_1_6>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		8
-	Name			"<adc_1_7>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		9
-	Name			"<adc_1_8>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		10
-	Name			"<adc_1_9>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		11
-	Name			"<adc_1_10>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		12
-	Name			"<adc_1_11>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		13
-	Name			"<adc_1_12>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		14
-	Name			"<adc_1_13>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		15
-	Name			"<adc_1_14>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		16
-	Name			"<adc_1_15>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		17
-	Name			"<adc_1_16>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		18
-	Name			"<adc_1_17>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		19
-	Name			"<adc_1_18>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		20
-	Name			"<adc_1_19>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-    }
-    Block {
-      BlockType		      BusSelector
-      Name		      "Bus\nSelector4"
-      SID		      "773"
-      Ports		      [1, 9]
-      Position		      [535, 1150, 540, 1460]
-      ZOrder		      8001
-      ShowName		      off
-      OutputSignals	      "adc_0_12,adc_0_13,adc_0_14,adc_0_16,adc_0_17,adc_0_18,adc_0_4,adc_0_5,adc_0_6"
-      Port {
-	PortNumber		1
-	Name			"<adc_0_12>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		2
-	Name			"<adc_0_13>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		3
-	Name			"<adc_0_14>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		4
-	Name			"<adc_0_16>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		5
-	Name			"<adc_0_17>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		6
-	Name			"<adc_0_18>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		7
-	Name			"<adc_0_4>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		8
-	Name			"<adc_0_5>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		9
-	Name			"<adc_0_6>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-    }
-    Block {
-      BlockType		      BusSelector
-      Name		      "Bus\nSelector5"
-      SID		      "774"
-      Ports		      [1, 5]
-      Position		      [475, 1635, 480, 1815]
-      ZOrder		      8003
-      ShowName		      off
-      OutputSignals	      "adc_0_7,adc_0_8,adc_0_9,adc_0_10,adc_0_11"
-      Port {
-	PortNumber		1
-	Name			"<adc_0_7>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		2
-	Name			"<adc_0_8>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		3
-	Name			"<adc_0_9>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		4
-	Name			"<adc_0_10>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-      Port {
-	PortNumber		5
-	Name			"<adc_0_11>"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
+      GotoTag		      "ADC2"
     }
     Block {
       BlockType		      Reference
       Name		      "ITMX"
-      SID		      "1272"
-      Ports		      [55, 1]
-      Position		      [625, -105, 870, 1805]
-      ZOrder		      8005
-      LibraryVersion	      "1.9"
-      SourceBlock	      "VISMON_MASTER/ITMY"
+      SID		      "1274"
+      Ports		      [16]
+      Position		      [680, -100, 915, 435]
+      ZOrder		      8215
+      LibraryVersion	      "1.10"
+      SourceBlock	      "VISMON_MASTER/TYPEAMON"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
     Block {
-      BlockType		      Reference
-      Name		      "K1:VIS-ITMX_PREQUA_EXC"
-      SID		      "1269"
-      Tag		      "cdsIPCx_SHMEM"
-      Description	      "Inter-Process Communication via Shared memory."
-      Ports		      [1, 2]
-      Position		      [930, 844, 995, 866]
-      ZOrder		      7997
-      BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
-      DropShadow	      on
-      AttributesFormatString  "%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsIPCx/SignalName"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      "1278"
+      Position		      [195, 35, 215, 55]
+      ZOrder		      8219
+      ShowName		      off
     }
     Block {
-      BlockType		      Reference
-      Name		      "MODEL_RATE"
-      SID		      "1270"
-      Tag		      "cdsModelRate"
-      Ports		      [0, 1]
-      Position		      [545, 1613, 595, 1627]
-      ZOrder		      7996
-      AttributesFormatString  "%<Tag>"
-      LibraryVersion	      "1.1"
-      SourceBlock	      "cdsModelRate/Subsystem"
-      SourceType	      "SubSystem"
-      ContentPreviewEnabled   off
+      BlockType		      Terminator
+      Name		      "Terminator2"
+      SID		      "1277"
+      Position		      [195, -75, 215, -55]
+      ZOrder		      8218
+      ShowName		      off
     }
     Block {
       BlockType		      Reference
@@ -1464,15 +1215,15 @@ Model {
       ContentPreviewEnabled   off
     }
     Line {
-      ZOrder		      215
+      ZOrder		      516
       SrcBlock		      "ADC2"
       SrcPort		      1
-      DstBlock		      "Bus\nSelector1"
+      DstBlock		      "Goto29"
       DstPort		      1
     }
     Line {
       Name		      "<adc_2_0>"
-      ZOrder		      433
+      ZOrder		      497
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      1
@@ -1481,7 +1232,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_1>"
-      ZOrder		      391
+      ZOrder		      498
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      2
@@ -1490,7 +1241,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_2>"
-      ZOrder		      402
+      ZOrder		      499
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      3
@@ -1499,7 +1250,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_3>"
-      ZOrder		      411
+      ZOrder		      500
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      4
@@ -1508,7 +1259,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_4>"
-      ZOrder		      405
+      ZOrder		      501
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      5
@@ -1517,7 +1268,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_5>"
-      ZOrder		      415
+      ZOrder		      502
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      6
@@ -1526,7 +1277,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_6>"
-      ZOrder		      398
+      ZOrder		      503
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      7
@@ -1535,7 +1286,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_7>"
-      ZOrder		      425
+      ZOrder		      504
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      8
@@ -1544,7 +1295,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_8>"
-      ZOrder		      397
+      ZOrder		      505
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      9
@@ -1553,7 +1304,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_9>"
-      ZOrder		      410
+      ZOrder		      506
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      10
@@ -1562,7 +1313,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_10>"
-      ZOrder		      420
+      ZOrder		      507
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      11
@@ -1571,7 +1322,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_11>"
-      ZOrder		      435
+      ZOrder		      508
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      12
@@ -1580,7 +1331,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_12>"
-      ZOrder		      422
+      ZOrder		      509
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      13
@@ -1589,7 +1340,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_13>"
-      ZOrder		      387
+      ZOrder		      510
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      14
@@ -1598,7 +1349,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_14>"
-      ZOrder		      427
+      ZOrder		      511
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      15
@@ -1607,7 +1358,7 @@ Model {
     }
     Line {
       Name		      "<adc_2_15>"
-      ZOrder		      436
+      ZOrder		      512
       Labels		      [0, 0]
       SrcBlock		      "Bus\nSelector1"
       SrcPort		      16
@@ -1615,399 +1366,42 @@ Model {
       DstPort		      16
     }
     Line {
-      ZOrder		      386
-      SrcBlock		      "MODEL_RATE"
+      ZOrder		      496
+      SrcBlock		      "From"
       SrcPort		      1
-      DstBlock		      "ITMX"
-      DstPort		      50
-    }
-    Line {
-      ZOrder		      418
-      SrcBlock		      "ITMX"
-      SrcPort		      1
-      Points		      [35, 0; 0, 5]
-      DstBlock		      "K1:VIS-ITMX_PREQUA_EXC"
+      DstBlock		      "Bus\nSelector1"
       DstPort		      1
     }
     Line {
-      ZOrder		      236
-      SrcBlock		      "ADC1"
-      SrcPort		      1
-      Points		      [62, 0]
-      Branch {
-	ZOrder			235
-	Points			[0, 735]
-	DstBlock		"Bus\nSelector2"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			234
-	DstBlock		"Bus\nSelector3"
-	DstPort			1
-      }
-    }
-    Line {
-      Name		      "<adc_1_4>"
-      ZOrder		      399
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      1
-      DstBlock		      "ITMX"
-      DstPort		      17
-    }
-    Line {
-      Name		      "<adc_1_5>"
-      ZOrder		      419
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      2
-      DstBlock		      "ITMX"
-      DstPort		      18
-    }
-    Line {
-      Name		      "<adc_1_0>"
-      ZOrder		      434
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      3
-      DstBlock		      "ITMX"
-      DstPort		      19
-    }
-    Line {
-      Name		      "<adc_1_1>"
-      ZOrder		      392
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      4
-      DstBlock		      "ITMX"
-      DstPort		      20
-    }
-    Line {
-      Name		      "<adc_1_2>"
-      ZOrder		      389
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      5
-      DstBlock		      "ITMX"
-      DstPort		      21
-    }
-    Line {
-      Name		      "<adc_1_3>"
-      ZOrder		      383
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      6
-      DstBlock		      "ITMX"
-      DstPort		      22
-    }
-    Line {
-      Name		      "<adc_1_6>"
-      ZOrder		      428
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      7
-      DstBlock		      "ITMX"
-      DstPort		      23
-    }
-    Line {
-      Name		      "<adc_1_7>"
-      ZOrder		      429
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      8
-      DstBlock		      "ITMX"
-      DstPort		      24
-    }
-    Line {
-      Name		      "<adc_1_8>"
-      ZOrder		      423
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      9
-      DstBlock		      "ITMX"
-      DstPort		      25
-    }
-    Line {
-      Name		      "<adc_1_9>"
-      ZOrder		      426
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      10
-      DstBlock		      "ITMX"
-      DstPort		      26
-    }
-    Line {
-      Name		      "<adc_1_10>"
-      ZOrder		      430
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      11
-      DstBlock		      "ITMX"
-      DstPort		      27
-    }
-    Line {
-      Name		      "<adc_1_11>"
-      ZOrder		      431
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      12
-      DstBlock		      "ITMX"
-      DstPort		      28
-    }
-    Line {
-      Name		      "<adc_1_12>"
-      ZOrder		      393
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      13
-      DstBlock		      "ITMX"
-      DstPort		      29
-    }
-    Line {
-      Name		      "<adc_1_13>"
-      ZOrder		      388
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      14
-      DstBlock		      "ITMX"
-      DstPort		      30
-    }
-    Line {
-      Name		      "<adc_1_14>"
-      ZOrder		      421
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      15
-      DstBlock		      "ITMX"
-      DstPort		      31
-    }
-    Line {
-      Name		      "<adc_1_15>"
-      ZOrder		      382
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      16
-      DstBlock		      "ITMX"
-      DstPort		      32
-    }
-    Line {
-      Name		      "<adc_1_16>"
-      ZOrder		      413
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      17
-      DstBlock		      "ITMX"
-      DstPort		      33
-    }
-    Line {
-      Name		      "<adc_1_17>"
-      ZOrder		      396
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      18
-      DstBlock		      "ITMX"
-      DstPort		      34
-    }
-    Line {
-      Name		      "<adc_1_18>"
-      ZOrder		      390
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      19
-      DstBlock		      "ITMX"
-      DstPort		      35
-    }
-    Line {
-      Name		      "<adc_1_19>"
-      ZOrder		      409
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      20
-      DstBlock		      "ITMX"
-      DstPort		      36
-    }
-    Line {
-      ZOrder		      259
+      ZOrder		      514
       SrcBlock		      "ADC0"
       SrcPort		      1
-      Points		      [48, 0]
-      Branch {
-	ZOrder			258
-	Points			[0, 420]
-	DstBlock		"Bus\nSelector5"
-	DstPort			1
-      }
-      Branch {
-	ZOrder			257
-	DstBlock		"Bus\nSelector4"
-	DstPort			1
-      }
+      DstBlock		      "Terminator2"
+      DstPort		      1
     }
     Line {
-      Name		      "<adc_0_12>"
-      ZOrder		      401
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
+      ZOrder		      515
+      SrcBlock		      "ADC1"
       SrcPort		      1
-      DstBlock		      "ITMX"
-      DstPort		      37
+      DstBlock		      "Terminator1"
+      DstPort		      1
     }
-    Line {
-      Name		      "<adc_0_13>"
-      ZOrder		      416
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      2
-      DstBlock		      "ITMX"
-      DstPort		      38
-    }
-    Line {
-      Name		      "<adc_0_14>"
-      ZOrder		      403
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      3
-      DstBlock		      "ITMX"
-      DstPort		      39
-    }
-    Line {
-      Name		      "<adc_0_16>"
-      ZOrder		      408
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      4
-      DstBlock		      "ITMX"
-      DstPort		      40
-    }
-    Line {
-      Name		      "<adc_0_17>"
-      ZOrder		      406
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      5
-      DstBlock		      "ITMX"
-      DstPort		      41
-    }
-    Line {
-      Name		      "<adc_0_18>"
-      ZOrder		      404
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      6
-      DstBlock		      "ITMX"
-      DstPort		      42
-    }
-    Line {
-      Name		      "<adc_0_4>"
-      ZOrder		      424
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      7
-      DstBlock		      "ITMX"
-      DstPort		      43
-    }
-    Line {
-      Name		      "<adc_0_5>"
-      ZOrder		      395
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      8
-      DstBlock		      "ITMX"
-      DstPort		      44
-    }
-    Line {
-      Name		      "<adc_0_6>"
-      ZOrder		      400
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector4"
-      SrcPort		      9
-      DstBlock		      "ITMX"
-      DstPort		      45
-    }
-    Line {
-      Name		      "<adc_1_20>"
-      ZOrder		      437
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector2"
-      SrcPort		      1
-      DstBlock		      "ITMX"
-      DstPort		      46
-    }
-    Line {
-      Name		      "<adc_1_21>"
-      ZOrder		      432
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector2"
-      SrcPort		      2
-      DstBlock		      "ITMX"
-      DstPort		      47
-    }
-    Line {
-      Name		      "<adc_1_22>"
-      ZOrder		      384
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector2"
-      SrcPort		      3
-      DstBlock		      "ITMX"
-      DstPort		      48
-    }
-    Line {
-      Name		      "<adc_1_23>"
-      ZOrder		      385
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector2"
-      SrcPort		      4
-      DstBlock		      "ITMX"
-      DstPort		      49
-    }
-    Line {
-      Name		      "<adc_0_8>"
-      ZOrder		      407
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector5"
-      SrcPort		      2
-      Points		      [65, 0; 0, 5; 33, 0; 0, -5]
-      DstBlock		      "ITMX"
-      DstPort		      52
-    }
-    Line {
-      Name		      "<adc_0_9>"
-      ZOrder		      412
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector5"
-      SrcPort		      3
-      DstBlock		      "ITMX"
-      DstPort		      53
-    }
-    Line {
-      Name		      "<adc_0_10>"
-      ZOrder		      414
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector5"
-      SrcPort		      4
-      Points		      [65, 0; 0, 5; 33, 0; 0, -5]
-      DstBlock		      "ITMX"
-      DstPort		      54
-    }
-    Line {
-      Name		      "<adc_0_11>"
-      ZOrder		      417
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector5"
-      SrcPort		      5
-      Points		      [65, 0; 0, 5; 33, 0; 0, -5]
-      DstBlock		      "ITMX"
-      DstPort		      55
-    }
-    Line {
-      Name		      "<adc_0_7>"
-      ZOrder		      394
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector5"
-      SrcPort		      1
-      Points		      [65, 0; 0, 5; 33, 0; 0, -5]
-      DstBlock		      "ITMX"
-      DstPort		      51
+    Annotation {
+      SID		      "1273"
+      Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+      "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }"
+      "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
+      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
+      "ent:0; text-indent:0px;\"><span style=\" font-size:21px; color:#000000;\">ADC</span></p></body></html>"
+      Position		      [-114, -159, 288, 284]
+      InternalMargins	      [0, 0, 0, 0]
+      FixedHeight	      on
+      FixedWidth	      on
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      BackgroundColor	      "[1.000000, 0.807843, 0.835294]"
+      Interpreter	      "rich"
+      ZOrder		      -1
     }
   }
 }
