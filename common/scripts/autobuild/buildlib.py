@@ -62,6 +62,44 @@ def getHostnameList():
 def getmodels(sysname,optic):
   return [(name, dcuid) for (name, dcuid) in FEMODELS if sysname + optic in name]
 
+def isbuildcheck(optic_tp, sysname='vis'):
+    '''
+    String :: optic name
+    String :: subsystem name (default = 'vis')
+    -> Int :: exit code
+    '''
+
+    if optic_tp[-1:] == 't' or optic_tp[-1:] == 'p':
+        optic = optic_tp[:-1]
+    else:
+        optic = optic_tp[:-1]
+
+    models = [(name, dcuid) for (name, dcuid) in FEMODELS if sysname + optic_tp in name]
+
+    for (model, fec) in models:
+        '''
+        Condition:
+            Guardian state == SAFE
+            Commish status == OFF
+            Commish message == NULL
+            SDF diff == 0
+            CFC bit == OFF
+        '''
+
+        flag = ezca['GRD-' + (sysname + '_' + optic).upper() + '_STATE_S'] == 'SAFE'
+        flag &= ezca[(sysname + '-' + optic).upper() + '_COMMISH_STATUS'] == 1
+        flag &= ezca[(sysname + '-' + optic).upper() + '_COMMISH_MESSAGE'] != ''
+        flag &= ezca['FEC-' + str(fec) + '_SDF_DIFF_CNT'] == 0
+        flag &= int(ezca['FEC-' + str(fec) + '_STATE_WORD']) & 1024 == 0
+
+        node = getmodel2hostname(ifo + model)
+        return flag
+
+        #if ret:
+        #    ezca[(sysname + '-' + optic).upper() + '_INSTALLED_DATE'] = datetime.now().strftime("%Y-%m-%d")
+    #return 0
+
+
 def buildoptic(optic_tp, sysname='vis', make=False, makeinstall=False, restart=False):
     '''
     String :: optic name
@@ -92,8 +130,8 @@ def buildoptic(optic_tp, sysname='vis', make=False, makeinstall=False, restart=F
         flag = ezca['GRD-' + (sysname + '_' + optic).upper() + '_STATE_S'] == 'SAFE'
         flag &= ezca[(sysname + '-' + optic).upper() + '_COMMISH_STATUS'] == 1
         flag &= ezca[(sysname + '-' + optic).upper() + '_COMMISH_MESSAGE'] != ''
-        flag &= ezca['FEC-' + str(fec) + '_SDF_DIFF_CNT'] == 0
-        flag &= int(ezca['FEC-' + str(fec) + '_STATE_WORD']) & 1024 == 0
+    #    flag &= ezca['FEC-' + str(fec) + '_SDF_DIFF_CNT'] == 0
+    #    flag &= int(ezca['FEC-' + str(fec) + '_STATE_WORD']) & 1024 == 0
 
         node = getmodel2hostname(ifo + model)
         ret = False

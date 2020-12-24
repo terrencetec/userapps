@@ -8,12 +8,6 @@ import sys
 
 ifo = 'k1'
 
-#build_target = {
-#    'prmt',
-#    'prmp',
-#    'pr2t',
-#    'pr2p'
-#}
 build_target = []
 build_status = [False] * len(build_target)
 
@@ -108,45 +102,57 @@ def main():
         for index, build in enumerate(build_target):
             #print(index, optic)
 
-            #print(index, build)
-            if thread_count < thread_max:
-                #models = buildlib.getmodels(sysname,optic)
-                #for (model, fec) in models:
+
+            if build_step == 0:
                 model = build['model']
-                make = build['make']
-                makeinstall = build['makeinstall']
-                restart = build['restart']
+                optic = model[len('k1vis'):].lower()
+                if buildlib.isbuildcheck(optic, sysname) == False:
+                    print('Please Check Suspension status. [ ' + build['model'] + ' ]')
+                    sys.exit(1)
 
-                call_flg = False
-                if build_step == 0 and make == True:
-                    call_flg = True
-
-                if build_step == 1 and makeinstall == True:
-                    call_flg = True
-
-                if build_step == 2 and restart == True:
-                    call_flg = True
-
-                if call_flg:
-                #  node = buildlib.getmodel2hostname(ifo + model)
-                    node = buildlib.getmodel2hostname(model)
-                    #print(node_status[node] )
-                    if node_status[node] == False and build_status[index] == False:
-                        node_status[node] = True
-                        build_status[index] = True
-                        optic = model[len('k1vis'):].lower()
-                        thread = threading.Thread(target=thread_buildoptic, args=(optic, node, sysname, make, makeinstall, restart) )
-                        thread.start()
-                        thread_count = thread_count + 1
             else:
-                pass
+            #print(index, build)
+                if thread_count < thread_max:
+                    #models = buildlib.getmodels(sysname,optic)
+                    #for (model, fec) in models:
+                    model = build['model']
+                    make = build['make']
+                    makeinstall = build['makeinstall']
+                    restart = build['restart']
 
-        status = False
-        for value in build_status:
-            if value == False:
-                status = True
+                    call_flg = False
+                    if build_step == 1 and make == True:
+                        call_flg = True
 
-        if status == True and thread_count == 0 and build_step < 2:
+                    if build_step == 2 and makeinstall == True:
+                        call_flg = True
+
+                    if build_step == 3 and restart == True:
+                        call_flg = True
+
+                    if call_flg:
+                    #  node = buildlib.getmodel2hostname(ifo + model)
+                        node = buildlib.getmodel2hostname(model)
+                        #print(node_status[node] )
+                        if node_status[node] == False and build_status[index] == False:
+                            node_status[node] = True
+                            build_status[index] = True
+                            optic = model[len('k1vis'):].lower()
+                            thread = threading.Thread(target=thread_buildoptic, args=(optic, node, sysname, make, makeinstall, restart) )
+                            thread.start()
+                            thread_count = thread_count + 1
+                else:
+                    pass
+
+        if build_step == 0:
+            status = True
+        else:
+            status = False
+            for value in build_status:
+                if value == False:
+                    status = True
+
+        if status == True and thread_count == 0 and build_step < 3:
             build_step = build_step + 1
 
         time.sleep(1.0)
