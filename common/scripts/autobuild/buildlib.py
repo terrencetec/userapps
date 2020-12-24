@@ -121,8 +121,10 @@ def buildmodel(model, node, make=False, makeinstall=False, restart=False):
     if makeinstall == True:
         cmd += ' && make install-' + model
     if restart == True:
-        cmd += ' && cd /opt/rtcds/userapps/release/cds/common/scripts'
-        cmd += ' && ./restart_slave_model.sh ' + model
+        cmd += ' && start' + model
+
+        #        cmd += ' && cd /opt/rtcds/userapps/release/cds/common/scripts'
+#        cmd += ' && ./restart_slave_model.sh ' + model
 
     ret=subprocess.run(ssh + [cmd],
                            # stdout = subprocess.DEVNULL,
