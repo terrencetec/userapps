@@ -124,11 +124,11 @@ channel_dict = {
     'SR2_F1_GAS': 1,
     'SR2_BF_GAS': 0,
 
-    'SR3_F0_GAS': 2,
+    'SR3_F0_GAS': 3,    # 2->3 Klog#15541
     'SR3_F1_GAS': 1,
     'SR3_BF_GAS': 0,
 
-    'SRM_F0_GAS': 3,
+    'SRM_F0_GAS': 2,    # 3->2 Klog#215681
     'SRM_F1_GAS': 1,
     'SRM_BF_GAS': 0,
 
