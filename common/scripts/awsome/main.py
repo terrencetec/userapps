@@ -12,7 +12,6 @@ chname = ['K1:VIS-IMMT1_TM_OPLEV_SEG1_OUT16',
           'K1:VIS-IMMT1_TM_OPLEV_SEG3_OUT16',
           'K1:VIS-IMMT1_TM_OPLEV_SEG4_OUT16']
 
-
 if __name__=='__main__':
     import argparse
     parser = argparse.ArgumentParser(description='hoge')
@@ -21,25 +20,36 @@ if __name__=='__main__':
     args = parser.parse_args()
     memo = args.memo
     
-    if args.args1=='add':        
-        df = pd.read_pickle('result.pkl')
+    if args.args1=='add':
         now = datetime.now()
         avg = np.array(avg(1,chname,stddev=True))
-        data = [[now,memo,*avg.flatten()]]
-        df = df.append(data)
-        df.to_pickle('result.pkl')
+        data = [[str(now),memo,*list(map(lambda x:'{0:.3f}'.format(x),avg.flatten()))]]
+        print(data[0])
+        txt = ','.join(data[0])+'\n'
+        print(txt)
+        
+        with open('result.txt','a') as f:
+            f.write(txt)
+        
 
     elif args.args1=='new':
         now = datetime.now()
         avg = np.array(avg(1,chname,stddev=True))
-        data = [[now,memo,*avg.flatten()]]
-        df = pd.DataFrame(data)
-        df.to_pickle('result.pkl')
-        print(len(data))            
+        data = [[str(now),memo,*list(map(lambda x:'{0:.3f}'.format(x),avg.flatten()))]]
+        print(data[0])
+        txt = ','.join(data[0])+'\n'
+        print(txt)
+        with open('result.txt','w') as f:
+            f.write(txt)
+            f.write(txt)            
+        print(len(data))
+        
 
     elif args.args1=='plot':
-        df = pd.read_pickle('result.pkl')
+        df = pd.read_csv('result.txt')
         print(df)
+        #print(df.columns[3])
+        exit()
         plt.errorbar(df[1].astype(float),df[2],yerr=df[3],fmt='ko',
                      capsize=3,markersize=2,label='seg1')
         plt.errorbar(df[1].astype(float),df[4],yerr=df[5],fmt='ro',
