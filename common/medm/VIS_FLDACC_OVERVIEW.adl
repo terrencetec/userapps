@@ -5,12 +5,12 @@ file {
 }
 display {
 	object {
-		x=591
-		y=223
+		x=278
+		y=172
 		width=1095
 		height=487
 	}
-	clr=14
+	clr=10
 	bclr=4
 	cmap=""
 	gridSpacing=5
@@ -450,7 +450,7 @@ text {
 }
 "shell command" {
 	object {
-		x=197
+		x=174
 		y=426
 		width=100
 		height=20
@@ -472,8 +472,16 @@ text {
 		height=20
 	}
 	display[0] {
-		label="ERR2ACC"
-		name="/opt/rtcds/kamioka/k1/medm/k1visitmyt/K1VISITMYT_TEST_ACC_ERR2ACC.adl"
+		label="FLDACCINF_H1"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCINF_H1.adl"
+	}
+	display[1] {
+		label="FLDACCINF_H2"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCINF_H2.adl"
+	}
+	display[2] {
+		label="FLDACCINF_H3"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCINF_H3.adl"
 	}
 	clr=14
 	bclr=55
@@ -487,7 +495,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="K1:VIS-TEST_ACC_ERR2ACC_OUT16"
+		chan="K1:VIS-ITMX_IP_FLDACCINF_H1_OUT16"
 		clr=50
 		bclr=53
 	}
@@ -498,7 +506,7 @@ text {
 text {
 	object {
 		x=134
-		y=333
+		y=373
 		width=27
 		height=15
 	}
@@ -571,21 +579,6 @@ composite {
 		}
 	}
 }
-"related display" {
-	object {
-		x=297
-		y=288
-		width=20
-		height=20
-	}
-	display[0] {
-		label="FLDACCINF"
-		name="/opt/rtcds/kamioka/k1/medm/k1visitmyt/K1VISITMXT_ITMX_IP_FLDACCINF.adl"
-	}
-	clr=14
-	bclr=55
-	visual="a row of buttons"
-}
 "text update" {
 	object {
 		x=283
@@ -594,7 +587,7 @@ composite {
 		height=15
 	}
 	monitor {
-		chan="K1:VIS-ITMX_IP_FLDACCINF"
+		chan="K1:VIS-ITMX_IP_FLDACCSERVO_H1_OUT16"
 		clr=50
 		bclr=53
 	}
@@ -605,7 +598,7 @@ composite {
 text {
 	object {
 		x=295
-		y=334
+		y=373
 		width=27
 		height=15
 	}
@@ -1638,8 +1631,16 @@ rectangle {
 		height=20
 	}
 	display[0] {
-		label="FLDACCSERVO"
-		name="/opt/rtcds/kamioka/k1/medm/k1visitmyt/K1VISITMXT_ITMX_IP_FLDACCSERVO.adl"
+		label="FLDACCSERVO_H1"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H1.adl"
+	}
+	display[1] {
+		label="FLDACCSERVO_H2"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H2.adl"
+	}
+	display[2] {
+		label="FLDACCSERVO_H3"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H3.adl"
 	}
 	clr=14
 	bclr=55
@@ -1655,7 +1656,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="ACCSERVO [ct/ct]"
+	textix="FLDACCSERVO [ct/ct]"
 	align="horiz. centered"
 }
 composite {
@@ -2198,7 +2199,7 @@ polyline {
 }
 "shell command" {
 	object {
-		x=197
+		x=174
 		y=358
 		width=100
 		height=20
@@ -2214,7 +2215,7 @@ polyline {
 }
 "shell command" {
 	object {
-		x=197
+		x=174
 		y=381
 		width=100
 		height=20
@@ -2230,7 +2231,7 @@ polyline {
 }
 "shell command" {
 	object {
-		x=197
+		x=174
 		y=404
 		width=100
 		height=20
@@ -2246,7 +2247,7 @@ polyline {
 }
 "shell command" {
 	object {
-		x=197
+		x=174
 		y=446
 		width=100
 		height=20
@@ -2269,4 +2270,91 @@ polyline {
 	clr=14
 	bclr=51
 	label="Spectrum"
+}
+"text update" {
+	object {
+		x=121
+		y=334
+		width=50
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ITMX_IP_FLDACCINF_H2_OUT16"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=120
+		y=351
+		width=50
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ITMX_IP_FLDACCINF_H3_OUT16"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=282
+		y=335
+		width=50
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ITMX_IP_FLDACCSERVO_H2_OUT16"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=282
+		y=353
+		width=50
+		height=15
+	}
+	monitor {
+		chan="K1:VIS-ITMX_IP_FLDACCSERVO_H3_OUT16"
+		clr=50
+		bclr=53
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=297
+		y=287
+		width=20
+		height=20
+	}
+	display[0] {
+		label="FLDACCSERVO_H1"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H1.adl"
+	}
+	display[1] {
+		label="FLDACCSERVO_H2"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H2.adl"
+	}
+	display[2] {
+		label="FLDACCSERVO_H3"
+		name="/opt/rtcds/kamioka/k1/medm/k1visitmxt/K1VISITMXT_ITMX_IP_FLDACCSERVO_H3.adl"
+	}
+	clr=14
+	bclr=55
+	visual="a row of buttons"
 }
