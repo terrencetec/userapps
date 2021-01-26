@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.256"
+    ComputedModelVersion    "1.259"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -40,7 +40,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [3844.0, 11.0, 1920.0, 1080.0]
+      Location		      [3845.0, 46.0, 1920.0, 1080.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1882.0, 908.0]
-	ZoomFactor		[1.25]
-	Offset			[872.66500711810352, 561.99854232043663]
+	ZoomFactor		[1.0]
+	Offset			[848.09886363636429, 1138.361123423412]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Oct 29 14:20:22 2020"
-  RTWModifiedTimeStamp	  525882022
-  ModelVersionFormat	  "1.%<AutoIncrement:256>"
+  LastModifiedDate	  "Thu Jan 07 15:51:16 2021"
+  RTWModifiedTimeStamp	  531935475
+  ModelVersionFormat	  "1.%<AutoIncrement:259>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -977,7 +977,7 @@ Model {
   }
   System {
     Name		    "k1vissr3p"
-    Location		    [3844, 11, 5764, 1091]
+    Location		    [3845, 46, 5765, 1126]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -989,9 +989,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2441"
+    SIDHighWatermark	    "2452"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -999,7 +999,7 @@ Model {
       Tag		      "cdsAdc"
       Description	      "type-GSC_16AI64SSA\ncard_num=0        "
       Ports		      [0, 1]
-      Position		      [1055, 797, 1130, 823]
+      Position		      [1415, 637, 1490, 663]
       ZOrder		      4209
       ForegroundColor	      "red"
       DropShadow	      on
@@ -1012,15 +1012,15 @@ Model {
     }
     Block {
       BlockType		      BusSelector
-      Name		      "Bus\nSelector3"
-      SID		      "275"
+      Name		      "Bus\nSelector1"
+      SID		      "2444"
       Description	      "ADC Selector"
-      Ports		      [1, 8]
-      Position		      [1605, 909, 1610, 1221]
-      ZOrder		      5225
+      Ports		      [1, 4]
+      Position		      [2055, 639, 2060, 791]
+      ZOrder		      7737
       ShowName		      off
       AttributesFormatString  "%<Description>"
-      OutputSignals	      "adc_0_24,adc_0_25,adc_0_26,adc_0_27,adc_0_0,adc_0_1,adc_0_2,adc_0_3"
+      OutputSignals	      "adc_0_24,adc_0_25,adc_0_26,adc_0_27"
       Port {
 	PortNumber		1
 	Name			"<adc_0_24>"
@@ -1045,26 +1045,38 @@ Model {
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
+    }
+    Block {
+      BlockType		      BusSelector
+      Name		      "Bus\nSelector2"
+      SID		      "2447"
+      Description	      "ADC Selector"
+      Ports		      [1, 4]
+      Position		      [2055, 1278, 2060, 1432]
+      ZOrder		      7740
+      ShowName		      off
+      AttributesFormatString  "%<Description>"
+      OutputSignals	      "adc_0_0,adc_0_1,adc_0_2,adc_0_3"
       Port {
-	PortNumber		5
+	PortNumber		1
 	Name			"<adc_0_0>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
       Port {
-	PortNumber		6
+	PortNumber		2
 	Name			"<adc_0_1>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
       Port {
-	PortNumber		7
+	PortNumber		3
 	Name			"<adc_0_2>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
       }
       Port {
-	PortNumber		8
+	PortNumber		4
 	Name			"<adc_0_3>"
 	RTWStorageClass		"Auto"
 	DataLoggingNameMode	"SignalName"
@@ -1076,7 +1088,7 @@ Model {
       SID		      "273"
       Description	      "ADC Selector"
       Ports		      [1, 6]
-      Position		      [1605, 544, 1610, 786]
+      Position		      [2055, 879, 2060, 1111]
       ZOrder		      4211
       ShowName		      off
       AttributesFormatString  "%<Description>"
@@ -1125,7 +1137,7 @@ Model {
       Tag		      "cdsCDI64"
       Description	      "card_num=3"
       Ports		      [0, 1]
-      Position		      [1075, 1337, 1140, 1363]
+      Position		      [1200, 1517, 1265, 1543]
       ZOrder		      5491
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1142,7 +1154,7 @@ Model {
       Tag		      "cdsCDI64"
       Description	      "card_num=0"
       Ports		      [0, 1]
-      Position		      [1075, 1197, 1140, 1223]
+      Position		      [1200, 1377, 1265, 1403]
       ZOrder		      5492
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1159,7 +1171,7 @@ Model {
       Tag		      "cdsCDI64"
       Description	      "card_num=2"
       Ports		      [0, 1]
-      Position		      [1075, 1267, 1140, 1293]
+      Position		      [1200, 1447, 1265, 1473]
       ZOrder		      5490
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1176,7 +1188,7 @@ Model {
       Tag		      "cdsCDO64"
       Description	      "card_num=3"
       Ports		      [1]
-      Position		      [1365, 1664, 1430, 1696]
+      Position		      [1480, 1784, 1545, 1816]
       ZOrder		      5499
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1193,7 +1205,7 @@ Model {
       Tag		      "cdsCDO64"
       Description	      "card_num=0"
       Ports		      [1]
-      Position		      [1365, 1485, 1430, 1515]
+      Position		      [1480, 1645, 1545, 1675]
       ZOrder		      5497
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1210,7 +1222,7 @@ Model {
       Tag		      "cdsCDO64"
       Description	      "card_num=2"
       Ports		      [1]
-      Position		      [1365, 1574, 1430, 1606]
+      Position		      [1480, 1714, 1545, 1746]
       ZOrder		      5498
       BackgroundColor	      "lightBlue"
       DropShadow	      on
@@ -1226,7 +1238,7 @@ Model {
       SID		      "350"
       Description	      "type=GSC_16AO16,\ncard_num=0      "
       Ports		      [16]
-      Position		      [2340, 585, 2380, 1140]
+      Position		      [2870, 640, 2910, 1195]
       ZOrder		      4256
       BackgroundColor	      "cyan"
       DropShadow	      on
@@ -1242,7 +1254,7 @@ Model {
       SID		      "536"
       Description	      "type=GSC_16AO16,\ncard_num=1      "
       Ports		      [16]
-      Position		      [2330, 1237, 2370, 1703]
+      Position		      [2860, 1292, 2900, 1758]
       ZOrder		      4337
       BackgroundColor	      "cyan"
       DropShadow	      on
@@ -1257,7 +1269,7 @@ Model {
       Name		      "Demux"
       SID		      "2148"
       Ports		      [1, 3]
-      Position		      [1605, 1245, 1610, 1485]
+      Position		      [2055, 1557, 2060, 1673]
       ZOrder		      5447
       Outputs		      "3"
       DisplayOption	      "bar"
@@ -1267,7 +1279,7 @@ Model {
       Name		      "Demux1"
       SID		      "2366"
       Ports		      [1, 3]
-      Position		      [1150, 1456, 1155, 1724]
+      Position		      [1275, 1621, 1280, 1839]
       ZOrder		      5500
       ShowName		      off
       Outputs		      "3"
@@ -1277,7 +1289,7 @@ Model {
       BlockType		      From
       Name		      "From1"
       SID		      "2439"
-      Position		      [1515, 1716, 1610, 1734]
+      Position		      [2000, 846, 2095, 864]
       ZOrder		      6817
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1287,7 +1299,7 @@ Model {
       BlockType		      From
       Name		      "From10"
       SID		      "351"
-      Position		      [2230, 698, 2305, 712]
+      Position		      [2760, 753, 2835, 767]
       ZOrder		      4260
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1297,7 +1309,7 @@ Model {
       BlockType		      From
       Name		      "From11"
       SID		      "352"
-      Position		      [2230, 732, 2305, 748]
+      Position		      [2760, 787, 2835, 803]
       ZOrder		      4261
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1307,7 +1319,7 @@ Model {
       BlockType		      From
       Name		      "From12"
       SID		      "353"
-      Position		      [2230, 768, 2305, 782]
+      Position		      [2760, 823, 2835, 837]
       ZOrder		      4262
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1317,7 +1329,7 @@ Model {
       BlockType		      From
       Name		      "From13"
       SID		      "354"
-      Position		      [2230, 803, 2305, 817]
+      Position		      [2760, 858, 2835, 872]
       ZOrder		      4263
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1327,7 +1339,7 @@ Model {
       BlockType		      From
       Name		      "From14"
       SID		      "355"
-      Position		      [2230, 873, 2305, 887]
+      Position		      [2760, 928, 2835, 942]
       ZOrder		      4264
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1337,7 +1349,7 @@ Model {
       BlockType		      From
       Name		      "From15"
       SID		      "356"
-      Position		      [2230, 908, 2305, 922]
+      Position		      [2760, 963, 2835, 977]
       ZOrder		      4265
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1347,7 +1359,7 @@ Model {
       BlockType		      From
       Name		      "From16"
       SID		      "357"
-      Position		      [2230, 943, 2305, 957]
+      Position		      [2760, 998, 2835, 1012]
       ZOrder		      4266
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1357,7 +1369,7 @@ Model {
       BlockType		      From
       Name		      "From17"
       SID		      "2435"
-      Position		      [1370, 871, 1445, 889]
+      Position		      [1995, 616, 2070, 634]
       ZOrder		      6813
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1365,9 +1377,19 @@ Model {
     }
     Block {
       BlockType		      From
+      Name		      "From18"
+      SID		      "2448"
+      Position		      [1970, 1341, 2025, 1369]
+      ZOrder		      7741
+      BackgroundColor	      "orange"
+      ShowName		      off
+      GotoTag		      "ADC0"
+    }
+    Block {
+      BlockType		      From
       Name		      "From2"
       SID		      "2367"
-      Position		      [990, 1576, 1115, 1604]
+      Position		      [1115, 1716, 1240, 1744]
       ZOrder		      5496
       BackgroundColor	      "yellow"
       ShowName		      off
@@ -1377,18 +1399,8 @@ Model {
       BlockType		      From
       Name		      "From21"
       SID		      "1851"
-      Position		      [1515, 651, 1570, 679]
+      Position		      [1970, 981, 2025, 1009]
       ZOrder		      4525
-      BackgroundColor	      "orange"
-      ShowName		      off
-      GotoTag		      "ADC0"
-    }
-    Block {
-      BlockType		      From
-      Name		      "From24"
-      SID		      "1853"
-      Position		      [1520, 1051, 1575, 1079]
-      ZOrder		      5226
       BackgroundColor	      "orange"
       ShowName		      off
       GotoTag		      "ADC0"
@@ -1397,7 +1409,7 @@ Model {
       BlockType		      From
       Name		      "From3"
       SID		      "2440"
-      Position		      [1510, 1671, 1610, 1689]
+      Position		      [1995, 806, 2095, 824]
       ZOrder		      6816
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1407,7 +1419,7 @@ Model {
       BlockType		      From
       Name		      "From4"
       SID		      "2149"
-      Position		      [1435, 1356, 1530, 1384]
+      Position		      [1930, 1601, 2025, 1629]
       ZOrder		      5446
       BackgroundColor	      "yellow"
       ShowName		      off
@@ -1417,7 +1429,7 @@ Model {
       BlockType		      From
       Name		      "From5"
       SID		      "359"
-      Position		      [2230, 593, 2305, 607]
+      Position		      [2760, 648, 2835, 662]
       ZOrder		      4257
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1425,9 +1437,19 @@ Model {
     }
     Block {
       BlockType		      From
+      Name		      "From6"
+      SID		      "2445"
+      Position		      [1970, 701, 2025, 729]
+      ZOrder		      7738
+      BackgroundColor	      "orange"
+      ShowName		      off
+      GotoTag		      "ADC0"
+    }
+    Block {
+      BlockType		      From
       Name		      "From7"
       SID		      "2436"
-      Position		      [1370, 836, 1445, 854]
+      Position		      [1995, 581, 2070, 599]
       ZOrder		      6812
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1437,7 +1459,7 @@ Model {
       BlockType		      From
       Name		      "From8"
       SID		      "360"
-      Position		      [2230, 628, 2305, 642]
+      Position		      [2760, 683, 2835, 697]
       ZOrder		      4258
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1447,7 +1469,7 @@ Model {
       BlockType		      From
       Name		      "From9"
       SID		      "361"
-      Position		      [2230, 663, 2305, 677]
+      Position		      [2760, 718, 2835, 732]
       ZOrder		      4259
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1457,7 +1479,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto"
       SID		      "272"
-      Position		      [1180, 795, 1245, 825]
+      Position		      [1540, 635, 1605, 665]
       ZOrder		      4210
       BackgroundColor	      "orange"
       ShowName		      off
@@ -1467,7 +1489,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto1"
       SID		      "364"
-      Position		      [1965, 1050, 2055, 1080]
+      Position		      [2435, 580, 2525, 610]
       ZOrder		      4268
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1477,7 +1499,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto10"
       SID		      "368"
-      Position		      [1970, 890, 2060, 920]
+      Position		      [2435, 1220, 2525, 1250]
       ZOrder		      4275
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1487,7 +1509,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto11"
       SID		      "369"
-      Position		      [1970, 570, 2060, 600]
+      Position		      [2435, 900, 2525, 930]
       ZOrder		      4276
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1497,7 +1519,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto12"
       SID		      "370"
-      Position		      [1970, 970, 2060, 1000]
+      Position		      [2435, 1300, 2525, 1330]
       ZOrder		      4277
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1507,7 +1529,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto13"
       SID		      "2357"
-      Position		      [1375, 1265, 1490, 1295]
+      Position		      [1500, 1445, 1615, 1475]
       ZOrder		      5493
       BackgroundColor	      "yellow"
       ShowName		      off
@@ -1517,7 +1539,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto16"
       SID		      "2411"
-      Position		      [1865, 305, 1955, 335]
+      Position		      [1570, 820, 1660, 850]
       ZOrder		      6782
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1527,7 +1549,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto17"
       SID		      "2412"
-      Position		      [1870, 430, 1960, 460]
+      Position		      [1575, 945, 1665, 975]
       ZOrder		      6783
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1537,7 +1559,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto18"
       SID		      "2413"
-      Position		      [2290, 307, 2415, 343]
+      Position		      [1555, 1082, 1680, 1118]
       ZOrder		      6788
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1547,7 +1569,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto2"
       SID		      "2146"
-      Position		      [2010, 1450, 2125, 1480]
+      Position		      [2470, 1460, 2585, 1490]
       ZOrder		      5444
       BackgroundColor	      "yellow"
       ShowName		      off
@@ -1557,7 +1579,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto20"
       SID		      "2414"
-      Position		      [2295, 435, 2415, 465]
+      Position		      [1560, 1210, 1680, 1240]
       ZOrder		      6789
       BackgroundColor	      "darkGreen"
       ShowName		      off
@@ -1567,7 +1589,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto4"
       SID		      "365"
-      Position		      [1965, 1130, 2055, 1160]
+      Position		      [2435, 660, 2525, 690]
       ZOrder		      4269
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1577,7 +1599,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto5"
       SID		      "366"
-      Position		      [1965, 1210, 2055, 1240]
+      Position		      [2435, 740, 2525, 770]
       ZOrder		      4270
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1587,7 +1609,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto6"
       SID		      "367"
-      Position		      [1965, 1290, 2055, 1320]
+      Position		      [2435, 820, 2525, 850]
       ZOrder		      4271
       BackgroundColor	      "lightBlue"
       ShowName		      off
@@ -1597,7 +1619,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto7"
       SID		      "371"
-      Position		      [1970, 650, 2060, 680]
+      Position		      [2435, 980, 2525, 1010]
       ZOrder		      4272
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1607,7 +1629,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto8"
       SID		      "372"
-      Position		      [1970, 730, 2060, 760]
+      Position		      [2435, 1060, 2525, 1090]
       ZOrder		      4273
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1617,7 +1639,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto9"
       SID		      "373"
-      Position		      [1970, 810, 2060, 840]
+      Position		      [2435, 1140, 2525, 1170]
       ZOrder		      4274
       BackgroundColor	      "cyan"
       ShowName		      off
@@ -1625,17 +1647,9 @@ Model {
     }
     Block {
       BlockType		      Ground
-      Name		      "Ground1"
-      SID		      "2152"
-      Position		      [1680, 1395, 1700, 1415]
-      ZOrder		      5450
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
       Name		      "Ground10"
       SID		      "2415"
-      Position		      [2000, 265, 2020, 285]
+      Position		      [1265, 1040, 1285, 1060]
       ZOrder		      6800
       ShowName		      off
     }
@@ -1643,15 +1657,23 @@ Model {
       BlockType		      Ground
       Name		      "Ground11"
       SID		      "2416"
-      Position		      [2000, 385, 2020, 405]
+      Position		      [1265, 1160, 1285, 1180]
       ZOrder		      6801
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground12"
+      SID		      "2450"
+      Position		      [2095, 1725, 2115, 1745]
+      ZOrder		      7743
       ShowName		      off
     }
     Block {
       BlockType		      Ground
       Name		      "Ground14"
       SID		      "2202"
-      Position		      [1445, 800, 1465, 820]
+      Position		      [1985, 530, 2005, 550]
       ZOrder		      5474
       ShowName		      off
     }
@@ -1659,31 +1681,15 @@ Model {
       BlockType		      Ground
       Name		      "Ground15"
       SID		      "2417"
-      Position		      [1605, 315, 1625, 335]
+      Position		      [1310, 830, 1330, 850]
       ZOrder		      6802
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground16"
-      SID		      "2351"
-      Position		      [1700, 1555, 1720, 1575]
-      ZOrder		      5484
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground17"
-      SID		      "2352"
-      Position		      [1700, 1595, 1720, 1615]
-      ZOrder		      5485
       ShowName		      off
     }
     Block {
       BlockType		      Ground
       Name		      "Ground18"
       SID		      "362"
-      Position		      [2125, 975, 2145, 995]
+      Position		      [2655, 1030, 2675, 1050]
       ZOrder		      4254
       ShowName		      off
     }
@@ -1691,23 +1697,15 @@ Model {
       BlockType		      Ground
       Name		      "Ground19"
       SID		      "2418"
-      Position		      [1605, 440, 1625, 460]
+      Position		      [1310, 955, 1330, 975]
       ZOrder		      6803
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Ground
-      Name		      "Ground2"
-      SID		      "2153"
-      Position		      [1680, 1315, 1700, 1335]
-      ZOrder		      5451
       ShowName		      off
     }
     Block {
       BlockType		      Ground
       Name		      "Ground20"
       SID		      "2421"
-      Position		      [1605, 260, 1625, 280]
+      Position		      [1310, 775, 1330, 795]
       ZOrder		      6796
       ShowName		      off
     }
@@ -1715,7 +1713,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground21"
       SID		      "2422"
-      Position		      [1605, 380, 1625, 400]
+      Position		      [1310, 895, 1330, 915]
       ZOrder		      6797
       ShowName		      off
     }
@@ -1723,7 +1721,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground22"
       SID		      "2419"
-      Position		      [2000, 320, 2020, 340]
+      Position		      [1265, 1095, 1285, 1115]
       ZOrder		      6790
       ShowName		      off
     }
@@ -1731,7 +1729,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground23"
       SID		      "2420"
-      Position		      [2000, 445, 2020, 465]
+      Position		      [1265, 1220, 1285, 1240]
       ZOrder		      6791
       ShowName		      off
     }
@@ -1739,7 +1737,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground3"
       SID		      "537"
-      Position		      [2230, 1550, 2250, 1570]
+      Position		      [2760, 1605, 2780, 1625]
       ZOrder		      4338
       ShowName		      off
     }
@@ -1747,7 +1745,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground4"
       SID		      "2160"
-      Position		      [1460, 1535, 1480, 1555]
+      Position		      [1970, 1810, 1990, 1830]
       ZOrder		      5457
       ShowName		      off
     }
@@ -1755,7 +1753,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground5"
       SID		      "2162"
-      Position		      [1460, 1480, 1480, 1500]
+      Position		      [1970, 1770, 1990, 1790]
       ZOrder		      5459
       ShowName		      off
     }
@@ -1763,16 +1761,24 @@ Model {
       BlockType		      Ground
       Name		      "Ground6"
       SID		      "2370"
-      Position		      [1580, 1640, 1600, 1660]
+      Position		      [1975, 1850, 1995, 1870]
       ZOrder		      5504
       ShowName		      off
     }
     Block {
       BlockType		      Ground
-      Name		      "Ground7"
-      SID		      "2151"
-      Position		      [1680, 1235, 1700, 1255]
-      ZOrder		      5449
+      Name		      "Ground8"
+      SID		      "2446"
+      Position		      [2085, 1245, 2105, 1265]
+      ZOrder		      7739
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground9"
+      SID		      "2449"
+      Position		      [2085, 1525, 2105, 1545]
+      ZOrder		      7742
       ShowName		      off
     }
     Block {
@@ -1782,7 +1788,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [2110, 264, 2175, 286]
+      Position		      [1375, 1039, 1440, 1061]
       ZOrder		      6808
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1799,7 +1805,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [2110, 384, 2175, 406]
+      Position		      [1375, 1159, 1440, 1181]
       ZOrder		      6809
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1816,7 +1822,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [1710, 259, 1775, 281]
+      Position		      [1415, 774, 1480, 796]
       ZOrder		      6807
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1833,7 +1839,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [1720, 379, 1785, 401]
+      Position		      [1425, 894, 1490, 916]
       ZOrder		      6806
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1850,7 +1856,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [2115, 319, 2180, 341]
+      Position		      [1380, 1094, 1445, 1116]
       ZOrder		      6792
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1867,7 +1873,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [1720, 314, 1785, 336]
+      Position		      [1425, 829, 1490, 851]
       ZOrder		      6784
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1884,7 +1890,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [1725, 439, 1790, 461]
+      Position		      [1430, 954, 1495, 976]
       ZOrder		      6785
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1901,7 +1907,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [2115, 444, 2180, 466]
+      Position		      [1380, 1219, 1445, 1241]
       ZOrder		      6793
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1918,7 +1924,7 @@ Model {
       Tag		      "cdsIPCx_PCIE"
       Description	      "Inter-Process Communication via PCI Express network."
       Ports		      [1, 2]
-      Position		      [1490, 799, 1555, 821]
+      Position		      [2030, 529, 2095, 551]
       ZOrder		      6805
       BackgroundColor	      "[0.721569, 0.862745, 0.772549]"
       DropShadow	      on
@@ -1935,7 +1941,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1990, 1694, 2055, 1716]
+      Position		      [2495, 1624, 2560, 1646]
       ZOrder		      6818
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -1952,7 +1958,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1630, 1639, 1695, 1661]
+      Position		      [2025, 1849, 2090, 1871]
       ZOrder		      5503
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -1969,7 +1975,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1515, 1479, 1580, 1501]
+      Position		      [2025, 1769, 2090, 1791]
       ZOrder		      5458
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -1986,7 +1992,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1515, 1534, 1580, 1556]
+      Position		      [2025, 1809, 2090, 1831]
       ZOrder		      5456
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -2001,7 +2007,7 @@ Model {
       Name		      "Mux1"
       SID		      "2147"
       Ports		      [3, 1]
-      Position		      [1985, 1348, 1990, 1582]
+      Position		      [2435, 1357, 2440, 1593]
       ZOrder		      5445
       ShowName		      off
       Inputs		      "3"
@@ -2012,7 +2018,7 @@ Model {
       Name		      "Mux2"
       SID		      "2358"
       Ports		      [3, 1]
-      Position		      [1345, 1178, 1350, 1382]
+      Position		      [1470, 1358, 1475, 1562]
       ZOrder		      5494
       ShowName		      off
       Inputs		      "3"
@@ -2021,39 +2027,42 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "SR3"
-      SID		      "2369"
-      Ports		      [30, 15]
-      Position		      [1750, 531, 1935, 1759]
-      ZOrder		      5502
-      BackgroundColor	      "lightBlue"
-      LibraryVersion	      "1.209"
-      SourceBlock	      "TYPEB_MASTER/TYPEB_PAYLOAD_shutdown"
+      SID		      "2442"
+      Description	      "This is for Type-B and Bp payloads."
+      Ports		      [34, 16]
+      Position		      [2160, 533, 2405, 1857]
+      ZOrder		      7735
+      BackgroundColor	      "yellow"
+      DropShadow	      on
+      AttributesFormatString  "%<Description>"
+      LibraryVersion	      "1.404"
+      SourceBlock	      "PAYLOAD_MASTER/PAYLOAD_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
     Block {
       BlockType		      Reference
       Name		      "SR3_BIO_DECODE"
-      SID		      "2359"
+      SID		      "2451"
       Ports		      [3, 3]
-      Position		      [1170, 1176, 1325, 1384]
-      ZOrder		      5495
+      Position		      [1290, 1356, 1445, 1564]
+      ZOrder		      7744
       BackgroundColor	      "green"
-      LibraryVersion	      "1.209"
-      SourceBlock	      "TYPEB_MASTER/BIO_DECODE_PAYLOAD_MASTER"
+      LibraryVersion	      "1.404"
+      SourceBlock	      "PAYLOAD_MASTER/BBp_PAYLOADBIO_DECODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
     Block {
       BlockType		      Reference
       Name		      "SR3_BIO_ENCODE"
-      SID		      "2368"
+      SID		      "2452"
       Ports		      [3, 3]
-      Position		      [1185, 1455, 1350, 1725]
-      ZOrder		      5501
+      Position		      [1310, 1627, 1465, 1833]
+      ZOrder		      7745
       BackgroundColor	      "green"
-      LibraryVersion	      "1.209"
-      SourceBlock	      "TYPEB_MASTER/BIO_ENCODE_PAYLOAD_MASTER"
+      LibraryVersion	      "1.404"
+      SourceBlock	      "PAYLOAD_MASTER/BBp_PAYLOADBIO_ENCODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
     }
@@ -2062,7 +2071,7 @@ Model {
       Name		      "Sum1"
       SID		      "2431"
       Ports		      [2, 1]
-      Position		      [1830, 435, 1850, 455]
+      Position		      [1535, 950, 1555, 970]
       ZOrder		      6781
       ShowName		      off
       IconShape		      "round"
@@ -2076,7 +2085,7 @@ Model {
       Name		      "Sum2"
       SID		      "2432"
       Ports		      [2, 1]
-      Position		      [2255, 440, 2275, 460]
+      Position		      [1520, 1215, 1540, 1235]
       ZOrder		      6787
       ShowName		      off
       IconShape		      "round"
@@ -2090,7 +2099,7 @@ Model {
       Name		      "Sum3"
       SID		      "2433"
       Ports		      [2, 1]
-      Position		      [2250, 315, 2270, 335]
+      Position		      [1515, 1090, 1535, 1110]
       ZOrder		      6786
       ShowName		      off
       IconShape		      "round"
@@ -2104,7 +2113,7 @@ Model {
       Name		      "Sum45"
       SID		      "2434"
       Ports		      [2, 1]
-      Position		      [1825, 310, 1845, 330]
+      Position		      [1530, 825, 1550, 845]
       ZOrder		      6780
       ShowName		      off
       IconShape		      "round"
@@ -2117,8 +2126,17 @@ Model {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "2372"
-      Position		      [1980, 1615, 2000, 1635]
+      Position		      [2435, 1705, 2455, 1725]
       ZOrder		      5765
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      "2443"
+      Position		      [2435, 1785, 2455, 1805]
+      ZOrder		      7736
+      ShowName		      off
     }
     Block {
       BlockType		      Reference
@@ -2158,7 +2176,7 @@ Model {
       "                                                                                                                "
       "                                                       "
       Ports		      []
-      Position		      [1240, 910, 1280, 970]
+      Position		      [1100, 620, 1140, 680]
       ZOrder		      4296
       BackgroundColor	      "orange"
       DropShadow	      on
@@ -2180,76 +2198,6 @@ Model {
       SrcBlock		      "From21"
       SrcPort		      1
       DstBlock		      "Bus\nSelector6"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2469
-      SrcBlock		      "SR3"
-      SrcPort		      10
-      DstBlock		      "Goto6"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2470
-      SrcBlock		      "SR3"
-      SrcPort		      9
-      DstBlock		      "Goto5"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2471
-      SrcBlock		      "SR3"
-      SrcPort		      8
-      DstBlock		      "Goto4"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2472
-      SrcBlock		      "SR3"
-      SrcPort		      7
-      DstBlock		      "Goto1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2477
-      SrcBlock		      "SR3"
-      SrcPort		      1
-      DstBlock		      "Goto11"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2476
-      SrcBlock		      "SR3"
-      SrcPort		      2
-      DstBlock		      "Goto7"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2475
-      SrcBlock		      "SR3"
-      SrcPort		      3
-      DstBlock		      "Goto8"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2462
-      SrcBlock		      "SR3"
-      SrcPort		      4
-      DstBlock		      "Goto9"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2474
-      SrcBlock		      "SR3"
-      SrcPort		      5
-      DstBlock		      "Goto10"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2473
-      SrcBlock		      "SR3"
-      SrcPort		      6
-      DstBlock		      "Goto12"
       DstPort		      1
     }
     Line {
@@ -2292,33 +2240,6 @@ Model {
 	DstBlock		"DAC_0"
 	DstPort			8
       }
-    }
-    Line {
-      Name		      "<adc_0_4>"
-      ZOrder		      2449
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      1
-    }
-    Line {
-      Name		      "<adc_0_5>"
-      ZOrder		      2450
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      2
-      DstBlock		      "SR3"
-      DstPort		      2
-    }
-    Line {
-      Name		      "<adc_0_6>"
-      ZOrder		      2460
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      3
-      DstBlock		      "SR3"
-      DstPort		      3
     }
     Line {
       ZOrder		      1665
@@ -2370,33 +2291,6 @@ Model {
       DstPort		      7
     }
     Line {
-      Name		      "<adc_0_28>"
-      ZOrder		      2461
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      4
-      DstBlock		      "SR3"
-      DstPort		      4
-    }
-    Line {
-      Name		      "<adc_0_29>"
-      ZOrder		      2451
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      5
-      DstBlock		      "SR3"
-      DstPort		      5
-    }
-    Line {
-      Name		      "<adc_0_30>"
-      ZOrder		      2452
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector6"
-      SrcPort		      6
-      DstBlock		      "SR3"
-      DstPort		      6
-    }
-    Line {
       ZOrder		      1680
       SrcBlock		      "From16"
       SrcPort		      1
@@ -2418,13 +2312,6 @@ Model {
       DstPort		      9
     }
     Line {
-      ZOrder		      2053
-      SrcBlock		      "From24"
-      SrcPort		      1
-      DstBlock		      "Bus\nSelector3"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      2186
       SrcBlock		      "Mux1"
       SrcPort		      1
@@ -2435,51 +2322,8 @@ Model {
       ZOrder		      2193
       SrcBlock		      "From4"
       SrcPort		      1
-      Points		      [33, 0; 0, -5]
       DstBlock		      "Demux"
       DstPort		      1
-    }
-    Line {
-      ZOrder		      2611
-      SrcBlock		      "Demux"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      19
-    }
-    Line {
-      ZOrder		      2612
-      SrcBlock		      "Demux"
-      SrcPort		      2
-      DstBlock		      "SR3"
-      DstPort		      21
-    }
-    Line {
-      ZOrder		      2613
-      SrcBlock		      "Demux"
-      SrcPort		      3
-      DstBlock		      "SR3"
-      DstPort		      23
-    }
-    Line {
-      ZOrder		      2608
-      SrcBlock		      "Ground7"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      18
-    }
-    Line {
-      ZOrder		      2610
-      SrcBlock		      "Ground1"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      22
-    }
-    Line {
-      ZOrder		      2609
-      SrcBlock		      "Ground2"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      20
     }
     Line {
       ZOrder		      2212
@@ -2494,22 +2338,6 @@ Model {
       SrcPort		      1
       DstBlock		      "K1:VIS_SR3_TOP_MS"
       DstPort		      1
-    }
-    Line {
-      ZOrder		      2616
-      SrcBlock		      "K1:VIS_SR3_TOP_WDR"
-      SrcPort		      1
-      Points		      [101, 0; 0, -15]
-      DstBlock		      "SR3"
-      DstPort		      25
-    }
-    Line {
-      ZOrder		      2615
-      SrcBlock		      "K1:VIS_SR3_TOP_MS"
-      SrcPort		      1
-      Points		      [2, 0; 0, 18; 98, 0; 0, -18]
-      DstBlock		      "SR3"
-      DstPort		      24
     }
     Line {
       ZOrder		      683
@@ -2656,49 +2484,35 @@ Model {
       }
     }
     Line {
-      ZOrder		      2617
-      SrcBlock		      "Ground16"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      26
-    }
-    Line {
-      ZOrder		      2620
-      SrcBlock		      "Ground17"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      27
-    }
-    Line {
-      ZOrder		      2410
+      ZOrder		      2870
       SrcBlock		      "CBI_L32_C3"
       SrcPort		      1
       DstBlock		      "SR3_BIO_DECODE"
       DstPort		      2
     }
     Line {
-      ZOrder		      2411
+      ZOrder		      2869
       SrcBlock		      "CBI_H32_C2"
       SrcPort		      1
       DstBlock		      "SR3_BIO_DECODE"
       DstPort		      3
     }
     Line {
-      ZOrder		      2412
+      ZOrder		      2867
       SrcBlock		      "SR3_BIO_DECODE"
       SrcPort		      2
       DstBlock		      "Mux2"
       DstPort		      2
     }
     Line {
-      ZOrder		      2413
+      ZOrder		      2868
       SrcBlock		      "SR3_BIO_DECODE"
       SrcPort		      3
       DstBlock		      "Mux2"
       DstPort		      3
     }
     Line {
-      ZOrder		      2414
+      ZOrder		      2866
       SrcBlock		      "SR3_BIO_DECODE"
       SrcPort		      1
       DstBlock		      "Mux2"
@@ -2712,49 +2526,49 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      2416
+      ZOrder		      2871
       SrcBlock		      "CBI_L32_C2"
       SrcPort		      1
       DstBlock		      "SR3_BIO_DECODE"
       DstPort		      1
     }
     Line {
-      ZOrder		      2424
+      ZOrder		      2873
       SrcBlock		      "SR3_BIO_ENCODE"
       SrcPort		      1
       DstBlock		      "CBO_L32_C0"
       DstPort		      1
     }
     Line {
-      ZOrder		      2425
+      ZOrder		      2875
       SrcBlock		      "SR3_BIO_ENCODE"
       SrcPort		      3
       DstBlock		      "CBO_H32_C1"
       DstPort		      1
     }
     Line {
-      ZOrder		      2426
+      ZOrder		      2874
       SrcBlock		      "SR3_BIO_ENCODE"
       SrcPort		      2
       DstBlock		      "CBO_L32_C1"
       DstPort		      1
     }
     Line {
-      ZOrder		      2427
+      ZOrder		      2876
       SrcBlock		      "Demux1"
       SrcPort		      2
       DstBlock		      "SR3_BIO_ENCODE"
       DstPort		      2
     }
     Line {
-      ZOrder		      2428
+      ZOrder		      2877
       SrcBlock		      "Demux1"
       SrcPort		      3
       DstBlock		      "SR3_BIO_ENCODE"
       DstPort		      3
     }
     Line {
-      ZOrder		      2429
+      ZOrder		      2872
       SrcBlock		      "Demux1"
       SrcPort		      1
       DstBlock		      "SR3_BIO_ENCODE"
@@ -2768,133 +2582,11 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      2622
-      SrcBlock		      "K1:VIS_SR3_TOP_BLF"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      28
-    }
-    Line {
       ZOrder		      2478
       SrcBlock		      "Ground6"
       SrcPort		      1
       DstBlock		      "K1:VIS_SR3_TOP_BLF"
       DstPort		      1
-    }
-    Line {
-      ZOrder		      2593
-      SrcBlock		      "SR3"
-      SrcPort		      14
-      DstBlock		      "Terminator"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2590
-      SrcBlock		      "SR3"
-      SrcPort		      11
-      DstBlock		      "Mux1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2591
-      SrcBlock		      "SR3"
-      SrcPort		      12
-      DstBlock		      "Mux1"
-      DstPort		      2
-    }
-    Line {
-      ZOrder		      2592
-      SrcBlock		      "SR3"
-      SrcPort		      13
-      DstBlock		      "Mux1"
-      DstPort		      3
-    }
-    Line {
-      Name		      "<adc_0_25>"
-      ZOrder		      2600
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      2
-      DstBlock		      "SR3"
-      DstPort		      11
-    }
-    Line {
-      Name		      "<adc_0_24>"
-      ZOrder		      2601
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      10
-    }
-    Line {
-      Name		      "<adc_0_26>"
-      ZOrder		      2602
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      3
-      DstBlock		      "SR3"
-      DstPort		      12
-    }
-    Line {
-      Name		      "<adc_0_27>"
-      ZOrder		      2603
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      4
-      DstBlock		      "SR3"
-      DstPort		      13
-    }
-    Line {
-      Name		      "<adc_0_0>"
-      ZOrder		      2604
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      5
-      DstBlock		      "SR3"
-      DstPort		      14
-    }
-    Line {
-      Name		      "<adc_0_1>"
-      ZOrder		      2605
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      6
-      DstBlock		      "SR3"
-      DstPort		      15
-    }
-    Line {
-      Name		      "<adc_0_2>"
-      ZOrder		      2606
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      7
-      DstBlock		      "SR3"
-      DstPort		      16
-    }
-    Line {
-      Name		      "<adc_0_3>"
-      ZOrder		      2607
-      Labels		      [0, 0]
-      SrcBlock		      "Bus\nSelector3"
-      SrcPort		      8
-      DstBlock		      "SR3"
-      DstPort		      17
-    }
-    Line {
-      ZOrder		      2760
-      SrcBlock		      "From3"
-      SrcPort		      1
-      Points		      [65, 0; 0, 5]
-      DstBlock		      "SR3"
-      DstPort		      29
-    }
-    Line {
-      ZOrder		      2761
-      SrcBlock		      "From1"
-      SrcPort		      1
-      DstBlock		      "SR3"
-      DstPort		      30
     }
     Line {
       ZOrder		      2751
@@ -3048,47 +2740,426 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      2750
+      ZOrder		      2790
+      SrcBlock		      "SR3"
+      SrcPort		      7
+      DstBlock		      "Goto8"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2791
+      SrcBlock		      "SR3"
+      SrcPort		      6
+      DstBlock		      "Goto7"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2792
+      SrcBlock		      "SR3"
+      SrcPort		      5
+      DstBlock		      "Goto11"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2793
+      SrcBlock		      "SR3"
+      SrcPort		      8
+      DstBlock		      "Goto9"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2794
+      SrcBlock		      "SR3"
+      SrcPort		      9
+      DstBlock		      "Goto10"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2795
+      SrcBlock		      "SR3"
+      SrcPort		      10
+      DstBlock		      "Goto12"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2796
+      SrcBlock		      "SR3"
+      SrcPort		      4
+      DstBlock		      "Goto6"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2797
+      SrcBlock		      "SR3"
+      SrcPort		      3
+      DstBlock		      "Goto5"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2798
+      SrcBlock		      "SR3"
+      SrcPort		      2
+      DstBlock		      "Goto4"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2799
+      SrcBlock		      "SR3"
+      SrcPort		      1
+      DstBlock		      "Goto1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2800
+      SrcBlock		      "SR3"
+      SrcPort		      12
+      DstBlock		      "Mux1"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      2801
+      SrcBlock		      "SR3"
+      SrcPort		      11
+      DstBlock		      "Mux1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2802
+      SrcBlock		      "SR3"
+      SrcPort		      13
+      DstBlock		      "Mux1"
+      DstPort		      3
+    }
+    Line {
+      ZOrder		      2803
+      SrcBlock		      "SR3"
+      SrcPort		      14
+      DstBlock		      "K1:VIS_SR3P_ISC_IM_OUT"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2804
+      SrcBlock		      "SR3"
+      SrcPort		      15
+      DstBlock		      "Terminator"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2805
+      SrcBlock		      "SR3"
+      SrcPort		      16
+      DstBlock		      "Terminator1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2806
       SrcBlock		      "K1:LSC_SR3_L_VISSR3_L"
       SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      2807
+      SrcBlock		      "From7"
+      SrcPort		      1
+      Points		      [35, 0; 0, -15]
+      DstBlock		      "SR3"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      2808
+      SrcBlock		      "From17"
+      SrcPort		      1
+      Points		      [35, 0; 0, -10]
+      DstBlock		      "SR3"
+      DstPort		      3
+    }
+    Line {
+      ZOrder		      2809
+      SrcBlock		      "From6"
+      SrcPort		      1
+      DstBlock		      "Bus\nSelector1"
+      DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_24>"
+      ZOrder		      2818
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      4
+    }
+    Line {
+      Name		      "<adc_0_25>"
+      ZOrder		      2819
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      2
+      DstBlock		      "SR3"
+      DstPort		      5
+    }
+    Line {
+      Name		      "<adc_0_26>"
+      ZOrder		      2820
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      3
+      DstBlock		      "SR3"
+      DstPort		      6
+    }
+    Line {
+      Name		      "<adc_0_27>"
+      ZOrder		      2821
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector1"
+      SrcPort		      4
       DstBlock		      "SR3"
       DstPort		      7
     }
     Line {
-      ZOrder		      2758
-      SrcBlock		      "From7"
+      ZOrder		      2822
+      SrcBlock		      "From3"
       SrcPort		      1
       DstBlock		      "SR3"
       DstPort		      8
     }
     Line {
-      ZOrder		      2759
-      SrcBlock		      "From17"
+      ZOrder		      2823
+      SrcBlock		      "From1"
       SrcPort		      1
-      Points		      [148, 0; 0, 5]
       DstBlock		      "SR3"
       DstPort		      9
     }
     Line {
-      ZOrder		      2786
-      SrcBlock		      "SR3"
-      SrcPort		      15
-      DstBlock		      "K1:VIS_SR3P_ISC_IM_OUT"
+      Name		      "<adc_0_30>"
+      ZOrder		      2824
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      6
+      DstBlock		      "SR3"
+      DstPort		      15
+    }
+    Line {
+      Name		      "<adc_0_29>"
+      ZOrder		      2825
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      5
+      DstBlock		      "SR3"
+      DstPort		      14
+    }
+    Line {
+      Name		      "<adc_0_28>"
+      ZOrder		      2826
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      4
+      DstBlock		      "SR3"
+      DstPort		      13
+    }
+    Line {
+      Name		      "<adc_0_6>"
+      ZOrder		      2827
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      3
+      DstBlock		      "SR3"
+      DstPort		      12
+    }
+    Line {
+      Name		      "<adc_0_5>"
+      ZOrder		      2828
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      2
+      DstBlock		      "SR3"
+      DstPort		      11
+    }
+    Line {
+      Name		      "<adc_0_4>"
+      ZOrder		      2829
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector6"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      10
+    }
+    Line {
+      ZOrder		      2830
+      SrcBlock		      "Ground8"
+      SrcPort		      1
+      Points		      [19, 0]
+      Branch {
+	ZOrder			2832
+	Points			[0, -40]
+	Branch {
+	  ZOrder		  2836
+	  DstBlock		  "SR3"
+	  DstPort		  18
+	}
+	Branch {
+	  ZOrder		  2835
+	  Points		  [0, -40]
+	  Branch {
+	    ZOrder		    2834
+	    DstBlock		    "SR3"
+	    DstPort		    17
+	  }
+	  Branch {
+	    ZOrder		    2833
+	    Points		    [0, -40]
+	    DstBlock		    "SR3"
+	    DstPort		    16
+	  }
+	}
+      }
+      Branch {
+	ZOrder			2831
+	DstBlock		"SR3"
+	DstPort			19
+      }
+    }
+    Line {
+      ZOrder		      2837
+      SrcBlock		      "From18"
+      SrcPort		      1
+      DstBlock		      "Bus\nSelector2"
       DstPort		      1
+    }
+    Line {
+      Name		      "<adc_0_0>"
+      ZOrder		      2846
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      20
+    }
+    Line {
+      Name		      "<adc_0_1>"
+      ZOrder		      2847
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      2
+      DstBlock		      "SR3"
+      DstPort		      21
+    }
+    Line {
+      Name		      "<adc_0_2>"
+      ZOrder		      2848
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      3
+      DstBlock		      "SR3"
+      DstPort		      22
+    }
+    Line {
+      Name		      "<adc_0_3>"
+      ZOrder		      2849
+      Labels		      [0, 0]
+      SrcBlock		      "Bus\nSelector2"
+      SrcPort		      4
+      DstBlock		      "SR3"
+      DstPort		      23
+    }
+    Line {
+      ZOrder		      2850
+      SrcBlock		      "Ground9"
+      SrcPort		      1
+      Points		      [20, 0]
+      Branch {
+	ZOrder			2854
+	Points			[0, -40]
+	Branch {
+	  ZOrder		  2856
+	  DstBlock		  "SR3"
+	  DstPort		  25
+	}
+	Branch {
+	  ZOrder		  2855
+	  Points		  [0, -40]
+	  DstBlock		  "SR3"
+	  DstPort		  24
+	}
+      }
+      Branch {
+	ZOrder			2853
+	DstBlock		"SR3"
+	DstPort			26
+      }
+    }
+    Line {
+      ZOrder		      2857
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      27
+    }
+    Line {
+      ZOrder		      2858
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      DstBlock		      "SR3"
+      DstPort		      28
+    }
+    Line {
+      ZOrder		      2859
+      SrcBlock		      "Demux"
+      SrcPort		      3
+      DstBlock		      "SR3"
+      DstPort		      29
+    }
+    Line {
+      ZOrder		      2860
+      SrcBlock		      "Ground12"
+      SrcPort		      1
+      Points		      [12, 0]
+      Branch {
+	ZOrder			2862
+	Points			[0, -40]
+	DstBlock		"SR3"
+	DstPort			30
+      }
+      Branch {
+	ZOrder			2861
+	DstBlock		"SR3"
+	DstPort			31
+      }
+    }
+    Line {
+      ZOrder		      2863
+      SrcBlock		      "K1:VIS_SR3_TOP_MS"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      32
+    }
+    Line {
+      ZOrder		      2864
+      SrcBlock		      "K1:VIS_SR3_TOP_WDR"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      33
+    }
+    Line {
+      ZOrder		      2865
+      SrcBlock		      "K1:VIS_SR3_TOP_BLF"
+      SrcPort		      1
+      DstBlock		      "SR3"
+      DstPort		      34
     }
     Annotation {
       SID		      "423"
       Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
       "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }"
-      "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
-      "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
-      "ent:0; text-indent:0px;\"><span style=\" font-size:48px; color:#ffffff;\">SR3 </span></p>\n<p align=\"center\" s"
-      "tyle=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0p"
-      "x;\"><span style=\" font-size:48px; color:#ffffff;\">payload Model</span></p></body></html>"
-      Position		      [1103, 604, 1417, 716]
+      "\n</style></head><body style=\" font-family:'Liberation Sans'; font-size:10px; font-weight:400; font-style:norma"
+      "l;\">\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bl"
+      "ock-indent:0; text-indent:0px; line-height:100%;\"><span style=\" font-family:'Helvetica'; font-size:48px; color"
+      ":#ffffff;\">SR3 payload Model</span></p></body></html>"
+      Position		      [1063, 539, 1512, 586]
       InternalMargins	      [0, 0, 0, 0]
-      FixedHeight	      off
-      FixedWidth	      off
+      FixedHeight	      on
+      FixedWidth	      on
       HorizontalAlignment     "left"
       VerticalAlignment	      "top"
       BackgroundColor	      "orange"
@@ -3098,7 +3169,7 @@ Model {
     Annotation {
       SID		      "2140"
       Name		      "Binary Input / Output"
-      Position		      [1057, 1130, 1298, 1162]
+      Position		      [1182, 1310, 1423, 1342]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
@@ -3115,7 +3186,7 @@ Model {
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-size:10px; background-color:#00ff00;\">card_num=1 is Unused</span></p></body></html"
       ">"
-      Position		      [884, 1258, 988, 1272]
+      Position		      [1009, 1438, 1113, 1452]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
@@ -3131,7 +3202,7 @@ Model {
       "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-size:10px; background-color:#00ff00;\">TM LPCD</span></p></body></html>"
-      Position		      [1002, 1202, 1047, 1216]
+      Position		      [1127, 1382, 1172, 1396]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
@@ -3147,7 +3218,7 @@ Model {
       "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-size:10px; color:#000000;\">IM LPCD1</span></p></body></html>"
-      Position		      [1001, 1272, 1049, 1286]
+      Position		      [1126, 1452, 1174, 1466]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
@@ -3164,7 +3235,7 @@ Model {
       "\n</style></head><body style=\" font-family:'Helvetica'; font-size:10px; font-weight:400; font-style:normal;\">\n"
       "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
       "t:0px;\"><span style=\" font-size:10px; color:#000000;\">IM LPCD2</span></p></body></html>"
-      Position		      [1001, 1343, 1049, 1357]
+      Position		      [1126, 1523, 1174, 1537]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
