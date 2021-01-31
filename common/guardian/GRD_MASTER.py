@@ -263,14 +263,16 @@ class ISOLATING(GuardState):
     def run(self):
         if self.counter==0:
             for dof in ['L','T','Y']:
-                filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof) # for SR3
                 filt = ezca.get_LIGOFilter(filtname)
                 filt.turn_on('FM4','INPUT') # for miyodamp
-                filt.ramp_gain(1,10,False)
+                filt.ramp_gain(1,10,False)                
             self.counter += 1
         elif self.counter==1:
             for dof in ['L','T','Y']:
-                filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof) # for SR3
                 filt = ezca.get_LIGOFilter(filtname)
                 filt.turn_on('FM3') # for miyodc
                 #filt.ramp_gain(1,10,True)
