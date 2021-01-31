@@ -315,7 +315,8 @@ class TO_SAFE(GuardState):
             elif sus_type_is()=='Type-B':
                 log('!!!!')
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                    #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof) 
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof) # for SR3
                     filt = ezca.get_LIGOFilter(filtname)
                     filt.ramp_gain(0,30,False)
                     
