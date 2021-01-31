@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/4DOF_FILTER_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS_4DOF_MINI.adl"
 	version=030109
 }
 display {
@@ -350,7 +350,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="$(FUNCTION)"
+	textix="$(FUNC)"
 	align="horiz. centered"
 }
 "text update" {
@@ -431,4 +431,25 @@ text {
 	}
 	textix="$(DOF4)"
 	align="horiz. right"
+}
+"shell command" {
+	object {
+		x=88
+		y=123
+		width=7
+		height=7
+	}
+	command[0] {
+		label="INMON"
+		name="ndscope"
+		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_INMON $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_INMON $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_INMON &"
+	}
+	command[1] {
+		label="OUT16"
+		name="ndscope"
+		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUT16 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUT16 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)_OUT16 &"
+	}
+	clr=14
+	bclr=0
+	label="-"
 }

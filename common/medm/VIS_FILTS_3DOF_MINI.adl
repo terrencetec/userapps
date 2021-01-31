@@ -1,11 +1,12 @@
+
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/3DOF_FILTER_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS_3DOF_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=1548
-		y=614
+		x=1533
+		y=1258
 		width=238
 		height=164
 	}
@@ -339,16 +340,36 @@ text {
 	textix="$(DOF3)"
 	align="horiz. right"
 }
-text {
+"shell command" {
 	object {
 		x=88
 		y=108
-		width=60
+		width=7
+		height=7
+	}
+	command[0] {
+		label="INMON"
+		name="ndscope"
+		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_INMON $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_INMON &"
+	}
+	command[1] {
+		label="OUT16"
+		name="ndscope"
+		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUT16 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUT16 &"
+	}
+	clr=14
+	bclr=0
+	label="-"
+}
+text {
+	object {
+		x=96
+		y=108
+		width=15
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="$(FUNCTION)"
-	align="horiz. centered"
+	textix="$(FUNC)"
 }
