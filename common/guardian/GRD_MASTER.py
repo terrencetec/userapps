@@ -321,14 +321,16 @@ class TO_SAFE(GuardState):
                     filt.ramp_gain(0,30,False)
                     
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                    #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof) # for SR3
                     filt = ezca.get_LIGOFilter(filtname)
                     if not filt.is_gain_ramping():
                         filt.turn_off('FM3','FM4') # for miyodc
 
                 ramp = []
                 for dof in ['L','T','Y']:
-                    filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                    #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof)
+                    filtname = 'VIS-{0}_IP_DAMP_{1}'.format(OPTIC,dof) # for SR3
                     filt = ezca.get_LIGOFilter(filtname)
                     ramp += [not filt.is_gain_ramping()]
                 if all(ramp):
