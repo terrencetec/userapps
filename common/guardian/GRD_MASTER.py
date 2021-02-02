@@ -17,6 +17,18 @@ def is_isolated():
     y = abs(ezca['VIS-{0}_IP_IDAMP_Y_INMON'.format(OPTIC)]) < 5
     return l and t and y
 
+def is_damped():
+    # # should read RMS value.
+    # l = abs(ezca['VIS-{0}_IM_DAMP_L_INMON'.format(OPTIC)]) < 5
+    # t = abs(ezca['VIS-{0}_IM_DAMP_T_INMON'.format(OPTIC)]) < 5
+    # v = abs(ezca['VIS-{0}_IM_DAMP_V_INMON'.format(OPTIC)]) < 5
+    # r = abs(ezca['VIS-{0}_IM_DAMP_R_INMON'.format(OPTIC)]) < 5
+    # p = abs(ezca['VIS-{0}_IM_DAMP_P_INMON'.format(OPTIC)]) < 5
+    # y = abs(ezca['VIS-{0}_IM_DAMP_Y_INMON'.format(OPTIC)]) < 5    
+    # return l and t and v and r and p and y
+    return True
+
+
 def sus_type_is():
     if OPTIC in ['ETMX','ETMY','ITMX','ITMY']:
         return 'Type-A'
@@ -60,6 +72,12 @@ class IsolatedCheck(GuardStateDecorator):
     def pre_exec(self):
         if not is_isolated():
             return 'ISOLATING'
+
+class DampedCheck(GuardStateDecorator):
+    def pre_exec(self):
+        if not is_damped():
+            return 'DAMPING'
+        
         
 class SAFE(GuardState):
     request = True
@@ -201,20 +219,23 @@ class DAMPING(GuardState):
     @WDcheck
     #@OLcheck    
     def main(self):
-        pass
+        self.counter = 0                        
 
     @WDcheck
     #@OLcheck
     def run(self):
-#        for dof in ['P','Y']:
-#            filtname = 'VIS-{0}_TM_OLDCCTRL_{1}'.format('IMMT1',dof)
-#            filt = ezca.get_LIGOFilter(filtname)
-#            filt.turn_on('FM1')            
-#            if dof=='P':
-#                filt.ramp_gain(-1,0.5,False)
-#            else:
-#                filt.ramp_gain(1,0.5,False)
-        return True
+        if self.counter==0:
+            for dof in ['L','T','V','R','P','Y']:
+                filtname = 'VIS-{0}_IM_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+                filt.turn_on('FM4','INPUT') # for miyodamp
+                filt.ramp_gain(1,10,False)
+            if is_damped():
+                log('damped')
+                return True   
+        else:                        
+            pass
+        #return True
 
 class DISABLE_DAMP(GuardState):
     request = False
@@ -223,16 +244,31 @@ class DISABLE_DAMP(GuardState):
     @WDcheck
     #@OLcheck    
     def main(self):
-        pass
+        self.counter = 0
 
     @WDcheck
     #@OLcheck
-    def run(self):
-#        for dof in ['P','Y']:
-#            filtname = 'VIS-{0}_TM_OLDCCTRL_{1}'.format('IMMT1',dof)
-#            filt = ezca.get_LIGOFilter(filtname)
-#            filt.turn_off('FM1')            
-#            filt.ramp_gain(0,0.5,False)
+    def run(self):            
+        is_ramped_count = 0
+        # Fix me..
+        if sus_type_is() in ['Type-B','Type-Bp']:
+            for dof in ['L','T','V','R','P','Y']:
+                filtname = 'VIS-{0}_IM_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+                filt.ramp_gain(0,5,False)
+
+            for dof in ['L','T','V','R','P','Y']:                
+                filtname = 'VIS-{0}_IM_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+                if not filt.is_gain_ramping():
+                    filt.turn_off('FM3','FM4')
+                    
+            for dof in ['L','T','V','R','P','Y']:                
+                filtname = 'VIS-{0}_IM_DAMP_{1}'.format(OPTIC,dof)
+                filt = ezca.get_LIGOFilter(filtname)
+        else:
+            raise ValueError('hoge!')
+        
         return True
 
 class DAMPED(GuardState):
@@ -312,7 +348,7 @@ class TO_SAFE(GuardState):
                     # Disconnect the master switch after ramping.
                     ezca['VIS-{0}_MASTERSWITCH'.format(OPTIC)] = 0
                     return True                
-            elif sus_type_is()=='Type-B':
+            elif sus_type_is() in ['Type-B','Type-Bp']:
                 log('!!!!')
                 for dof in ['L','T','Y']:
                     #filtname = 'VIS-{0}_IP_IDAMP_{1}'.format(OPTIC,dof) 
