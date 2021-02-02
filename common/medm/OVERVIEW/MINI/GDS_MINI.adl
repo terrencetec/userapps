@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=1184
-		y=667
-		width=339
-		height=117
+		x=2051
+		y=1133
+		width=583
+		height=118
 	}
 	clr=14
 	bclr=13
@@ -87,73 +87,146 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=29
-	}
-	"dynamic attribute" {
-		chan="BLAH"
-	}
-}
-rectangle {
-	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=38
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="K1:FEC-$(FEC)_STATE_WORD"
-	}
-}
-rectangle {
-	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=35
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=2"
-		chan="K1:FEC-$(FEC)_STATE_WORD"
-	}
-}
-rectangle {
+composite {
 	object {
 		x=65
-		y=43
-		width=145
+		y=40
+		width=160
 		height=15
 	}
-	"basic attribute" {
-		clr=27
-		fill="outline"
-		width=1
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=29
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=38
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:FEC-$(FEC)_STATE_WORD"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=35
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=2"
+				chan="K1:FEC-$(FEC)_STATE_WORD"
+			}
+		}
+		rectangle {
+			object {
+				x=65
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=27
+				fill="outline"
+				width=1
+			}
+			"dynamic attribute" {
+				chan="BLAH"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=24
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:FEC-$(FEC)_STATE_WORD"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A=1"
+				chan="K1:FEC-$(FEC)_STATE_WORD"
+			}
+		}
+		rectangle {
+			object {
+				x=66
+				y=40
+				width=159
+				height=15
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:FEC-$(FEC)_STATE_WORD"
+			}
+		}
 	}
-	"dynamic attribute" {
-		chan="BLAH"
+}
+"text update" {
+	object {
+		x=181
+		y=40
+		width=15
+		height=15
+	}
+	monitor {
+		chan="K1:FEC-$(FEC)_TP_CNT"
+		clr=0
+		bclr=14
+	}
+	align="horiz. centered"
+	limits {
 	}
 }
 "related display" {
 	object {
 		x=68
-		y=43
-		width=35
+		y=40
+		width=25
 		height=15
 	}
 	display[0] {
@@ -162,12 +235,12 @@ rectangle {
 	}
 	clr=14
 	bclr=5
-	label="GDS"
+	label="-GDS"
 }
 byte {
 	object {
-		x=106
-		y=44
+		x=96
+		y=41
 		width=70
 		height=12
 	}
@@ -181,8 +254,8 @@ byte {
 }
 "message button" {
 	object {
-		x=184
-		y=44
+		x=198
+		y=42
 		width=12
 		height=12
 	}
@@ -195,8 +268,8 @@ byte {
 }
 "shell command" {
 	object {
-		x=199
-		y=44
+		x=212
+		y=42
 		width=11
 		height=12
 	}
@@ -236,8 +309,8 @@ byte {
 		args="&"
 	}
 	command[7] {
-		label=" "
-		name=":"
+		label="ndscope"
+		name="/opt/rtcds/userapps/release/cds/common/scripts/awgtpplot.sh K1:FEC-$(FEC)"
 		args="&"
 	}
 	command[8] {
@@ -256,54 +329,8 @@ byte {
 }
 rectangle {
 	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=24
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="K1:FEC-$(FEC)_STATE_WORD"
-	}
-}
-rectangle {
-	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=30
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="K1:FEC-$(FEC)_STATE_WORD"
-	}
-}
-rectangle {
-	object {
-		x=66
-		y=43
-		width=145
-		height=15
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="K1:FEC-$(FEC)_STATE_WORD"
-	}
-}
-rectangle {
-	object {
-		x=177
-		y=45
+		x=167
+		y=41
 		width=5
 		height=11
 	}
@@ -317,16 +344,56 @@ rectangle {
 }
 rectangle {
 	object {
-		x=177
-		y=45
+		x=167
+		y=41
 		width=5
-		height=11
+		height=12
 	}
 	"basic attribute" {
-		clr=15
+		clr=60
 	}
 	"dynamic attribute" {
 		vis="if zero"
 		chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
+	}
+}
+composite {
+	object {
+		x=174
+		y=41
+		width=5
+		height=12
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=174
+				y=41
+				width=5
+				height=12
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				chan="K1:FEC-$(FEC)_TP_CNT"
+			}
+		}
+		rectangle {
+			object {
+				x=174
+				y=41
+				width=5
+				height=12
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:FEC-$(FEC)_TP_CNT"
+			}
+		}
 	}
 }
