@@ -73,6 +73,7 @@ def make_l4c(f,unit='velo'):
     return data
     with open('noise_l4c.txt','w') as f:
         np.savetxt(f,data)
+
         
         
 if __name__=='__main__':
