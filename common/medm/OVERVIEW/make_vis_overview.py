@@ -245,23 +245,22 @@ if __name__=='__main__':
         return None
     
     def trip_mini_name_is(optic):
-        prefix = '/users/Commissioning/medm/'
         sus_type = sus_type_is(optic)
         if sus_type == 'TypeA':
-            adl = 'tripped_microA.adl'
+            adl = './MINI/tripped_microA.adl'
         elif sus_type == 'TypeB':
-            adl = 'tripped_microB.adl'
+            adl = './MINI/tripped_microB.adl'
         elif sus_type == 'TypeBp':
-            adl = 'tripped_microBp.adl'            
+            adl = './MINI/tripped_microBp.adl'            
         elif sus_type == 'TypeC-IMC':
-            adl = 'tripped_microC.adl'
+            adl = './MINI/tripped_microC.adl'
         elif sus_type == 'TypeC-OMC':
-            adl = 'tripped_microC.adl'                        
+            adl = './MINI/tripped_microC.adl'                        
         elif sus_type == 'TypeTMS':
-            adl = 'tripped_microT.adl'            
+            adl = './MINI/tripped_microT.adl'            
         else:
             raise ValueError('!')        
-        return prefix+adl
+        return adl
     
         
     height = 10
