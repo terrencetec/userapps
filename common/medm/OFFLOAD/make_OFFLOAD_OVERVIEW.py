@@ -230,20 +230,26 @@ def mtype_is(system):
 def sensor_stage_is(system,mtype,stage,dof):
     if stage == 'IP' and dof == 'F0Y':
         if mtype == 'TM': 
-            stage = 'BF'
+            if system == 'ITMY': # old model
+                stage = 'BF'
+            else:
+                stage = 'TM'
         else:
             stage = 'TM'
         dof = "Y"
     return stage, dof
 
 def damp_is(system,dof,mode='ERR'):
-    if system in ['BS','SR2','SR3','SRM']:
+    if system in ['BS']:
         if dof == 'F0Y':
             damp = 'DAMP'                        
         else:
             damp = 'DCCTRL'
     else:
-        damp = 'DAMP'                        
+        if dof == 'F0Y' and system != 'ITMY': # old model
+            damp = 'OLDAMP'                        
+        else:
+            damp = 'DAMP'                        
     return damp
     
 def bio_is(system):
