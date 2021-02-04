@@ -164,7 +164,7 @@ def top(x,y):
     return txt,width,height
 
 
-def mini(x,y,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,mode='ERR'):
+def mini(x,y,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,label,mode='ERR'):
     width = 350
     height = 25
     txt = '''
@@ -176,9 +176,9 @@ def mini(x,y,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,m
     height=30
     }}
     "composite name"=""
-    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},SENSOR_STAGE={sensor_stage},DOF={dof},SENSOR_DOF={sensor_dof},DAMP={damp},BIO={bio},STEPNAME={stepname},STEPID={stepid},MOTOR={motor}"
+    "composite file"="./OFFLOAD_MINI.adl;IFO=$(IFO),ifo=$(ifo),SYSTEM={system},STAGE={stage},SENSOR_STAGE={sensor_stage},DOF={dof},SENSOR_DOF={sensor_dof},DAMP={damp},BIO={bio},STEPNAME={stepname},STEPID={stepid},MOTOR={motor},LABEL={label}"
     }}
-    '''.format(common=common,x=x,y=y,system=system,stage=stage,sensor_stage=sensor_stage,dof=dof,sensor_dof=sensor_dof,damp=damp,bio=bio,stepname=stepname,stepid=stepid,motor=motor)
+    '''.format(common=common,x=x,y=y,system=system,stage=stage,sensor_stage=sensor_stage,dof=dof,sensor_dof=sensor_dof,damp=damp,bio=bio,stepname=stepname,stepid=stepid,motor=motor,label=label)
     return txt,width,height
 
 def head(x,y,system,mtype):
@@ -277,6 +277,13 @@ def motor_is(system,stage,dof):
     else:
         return channel_dict[system+'_'+stage+'_'+dof]
 
+def label_is(stage,dof):
+    if stage == 'IP':
+        if dof == 'F0Y':
+            return 'F0_Y'
+
+    return stage + '_' + dof
+
 if __name__=='__main__':
     systems = ['ETMX', 'ITMX', 'ETMY', 'ITMY', 'BS', 'SRM', 'SR2', 'SR3', 'PRM', 'PR2', 'PR3']
     #systems = ['TEST', 'TESTSR'] # TEST
@@ -351,7 +358,8 @@ if __name__=='__main__':
                     stepid = stepid_is(system,stage)
                     motor = motor_is(system,stage,dof)
                     sensor_stage, sensor_dof = sensor_stage_is(system,mtype,stage,dof)
-                    txt,w1,h1 = mini(width,height+_h,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,mode=mode)
+                    label = label_is(stage, dof)
+                    txt,w1,h1 = mini(width,height+_h,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,label,mode=mode)
                     _h += h1
                     contents += txt
             txt,w2,h2 = foot(width,height+_h,stepperid)
