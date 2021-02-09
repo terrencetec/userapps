@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2051
-		y=1133
+		x=1516
+		y=1512
 		width=583
 		height=118
 	}
@@ -91,7 +91,7 @@ composite {
 	object {
 		x=65
 		y=40
-		width=160
+		width=190
 		height=15
 	}
 	"composite name"=""
@@ -100,7 +100,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -114,7 +114,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -130,7 +130,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -146,7 +146,7 @@ composite {
 			object {
 				x=65
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -162,7 +162,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -177,7 +177,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -193,7 +193,7 @@ composite {
 			object {
 				x=66
 				y=40
-				width=159
+				width=189
 				height=15
 			}
 			"basic attribute" {
@@ -208,9 +208,9 @@ composite {
 }
 "text update" {
 	object {
-		x=181
+		x=180
 		y=40
-		width=15
+		width=17
 		height=15
 	}
 	monitor {
@@ -224,7 +224,7 @@ composite {
 }
 "related display" {
 	object {
-		x=68
+		x=67
 		y=40
 		width=25
 		height=15
@@ -239,7 +239,7 @@ composite {
 }
 byte {
 	object {
-		x=96
+		x=95
 		y=41
 		width=70
 		height=12
@@ -252,25 +252,11 @@ byte {
 	sbit=0
 	ebit=10
 }
-"message button" {
-	object {
-		x=198
-		y=42
-		width=12
-		height=12
-	}
-	control {
-		chan="K1:FEC-$(FEC)_DIAG_RESET"
-		clr=0
-		bclr=5
-	}
-	release_msg="1"
-}
 "shell command" {
 	object {
-		x=212
-		y=42
-		width=11
+		x=232
+		y=41
+		width=20
 		height=12
 	}
 	command[0] {
@@ -323,76 +309,96 @@ byte {
 		name="/kagra/bin/RTPC/realTimeTools.sh awgtpman k1$(system)"
 		args="&"
 	}
+	command[10] {
+		label="reset overflow"
+		name="caput"
+		args="K1:FEC-$(FEC)_OVERFLOW_RESET 1"
+	}
+	command[11] {
+		label="reset diag"
+		name="caput"
+		args="K1:FEC-$(FEC)_DIAG_RESET 1"
+	}
 	clr=14
 	bclr=46
 	label=" "
 }
-rectangle {
+"text update" {
 	object {
-		x=167
-		y=41
-		width=5
-		height=11
+		x=200
+		y=40
+		width=30
+		height=15
 	}
-	"basic attribute" {
-		clr=20
+	monitor {
+		chan="K1:FEC-$(FEC)_ACCUM_OVERFLOW"
+		clr=0
+		bclr=14
 	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
-	}
-}
-rectangle {
-	object {
-		x=167
-		y=41
-		width=5
-		height=12
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="if zero"
-		chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
+	align="horiz. centered"
+	limits {
 	}
 }
 composite {
 	object {
-		x=174
+		x=167
 		y=41
-		width=5
-		height=12
+		width=10
+		height=11
 	}
 	"composite name"=""
 	children {
-		rectangle {
+		composite {
 			object {
-				x=174
+				x=167
 				y=41
-				width=5
-				height=12
+				width=10
+				height=11
 			}
-			"basic attribute" {
-				clr=60
-			}
-			"dynamic attribute" {
-				chan="K1:FEC-$(FEC)_TP_CNT"
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=167
+						y=42
+						width=10
+						height=10
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="if not zero"
+						chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
+					}
+				}
+				rectangle {
+					object {
+						x=167
+						y=41
+						width=10
+						height=11
+					}
+					"basic attribute" {
+						clr=60
+					}
+					"dynamic attribute" {
+						vis="if zero"
+						chan="K1:DAQ-DC0_$(K1SUBSYS)_STATUS"
+					}
+				}
 			}
 		}
 		rectangle {
 			object {
-				x=174
+				x=167
 				y=41
-				width=5
-				height=12
+				width=10
+				height=11
 			}
 			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="K1:FEC-$(FEC)_TP_CNT"
+				clr=14
+				fill="outline"
 			}
 		}
 	}
