@@ -4,7 +4,8 @@ import argparse
 import ezca
 import time
 from plot import plot_3dofs, plot_3sus
-
+from datetime import datetime
+import os 
 # ------------------------------------------------------------------------------    
 def run_diag(fname):
     ''' Run shell command which executes the diaggui xml file.
@@ -20,8 +21,8 @@ def run_diag(fname):
         File name of the diaggui xml file.
 
     '''
-    _fname = fname.split('/')[3].replace('.xml','')
-
+    _fname = fname.split('/')[2].replace('.xml','')
+    
     # make command file for execution
     with open('./log/tmp_{0}_in'.format(_fname),'w') as f:
         txt = 'open\nrestore {0}\nrun -w\nsave {0}\nquit\n'.format(fname)
@@ -37,9 +38,14 @@ def run_diag(fname):
                                      check=True,
                                      stdin=tmp_in,
                                      stdout=tmp_out,
-                                     stderr=tmp_err)   
-    print(' - Fnished {0} {1}'.format(fname,ret))
+                                     stderr=tmp_err)
+    print(' - Fnished {0} {1}'.format(fname,ret))                
 
+    archive_fname = fname
+    current_fname = _fname.split('EXC')[0]+'EXC.xml'
+    cmd = 'cp {0} ./current/{1}'.format(archive_fname,current_fname)
+    subprocess.run(cmd,shell=True,check=True)
+    print(' -',cmd)
 
 def masterswitch_is_open(optic):
     return ezca['VIS-{0}_MASTERSWITCH'.format(optic)]==True
@@ -94,21 +100,16 @@ def get_dofs(optic,stage):
 def get_prefix(stage):
     '''
     '''
-    if stage in ['MN','IM','TM']:
-        prefix = './measurements/payload/'
-    elif stage in ['BF']:
-        prefix = './measurements/tower/'
-    else:
-        raise ValueError('{0}'.format(stage))
-    return prefix
+    return './archive/'
 
 def new_fname(template,optic,stage,dof):
     _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
     new = template.replace(_optic,optic).replace('_'+_dof+'_','_'+dof+'_')
     new = new.replace('_'+_dof+'_','_'+dof+'_')
-    new = new.replace('_'+_stage+'_','_'+stage+'_')        
-    new_fname = get_prefix(stage) + new
-    return new_fname
+    new = new.replace('_'+_stage+'_','_'+stage+'_')
+    now = datetime.now().strftime('%Y%m%d%H')
+    new_fname = get_prefix(stage) + new.replace('.xml','_{0}.xml'.format(now))
+    return new_fname, now
 
 # ------------------------------------------------------------------------------    
 def run_tf_measurement(template,optic,stage,run=False):
@@ -137,7 +138,7 @@ def run_tf_measurement(template,optic,stage,run=False):
     prefix = get_prefix(stage)
     for dof in get_dofs(optic,stage):
         # new_fname
-        fname = new_fname(template,optic,stage,dof)
+        fname, _now = new_fname(template,optic,stage,dof)
         # run
         if is_ready_to_measure(optic):
             if run:
@@ -172,12 +173,13 @@ def run_copy(template,optic,stage,run=False):
     for dof in get_dofs(optic,stage):
         # new_fname
         _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
-        fname = new_fname(template,optic,stage,dof)
+        fname, _now = new_fname(template,optic,stage,dof)
+
         # make command
         print('copy {0} -> {1}'.format('./template/'+template,fname))
-        cmd  = "cp -rf {0} {1}".format('./template/'+template,fname)        
+        cmd = "cp -rf {0} {1}".format('./template/'+template,fname)
         cmd += "; sed -i -e 's/{1}_{3}_DAMP/{2}_{4}_DAMP/' {0}".\
-        format(fname,_optic,optic,_stage,stage)
+            format(fname,_optic,optic,_stage,stage)
         cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
         cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
@@ -198,7 +200,7 @@ if __name__=="__main__":
     
     t = []
     #template = 'PLANT_PRM_IM_TEST_L_EXC.xml' # for 6 dofs stage. It takes 40 minutes
-    template = 'PLANT_PR2_BF_TEST_L_EXC.xml' # for 6 dofs stage. It takes 40 minutes 
+    template = 'PLANT_PRM_BF_TEST_L_EXC.xml' # for 6 dofs stage. It takes 40 minutes 
         
     optics = args.optics
     stage = args.stage[0]
@@ -209,7 +211,7 @@ if __name__=="__main__":
     if stage not in ['IM','BF']:
         raise ValueError('{0} is not supported now.'.format(stage))
     if stage in ['IM','BF','MN']: # for 6 dofs stage
-        if template.split('_')[2] not in ['IM','BF','MN']:        
+        if template.split('_')[2] not in ['IM','BF','MN']:
             raise ValueError('{0} is wrong template file for 6 dofs stage.'.format(stage))
     if stage in ['MN']: # for 3 dofs stage
         if template.split('_')[2] in ['IM','BF','MN']:
@@ -217,24 +219,7 @@ if __name__=="__main__":
 
     #
     # Start main functions
-    #
-    if args.plot:
-        excs = ['L','T','V','R','P','Y']
-        dofs = ['L','T','V','R','P','Y']
-        funcs = ['DAMP']
-        stages = ['IM','BF']
-        # for optic in optics:
-        #     for func in funcs:
-        #         for exc in excs:
-        #             print(optic,stage,func,dofs,exc)
-        #             plot_3dofs(optic,stage,func,dofs,exc)
-                    
-        for func in funcs:
-            for stage in stages:
-                for exc in excs:
-                    print(optics,stage,func,dofs,exc)
-                    plot_3sus(optics,stage,func,dofs,exc)
-                    
+    #                    
     if args.runcp: # Copy template file to working directory.
         for optic in optics:
             run_copy(template,optic,stage,run=True)
@@ -245,3 +230,19 @@ if __name__=="__main__":
             _t.start()
             #_t.join()
             t += [_t]
+
+    if args.plot:
+        excs = ['L','T','V','R','P','Y']
+        dofs = ['L','T','V','R','P','Y']
+        funcs = ['DAMP']
+        stages = ['IM','BF']
+        # for optic in optics:
+        #     for func in funcs:
+        #         for exc in excs:
+        #             print(optic,stage,func,dofs,exc)
+        #             plot_3dofs(optic,stage,func,dofs,exc)                    
+        for func in funcs:
+            for stage in stages:
+                for exc in excs:
+                    print(optics,stage,func,dofs,exc)
+                    plot_3sus(optics,stage,func,dofs,exc)            

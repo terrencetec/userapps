@@ -44,8 +44,8 @@ def get_tf(_from,_to):
     else:
         raise ValueError('!')
         
-    fname = './measurements/{4}/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
-                                                                      dof_exc,stage,part)
+    fname = './current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
+                                                             dof_exc,stage)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
     chname_from = 'K1:VIS-{0}_{1}_TEST_{2}_EXC'
@@ -146,7 +146,7 @@ def plot_3dofs(optic,stage,func,dofs,exc):
         part = 'tower'
     else:
         raise ValueError('!')    
-    plt.savefig('./measurements/{4}/PLANT_{0}_{3}_{1}_{2}.png'.format(optic,func,exc,stage,part))
+    plt.savefig('./current/PLANT_{0}_{3}_{1}_{2}.png'.format(optic,func,exc,stage,part))
     plt.close()
 
 def plot_3sus(optics,stage,func,dofs,exc):
@@ -171,15 +171,15 @@ def plot_3sus(optics,stage,func,dofs,exc):
             #_w,h = get_fitted_tf(w,hor1,coh,_in)
             idx = np.where(coh>0.7)
             _idx = np.where(coh<0.7)
-            color = ['k','r','b','g']
+            color = ['k','r','g','m']
             style = '{0}o'.format(color[i])
             ax[0][j].loglog(w[idx],np.abs(hor1[idx]),style,markersize=1,
                             label='Measured ({0})'.format(optic))
             ax[0][j].loglog(w[_idx],np.abs(hor1[_idx]),style,alpha=0.05,
                             markersize=1)
             #ax[0][j].loglog(_w,np.abs(h),'k',label='susmodel')
-            ax[0][j].set_ylim(1e-5,5e-1)
-            ax[0][j].set_ylim(1e-6,5e1)
+            #ax[0][j].set_ylim(1e-5,5e-1)
+            #ax[0][j].set_ylim(1e-5,1e-2)
             if dof==exc:
                 ax[0][j].set_title('{0} -> {1}'.format(exc,dof),color=color[1])
             else:
@@ -195,7 +195,7 @@ def plot_3sus(optics,stage,func,dofs,exc):
             ax[2][j].semilogx(w[idx],coh[idx],style,markersize=1,label='Measured ({0})'.format(optic))
             ax[2][j].semilogx(w[_idx],coh[_idx],style,markersize=1,alpha=0.05)
             ax[2][i].set_ylim(0,1)
-            ax[2][j].set_xlim(1e-2,5e1)
+            ax[2][j].set_xlim(1e-2,20)
             [ax[0][j].grid(which='both',linestyle='dashed') for j in range(3)]
             ax[2][j].legend(loc='lower right')            
             
@@ -211,7 +211,7 @@ def plot_3sus(optics,stage,func,dofs,exc):
         part = 'tower'
     else:
         raise ValueError('!')    
-    plt.savefig('./measurements/{3}/SUS_{2}_{0}_{1}.png'.format(func,exc,stage,part))
+    plt.savefig('./current/PLANT_SUS_{2}_{0}_{1}.png'.format(func,exc,stage))
     plt.close()
     
 
