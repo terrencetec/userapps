@@ -90,7 +90,7 @@ def get_fitted_tf(omega_measured,tf_measured,coh_measured,_exc,dof):
 def plot_3dofs(optic,stage,func,dofs,exc):
     '''
     '''
-    fig,ax = plt.subplots(3,6,figsize=(16,8),sharex=True,sharey='row')
+    fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
     fig.suptitle('{0} {1} {2} EXC'.format(optic,func,exc))
     plt.subplots_adjust(wspace=0.15,hspace=0.1)
     for i,dof in enumerate(dofs):
@@ -133,7 +133,7 @@ def plot_3dofs(optic,stage,func,dofs,exc):
         ax[2][i].set_ylim(0,1)
         ax[2][i].set_xlim(1e-2,1e1)
         [ax[j][i].grid(which='both',linestyle='dashed') for j in range(3)]
-        ax[0][i].legend(loc='upper right')
+        ax[2][i].legend(loc='lower right')
     [ax[2][i].set_xlabel('Frequency [Hz]') for i in range(6)]
     ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
     ax[1][0].set_ylabel('Phase [Degree]')
@@ -152,7 +152,7 @@ def plot_3dofs(optic,stage,func,dofs,exc):
 def plot_3sus(optics,stage,func,dofs,exc):
     '''
     '''
-    fig,ax = plt.subplots(3,6,figsize=(16,8),sharex=True,sharey='row')
+    fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
     fig.suptitle('{0} {1} {2} EXC'.format(stage,func,exc))
     plt.subplots_adjust(wspace=0.15,hspace=0.1)
     for j,dof in enumerate(dofs):    
@@ -197,7 +197,7 @@ def plot_3sus(optics,stage,func,dofs,exc):
             ax[2][i].set_ylim(0,1)
             ax[2][j].set_xlim(1e-2,5e1)
             [ax[0][j].grid(which='both',linestyle='dashed') for j in range(3)]
-            ax[0][j].legend(loc='upper right')
+            ax[2][j].legend(loc='lower right')            
             
     [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(6)]
     ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
