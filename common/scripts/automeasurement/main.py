@@ -3,6 +3,7 @@ import subprocess
 import argparse
 import ezca
 import time
+from plot import plot_3dofs, plot_3sus
 
 # ------------------------------------------------------------------------------    
 def run_diag(fname):
@@ -192,10 +193,8 @@ if __name__=="__main__":
     parser.add_argument('-stage','-s',nargs='+',required=True)
     parser.add_argument('--rundiag',action='store_true')
     parser.add_argument('--runcp',action='store_true')
-    parser.add_argument('--long',action='store_true')
-    args = parser.parse_args()        
-    runcp = args.runcp
-    rundiag = args.rundiag
+    parser.add_argument('--plot',action='store_true')
+    args = parser.parse_args()
     
     t = []
     #template = 'PLANT_PRM_IM_TEST_L_EXC.xml' # for 6 dofs stage. It takes 40 minutes
@@ -219,11 +218,28 @@ if __name__=="__main__":
     #
     # Start main functions
     #
-    if runcp: # Copy template file to working directory.
+    if args.plot:
+        excs = ['L','T','V','R','P','Y']
+        dofs = ['L','T','V','R','P','Y']
+        funcs = ['DAMP']
+        stages = ['IM','BF']
+        # for optic in optics:
+        #     for func in funcs:
+        #         for exc in excs:
+        #             print(optic,stage,func,dofs,exc)
+        #             plot_3dofs(optic,stage,func,dofs,exc)
+                    
+        for func in funcs:
+            for stage in stages:
+                for exc in excs:
+                    print(optics,stage,func,dofs,exc)
+                    plot_3sus(optics,stage,func,dofs,exc)
+                    
+    if args.runcp: # Copy template file to working directory.
         for optic in optics:
             run_copy(template,optic,stage,run=True)
 
-    if rundiag: # Parallel measurement for each optics!
+    if args.rundiag: # Parallel measurement for each optics!
         for optic in optics:
             _t = threading.Thread(target=run_tf_measurement,args=(template,optic,stage),kwargs={'run':True})
             _t.start()
