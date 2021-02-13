@@ -1,7 +1,6 @@
 
 
 
-
 # Automeasurement
 ## Files
 
@@ -22,6 +21,11 @@ Case 2: Plot the TFs in IM stage for all Type-Bp suspensions.
 > python main,py -o PRM PR2 PR3 -s BF --plot
 
 ## For developers
+
+
+### AutoMeasurementの中身
+
+まず指定された場所で励起するためのファイルをテンプレファイルから生成する。このファイルは一旦Archiveディレクトリに時間を末尾につけたファイル名として保存される。ファイルの実行はArchiveディレクトリ上で行われ、無事実行が終わればCurrentディレクトリにコピーされる。その際、ファイル名の末尾の日付は消しておく。
 
 
 ## Trouble shooting

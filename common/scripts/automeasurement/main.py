@@ -92,8 +92,8 @@ def get_dofs(optic,stage):
             raise ValueError('{0} does not has the BF-damper'.format(optic))
     elif stage in ['IP']:
         dofs = ['L','T','Y']
-    elif stage in ['F0','SF']:
-        dofs = ['GAS']                
+    elif stage in ['F0','SF','F1','F2','F3','BF',]:
+        dofs = ['GAS']
     elif stage in ['F1','F2','F3']:
         raise ValueError('Please choose F0 or SF if you want to measure for GAS chain')
     return dofs
@@ -113,7 +113,7 @@ def new_fname(template,optic,stage,dof):
     return new_fname, now
 
 # ------------------------------------------------------------------------------    
-def run_tf_measurement(template,optic,stage,dofs=['L','P','Y'],run=False):
+def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False):
     ''' Run diaggui xml file which measures the Transfer Function.
     
     This function runs shell command which executes the diaggui xml file for TF
@@ -136,15 +136,14 @@ def run_tf_measurement(template,optic,stage,dofs=['L','P','Y'],run=False):
     None
     '''
     # run diag
-    prefix = get_prefix(stage)
-    for dof in get_dofs(optic,stage):
-        if dof in dofs:
+    for stage in stages:
+        for dof in dofs:
             # new_fname
             fname, _now = new_fname(template,optic,stage,dof)
             # run
             if is_ready_to_measure(optic):
                 if run:
-                    run_diag(fname) 
+                    run_diag(fname)
             else:
                 raise ValueError('!')
 
@@ -172,74 +171,103 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False):
 
     '''    
     # run command
-    for dof in get_dofs(optic,stage):
-        if dof in dofs:
-            # new_fname
-            _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
-            fname, _now = new_fname(template,optic,stage,dof)
-            
-            # make command
-            print('copy {0} -> {1}'.format('./template/'+template,fname))
-            cmd = "cp -rf {0} {1}".format('./template/'+template,fname)
-            cmd += "; sed -i -e 's/{1}_{3}_DAMP/{2}_{4}_DAMP/' {0}".\
-                format(fname,_optic,optic,_stage,stage)
-            cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
-                format(fname,_optic,optic,_stage,stage,_dof,dof)
-            cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
-                format(fname,_optic,optic,_stage,stage,_dof,dof)        
-            # run
-            if run:
-                subprocess.run(cmd,shell=True,check=True)
-            
+    for dof in dofs:
+        # new_fname
+        _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
+        fname, _now = new_fname(template,optic,stage,dof)
+        
+        # make command
+        print('copy {0} -> {1}'.format('./template/'+template,fname))
+        cmd = "cp -rf {0} {1}".format('./template/'+template,fname)
+        cmd += "; sed -i -e 's/{1}_{3}_DAMP/{2}_{4}_DAMP/' {0}".\
+            format(fname,_optic,optic,_stage,stage)
+        cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
+            format(fname,_optic,optic,_stage,stage,_dof,dof)
+        cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
+            format(fname,_optic,optic,_stage,stage,_dof,dof)        
+        # run
+        if run:
+            subprocess.run(cmd,shell=True,check=True)
+
+# ------------------------------------------------------------------------------
 if __name__=="__main__":
     ezca = ezca.Ezca(timeout=2)
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-optics','-o',nargs='+',required=True)
-    parser.add_argument('-stage','-s',nargs='+',required=True)
-    parser.add_argument('-dofs','-d',nargs='+',required=True)    
-    parser.add_argument('--rundiag',action='store_true')
-    parser.add_argument('--init',action='store_true')
-    parser.add_argument('--plot',action='store_true')
+    parser = argparse.ArgumentParser(
+        prog='main.py',
+        description='If you want to execute the template dtt file for IM stage '\
+        'in PRM, PR2, and PRM, please request above command.',
+        usage='./main.py -o PRM PR2 PR3 -s IM',        
+        epilog='Please bug report to Kouseki Miyo (miyo@icrr.u-tokyo.ac.jp)')
+    parser.add_argument('-o',nargs='+',required=True,
+                        help='Please give a name list of the optics: e.g. PRM PR2 PR3')
+    parser.add_argument('-s',nargs='+',required=True,
+                        help='Please give a name list of the stage: e.g. IM.')
+    parser.add_argument('-d',nargs='+',required=True,
+                        help='Please give a name list of the DOFs: e.g. L T V R P Y.')    
+    parser.add_argument('--rundiag',action='store_true',
+                        help='If you execute the measurement files actualy, '\
+                        'please give this option. If not, dtt template will not run.')
+    parser.add_argument('--init',action='store_true',
+                        help='If you want override the dtt files for actual '\
+                        'measurement which is in current/* by using the '\
+                        'template file in ./template/*, please give this option. '\
+                        'If you do not want to override, do not give it.')
+    parser.add_argument('--plot',action='store_true',
+                        help='If you plot, please give this option.')
     args = parser.parse_args()
     
     t = []
         
-    optics = args.optics
-    stage = args.stage[0]
-    dofs = args.dofs
-    if stage=='IM':
-        template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
-    elif stage=='BF':        
-        template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
+    optics = args.o
+    stages = args.s
+    dofs = args.d
+
+    if len(stages)>1:
+        if not 'GAS' in dofs:
+            raise ValueError('Please do not measure the multiple stages in same time.')
+        elif 'GAS'==dofs[0] and len(dofs)==1:
+            if all([stage in ['BF','F0','F1','F2','F3'] for stage in stages]):
+                template = 'PLANT_ETMY_BF_TEST_GAS_EXC.xml'
+            else:
+                raise ValueError('!!!')
+        else:
+                raise ValueError('!!')            
+    elif len(stages)==1:
+        stage = stages[0]
+        if stage=='IM':
+            template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
+        elif stage=='BF' and not 'GAS' in dofs:        
+            template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
+        else:
+            raise ValueError('{0}!'.format(stage))
     else:
         raise ValueError('{0}!'.format(stage))
-    
     #
     # Notification
     #
-    if stage not in ['IM','BF']:
-        raise ValueError('{0} is not supported now.'.format(stage))
+    if not all([stage in ['IM','BF','F0','F1','F2','F3'] for stage in stages]):
+        raise ValueError('{0} is not supported now.'.format(stages))
     if len(optics)>3 and not args.plot:
         raise ValueError('Please reduce the number of optics because it may ' \
                          'reach to the limit of the maximum number of '\
                          'the test point. ')
-
+    
     #
     # Start main functions
     #                    
     if args.init: # Copy template file to working directory.
         for optic in optics:
-            run_copy(template,optic,stage,dofs=dofs,run=True)
+            for stage in stages:
+                run_copy(template,optic,stage,dofs=dofs,run=True)
 
     if args.rundiag: # Parallel measurement for each optics!
         for optic in optics:
             _t = threading.Thread(target=run_tf_measurement,
-                                  args=(template,optic,stage),
+                                  args=(template,optic,stages),
                                   kwargs={'run':True,'dofs':dofs})
             _t.start()
-            #_t.join()
             t += [_t]
-
+                
     if args.plot:
         excs = ['L','T','V','R','P','Y']
         func = 'DAMP'
