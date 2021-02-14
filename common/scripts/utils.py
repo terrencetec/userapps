@@ -28,6 +28,11 @@ def push_diag_reset():
         else:
             pass
 
+def push_overflow_reset():
+    for fec in feclist:
+        ezca['FEC-{0}_OVERFLOW_RESET'.format(fec)] = 1
+        
+
 def push_wd_reset():
     modellist.remove('ts')
     modellist.remove('tmsx')
@@ -45,6 +50,7 @@ def push_wd_reset():
         print(model)
             
 if __name__=='__main__':
-    #push_sdf_reload()
-    #push_diag_reset()
+    push_sdf_reload()
+    push_diag_reset()
+    push_overflow_reset()
     push_wd_reset()
