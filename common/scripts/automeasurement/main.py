@@ -3,10 +3,16 @@ import subprocess
 import argparse
 import ezca
 import time
-from plot import plot_3dofs, plot_3sus
-from plot import plot_plant_sus_diag_exc
+from plot import plot
 from datetime import datetime
-import os 
+import os
+
+all_optics = ['ETMX','ETMY','ITMX','ITMY',
+              'BS','SRM','SR2','SR3',
+              'PRM','PR2','PR3',
+              'MCI','MCO','MCE','IMMT1','IMMT2',
+              'OSTM','OMMT1','OMMT2']
+
 # ------------------------------------------------------------------------------    
 def run_diag(fname):
     ''' Run shell command which executes the diaggui xml file.
@@ -48,6 +54,38 @@ def run_diag(fname):
     subprocess.run(cmd,shell=True,check=True)
     print(' -',cmd)
 
+
+def open_all(optics,stages,funcs,dofs):
+    '''
+    '''
+    # open LIGO Filters
+    for optic in optics:
+        for stage in stages:
+            for func in funcs:
+                for dof in dofs:
+                    open_LIGOFilter(optic,stage,func,dof)
+                    
+    # open master switch
+    for optic in optics:
+        open_masterswitch(optic)
+        
+def available_optics(optics=all_optics):
+    cms = 'VIS-{0}_COMMISH_MESSAGE'
+    ok = [optic for optic in optics if ezca[cms.format(optic)]=='Miyo: SC']
+    return ok
+
+def open_LIGOFilter(optic,stage,func,dof):
+    ezca.get_LIGOFilter('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof))\
+        .only_on('INPUT','OUTPUT','DECIMATION')
+    ezca['VIS-SRM_F0_TEST_GAS_GAIN'] = 1
+    
+def open_masterswitch(optic):
+    ezca['VIS-{0}_MASTERSWITCH'.format(optic)]=True
+    
+def close_masterswitch(optic):
+    ezca['VIS-{0}_MASTERSWITCH'.format(optic)]=False
+    
+    
 def masterswitch_is_open(optic):
     return ezca['VIS-{0}_MASTERSWITCH'.format(optic)]==True
 
@@ -135,17 +173,23 @@ def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False):
     ----
     None
     '''
+    # Check if measurement is OK.
+    if not is_ready_to_measure(optic):
+        raise ValueError('!')
+    
     # run diag
     for stage in stages:
         for dof in dofs:
             # new_fname
             fname, _now = new_fname(template,optic,stage,dof)
             # run
-            if is_ready_to_measure(optic):
-                if run:
-                    run_diag(fname)
+            if run:
+                run_diag(fname)
             else:
                 raise ValueError('!')
+            
+    # close master_switch
+    close_masterswitch(optic)
 
 # ------------------------------------------------------------------------------
         
@@ -215,23 +259,44 @@ if __name__=="__main__":
     parser.add_argument('--plot',action='store_true',
                         help='If you plot, please give this option.')
     args = parser.parse_args()
-    
-    t = []
-        
+    #
+    # Arguments
+    #
     optics = args.o
     stages = args.s
     dofs = args.d
-
+    optics = available_optics(optics)
+    #
+    if optics[0]=='all':
+        optics = available_optics(optics)
+        
+    if stages[0]=='all':
+        if dofs[0]=='GAS':
+            stages = ['SF','BF,''F0','F1','F2','F3']
+        else:
+            raise ValueError('!')
+        
+    if dofs[0]=='all':
+        if len(stages)==1 and stages[0] in ['IM','BF']:
+            dofs = ['L','T','V','R','P','Y']
+        elif len(stages)==1 and stages[0]=='TM':
+            dofs = ['L','P','Y']
+        else:
+            raise ValueError('!')
+    #
+    # Notification
+    #
     if len(stages)>1:
         if not 'GAS' in dofs:
             raise ValueError('Please do not measure the multiple stages in same time.')
         elif 'GAS'==dofs[0] and len(dofs)==1:
-            if all([stage in ['BF','F0','F1','F2','F3'] for stage in stages]):
+            if all([stage in ['BF','F0','F1','F2','F3','SF'] for stage in stages]):
                 template = 'PLANT_ETMY_BF_TEST_GAS_EXC.xml'
             else:
-                raise ValueError('!!!')
+                raise ValueError('{0} does not have GAS filter.'.format(stage))
         else:
-                raise ValueError('!!')            
+                raise ValueError('!!')
+            
     elif len(stages)==1:
         stage = stages[0]
         if stage=='IM':
@@ -242,40 +307,44 @@ if __name__=="__main__":
             raise ValueError('{0}!'.format(stage))
     else:
         raise ValueError('{0}!'.format(stage))
-    #
-    # Notification
-    #
-    if not all([stage in ['IM','BF','F0','F1','F2','F3'] for stage in stages]):
-        raise ValueError('{0} is not supported now.'.format(stages))
+    if not all([stage in ['IM','BF','F0','F1','F2','F3','SF'] for stage in stages]):
+        raise ValueError('There are stages which is not supported now in {0}'.format(stages))
     if len(optics)>3 and not args.plot:
         raise ValueError('Please reduce the number of optics because it may ' \
                          'reach to the limit of the maximum number of '\
-                         'the test point. ')
+                         'the test point. {0}'.format(optics))
     
     #
     # Start main functions
-    #                    
-    if args.init: # Copy template file to working directory.
+    #
+    
+    # Initialization
+    if args.init:
         for optic in optics:
             for stage in stages:
                 run_copy(template,optic,stage,dofs=dofs,run=True)
-
-    if args.rundiag: # Parallel measurement for each optics!
+                
+    # Measurement
+    if args.rundiag:
+        # Time estimation
+        optics_list = [optics[3*i:3*(i+1)] for i in range(4)]
+        time = len(dofs)*3
+        ans = input('It takes {0} minutes. Do you want to measure? [y/N]'.format(time))
+        if ans not in ['y','yes','Y']:
+            print('You chose {0}. Stop.'.format(ans))
+            exit()
+        # Open the path to input the excitation signal
+        funcs = ['TEST']        
+        open_all(optics,stages,funcs,dofs)            
+        # Execution
+        t = []                    
         for optic in optics:
             _t = threading.Thread(target=run_tf_measurement,
                                   args=(template,optic,stages),
                                   kwargs={'run':True,'dofs':dofs})
             _t.start()
-            t += [_t]
-                
+            t += [_t]                    
+    # Plot
     if args.plot:
-        excs = ['L','T','V','R','P','Y']
-        func = 'DAMP'
-        stage = stage
-        if False:
-            for exc in excs:
-                print(optics,stage,func,dofs,exc)
-                plot_3sus(optics,stage,func,dofs,exc)
-        if True:
-            plot_plant_sus_diag_exc(optics,stage,func,dofs,excs)
-        
+        excs = dofs
+        plot(optics,stages,dofs,excs,func='DAMP')

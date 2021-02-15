@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE LIGO_LW [
+<!ELEMENT LIGO_LW ((LIGO_LW|Comment|Param|Time|Table|Array|Stream)*)>
+<!ATTLIST LIGO_LW Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Comment (#PCDATA)>
+<!ELEMENT Param (#PCDATA)>
+<!ATTLIST Param Name CDATA #IMPLIED Type CDATA #IMPLIED Dim CDATA #IMPLIED
+                Unit CDATA #IMPLIED>
+<!ELEMENT Table (Comment?,Column*,Stream?)>
+<!ATTLIST Table Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Column EMPTY>
+<!ATTLIST Column Name CDATA #IMPLIED Type CDATA #IMPLIED Unit CDATA #IMPLIED>
+<!ELEMENT Array (Dim*,Stream?)>
+<!ATTLIST Array Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Dim (#PCDATA)>
+<!ATTLIST Dim Name CDATA #IMPLIED>
+<!ELEMENT Stream (#PCDATA)>
+<!ATTLIST Stream Name CDATA #IMPLIED Type (Remote|Local) "Local"
+          Delimiter CDATA "," Encoding CDATA #IMPLIED Content CDATA #IMPLIED>
+<!ELEMENT Time (#PCDATA)>
+<!ATTLIST Time Name CDATA #IMPLIED Type (GPS|Unix|ISO-8601) "ISO-8601">
+]>
+<LIGO_LW Name="Diagnostics Test">
+  <LIGO_LW Name="Header" Type="Global">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Creator" Type="string">Diagnostics system</Param>
+    <Param Name="TestType" Type="string">FFT</Param>
+    <Param Name="TestName" Type="string">1998-2001, by Daniel Sigg</Param>
+    <Param Name="Supervisory" Type="string">Standard</Param>
+    <Param Name="TestIterator" Type="string">Repeat</Param>
+    <Time Name="TestTime" Type="GPS">1297379053.667019</Time>
+    <Time Name="TestTimeUTC" Type="ISO-8601">2021-02-14 23:03:56</Time>
+  </LIGO_LW>
+  <LIGO_LW Name="Def" Type="Defaults">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="AllowCancel" Type="boolean">true</Param>
+    <Param Name="NoStimulus" Type="boolean">false</Param>
+    <Param Name="NoAnalysis" Type="boolean">false</Param>
+    <Param Name="KeepTraces" Type="int">100</Param>
+    <Param Name="SiteDefault" Type="byte">.</Param>
+    <Param Name="SiteForce" Type="byte"> </Param>
+    <Param Name="IfoDefault" Type="byte"> </Param>
+    <Param Name="IfoForce" Type="byte"> </Param>
+    <Param Name="Reconnect" Type="boolean">false</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Find" Type="Optimization">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Enable" Type="boolean">true</Param>
+    <Param Name="Change" Type="boolean">true</Param>
+    <Param Name="Type" Type="int">0</Param>
+    <Param Name="Value" Type="double">0</Param>
+    <Param Name="Function" Type="int">0</Param>
+    <Param Name="Param" Type="double" Dim="2">0	100</Param>
+    <Param Name="Method" Type="int">0</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Lidax" Type="Fantom">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Sync" Type="Synchronization">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Type" Type="int">0</Param>
+    <Time Name="Start" Type="GPS">0.0</Time>
+    <Param Name="Wait" Type="double" Unit="s">0</Param>
+    <Param Name="Repeat" Type="int">1</Param>
+    <Param Name="RepeatRate" Type="double" Unit="s">0</Param>
+    <Param Name="SlowDown" Type="double" Unit="s">0</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Test" Type="TestParameter">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Subtype" Type="string">FFT</Param>
+    <Param Name="StartFrequency" Type="double" Unit="Hz">0</Param>
+    <Param Name="StopFrequency" Type="double" Unit="Hz">900</Param>
+    <Param Name="BW" Type="double" Unit="Hz">1</Param>
+    <Param Name="Overlap" Type="double">0.5</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="RemoveDC" Type="boolean">false</Param>
+    <Param Name="AChannels" Type="int">0</Param>
+    <Param Name="AverageType" Type="int">0</Param>
+    <Param Name="Averages" Type="int">10</Param>
+    <Param Name="BurstNoiseQuietTime_s" Type="double">0</Param>
+    <Param Name="SettlingTime" Type="double">0</Param>
+    <Param Name="RampDown" Type="double">0</Param>
+    <Param Name="RampUp" Type="double">0</Param>
+    <Param Name="StimulusType[0]" Type="int">0</Param>
+    <Param Name="StimulusType[1]" Type="int">0</Param>
+    <Param Name="StimulusType[2]" Type="int">0</Param>
+    <Param Name="StimulusType[3]" Type="int">0</Param>
+    <Param Name="StimulusType[4]" Type="int">0</Param>
+    <Param Name="StimulusFrequency[0]" Type="double" Unit="Hz">100</Param>
+    <Param Name="StimulusFrequency[1]" Type="double" Unit="Hz">100</Param>
+    <Param Name="StimulusFrequency[2]" Type="double" Unit="Hz">100</Param>
+    <Param Name="StimulusFrequency[3]" Type="double" Unit="Hz">100</Param>
+    <Param Name="StimulusFrequency[4]" Type="double" Unit="Hz">100</Param>
+    <Param Name="StimulusAmplitude[0]" Type="double">0</Param>
+    <Param Name="StimulusAmplitude[1]" Type="double">0</Param>
+    <Param Name="StimulusAmplitude[2]" Type="double">0</Param>
+    <Param Name="StimulusAmplitude[3]" Type="double">0</Param>
+    <Param Name="StimulusAmplitude[4]" Type="double">0</Param>
+    <Param Name="StimulusOffset[0]" Type="double">0</Param>
+    <Param Name="StimulusOffset[1]" Type="double">0</Param>
+    <Param Name="StimulusOffset[2]" Type="double">0</Param>
+    <Param Name="StimulusOffset[3]" Type="double">0</Param>
+    <Param Name="StimulusOffset[4]" Type="double">0</Param>
+    <Param Name="StimulusPhase[0]" Type="double">0</Param>
+    <Param Name="StimulusPhase[1]" Type="double">0</Param>
+    <Param Name="StimulusPhase[2]" Type="double">0</Param>
+    <Param Name="StimulusPhase[3]" Type="double">0</Param>
+    <Param Name="StimulusPhase[4]" Type="double">0</Param>
+    <Param Name="StimulusRatio[0]" Type="double">0.5</Param>
+    <Param Name="StimulusRatio[1]" Type="double">0.5</Param>
+    <Param Name="StimulusRatio[2]" Type="double">0.5</Param>
+    <Param Name="StimulusRatio[3]" Type="double">0.5</Param>
+    <Param Name="StimulusRatio[4]" Type="double">0.5</Param>
+    <Param Name="StimulusFrequencyRange[0]" Type="double" Unit="Hz">10000</Param>
+    <Param Name="StimulusFrequencyRange[1]" Type="double" Unit="Hz">10000</Param>
+    <Param Name="StimulusFrequencyRange[2]" Type="double" Unit="Hz">10000</Param>
+    <Param Name="StimulusFrequencyRange[3]" Type="double" Unit="Hz">10000</Param>
+    <Param Name="StimulusFrequencyRange[4]" Type="double" Unit="Hz">10000</Param>
+    <Param Name="StimulusAmplitudeRange[0]" Type="double">0</Param>
+    <Param Name="StimulusAmplitudeRange[1]" Type="double">0</Param>
+    <Param Name="StimulusAmplitudeRange[2]" Type="double">0</Param>
+    <Param Name="StimulusAmplitudeRange[3]" Type="double">0</Param>
+    <Param Name="StimulusAmplitudeRange[4]" Type="double">0</Param>
+  </LIGO_LW>
+</LIGO_LW>
