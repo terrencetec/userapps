@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.signal import freqs,freqs_zpk, zpk2tf
-import control
+#import control
 import dtt2hdf
 from dtt2hdf import read_diaggui,DiagAccess
 
@@ -24,7 +24,7 @@ def read_tf(fname,chname_to,chname_from):
         raise ValueError('{0} is invalid file. Please open with diaggui and check the measurement result.'.format(fname))
     return _omega,_tf,_coh
 
-def get_tf(_from,_to):
+def get_tf(_from,_to,prefix='./current/'):
     if not '_EXC' in _from:
         raise ValueError('!')
     if not '_IN1' in _to:
@@ -42,7 +42,7 @@ def get_tf(_from,_to):
     else:
         raise ValueError('!')
         
-    fname = './current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
+    fname = prefix+'PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
                                                              dof_exc,stage)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
@@ -101,7 +101,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title'):
     leg = ax[0].legend(loc='lower left',numpoints=1,markerscale=5)
     [l.set_linewidth(3) for l in leg.legendHandles]
     
-def plot(optics,stages,dofs,excs,func='DAMP'):
+def plot(optics,stages,dofs,excs,func='DAMP',prefix='./current/'):
     ''' 
     '''
     fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
@@ -114,12 +114,12 @@ def plot(optics,stages,dofs,excs,func='DAMP'):
                 # get_data
                 _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out)
+                w, tf, coh = get_tf(_in,_out,prefix=prefix)
                 # plot
                 label = '{0}'.format(optic)
                 title = '{0}->{0}'.format(stage)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)        
-        fname = './current/PLANT_SUS_GAS_DIAG_EXC.png'
+        fname = prefix+'PLANT_SUS_GAS_DIAG_EXC.png'
     elif len(stages)*len(excs)==1:
         stage,exc = stages[0],excs[0]
         fig.suptitle('{0} {1} {2} EXC'.format(stage,func,exc))                
@@ -128,12 +128,12 @@ def plot(optics,stages,dofs,excs,func='DAMP'):
                 # get_data
                 _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out)            
+                w, tf, coh = get_tf(_in,_out,prefix=prefix)            
                 # plot
                 label = '{0}'.format(optic)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)
-        fname = './current/PLANT_SUS_{1}_{2}_{3}_EXC.png'.format(optic,stage,func,exc)
+        fname = prefix+'PLANT_SUS_{1}_{2}_{3}_EXC.png'.format(optic,stage,func,exc)
     elif excs==dofs and len(stages)==1:
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
@@ -143,12 +143,12 @@ def plot(optics,stages,dofs,excs,func='DAMP'):
                 # get_data
                 _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out)            
+                w, tf, coh = get_tf(_in,_out,prefix=prefix)            
                 # plot
                 label = '{0}'.format(optic)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)
-        fname = './current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+        fname = prefix+'PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
     else:
         raise ValueError('!')    
     print(fname)
