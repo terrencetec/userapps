@@ -197,7 +197,7 @@ def foton2zpk(zpkstr):
     '''
     zpkstr = str(zpkstr)
     result = re.findall('zpk\(\[(.*)\],\[(.*)\],(.*),"f"\)',zpkstr)[0]
-    z,p,k = [map(eval,item.replace('i','1j').split(';')) for item in result]    
+    z,p,k = [map(eval,item.replace('i','1j').split(';')) if item!='' else [] for item in result]
     return list(z),list(p),list(k)[0]
 
 def db(val):
@@ -233,41 +233,56 @@ def init_OSEMINF(optics,stage,func='OSEMINF'):
         copy_FMs(fm_v1,fms)        
         ff.save()
 
-def all_zpk(fms):
+def all_zpk(fms,active=range(10)):
+    '''
+    '''
     z,p,k = [],[],1
-    for fm in fms:
-        if not fm.design=='':
-            huge = iir2zpk(fm,plane='f')
-            _z,_p,_k = foton2zpk(huge)
-            z += _z
-            p += _p
-            k *= _k
-        else:
-            pass
+    for i,fm in enumerate(fms):
+        if i+1 in active:
+            if not fm.design=='':
+                huge = iir2zpk(fm,plane='f')
+                _z,_p,_k = foton2zpk(huge)
+                z += _z
+                p += _p
+                k *= _k
+            else:
+                pass
     return z,p,k
     
-def plot_OSEMINF(optics,stage,func='OSEMINF',fname=None):
+def plot_FILT(optics,stage,func='OSEMINF',fname=None,dofs=['V1','V2','V3','H1','H2','H3']):
     '''
     '''
-    fig,ax = plt.subplots(2,3,figsize=(10,6),sharex=True,sharey='row')
-    fig.suptitle('Comparison of the OSEMINFs for all DOFs')
+    col = len(optics)
+    fig,ax = plt.subplots(2,col,figsize=(18,6),sharex=True,sharey='row')
+    fig.suptitle('Comparison of the {0}s for all DOFs'.format(func))
     for i,optic in enumerate(optics):
         part = partname_is(optic,stage)
         ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
         ff = Ezff(ffname)
-        for dof in ['V1','V2','V3','H1','H2','H3']:    
+        for dof in dofs:
             fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
-            fm = ff[fmname]
-            fms = [fm[i] for i in range(10)]
-            z,p,k = all_zpk(fms)
-            sys = signal.ZerosPolesGain(z,p,k)
-            freq = np.logspace(-2,2,1000)            
-            freq,h = signal.freqresp(sys,freq)
-            #
-            ax[0][i].semilogx(freq,db(np.abs(h)),label=dof)
-            ax[1][i].semilogx(freq,np.rad2deg(np.angle(h)),label=dof)
+            try:
+                fm = ff[fmname]
+                fms = [fm[i] for i in range(10)]
+                FB = ezca.get_LIGOFilter('VIS-'+fmname)
+                mask = FB.get_current_swstat_mask().buttons
+                mask = filter(lambda x:True if 'FM' in x else False ,mask)
+                mask = map(lambda x: eval(x.replace('FM','')),mask)
+                mask = list(mask)
+                z,p,k = all_zpk(fms,active=mask)
+                k *= ezca['VIS-'+fmname+'_GAIN']
+                sys = signal.ZerosPolesGain(z,p,k)
+                freq = np.logspace(-2,2,1000)            
+                freq,h = signal.freqresp(sys,freq)
+                #
+                ax[0][i].semilogx(freq,db(np.abs(h)),label=dof)
+                ax[1][i].semilogx(freq,np.rad2deg(np.angle(h)),label=dof)
+            except:
+                pass
         #ax[0].set_ylim(-40,20)
         ax[1][i].set_xlim(1e-2,1e2)
+        ax[1][i].set_ylim(-200,200)
+        ax[1][i].set_yticks(range(-180,181,90))        
         ax[0][i].legend()
         ax[1][i].set_xlabel('Frequency [Hz]')
         [[_ax.grid(which='both',color='black',linestyle=':') for _ax in __ax] for __ax in ax]
@@ -276,30 +291,73 @@ def plot_OSEMINF(optics,stage,func='OSEMINF',fname=None):
     ax[1][0].set_ylabel('Phase [deg]')        
     plt.tight_layout()
     if fname==None:
-        fname = 'OSEMINF_{0}_{1}.png'.format('-'.join(optics),stage)        
+        fname = '{0}_{1}.png'.format(func,stage)
     plt.savefig(fname)
     plt.close()
+
+
+def switch_on(chname,mask=['INPUT','OFFSET','OUTPUT','DECIMATION']):
+    '''
+    '''
+    FB = ezca.get_LIGOFilter(chname)
+    FMs = FB.get_current_swstat_mask().buttons
+    FB.only_on(*mask)
+    
     
 if __name__=='__main__':
     #main1()
     #main2()
-    chname = 'VIS-PRM_IM_OSEM2EUL_5_1'
+    #switch_on('VIS-PRM_IM_OSEMINF_V1',mask=['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8'])
     #copy_param(chname,['PR2','PR3'])
 
     if False:
-        # Example: Press button
-        FB = ezca.get_LIGOFilter('VIS-PRM_IM_OSEMINF_V1')
-        FMs = FB.get_current_swstat_mask().buttons
-        print(FMs)
-        mask = ['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8']
-        FB.only_on(*mask)
-        exit()
+        #plot_FILT(optics,'IM',fname='before.png')
+        #init_OSEMINF(optics,'IM')
+        pass
     
     if True:
-        optics = ['PRM','PR2','PR3']
-        plot_OSEMINF(optics,'IM',fname='before.png')
-        init_OSEMINF(optics,'IM')
-        plot_OSEMINF(optics,'IM')
+        # GAS        
+        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+        plot_FILT(optics,'BF',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'SF',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'F0',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'F1',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'F2',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'F3',func='LVDTINF',dofs=['GAS'])
+        plot_FILT(optics,'BF',func='COILOUTF',dofs=['GAS'])
+        plot_FILT(optics,'SF',func='COILOUTF',dofs=['GAS'])
+        plot_FILT(optics,'F0',func='COILOUTF',dofs=['GAS'])
+        plot_FILT(optics,'F1',func='COILOUTF',dofs=['GAS'])
+        plot_FILT(optics,'F2',func='COILOUTF',dofs=['GAS'])
+        plot_FILT(optics,'F3',func='COILOUTF',dofs=['GAS'])        
+        # IP LVDT and ACC
+        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3']        
+        plot_FILT(optics,'IP',func='LVDTINF')
+        plot_FILT(optics,'IP',func='ACCINF')        
+        plot_FILT(optics,'IP',func='COILOUTF',dofs=['H1','H2','H3'])        
+        # BF damper
+        optics = ['ETMX','ETMY','ITMX','ITMY','PRM','PR2','PR3']
+        plot_FILT(optics,'BF',func='LVDTINF')
+        plot_FILT(optics,'BF',func='COILOUTF')
+        # OSEM
+        optics = ['BS','SRM','SR2','SR3','PRM','PR2','PR3']
+        plot_FILT(optics,'IM')
+        plot_FILT(optics,'IM',func='COILOUTF')
+        # PS
+        optics = ['ETMX','ETMY','ITMX','ITMY']
+        plot_FILT(optics,'IM',func='OSEMINF')
+        plot_FILT(optics,'MN',func='OSEMINF')
+        plot_FILT(optics,'IM',func='COILOUTF')
+        plot_FILT(optics,'MN',func='COILOUTF')
+        # OPLEV
+        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+        plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
+        plot_FILT(optics,'TM',func='OPLEV_LEN',dofs=['SEG1','SEG2','SEG3','SEG4'])
+        plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])
+        optics = ['MCI','MCE','MCO','IMMT1','IMMT2','OSTM','OMMT1','OMMT2']
+        plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
+        plot_FILT(optics,'TM',func='OSEM',dofs=['SEG1','SEG2','SEG3','SEG4'])
+        plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])        
         exit()
         
     if False:
@@ -308,4 +366,3 @@ if __name__=='__main__':
         excs = ['L','T','V','R','P','Y']
         dofs = ['L','T','V','R','P','Y']
         plot(optics,stages,dofs,excs,func='DAMP',prefix='../automeasurement/current/')
-    
