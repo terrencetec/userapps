@@ -1,14 +1,20 @@
+import re
 import sys
+import matplotlib.pyplot as plt
+from scipy import signal
 sys.path.append('/opt/rtcds/userapps/release/vis/common/scripts/automeasurement')
 sys.path.append('/usr/lib/python3/dist-packages')
 from plot import plot
 import numpy as np
 import ezca
+from ezca import LIGOFilter
 
-#import ROOT
 import foton
+from foton import FilterFile,Filter,iir2zpk,iir2z
 
 ezca = ezca.Ezca(timeout=2)
+
+chans = '/opt/rtcds/kamioka/k1/chans/'
 
 def read_multi(chnames):
     '''
@@ -126,24 +132,180 @@ def copy_param(chname,target_optics):
         ezca[target_chname] = target_value
         
 # ------------------------------------------------------------------------------
+
+
+all_optics = ['ETMX','ETMY','ITMX','ITMY',
+              'BS','SRM','SR2','SR3',
+              'PRM','PR2','PR3',
+              'MCI','MCO','MCE','IMMT1','IMMT2',
+              'OSTM','OMMT1','OMMT2']
+
+def typename_is(optic):
+    '''
+    '''
+    if optic in ['ETMX','ETMY','ITMX','ITMY']:
+        return 'Type-A'
+    elif optic in ['BS','SRM','SR2','SR3']:
+        return 'Type-B'
+    elif optic in ['PRM','PR2','PR3']:
+        return 'Type-Bp'
+    elif optic in ['MCI','MCO','MCE','IMMT1','IMMT2','OSTM','OMMT1','OMMT2']:
+        return 'Type-C'
+    else:
+        raise ValueError('!')
+
+def partname_is(optic,stage):
+    '''
+    '''
+    if typename_is(optic) in ['Type-A','Type-B','Type-Bp']:    
+        if stage in ['TM','IM','MN']:        
+            part = 'P'
+        elif stage in ['BF','F3','F2','F1','F0','SF','IP']:
+            part = 'T'
+        else:
+            raise ValueError('!')
+    else:
+        part = ''        
+    return part
+
+def get_fm(optic,stage,func,dof):
+    ''' get filter module
+    '''
+    chans = '/opt/rtcds/kamioka/k1/chans/'
+    optic = 'PRM'
+    stage = 'IM'
+    part = partname_is(optic,stage)
+    func = 'OSEMINF'
+    dof = 'V1'
+    ffname = chans+'K1VIS{0}{1}.txt'.format(optic,part)
+    fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
+    _ff = foton.FilterFile(ffname)    
+    _fm = _ff[fmname]
+    return _ff,_fm
+
+class Ezff(FilterFile):
+    def __init__(self,ffname):        
+        super().__init__(ffname)
+        self.ffname = ffname
+
+    def save(self):
+        self.ff.write(self.ffname)
+
+
+def foton2zpk(zpkstr):
+    '''
+    '''
+    zpkstr = str(zpkstr)
+    result = re.findall('zpk\(\[(.*)\],\[(.*)\],(.*),"f"\)',zpkstr)[0]
+    z,p,k = [map(eval,item.replace('i','1j').split(';')) for item in result]    
+    return list(z),list(p),list(k)[0]
+
+def db(val):
+    return 20*np.log10(val)
+
+def copy_FMs(orig,dests):
+    '''
+    '''
+    for dest in dests:
+        for i in range(10):    
+            dest[i].copyfrom(orig[i])    
+
+def init_OSEMINF(optics,stage,func='OSEMINF'):
+    '''
+    '''
+    # Original Filter Module is given by PRM_IM
+    optic = 'PRM'
+    part = partname_is(optic,stage)
+    ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+    ff = Ezff(ffname)
+    fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'V1')
+    fm_v1 = ff[fmname]
+    # copy
+    for optic in optics:
+        part = partname_is(optic,stage)
+        ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+        ff = Ezff(ffname)
+        # copy to other FMs
+        fms = []
+        for dof in ['V1','V2','V3','H1','H2','H3']:
+            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
+            fms += [ff[fmname]]        
+        copy_FMs(fm_v1,fms)        
+        ff.save()
+
+def all_zpk(fms):
+    z,p,k = [],[],1
+    for fm in fms:
+        if not fm.design=='':
+            huge = iir2zpk(fm,plane='f')
+            _z,_p,_k = foton2zpk(huge)
+            z += _z
+            p += _p
+            k *= _k
+        else:
+            pass
+    return z,p,k
+    
+def plot_OSEMINF(optics,stage,func='OSEMINF',fname=None):
+    '''
+    '''
+    fig,ax = plt.subplots(2,3,figsize=(10,6),sharex=True,sharey='row')
+    fig.suptitle('Comparison of the OSEMINFs for all DOFs')
+    for i,optic in enumerate(optics):
+        part = partname_is(optic,stage)
+        ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+        ff = Ezff(ffname)
+        for dof in ['V1','V2','V3','H1','H2','H3']:    
+            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
+            fm = ff[fmname]
+            fms = [fm[i] for i in range(10)]
+            z,p,k = all_zpk(fms)
+            sys = signal.ZerosPolesGain(z,p,k)
+            freq = np.logspace(-2,2,1000)            
+            freq,h = signal.freqresp(sys,freq)
+            #
+            ax[0][i].semilogx(freq,db(np.abs(h)),label=dof)
+            ax[1][i].semilogx(freq,np.rad2deg(np.angle(h)),label=dof)
+        #ax[0].set_ylim(-40,20)
+        ax[1][i].set_xlim(1e-2,1e2)
+        ax[0][i].legend()
+        ax[1][i].set_xlabel('Frequency [Hz]')
+        [[_ax.grid(which='both',color='black',linestyle=':') for _ax in __ax] for __ax in ax]
+        ax[0][i].set_title('{0}_{1}'.format(optic,stage))
+    ax[0][0].set_ylabel('Magnitude [dB]')
+    ax[1][0].set_ylabel('Phase [deg]')        
+    plt.tight_layout()
+    if fname==None:
+        fname = 'OSEMINF_{0}_{1}.png'.format('-'.join(optics),stage)        
+    plt.savefig(fname)
+    plt.close()
+    
 if __name__=='__main__':
     #main1()
     #main2()
     chname = 'VIS-PRM_IM_OSEM2EUL_5_1'
     #copy_param(chname,['PR2','PR3'])
 
-    #import foton
-    #import warnings
-    #warnings.simplefilter('ignore',RuntimeWarning)
-    #warnings.filterwarnings('ignore',RuntimeWarning)
+    if False:
+        # Example: Press button
+        FB = ezca.get_LIGOFilter('VIS-PRM_IM_OSEMINF_V1')
+        FMs = FB.get_current_swstat_mask().buttons
+        print(FMs)
+        mask = ['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8']
+        FB.only_on(*mask)
+        exit()
     
-    chans = '/opt/rtcds/kamioka/k1/chans/'
-    test = foton.FilterFile(chans+'K1VISPRMT.txt')
-    print(test)
-    exit()
+    if True:
+        optics = ['PRM','PR2','PR3']
+        plot_OSEMINF(optics,'IM',fname='before.png')
+        init_OSEMINF(optics,'IM')
+        plot_OSEMINF(optics,'IM')
+        exit()
+        
+    if False:
+        stages = ['IM']
+        optics = ['PRM']
+        excs = ['L','T','V','R','P','Y']
+        dofs = ['L','T','V','R','P','Y']
+        plot(optics,stages,dofs,excs,func='DAMP',prefix='../automeasurement/current/')
     
-    stages = ['IM']
-    optics = ['PRM']
-    excs = ['L','T','V','R','P','Y']
-    dofs = ['L','T','V','R','P','Y']
-    plot(optics,stages,dofs,excs,func='DAMP',prefix='../automeasurement/current/')

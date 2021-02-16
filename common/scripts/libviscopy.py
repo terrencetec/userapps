@@ -34,14 +34,14 @@ foton_dst_fullpath = dst_fullpath + 'fotonfiles/'
 '''
 def common_copying_to_userapps(src, dst):
     if os.path.isdir(dst) == False:
-        print('Directpry not found: ' + dst)
+        #print('Directpry not found: ' + dst)
         return False
 
     if os.path.isfile(src) == True:
-        print('Copy from '+src+' to '+dst)
+        #print('Copy from '+src+' to '+dst)
         shutil.copy2(src, dst)
     else:
-        print('File not found: ' + src)
+        #print('File not found: ' + src)
         return False
 
     return True
@@ -50,22 +50,19 @@ def common_copying_to_userapps(src, dst):
     Copying the chans file to userapps directory
 '''
 def foton_copying_to_userapps(optics):
-    print('Start snap file copy')
+    #print('### Start foton file copy ###')
     src = foton_src_fullpath % optics.upper()
     dst = foton_dst_fullpath
-    print(src)
-    print(dst)
-    #exit()    
     return common_copying_to_userapps(src, dst)
 
 '''
     Copying the foton files to userapps directory
 '''
 def snap_copying_to_userapps(optics):
-    print('Start foton file copy')
+    #print('### Start snap file copy ###')
     dst = snap_dst_fullpath % optics.lower()
     if os.path.isdir(dst) == False:
-        print('mkdir ' + dst)
+        #print('mkdir ' + dst)
         os.mkdir(dst)
 
     src = aligned_src_fullpath % (optics.lower(), optics.lower())
@@ -90,10 +87,11 @@ def snap_copying_to_userapps(optics):
 '''
 def snap_foton_copying_to_userapps(optics):
     if snap_copying_to_userapps(optics) == False:
-        return False
-    
+        return 'Bad snap'
+
     if foton_copying_to_userapps(optics) == False:
-        return False
+        return 'Bad foton'    
+    return 'ALL OK'
 
 if __name__ == "__main__":
     sys.path.append('/opt/rtcds/userapps/release/sys/common/guardian')
@@ -101,4 +99,6 @@ if __name__ == "__main__":
     model_names = [model.name for model in list(cdslib.get_all_models())]
     vismodel_names = filter(lambda x:'vis' in x or 'modal' in x, model_names)
     for optics in vismodel_names:
-        snap_foton_copying_to_userapps(optics)
+        ans = snap_foton_copying_to_userapps(optics)
+        if ans!='ALL OK':
+            print(optics,ans)
