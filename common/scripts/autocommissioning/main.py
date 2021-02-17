@@ -16,14 +16,21 @@ ezca = ezca.Ezca(timeout=2)
 
 chans = '/opt/rtcds/kamioka/k1/chans/'
 
+def _ezca(name):
+    try:
+        return ezca[name]
+    except:
+        return 0.0
+    #return ezca[name]
+    
 def read_multi(chnames):
     '''
     '''
     chnames = np.array(chnames)
     if len(chnames.shape)==1:
-        data = [ezca[chname] for chname in chnames]
+        data = [_ezca(chname) for chname in chnames]
     elif len(chnames.shape)==2:
-        data = [[ezca[col] for col in chname] for chname in chnames]
+        data = [[_ezca(col) for col in chname] for chname in chnames]
     else:
         raise ValueError('!')
     data = np.array(data)
@@ -270,7 +277,8 @@ def plot_FILT(optics,stage,func='OSEMINF',fname=None,dofs=['V1','V2','V3','H1','
                 mask = map(lambda x: eval(x.replace('FM','')),mask)
                 mask = list(mask)
                 z,p,k = all_zpk(fms,active=mask)
-                k *= ezca['VIS-'+fmname+'_GAIN']
+                if func not in ['DAMP','IDAMP']:
+                    k *= ezca['VIS-'+fmname+'_GAIN']
                 sys = signal.ZerosPolesGain(z,p,k)
                 freq = np.logspace(-2,2,1000)            
                 freq,h = signal.freqresp(sys,freq)
@@ -291,10 +299,20 @@ def plot_FILT(optics,stage,func='OSEMINF',fname=None,dofs=['V1','V2','V3','H1','
     ax[1][0].set_ylabel('Phase [deg]')        
     plt.tight_layout()
     if fname==None:
-        fname = '{0}_{1}.png'.format(func,stage)
+        fname = './filts/{0}_{1}.png'.format(func,stage)
     plt.savefig(fname)
     plt.close()
 
+def show_MAT(optics,stage,func='OSEM2EUL',fname=None,row=6,col=6):
+    '''
+    '''
+    sixsensmat = 'VIS-{o}_{s}_{f}_{c}_{r}'
+    chlist = []
+    for optic in optics:
+        chlist += [[[sixsensmat.format(o=optic,s=stage,f=func,r=r,c=c) for r in range(1,row+1)] for c in range(1,col+1)]]
+    data = [read_multi(chnames) for chnames in chlist]
+    print(stage,func)
+    return data
 
 def switch_on(chname,mask=['INPUT','OFFSET','OUTPUT','DECIMATION']):
     '''
@@ -302,7 +320,70 @@ def switch_on(chname,mask=['INPUT','OFFSET','OUTPUT','DECIMATION']):
     FB = ezca.get_LIGOFilter(chname)
     FMs = FB.get_current_swstat_mask().buttons
     FB.only_on(*mask)
-    
+
+def plot_all():    
+    # DAMP
+    optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+    plot_FILT(optics,'BF',func='DAMP',dofs=['GAS'])
+    plot_FILT(optics,'SF',func='DAMP',dofs=['GAS'])
+    plot_FILT(optics,'F0',func='DAMP',dofs=['GAS'])
+    plot_FILT(optics,'F1',func='DAMP',dofs=['GAS'])
+    plot_FILT(optics,'F2',func='DAMP',dofs=['GAS'])
+    plot_FILT(optics,'F3',func='DAMP',dofs=['GAS'])        
+    plot_FILT(optics,'IM',func='DAMP',dofs=['L','T','V','R','P','Y'])        
+    # GAS
+    optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+    plot_FILT(optics,'BF',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'SF',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'F0',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'F1',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'F2',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'F3',func='LVDTINF',dofs=['GAS'])
+    plot_FILT(optics,'BF',func='COILOUTF',dofs=['GAS'])
+    plot_FILT(optics,'SF',func='COILOUTF',dofs=['GAS'])
+    plot_FILT(optics,'F0',func='COILOUTF',dofs=['GAS'])
+    plot_FILT(optics,'F1',func='COILOUTF',dofs=['GAS'])
+    plot_FILT(optics,'F2',func='COILOUTF',dofs=['GAS'])
+    plot_FILT(optics,'F3',func='COILOUTF',dofs=['GAS'])        
+    # IP LVDT and ACC
+    optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3']        
+    plot_FILT(optics,'IP',func='LVDTINF')
+    plot_FILT(optics,'IP',func='ACCINF')
+    plot_FILT(optics,'IP',func='DAMP',dofs=['L','T','Y'])
+    plot_FILT(optics,'IP',func='IDAMP',dofs=['L','T','Y'])
+    plot_FILT(optics,'IP',func='BLEND',dofs=['LVDTL','LVDTT','LVDTY','ACCL','ACCT','ACCY'])        
+    plot_FILT(optics,'IP',func='COILOUTF',dofs=['H1','H2','H3'])        
+    # BF damper
+    optics = ['ETMX','ETMY','ITMX','ITMY','PRM','PR2','PR3']
+    plot_FILT(optics,'BF',func='LVDTINF')
+    plot_FILT(optics,'BF',func='COILOUTF')
+    plot_FILT(optics,'BF',func='DAMP',dofs=['L','T','V','R','P','Y'])        
+    # OSEM
+    optics = ['BS','SRM','SR2','SR3','PRM','PR2','PR3']
+    plot_FILT(optics,'IM',func='OSEMINF')
+    plot_FILT(optics,'IM',func='COILOUTF')
+    plot_FILT(optics,'IM',func='DAMP',dofs=['L','T','V','R','P','Y'])
+    plot_FILT(optics,'IM',func='OLDAMP',dofs=['L','P','Y'])  
+    # PS
+    optics = ['ETMX','ETMY','ITMX','ITMY']
+    plot_FILT(optics,'IM',func='OSEMINF')
+    plot_FILT(optics,'MN',func='OSEMINF')
+    plot_FILT(optics,'IM',func='COILOUTF')
+    plot_FILT(optics,'MN',func='COILOUTF')
+    #plot_FILT(optics,'IM',func='DAMP',dofs=['L','T','V','R','P','Y'])
+    plot_FILT(optics,'MN',func='DAMP',dofs=['L','T','V','R','P','Y'])
+    plot_FILT(optics,'IM',func='OLDAMP',dofs=['L','P','Y'])        
+    # OPLEV
+    optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
+    plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
+    plot_FILT(optics,'TM',func='OPLEV_LEN',dofs=['SEG1','SEG2','SEG3','SEG4'])
+    plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])
+    plot_FILT(optics,'TM',func='OLDAMP',dofs=['L','P','Y'])                
+    optics = ['MCI','MCE','MCO','IMMT1','IMMT2','OSTM','OMMT1','OMMT2']
+    plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
+    plot_FILT(optics,'TM',func='OSEM',dofs=['SEG1','SEG2','SEG3','SEG4'])
+    plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])
+    plot_FILT(optics,'TM',func='OLDAMP',dofs=['L','P','Y'])        
     
 if __name__=='__main__':
     #main1()
@@ -314,50 +395,39 @@ if __name__=='__main__':
         #plot_FILT(optics,'IM',fname='before.png')
         #init_OSEMINF(optics,'IM')
         pass
-    
+
     if True:
-        # GAS        
-        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
-        plot_FILT(optics,'BF',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'SF',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'F0',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'F1',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'F2',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'F3',func='LVDTINF',dofs=['GAS'])
-        plot_FILT(optics,'BF',func='COILOUTF',dofs=['GAS'])
-        plot_FILT(optics,'SF',func='COILOUTF',dofs=['GAS'])
-        plot_FILT(optics,'F0',func='COILOUTF',dofs=['GAS'])
-        plot_FILT(optics,'F1',func='COILOUTF',dofs=['GAS'])
-        plot_FILT(optics,'F2',func='COILOUTF',dofs=['GAS'])
-        plot_FILT(optics,'F3',func='COILOUTF',dofs=['GAS'])        
-        # IP LVDT and ACC
-        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3']        
-        plot_FILT(optics,'IP',func='LVDTINF')
-        plot_FILT(optics,'IP',func='ACCINF')        
-        plot_FILT(optics,'IP',func='COILOUTF',dofs=['H1','H2','H3'])        
-        # BF damper
-        optics = ['ETMX','ETMY','ITMX','ITMY','PRM','PR2','PR3']
-        plot_FILT(optics,'BF',func='LVDTINF')
-        plot_FILT(optics,'BF',func='COILOUTF')
-        # OSEM
         optics = ['BS','SRM','SR2','SR3','PRM','PR2','PR3']
-        plot_FILT(optics,'IM')
-        plot_FILT(optics,'IM',func='COILOUTF')
-        # PS
-        optics = ['ETMX','ETMY','ITMX','ITMY']
-        plot_FILT(optics,'IM',func='OSEMINF')
-        plot_FILT(optics,'MN',func='OSEMINF')
-        plot_FILT(optics,'IM',func='COILOUTF')
-        plot_FILT(optics,'MN',func='COILOUTF')
-        # OPLEV
-        optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
-        plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
-        plot_FILT(optics,'TM',func='OPLEV_LEN',dofs=['SEG1','SEG2','SEG3','SEG4'])
-        plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])
-        optics = ['MCI','MCE','MCO','IMMT1','IMMT2','OSTM','OMMT1','OMMT2']
-        plot_FILT(optics,'TM',func='OPLEV_TILT',dofs=['SEG1','SEG2','SEG3','SEG4'])
-        plot_FILT(optics,'TM',func='OSEM',dofs=['SEG1','SEG2','SEG3','SEG4'])
-        plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])        
+        optics = ['PRM','PR2','PR3']
+        data = show_MAT(optics,'TM',func='OPLEV_TILT_MTRX',row=4,col=4)
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+        data = show_MAT(optics,'TM',func='OPLEV_LEN_MTRX',row=4,col=4)
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+        data = show_MAT(optics,'TM',func='OPLEV2EUL',row=4,col=3)
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+        data = show_MAT(optics,'TM',func='SENSALIGN',row=4,col=3)
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)                                                                                        
+        data = show_MAT(optics,'IM',func='OSEM2EUL')
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+        data = show_MAT(optics,'IM',func='EUL2OSEM')
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+        data = show_MAT(optics,'IM',func='SENSALIGN')
+        for d,o in zip(data,optics):
+            print(o)
+            print(d)
+    if False:
         exit()
         
     if False:
