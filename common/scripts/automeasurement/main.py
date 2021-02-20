@@ -343,7 +343,8 @@ if __name__=="__main__":
                                   args=(template,optic,stages),
                                   kwargs={'run':True,'dofs':dofs})
             _t.start()
-            t += [_t]                    
+            t += [_t]
+            
     # Plot
     if args.plot:
         excs = dofs
