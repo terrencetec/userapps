@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=65
-		y=924
+		x=521
+		y=1395
 		width=700
 		height=66
 	}
@@ -87,103 +87,44 @@ display {
 		1a7309,
 	}
 }
-composite {
+"related display" {
 	object {
-		x=14
-		y=16
-		width=445
-		height=30
+		x=19
+		y=20
+		width=70
+		height=22
 	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=14
-				y=16
-				width=61
-				height=30
-			}
-			"basic attribute" {
-				clr=50
-				fill="outline"
-				width=3
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A && B % 2"
-				chan="K1:VIS-$(OPTIC)_COMMISH_STATUS"
-				chanB="K1:FEC-$(FEC)_TIME_DIAG"
-			}
-		}
-		"related display" {
-			object {
-				x=19
-				y=20
-				width=50
-				height=22
-			}
-			display[1] {
-				label="TOWER"
-				name="$(ctrladl)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}
-			display[2] {
-				label="GAS"
-				name="$(ctrladl2)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}
-			display[3] {
-				label="PAYLOAD"
-				name="$(ctrladl3)"
-				args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
-			}			
-			clr=0
-			bclr=14
-			label="$(OPTIC)"
-		}
-		"text entry" {
-			object {
-				x=133
-				y=19
-				width=250
-				height=24
-			}
-			control {
-				chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
-				clr=60
-				bclr=14
-			}
-			limits {
-			}
-		}
-		"choice button" {
-			object {
-				x=82
-				y=19
-				width=50
-				height=24
-			}
-			control {
-				chan="K1:VIS-$(OPTIC)_COMMISH_STATUS"
-				clr=0
-				bclr=14
-			}
-			stacking="column"
-		}
-		"text entry" {
-			object {
-				x=389
-				y=19
-				width=70
-				height=24
-			}
-			control {
-				chan="K1:VIS-$(OPTIC)_HEALTHCHECKED_DATE"
-				clr=60
-				bclr=14
-			}
-			limits {
-			}
-		}
+	display[1] {
+		label="TOWER"
+		name="$(ctrladl)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+	}
+	display[2] {
+		label="GAS"
+		name="$(ctrladl2)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+	}
+	display[3] {
+		label="PAYLOAD"
+		name="$(ctrladl3)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+	}
+	clr=0
+	bclr=14
+	label="$(OPTIC)"
+}
+"text entry" {
+	object {
+		x=98
+		y=18
+		width=350
+		height=24
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
+		clr=60
+		bclr=14
+	}
+	limits {
 	}
 }
