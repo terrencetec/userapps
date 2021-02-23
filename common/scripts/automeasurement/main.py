@@ -3,7 +3,7 @@ import subprocess
 import argparse
 import ezca
 import time
-from plot import plot
+from plot import plot, plot_diag
 from datetime import datetime
 import os
 
@@ -29,6 +29,9 @@ def run_diag(fname):
 
     '''
     _fname = fname.split('/')[2].replace('.xml','')
+
+    if not os.path.exists(fname):
+        raise ValueError('{0} does not exist.'.format(fname))
     
     # make command file for execution
     with open('./log/tmp_{0}_in'.format(_fname),'w') as f:
@@ -55,7 +58,7 @@ def run_diag(fname):
     print(' -',cmd)
 
 
-def open_all(optics,stages,funcs,dofs):
+def open_all(optics,stages,funcs,dofs,oltf=False):
     '''
     '''
     # open LIGO Filters
@@ -151,7 +154,7 @@ def new_fname(template,optic,stage,dof):
     return new_fname, now
 
 # ------------------------------------------------------------------------------    
-def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False):
+def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False,oltf=False):
     ''' Run diaggui xml file which measures the Transfer Function.
     
     This function runs shell command which executes the diaggui xml file for TF
@@ -189,11 +192,12 @@ def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False):
                 raise ValueError('!')
             
     # close master_switch
-    close_masterswitch(optic)
+    if not oltf:
+        close_masterswitch(optic)
 
 # ------------------------------------------------------------------------------
         
-def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False):
+def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False,oltf=False):
     ''' Copy template file to working directory.
 
     This function run shell command which copies template file for TF measurement
@@ -229,10 +233,19 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False):
             format(fname,_optic,optic,_stage,stage,_dof,dof)
         cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
+        if oltf:
+            cmd += "; sed -i -e 's/{1}_EXC/{2}_EXC/' {0}".\
+                format(fname,_dof,dof)
+            cmd += "; sed -i -e 's/{1}_IN1/{2}_IN1/' {0}".\
+                format(fname,_dof,dof)                        
+            cmd += "; sed -i -e 's/{1}_IN2/{2}_IN2/' {0}".\
+                format(fname,_dof,dof)
+            cmd += "; sed -i -e 's/{1}_OUT/{2}_OUT/' {0}".\
+                format(fname,_dof,dof)            
         # run
         if run:
             subprocess.run(cmd,shell=True,check=True)
-            if os.path.getsize(fname)<6700: #bite
+            if os.path.getsize(fname)<6700: # unuse
                 raise ValueError('{0} is invalid file due to small file size. Please open the file via diaggui.'.format(fname))
                 
 
@@ -261,6 +274,8 @@ if __name__=="__main__":
                         'If you do not want to override, do not give it.')
     parser.add_argument('--plot',action='store_true',
                         help='If you plot, please give this option.')
+    parser.add_argument('--oltf',action='store_true',
+                        help='If Open loop transfer function, please gibe this option.')    
     args = parser.parse_args()
     #
     # Arguments
@@ -298,12 +313,14 @@ if __name__=="__main__":
             else:
                 raise ValueError('{0} does not have GAS filter.'.format(stage))
         else:
-                raise ValueError('!!')
-            
+                raise ValueError('!!')            
     elif len(stages)==1:
         stage = stages[0]
         if stage=='IM':
-            template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
+            if args.oltf:
+                template = 'OLTF_PRM_IM_TEST_L_EXC.xml'                
+            else:
+                template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
         elif stage=='BF' and not 'GAS' in dofs:        
             template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
         else:
@@ -325,20 +342,21 @@ if __name__=="__main__":
     if args.init:
         for optic in optics:
             for stage in stages:
-                run_copy(template,optic,stage,dofs=dofs,run=True)
+                run_copy(template,optic,stage,dofs=dofs,run=True,oltf=args.oltf)
                 
     # Measurement
     if args.rundiag:
         # Time estimation
         optics_list = [optics[3*i:3*(i+1)] for i in range(4)]
-        time = len(dofs)*3
+        time = len(dofs)*7
         ans = input('It takes {0} minutes. Do you want to measure? [y/N]'.format(time))
         if ans not in ['y','yes','Y']:
             print('You chose {0}. Stop.'.format(ans))
             exit()
         # Open the path to input the excitation signal
-        funcs = ['TEST']        
-        open_all(optics,stages,funcs,dofs)            
+        funcs = ['TEST']
+        if not args.oltf:
+            open_all(optics,stages,funcs,dofs,oltf=args.oltf)
         # Execution
         t = []                    
         for optic in optics:
@@ -351,4 +369,5 @@ if __name__=="__main__":
     # Plot
     if args.plot:
         excs = dofs
-        plot(optics,stages,dofs,excs,func='DAMP')        
+        plot(optics,stages,dofs,excs,func='DAMP',oltf=args.oltf)
+        plot_diag(optics,stages,dofs,excs,func='DAMP',oltf=args.oltf)        

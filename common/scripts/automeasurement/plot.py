@@ -24,7 +24,9 @@ def read_tf(fname,chname_to,chname_from):
         raise ValueError('{0} is invalid file. Please open with diaggui and check the measurement result.'.format(fname))
     return _omega,_tf,_coh
 
-def get_tf(_from,_to,datetime='current'):
+def get_tf(_from,_to,datetime='current',oltf=False):
+    '''
+    '''
     if not '_EXC' in _from:
         raise ValueError('!')
     if not '_IN1' in _to:
@@ -47,12 +49,15 @@ def get_tf(_from,_to,datetime='current'):
                                                              dof_exc,stage)
     else:
         fname = './archive/PLANT_{0}_{3}_{1}_{2}_EXC_{4}.xml'.format(optic,test,
-                                                                     dof_exc,stage,datetime)                
+                                                                     dof_exc,stage,datetime)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
     chname_from = 'K1:VIS-{0}_{1}_TEST_{2}_EXC'
     chname_to = chname_to.format(optic2,stage2,func2,dof2)
-    chname_from = chname_from.format(optic1,stage1,dof_exc)    
+    chname_from = chname_from.format(optic1,stage1,dof_exc)
+    if oltf:
+        fname = fname.replace('PLANT','OLTF')
+        chname_from = chname_from.replace('TEST_{0}_EXC'.format(dof_exc),'DAMP_{0}_IN2'.format(dof_exc))
     return read_tf(fname,chname_to,chname_from)
 
 def blend(lp='high'):
@@ -96,8 +101,9 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',**kwargs
         if not subtitle=='':
             ax[0].set_title(subtitle)    
         ax[0].loglog(w,np.abs(tf),style,label=label)
-        ax[0].set_ylim(1e-6,1e0)
-        ax[1].semilogx(w,np.rad2deg(np.angle(tf)),style,label=label)
+        ax[0].set_ylim(1e-6,1e2)
+        ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
+                       ,style,label=label)
         ax[2].semilogx(w,coh,style,label=label)
         ax[1].set_ylim(-180,180)
         ax[1].set_yticks(range(-180,181,90))
@@ -150,8 +156,43 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
         plt.savefig(fname)
         plt.close()
         
-    
-def plot(optics,stages,dofs,excs,func='DAMP',datetime='current'):
+
+def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
+    '''
+    '''
+    fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
+    #
+    if excs==dofs and len(stages)==1:
+        stage = stages[0]
+        fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
+        for j,dof in enumerate(dofs): # j: plot other figure
+            for i,optic in enumerate(optics): # i: plot same figure
+                exc = dof
+                # get_data
+                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf)            
+                # plot
+                label = '{0}'.format(optic)
+                title = '{0}->{1}'.format(exc,dof)
+                plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
+        if datetime=='current':
+            fname = './current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+        else:
+            fname = './archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
+    else:
+        raise ValueError('!')    
+    print(fname)
+    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(6)]
+    ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
+    ax[1][0].set_ylabel('Phase [Degree]')
+    ax[2][0].set_ylabel('Coherence')    
+    plt.tight_layout()
+    plt.savefig(fname)
+    plt.close()        
+
+        
+def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
     ''' Plot 
     
     Parameters
@@ -233,7 +274,7 @@ if __name__=='__main__':
     stages = ['IM']
     excs = ['L','T','V','R','P','Y']
     dofs = ['L','T','V','R','P','Y']    
-    plot(optics,stages,dofs,excs,func='DAMP',datetime='current')
+    plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current')
     
     optics = ['PRM']
     stages = ['IM']    
@@ -246,17 +287,17 @@ if __name__=='__main__':
     optics = ['PRM','PR2','PR3']
     excs = ['GAS']
     dofs = ['GAS']
-    plot(optics,stages,dofs,excs,func='DAMP')
+    plot_diag(optics,stages,dofs,excs,func='DAMP')
 
     stages = ['BF']
     optics = ['PRM','PR2','PR3']    
     excs = ['L']
     dofs = ['L','T','V']
-    plot(optics,stages,dofs,excs,func='DAMP')
+    plot_diag(optics,stages,dofs,excs,func='DAMP')
     
     stages = ['BF']
     optics = ['PRM','PR2','PR3']
     excs = ['L','T','V']
     dofs = ['L','T','V']
-    plot(optics,stages,dofs,excs,func='DAMP')
+    plot_diag(optics,stages,dofs,excs,func='DAMP')
     
