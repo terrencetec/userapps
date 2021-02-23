@@ -228,10 +228,13 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False):
         cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
         cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
-            format(fname,_optic,optic,_stage,stage,_dof,dof)        
+            format(fname,_optic,optic,_stage,stage,_dof,dof)
         # run
         if run:
             subprocess.run(cmd,shell=True,check=True)
+            if os.path.getsize(fname)<6700: #bite
+                raise ValueError('{0} is invalid file due to small file size. Please open the file via diaggui.'.format(fname))
+                
 
 # ------------------------------------------------------------------------------
 if __name__=="__main__":
@@ -344,8 +347,8 @@ if __name__=="__main__":
                                   kwargs={'run':True,'dofs':dofs})
             _t.start()
             t += [_t]
-            
+      
     # Plot
     if args.plot:
         excs = dofs
-        plot(optics,stages,dofs,excs,func='DAMP')
+        plot(optics,stages,dofs,excs,func='DAMP')        
