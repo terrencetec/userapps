@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/GDS_MINI.adl"
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/OVERVIEW/MINI/GDS_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=1516
-		y=1512
+		x=1095
+		y=775
 		width=583
 		height=118
 	}
@@ -208,7 +208,7 @@ composite {
 }
 "text update" {
 	object {
-		x=180
+		x=183
 		y=40
 		width=17
 		height=15
@@ -254,7 +254,7 @@ byte {
 }
 "shell command" {
 	object {
-		x=232
+		x=233
 		y=41
 		width=20
 		height=12
@@ -325,9 +325,9 @@ byte {
 }
 "text update" {
 	object {
-		x=200
+		x=206
 		y=40
-		width=30
+		width=25
 		height=15
 	}
 	monitor {
@@ -341,7 +341,7 @@ byte {
 }
 composite {
 	object {
-		x=167
+		x=166
 		y=41
 		width=10
 		height=11
@@ -350,7 +350,7 @@ composite {
 	children {
 		composite {
 			object {
-				x=167
+				x=166
 				y=41
 				width=10
 				height=11
@@ -359,7 +359,7 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=167
+						x=166
 						y=42
 						width=10
 						height=10
@@ -374,7 +374,7 @@ composite {
 				}
 				rectangle {
 					object {
-						x=167
+						x=166
 						y=41
 						width=10
 						height=11
@@ -391,7 +391,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=167
+				x=166
 				y=41
 				width=10
 				height=11
@@ -399,6 +399,88 @@ composite {
 			"basic attribute" {
 				clr=14
 				fill="outline"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=178
+		y=42
+		width=3
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=178
+				y=42
+				width=3
+				height=10
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:FEC-$(FEC)_TP_CNT"
+			}
+		}
+		rectangle {
+			object {
+				x=178
+				y=42
+				width=3
+				height=10
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="K1:FEC-$(FEC)_TP_CNT"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=201
+		y=42
+		width=3
+		height=10
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=201
+				y=42
+				width=3
+				height=10
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="if not zero"
+				chan="K1:FEC-$(FEC)_ACCUM_OVERFLOW"
+			}
+		}
+		rectangle {
+			object {
+				x=201
+				y=42
+				width=3
+				height=10
+			}
+			"basic attribute" {
+				clr=60
+			}
+			"dynamic attribute" {
+				vis="if zero"
+				chan="K1:FEC-$(FEC)_ACCUM_OVERFLOW"
 			}
 		}
 	}
