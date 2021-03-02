@@ -349,7 +349,7 @@ if __name__=='__main__':
         height += h0
         _h0 = height
         for num,system in enumerate(systems):
-            print('{0}'.format(system))
+            #print('{0}'.format(system))
             mtype = mtype_is(system)
             stepperid = stepperid_is(system)                
             txt,w0,h0 = head(width,height,system,mtype)
@@ -368,6 +368,7 @@ if __name__=='__main__':
                     txt,w1,h1 = mini(width,height+_h,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,label,mode=mode)
                     _h += h1
                     contents += txt
+            print(stepperid,system)
             txt,w2,h2 = foot(width,height+_h,stepperid)
             contents += txt
             _h += h2 + 10

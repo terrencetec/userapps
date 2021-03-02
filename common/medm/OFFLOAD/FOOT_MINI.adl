@@ -1,7 +1,7 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/FOOT_MINI.adl"
-	version=030107
+	name="/opt/rtcds/userapps/trunk/vis/common/medm/OFFLOAD/FOOT_MINI.adl"
+	version=030109
 }
 display {
 	object {
@@ -156,14 +156,9 @@ polyline {
 		height=20
 	}
 	display[0] {
-		label="IP"
-		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
-		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_IP"
-	}
-	display[1] {
-		label="GAS"
-		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/CUST_IP_$(TYPE).adl"
-		args="IFO=$(IFO),ifo=$(ifo),STEPID=$(SYSTEM)_GAS"
+		label="STEPMASTER"
+		name="/opt/rtcds/userapps/release/cds/common/medm/steppingmotor/STEP_MASTER.adl"
+		args="IFO=$(IFO),ifo=$(ifo),SITE=%*SITE),site=$(site),userapps=$(userapps)"
 	}
 	clr=14
 	bclr=4
