@@ -198,7 +198,7 @@ def head(x,y,system,mtype):
     '''.format(common=common,x=x,y=y,system=system,mtype=mtype)
     return txt,width,height
 
-def foot(x,y,stepperid):
+def foot(x,y,stepperid,systems,vacsystem,ip_lvdtinf_yaml,ip_damp_yaml,gas_damp_yaml):
     width = 300
     height = 50
     txt = '''
@@ -210,9 +210,9 @@ def foot(x,y,stepperid):
     height=30
     }}
     "composite name"=""
-    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),STEPPERID={stepperid}"
+    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),STEPPERID={stepperid},OPTICS={system},VACOPTICS={vacsystem},ip_lvdtinf_yaml={ip_lvdtinf_yaml},ip_damp_yaml={ip_damp_yaml},gas_damp_yaml={gas_damp_yaml}"
     }}
-    '''.format(common=common,x=x,y=y,stepperid=stepperid)
+    '''.format(common=common,x=x,y=y,stepperid=stepperid,system=system,vacsystem=vacsystem,ip_lvdtinf_yaml=ip_lvdtinf_yaml,ip_damp_yaml=ip_damp_yaml,gas_damp_yaml=gas_damp_yaml)
     return txt,width,height
 
 
@@ -332,8 +332,38 @@ if __name__=='__main__':
             'F2':['GAS'],
             'F3':['GAS'],
             'BF':['GAS'],
-            'SF':['GAS'],}
+            'SF':['GAS']}
+    vacsystem = {'ETMX':'X_EXA',
+                 'ITMX':'X_IXA',
+                 'ETMY':'Y_EYA',
+                 'ITMY':'Y_IYA',
+                 'BS':'None',
+                 'SR2':'None',
+                 'SR3':'None',
+                 'SRM':'None',
+                 'PR2':'None',
+                 'PR3':'None',
+                 'PRM':'CS_IMC'}
 
+    yamlfile_path ='/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/'
+    yamlfile_ip_lvdtinf_with_vac = yamlfile_path + 'ip_lvdtinf_with_vac.yml'
+    yamlfile_ip_damp_with_vac    = yamlfile_path + 'ip_damp_with_vac.yml'
+    yamlfile_gas_damp_typea      = yamlfile_path + 'gas_damp_typea.yml'
+    yamlfile_ip_lvdtinf          = yamlfile_path + 'ip_lvdtinf.yml'
+    yamlfile_ip_damp             = yamlfile_path + 'ip_damp.yml'
+    yamlfile_gas_damp_typeb      = yamlfile_path + 'gas_damp_typeb.yml'
+    yamlfile_gas_damp_typebp     = yamlfile_path + 'gas_damp_typebp.yml'
+    yamlfile = {'ETMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea],
+                'ITMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea],
+                'ETMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea],
+                'ITMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea],
+                'BS':  [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb],
+                'SR2': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb],
+                'SR3': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb],
+                'SRM': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb],
+                'PR2': ['None',                       'None',                    yamlfile_gas_damp_typebp],
+                'PR3': ['None',                       'None',                    yamlfile_gas_damp_typebp],
+                'PRM': ['None',                       'None',                    yamlfile_gas_damp_typebp]}   
     mode = 'ERR'
     
     height = 10
@@ -368,8 +398,9 @@ if __name__=='__main__':
                     txt,w1,h1 = mini(width,height+_h,system,stage,sensor_stage,dof,sensor_dof,damp,bio,stepname,stepid,motor,label,mode=mode)
                     _h += h1
                     contents += txt
-            print(stepperid,system)
-            txt,w2,h2 = foot(width,height+_h,stepperid)
+
+            print(stepperid,system,vacsystem[system])
+            txt,w2,h2 = foot(width,height+_h,stepperid,system,vacsystem[system],yamlfile[system][0],yamlfile[system][1],yamlfile[system][2])
             contents += txt
             _h += h2 + 10
             _w = max(w0,w1,w2) +10

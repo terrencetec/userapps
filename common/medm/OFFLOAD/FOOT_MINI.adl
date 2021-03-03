@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/OFFLOAD/FOOT_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/FOOT_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=175
-		y=675
+		x=3972
+		y=154
 		width=382
 		height=72
 	}
@@ -163,4 +163,30 @@ polyline {
 	clr=14
 	bclr=4
 	label="old"
+}
+"shell command" {
+	object {
+		x=264
+		y=23
+		width=62
+		height=20
+	}
+	command[0] {
+		label="IP LVDTINF"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
+		args="$(ip_lvdtinf_yaml) OPTICS=$(OPTICS) VACOPTICS=$(VACOPTICS) &"
+	}
+	command[1] {
+		label="IP DAMP"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
+		args="$(ip_damp_yaml) OPTICS=$(OPTICS) VACOPTICS=$(VACOPTICS) &"
+	}
+	command[2] {
+		label="GAS DAMP"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
+		args="$(gas_damp_yaml) OPTICS=$(OPTICS) VACOPTICS=$(VACOPTICS) &"
+	}
+	clr=14
+	bclr=5
+	label="ndscope"
 }
