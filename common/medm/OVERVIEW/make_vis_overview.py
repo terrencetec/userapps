@@ -164,7 +164,9 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
         common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
     ctrladl2  = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(
         common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)    
-    ctrladl3  = '{common}/medm/VIS_PAYLOAD_OVERVIEW.adl'.format(
+    ctrladl3  = '{common}/medm/VIS_PAYLOAD_PFMN_OVERVIEW.adl'.format(
+        common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+    ctrladl4  = '{common}/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl'.format(
         common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
 
     txt = '''
@@ -176,9 +178,9 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/USER_MINI.adl;FEC={fec},OPTIC={OPTIC},macroname={macroname},ctrladl={ctrladl},ctrladl2={ctrladl2},ctrladl3={ctrladl3}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/USER_MINI.adl;FEC={fec},OPTIC={OPTIC},macroname={macroname},ctrladl={ctrladl},ctrladl2={ctrladl2},ctrladl3={ctrladl3},ctrladl4={ctrladl4}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE,macroname=macroname,ctrladl=ctrladl,ctrladl2=ctrladl2,ctrladl3=ctrladl3)
+    '''.format(common=common,x=x,y=y,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE,macroname=macroname,ctrladl=ctrladl,ctrladl2=ctrladl2,ctrladl3=ctrladl3,ctrladl4=ctrladl4)
     return txt,width,height
 
 def trip_mini(x,y,optic='ETMX'):
