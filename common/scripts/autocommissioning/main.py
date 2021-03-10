@@ -240,6 +240,52 @@ def init_OSEMINF(optics,stage,func='OSEMINF'):
         copy_FMs(fm_v1,fms)        
         ff.save()
 
+def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
+    '''
+    '''
+    # Original Filter Module is given by PRM_IM
+    optic = 'ITMY'
+    part = partname_is(optic,stage)
+    ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+    ff = Ezff(ffname)
+    if stage in ['F0','F1','F2','F3','SF']:
+        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'GAS')
+    elif stage in ['IM','IP','BF']:
+        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'H1')
+    elif stage in ['TM']:
+        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'SEG1')
+    else:
+        raise ValueError('!')
+    fm_v1 = ff[fmname]
+    # copy
+    for optic in optics:
+        part = partname_is(optic,stage)
+        ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+        ff = Ezff(ffname)
+        # copy to other FMs
+        fms = []
+        if stage=='BF':
+            dofs = ['H1','H2','H3','V1','V2','V3','GAS']
+        elif stage=='TM':
+            dofs = ['SEG1','SEG2','SEG3','SEG4']
+        elif stage=='IM':
+            dofs = ['H1','H2','H3','V1','V2','V3']
+        elif stage=='IP':
+            dofs = ['H1','H2','H3']            
+        elif stage in ['F0','F1','F2','F3','SF']:
+            dofs = ['GAS']            
+        else:
+            raise ValueError('!')
+        
+        for dof in dofs:
+            switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof),mask=mask_wd_ac)
+            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
+            print(fmname)
+            fms += [ff[fmname]]
+        copy_FMs(fm_v1,fms)     
+        ff.save()
+        
+
 def all_zpk(fms,active=range(10)):
     '''
     '''
@@ -391,12 +437,28 @@ if __name__=='__main__':
     #switch_on('VIS-PRM_IM_OSEMINF_V1',mask=['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8'])
     #copy_param(chname,['PR2','PR3'])
 
+    if True:
+        optics = ['ITMY','ETMY','ITMX','ETMX']
+        mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
+        init_wd(optics,'IM','WD_OSEMAC_BANDLIM',mask_wd_ac)
+        init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_TILT',mask_wd_ac)
+        init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_LEN',mask_wd_ac)
+        init_wd(optics,'BF','WD_AC_BANDLIM_LVDT',mask_wd_ac)
+        init_wd(optics,'IP','WD_AC_BANDLIM_ACC',mask_wd_ac)
+        init_wd(optics,'IP','WD_AC_BANDLIM_LVDT',mask_wd_ac)
+        init_wd(optics,'F0','WD_AC_BANDLIM',mask_wd_ac)
+        init_wd(optics,'F1','WD_AC_BANDLIM',mask_wd_ac)
+        init_wd(optics,'F2','WD_AC_BANDLIM',mask_wd_ac)
+        init_wd(optics,'F3','WD_AC_BANDLIM',mask_wd_ac)
+        init_wd(optics,'SF','WD_AC_BANDLIM',mask_wd_ac)
+        pass
+
     if False:
         #plot_FILT(optics,'IM',fname='before.png')
         #init_OSEMINF(optics,'IM')
-        pass
+        pass    
 
-    if True:
+    if False:
         optics = ['BS','SRM','SR2','SR3','PRM','PR2','PR3']
         optics = ['PRM','PR2','PR3']
         data = show_MAT(optics,'TM',func='OPLEV_TILT_MTRX',row=4,col=4)
