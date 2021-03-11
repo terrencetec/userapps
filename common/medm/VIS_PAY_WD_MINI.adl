@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_WD_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_PAY_WD_MINI.adl"
 	version=030109
 }
 display {
@@ -177,12 +177,12 @@ composite {
 	object {
 		x=173
 		y=98
-		width=65
+		width=130
 		height=40
 	}
 	display[0] {
 		label="WATCHDOG"
-		name="VIS_WD.adl"
+		name="VIS_PAY_WD.adl"
 		args="IFO=$(IFO),OPTIC=$(OPTIC)"
 	}
 	clr=14
@@ -222,22 +222,6 @@ rectangle {
 		calc="A==2"
 		chan="$(IFO):VIS-$(OPTIC)_PAY_SHUTDOWN_STATE"
 	}
-}
-"related display" {
-	object {
-		x=245
-		y=98
-		width=65
-		height=40
-	}
-	display[0] {
-		label="IOP dackill"
-		name="/users/Commissioning/medm/tripped.adl.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC)"
-	}
-	clr=14
-	bclr=55
-	visual="invisible"
 }
 text {
 	object {
