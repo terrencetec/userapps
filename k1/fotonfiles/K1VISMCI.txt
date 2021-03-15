@@ -11,11 +11,11 @@
 # MODULES MCI_TM_LKIN_P_DEMOD_SIG MCI_TM_LKIN_P_DEMOD_Q MCI_TM_LKIN_P_DEMOD_I MCI_TM_LKIN_Y_DEMOD_SIG
 # MODULES MCI_TM_LKIN_Y_DEMOD_Q MCI_TM_LKIN_Y_DEMOD_I MCI_TM_LOCK_L MCI_TM_LOCK_P
 # MODULES MCI_TM_LOCK_Y MCI_TM_OLDAMP_P MCI_TM_OLDAMP_Y MCI_TM_OLDCCTRL_P
-# MODULES MCI_TM_OLDCCTRL_Y MCI_TM_OLSET_P MCI_TM_OLSET_Y MCI_TM_OPLEV_PIT
+# MODULES MCI_TM_OLDCCTRL_Y MCI_TM_OLSET_P MCI_TM_OLSET_Y MCI_TM_OPLEV_TILT_PIT
 # MODULES MCI_TM_OPLEV_SEG1 MCI_TM_OPLEV_SEG2 MCI_TM_OPLEV_SEG3 MCI_TM_OPLEV_SEG4
-# MODULES MCI_TM_OPLEV_SUM MCI_TM_OPLEV_YAW MCI_TM_OPTICALIGN_P MCI_TM_OPTICALIGN_Y
-# MODULES MCI_TM_TEST_L MCI_TM_TEST_P MCI_TM_TEST_Y MCI_TM_WD_OSEMAC_BANDLIM_H1
-# MODULES MCI_TM_WD_OSEMAC_BANDLIM_H2 MCI_TM_WD_OSEMAC_BANDLIM_H3 MCI_TM_WD_OSEMAC_BANDLIM_H4 MCI_DITHERINF_P
+# MODULES MCI_TM_OPLEV_SUM MCI_TM_OPLEV_TILT_YAW MCI_TM_OPTICALIGN_P MCI_TM_OPTICALIGN_Y
+# MODULES MCI_TM_TEST_L MCI_TM_TEST_P MCI_TM_TEST_Y MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG1
+# MODULES MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG2 MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG3 MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG4 MCI_DITHERINF_P
 # MODULES MCI_DITHERINF_Y   
 # MODULES    
 #
@@ -291,11 +291,11 @@ MCI_TM_OLDAMP_Y 1 21 1      0      0 diff       9.813040002155976537778770e+01  
 ###                                                                          ###
 
 ################################################################################
-### MCI_TM_OPLEV_PIT                                                         ###
+### MCI_TM_OPLEV_TILT_PIT                                                    ###
 ################################################################################
-# DESIGN   MCI_TM_OPLEV_PIT 0 zpk([20],[100],1,"n")
+# DESIGN   MCI_TM_OPLEV_TILT_PIT 0 zpk([20],[100],1,"n")
 ###                                                                          ###
-MCI_TM_OPLEV_PIT 0 21 1      0      0 cal        4.925312216434942769183181e+00  -0.9623674629148486   0.0000000000000000  -0.9923593600910056   0.0000000000000000
+MCI_TM_OPLEV_TILT_PIT 0 21 1      0      0 cal        4.925312216434942769183181e+00  -0.9623674629148486   0.0000000000000000  -0.9923593600910056   0.0000000000000000
 
 ################################################################################
 ### MCI_TM_OPLEV_SEG1                                                        ###
@@ -323,11 +323,11 @@ MCI_TM_OPLEV_PIT 0 21 1      0      0 cal        4.925312216434942769183181e+00 
 ###                                                                          ###
 
 ################################################################################
-### MCI_TM_OPLEV_YAW                                                         ###
+### MCI_TM_OPLEV_TILT_YAW                                                    ###
 ################################################################################
-# DESIGN   MCI_TM_OPLEV_YAW 0 zpk([18],[100],1,"n")
+# DESIGN   MCI_TM_OPLEV_TILT_YAW 0 zpk([18],[100],1,"n")
 ###                                                                          ###
-MCI_TM_OPLEV_YAW 0 21 1      0      0 cal        5.470483510766204204855967e+00  -0.9623674629148486   0.0000000000000000  -0.9931208023913994   0.0000000000000000
+MCI_TM_OPLEV_TILT_YAW 0 21 1      0      0 cal        5.470483510766204204855967e+00  -0.9623674629148486   0.0000000000000000  -0.9931208023913994   0.0000000000000000
 
 ################################################################################
 ### MCI_TM_OPTICALIGN_P                                                      ###
@@ -355,34 +355,34 @@ MCI_TM_OPLEV_YAW 0 21 1      0      0 cal        5.470483510766204204855967e+00 
 ###                                                                          ###
 
 ################################################################################
-### MCI_TM_WD_OSEMAC_BANDLIM_H1                                              ###
+### MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG1                                      ###
 ################################################################################
-# DESIGN   MCI_TM_WD_OSEMAC_BANDLIM_H1 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
+# DESIGN   MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG1 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
 ###                                                                          ###
-MCI_TM_WD_OSEMAC_BANDLIM_H1 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
+MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG1 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
                                                                  -0.9996932508947403   0.0000000000000000  -1.0000000000000000   0.0000000000000000
 
 ################################################################################
-### MCI_TM_WD_OSEMAC_BANDLIM_H2                                              ###
+### MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG2                                      ###
 ################################################################################
-# DESIGN   MCI_TM_WD_OSEMAC_BANDLIM_H2 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
+# DESIGN   MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG2 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
 ###                                                                          ###
-MCI_TM_WD_OSEMAC_BANDLIM_H2 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
+MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG2 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
                                                                  -0.9996932508947403   0.0000000000000000  -1.0000000000000000   0.0000000000000000
 
 ################################################################################
-### MCI_TM_WD_OSEMAC_BANDLIM_H3                                              ###
+### MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG3                                      ###
 ################################################################################
-# DESIGN   MCI_TM_WD_OSEMAC_BANDLIM_H3 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
+# DESIGN   MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG3 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
 ###                                                                          ###
-MCI_TM_WD_OSEMAC_BANDLIM_H3 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
+MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG3 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
                                                                  -0.9996932508947403   0.0000000000000000  -1.0000000000000000   0.0000000000000000
 
 ################################################################################
-### MCI_TM_WD_OSEMAC_BANDLIM_H4                                              ###
+### MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG4                                      ###
 ################################################################################
-# DESIGN   MCI_TM_WD_OSEMAC_BANDLIM_H4 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
+# DESIGN   MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG4 0 zpk([0;0;0],[0.8;0.8;0.8],1,"n")gain(4.102)
 ###                                                                          ###
-MCI_TM_WD_OSEMAC_BANDLIM_H4 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
+MCI_TM_WD_OPLEVAC_BANDLIM_TILT_SEG4 0 21 2      0      0 DCcut      2.099257834856183890792636e+00  -1.9993865017894805   0.9993865958844941  -2.0000000000000000   1.0000000000000000
                                                                  -0.9996932508947403   0.0000000000000000  -1.0000000000000000   0.0000000000000000
 
