@@ -147,16 +147,21 @@ all_optics = ['ETMX','ETMY','ITMX','ITMY',
               'MCI','MCO','MCE','IMMT1','IMMT2',
               'OSTM','OMMT1','OMMT2']
 
+all_typea = ['ETMX','ETMY','ITMX','ITMY']
+all_typeb = ['BS','SRM','SR2','SR3']
+all_typebp = ['PRM','PR2','PR3']
+all_typeci = ['MCI','MCO','MCE','IMMT1','IMMT2']
+all_typeco = ['OSTM','OMMT1','OMMT2']
 def typename_is(optic):
     '''
     '''
-    if optic in ['ETMX','ETMY','ITMX','ITMY']:
+    if optic in all_typea:
         return 'Type-A'
-    elif optic in ['BS','SRM','SR2','SR3']:
+    elif optic in all_typeb:
         return 'Type-B'
-    elif optic in ['PRM','PR2','PR3']:
+    elif optic in all_typebp:
         return 'Type-Bp'
-    elif optic in ['MCI','MCO','MCE','IMMT1','IMMT2','OSTM','OMMT1','OMMT2']:
+    elif optic in all_typeci or optic in all_typeco:
         return 'Type-C'
     else:
         raise ValueError('!')
@@ -239,6 +244,28 @@ def init_OSEMINF(optics,stage,func='OSEMINF'):
             fms += [ff[fmname]]        
         copy_FMs(fm_v1,fms)        
         ff.save()
+
+def init_oplev(optics,stage='TM',func='OPLEV_TILT'):
+    '''
+    '''
+    if func in ['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL']:
+        oplevmat = [[-1,-1,+1,+1],
+                    [+1,-1,-1,+1],
+                    [+1,+1,+1,+1],
+                    [-1,+1,-1,+1]]
+    else:
+        raise ValueError('!!!!')
+
+    for optic in optics:
+        # Set oplev matrices
+        for row in range(4):
+            for col in range(4):
+                chname = 'VIS-{0}_{1}_{2}_MTRX_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                ezca[chname] = oplevmat[row][col]
+        # Set -1 for gain value of QPD
+        for segnum in range(4):
+            chname = 'VIS-{0}_{1}_{2}_SEG{3}_GAIN'.format(optic,stage,func,segnum+1)
+            ezca[chname] = -1
 
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''
@@ -366,7 +393,8 @@ def switch_on(chname,mask=['INPUT','OFFSET','OUTPUT','DECIMATION']):
     FB = ezca.get_LIGOFilter(chname)
     FMs = FB.get_current_swstat_mask().buttons
     FB.only_on(*mask)
-
+    
+    
 def plot_all():    
     # DAMP
     optics = ['ETMX','ETMY','ITMX','ITMY','BS','SRM','SR2','SR3','PRM','PR2','PR3']
@@ -438,6 +466,29 @@ if __name__=='__main__':
     #copy_param(chname,['PR2','PR3'])
 
     if True:
+        #optics = ['MCE','MCI','MCO','IMMT1','IMMT2']
+        optics = all_optics
+        optics.remove('PR3')
+        optics.remove('BS')
+        optics.remove('SRM')
+        optics.remove('SR2')
+        optics.remove('SR3')                
+        optics.remove('OSTM')
+        optics.remove('OMMT1')
+        optics.remove('OMMT2')
+        print(optics)
+        init_oplev(optics,'TM','OPLEV_TILT')
+        init_oplev(optics,'TM','OPLEV_LEN')
+        optics = all_typea
+        init_oplev(optics,'PF','OPLEV_TILT')
+        init_oplev(optics,'PF','OPLEV_LEN')        
+        init_oplev(optics,'MN','OPLEV_TILT')
+        init_oplev(optics,'MN','OPLEV_LEN')        
+        init_oplev(optics,'MN','OPLEV_ROL')
+        init_oplev(optics,'MN','OPLEV_TRA')
+        init_oplev(optics,'MN','OPLEV_VER')
+        
+    if False:
         optics = ['ITMY','ETMY','ITMX','ETMX']
         mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
         init_wd(optics,'IM','WD_OSEMAC_BANDLIM',mask_wd_ac)
