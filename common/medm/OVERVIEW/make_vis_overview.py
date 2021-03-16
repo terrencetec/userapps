@@ -169,6 +169,15 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     ctrladl4  = '{common}/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl'.format(
         common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
 
+    if sustype in ['typea']:
+        adltype = 'USER_MINI_A.adl'
+    elif sustype in ['typeb','typebp']:
+        adltype = 'USER_MINI_B_Bp.adl'
+    elif sustype in ['typec-imc','typec-omc']:
+        adltype = 'USER_MINI_C.adl'
+    else:
+        adltype = 'USER_MINI_C.adl'
+
     txt = '''
     composite {{
     object {{
@@ -178,9 +187,9 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/USER_MINI.adl;FEC={fec},OPTIC={OPTIC},macroname={macroname},ctrladl={ctrladl},ctrladl2={ctrladl2},ctrladl3={ctrladl3},ctrladl4={ctrladl4}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/{adltype};FEC={fec},OPTIC={OPTIC},macroname={macroname},ctrladl={ctrladl},ctrladl2={ctrladl2},ctrladl3={ctrladl3},ctrladl4={ctrladl4}"
     }}
-    '''.format(common=common,x=x,y=y,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE,macroname=macroname,ctrladl=ctrladl,ctrladl2=ctrladl2,ctrladl3=ctrladl3,ctrladl4=ctrladl4)
+    '''.format(common=common,x=x,y=y,adltype=adltype,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE,macroname=macroname,ctrladl=ctrladl,ctrladl2=ctrladl2,ctrladl3=ctrladl3,ctrladl4=ctrladl4)
     return txt,width,height
 
 def trip_mini(x,y,optic='ETMX'):
