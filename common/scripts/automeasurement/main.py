@@ -3,7 +3,7 @@ import subprocess
 import argparse
 import ezca
 import time
-from plot import plot, plot_diag
+from plot import plot, plot_diag, plot_couple
 from datetime import datetime
 import os
 
@@ -229,6 +229,8 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False,oltf=False):
         cmd = "cp -rf {0} {1}".format('./template/'+template,fname)
         cmd += "; sed -i -e 's/{1}_{3}_DAMP/{2}_{4}_DAMP/' {0}".\
             format(fname,_optic,optic,_stage,stage)
+        cmd += "; sed -i -e 's/{1}_{3}_OLDAMP/{2}_{4}_OLDAMP/' {0}".\
+            format(fname,_optic,optic,_stage,stage)        
         cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
         cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
@@ -323,11 +325,13 @@ if __name__=="__main__":
                 template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
         elif stage=='BF' and not 'GAS' in dofs:        
             template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
+        elif stage=='TM':        
+            template = 'PLANT_MCO_TM_TEST_P_EXC.xml'            
         else:
             raise ValueError('{0}!'.format(stage))
     else:
         raise ValueError('{0}!'.format(stage))
-    if not all([stage in ['IM','BF','F0','F1','F2','F3','SF'] for stage in stages]):
+    if not all([stage in ['IM','BF','F0','F1','F2','F3','SF','TM'] for stage in stages]):
         raise ValueError('There are stages which is not supported now in {0}'.format(stages))
     if len(optics)>3 and not args.plot:
         raise ValueError('Please reduce the number of optics because it may ' \
@@ -369,5 +373,10 @@ if __name__=="__main__":
     # Plot
     if args.plot:
         excs = dofs
-        plot(optics,stages,dofs,excs,func='DAMP',oltf=args.oltf)
-        plot_diag(optics,stages,dofs,excs,func='DAMP',oltf=args.oltf)        
+        if not stage in ['TM']:
+            func = 'DAMP'
+        else:
+            func = 'OLDAMP'
+        plot(optics,stages,dofs,excs,func=func,oltf=args.oltf)
+        plot_diag(optics,stages,dofs,excs,func=func,oltf=args.oltf)
+        plot_couple(optics,stages,dofs,excs,func=func)  

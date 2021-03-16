@@ -101,20 +101,20 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',**kwargs
         if not subtitle=='':
             ax[0].set_title(subtitle)    
         ax[0].loglog(w,np.abs(tf),style,label=label)
-        ax[0].set_ylim(1e-6,1e2)
+        ax[0].set_ylim(1e-6,1e0)
         ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
-                       ,style,label=label)
+                       ,'o',label=label,markersize=2)
         ax[2].semilogx(w,coh,style,label=label)
         ax[1].set_ylim(-180,180)
         ax[1].set_yticks(range(-180,181,90))
         ax[2].set_ylim(0,1)
-        ax[2].set_xlim(1e-2,50)
+        ax[2].set_xlim(1e-2,100)
         leg = ax[0].legend(loc='lower left',numpoints=1,markerscale=5)
         [l.set_linewidth(3) for l in leg.legendHandles]
     elif not isinstance(ax,list):
         ax.loglog(w,np.abs(tf),style,label=label,**kwargs)
         ax.set_ylim(1e-6,1e1)
-        ax.set_xlim(1e-2,50)
+        ax.set_xlim(1e-2,100)
         leg = ax.legend(numpoints=1,markerscale=5)
     
 def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
@@ -122,39 +122,40 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
     '''
     stage = stages[0]
     optic = optics[0]
-    for dof in dofs:
-        fig,ax = plt.subplots(1,1,figsize=(5,5),sharex=True,sharey='row')
-        fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
-        for i,exc in enumerate(excs): # i: plot same figure
-            # get_data
-            _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
-            _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-            w, tf, coh = get_tf(_in,_out,datetime=datetime)
-            # plot
-            label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
-            title = ''
-            if exc==dof:
-                plot_tf(w,tf,coh,ax,label=label,subtitle=title,linewidth=3,zorder=0)
-            else:
-                plot_tf(w,tf,coh,ax,label=label,subtitle=title,alpha=0.5)
+    for optic in optics:
+        for dof in dofs:
+            fig,ax = plt.subplots(1,1,figsize=(5,5),sharex=True,sharey='row')
+            fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
+            for i,exc in enumerate(excs): # i: plot same figure
+                # get_data
+                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
+                w, tf, coh = get_tf(_in,_out,datetime=datetime)
+                # plot
+                label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
+                title = ''
+                if exc==dof:
+                    plot_tf(w,tf,coh,ax,label=label,subtitle=title,linewidth=3,zorder=0)
+                else:
+                    plot_tf(w,tf,coh,ax,label=label,subtitle=title,alpha=0.5)
 
-        if datetime=='current':    
-            fname = './current/PLANT_SUS_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
-        else:
-            fname = './archive/PLANT_SUS_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)
+            if datetime=='current':    
+                fname = './current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
+            else:
+                fname = './archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)
             
-        print(fname)
-        ax.set_xlabel('Frequency [Hz]')
-        if dof in ['L','T','V','GAS']:
-            ax.set_ylabel('Magnitude [um/count]')
-        elif dof in ['R','P','Y']:
-            ax.set_ylabel('Magnitude [urad/count]')
-        else:
-            raise ValueError('!')
+            print(fname)
+            ax.set_xlabel('Frequency [Hz]')
+            if dof in ['L','T','V','GAS']:
+                ax.set_ylabel('Magnitude [um/count]')
+            elif dof in ['R','P','Y']:
+                ax.set_ylabel('Magnitude [urad/count]')
+            else:
+                raise ValueError('!')
             
-        plt.tight_layout()
-        plt.savefig(fname)
-        plt.close()
+            plt.tight_layout()
+            plt.savefig(fname)
+            plt.close()
         
 
 def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
@@ -210,7 +211,11 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
     prefix: `str`
         prefix        
     '''
-    fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
+    if len(dofs)<3:
+        num = 3
+    else:
+        num = 6
+    fig,ax = plt.subplots(3,num,figsize=(14,8),sharex=True,sharey='row')
     #
     if len(dofs)*len(excs)==1:  # for GAS
         dof,exc = dofs[0],excs[0]
@@ -261,7 +266,7 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
     else:
         raise ValueError('!')    
     print(fname)
-    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(6)]
+    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(num)]
     ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
     ax[1][0].set_ylabel('Phase [Degree]')
     ax[2][0].set_ylabel('Coherence')    
