@@ -23,7 +23,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [4416.0, 51.0, 1861.0, 1029.0]
+      Location		      [1945.0, 224.0, 1861.0, 1029.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -82,9 +82,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 12 16:24:53 2021"
-  RTWModifiedTimeStamp	  537467085
-  ModelVersionFormat	  "1.%<AutoIncrement:418>"
+  LastModifiedDate	  "Tue Mar 16 13:15:03 2021"
+  RTWModifiedTimeStamp	  537801302
+  ModelVersionFormat	  "1.%<AutoIncrement:420>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1090,7 +1090,7 @@ Library {
   }
   System {
     Name		    "PAYLOAD_MASTER"
-    Location		    [4416, 51, 6277, 1080]
+    Location		    [1945, 224, 3806, 1253]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1102,7 +1102,7 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "37"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "13603"
     Block {
@@ -56342,7 +56342,7 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOAD_MASTER_IMC"
-	Location		[3869, 43, 5730, 1072]
+	Location		[1945, 224, 3806, 1253]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -56662,24 +56662,6 @@ Library {
 	  Value			  "2"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "DACKILL"
-	  SID			  "13161"
-	  Description		  "cdsDacKill"
-	  Ports			  [2, 2]
-	  Position		  [835, 1275, 940, 1370]
-	  ZOrder		  272
-	  ForegroundColor	  "red"
-	  DropShadow		  on
-	  AttributesFormatString  "%<Description>"
-	  LibraryVersion	  "1.8"
-	  FontName		  "times"
-	  FontSize		  12
-	  SourceBlock		  "cdsDacKill/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
 	  BlockType		  Constant
 	  Name			  "DACKILL_BYPASS_TIME"
 	  SID			  "13162"
@@ -56705,19 +56687,6 @@ Library {
 	  AttributesFormatString  "%<Tag>"
 	  LibraryVersion	  "1.2"
 	  SourceBlock		  "cdsEpicsOut/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DACKILL_TYPEC"
-	  SID			  "13164"
-	  Ports			  [2, 1]
-	  Position		  [590, 1099, 740, 1166]
-	  ZOrder		  4385
-	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
-	  LibraryVersion	  "1.482"
-	  SourceBlock		  "VIS_LIB/DACKILL_TYPEC\n"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -57323,6 +57292,24 @@ Library {
 	}
 	Block {
 	  BlockType		  Reference
+	  Name			  "PAY_DACKILL"
+	  SID			  "13161"
+	  Description		  "cdsDacKill"
+	  Ports			  [2, 2]
+	  Position		  [835, 1275, 940, 1370]
+	  ZOrder		  272
+	  ForegroundColor	  "red"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Description>"
+	  LibraryVersion	  "1.8"
+	  FontName		  "times"
+	  FontSize		  12
+	  SourceBlock		  "cdsDacKill/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
 	  Name			  "PAY_SHUTDOWN"
 	  SID			  "13348"
 	  Ports			  [1, 2]
@@ -57330,6 +57317,19 @@ Library {
 	  ZOrder		  7365
 	  LibraryVersion	  "1.1"
 	  SourceBlock		  "SHUTDOWN/SHUTDOWN"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PAY_SHUTDOWN_TRIG"
+	  SID			  "13164"
+	  Ports			  [2, 1]
+	  Position		  [590, 1099, 740, 1166]
+	  ZOrder		  4385
+	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
+	  LibraryVersion	  "1.484"
+	  SourceBlock		  "VIS_LIB/DACKILL_TYPEC\n"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -57469,7 +57469,7 @@ Library {
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "cyan"
 	  DropShadow		  on
-	  LibraryVersion	  "1.414"
+	  LibraryVersion	  "1.419"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADTM_OPLEV"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -57788,19 +57788,19 @@ Library {
 	  ZOrder		  6
 	  SrcBlock		  "From1"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL_TYPEC"
+	  DstBlock		  "PAY_SHUTDOWN_TRIG"
 	  DstPort		  2
 	}
 	Line {
 	  ZOrder		  7
 	  SrcBlock		  "Constant"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL_TYPEC"
+	  DstBlock		  "PAY_SHUTDOWN_TRIG"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  147
-	  SrcBlock		  "DACKILL_TYPEC"
+	  SrcBlock		  "PAY_SHUTDOWN_TRIG"
 	  SrcPort		  1
 	  DstBlock		  "PAY_SHUTDOWN"
 	  DstPort		  1
@@ -57809,14 +57809,14 @@ Library {
 	  ZOrder		  11
 	  SrcBlock		  "LogicalOperator"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL"
+	  DstBlock		  "PAY_DACKILL"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  12
 	  SrcBlock		  "DACKILL_BYPASS_TIMEMON"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL"
+	  DstBlock		  "PAY_DACKILL"
 	  DstPort		  2
 	}
 	Line {
@@ -57828,14 +57828,14 @@ Library {
 	}
 	Line {
 	  ZOrder		  14
-	  SrcBlock		  "DACKILL"
+	  SrcBlock		  "PAY_DACKILL"
 	  SrcPort		  1
 	  DstBlock		  "Terminator5"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  15
-	  SrcBlock		  "DACKILL"
+	  SrcBlock		  "PAY_DACKILL"
 	  SrcPort		  2
 	  DstBlock		  "Terminator6"
 	  DstPort		  1
@@ -58434,7 +58434,7 @@ Library {
       Variant		      off
       System {
 	Name			"PAYLOAD_MASTER_OMC"
-	Location		[4416, 51, 6277, 1080]
+	Location		[1945, 224, 3806, 1253]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -58754,24 +58754,6 @@ Library {
 	  Value			  "2"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "DACKILL"
-	  SID			  "13243"
-	  Description		  "cdsDacKill"
-	  Ports			  [2, 2]
-	  Position		  [1170, 1255, 1275, 1350]
-	  ZOrder		  272
-	  ForegroundColor	  "red"
-	  DropShadow		  on
-	  AttributesFormatString  "%<Description>"
-	  LibraryVersion	  "1.8"
-	  FontName		  "times"
-	  FontSize		  12
-	  SourceBlock		  "cdsDacKill/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
 	  BlockType		  Constant
 	  Name			  "DACKILL_BYPASS_TIME"
 	  SID			  "13244"
@@ -58797,19 +58779,6 @@ Library {
 	  AttributesFormatString  "%<Tag>"
 	  LibraryVersion	  "1.2"
 	  SourceBlock		  "cdsEpicsOut/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "DACKILL_TYPEC"
-	  SID			  "13246"
-	  Ports			  [2, 1]
-	  Position		  [875, 1109, 1070, 1176]
-	  ZOrder		  4385
-	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
-	  LibraryVersion	  "1.483"
-	  SourceBlock		  "VIS_LIB/DACKILL_TYPEC\n"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -59383,6 +59352,24 @@ Library {
 	}
 	Block {
 	  BlockType		  Reference
+	  Name			  "PAY_DACKILL"
+	  SID			  "13243"
+	  Description		  "cdsDacKill"
+	  Ports			  [2, 2]
+	  Position		  [1170, 1255, 1275, 1350]
+	  ZOrder		  272
+	  ForegroundColor	  "red"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Description>"
+	  LibraryVersion	  "1.8"
+	  FontName		  "times"
+	  FontSize		  12
+	  SourceBlock		  "cdsDacKill/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
 	  Name			  "PAY_SHUTDOWN"
 	  SID			  "13567"
 	  Ports			  [1, 2]
@@ -59390,6 +59377,19 @@ Library {
 	  ZOrder		  8214
 	  LibraryVersion	  "1.1"
 	  SourceBlock		  "SHUTDOWN/SHUTDOWN"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PAY_SHUTDOWN_TRIG"
+	  SID			  "13246"
+	  Ports			  [2, 1]
+	  Position		  [875, 1109, 1070, 1176]
+	  ZOrder		  4385
+	  BackgroundColor	  "[1.000000, 0.686275, 0.545098]"
+	  LibraryVersion	  "1.484"
+	  SourceBlock		  "VIS_LIB/DACKILL_TYPEC\n"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
 	}
@@ -59529,7 +59529,7 @@ Library {
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "green"
 	  DropShadow		  on
-	  LibraryVersion	  "1.417"
+	  LibraryVersion	  "1.419"
 	  SourceBlock		  "PAYLOAD_MASTER/PAYLOADTM_OSEM"
 	  SourceType		  "SubSystem"
 	  ContentPreviewEnabled	  off
@@ -59843,19 +59843,19 @@ Library {
 	  ZOrder		  6
 	  SrcBlock		  "From1"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL_TYPEC"
+	  DstBlock		  "PAY_SHUTDOWN_TRIG"
 	  DstPort		  2
 	}
 	Line {
 	  ZOrder		  7
 	  SrcBlock		  "Constant"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL_TYPEC"
+	  DstBlock		  "PAY_SHUTDOWN_TRIG"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  105
-	  SrcBlock		  "DACKILL_TYPEC"
+	  SrcBlock		  "PAY_SHUTDOWN_TRIG"
 	  SrcPort		  1
 	  DstBlock		  "PAY_SHUTDOWN"
 	  DstPort		  1
@@ -59864,14 +59864,14 @@ Library {
 	  ZOrder		  11
 	  SrcBlock		  "LogicalOperator"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL"
+	  DstBlock		  "PAY_DACKILL"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  12
 	  SrcBlock		  "DACKILL_BYPASS_TIMEMON"
 	  SrcPort		  1
-	  DstBlock		  "DACKILL"
+	  DstBlock		  "PAY_DACKILL"
 	  DstPort		  2
 	}
 	Line {
@@ -59883,14 +59883,14 @@ Library {
 	}
 	Line {
 	  ZOrder		  14
-	  SrcBlock		  "DACKILL"
+	  SrcBlock		  "PAY_DACKILL"
 	  SrcPort		  1
 	  DstBlock		  "Terminator5"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  15
-	  SrcBlock		  "DACKILL"
+	  SrcBlock		  "PAY_DACKILL"
 	  SrcPort		  2
 	  DstBlock		  "Terminator6"
 	  DstPort		  1
