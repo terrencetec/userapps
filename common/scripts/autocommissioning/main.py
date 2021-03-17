@@ -245,27 +245,54 @@ def init_OSEMINF(optics,stage,func='OSEMINF'):
         copy_FMs(fm_v1,fms)        
         ff.save()
 
-def init_oplev(optics,stage='TM',func='OPLEV_TILT'):
-    '''
-    '''
+def _oplevmat(func):
     if func in ['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL']:
-        oplevmat = [[-1,-1,+1,+1],
-                    [+1,-1,-1,+1],
-                    [+1,+1,+1,+1],
-                    [-1,+1,-1,+1]]
+        _mat = [[-1,-1,+1,+1],
+                [+1,-1,-1,+1],
+                [+1,+1,+1,+1],
+                [-1,+1,-1,+1]]
     else:
-        raise ValueError('!!!!')
-
+        _mat = [[0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0]]
+    return _mat
+        
+def init_oplev(optics,stage='TM',funcs=['OPLEV_TILT']):
+    '''
+    '''        
+    # Init each OpLev values
     for optic in optics:
-        # Set oplev matrices
-        for row in range(4):
-            for col in range(4):
-                chname = 'VIS-{0}_{1}_{2}_MTRX_{3}_{4}'.format(optic,stage,func,row+1,col+1)
-                ezca[chname] = oplevmat[row][col]
-        # Set -1 for gain value of QPD
-        for segnum in range(4):
-            chname = 'VIS-{0}_{1}_{2}_SEG{3}_GAIN'.format(optic,stage,func,segnum+1)
-            ezca[chname] = -1
+        for func in funcs:        
+            # Set oplev matrices
+            for row in range(4):
+                for col in range(4):
+                    chname = 'VIS-{0}_{1}_{2}_MTRX_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                    ezca[chname] = _oplevmat(func)[row][col]
+            # Set -1 for gain value of QPD
+            for segnum in range(4):
+                chname = 'VIS-{0}_{1}_{2}_SEG{3}_GAIN'.format(optic,stage,func,segnum+1)
+                ezca[chname] = -1
+                
+    # Init Euler matrix
+    if stage=='MN':
+        pass
+    else:
+        _oplev2eul = [[0,0,0,1],
+                      [1,0,0,0],
+                      [0,1,0,0]]
+        _sensalign = [[1,0,0],
+                      [0,1,0],
+                      [0,0,1]]    
+        for optic in optics:
+            for row in range(3):
+                for col in range(4):
+                    chname = "VIS-{0}_{1}_{2}_{3}_{4}".format(optic,stage,'OPLEV2EUL',row+1,col+1)
+                    ezca[chname] = _oplev2eul[row][col]
+            for row in range(3):
+                for col in range(3):                
+                    chname = "VIS-{0}_{1}_{2}_{3}_{4}".format(optic,stage,'SENSALIGN',row+1,col+1)
+                    ezca[chname] = _sensalign[row][col]               
 
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''
@@ -477,17 +504,10 @@ if __name__=='__main__':
         optics.remove('OMMT1')
         optics.remove('OMMT2')
         print(optics)
-        init_oplev(optics,'TM','OPLEV_TILT')
-        init_oplev(optics,'TM','OPLEV_LEN')
+        init_oplev(optics,'TM',['OPLEV_TILT','OPLEV_LEN'])
         optics = all_typea
-        init_oplev(optics,'PF','OPLEV_TILT')
-        init_oplev(optics,'PF','OPLEV_LEN')        
-        init_oplev(optics,'MN','OPLEV_TILT')
-        init_oplev(optics,'MN','OPLEV_LEN')        
-        init_oplev(optics,'MN','OPLEV_ROL')
-        init_oplev(optics,'MN','OPLEV_TRA')
-        init_oplev(optics,'MN','OPLEV_VER')
-        
+        init_oplev(optics,'PF',['OPLEV_TILT','OPLEV_LEN'])
+        init_oplev(optics,'MN',['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL','OPLEV_TRA','OPLEV_VER'])        
     if False:
         optics = ['ITMY','ETMY','ITMX','ETMX']
         mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
