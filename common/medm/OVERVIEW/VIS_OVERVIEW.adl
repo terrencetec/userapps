@@ -137,7 +137,7 @@ composite {
 		x=17
 		y=139
 		width=1205
-		height=692
+		height=688
 	}
 	"composite name"=""
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/VIS_MINI.adl"
@@ -336,57 +336,32 @@ text {
 	textix="DC"
 	align="horiz. centered"
 }
-composite {
+oval {
 	object {
 		x=34
 		y=874
 		width=50
 		height=50
 	}
-	"composite name"=""
-	children {
-		oval {
-			object {
-				x=34
-				y=874
-				width=50
-				height=50
-			}
-			"basic attribute" {
-				clr=53
-			}
-			"dynamic attribute" {
-				chan="K1:FEC-102_TIME_STRING"
-			}
-		}
-		oval {
-			object {
-				x=42
-				y=882
-				width=35
-				height=35
-			}
-			"basic attribute" {
-				clr=0
-			}
-			"dynamic attribute" {
-				chan="K1:FEC-102_TIME_STRING"
-			}
-		}
-		oval {
-			object {
-				x=49
-				y=889
-				width=20
-				height=20
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				chan="K1:FEC-102_TIME_STRING"
-			}
-		}
+	"basic attribute" {
+		clr=53
+	}
+	"dynamic attribute" {
+		chan="K1:FEC-102_TIME_STRING"
+	}
+}
+oval {
+	object {
+		x=42
+		y=882
+		width=35
+		height=35
+	}
+	"basic attribute" {
+		clr=0
+	}
+	"dynamic attribute" {
+		chan="K1:FEC-102_TIME_STRING"
 	}
 }
 text {
@@ -401,4 +376,33 @@ text {
 	}
 	textix="Control Pannels"
 	align="horiz. centered"
+}
+"related display" {
+	object {
+		x=51
+		y=894
+		width=15
+		height=15
+	}
+	display[0] {
+		label="sc"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COMMISSIONING_OVERVIEW.adl"
+	}
+	clr=20
+	bclr=4
+	visual="invisible"
+}
+oval {
+	object {
+		x=49
+		y=890
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		chan="K1:FEC-102_TIME_STRING"
+	}
 }
