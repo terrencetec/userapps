@@ -248,7 +248,7 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False,oltf=False):
         if run:
             subprocess.run(cmd,shell=True,check=True)
             if os.path.getsize(fname)<6700: # unuse
-                raise ValueError('{0} is invalid file due to small file size. Please open the file via diaggui.'.format(fname))
+                raise ValueError('{0} is invalid file due to small file size. Please open the file by diaggui.'.format(fname))
                 
 
 # ------------------------------------------------------------------------------
