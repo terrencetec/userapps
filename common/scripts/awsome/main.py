@@ -15,37 +15,49 @@ def plot(output):
     df = f.readlines()
     f.close()
     df = [i.split(',') for i in df]
-
     df = pd.read_csv(output,header=0)
-
-    idx = [2,4,6,38,12,54,16,18,20]
     
-    _name = ['K1:VIS-PR2_BF_LVDTINF_H1_INMON',
-             'K1:VIS-PR2_BF_LVDTINF_V1_INMON',
-             'K1:VIS-PR2_BF_LVDTINF_H1_INMON',
-             'K1:VIS-PR2_BF_LVDTINF_H2_INMON']
+    _name = ['K1:VIS-MCI_TM_OPLEV_TILT_SEG1_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_SEG2_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_SEG3_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_SEG4_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_PIT_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_YAW_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_SUM_INMON',
+             'K1:VIS-MCI_TM_OPLEV_TILT_CRS_INMON']
     
-    col,row = 2,2
-    fig, ax = plt.subplots(col,row,figsize=(10,4),sharex=True)
+    col,row = 3,3
+    fig, ax = plt.subplots(col,row,figsize=(10,10),sharex=True)
     for i,ax_col in enumerate(ax):
         for j,_ax in enumerate(ax_col):
             if i==col-1:
-                _ax.set_xlabel('Calibrated stepper distance [um]')                
-            n = i*2+j
+                _ax.set_xlabel('Distance [um]')
+            n = i*col+j
 
-            if 'INMON' in _name[n]:
-                ylabel = 'Value [count]'
-            elif 'OUT':
-                ylabel = 'Value [um]'                
+            if n>=len(_name):
+                break
+            # if 'INMON' in _name[n]:
+            #     ylabel = 'Value [count]'
+            # elif 'OUT':
+            #     ylabel = 'Value [um]'
+            ylabel = 'Value [a.u.]'
             _ax.set_ylabel(ylabel)
             
             if n<len(_name):                
-                _ax.errorbar(x=df['Memo']*screw_pitch/51200.0,
+                _ax.errorbar(x=df['Memo'],
                              y=df[_name[n]+'.mean'],
                              yerr=df[_name[n]+'.std'],
                              fmt='ko',label=_name[n],
                              markersize=2,capsize=3)
                 _ax.legend(fontsize=7)
+                if 'SEG' in _name[n]:
+                    _ax.set_ylim(-4000,0)
+                elif 'SUM' in _name[n]:
+                    _ax.set_ylim(0,16000)                    
+                elif 'CRS' in _name[n]:
+                    _ax.set_ylim(0,1000)
+                else:
+                    _ax.set_ylim(0,1)
             else:
                 break
     plt.show()
@@ -56,7 +68,7 @@ def plot(output):
     #plt.savefig('hoge.png')
 '''
 def init(epicschannel):
-    f=open(epicschannel,'r',encoding='UTF-8')
+    f = open(epicschannel,'r',encoding='UTF-8')
     chname = f.readlines()
     f.close()
     chname = [name[:-1] for name in chname if name[0]!='#'] 
@@ -103,6 +115,7 @@ if __name__=='__main__':
         avg = np.array(avg(1,chname,stddev=True))
         data = [[str(now),memo,*list(map(lambda x:'{0:.3f}'.format(x),avg.flatten()))]]
         #print(data[0])
+        print(data[0])
         txt = ','.join(data[0])+'\n'
         #print(txt)
         with open(args.output,'a') as f:
