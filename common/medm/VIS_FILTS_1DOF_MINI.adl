@@ -212,6 +212,11 @@ text {
 		name="ndscope"
 		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 &"
 	}
+	command[2] {
+		label="10 second average"
+		name="xterm -fn 6x13 -geometry 54x36 -e"
+		args="'z avg -s 10 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 | less -R' &"
+	}	
 	clr=0
 	bclr=14
 	label="-"
