@@ -294,6 +294,30 @@ def init_oplev(optics,stage='TM',funcs=['OPLEV_TILT']):
                     chname = "VIS-{0}_{1}_{2}_{3}_{4}".format(optic,stage,'SENSALIGN',row+1,col+1)
                     ezca[chname] = _sensalign[row][col]               
 
+def init_act(optics,stage='TM',func='OSEM'):
+    '''
+    '''        
+    # Init each OpLev values
+    _eul2coil = [[+1,+1,+1],
+                 [+1,-1,+1],
+                 [+1,-1,-1],
+                 [+1,+1,-1]]
+    _lkin2coil = [[+1,+1],
+                  [-1,+1],
+                  [-1,-1],
+                  [+1,-1]]
+
+    for optic in optics:
+        for row in range(4):
+            for col in range(3):
+                chname = 'VIS-{0}_{1}_EUL2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                ezca[chname] = _eul2coil[row][col]
+    for optic in optics:
+        for row in range(4):
+            for col in range(2):
+                chname = 'VIS-{0}_{1}_LKIN2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                ezca[chname] = _lkin2coil[row][col]
+                    
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''
     '''
@@ -493,6 +517,11 @@ if __name__=='__main__':
     #copy_param(chname,['PR2','PR3'])
 
     if True:
+        optics = ['MCE','MCI','MCO']
+        #optics = all_typea
+        init_act(optics,'TM')
+    
+    if False:
         #optics = ['MCE','MCI','MCO','IMMT1','IMMT2']
         optics = all_optics
         optics.remove('PR3')
