@@ -101,7 +101,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',**kwargs
         if not subtitle=='':
             ax[0].set_title(subtitle)    
         ax[0].loglog(w,np.abs(tf),style,label=label)
-        ax[0].set_ylim(1e-6,1e0)
+        ax[0].set_ylim(1e-4,100)
         ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
                        ,'o',label=label,markersize=2)
         ax[2].semilogx(w,coh,style,label=label)
@@ -113,7 +113,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',**kwargs
         [l.set_linewidth(3) for l in leg.legendHandles]
     elif not isinstance(ax,list):
         ax.loglog(w,np.abs(tf),style,label=label,**kwargs)
-        ax.set_ylim(1e-6,1e1)
+        ax.set_ylim(1e-6,100)
         ax.set_xlim(1e-2,100)
         leg = ax.legend(numpoints=1,markerscale=5)
     
