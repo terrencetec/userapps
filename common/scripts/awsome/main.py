@@ -17,14 +17,14 @@ def plot(output):
     df = [i.split(',') for i in df]
     df = pd.read_csv(output,header=0)
     
-    _name = ['K1:VIS-MCI_TM_OPLEV_TILT_SEG1_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_SEG2_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_SEG3_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_SEG4_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_PIT_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_YAW_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_SUM_INMON',
-             'K1:VIS-MCI_TM_OPLEV_TILT_CRS_INMON']
+    _name = ['K1:VIS-MCO_TM_OPLEV_TILT_SEG1_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_SEG2_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_SEG3_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_SEG4_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_PIT_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_YAW_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_SUM_INMON',
+             'K1:VIS-MCO_TM_OPLEV_TILT_CRS_INMON']
     
     col,row = 3,3
     fig, ax = plt.subplots(col,row,figsize=(10,10),sharex=True)
@@ -51,13 +51,13 @@ def plot(output):
                              markersize=2,capsize=3)
                 _ax.legend(fontsize=7)
                 if 'SEG' in _name[n]:
-                    _ax.set_ylim(-4000,0)
+                    _ax.set_ylim(-10000,0)
                 elif 'SUM' in _name[n]:
                     _ax.set_ylim(0,16000)                    
                 elif 'CRS' in _name[n]:
                     _ax.set_ylim(0,1000)
                 else:
-                    _ax.set_ylim(0,1)
+                    _ax.set_ylim(-1,1)
             else:
                 break
     plt.show()
