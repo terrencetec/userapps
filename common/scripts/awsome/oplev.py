@@ -25,7 +25,7 @@ def plot(output):
              'K1:VIS-MCO_TM_OPLEV_TILT_CRS_INMON']
     
     col,row = 3,3
-    fig, ax = plt.subplots(col,row,figsize=(10,5),sharex=True)
+    fig, ax = plt.subplots(col,row,figsize=(10,4),sharex=True)
     for i,ax_col in enumerate(ax):
         for j,_ax in enumerate(ax_col):
             if i==col-1:
@@ -80,7 +80,8 @@ def calibration(output):
              'K1:VIS-MCO_TM_OPLEV_TILT_CRS_INMON']
     
     col,row = 4,1
-    fig, ax = plt.subplots(col,row,figsize=(6,8),sharex=True)
+    fig, ax = plt.subplots(col,row,figsize=(8,8),sharex=True)
+    fig.subplots_adjust(wspace=0.1, hspace=0.05, left=0.15, right=0.6)    
     for i,_ax in enumerate(ax):
         if i==3:
             _ax.set_xlabel('Distance [mm]')
@@ -88,7 +89,7 @@ def calibration(output):
         
         if n>=len(_name):
             break
-        ylabel = 'Value [a.u.]'
+        ylabel = 'Value [count]'
         _ax.set_ylabel(ylabel)
         
         if n<len(_name):                
@@ -107,20 +108,29 @@ def calibration(output):
                 _x = np.linspace(int(x.min()),int(x.max())+1,100)
                 a,b = popt
                 label = '{0:3.2f}*x + {1:3.2f}'.format(b,a)
-                _ax.plot(_x,func(_x,*popt),label=label)                
+                _ax.plot(_x,func(_x,*popt),label=label)
             if 'YAW' in _name[n]:
                 func = lambda x,a,b,c,d: a*scipy.special.erf(b*(x-c)) + d
                 x = _df['Memo']
                 bounds = [[-2, -2, -10, -2],
                           [+2, +2, +10, +2]]
                 popt, pcov = curve_fit(func,x,_df[_name[n]+'.mean'],bounds=bounds)
-                a,b,c,d = popt                
+                a,b,c,d = popt
                 _x = np.linspace(int(x.min()),int(x.max())+1,100)
                 label = '{0:3.2f}* erf({1:3.2f}(x-{2:3.2f})) + {3:3.2f}'.format(a,b,c,d)
                 _ax.plot(_x,func(_x,*popt),label=label)
                 func = lambda x,a,b,c: a*b*(x-c)*2/np.sqrt(np.pi)
-                label = '{0:3.2f}*(x-{1:3.2f})'.format(a*b*2/np.sqrt(np.pi),c)
-                _ax.plot(_x,func(_x,a,b,c),label=label)                
+                slope_inv = a*b*2/np.sqrt(np.pi)
+                label = '{0:3.2f}*(x-{1:3.2f})'.format(slope_inv,c)
+                _ax.plot(_x,func(_x,a,b,c),label=label)
+                print('Slope value is {0:3.2f} [mm/count].'.format(1/slope_inv))
+                sigma = 1/b*np.sqrt(2)
+                linrange = sigma/2 #?
+                print('Beam radius is {0:3.2f} [mm]?.'.format(sigma))
+                print('Linear range is {0:3.2f} [mm]?.'.format(linrange))                
+                _ax.vlines(x=c,ymin=-1,ymax=1,color='black',linestyle='--')                
+                _ax.axvspan(c-linrange,c+linrange,color='gray',alpha=0.3)
+                
             if 'SUM' in _name[n]:
                 func = lambda x,a,b: a+b*x
                 x = _df['Memo']
@@ -138,13 +148,14 @@ def calibration(output):
                 _ax.set_ylim(-5000,5000)
             else:
                 _ax.set_ylim(-1.1,1.1)
-            _ax.legend(fontsize=7)                
+            _ax.legend(fontsize=8,loc='upper left',bbox_to_anchor=(1, 1))
+            _ax.grid(which='major',color='gray',linestyle='--')
         else:
             break
     #
-    
+    #plt.tight_layout()
     plt.show()
-    plt.savefig('hoge.png')
+    plt.savefig('calib.png')
     plt.close()            
     
 
