@@ -17,14 +17,14 @@ def plot(output):
     df = [i.split(',') for i in df]
     df = pd.read_csv(output,header=0)
     
-    _name = ['K1:VIS-MCO_TM_OPLEV_TILT_SEG1_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_SEG2_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_SEG3_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_SEG4_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_PIT_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_YAW_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_SUM_INMON',
-             'K1:VIS-MCO_TM_OPLEV_TILT_CRS_INMON']
+    _name = ['K1:VIS-MCE_TM_OPLEV_TILT_SEG1_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_SEG2_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_SEG3_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_SEG4_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_PIT_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_YAW_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_SUM_INMON',
+             'K1:VIS-MCE_TM_OPLEV_TILT_CRS_INMON']
     
     col,row = 3,3
     fig, ax = plt.subplots(col,row,figsize=(10,5),sharex=True)
@@ -60,7 +60,7 @@ def plot(output):
                     _ax.set_ylim(-1,1)
             else:
                 break
-    #plt.show()
+    plt.show()
     plt.savefig('hoge.png')
     plt.close()
     
