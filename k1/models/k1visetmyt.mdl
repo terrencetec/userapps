@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.198"
+    ComputedModelVersion    "1.200"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -40,7 +40,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [3981.0, 60.0, 1694.0, 1064.0]
+      Location		      [3805.0, 58.0, 1694.0, 1064.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1656.0, 892.0]
-	ZoomFactor		[0.584573748308525]
-	Offset			[-442.41666666666674, -101.94907407407402]
+	ZoomFactor		[0.8]
+	Offset			[318.71233573832251, 354.14785197675451]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 09 16:50:46 2021"
-  RTWModifiedTimeStamp	  537209433
-  ModelVersionFormat	  "1.%<AutoIncrement:198>"
+  LastModifiedDate	  "Wed Mar 24 12:51:19 2021"
+  RTWModifiedTimeStamp	  538491078
+  ModelVersionFormat	  "1.%<AutoIncrement:200>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -933,6 +933,21 @@ Model {
       TagVisibility	      "local"
     }
     Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParamMin		      "[]"
+      ParamMax		      "[]"
+      ParamDataTypeStr	      "Inherit: Same as input"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Goto
       GotoTag		      "A"
       IconDisplay	      "Tag"
@@ -1012,12 +1027,28 @@ Model {
       IsWebBlock	      off
     }
     Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Terminator
     }
   }
   System {
     Name		    "k1visetmyt"
-    Location		    [3981, 60, 5675, 1124]
+    Location		    [3805, 58, 5499, 1122]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1029,9 +1060,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "58"
+    ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1214"
+    SIDHighWatermark	    "1267"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -1315,6 +1346,23 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "CBI_H32_C4"
+      SID		      "1215"
+      Tag		      "cdsCDI64"
+      Description	      "card_num=9"
+      Ports		      [0, 1]
+      Position		      [1725, 1199, 1785, 1221]
+      ZOrder		      8216
+      BackgroundColor	      "lightBlue"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>\\n%<Description>"
+      LibraryVersion	      "1.6"
+      SourceBlock	      "cdsCDI64/Subsystem"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "CBI_L32_C0"
       SID		      "131"
       Tag		      "cdsCDI64"
@@ -1373,6 +1421,23 @@ Model {
       Ports		      [1]
       Position		      [1565, 1100, 1625, 1120]
       ZOrder		      4392
+      BackgroundColor	      "lightBlue"
+      DropShadow	      on
+      AttributesFormatString  "%<Tag>\\n%<Description>"
+      LibraryVersion	      "1.7"
+      SourceBlock	      "cdsCDO64/Subsystem"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CBO_H32_C4"
+      SID		      "1218"
+      Tag		      "cdsCDO64"
+      Description	      "card_num=9"
+      Ports		      [1]
+      Position		      [1565, 1180, 1625, 1200]
+      ZOrder		      8219
       BackgroundColor	      "lightBlue"
       DropShadow	      on
       AttributesFormatString  "%<Tag>\\n%<Description>"
@@ -1534,7 +1599,7 @@ Model {
       Tag		      "cdsCDO32"
       Description	      "Contec32 bit binary output module driver"
       Ports		      [2]
-      Position		      [1490, 1230, 1530, 1290]
+      Position		      [1490, 1290, 1530, 1350]
       ZOrder		      4989
       BackgroundColor	      "cyan"
       DropShadow	      on
@@ -1580,12 +1645,12 @@ Model {
       BlockType		      Reference
       Name		      "ETMY"
       SID		      "1161"
-      Ports		      [67, 25]
-      Position		      [690, 376, 920, 1384]
+      Ports		      [68, 25]
+      Position		      [690, 383, 920, 1392]
       ZOrder		      8024
       ForegroundColor	      "blue"
       BackgroundColor	      "cyan"
-      LibraryVersion	      "1.324"
+      LibraryVersion	      "1.325"
       SourceBlock	      "TOWER_MASTER/TOWER_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -1628,6 +1693,1036 @@ Model {
       SourceBlock	      "BIO_CD_ENCODE_MASTER/BIO_CD_ENCODE_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "ETMY_BIO_CDCTRL_NOTUSE"
+      SID		      "1219"
+      Ports		      [1, 1]
+      Position		      [1360, 1171, 1530, 1209]
+      ZOrder		      8218
+      BackgroundColor	      "[1.000000, 1.000000, 0.000000]"
+      RequestExecContextInheritance off
+      Variant		      off
+      System {
+	Name			"ETMY_BIO_CDCTRL_NOTUSE"
+	Location		[80, 45, 1404, 1036]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"300"
+	Block {
+	  BlockType		  Inport
+	  Name			  "BIO_CDCTRL_In"
+	  SID			  "1220"
+	  Position		  [125, 413, 155, 427]
+	  ZOrder		  -1
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "BIT2WORD2"
+	  SID			  "1221"
+	  Ports			  [32, 1]
+	  Position		  [690, 153, 740, 1167]
+	  ZOrder		  1167
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "BIT2WORD2"
+	    Location		    [1976, 40, 3224, 1089]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "1222"
+	      Position		      [25, 43, 55, 57]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In2"
+	      SID		      "1223"
+	      Position		      [25, 53, 55, 67]
+	      ZOrder		      -2
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In3"
+	      SID		      "1224"
+	      Position		      [25, 63, 55, 77]
+	      ZOrder		      -3
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In4"
+	      SID		      "1225"
+	      Position		      [25, 73, 55, 87]
+	      ZOrder		      -4
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In5"
+	      SID		      "1226"
+	      Position		      [25, 83, 55, 97]
+	      ZOrder		      -5
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In6"
+	      SID		      "1227"
+	      Position		      [25, 93, 55, 107]
+	      ZOrder		      -6
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In7"
+	      SID		      "1228"
+	      Position		      [25, 103, 55, 117]
+	      ZOrder		      -7
+	      Port		      "7"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In8"
+	      SID		      "1229"
+	      Position		      [25, 113, 55, 127]
+	      ZOrder		      -8
+	      Port		      "8"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In9"
+	      SID		      "1230"
+	      Position		      [25, 123, 55, 137]
+	      ZOrder		      -9
+	      Port		      "9"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In10"
+	      SID		      "1231"
+	      Position		      [25, 133, 55, 147]
+	      ZOrder		      -10
+	      Port		      "10"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In11"
+	      SID		      "1232"
+	      Position		      [25, 143, 55, 157]
+	      ZOrder		      -11
+	      Port		      "11"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In12"
+	      SID		      "1233"
+	      Position		      [25, 153, 55, 167]
+	      ZOrder		      -12
+	      Port		      "12"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In13"
+	      SID		      "1234"
+	      Position		      [25, 163, 55, 177]
+	      ZOrder		      -13
+	      Port		      "13"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In14"
+	      SID		      "1235"
+	      Position		      [25, 173, 55, 187]
+	      ZOrder		      -14
+	      Port		      "14"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In15"
+	      SID		      "1236"
+	      Position		      [25, 183, 55, 197]
+	      ZOrder		      -15
+	      Port		      "15"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In16"
+	      SID		      "1237"
+	      Position		      [25, 193, 55, 207]
+	      ZOrder		      -16
+	      Port		      "16"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In17"
+	      SID		      "1238"
+	      Position		      [25, 368, 55, 382]
+	      ZOrder		      -17
+	      Port		      "17"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In18"
+	      SID		      "1239"
+	      Position		      [25, 378, 55, 392]
+	      ZOrder		      -18
+	      Port		      "18"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In19"
+	      SID		      "1240"
+	      Position		      [25, 388, 55, 402]
+	      ZOrder		      -19
+	      Port		      "19"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In20"
+	      SID		      "1241"
+	      Position		      [25, 398, 55, 412]
+	      ZOrder		      -20
+	      Port		      "20"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In21"
+	      SID		      "1242"
+	      Position		      [25, 408, 55, 422]
+	      ZOrder		      -21
+	      Port		      "21"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In22"
+	      SID		      "1243"
+	      Position		      [25, 418, 55, 432]
+	      ZOrder		      -22
+	      Port		      "22"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In23"
+	      SID		      "1244"
+	      Position		      [25, 428, 55, 442]
+	      ZOrder		      -23
+	      Port		      "23"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In24"
+	      SID		      "1245"
+	      Position		      [25, 438, 55, 452]
+	      ZOrder		      -24
+	      Port		      "24"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In25"
+	      SID		      "1246"
+	      Position		      [25, 448, 55, 462]
+	      ZOrder		      -25
+	      Port		      "25"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In26"
+	      SID		      "1247"
+	      Position		      [25, 458, 55, 472]
+	      ZOrder		      -26
+	      Port		      "26"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In27"
+	      SID		      "1248"
+	      Position		      [25, 468, 55, 482]
+	      ZOrder		      -27
+	      Port		      "27"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In28"
+	      SID		      "1249"
+	      Position		      [25, 478, 55, 492]
+	      ZOrder		      -28
+	      Port		      "28"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In29"
+	      SID		      "1250"
+	      Position		      [25, 488, 55, 502]
+	      ZOrder		      -29
+	      Port		      "29"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In30"
+	      SID		      "1251"
+	      Position		      [25, 498, 55, 512]
+	      ZOrder		      -30
+	      Port		      "30"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In31"
+	      SID		      "1252"
+	      Position		      [25, 508, 55, 522]
+	      ZOrder		      -31
+	      Port		      "31"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In32"
+	      SID		      "1253"
+	      Position		      [25, 518, 55, 532]
+	      ZOrder		      -32
+	      Port		      "32"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      "1254"
+	      Position		      [175, 435, 250, 465]
+	      ZOrder		      -33
+	      Gain		      "65536"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "1255"
+	      Ports		      [2, 1]
+	      Position		      [315, 101, 325, 199]
+	      ZOrder		      -34
+	      ShowName		      off
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "cdsBit2Word"
+	      SID		      "1256"
+	      Tag		      "cdsBit2Word"
+	      Description	      "Forms single 16 bit integer from 16 0/1 inputs."
+	      Ports		      [16, 1]
+	      Position		      [80, 27, 130, 223]
+	      ZOrder		      -35
+	      BackgroundColor	      "lightBlue"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsBit2Word/cdsBit2Word"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "cdsBit2Word1"
+	      SID		      "1257"
+	      Tag		      "cdsBit2Word"
+	      Description	      "Forms single 16 bit integer from 16 0/1 inputs."
+	      Ports		      [16, 1]
+	      Position		      [80, 352, 130, 548]
+	      ZOrder		      -36
+	      BackgroundColor	      "lightBlue"
+	      DropShadow	      on
+	      AttributesFormatString  "%<Tag>"
+	      LibraryVersion	      "1.6"
+	      SourceBlock	      "cdsBit2Word/cdsBit2Word"
+	      SourceType	      "SubSystem"
+	      ContentPreviewEnabled   off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "1258"
+	      Position		      [350, 143, 380, 157]
+	      ZOrder		      -37
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In32"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      16
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "In31"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      15
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "In30"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      14
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "In29"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      13
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "In28"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      12
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "In27"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      11
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "In26"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      10
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "In25"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      9
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "In24"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      8
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "In23"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      7
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "In22"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      6
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "In21"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      5
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "In20"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      14
+	      SrcBlock		      "In19"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "In18"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "In17"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "In16"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      16
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "In15"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      15
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "In14"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      14
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "In13"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      13
+	    }
+	    Line {
+	      ZOrder		      21
+	      SrcBlock		      "In12"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      12
+	    }
+	    Line {
+	      ZOrder		      22
+	      SrcBlock		      "In11"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      11
+	    }
+	    Line {
+	      ZOrder		      23
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      24
+	      SrcBlock		      "In10"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      10
+	    }
+	    Line {
+	      ZOrder		      25
+	      SrcBlock		      "In9"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      9
+	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "In8"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      8
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "In7"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      7
+	    }
+	    Line {
+	      ZOrder		      28
+	      SrcBlock		      "In6"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      6
+	    }
+	    Line {
+	      ZOrder		      29
+	      SrcBlock		      "In5"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      5
+	    }
+	    Line {
+	      ZOrder		      30
+	      SrcBlock		      "In4"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      31
+	      SrcBlock		      "In3"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      32
+	      SrcBlock		      "In2"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      33
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "cdsBit2Word"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      34
+	      SrcBlock		      "cdsBit2Word"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      35
+	      SrcBlock		      "cdsBit2Word1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      36
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      Points		      [0, -275]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "DIO_OUT"
+	  SID			  "1259"
+	  Tag			  "cdsEpicsOutput"
+	  Description		  "Purpose:                                          \nOutput a FE signal to an EPICS channel.        "
+	  "   \n                                                  \nOperation:                                        \nTakes "
+	  "input value and passes it to EPICS record.  \n                                                  \nUsage:           "
+	  "                                 \nName the part with the desired EPICS rrecord name."
+	  Ports			  [1, 1]
+	  Position		  [790, 650, 870, 670]
+	  ZOrder		  1166
+	  BackgroundColor	  "[0.686275, 0.372549, 0.313725]"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.2"
+	  SourceBlock		  "cdsEpicsOut/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground2"
+	  SID			  "1260"
+	  Position		  [345, 964, 365, 986]
+	  ZOrder		  1168
+	  ForegroundColor	  "red"
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Ground
+	  Name			  "Ground66"
+	  SID			  "1261"
+	  Position		  [525, 664, 545, 686]
+	  ZOrder		  1171
+	  ForegroundColor	  "red"
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "WD_RESET"
+	  SID			  "1262"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [575, 660, 650, 690]
+	  ZOrder		  1170
+	  BackgroundColor	  "darkGreen"
+	  DropShadow		  on
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "cdsWord2Bit"
+	  SID			  "1263"
+	  Tag			  "cdsWord2Bit"
+	  Description		  "Generate 16 0/1 outputs from single 16-bit integer input"
+	  Ports			  [1, 16]
+	  Position		  [285, 178, 315, 662]
+	  ZOrder		  1169
+	  BackgroundColor	  "cyan"
+	  DropShadow		  on
+	  AttributesFormatString  "cdsWord2Bit"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsWord2Bit/cdsWord2Bit"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "DIO_CDCTRL_Out"
+	  SID			  "1264"
+	  Position		  [930, 653, 960, 667]
+	  ZOrder		  -2
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  ZOrder		  1
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  16
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  16
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  15
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  15
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  14
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  14
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  13
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  13
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  12
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  12
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "BIT2WORD2"
+	  SrcPort		  1
+	  DstBlock		  "DIO_OUT"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "DIO_OUT"
+	  SrcPort		  1
+	  DstBlock		  "DIO_CDCTRL_Out"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  "WD_RESET"
+	  SrcPort		  1
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  17
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "Ground66"
+	  SrcPort		  1
+	  DstBlock		  "WD_RESET"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  11
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  11
+	}
+	Line {
+	  ZOrder		  11
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  10
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  10
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  9
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  9
+	}
+	Line {
+	  ZOrder		  13
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  8
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  8
+	}
+	Line {
+	  ZOrder		  14
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  7
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  7
+	}
+	Line {
+	  ZOrder		  15
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  1
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  16
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  6
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  6
+	}
+	Line {
+	  ZOrder		  17
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  2
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  18
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  3
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  19
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  5
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  5
+	}
+	Line {
+	  ZOrder		  20
+	  SrcBlock		  "cdsWord2Bit"
+	  SrcPort		  4
+	  DstBlock		  "BIT2WORD2"
+	  DstPort		  4
+	}
+	Line {
+	  ZOrder		  21
+	  SrcBlock		  "BIO_CDCTRL_In"
+	  SrcPort		  1
+	  DstBlock		  "cdsWord2Bit"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "Ground2"
+	  SrcPort		  1
+	  Points		  [93, 0]
+	  Branch {
+	    ZOrder		    23
+	    DstBlock		    "BIT2WORD2"
+	    DstPort		    27
+	  }
+	  Branch {
+	    ZOrder		    24
+	    Points		    [0, 30]
+	    Branch {
+	      ZOrder		      25
+	      Points		      [0, 30]
+	      Branch {
+		ZOrder			26
+		DstBlock		"BIT2WORD2"
+		DstPort			29
+	      }
+	      Branch {
+		ZOrder			27
+		Points			[0, 30]
+		Branch {
+		  ZOrder		  28
+		  DstBlock		  "BIT2WORD2"
+		  DstPort		  30
+		}
+		Branch {
+		  ZOrder		  29
+		  Points		  [0, 30]
+		  Branch {
+		    ZOrder		    30
+		    Points		    [0, 30]
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    32
+		  }
+		  Branch {
+		    ZOrder		    31
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    31
+		  }
+		}
+	      }
+	    }
+	    Branch {
+	      ZOrder		      32
+	      DstBlock		      "BIT2WORD2"
+	      DstPort		      28
+	    }
+	  }
+	  Branch {
+	    ZOrder		    33
+	    Points		    [0, -30]
+	    Branch {
+	      ZOrder		      34
+	      DstBlock		      "BIT2WORD2"
+	      DstPort		      26
+	    }
+	    Branch {
+	      ZOrder		      35
+	      Points		      [0, -30]
+	      Branch {
+		ZOrder			36
+		DstBlock		"BIT2WORD2"
+		DstPort			25
+	      }
+	      Branch {
+		ZOrder			37
+		Points			[0, -30]
+		Branch {
+		  ZOrder		  38
+		  DstBlock		  "BIT2WORD2"
+		  DstPort		  24
+		}
+		Branch {
+		  ZOrder		  39
+		  Points		  [0, -30]
+		  Branch {
+		    ZOrder		    40
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    23
+		  }
+		  Branch {
+		    ZOrder		    41
+		    Points		    [0, -30]
+		    Branch {
+		    ZOrder		    42
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    22
+		    }
+		    Branch {
+		    ZOrder		    43
+		    Points		    [0, -30]
+		    Branch {
+		    ZOrder		    44
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    21
+		    }
+		    Branch {
+		    ZOrder		    45
+		    Points		    [0, -30]
+		    Branch {
+		    ZOrder		    46
+		    Points		    [0, -30]
+		    Branch {
+		    ZOrder		    47
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    19
+		    }
+		    Branch {
+		    ZOrder		    48
+		    Points		    [0, -30]
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    18
+		    }
+		    }
+		    Branch {
+		    ZOrder		    49
+		    DstBlock		    "BIT2WORD2"
+		    DstPort		    20
+		    }
+		    }
+		    }
+		  }
+		}
+	      }
+	    }
+	  }
+	}
+      }
     }
     Block {
       BlockType		      Reference
@@ -1696,10 +2791,23 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "ETMY_BIO_CDMON_RELEASE_SENSOR"
+      SID		      "1216"
+      Ports		      [1, 1]
+      Position		      [1825, 1191, 1995, 1229]
+      ZOrder		      8215
+      BackgroundColor	      "[1.000000, 0.666667, 1.000000]"
+      LibraryVersion	      "1.1"
+      SourceBlock	      "BIO_CD_DECODE_MASTER/BIO_CD_DECODE_MASTER"
+      SourceType	      "SubSystem"
+      ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      Reference
       Name		      "ETMY_BO_ENCODE"
       SID		      "489"
       Ports		      [0, 2]
-      Position		      [1275, 1232, 1445, 1288]
+      Position		      [1275, 1292, 1445, 1348]
       ZOrder		      5060
       BackgroundColor	      "yellow"
       LibraryVersion	      "1.7"
@@ -1754,6 +2862,16 @@ Model {
       SourceBlock	      "CHK_DIO/CHK_DI_0"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
+    }
+    Block {
+      BlockType		      From
+      Name		      "From"
+      SID		      "1267"
+      Position		      [400, 1382, 585, 1398]
+      ZOrder		      8230
+      BackgroundColor	      "[1.000000, 0.000000, 1.000000]"
+      ShowName		      off
+      GotoTag		      "BIO_RELEASE_SENSOR_MON"
     }
     Block {
       BlockType		      From
@@ -2029,7 +3147,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto10"
       SID		      "209"
-      Position		      [1000, 872, 1070, 888]
+      Position		      [1000, 882, 1070, 898]
       ZOrder		      4368
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2039,7 +3157,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto11"
       SID		      "210"
-      Position		      [1000, 912, 1070, 928]
+      Position		      [1000, 922, 1070, 938]
       ZOrder		      4369
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2049,7 +3167,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto12"
       SID		      "211"
-      Position		      [1000, 952, 1070, 968]
+      Position		      [1000, 962, 1070, 978]
       ZOrder		      4370
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2059,7 +3177,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto13"
       SID		      "218"
-      Position		      [1000, 392, 1070, 408]
+      Position		      [1000, 402, 1070, 418]
       ZOrder		      4377
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2069,7 +3187,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto14"
       SID		      "219"
-      Position		      [1000, 432, 1070, 448]
+      Position		      [1000, 442, 1070, 458]
       ZOrder		      4378
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2079,7 +3197,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto15"
       SID		      "220"
-      Position		      [1000, 472, 1070, 488]
+      Position		      [1000, 482, 1070, 498]
       ZOrder		      4379
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2089,7 +3207,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto16"
       SID		      "248"
-      Position		      [1000, 992, 1105, 1008]
+      Position		      [1000, 1002, 1105, 1018]
       ZOrder		      4444
       BackgroundColor	      "[1.000000, 0.807843, 0.101961]"
       ShowName		      off
@@ -2099,7 +3217,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto17"
       SID		      "251"
-      Position		      [1000, 1032, 1105, 1048]
+      Position		      [1000, 1042, 1105, 1058]
       ZOrder		      4447
       BackgroundColor	      "[1.000000, 0.807843, 0.101961]"
       ShowName		      off
@@ -2109,7 +3227,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto18"
       SID		      "252"
-      Position		      [1000, 1072, 1105, 1088]
+      Position		      [1000, 1082, 1105, 1098]
       ZOrder		      4448
       BackgroundColor	      "[1.000000, 0.807843, 0.101961]"
       ShowName		      off
@@ -2129,7 +3247,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto2"
       SID		      "177"
-      Position		      [1000, 712, 1070, 728]
+      Position		      [1000, 722, 1070, 738]
       ZOrder		      4336
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2149,7 +3267,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto21"
       SID		      "735"
-      Position		      [1000, 1152, 1115, 1168]
+      Position		      [1000, 1162, 1115, 1178]
       ZOrder		      5689
       BackgroundColor	      "red"
       ShowName		      off
@@ -2169,7 +3287,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto23"
       SID		      "264"
-      Position		      [1000, 1112, 1105, 1128]
+      Position		      [1000, 1122, 1105, 1138]
       ZOrder		      4461
       BackgroundColor	      "[1.000000, 0.807843, 0.101961]"
       ShowName		      off
@@ -2209,7 +3327,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto27"
       SID		      "1199"
-      Position		      [1025, 1272, 1115, 1288]
+      Position		      [1025, 1282, 1115, 1298]
       ZOrder		      8199
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2219,7 +3337,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto28"
       SID		      "1200"
-      Position		      [1025, 1312, 1115, 1328]
+      Position		      [1025, 1322, 1115, 1338]
       ZOrder		      8200
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2229,7 +3347,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto3"
       SID		      "148"
-      Position		      [1000, 632, 1070, 648]
+      Position		      [1000, 642, 1070, 658]
       ZOrder		      4307
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2239,7 +3357,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto32"
       SID		      "1201"
-      Position		      [1025, 1352, 1115, 1368]
+      Position		      [1025, 1362, 1115, 1378]
       ZOrder		      8201
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2249,7 +3367,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto4"
       SID		      "149"
-      Position		      [1000, 592, 1070, 608]
+      Position		      [1000, 602, 1070, 618]
       ZOrder		      4308
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2259,7 +3377,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto5"
       SID		      "150"
-      Position		      [1000, 552, 1070, 568]
+      Position		      [1000, 562, 1070, 578]
       ZOrder		      4309
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2269,7 +3387,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto6"
       SID		      "151"
-      Position		      [1000, 512, 1070, 528]
+      Position		      [1000, 522, 1070, 538]
       ZOrder		      4310
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2279,7 +3397,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto7"
       SID		      "206"
-      Position		      [1000, 752, 1070, 768]
+      Position		      [1000, 762, 1070, 778]
       ZOrder		      4365
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2289,7 +3407,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto8"
       SID		      "207"
-      Position		      [1000, 792, 1070, 808]
+      Position		      [1000, 802, 1070, 818]
       ZOrder		      4366
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2299,7 +3417,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto9"
       SID		      "208"
-      Position		      [1000, 832, 1070, 848]
+      Position		      [1000, 842, 1070, 858]
       ZOrder		      4367
       BackgroundColor	      "[0.000000, 0.666667, 1.000000]"
       ShowName		      off
@@ -2627,6 +3745,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground46"
+      SID		      "1265"
+      Position		      [1300, 1185, 1320, 1195]
+      ZOrder		      8220
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground5"
       SID		      "303"
       Position		      [1315, 635, 1335, 645]
@@ -2787,7 +3913,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1000, 1191, 1065, 1209]
+      Position		      [1000, 1201, 1065, 1219]
       ZOrder		      5575
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -2804,7 +3930,7 @@ Model {
       Tag		      "cdsIPCx_SHMEM"
       Description	      "Inter-Process Communication via Shared memory."
       Ports		      [1, 2]
-      Position		      [1000, 1231, 1065, 1249]
+      Position		      [1000, 1241, 1065, 1259]
       ZOrder		      5590
       BackgroundColor	      "[0.462745, 0.745098, 0.560784]"
       DropShadow	      on
@@ -2970,10 +4096,20 @@ Model {
       }
     }
     Block {
+      BlockType		      Goto
+      Name		      "Release Sensor MON"
+      SID		      "1266"
+      Position		      [2025, 1202, 2210, 1218]
+      ZOrder		      8229
+      BackgroundColor	      "[1.000000, 0.000000, 1.000000]"
+      ShowName		      off
+      GotoTag		      "BIO_RELEASE_SENSOR_MON"
+    }
+    Block {
       BlockType		      Terminator
       Name		      "Terminator"
       SID		      "1165"
-      Position		      [1000, 670, 1020, 690]
+      Position		      [1000, 680, 1020, 700]
       ZOrder		      8027
     }
     Block {
@@ -4255,6 +5391,41 @@ Model {
       DstBlock		      "ETMY"
       DstPort		      65
     }
+    Line {
+      ZOrder		      3449
+      SrcBlock		      "CBI_H32_C4"
+      SrcPort		      1
+      DstBlock		      "ETMY_BIO_CDMON_RELEASE_SENSOR"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      3453
+      SrcBlock		      "ETMY_BIO_CDMON_RELEASE_SENSOR"
+      SrcPort		      1
+      DstBlock		      "Release Sensor MON"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      3451
+      SrcBlock		      "Ground46"
+      SrcPort		      1
+      DstBlock		      "ETMY_BIO_CDCTRL_NOTUSE"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      3452
+      SrcBlock		      "ETMY_BIO_CDCTRL_NOTUSE"
+      SrcPort		      1
+      DstBlock		      "CBO_H32_C4"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      3454
+      SrcBlock		      "From"
+      SrcPort		      1
+      DstBlock		      "ETMY"
+      DstPort		      68
+    }
     Annotation {
       SID		      "245"
       Name		      "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4263,7 +5434,7 @@ Model {
       "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
       "ent:0; text-indent:0px;\"><span style=\" font-size:21px; color:#000000;\">BIO Monitor Inputs</span></p></body></"
       "html>"
-      Position		      [1701, 799, 2258, 1192]
+      Position		      [1701, 799, 2258, 1267]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      on
       FixedWidth	      on
@@ -4281,7 +5452,7 @@ Model {
       "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
       "ent:0; text-indent:0px;\"><span style=\" font-size:16pt; color:#000000;\">BIO Control Outputs</span></p></body><"
       "/html>"
-      Position		      [1196, 836, 1658, 1204]
+      Position		      [1196, 836, 1658, 1264]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      on
       FixedWidth	      on
@@ -4324,10 +5495,6 @@ Model {
       BackgroundColor	      "[1.000000, 0.807843, 0.835294]"
       Interpreter	      "rich"
       ZOrder		      -11
-      FontName		      "Helvetica"
-      FontSize		      10
-      FontWeight	      "normal"
-      FontAngle		      "normal"
     }
     Annotation {
       SID		      "756"
