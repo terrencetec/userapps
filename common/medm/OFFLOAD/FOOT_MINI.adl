@@ -186,6 +186,16 @@ polyline {
 		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
 		args="$(gas_damp_yaml) OPTICS=$(OPTICS) VACOPTICS=$(VACOPTICS) &"
 	}
+	command[3] {
+		label="IP STEPPER"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
+		args="$(ip_stepper_yaml) OPTICS=$(OPTICS) &"
+	}
+	command[4] {
+		label="GAS STEPPER"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OFFLOAD/yamlwrapper_ndscope.sh"
+		args="$(gas_stepper_yaml) OPTICS=$(OPTICS) &"
+	}
 	clr=14
 	bclr=5
 	label="ndscope"
