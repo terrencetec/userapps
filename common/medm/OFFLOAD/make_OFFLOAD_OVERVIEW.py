@@ -198,7 +198,7 @@ def head(x,y,system,mtype):
     '''.format(common=common,x=x,y=y,system=system,mtype=mtype)
     return txt,width,height
 
-def foot(x,y,stepperid,systems,vacsystem,ip_lvdtinf_yaml,ip_damp_yaml,gas_damp_yaml,ip_stepper_yaml,gas_stepper_yaml):
+def foot(x,y,stepperid,systems,vacsystem,ip_lvdtinf_yaml,ip_damp_yaml,gas_damp_yaml,ip_stepper_yaml,gas_stepper_yaml,ip_stepper_limit_yaml,gas_stepper_limit_yaml):
     width = 300
     height = 50
     txt = '''
@@ -210,9 +210,9 @@ def foot(x,y,stepperid,systems,vacsystem,ip_lvdtinf_yaml,ip_damp_yaml,gas_damp_y
     height=30
     }}
     "composite name"=""
-    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),STEPPERID={stepperid},OPTICS={system},VACOPTICS={vacsystem},ip_lvdtinf_yaml={ip_lvdtinf_yaml},ip_damp_yaml={ip_damp_yaml},gas_damp_yaml={gas_damp_yaml},ip_stepper_yaml={ip_stepper_yaml},gas_stepper_yaml={gas_stepper_yaml}"
+    "composite file"="./FOOT_MINI.adl;IFO=$(IFO),ifo=$(ifo),STEPPERID={stepperid},OPTICS={system},VACOPTICS={vacsystem},ip_lvdtinf_yaml={ip_lvdtinf_yaml},ip_damp_yaml={ip_damp_yaml},gas_damp_yaml={gas_damp_yaml},ip_stepper_yaml={ip_stepper_yaml},gas_stepper_yaml={gas_stepper_yaml},ip_stepper_limit_yaml={ip_stepper_limit_yaml},gas_stepper_limit_yaml={gas_stepper_limit_yaml}"
     }}
-    '''.format(common=common,x=x,y=y,stepperid=stepperid,system=system,vacsystem=vacsystem,ip_lvdtinf_yaml=ip_lvdtinf_yaml,ip_damp_yaml=ip_damp_yaml,gas_damp_yaml=gas_damp_yaml,ip_stepper_yaml=ip_stepper_yaml,gas_stepper_yaml=gas_stepper_yaml)
+    '''.format(common=common,x=x,y=y,stepperid=stepperid,system=system,vacsystem=vacsystem,ip_lvdtinf_yaml=ip_lvdtinf_yaml,ip_damp_yaml=ip_damp_yaml,gas_damp_yaml=gas_damp_yaml,ip_stepper_yaml=ip_stepper_yaml,gas_stepper_yaml=gas_stepper_yaml,ip_stepper_limit_yaml=ip_stepper_limit_yaml,gas_stepper_limit_yaml=gas_stepper_limit_yaml)
     return txt,width,height
 
 
@@ -355,17 +355,20 @@ if __name__=='__main__':
     yamlfile_gas_damp_typebp     = yamlfile_path + 'gas_damp_typebp.yml'
     yamlfile_ip_stepper          = yamlfile_path + 'ip_stepper.yml'
     yamlfile_gas_stepper         = yamlfile_path + 'gas_stepper.yml'
-    yamlfile = {'ETMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'ITMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'ETMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'ITMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'BS':  [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'SR2': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'SR3': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'SRM': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper],
-                'PR2': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper],
-                'PR3': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper],
-                'PRM': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper]}   
+    yamlfile_ip_limit_stepper    = yamlfile_path + 'ip_stepper_limit.yml'
+    yamlfile_gas_limit_stepper   = yamlfile_path + 'gas_stepper_limit.yml'
+    yamlfile = {'ETMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'ITMX':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'ETMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'ITMY':[yamlfile_ip_lvdtinf_with_vac, yamlfile_ip_damp_with_vac, yamlfile_gas_damp_typea,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'BS':  [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'SR2': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'SR3': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'SRM': [yamlfile_ip_lvdtinf,          yamlfile_ip_damp,          yamlfile_gas_damp_typeb,   yamlfile_ip_stepper,    yamlfile_gas_stepper,   yamlfile_ip_limit_stepper,    yamlfile_gas_limit_stepper],
+                'PR2': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper,   'None',                       yamlfile_gas_limit_stepper],
+                'PR3': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper,   'None',                       yamlfile_gas_limit_stepper],
+                'PRM': ['None',                       'None',                    yamlfile_gas_damp_typebp,  'None',                 yamlfile_gas_stepper,   'None',                       yamlfile_gas_limit_stepper]
+                }
     mode = 'ERR'
     
     height = 10
@@ -402,7 +405,7 @@ if __name__=='__main__':
                     contents += txt
 
             print(stepperid,system,vacsystem[system])
-            txt,w2,h2 = foot(width,height+_h,stepperid,system,vacsystem[system],yamlfile[system][0],yamlfile[system][1],yamlfile[system][2],yamlfile[system][3],yamlfile[system][4])
+            txt,w2,h2 = foot(width,height+_h,stepperid,system,vacsystem[system],yamlfile[system][0],yamlfile[system][1],yamlfile[system][2],yamlfile[system][3],yamlfile[system][4],yamlfile[system][5],yamlfile[system][6])
             contents += txt
             _h += h2 + 10
             _w = max(w0,w1,w2) +10
