@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+#!/home/controls/miniconda3/envs/miyoconda37/bin/python 
 #! coding:utf-8
 
 import os
 from cdsutils import avg
+from ezca import ezca
 from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,10 +12,10 @@ import pandas as pd
 chname = []
 plotnum = []
 
-def plot(chname,output):
+def plot(chname,fname):
     '''
     '''
-    df = pd.read_csv(output,header=0)
+    df = pd.read_csv(fname,header=0)
     col,row = 3,3
     fig, ax = plt.subplots(col,row,figsize=(10,5),sharex=True)
     for i,ax_col in enumerate(ax):
@@ -38,7 +39,7 @@ def plot(chname,output):
                 if 'SEG' in chname[n]:
                     _ax.set_ylim(-10000,0)
                 elif 'SUM' in chname[n]:
-                    _ax.set_ylim(0,16000)                    
+                    _ax.set_ylim(0,20000)
                 elif 'CRS' in chname[n]:
                     _ax.set_ylim(-5000,5000)
                 else:
@@ -57,55 +58,65 @@ def init(channellist):
         chname = [name for name in chname if name[0]!='#']
     return chname
 
-def getdata(channel):
+def getdata(chname):
     '''
     '''
     now = datetime.now()
-    _avg = np.array(avg(1,chname,stddev=True))        
+    _avg = np.array(avg(1,chname,stddev=True))
     data = [[str(now),disp,*list(map(lambda x:'{0:.3f}'.format(x),_avg.flatten()))]]
     return data
     
-def add(chname,output):
+def add(chname,fname):
+    '''
+    '''
     data = getdata(chname)
     txt = ','.join(data[0])+'\n'        
-    with open(output,'a') as f:
+    with open(fname,'a') as f:
         f.write(txt)
 
-def init(chname,output):
-    data = getdata(chname)        
+def init(chname,fname):
+    '''
+    '''
+    data = getdata(chname)                
     name = np.array([[ch+'.mean',ch+'.std'] for ch in chname]).flatten()
     txt = 'DateTime,Disp,'+','.join(name)+'\n'
-    with open(args.output,'w') as f:
+    with open(fname,'w') as f:
         f.write(txt)
         
 
 if __name__=='__main__':
     import argparse
     parser = argparse.ArgumentParser(description='hoge')
-    parser.add_argument('args1')
-    parser.add_argument('-d','--disp',default='34')
-    parser.add_argument('-f','--output',default='output.txt')
+    parser.add_argument('--plot',action='store_true')    
+    parser.add_argument('--init',action='store_true')
+    parser.add_argument('-o','--optic',default='MCE')
+    parser.add_argument('-f','--func',default='OPLEV_TILT')
+    parser.add_argument('-d','--dof',default='YAW')    
     args = parser.parse_args()
-    disp = args.disp
-
+    optic = args.optic.upper()
+    func = args.func.upper()
+    dof = args.dof.upper()
+    ezca = ezca.Ezca()
+    disp = ezca['VIS-{0}_INSTALLED_DATE'.format(optic)]
+    print(disp)
     dofs = ['SEG1','SEG2','SEG3','SEG4','PIT','YAW','SUM','CRS']
-    optic = 'MCE'
-    func = 'OPLEV_TILT'
     chname = []
     for dof in dofs:
         chname +=['K1:VIS-{0}_TM_{1}_{2}_INMON'.format(optic,func,dof)]
-
-    if args.args1=='plot':
-        plot(chname,args.output)
+        
+    fname = '/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/{0}_{1}.txt'.format(optic.lower(),dof.lower())
+    
+    if args.plot:
+        plot(chname,fname)
         exit()
 
-    if args.args1=='init':
-        init(chname,args.output)
+    if args.init:
+        init(chname,fname)
         
-    if os.path.exists(args.output):
-        add(chname,args.output)
-        plot(chname,args.output)                
+    if os.path.exists(fname):
+        add(chname,fname)
+        plot(chname,fname)                
     else:
-        init(chname,args.output)
-        add(chname,args.output)        
-        plot(chname,args.output)        
+        init(chname,fname)
+        add(chname,fname)        
+        plot(chname,fname)        
