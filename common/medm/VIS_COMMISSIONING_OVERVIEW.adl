@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/trunk/vis/common/medm/VIS_COMMISSIONING_OVERVIEW.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COMMISSIONING_OVERVIEW.adl"
 	version=030109
 }
 display {
 	object {
-		x=1142
-		y=227
+		x=1290
+		y=224
 		width=626
 		height=637
 	}
@@ -86,4 +86,49 @@ display {
 		289315,
 		1a7309,
 	}
+}
+"shell command" {
+	object {
+		x=194
+		y=194
+		width=102
+		height=25
+	}
+	command[0] {
+		label="build check"
+		name="xterm -fn 6x13 -geometry 54x36 -e"
+		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o MCI -f OPLEV_TILT -d PIT | less -R' &"
+	}
+	clr=14
+	bclr=4
+	label="-"
+}
+"text entry" {
+	object {
+		x=85
+		y=270
+		width=350
+		height=24
+	}
+	control {
+		chan="K1:VIS-MCI_INSTALLED_DATE"
+		clr=60
+		bclr=14
+	}
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=290
+		y=335
+		width=12
+		height=12
+	}
+	display[0] {
+		name="/opt/rtcds/userapps/release/vis/common/medm/commissioning/oplev/CALIB_MINI.adl"
+		args="OPTIC=MCE,FUNC=OPLEV_TILT,DOF=YAW"
+	}
+	clr=14
+	bclr=4
 }
