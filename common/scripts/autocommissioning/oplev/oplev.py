@@ -68,7 +68,7 @@ def calibration(output):
     optic, dof = output.replace('.txt','').split('_')
     optic = optic.upper()
     dof = dof.upper()
-    print(optic,dof)
+    #print(optic,dof)
     f = open(output,'r',encoding='UTF-8')
     df = f.readlines()
     f.close()

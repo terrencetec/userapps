@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 #! coding:utf-8
+
+import os
 from cdsutils import avg
 from datetime import datetime
 import numpy as np
@@ -8,24 +10,11 @@ import pandas as pd
 
 chname = []
 plotnum = []
-screw_pitch = 1.0 * 1000.0
 
-def plot(output):
-    f = open(output,'r',encoding='UTF-8')
-    df = f.readlines()
-    f.close()
-    df = [i.split(',') for i in df]
+def plot(chname,output):
+    '''
+    '''
     df = pd.read_csv(output,header=0)
-    
-    _name = ['K1:VIS-MCE_TM_OPLEV_TILT_SEG1_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_SEG2_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_SEG3_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_SEG4_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_PIT_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_YAW_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_SUM_INMON',
-             'K1:VIS-MCE_TM_OPLEV_TILT_CRS_INMON']
-    
     col,row = 3,3
     fig, ax = plt.subplots(col,row,figsize=(10,5),sharex=True)
     for i,ax_col in enumerate(ax):
@@ -34,27 +23,23 @@ def plot(output):
                 _ax.set_xlabel('Distance [um]')
             n = i*col+j
 
-            if n>=len(_name):
+            if n>=len(chname):
                 break
-            # if 'INMON' in _name[n]:
-            #     ylabel = 'Value [count]'
-            # elif 'OUT':
-            #     ylabel = 'Value [um]'
             ylabel = 'Value [a.u.]'
             _ax.set_ylabel(ylabel)
             
-            if n<len(_name):                
-                _ax.errorbar(x=df['Memo'],
-                             y=df[_name[n]+'.mean'],
-                             yerr=df[_name[n]+'.std'],
-                             fmt='ko',label=_name[n],
+            if n<len(chname):           
+                _ax.errorbar(x=df['Disp'],
+                             y=df[chname[n]+'.mean'],
+                             yerr=df[chname[n]+'.std'],
+                             fmt='ko',label=chname[n],
                              markersize=2,capsize=3)
                 _ax.legend(fontsize=7)
-                if 'SEG' in _name[n]:
+                if 'SEG' in chname[n]:
                     _ax.set_ylim(-10000,0)
-                elif 'SUM' in _name[n]:
+                elif 'SUM' in chname[n]:
                     _ax.set_ylim(0,16000)                    
-                elif 'CRS' in _name[n]:
+                elif 'CRS' in chname[n]:
                     _ax.set_ylim(-5000,5000)
                 else:
                     _ax.set_ylim(-1,1)
@@ -64,64 +49,63 @@ def plot(output):
     plt.savefig('hoge.png')
     plt.close()
     
-def init(epicschannel):
-    f = open(epicschannel,'r',encoding='UTF-8')
-    chname = f.readlines()
-    f.close()
-    chname = [name[:-1] for name in chname if name[0]!='#'] 
-    chname = [ name.split(',') if ',' in name else [name, 999] for name in chname]
-    plotnum = [int(i[1]) for i in chname]
-    chname = [i[0] for i in chname]
-    return plotnum, chname
+def init(channellist):
+    '''
+    '''
+    with open(channellist,'r',encoding='UTF-8') as f: 
+        chname = f.read().splitlines()
+        chname = [name for name in chname if name[0]!='#']
+    return chname
+
+def getdata(channel):
+    '''
+    '''
+    now = datetime.now()
+    _avg = np.array(avg(1,chname,stddev=True))        
+    data = [[str(now),disp,*list(map(lambda x:'{0:.3f}'.format(x),_avg.flatten()))]]
+    return data
+    
+def add(chname,output):
+    data = getdata(chname)
+    txt = ','.join(data[0])+'\n'        
+    with open(output,'a') as f:
+        f.write(txt)
+
+def init(chname,output):
+    data = getdata(chname)        
+    name = np.array([[ch+'.mean',ch+'.std'] for ch in chname]).flatten()
+    txt = 'DateTime,Disp,'+','.join(name)+'\n'
+    with open(args.output,'w') as f:
+        f.write(txt)
+        
 
 if __name__=='__main__':
     import argparse
     parser = argparse.ArgumentParser(description='hoge')
     parser.add_argument('args1')
-    parser.add_argument('-m','--memo')
-    parser.add_argument('-f','--output',default='result.txt')
-    parser.add_argument('-l','--epicschannel')
-    parser.add_argument('-s','--screw_pitch',default = 1.0)
+    parser.add_argument('-d','--disp',default='34')
+    parser.add_argument('-f','--output',default='output.txt')
     args = parser.parse_args()
-    memo = args.memo
-    screw_pitch = args.screw_pitch
-    print('screw_pitch :',screw_pitch)
-    
-    if args.args1=='add':
-        plotnum, chname = init(args.epicschannel)
+    disp = args.disp
 
-        now = datetime.now()
-        avg = np.array(avg(1,chname,stddev=True))
-        data = [[str(now),memo,*list(map(lambda x:'{0:.3f}'.format(x),avg.flatten()))]]
-        #print(data[0])
-        txt = ','.join(data[0])+'\n'
-        #print(txt)
+    dofs = ['SEG1','SEG2','SEG3','SEG4','PIT','YAW','SUM','CRS']
+    optic = 'MCE'
+    func = 'OPLEV_TILT'
+    chname = []
+    for dof in dofs:
+        chname +=['K1:VIS-{0}_TM_{1}_{2}_INMON'.format(optic,func,dof)]
+
+    if args.args1=='plot':
+        plot(chname,args.output)
+        exit()
+
+    if args.args1=='init':
+        init(chname,args.output)
         
-        with open(args.output,'a') as f:
-            f.write(txt)
-        plot(args.output)
-
-    elif args.args1=='new':
-        plotnum, chname = init(args.epicschannel)
-        name = np.array([[ch+'.mean',ch+'.std'] for ch in chname]).flatten()
-        txt = 'DateTime,Memo,'+','.join(name)+'\n'
-        with open(args.output,'w') as f:
-            f.write(txt)
-
-        now = datetime.now()
-        avg = np.array(avg(1,chname,stddev=True))
-        data = [[str(now),memo,*list(map(lambda x:'{0:.3f}'.format(x),avg.flatten()))]]
-        #print(data[0])
-        print(data[0])
-        txt = ','.join(data[0])+'\n'
-        #print(txt)
-        with open(args.output,'a') as f:
-            f.write(txt)
-        #print(len(data))
-        plot(args.output)
-        
-    elif args.args1=='plot':
-        plotnum, chname = init(args.epicschannel)
-        plot(args.output)
-
-
+    if os.path.exists(args.output):
+        add(chname,args.output)
+        plot(chname,args.output)                
+    else:
+        init(chname,args.output)
+        add(chname,args.output)        
+        plot(chname,args.output)        
