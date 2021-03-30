@@ -90,32 +90,72 @@ def init(chname,fname):
 
 
 oplev_info = {# name: [type, lever_arm_length [m], ...]
-    'MCE_OPLEV_TILT':['REGULAR',0.95], #klog#3175
-    'MCI_OPLEV_TILT':['REGULAR',0.86], #klog#3175
-    'MCO_OPLEV_TILT':['FOLDED' ,0.85],  #klog#3175
-    'IMMT1_OPLEV_TILT':[None ,None],  #
-    'IMMT2_OPLEV_TILT':[None ,None],  #
-    'PR2_OPLEV_TILT':[None ,None],  #
-    'PR2_OPLEV_LEN':[None ,None],   #
-    'PR3_OPLEV_TILT':[None ,None],  #
-    'PR3_OPLEV_LEN':[None ,None],   #    
-    'PRM_OPLEV_TILT':[None ,None],  #
-    'PRM_OPLEV_LEN':[None ,None],   #
-    'SR2_OPLEV_TILT':[None ,None],  #
-    'SR2_OPLEV_LEN':[None ,None],   #
-    'SR3_OPLEV_TILT':[None ,None],  #
-    'SR3_OPLEV_LEN':[None ,None],   #    
-    'SRM_OPLEV_TILT':[None ,None],  #
-    'SRM_OPLEV_LEN':[None ,None],   #
-    'BS_OPLEV_TILT':[None ,None],   #
-    'BS_OPLEV_LEN':[None ,None],    #
+    'MCE_TM_OPLEV_TILT':['REGULAR',0.95], #klog#3175
+    'MCI_TM_OPLEV_TILT':['REGULAR',0.86], #klog#3175
+    'MCO_TM_OPLEV_TILT':['FOLDED' ,0.85],  #klog#3175
+    'IMMT1_TM_OPLEV_TILT':[None ,None],  #
+    'IMMT2_TM_OPLEV_TILT':[None ,None],  #
+    'PR2_TM_OPLEV_TILT':[None ,None],  #
+    'PR2_TM_OPLEV_LEN':[None ,None],   #
+    'PR3_TM_OPLEV_TILT':[None ,None],  #
+    'PR3_TM_OPLEV_LEN':[None ,None],   #    
+    'PRM_TM_OPLEV_TILT':[None ,None],  #
+    'PRM_TM_OPLEV_LEN':[None ,None],   #
+    'SR2_TM_OPLEV_TILT':[None ,None],  #
+    'SR2_TM_OPLEV_LEN':[None ,None],   #
+    'SR3_TM_OPLEV_TILT':[None ,None],  #
+    'SR3_TM_OPLEV_LEN':[None ,None],   #    
+    'SRM_TM_OPLEV_TILT':[None ,None],  #
+    'SRM_TM_OPLEV_LEN':[None ,None],   #
+    'BS_TM_OPLEV_TILT':[None ,None],   #
+    'BS_TM_OPLEV_LEN':[None ,None],    #
+    #
+    'ETMX_TM_OPLEV_TILT':[None ,None],   #
+    'ETMX_TM_OPLEV_LEN':[None ,None],    #
+    'ETMX_MN_OPLEV_TILT':[None ,None],   #        
+    'ETMX_MN_OPLEV_LEN':[None ,None],    #
+    'ETMX_MN_OPLEV_ROL':[None ,None],    #
+    'ETMX_MN_OPLEV_TRA':[None ,None],    #
+    'ETMX_MN_OPLEV_VER':[None ,None],    #
+    'ETMX_PF_OPLEV_TILT':[None ,None],   #
+    'ETMX_PF_OPLEV_LEN':[None ,None],    #
+    # 
+    'ETMY_TM_OPLEV_TILT':[None ,None],   #
+    'ETMY_TM_OPLEV_LEN':[None ,None],    #
+    'ETMY_MN_OPLEV_TILT':[None ,None],   #        
+    'ETMY_MN_OPLEV_LEN':[None ,None],    #
+    'ETMY_MN_OPLEV_ROL':[None ,None],    #
+    'ETMY_MN_OPLEV_TRA':[None ,None],    #
+    'ETMY_MN_OPLEV_VER':[None ,None],    #
+    'ETMY_PF_OPLEV_TILT':[None ,None],   #
+    'ETMY_PF_OPLEV_LEN':[None ,None],    #
+    # 
+    'ITMX_TM_OPLEV_TILT':[None ,None],   #
+    'ITMX_TM_OPLEV_LEN':[None ,None],    #
+    'ITMX_MN_OPLEV_TILT':[None ,None],   #        
+    'ITMX_MN_OPLEV_LEN':[None ,None],    #
+    'ITMX_MN_OPLEV_ROL':[None ,None],    #
+    'ITMX_MN_OPLEV_TRA':[None ,None],    #
+    'ITMX_MN_OPLEV_VER':[None ,None],    #
+    'ITMX_PF_OPLEV_TILT':[None ,None],   #
+    'ITMX_PF_OPLEV_LEN':[None ,None],    #
+    # 
+    'ITMY_TM_OPLEV_TILT':[None ,None],   #
+    'ITMY_TM_OPLEV_LEN':[None ,None],    #
+    'ITMY_MN_OPLEV_TILT':[None ,None],   #        
+    'ITMY_MN_OPLEV_LEN':[None ,None],    #
+    'ITMY_MN_OPLEV_ROL':[None ,None],    #
+    'ITMY_MN_OPLEV_TRA':[None ,None],    #
+    'ITMY_MN_OPLEV_VER':[None ,None],    #
+    'ITMY_PF_OPLEV_TILT':[None ,None],   #
+    'ITMY_PF_OPLEV_LEN':[None ,None],    #            
 }
 
-def oplev_factor_is(optic,func):
+def oplev_factor_is(optic,stage,func):
     '''
     '''
     try:
-        name = '{0}_{1}'.format(optic,func)
+        name = '{0}_{1}_{2}'.format(optic,stage,func)
         _type = oplev_info[name][0] # 0 is for oplev_type
     except:
         raise ValueError('Invalid oplev name: {0}'.format(name))
@@ -127,21 +167,21 @@ def oplev_factor_is(optic,func):
         raise ValueError('Invalid oplev type: {0}'.format(_type))
     return factor
 
-def lever_arm_is(optic,func):
+def lever_arm_is(optic,stage,func):
     '''
     '''
     try:
-        name = '{0}_{1}'.format(optic,func)
+        name = '{0}_{1}_{2}'.format(optic,stage,func)
         length = oplev_info[name][1] # 1 is for lever_arm_length
     except:
         raise ValueError('Invalid oplev name: {0}'.format(name))
     return length
 
-def get_calib(slope,optic,func,dof):
+def get_calib(slope,optic,stage,func,dof):
     '''
     '''    
-    factor = oplev_factor_is(optic,func)
-    length = lever_arm_is(optic,func)
+    factor = oplev_factor_is(optic,stage,func)
+    length = lever_arm_is(optic,stage,func)
     calib = slope/(factor*length)*1000 # [um/count]
     return calib
 
@@ -150,7 +190,8 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser(description='hoge')
     parser.add_argument('--plot',action='store_true')    
     parser.add_argument('--init',action='store_true')
-    parser.add_argument('--calibration',action='store_true')    
+    parser.add_argument('--calibration',action='store_true')
+    parser.add_argument('--calibupdate',action='store_true')    
     parser.add_argument('-o','--optic',default='MCE')
     parser.add_argument('-f','--func',default='OPLEV_TILT')
     parser.add_argument('-d','--dof',default='YAW')
@@ -176,9 +217,17 @@ if __name__=='__main__':
         exit()
         
     if args.calibration:
+        slope = calibration(fname,show=True)
+        _gain = get_calib(slope,optic,stage,func,dof)
+        __gain = ezca['VIS-{0}_{1}_{2}_{3}_GAIN'.format(optic,stage,func,dof)]
+        print(slope)
+        print(_gain,__gain)        
+        exit()
+        
+    if args.calibupdate:
         slope = calibration(fname)
-        _gain = get_calib(slope,optic,func,dof)
-        print(_gain)
+        _gain = get_calib(slope,optic,stage,func,dof)
+        ezca['VIS-{0}_{1}_{2}_{3}_GAIN'.format(optic,stage,func,dof)] = _gain
         exit()
         
     if args.init:

@@ -8,7 +8,7 @@ import pandas as pd
 from scipy.optimize import curve_fit
 import scipy
 
-def calibration(output):
+def calibration(output,show=False):
     '''
     '''
     optic,stage,func1,func2,dof = output.split('/')[-1].replace('.txt','').split('_')
@@ -104,7 +104,8 @@ def calibration(output):
     #
     fname = output.replace('data','results').replace('.txt','.png')
     plt.savefig(fname)
-    plt.show()    
+    if show:
+        plt.show()    
     plt.close()
     return slope
     
