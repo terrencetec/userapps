@@ -8,9 +8,11 @@ from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from calibration import calibration
 
 chname = []
 plotnum = []
+
 
 def plot(chname,fname):
     '''
@@ -47,8 +49,10 @@ def plot(chname,fname):
             else:
                 break
     plt.show()
-    plt.savefig('hoge.png')
+    #plt.savefig('hoge.png')
     plt.close()
+
+    
     
 def init(channellist):
     '''
@@ -82,34 +86,101 @@ def init(chname,fname):
     txt = 'DateTime,Disp,'+','.join(name)+'\n'
     with open(fname,'w') as f:
         f.write(txt)
-        
+
+
+
+oplev_info = {# name: [type, lever_arm_length [m], ...]
+    'MCE_OPLEV_TILT':['REGULAR',0.95], #klog#3175
+    'MCI_OPLEV_TILT':['REGULAR',0.86], #klog#3175
+    'MCO_OPLEV_TILT':['FOLDED' ,0.85],  #klog#3175
+    'IMMT1_OPLEV_TILT':[None ,None],  #
+    'IMMT2_OPLEV_TILT':[None ,None],  #
+    'PR2_OPLEV_TILT':[None ,None],  #
+    'PR2_OPLEV_LEN':[None ,None],   #
+    'PR3_OPLEV_TILT':[None ,None],  #
+    'PR3_OPLEV_LEN':[None ,None],   #    
+    'PRM_OPLEV_TILT':[None ,None],  #
+    'PRM_OPLEV_LEN':[None ,None],   #
+    'SR2_OPLEV_TILT':[None ,None],  #
+    'SR2_OPLEV_LEN':[None ,None],   #
+    'SR3_OPLEV_TILT':[None ,None],  #
+    'SR3_OPLEV_LEN':[None ,None],   #    
+    'SRM_OPLEV_TILT':[None ,None],  #
+    'SRM_OPLEV_LEN':[None ,None],   #
+    'BS_OPLEV_TILT':[None ,None],   #
+    'BS_OPLEV_LEN':[None ,None],    #
+}
+
+def oplev_factor_is(optic,func):
+    '''
+    '''
+    try:
+        name = '{0}_{1}'.format(optic,func)
+        _type = oplev_info[name][0] # 0 is for oplev_type
+    except:
+        raise ValueError('Invalid oplev name: {0}'.format(name))
+    if _type=='REGULAR':
+        factor = 2
+    elif _type=='FOLDED':
+        factor = 8
+    else:
+        raise ValueError('Invalid oplev type: {0}'.format(_type))
+    return factor
+
+def lever_arm_is(optic,func):
+    '''
+    '''
+    try:
+        name = '{0}_{1}'.format(optic,func)
+        length = oplev_info[name][1] # 1 is for lever_arm_length
+    except:
+        raise ValueError('Invalid oplev name: {0}'.format(name))
+    return length
+
+def get_calib(slope,optic,func,dof):
+    '''
+    '''    
+    factor = oplev_factor_is(optic,func)
+    length = lever_arm_is(optic,func)
+    calib = slope/(factor*length)*1000 # [um/count]
+    return calib
 
 if __name__=='__main__':
     import argparse
     parser = argparse.ArgumentParser(description='hoge')
     parser.add_argument('--plot',action='store_true')    
     parser.add_argument('--init',action='store_true')
+    parser.add_argument('--calibration',action='store_true')    
     parser.add_argument('-o','--optic',default='MCE')
     parser.add_argument('-f','--func',default='OPLEV_TILT')
-    parser.add_argument('-d','--dof',default='YAW')    
+    parser.add_argument('-d','--dof',default='YAW')
+    parser.add_argument('-s','--stage',default='TM')    
     args = parser.parse_args()
     optic = args.optic.upper()
     func = args.func.upper()
     dof = args.dof.upper()
+    stage = args.stage.upper()
     ezca = ezca.Ezca()
-    disp = ezca['VIS-{0}_INSTALLED_DATE'.format(optic)]
+    disp = ezca['VIS-{0}_COMMISSIONING_ARG1'.format(optic)]
     print(disp)
     dofs = ['SEG1','SEG2','SEG3','SEG4','PIT','YAW','SUM','CRS']
     chname = []
     for _dof in dofs:
-        chname +=['K1:VIS-{0}_TM_{1}_{2}_INMON'.format(optic,func,_dof)]
-        
-    fname = '/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/{0}_{1}.txt'.format(optic.lower(),dof.lower())
+        chname +=['K1:VIS-{0}_{1}_{2}_{3}_INMON'.format(optic,stage,func,_dof)]
+
+    prefix = '/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/'
+    fname = prefix+'data/{0}_{1}_{2}_{3}.txt'.format(optic.upper(),stage.upper(),func.upper(),dof.upper())
     
     if args.plot:
         plot(chname,fname)
         exit()
-
+        
+    if args.calibration:
+        slope = calibration(fname)
+        _gain = get_calib(slope,optic,func,dof)
+        print(_gain)
+        exit()
+        
     if args.init:
         init(chname,fname)
         
