@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=1218
-		y=343
+		x=1272
+		y=383
 		width=626
 		height=637
 	}
@@ -89,15 +89,15 @@ display {
 }
 "shell command" {
 	object {
-		x=194
-		y=194
+		x=233
+		y=434
 		width=50
 		height=25
 	}
 	command[0] {
 		label="Write"
 		name="xterm -fn 6x13 -geometry 54x36 -e"
-		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF) | less -R' &"
+		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF)' &"
 	}
 	clr=14
 	bclr=4
@@ -105,15 +105,15 @@ display {
 }
 "shell command" {
 	object {
-		x=250
-		y=194
+		x=392
+		y=536
 		width=50
 		height=25
 	}
 	command[0] {
 		label="Init"
 		name="xterm -fn 6x13 -geometry 54x36 -e"
-		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF) --init | less -R' &"
+		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF) --init' &"
 	}
 	clr=14
 	bclr=4
@@ -121,15 +121,15 @@ display {
 }
 "shell command" {
 	object {
-		x=300
-		y=194
+		x=287
+		y=434
 		width=50
 		height=25
 	}
 	command[0] {
 		label="Plot"
 		name="xterm -fn 6x13 -geometry 54x36 -e"
-		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF) --plot | less -R' &"
+		args="'/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/main.py -o $(OPTIC) -f $(FUNC) -d $(DOF) --plot' &"
 	}
 	clr=14
 	bclr=4
@@ -137,9 +137,9 @@ display {
 }
 "text entry" {
 	object {
-		x=157
-		y=195
-		width=30
+		x=179
+		y=435
+		width=50
 		height=24
 	}
 	control {
@@ -152,13 +152,25 @@ display {
 }
 text {
 	object {
-		x=192
-		y=172
-		width=78
-		height=21
+		x=91
+		y=28
+		width=200
+		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
 	textix="$(OPTIC)_$(FUNC)_$(DOF)"
+}
+text {
+	object {
+		x=394
+		y=520
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DANGER!!"
 }

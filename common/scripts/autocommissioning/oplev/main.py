@@ -101,8 +101,8 @@ if __name__=='__main__':
     print(disp)
     dofs = ['SEG1','SEG2','SEG3','SEG4','PIT','YAW','SUM','CRS']
     chname = []
-    for dof in dofs:
-        chname +=['K1:VIS-{0}_TM_{1}_{2}_INMON'.format(optic,func,dof)]
+    for _dof in dofs:
+        chname +=['K1:VIS-{0}_TM_{1}_{2}_INMON'.format(optic,func,_dof)]
         
     fname = '/opt/rtcds/userapps/release/vis/common/scripts/autocommissioning/oplev/{0}_{1}.txt'.format(optic.lower(),dof.lower())
     
@@ -115,8 +115,8 @@ if __name__=='__main__':
         
     if os.path.exists(fname):
         add(chname,fname)
-        plot(chname,fname)                
+        #plot(chname,fname)                
     else:
         init(chname,fname)
         add(chname,fname)        
-        plot(chname,fname)        
+        #plot(chname,fname)        
