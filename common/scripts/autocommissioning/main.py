@@ -11,7 +11,7 @@ from ezca import LIGOFilter
 
 import foton
 from foton import FilterFile,Filter,iir2zpk,iir2z
-
+from initialize import init_oplev
 ezca = ezca.Ezca(timeout=2)
 
 chans = '/opt/rtcds/kamioka/k1/chans/'
@@ -245,54 +245,6 @@ def init_OSEMINF(optics,stage,func='OSEMINF'):
         copy_FMs(fm_v1,fms)        
         ff.save()
 
-def _oplevmat(func):
-    if func in ['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL']:
-        _mat = [[-1,-1,+1,+1],
-                [+1,-1,-1,+1],
-                [+1,+1,+1,+1],
-                [-1,+1,-1,+1]]
-    else:
-        _mat = [[0,0,0,0],
-                [0,0,0,0],
-                [0,0,0,0],
-                [0,0,0,0]]
-    return _mat
-        
-def init_oplev(optics,stage='TM',funcs=['OPLEV_TILT']):
-    '''
-    '''        
-    # Init each OpLev values
-    for optic in optics:
-        for func in funcs:        
-            # Set oplev matrices
-            for row in range(4):
-                for col in range(4):
-                    chname = 'VIS-{0}_{1}_{2}_MTRX_{3}_{4}'.format(optic,stage,func,row+1,col+1)
-                    ezca[chname] = _oplevmat(func)[row][col]
-            # Set -1 for gain value of QPD
-            for segnum in range(4):
-                chname = 'VIS-{0}_{1}_{2}_SEG{3}_GAIN'.format(optic,stage,func,segnum+1)
-                ezca[chname] = -1
-                
-    # Init Euler matrix
-    if stage=='MN':
-        pass
-    else:
-        _oplev2eul = [[0,0,0,1],
-                      [1,0,0,0],
-                      [0,1,0,0]]
-        _sensalign = [[1,0,0],
-                      [0,1,0],
-                      [0,0,1]]    
-        for optic in optics:
-            for row in range(3):
-                for col in range(4):
-                    chname = "VIS-{0}_{1}_{2}_{3}_{4}".format(optic,stage,'OPLEV2EUL',row+1,col+1)
-                    ezca[chname] = _oplev2eul[row][col]
-            for row in range(3):
-                for col in range(3):                
-                    chname = "VIS-{0}_{1}_{2}_{3}_{4}".format(optic,stage,'SENSALIGN',row+1,col+1)
-                    ezca[chname] = _sensalign[row][col]               
 
 def init_act(optics,stage='TM',func='OSEM'):
     '''
@@ -509,14 +461,47 @@ def plot_all():
     plot_FILT(optics,'TM',func='OSEM',dofs=['SEG1','SEG2','SEG3','SEG4'])
     plot_FILT(optics,'TM',func='COILOUTF',dofs=['H1','H2','H3','H4'])
     plot_FILT(optics,'TM',func='OLDAMP',dofs=['L','P','Y'])        
+
+def main_oplev():
+    '''
+    '''
+    optics = all_optics
+    optics.remove('PR3') # [Note] please remove me after updating RTM
+    optics.remove('BS')  # [Note] please remove me after updating RTM 
+    optics.remove('PR2')   # tempo
+    optics.remove('PRM')   # tempo
+    optics.remove('SR3')   # tempo    
+    optics.remove('SR2')   # tempo
+    optics.remove('SRM')   # tempo       
+    optics.remove('MCI')   # tempo
+    optics.remove('MCO')   # tempo
+    optics.remove('MCE')   # tempo
+    optics.remove('IMMT1') # tempo
+    optics.remove('IMMT2') # tempo
+    optics.remove('OSTM')  # because of no oplev for output suspensions
+    optics.remove('OMMT1') # because of no oplev for output suspensions
+    optics.remove('OMMT2') # because of no oplev for output suspensions       
+    #
+    stage = 'TM'
+    init_oplev(optics,stage,['OPLEV_TILT','OPLEV_LEN'])
+    #
+    stage = 'MN'
+    init_oplev(all_typea,stage,['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL','OPLEV_TRA','OPLEV_VER'])
+    #
+    stage = 'PF'
+    init_oplev(all_typea,stage,['OPLEV_TILT','OPLEV_LEN'])
+    
     
 if __name__=='__main__':
+    main_oplev()    
+    exit()
+    
     #main1()
     #main2()
     #switch_on('VIS-PRM_IM_OSEMINF_V1',mask=['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8'])
     #copy_param(chname,['PR2','PR3'])
 
-    if True:
+    if False:
         optics = ['MCE','MCI','MCO']
         #optics = all_typea
         init_act(optics,'TM')
