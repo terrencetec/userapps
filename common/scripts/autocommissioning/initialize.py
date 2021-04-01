@@ -10,48 +10,75 @@ chans = '/opt/rtcds/kamioka/k1/chans/'
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''
     '''
-    # Original Filter Module is given by PRM_IM
-    optic = 'ETMX'    
-    part = partname_is(optic,stage)
-    ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
+    #init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_TILT',mask_wd_ac)
+
+    if 'OPLEV' in func:
+        _,_type = func.split('_')
+        func1 = 'WD_OPLEVAC_RMS_MAX'
+        func2 = 'WD_OPLEVAC_BANDLIM_{0}'.format(_type)
+    elif 'OSEM' in func:
+        func1 = 'WD_OSEMAC_RMS_MAX'
+        func2 = 'WD_OSEMAC_BANDLIM'
+    elif 'LVDT' in func:
+        if stage in ['F0','F1','F2','F3','SF']:
+            func1 = 'WD_AC_RMS_MAX'
+            func2 = 'WD_AC_BANDLIM'
+        if stage in ['BF']:
+            func1 = 'WD_AC_RMS_MAX'
+            func2 = 'WD_AC_BANDLIM_LVDT'
+        elif stage=='IP':
+            func1 = 'WD_AC_RMS_MAX_LVDT'
+            func2 = 'WD_AC_BANDLIM_LVDT'            
+    elif 'ACC' in func:
+        func1 = 'WD_AC_RMS_MAX_{0}'.format(func)
+        func2 = 'WD_AC_BANDLIM_{0}'.format(func)
+    else:
+        raise ValueError('!')
+
+    # Set threshold
+    for optic in optics:
+        chname = 'VIS-{0}_{1}_{2}'.format(optic,stage,func1)
+        if stage=='IP':
+            ezca[chname] = 2000
+        else:
+            ezca[chname] = 100
+
+    # original
+    part = partname_is('ETMX',stage)
+    ffname = chans + 'K1VISETMX{1}.txt'.format(optic,part)
     ff = Ezff(ffname)
     if stage in ['F0','F1','F2','F3','SF']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,'F0',func,'GAS')
-    elif stage in ['IM','MN']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'V1')
+        fmname = 'ETMX_F0_WD_AC_BANDLIM_GAS'
+    elif stage in ['MN','IM']:
+        fmname = 'ETMX_MN_WD_OSEMAC_BANDLIM_H1'
     elif stage in ['IP','BF']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'H1')        
+        fmname = 'ETMX_IP_WD_AC_BANDLIM_LVDT_H1'
     elif stage in ['TM']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'SEG1')
+        fmname = 'ETMX_TM_WD_OPLEVAC_BANDLIM_LEN_SEG1'
     else:
         raise ValueError('!')
     fm_v1 = ff[fmname]
+    
     # copy
+    _dofdict = {'BF':['H1','H2','H3','V1','V2','V3','GAS'],
+                'TM':['SEG1','SEG2','SEG3','SEG4'],
+                'IM':['H1','H2','H3','V1','V2','V3'],
+                'MN':['H1','H2','H3','V1','V2','V3'],
+                'IP':['H1','H2','H3'],
+                'F0':['GAS'],
+                'F1':['GAS'],
+                'F2':['GAS'],
+                'F3':['GAS'],
+                'SF':['GAS']}    
     for optic in optics:
         part = partname_is(optic,stage)
         ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
         ff = Ezff(ffname)
         # copy to other FMs
         fms = []
-        if stage=='BF':
-            dofs = ['H1','H2','H3','V1','V2','V3','GAS']
-        elif stage=='TM':
-            dofs = ['SEG1','SEG2','SEG3','SEG4']
-        elif stage=='IM':
-            dofs = ['H1','H2','H3','V1','V2','V3']
-        elif stage=='MN':
-            dofs = ['H1','H2','H3','V1','V2','V3']            
-        elif stage=='IP':
-            dofs = ['H1','H2','H3']            
-        elif stage in ['F0','F1','F2','F3','SF']:
-            dofs = ['GAS']            
-        else:
-            raise ValueError('!')
-        
-        for dof in dofs:
-            switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof),mask=mask)
-            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
-            print(fmname)
+        for dof in _dofdict[stage]:
+            switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func2,dof),mask=mask)
+            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func2,dof)
             fms += [ff[fmname]]
         copy_FMs(fm_v1,fms)     
         ff.save()

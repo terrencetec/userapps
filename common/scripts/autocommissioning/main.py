@@ -12,7 +12,7 @@ import ezca
 
 from initialize import init_oplev, init_osem, init_wd
 from diagonalize import diag_oplev
-from utils import all_optics, all_typea
+from utils import all_optics, all_typea, all_typeb, all_typebp, all_typeci, all_typeco
 
 ezca = ezca.Ezca(timeout=2)
 
@@ -394,33 +394,25 @@ def main_wd():
     '''
     '''
     mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
-    #Payload part
+    # Payload part
     optics = all_optics
-    optics.remove('PR3') # [Note] please remove me after updating RTM
-    optics.remove('BS')  # [Note] please remove me after updating RTM
-    optics.remove('OSTM')  # because of no oplev for output suspensions
-    optics.remove('OMMT1') # because of no oplev for output suspensions
-    optics.remove('OMMT2') # because of no oplev for output suspensions        
-    init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_TILT',mask_wd_ac)
-    init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_LEN',mask_wd_ac)
-    optics.remove('MCI')  # because of no IM
-    optics.remove('MCO')  # because of no IM
-    optics.remove('MCE')  # because of no IM
-    optics.remove('IMMT1') # because of no IM
-    optics.remove('IMMT2') # because of no IM
-    init_wd(optics,'IM','WD_OSEMAC_BANDLIM',mask_wd_ac)    
-    init_wd(all_typea,'MN','WD_OSEMAC_BANDLIM',mask_wd_ac)
+    optics = optics - {'PR3','BS'} # [FIXME] please remove me after updating RTM
+    optics = optics - all_typeco
+    init_wd(optics,'TM','OPLEV_TILT',mask_wd_ac)
+    init_wd(optics,'TM','OPLEV_LEN',mask_wd_ac)    
+    optics = optics - all_typeci
+    init_wd(optics,'IM','OSEM',mask_wd_ac)    
+    init_wd(all_typea,'MN','OSEM',mask_wd_ac)
     
     # Tower part
-    init_wd(optics,'BF','WD_AC_BANDLIM_LVDT',mask_wd_ac)
-    init_wd(optics,'IP','WD_AC_BANDLIM_ACC',mask_wd_ac)
-    init_wd(optics,'IP','WD_AC_BANDLIM_LVDT',mask_wd_ac)
-    init_wd(optics,'F0','WD_AC_BANDLIM',mask_wd_ac)
-    init_wd(optics,'F1','WD_AC_BANDLIM',mask_wd_ac)
-    init_wd(optics,'F2','WD_AC_BANDLIM',mask_wd_ac)
-    init_wd(optics,'F3','WD_AC_BANDLIM',mask_wd_ac)
-    optics = ['PR2']
-    init_wd(optics,'SF','WD_AC_BANDLIM',mask_wd_ac)    
+    init_wd(optics,'BF','LVDT',mask_wd_ac)
+    init_wd(optics,'IP','ACC',mask_wd_ac)
+    init_wd(optics,'IP','LVDT',mask_wd_ac)
+    init_wd(optics,'F0','LVDT',mask_wd_ac)
+    init_wd(optics,'F1','LVDT',mask_wd_ac)
+    init_wd(optics,'F2','LVDT',mask_wd_ac)
+    init_wd(optics,'F3','LVDT',mask_wd_ac)
+    init_wd(optics,'SF','LVDT',mask_wd_ac)    
     
 if __name__=='__main__':
     import argparse

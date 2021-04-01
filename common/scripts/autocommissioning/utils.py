@@ -3,17 +3,13 @@ from ezca import LIGOFilter,Ezca
 
 ezca = Ezca(timeout=2)
 
-all_optics = ['ETMX','ETMY','ITMX','ITMY',
-              'BS','SRM','SR2','SR3',
-              'PRM','PR2','PR3',
-              'MCI','MCO','MCE','IMMT1','IMMT2',
-              'OSTM','OMMT1','OMMT2']
+all_typea = {'ETMX','ETMY','ITMX','ITMY'}
+all_typeb = {'BS','SRM','SR2','SR3'}
+all_typebp = {'PRM','PR2','PR3'}
+all_typeci = {'MCI','MCO','MCE','IMMT1','IMMT2'}
+all_typeco = {'OSTM','OMMT1','OMMT2'}
+all_optics = all_typea | all_typeb | all_typebp | all_typeci | all_typeco
 
-all_typea = ['ETMX','ETMY','ITMX','ITMY']
-all_typeb = ['BS','SRM','SR2','SR3']
-all_typebp = ['PRM','PR2','PR3']
-all_typeci = ['MCI','MCO','MCE','IMMT1','IMMT2']
-all_typeco = ['OSTM','OMMT1','OMMT2']
 def typename_is(optic):
     '''
     '''
