@@ -7,14 +7,15 @@ sys.path.append('/usr/lib/python3/dist-packages')
 from plot import plot
 import numpy as np
 import ezca
-from ezca import LIGOFilter
 
-import foton
-from foton import FilterFile,Filter,iir2zpk,iir2z
-from initialize import init_oplev
+#import foton
+
+from initialize import init_oplev, init_osem, init_wd
+from diagonalize import diag_oplev
+from utils import all_optics, all_typea
+
 ezca = ezca.Ezca(timeout=2)
 
-chans = '/opt/rtcds/kamioka/k1/chans/'
 
 def _ezca(name):
     try:
@@ -61,7 +62,9 @@ def sensor_name(stage):
     return sensor
 
 
-def main1():    
+def main1():
+    '''
+    '''
     sixinf_ofst = 'VIS-{o}_{s}_{sens}INF_{dof}_OFFSET'
     sixinf_gain = 'VIS-{o}_{s}_{sens}INF_{dof}_GAIN'
     sixsensmat = 'VIS-{o}_{s}_{sens}2EUL_{r}_{c}'
@@ -141,45 +144,6 @@ def copy_param(chname,target_optics):
 # ------------------------------------------------------------------------------
 
 
-all_optics = ['ETMX','ETMY','ITMX','ITMY',
-              'BS','SRM','SR2','SR3',
-              'PRM','PR2','PR3',
-              'MCI','MCO','MCE','IMMT1','IMMT2',
-              'OSTM','OMMT1','OMMT2']
-
-all_typea = ['ETMX','ETMY','ITMX','ITMY']
-all_typeb = ['BS','SRM','SR2','SR3']
-all_typebp = ['PRM','PR2','PR3']
-all_typeci = ['MCI','MCO','MCE','IMMT1','IMMT2']
-all_typeco = ['OSTM','OMMT1','OMMT2']
-def typename_is(optic):
-    '''
-    '''
-    if optic in all_typea:
-        return 'Type-A'
-    elif optic in all_typeb:
-        return 'Type-B'
-    elif optic in all_typebp:
-        return 'Type-Bp'
-    elif optic in all_typeci or optic in all_typeco:
-        return 'Type-C'
-    else:
-        raise ValueError('!')
-
-def partname_is(optic,stage):
-    '''
-    '''
-    if typename_is(optic) in ['Type-A','Type-B','Type-Bp']:    
-        if stage in ['TM','IM','MN']:        
-            part = 'P'
-        elif stage in ['BF','F3','F2','F1','F0','SF','IP']:
-            part = 'T'
-        else:
-            raise ValueError('!')
-    else:
-        part = ''        
-    return part
-
 def get_fm(optic,stage,func,dof):
     ''' get filter module
     '''
@@ -195,14 +159,6 @@ def get_fm(optic,stage,func,dof):
     _fm = _ff[fmname]
     return _ff,_fm
 
-class Ezff(FilterFile):
-    def __init__(self,ffname):        
-        super().__init__(ffname)
-        self.ffname = ffname
-
-    def save(self):
-        self.ff.write(self.ffname)
-
 
 def foton2zpk(zpkstr):
     '''
@@ -214,37 +170,6 @@ def foton2zpk(zpkstr):
 
 def db(val):
     return 20*np.log10(val)
-
-def copy_FMs(orig,dests):
-    '''
-    '''
-    for dest in dests:
-        for i in range(10):    
-            dest[i].copyfrom(orig[i])    
-
-def init_OSEMINF(optics,stage,func='OSEMINF'):
-    '''
-    '''
-    # Original Filter Module is given by PRM_IM
-    optic = 'PRM'
-    part = partname_is(optic,stage)
-    ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
-    ff = Ezff(ffname)
-    fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'V1')
-    fm_v1 = ff[fmname]
-    # copy
-    for optic in optics:
-        part = partname_is(optic,stage)
-        ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
-        ff = Ezff(ffname)
-        # copy to other FMs
-        fms = []
-        for dof in ['V1','V2','V3','H1','H2','H3']:
-            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
-            fms += [ff[fmname]]        
-        copy_FMs(fm_v1,fms)        
-        ff.save()
-
 
 def init_act(optics,stage='TM',func='OSEM'):
     '''
@@ -269,52 +194,7 @@ def init_act(optics,stage='TM',func='OSEM'):
             for col in range(2):
                 chname = 'VIS-{0}_{1}_LKIN2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
                 ezca[chname] = _lkin2coil[row][col]
-                    
-def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
-    '''
-    '''
-    # Original Filter Module is given by PRM_IM
-    optic = 'ITMY'
-    part = partname_is(optic,stage)
-    ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
-    ff = Ezff(ffname)
-    if stage in ['F0','F1','F2','F3','SF']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'GAS')
-    elif stage in ['IM','IP','BF']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'H1')
-    elif stage in ['TM']:
-        fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,'SEG1')
-    else:
-        raise ValueError('!')
-    fm_v1 = ff[fmname]
-    # copy
-    for optic in optics:
-        part = partname_is(optic,stage)
-        ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
-        ff = Ezff(ffname)
-        # copy to other FMs
-        fms = []
-        if stage=='BF':
-            dofs = ['H1','H2','H3','V1','V2','V3','GAS']
-        elif stage=='TM':
-            dofs = ['SEG1','SEG2','SEG3','SEG4']
-        elif stage=='IM':
-            dofs = ['H1','H2','H3','V1','V2','V3']
-        elif stage=='IP':
-            dofs = ['H1','H2','H3']            
-        elif stage in ['F0','F1','F2','F3','SF']:
-            dofs = ['GAS']            
-        else:
-            raise ValueError('!')
-        
-        for dof in dofs:
-            switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof),mask=mask_wd_ac)
-            fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
-            print(fmname)
-            fms += [ff[fmname]]
-        copy_FMs(fm_v1,fms)     
-        ff.save()
-        
+                            
 
 def all_zpk(fms,active=range(10)):
     '''
@@ -389,13 +269,6 @@ def show_MAT(optics,stage,func='OSEM2EUL',fname=None,row=6,col=6):
     data = [read_multi(chnames) for chnames in chlist]
     print(stage,func)
     return data
-
-def switch_on(chname,mask=['INPUT','OFFSET','OUTPUT','DECIMATION']):
-    '''
-    '''
-    FB = ezca.get_LIGOFilter(chname)
-    FMs = FB.get_current_swstat_mask().buttons
-    FB.only_on(*mask)
     
     
 def plot_all():    
@@ -463,7 +336,7 @@ def plot_all():
     plot_FILT(optics,'TM',func='OLDAMP',dofs=['L','P','Y'])        
 
 def main_oplev():
-    '''
+    ''' 
     '''
     optics = all_optics
     optics.remove('PR3') # [Note] please remove me after updating RTM
@@ -482,20 +355,97 @@ def main_oplev():
     optics.remove('OMMT1') # because of no oplev for output suspensions
     optics.remove('OMMT2') # because of no oplev for output suspensions       
     #
-    stage = 'TM'
-    init_oplev(optics,stage,['OPLEV_TILT','OPLEV_LEN'])
+    # Initialize 
+    init_oplev(optics,'TM',['OPLEV_TILT','OPLEV_LEN'])
+    init_oplev(all_typea,'MN',['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL','OPLEV_TRA','OPLEV_VER'])
+    init_oplev(all_typea,'PF',['OPLEV_TILT','OPLEV_LEN'])
     #
-    stage = 'MN'
-    init_oplev(all_typea,stage,['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL','OPLEV_TRA','OPLEV_VER'])
-    #
-    stage = 'PF'
-    init_oplev(all_typea,stage,['OPLEV_TILT','OPLEV_LEN'])
+    # diagonalization
+    diag_oplev(optics,'TM')
+    diag_oplev(optics,'MN')
+    diag_oplev(optics,'PF')
+
+def main_osem():
+    '''
+    '''
+    optics = all_optics
+    optics.remove('PR3') # [Note] please remove me after updating RTM
+    optics.remove('BS')  # [Note] please remove me after updating RTM
+    optics.remove('ETMX')  # Fix me
+    optics.remove('ITMX')  # Fix me
+    optics.remove('ETMY')  # Fix me
+    optics.remove('ITMY')  # Fix me    
+    optics.remove('PR2')   # tempo
+    #optics.remove('PRM')   # tempo
+    optics.remove('SR3')   # tempo    
+    optics.remove('SR2')   # tempo
+    optics.remove('SRM')   # tempo       
+    optics.remove('MCI')   # tempo
+    optics.remove('MCO')   # tempo
+    optics.remove('MCE')   # tempo
+    optics.remove('IMMT1') # tempo
+    optics.remove('IMMT2') # tempo
+    optics.remove('OSTM')  # because of no oplev for output suspensions
+    optics.remove('OMMT1') # because of no oplev for output suspensions
+    optics.remove('OMMT2') # because of no oplev for output suspensions    
+    init_osem(optics,'IM')
+
+def main_wd():
+    '''
+    '''
+    mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
+    #Payload part
+    optics = all_optics
+    optics.remove('PR3') # [Note] please remove me after updating RTM
+    optics.remove('BS')  # [Note] please remove me after updating RTM
+    optics.remove('OSTM')  # because of no oplev for output suspensions
+    optics.remove('OMMT1') # because of no oplev for output suspensions
+    optics.remove('OMMT2') # because of no oplev for output suspensions        
+    init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_TILT',mask_wd_ac)
+    init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_LEN',mask_wd_ac)
+    optics.remove('MCI')  # because of no IM
+    optics.remove('MCO')  # because of no IM
+    optics.remove('MCE')  # because of no IM
+    optics.remove('IMMT1') # because of no IM
+    optics.remove('IMMT2') # because of no IM
+    init_wd(optics,'IM','WD_OSEMAC_BANDLIM',mask_wd_ac)    
+    init_wd(all_typea,'MN','WD_OSEMAC_BANDLIM',mask_wd_ac)
     
+    # Tower part
+    init_wd(optics,'BF','WD_AC_BANDLIM_LVDT',mask_wd_ac)
+    init_wd(optics,'IP','WD_AC_BANDLIM_ACC',mask_wd_ac)
+    init_wd(optics,'IP','WD_AC_BANDLIM_LVDT',mask_wd_ac)
+    init_wd(optics,'F0','WD_AC_BANDLIM',mask_wd_ac)
+    init_wd(optics,'F1','WD_AC_BANDLIM',mask_wd_ac)
+    init_wd(optics,'F2','WD_AC_BANDLIM',mask_wd_ac)
+    init_wd(optics,'F3','WD_AC_BANDLIM',mask_wd_ac)
+    optics = ['PR2']
+    init_wd(optics,'SF','WD_AC_BANDLIM',mask_wd_ac)    
     
 if __name__=='__main__':
-    main_oplev()    
-    exit()
+    import argparse
+    parser = argparse.ArgumentParser(description='hoge')
+    parser.add_argument('--oplev',action='store_true')
+    parser.add_argument('--watchdog',action='store_true')    
+    parser.add_argument('--osem',action='store_true')
+    parser.add_argument('--bflvdt',action='store_true')
+    parser.add_argument('--gaslvdt',action='store_true')
+    parser.add_argument('--iplvdt',action='store_true')
+    parser.add_argument('--acc',action='store_true')
+    parser.add_argument('--fldacc',action='store_true')    
+    parser.add_argument('-s','--stage',default='TM')    
+    args = parser.parse_args()
+
     
+    if args.oplev:
+        main_oplev()
+    if args.osem:
+        main_osem()
+    if args.watchdog:
+        main_wd()
+
+        
+    # ------------        
     #main1()
     #main2()
     #switch_on('VIS-PRM_IM_OSEMINF_V1',mask=['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8'])
@@ -506,22 +456,6 @@ if __name__=='__main__':
         #optics = all_typea
         init_act(optics,'TM')
     
-    if False:
-        #optics = ['MCE','MCI','MCO','IMMT1','IMMT2']
-        optics = all_optics
-        optics.remove('PR3')
-        optics.remove('BS')
-        optics.remove('SRM')
-        optics.remove('SR2')
-        optics.remove('SR3')                
-        optics.remove('OSTM')
-        optics.remove('OMMT1')
-        optics.remove('OMMT2')
-        print(optics)
-        init_oplev(optics,'TM',['OPLEV_TILT','OPLEV_LEN'])
-        optics = all_typea
-        init_oplev(optics,'PF',['OPLEV_TILT','OPLEV_LEN'])
-        init_oplev(optics,'MN',['OPLEV_TILT','OPLEV_LEN','OPLEV_ROL','OPLEV_TRA','OPLEV_VER'])        
     if False:
         optics = ['ITMY','ETMY','ITMX','ETMX']
         mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
