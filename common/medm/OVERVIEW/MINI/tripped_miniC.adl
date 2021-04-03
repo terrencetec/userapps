@@ -221,19 +221,6 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
 	}
 }
-text {
-	object {
-		x=20
-		y=20
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="$(OPTIC)"
-	align="horiz. centered"
-}
 "message button" {
 	object {
 		x=235
@@ -298,4 +285,20 @@ rectangle {
 		calc="A=1"
 		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
 	}
+}
+"related display" {
+	object {
+		x=16
+		y=19
+		width=48
+		height=20
+	}
+	display[0] {
+		label="WATCHDOG"
+		name="../../VIS_PAY_WD.adl"
+		args="IFO=K1,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=14
+	label="-$(OPTIC)p"
 }

@@ -222,19 +222,6 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
 	}
 }
-text {
-	object {
-		x=20
-		y=20
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="$(OPTIC)"
-	align="horiz. centered"
-}
 "message button" {
 	object {
 		x=235
@@ -643,4 +630,36 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
 		chanB="K1:VIS-$(OPTIC)_IM_WDMON_CURRENTTRIG"
 	}
+}
+"related display" {
+	object {
+		x=17
+		y=20
+		width=48
+		height=20
+	}
+	display[0] {
+		label="WATCHDOG"
+		name="../../VIS_TWR_WD.adl"
+		args="IFO=K1,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=14
+	label="-$(OPTIC)t"
+}
+"related display" {
+	object {
+		x=17
+		y=46
+		width=48
+		height=20
+	}
+	display[0] {
+		label="WATCHDOG"
+		name="../../VIS_PAY_WD.adl"
+		args="IFO=K1,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=14
+	label="-$(OPTIC)p"
 }

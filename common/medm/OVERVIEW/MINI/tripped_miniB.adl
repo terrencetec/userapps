@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=5098
-		y=360
+		x=5154
+		y=426
 		width=405
 		height=85
 	}
@@ -239,19 +239,6 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
 	}
 }
-text {
-	object {
-		x=20
-		y=20
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="$(OPTIC)t"
-	align="horiz. centered"
-}
 "message button" {
 	object {
 		x=235
@@ -267,19 +254,6 @@ text {
 	label="IP"
 	press_msg="1"
 	release_msg="0"
-}
-text {
-	object {
-		x=20
-		y=45
-		width=40
-		height=20
-	}
-	"basic attribute" {
-		clr=0
-	}
-	textix="$(OPTIC)p"
-	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -611,4 +585,36 @@ rectangle {
 		calc="A=1"
 		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
 	}
+}
+"related display" {
+	object {
+		x=17
+		y=19
+		width=48
+		height=20
+	}
+	display[0] {
+		label="WATCHDOG"
+		name="../../VIS_TWR_WD.adl"
+		args="IFO=K1,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=14
+	label="-$(OPTIC)t"
+}
+"related display" {
+	object {
+		x=17
+		y=45
+		width=48
+		height=20
+	}
+	display[0] {
+		label="WATCHDOG"
+		name="../../VIS_PAY_WD.adl"
+		args="IFO=K1,OPTIC=$(OPTIC)"
+	}
+	clr=0
+	bclr=14
+	label="-$(OPTIC)p"
 }
