@@ -319,6 +319,11 @@ byte {
 		name="caput"
 		args="K1:FEC-$(FEC)_DIAG_RESET 1"
 	}
+	command[12] {
+		label="revert filter"
+		name="xterm -geometry 110x35 -T 'revert filter: k1$(system)'"
+		args="-e '/opt/rtcds/userapps/release/sys/common/scripts/filter_revert.sh k1$(system) revert; sleep 5'"
+	}
 	clr=14
 	bclr=46
 	label=" "
