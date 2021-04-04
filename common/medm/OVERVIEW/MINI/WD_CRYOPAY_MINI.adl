@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/tripped_microB.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/WD_CRYOPAY_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3410
-		y=393
-		width=405
-		height=85
+		x=3389
+		y=648
+		width=400
+		height=71
 	}
 	clr=14
-	bclr=13
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -89,10 +89,10 @@ display {
 }
 rectangle {
 	object {
-		x=10
-		y=14
-		width=105
-		height=30
+		x=160
+		y=24
+		width=70
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -100,9 +100,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=52
-		y=17
-		width=10
+		x=197
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -110,14 +110,14 @@ rectangle {
 	}
 	"dynamic attribute" {
 		calc="A=2"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_STATE"
+		chan="K1:VIS_$(OPTIC)_TM_WDMON_STATE"
 	}
 }
 rectangle {
 	object {
-		x=52
-		y=17
-		width=10
+		x=197
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -126,48 +126,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=0"
-		chan="K1:VIS-$(OPTIC)_TWR_SHUTDOWN_TRIG_STATE"
+		chan="K1:VIS-$(OPTIC)_PAY_SHUTDOWN_TRIG_PAYLOAD_STATE"
 	}
 }
 rectangle {
 	object {
-		x=41
-		y=17
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A&2"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=41
-		y=17
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=0&B=0&C=0&D=0"
-		chan="K1:VIS-$(OPTIC)_BF_WDMON_CURRENTTRIG"
-		chanB="K1:VIS-$(OPTIC)_F1_WDMON_CURRENTTRIG"
-		chanC="K1:VIS-$(OPTIC)_F0_WDMON_CURRENTTRIG"
-		chanD="K1:VIS-$(OPTIC)_IP_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=17
-		width=10
+		x=201
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -180,103 +146,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=65
-		y=17
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
-	}
-}
-rectangle {
-	object {
-		x=52
-		y=30
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A=2"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_STATE"
-	}
-}
-rectangle {
-	object {
-		x=52
-		y=30
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=0"
-		chan="K1:VIS-$(OPTIC)_PAY_SHUTDOWN_TRIG_STATE"
-	}
-}
-rectangle {
-	object {
-		x=41
-		y=30
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A&2"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=41
-		y=30
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=0&B=0"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
-		chanB="K1:VIS-$(OPTIC)_IM_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=30
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A=0"
-		chan="K1:VIS-$(OPTIC)_DACKILL_STATE"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=30
-		width=10
+		x=201
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -290,9 +162,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=78
-		y=30
-		width=10
+		x=205
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -305,9 +177,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=78
-		y=30
-		width=10
+		x=205
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -316,14 +188,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_IMV_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_MNH_MON"
 	}
 }
 rectangle {
 	object {
-		x=100
-		y=30
-		width=10
+		x=209
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -336,9 +208,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=100
-		y=30
-		width=10
+		x=209
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -347,14 +219,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_TM_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_MNIMV_MON"
 	}
 }
 rectangle {
 	object {
-		x=89
-		y=30
-		width=10
+		x=213
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -367,9 +239,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=89
-		y=30
-		width=10
+		x=213
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -383,9 +255,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=78
-		y=17
-		width=10
+		x=217
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -398,9 +270,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=78
-		y=17
-		width=10
+		x=217
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -409,14 +281,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_PI_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_IMB_MON"
 	}
 }
 rectangle {
 	object {
-		x=89
-		y=17
-		width=10
+		x=221
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -429,9 +301,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=89
-		y=17
-		width=10
+		x=221
+		y=28
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -440,15 +312,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_GAS_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_TM_MON"
 	}
 }
 rectangle {
 	object {
-		x=38
-		y=14
-		width=74
-		height=28
+		x=183
+		y=24
+		width=43
+		height=18
 	}
 	"basic attribute" {
 		clr=30
@@ -458,15 +330,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=1"
-		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
+		chan="K1:VIS-$(OPTIC)_PAY_MASTERSWITCH"
 	}
 }
 "related display" {
 	object {
-		x=12
-		y=16
-		width=25
-		height=26
+		x=162
+		y=25
+		width=20
+		height=18
 	}
 	display[0] {
 		label="overview"
@@ -475,4 +347,37 @@ rectangle {
 	clr=14
 	bclr=5
 	label="-WD"
+}
+rectangle {
+	object {
+		x=186
+		y=28
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		calc="A&2"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+	}
+}
+rectangle {
+	object {
+		x=186
+		y=28
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&B=0&C=0"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+		chanB="K1:VIS-$(OPTIC)_IM_WDMON_CURRENTTRIG"
+		chanC="K1:VIS-$(OPTIC)_MN_WDMON_CURRENTTRIG"
+	}
 }

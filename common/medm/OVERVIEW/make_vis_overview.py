@@ -150,6 +150,37 @@ def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,part=part,K1SUBSYS='K1'+SUBSYS)
     return txt,width,height
 
+def wd_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
+    width = 320
+    height = 15
+    subsys = subsys.lower()
+    SUBSYS = subsys.upper()
+    system = subsys
+    optic = optic.lower()
+    OPTIC = optic.upper()
+    if SUBSYS[-1]=='T':
+        adl = 'WD_TWR_MINI.adl'
+    else:
+        if OPTIC in ['ETMX','ETMY','ITMX','ITMY']:
+            adl = 'WD_CRYOPAY_MINI.adl'
+        elif OPTIC in ['BS','SRM','SR2','SR3','PR2','PR3','PRM']:            
+            adl = 'WD_ROOMPAY_MINI.adl'
+        else:
+            adl = 'WD_TAMAPAY_MINI.adl'
+    txt = '''
+    composite {{
+    object {{
+    x={x}
+    y={y}
+    width=260
+    height=15
+    }}
+    "composite name"=""
+    "composite file"="{common}/medm/OVERVIEW/MINI/{adl};OPTIC={OPTIC}"
+    }}
+    '''.format(adl=adl,common=common,x=x,y=y,OPTIC=OPTIC)        
+    return txt,width,height
+
 
 def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     width = 445
@@ -288,14 +319,17 @@ if __name__=='__main__':
             contents += txt
             width += w2+5
             _w = w1+w2+4
-            txt,w3,h = trip_mini(x=width,y=height,optic=optic)
-            contents += txt
-            width += w3+5
-            _w = w1+w2+w3+15            
+            #txt,w3,h = trip_mini(x=width,y=height,optic=optic)
+            #contents += txt
+            #width += w3+5
+            _w = w1+w2+10
             for model in models[optic]:
                 model,fec = model
                 txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
                 contents += txt
+                txt,w,h = wd_mini(x=width+w+5,y=height,fec=fec,subsys=model,
+                                   optic=optic)
+                contents += txt                
                 txt,w,h = gds_mini(x=width+w+5,y=height,fec=fec,subsys=model,
                                    optic=optic)
                 contents += txt                

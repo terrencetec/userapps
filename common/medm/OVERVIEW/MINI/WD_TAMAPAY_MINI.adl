@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/tripped_microT.adl"
+	name="WD_TAMAPAY_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3408
-		y=516
-		width=345
-		height=60
+		x=3382
+		y=933
+		width=400
+		height=118
 	}
 	clr=14
-	bclr=13
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -89,10 +89,10 @@ display {
 }
 rectangle {
 	object {
-		x=10
-		y=14
-		width=95
-		height=30
+		x=158
+		y=49
+		width=70
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -100,9 +100,9 @@ rectangle {
 }
 rectangle {
 	object {
-		x=52
-		y=18
-		width=10
+		x=195
+		y=53
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -110,45 +110,14 @@ rectangle {
 	}
 	"dynamic attribute" {
 		calc="A=2"
-		chan="K1:VIS-MCI_TM_WDMON_STATE"
+		chan="K1:VIS_$(OPTIC)_TM_WDMON_STATE"
 	}
 }
 rectangle {
 	object {
-		x=52
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
-		chan="K1:VIS-$(OPTIC)_WDMON_STATE"
-	}
-}
-rectangle {
-	object {
-		x=41
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A&2"
-		chan="K1:VIS-MCI_TM_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=41
-		y=18
-		width=10
+		x=195
+		y=53
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -157,14 +126,14 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=0"
-		chan="K1:VIS-$(OPTIC)_WDMON_CURRENTTRIG"
+		chan="K1:VIS-$(OPTIC)_PAY_SHUTDOWN_TRIG_PAYLOAD_STATE"
 	}
 }
 rectangle {
 	object {
-		x=65
-		y=18
-		width=10
+		x=199
+		y=53
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -172,45 +141,14 @@ rectangle {
 	}
 	"dynamic attribute" {
 		calc="A=0"
-		chan="K1:VIS-MCI_DACKILL_STATE"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1"
 		chan="K1:VIS-$(OPTIC)_DACKILL_STATE"
 	}
 }
 rectangle {
 	object {
-		x=78
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=78
-		y=18
-		width=10
+		x=199
+		y=53
+		width=3
 		height=10
 	}
 	"basic attribute" {
@@ -218,47 +156,16 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_V_MON"
+		calc="A=1"
+		chan="K1:VIS-$(OPTIC)_PAY_DACKILL_STATE"
 	}
 }
 rectangle {
 	object {
-		x=89
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=89
-		y=18
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_H_MON"
-	}
-}
-rectangle {
-	object {
-		x=38
-		y=15
-		width=63
-		height=15
+		x=181
+		y=49
+		width=43
+		height=18
 	}
 	"basic attribute" {
 		clr=30
@@ -268,15 +175,15 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="A=1"
-		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
+		chan="K1:VIS-$(OPTIC)_PAY_MASTERSWITCH"
 	}
 }
 "related display" {
 	object {
-		x=12
-		y=16
-		width=25
-		height=25
+		x=160
+		y=50
+		width=20
+		height=18
 	}
 	display[0] {
 		label="overview"
@@ -285,4 +192,90 @@ rectangle {
 	clr=14
 	bclr=5
 	label="-WD"
+}
+rectangle {
+	object {
+		x=184
+		y=53
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		calc="A&2"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+	}
+}
+rectangle {
+	object {
+		x=184
+		y=53
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+	}
+}
+rectangle {
+	object {
+		x=203
+		y=53
+		width=3
+		height=10
+	}
+	"basic attribute" {
+		clr=10
+	}
+}
+rectangle {
+	object {
+		x=207
+		y=53
+		width=3
+		height=10
+	}
+	"basic attribute" {
+		clr=10
+	}
+}
+rectangle {
+	object {
+		x=211
+		y=53
+		width=3
+		height=10
+	}
+	"basic attribute" {
+		clr=10
+	}
+}
+rectangle {
+	object {
+		x=215
+		y=53
+		width=3
+		height=10
+	}
+	"basic attribute" {
+		clr=10
+	}
+}
+rectangle {
+	object {
+		x=219
+		y=53
+		width=3
+		height=10
+	}
+	"basic attribute" {
+		clr=10
+	}
 }
