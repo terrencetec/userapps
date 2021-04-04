@@ -91,8 +91,8 @@ display {
 
 common = '/opt/rtcds/userapps/release/vis/common'
 
-def grd_mini(x,y,SYSTEM='VIS_ETMX'):
-    width = 150
+def grd_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
+    width = 210
     height = 25
     txt = '''
     composite {{
@@ -103,9 +103,9 @@ def grd_mini(x,y,SYSTEM='VIS_ETMX'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GRD_MINI.adl;SYSTEM={SYSTEM}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/GRD_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
     }}
-    '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM)
+    '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM,OPTIC=OPTIC)
     return txt,width,height
 
 
@@ -183,7 +183,7 @@ def wd_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
 
 
 def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
-    width = 445
+    width = 410
     height = 25
     sustype = sus_type_is(OPTIC).lower()
     SUSTYPE = sustype.upper()
@@ -306,16 +306,16 @@ if __name__=='__main__':
     
         
     height = 10
-    width = 10
+    width = 5
     contents = header    
     with open('./MINI/VIS_MINI.adl','w') as f:
         for optic in optics:
             OPTIC = optic.upper()
             model,fec = models[optic][0]
-            txt,w1,h1 = user_mini(x=width,y=height,OPTIC=OPTIC)
+            txt,w1,h1 = grd_mini(x=width,y=height,SYSTEM='VIS_'+OPTIC,OPTIC=OPTIC)
             contents += txt            
             width += w1+5
-            txt,w2,h = grd_mini(x=width,y=height,SYSTEM='VIS_'+OPTIC)
+            txt,w2,h = user_mini(x=width,y=height,OPTIC=OPTIC)
             contents += txt
             width += w2+5
             _w = w1+w2+4
