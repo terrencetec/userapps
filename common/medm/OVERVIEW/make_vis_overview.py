@@ -103,7 +103,7 @@ def grd_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GRD_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/GRD_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
     }}
     '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM,OPTIC=OPTIC)
     return txt,width,height
@@ -122,7 +122,7 @@ def optic_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/OPTIC_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/OPTIC_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
     }}
     '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM,OPTIC=OPTIC)
     return txt,width,height
@@ -142,7 +142,7 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/SDF_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/SDF_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys}"
     }}
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS)
     return txt,width,height
@@ -170,7 +170,7 @@ def ctrl_mini(x,y,fec='123',ifo='K1',optic='ETMX',subsys='ETMXT'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/{adl};FEC={fec},IFO={ifo},OPTIC={optic},subsys={subsys}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/{adl};FEC={fec},IFO={ifo},OPTIC={optic},subsys={subsys}"
     }}
     '''.format(adl=adl,common=common,x=x,y=y,fec=fec,ifo=ifo,optic=optic,subsys=subsys)
     return txt,width,height
@@ -193,7 +193,7 @@ def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},PART={part},K1SUBSYS={K1SUBSYS},system={subsys}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/GDS_MINI.adl;FEC={fec},SUBSYS={SUBSYS},subsys={subsys},PART={part},K1SUBSYS={K1SUBSYS},system={subsys}"
     }}
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS,part=part,K1SUBSYS='K1'+SUBSYS)
     return txt,width,height
@@ -224,7 +224,7 @@ def wd_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/{adl};OPTIC={OPTIC}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/{adl};OPTIC={OPTIC}"
     }}
     '''.format(adl=adl,common=common,x=x,y=y,OPTIC=OPTIC)        
     return txt,width,height
@@ -247,7 +247,7 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/{adltype};FEC={fec},OPTIC={OPTIC}"
+    "composite file"="{common}/medm/OVERVIEW/VIS_MINI/{adltype};FEC={fec},OPTIC={OPTIC}"
     }}
     '''.format(common=common,x=x,y=y,adltype=adltype,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE)
     return txt,width,height
@@ -337,7 +337,7 @@ if __name__=='__main__':
     height = 10
     width = 2
     contents = header    
-    with open('./MINI/VIS_MINI.adl','w') as f:
+    with open('./VIS_MINI/VIS_MINI.adl','w') as f:
         for optic in optics:
             OPTIC = optic.upper()
             model,fec = models[optic][0]
