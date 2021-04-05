@@ -155,7 +155,12 @@ def ctrl_mini(x,y,fec='123',ifo='K1',optic='ETMX',subsys='ETMXT'):
     if subsys[-1]=='T':
         adl = 'CTRL_TWR_MINI.adl'
     else:
-        adl = 'CTRL_PAY_MINI.adl'        
+        if OPTIC in ['ETMX','ETMY','ITMX','ITMY']:
+            adl = 'CTRL_CRYOPAY_MINI.adl'
+        elif OPTIC in ['BS','SRM','SR2','SR3','PR2','PR3','PRM']:            
+            adl = 'CTRL_ROOMPAY_MINI.adl'
+        else:
+            adl = 'CTRL_TAMAPAY_MINI.adl'    
     txt = '''
     composite {{
     object {{
@@ -232,26 +237,7 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     SUSTYPE = sustype.upper()
     optic = OPTIC.lower()
     OPTIC = OPTIC.upper()
-    # macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(
-    #     common=common,optic=optic)
-    # ctrladl  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(
-    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-    # ctrladl2  = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(
-    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)    
-    # ctrladl3  = '{common}/medm/VIS_PAYLOAD_PFMN_OVERVIEW.adl'.format(
-    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-    # ctrladl4  = '{common}/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl'.format(
-    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-
-    if sustype in ['typea']:
-        adltype = 'USER_MINI_A.adl'
-    elif sustype in ['typeb','typebp']:
-        adltype = 'USER_MINI_B_Bp.adl'
-    elif sustype in ['typec-imc','typec-omc']:
-        adltype = 'USER_MINI_C.adl'
-    else:
-        adltype = 'USER_MINI_C.adl'
-
+    adltype='USER_MINI.adl'
     txt = '''
     composite {{
     object {{

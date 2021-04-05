@@ -1,14 +1,14 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/CTRL_C_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/CTRL_TAMAPAY_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3389
-		y=323
+		x=3387
+		y=175
 		width=400
-		height=60
+		height=40
 	}
 	clr=14
 	bclr=4
@@ -89,17 +89,17 @@ display {
 }
 "related display" {
 	object {
-		x=176
-		y=20
-		width=50
-		height=22
+		x=177
+		y=7
+		width=60
+		height=18
 	}
-	display[1] {
-		label="IM/TM"
-		name="$(ctrladl4)"
-		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+	display[2] {
+		label="TM"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl"
+		args="IFO=$(IFO),FEC=$(FEC),OPTIC=$(OPTIC)"
 	}
 	clr=0
-	bclr=14
-	label="-CTRL"
+	bclr=44
+	label="-PAYLOAD"
 }
