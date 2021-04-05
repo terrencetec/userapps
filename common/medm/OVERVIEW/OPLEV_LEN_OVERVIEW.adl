@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_OPLEV_OVERVIEW_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/OPLEV_OVERVIEW.adl"
 	version=030109
 }
 display {
 	object {
-		x=568
-		y=713
-		width=283
-		height=103
+		x=2098
+		y=59
+		width=1283
+		height=1013
 	}
 	clr=14
-	bclr=4
+	bclr=14
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,19 +87,13 @@ display {
 		1a7309,
 	}
 }
-"related display" {
+composite {
 	object {
-		x=26
-		y=29
-		width=80
-		height=60
+		x=84
+		y=48
+		width=1024
+		height=899
 	}
-	display[0] {
-		label="$(FUNC)"
-		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_OPLEV_OVERVIEW.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC),FEC=$(FEC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),XLABEL=$(XLABEL),YLABEL=$(YLABEL),POUT=$(POUT),YOUT=$(YOUT),UNIT=$(UNIT),RANGE=200.000"
-	}
-	clr=14
-	bclr=7
-	label="-$(FUNC)"
+	"composite name"=""
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/OPLEV_MINI/OPLEV_LEN_OVERVIEW_MINI.adl"
 }
