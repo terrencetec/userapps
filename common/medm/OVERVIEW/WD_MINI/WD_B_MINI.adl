@@ -1,13 +1,13 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/tripped_miniA.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/WD_MINI/WD_B_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=5169
-		y=255
-		width=520
+		x=5154
+		y=426
+		width=405
 		height=85
 	}
 	clr=14
@@ -121,7 +121,7 @@ rectangle {
 	object {
 		x=15
 		y=15
-		width=495
+		width=375
 		height=55
 	}
 	"basic attribute" {
@@ -239,6 +239,22 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_TWR_DACKILL_STATE"
 	}
 }
+"message button" {
+	object {
+		x=235
+		y=20
+		width=30
+		height=20
+	}
+	control {
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IP_WD_RSET"
+		clr=14
+		bclr=5
+	}
+	label="IP"
+	press_msg="1"
+	release_msg="0"
+}
 rectangle {
 	object {
 		x=90
@@ -268,6 +284,38 @@ rectangle {
 		vis="calc"
 		calc="A=0"
 		chan="K1:VIS-$(OPTIC)_PAY_SHUTDOWN_TRIG_PAYLOAD_STATE"
+	}
+}
+rectangle {
+	object {
+		x=65
+		y=45
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		calc="A&2"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+	}
+}
+rectangle {
+	object {
+		x=65
+		y=45
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=60
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A=0&B=0"
+		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
+		chanB="K1:VIS-$(OPTIC)_IM_WDMON_CURRENTTRIG"
 	}
 }
 rectangle {
@@ -309,11 +357,11 @@ rectangle {
 		height=20
 	}
 	control {
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_MNH_WD_RESET"
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMV_WD_RESET"
 		clr=14
 		bclr=5
 	}
-	label="MNH"
+	label="IMV"
 	press_msg="1"
 	release_msg="0"
 }
@@ -345,28 +393,12 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_MNH_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_IMV_MON"
 	}
-}
-"message button" {
-	object {
-		x=295
-		y=45
-		width=30
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_MNIMV_WD_RESET"
-		clr=14
-		bclr=5
-	}
-	label="MNIM"
-	press_msg="1"
-	release_msg="0"
 }
 rectangle {
 	object {
-		x=270
+		x=330
 		y=45
 		width=20
 		height=20
@@ -381,7 +413,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=270
+		x=330
 		y=45
 		width=20
 		height=20
@@ -392,28 +424,12 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_MNIMV_MON"
+		chan="K1:VIS-$(OPTIC)_BIO_DECODE_TM_MON"
 	}
-}
-"message button" {
-	object {
-		x=355
-		y=45
-		width=30
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMH_WD_RESET"
-		clr=14
-		bclr=5
-	}
-	label="IMH"
-	press_msg="1"
-	release_msg="0"
 }
 rectangle {
 	object {
-		x=330
+		x=270
 		y=45
 		width=20
 		height=20
@@ -428,7 +444,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=330
+		x=270
 		y=45
 		width=20
 		height=20
@@ -444,54 +460,23 @@ rectangle {
 }
 "message button" {
 	object {
-		x=415
+		x=295
 		y=45
 		width=30
 		height=20
 	}
 	control {
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMB_WD_RESET"
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_IMH_WD_RESET"
 		clr=14
 		bclr=5
 	}
-	label="IMB"
+	label="IMH"
 	press_msg="1"
 	release_msg="0"
 }
-rectangle {
-	object {
-		x=390
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=390
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_IMB_MON"
-	}
-}
 "message button" {
 	object {
-		x=475
+		x=355
 		y=45
 		width=30
 		height=20
@@ -505,50 +490,19 @@ rectangle {
 	press_msg="1"
 	release_msg="0"
 }
-rectangle {
-	object {
-		x=450
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=450
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_DECODE_TM_MON"
-	}
-}
 "message button" {
 	object {
-		x=235
+		x=295
 		y=20
 		width=30
 		height=20
 	}
 	control {
-		chan="K1:VIS-$(OPTIC)_BIO_CDCTRL_PI_WD_RESET"
+		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_GAS_WD_RSET"
 		clr=14
 		bclr=5
 	}
-	label="PI"
+	label="GAS"
 	press_msg="1"
 	release_msg="0"
 }
@@ -583,22 +537,6 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_BIO_PI_MON"
 	}
 }
-"message button" {
-	object {
-		x=295
-		y=20
-		width=30
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_BIO_CDCTRL_GAS_WD_RESET"
-		clr=14
-		bclr=5
-	}
-	label="GAS"
-	press_msg="1"
-	release_msg="0"
-}
 rectangle {
 	object {
 		x=270
@@ -630,105 +568,11 @@ rectangle {
 		chan="K1:VIS-$(OPTIC)_BIO_GAS_MON"
 	}
 }
-"message button" {
-	object {
-		x=355
-		y=20
-		width=30
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_BIO_CDCTRL_BFV_WD_RESET"
-		clr=14
-		bclr=5
-	}
-	label="BFV"
-	press_msg="1"
-	release_msg="0"
-}
-rectangle {
-	object {
-		x=330
-		y=20
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=330
-		y=20
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_BFV_MON"
-	}
-}
-"message button" {
-	object {
-		x=415
-		y=20
-		width=30
-		height=20
-	}
-	control {
-		chan="K1:VIS-$(OPTIC)_BIO_CDCTRL_BFH_WD_RESET"
-		clr=14
-		bclr=5
-	}
-	label="BFH"
-	press_msg="1"
-	release_msg="0"
-}
-rectangle {
-	object {
-		x=390
-		y=20
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="(A&34952)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_ENCODE_TM_WD_RSET"
-	}
-}
-rectangle {
-	object {
-		x=390
-		y=20
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="(A&983040)=0"
-		chan="K1:VIS-$(OPTIC)_BIO_BFH_MON"
-	}
-}
 rectangle {
 	object {
 		x=15
 		y=15
-		width=495
+		width=375
 		height=55
 	}
 	"basic attribute" {
@@ -738,73 +582,20 @@ rectangle {
 	}
 	"dynamic attribute" {
 		vis="calc"
-		calc="A=1&B=1"
+		calc="A=1"
 		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
-		chanB="K1:VIS-$(OPTIC)_PAY_MASTERSWITCH"
-	}
-}
-rectangle {
-	object {
-		x=15
-		y=15
-		width=495
-		height=28
-	}
-	"basic attribute" {
-		clr=30
-		fill="outline"
-		width=2
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=1&B=0"
-		chan="K1:VIS-$(OPTIC)_MASTERSWITCH"
-		chanB="K1:VIS-$(OPTIC)_PAY_MASTERSWITCH"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		calc="A&2"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
-	}
-}
-rectangle {
-	object {
-		x=65
-		y=45
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=60
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A=0&B=0&C=0"
-		chan="K1:VIS-$(OPTIC)_TM_WDMON_CURRENTTRIG"
-		chanB="K1:VIS-$(OPTIC)_IM_WDMON_CURRENTTRIG"
-		chanC="K1:VIS-$(OPTIC)_MN_WDMON_CURRENTTRIG"
 	}
 }
 "related display" {
 	object {
-		x=16
+		x=17
 		y=19
 		width=48
 		height=20
 	}
 	display[0] {
 		label="WATCHDOG"
-		name="../../VIS_TWR_WD.adl"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_TWR_WD.adl"				
 		args="IFO=K1,OPTIC=$(OPTIC)"
 	}
 	clr=0
@@ -813,14 +604,14 @@ rectangle {
 }
 "related display" {
 	object {
-		x=16
+		x=17
 		y=45
 		width=48
 		height=20
 	}
 	display[0] {
 		label="WATCHDOG"
-		name="../../VIS_PAY_WD.adl"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_PAY_WD.adl"						
 		args="IFO=K1,OPTIC=$(OPTIC)"
 	}
 	clr=0
