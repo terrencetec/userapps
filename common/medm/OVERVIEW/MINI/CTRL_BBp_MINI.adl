@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/USER_MINI_C.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/CTRL_BBp_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3119
-		y=891
-		width=700
-		height=66
+		x=3387
+		y=244
+		width=400
+		height=52
 	}
 	clr=14
-	bclr=13
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,18 +87,29 @@ display {
 		1a7309,
 	}
 }
-"text entry" {
+"related display" {
 	object {
-		x=98
-		y=18
-		width=350
-		height=24
+		x=178
+		y=13
+		width=50
+		height=22
 	}
-	control {
-		chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
-		clr=60
-		bclr=14
+	display[1] {
+		label="TOWER"
+		name="$(ctrladl)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
 	}
-	limits {
+	display[2] {
+		label="GAS"
+		name="$(ctrladl2)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
 	}
+	display[3] {
+		label="IM/TM"
+		name="$(ctrladl4)"
+		args="%(read $(macroname)),IFO=$(IFO),ifo=$(ifo),SITE=$(SITE),site=$(site),USERAPPS=$(USERAPPS),userapps=$(userapps),FEC=$(FEC)"
+	}
+	clr=0
+	bclr=14
+	label="-CTRL"
 }

@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/USER_MINI_C.adl"
+	name="OPTIC_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3119
-		y=891
-		width=700
-		height=66
+		x=2355
+		y=79
+		width=400
+		height=400
 	}
 	clr=14
-	bclr=13
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,18 +87,27 @@ display {
 		1a7309,
 	}
 }
-"text entry" {
+rectangle {
 	object {
-		x=98
-		y=18
-		width=350
-		height=24
+		x=146
+		y=115
+		width=65
+		height=25
 	}
-	control {
-		chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
-		clr=60
-		bclr=14
+	"basic attribute" {
+		clr=14
 	}
-	limits {
+}
+text {
+	object {
+		x=153
+		y=120
+		width=50
+		height=15
 	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(OPTIC)"
+	align="horiz. centered"
 }

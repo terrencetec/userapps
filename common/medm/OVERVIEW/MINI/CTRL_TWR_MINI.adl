@@ -1,17 +1,17 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/USER_MINI_C.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/MINI/CTRL_TWR_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=3119
-		y=891
-		width=700
-		height=66
+		x=3387
+		y=175
+		width=400
+		height=40
 	}
 	clr=14
-	bclr=13
+	bclr=4
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,18 +87,24 @@ display {
 		1a7309,
 	}
 }
-"text entry" {
+"related display" {
 	object {
-		x=98
-		y=18
-		width=350
-		height=24
+		x=177
+		y=7
+		width=60
+		height=18
 	}
-	control {
-		chan="K1:VIS-$(OPTIC)_COMMISH_MESSAGE"
-		clr=60
-		bclr=14
+	display[1] {
+		label="Pre-Isolater"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_TOWER_OVERVIEW.adl"
+		args="IFO=$(IFO),FEC=$(FEC),OPTIC=$(OPTIC)"
 	}
-	limits {
+	display[2] {
+		label="GAS"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_GAS_OVERVIEW.adl"
+		args="IFO=$(IFO),FEC=$(FEC),OPTIC=$(OPTIC)"
 	}
+	clr=0
+	bclr=24
+	label="-TOWER"
 }

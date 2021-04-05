@@ -92,7 +92,7 @@ display {
 common = '/opt/rtcds/userapps/release/vis/common'
 
 def grd_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
-    width = 210
+    width = 150
     height = 25
     txt = '''
     composite {{
@@ -104,6 +104,25 @@ def grd_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
     }}
     "composite name"=""
     "composite file"="{common}/medm/OVERVIEW/MINI/GRD_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
+    }}
+    '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM,OPTIC=OPTIC)
+    return txt,width,height
+
+def optic_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
+    '''
+    '''
+    width = 65
+    height = 25
+    txt = '''
+    composite {{
+    object {{
+    x={x}
+    y={y}
+    width=300
+    height=15
+    }}
+    "composite name"=""
+    "composite file"="{common}/medm/OVERVIEW/MINI/OPTIC_MINI.adl;SYSTEM={SYSTEM},OPTIC={OPTIC}"
     }}
     '''.format(common=common,x=x,y=y,SYSTEM=SYSTEM,OPTIC=OPTIC)
     return txt,width,height
@@ -127,6 +146,30 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
     }}
     '''.format(common=common,x=x,y=y,fec=fec,subsys=subsys,SUBSYS=SUBSYS)
     return txt,width,height
+
+def ctrl_mini(x,y,fec='123',ifo='K1',optic='ETMX',subsys='ETMXT'):
+    '''
+    '''
+    width = 250
+    height = 15
+    if subsys[-1]=='T':
+        adl = 'CTRL_TWR_MINI.adl'
+    else:
+        adl = 'CTRL_PAY_MINI.adl'        
+    txt = '''
+    composite {{
+    object {{
+    x={x}
+    y={y}
+    width=200
+    height=15
+    }}
+    "composite name"=""
+    "composite file"="{common}/medm/OVERVIEW/MINI/{adl};FEC={fec},IFO={ifo},OPTIC={optic},subsys={subsys}"
+    }}
+    '''.format(adl=adl,common=common,x=x,y=y,fec=fec,ifo=ifo,optic=optic,subsys=subsys)
+    return txt,width,height
+
 
 def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     width = 150
@@ -183,22 +226,22 @@ def wd_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
 
 
 def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
-    width = 410
+    width = 350
     height = 25
     sustype = sus_type_is(OPTIC).lower()
     SUSTYPE = sustype.upper()
     optic = OPTIC.lower()
     OPTIC = OPTIC.upper()
-    macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(
-        common=common,optic=optic)
-    ctrladl  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(
-        common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-    ctrladl2  = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(
-        common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)    
-    ctrladl3  = '{common}/medm/VIS_PAYLOAD_PFMN_OVERVIEW.adl'.format(
-        common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
-    ctrladl4  = '{common}/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl'.format(
-        common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+    # macroname = '{common}/medm/macro/vis{optic}_overview_macro.txt'.format(
+    #     common=common,optic=optic)
+    # ctrladl  = '{common}/medm/VIS_TOWER_OVERVIEW.adl'.format(
+    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+    # ctrladl2  = '{common}/medm/VIS_GAS_OVERVIEW.adl'.format(
+    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)    
+    # ctrladl3  = '{common}/medm/VIS_PAYLOAD_PFMN_OVERVIEW.adl'.format(
+    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
+    # ctrladl4  = '{common}/medm/VIS_PAYLOAD_IMTM_OVERVIEW.adl'.format(
+    #     common=common,optic=optic,SUSTYPE=SUSTYPE,sustype=sustype)
 
     if sustype in ['typea']:
         adltype = 'USER_MINI_A.adl'
@@ -218,9 +261,9 @@ def user_mini(x,y,fec='123',OPTIC='ETMX',suffix='TOWER_OVERVIEW'):
     height=15
     }}
     "composite name"=""
-    "composite file"="{common}/medm/OVERVIEW/MINI/{adltype};FEC={fec},OPTIC={OPTIC},macroname={macroname},ctrladl={ctrladl},ctrladl2={ctrladl2},ctrladl3={ctrladl3},ctrladl4={ctrladl4}"
+    "composite file"="{common}/medm/OVERVIEW/MINI/{adltype};FEC={fec},OPTIC={OPTIC}"
     }}
-    '''.format(common=common,x=x,y=y,adltype=adltype,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE,macroname=macroname,ctrladl=ctrladl,ctrladl2=ctrladl2,ctrladl3=ctrladl3,ctrladl4=ctrladl4)
+    '''.format(common=common,x=x,y=y,adltype=adltype,fec=fec,OPTIC=OPTIC,sustype=sustype,suffix=suffix,SUSTYPE=SUSTYPE)
     return txt,width,height
 
 def trip_mini(x,y,optic='ETMX'):
@@ -306,25 +349,30 @@ if __name__=='__main__':
     
         
     height = 10
-    width = 5
+    width = 2
     contents = header    
     with open('./MINI/VIS_MINI.adl','w') as f:
         for optic in optics:
             OPTIC = optic.upper()
             model,fec = models[optic][0]
+            txt,w0,h0 = optic_mini(x=width,y=height,SYSTEM='VIS_'+OPTIC,OPTIC=OPTIC)
+            contents += txt
+            width += w0+5            
             txt,w1,h1 = grd_mini(x=width,y=height,SYSTEM='VIS_'+OPTIC,OPTIC=OPTIC)
             contents += txt            
             width += w1+5
             txt,w2,h = user_mini(x=width,y=height,OPTIC=OPTIC)
             contents += txt
             width += w2+5
-            _w = w1+w2+4
+            _w = w0+w1+w2+4
             #txt,w3,h = trip_mini(x=width,y=height,optic=optic)
             #contents += txt
             #width += w3+5
-            _w = w1+w2+10
+            _w = w0+w1+w2+15
             for model in models[optic]:
                 model,fec = model
+                txt,w,h = ctrl_mini(x=width,y=height,fec=fec,optic=optic,subsys=model)
+                contents += txt                
                 txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
                 contents += txt
                 txt,w,h = wd_mini(x=width+w+5,y=height,fec=fec,subsys=model,
