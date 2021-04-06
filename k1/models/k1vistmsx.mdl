@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.580"
+    ComputedModelVersion    "1.581"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"4114"
 	Extents			[1753.0, 831.0]
-	ZoomFactor		[0.51179094964945826]
-	Offset			[-585.11332503113317, -123.35491905354922]
+	ZoomFactor		[1.25]
+	Offset			[697.62266500622707, 254.57992943129918]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 30 15:07:05 2021"
-  RTWModifiedTimeStamp	  539017619
-  ModelVersionFormat	  "1.%<AutoIncrement:580>"
+  LastModifiedDate	  "Mon Apr 05 17:16:11 2021"
+  RTWModifiedTimeStamp	  539543768
+  ModelVersionFormat	  "1.%<AutoIncrement:581>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1671,7 +1671,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"51"
+	ZoomFactor		"125"
 	SIDHighWatermark	"750"
 	SIDPrevWatermark	"720"
 	Block {
@@ -10538,28 +10538,6 @@ Model {
 	  }
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "MASTERSWITCH"
-	  SID			  "4114:395"
-	  Tag			  "cdsEpicsBinIn"
-	  Description		  "Purpose:                                                                            \nCreate an EPI"
-	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
-	  "                                          \nOperation:                                                             "
-	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
-	  "                                                                      \nUsage:                                     "
-	  "                                         \nName the part with the desired EPICS channel name.                      "
-	  "            "
-	  Ports			  [1, 1]
-	  Position		  [1975, 733, 2020, 757]
-	  ZOrder		  1634
-	  BackgroundColor	  "red"
-	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.6"
-	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
 	  BlockType		  Mux
 	  Name			  "Mux"
 	  SID			  "4114:396"
@@ -11804,6 +11782,28 @@ Model {
 	      DstPort		      1
 	    }
 	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PAY_MASTERSWITCH"
+	  SID			  "4114:395"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [1975, 733, 2020, 757]
+	  ZOrder		  1634
+	  BackgroundColor	  "red"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -15971,7 +15971,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  91
-	  SrcBlock		  "MASTERSWITCH"
+	  SrcBlock		  "PAY_MASTERSWITCH"
 	  SrcPort		  1
 	  DstBlock		  "Goto14"
 	  DstPort		  1
@@ -15980,7 +15980,7 @@ Model {
 	  ZOrder		  92
 	  SrcBlock		  "Ground4"
 	  SrcPort		  1
-	  DstBlock		  "MASTERSWITCH"
+	  DstBlock		  "PAY_MASTERSWITCH"
 	  DstPort		  1
 	}
 	Line {
@@ -16914,7 +16914,7 @@ Model {
       Position		      [345, 1087, 470, 1323]
       ZOrder		      4695
       BackgroundColor	      "green"
-      LibraryVersion	      "1.8"
+      LibraryVersion	      "1.9"
       SourceBlock	      "VIS_TMS_LIB/TMS_BIO_DECODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -16927,7 +16927,7 @@ Model {
       Position		      [-175, 1085, -40, 1325]
       ZOrder		      4694
       BackgroundColor	      "green"
-      LibraryVersion	      "1.8"
+      LibraryVersion	      "1.9"
       SourceBlock	      "VIS_TMS_LIB/TMS_BIO_ENCODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off

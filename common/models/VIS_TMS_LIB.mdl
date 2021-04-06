@@ -48,8 +48,8 @@ Library {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"1"
 	Extents			[1175.0, 836.0]
-	ZoomFactor		[0.37119741100323622]
-	Offset			[-552.71578029642546, -437.5854402789887]
+	ZoomFactor		[1.0]
+	Offset			[1152.455897954291, 381.0]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -82,9 +82,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 30 15:07:04 2021"
-  RTWModifiedTimeStamp	  539017597
-  ModelVersionFormat	  "1.%<AutoIncrement:9>"
+  LastModifiedDate	  "Mon Apr 05 17:16:38 2021"
+  RTWModifiedTimeStamp	  539543797
+  ModelVersionFormat	  "1.%<AutoIncrement:10>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -3295,7 +3295,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"37"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "LVDT_V1_In"
@@ -11791,28 +11791,6 @@ Library {
 	  }
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "MASTERSWITCH"
-	  SID			  "395"
-	  Tag			  "cdsEpicsBinIn"
-	  Description		  "Purpose:                                                                            \nCreate an EPI"
-	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
-	  "                                          \nOperation:                                                             "
-	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
-	  "                                                                      \nUsage:                                     "
-	  "                                         \nName the part with the desired EPICS channel name.                      "
-	  "            "
-	  Ports			  [1, 1]
-	  Position		  [1975, 733, 2020, 757]
-	  ZOrder		  1634
-	  BackgroundColor	  "red"
-	  AttributesFormatString  "%<Tag>"
-	  LibraryVersion	  "1.6"
-	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
-	  SourceType		  "SubSystem"
-	  ContentPreviewEnabled	  off
-	}
-	Block {
 	  BlockType		  Mux
 	  Name			  "Mux"
 	  SID			  "396"
@@ -13057,6 +13035,28 @@ Library {
 	      DstPort		      1
 	    }
 	  }
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "PAY_MASTERSWITCH"
+	  SID			  "395"
+	  Tag			  "cdsEpicsBinIn"
+	  Description		  "Purpose:                                                                            \nCreate an EPI"
+	  "CS binary (0 or 1) input channel to the FE realtime controls.          \n                                          "
+	  "                                          \nOperation:                                                             "
+	  "             \nOutputs value from an EPICS ai record. Value is binary input (bi Epics record type).\n              "
+	  "                                                                      \nUsage:                                     "
+	  "                                         \nName the part with the desired EPICS channel name.                      "
+	  "            "
+	  Ports			  [1, 1]
+	  Position		  [1975, 733, 2020, 757]
+	  ZOrder		  1634
+	  BackgroundColor	  "red"
+	  AttributesFormatString  "%<Tag>"
+	  LibraryVersion	  "1.6"
+	  SourceBlock		  "cdsEpicsBinIn/Subsystem"
+	  SourceType		  "SubSystem"
+	  ContentPreviewEnabled	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -17145,12 +17145,12 @@ Library {
 	  ZOrder		  86
 	  SrcBlock		  "Ground4"
 	  SrcPort		  1
-	  DstBlock		  "MASTERSWITCH"
+	  DstBlock		  "PAY_MASTERSWITCH"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  87
-	  SrcBlock		  "MASTERSWITCH"
+	  SrcBlock		  "PAY_MASTERSWITCH"
 	  SrcPort		  1
 	  DstBlock		  "Goto14"
 	  DstPort		  1
