@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=240
-		y=200
+		x=388
+		y=307
 		width=1440
 		height=675
 	}
@@ -2488,7 +2488,7 @@ composite {
 		x=891
 		y=501
 		width=31
-		height=69
+		height=61
 	}
 	"composite name"=""
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_2X4_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=TM,FUNC=LKIN2OSEM,FUNCTION=LKIN2OSEM_MTRX,FROM1=LKIN_P,FROM2=LKIN_Y,TO1=H1,TO2=H2,TO3=H3,TO4=H4"
@@ -3380,7 +3380,7 @@ composite {
 		x=454
 		y=567
 		width=47
-		height=47
+		height=49
 	}
 	"composite name"=""
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_4X3_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=TM,FUNC=OPLEV2EUL,FUNCTION=OPLEV2EUL,FROM1=TILT_PIT,FROM2=TILT_YAW,FROM3=LEN_PIT,FROM4=LEN_YAW,TO1=LEN,TO2=PIT,TO3=YAW"
@@ -4844,4 +4844,20 @@ rectangle {
 		clr=14
 		width=3
 	}
+}
+"shell command" {
+	object {
+		x=1046
+		y=591
+		width=40
+		height=20
+	}
+	command[0] {
+		label="TF init"
+		name="xterm -fn 6x13 -geometry 54x36 -e"
+		args="'/opt/rtcds/userapps/release/vis/common/scripts/automeasurement/main.py -o $(OPTIC) -s TM -d H1 H2 H3 H4 --init | less -R' &"
+	}
+	clr=14
+	bclr=4
+	label="-Write"
 }
