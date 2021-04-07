@@ -29,8 +29,7 @@ def _wdfilts(optic,stage):
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''
     '''
-    #init_wd(optics,'TM','WD_OPLEVAC_BANDLIM_TILT',mask_wd_ac)
-
+    mask = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
     if 'OPLEV' in func:
         _,_type = func.split('_')
         func1 = 'WD_OPLEVAC_RMS_MAX'
@@ -63,22 +62,6 @@ def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
             ezca[chname] = 200
 
     # original
-    # part = partname_is('ETMX',stage)
-    # ffname = chans + 'K1VISETMX{1}.txt'.format(optic,part)
-    # ff = Ezff(ffname)
-    # if stage in ['F0','F1','F2','F3','SF']:
-    #     fmname = 'ETMX_F0_WD_AC_BANDLIM_GAS'
-    # elif stage in ['MN','IM']:
-    #     fmname = 'ETMX_MN_WD_OSEMAC_BANDLIM_H1'
-    # elif stage in ['IP','BF']:
-    #     fmname = 'ETMX_IP_WD_AC_BANDLIM_LVDT_H1'
-    # elif stage in ['TM']:
-    #     fmname = 'ETMX_TM_WD_OPLEVAC_BANDLIM_LEN_SEG1'
-    # else:
-    #     raise ValueError('!')
-    # fm_v1 = ff[fmname]
-    
-    # copy
     _dofdict = {'BF':['H1','H2','H3','V1','V2','V3','GAS'],
                 'TM':['SEG1','SEG2','SEG3','SEG4'],
                 'IM':['H1','H2','H3','V1','V2','V3'],
@@ -88,28 +71,15 @@ def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
                 'F1':['GAS'],
                 'F2':['GAS'],
                 'F3':['GAS'],
-                'SF':['GAS']}    
-    # for optic in optics:
-    #     part = partname_is(optic,stage)
-    #     ffname = chans + 'K1VIS{0}{1}.txt'.format(optic,part)
-    #     ff = Ezff(ffname)
-    #     # copy to other FMs
-    #     fms = []
-    #     for dof in _dofdict[stage]:
-    #         switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func2,dof),mask=mask)
-    #         fmname = '{0}_{1}_{2}_{3}'.format(optic,stage,func2,dof)
-    #         fms += [ff[fmname]]
-    #     copy_FMs(fm_v1,fms)     
-    #     ff.save()
+                'SF':['GAS']}
     for optic in optics:
         fm_v1 = _wdfilts(optic,stage)        
         _copy(fm_v1,optic,stage,func2,_dofdict[stage])
-
+    
     # Load filter 
     # feclist = hoge(optics)
     # for fec in feclist:    
-    #     ezca['K1:FEC-{0}_LOAD_NEW_COEFF'.format(fec)] = 1
-        
+    #     ezca['K1:FEC-{0}_LOAD_NEW_COEFF'.format(fec)] = 1        
 
 def _oplevmat(optic,stage,func):
     ''' Return the oplev matrices. 

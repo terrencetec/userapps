@@ -393,26 +393,25 @@ def main_osem():
 def main_wd():
     '''
     '''
-    mask_wd_ac = ['INPUT','OFFSET','FM1','OUTPUT','DECIMATION']
     # Payload part
     optics = all_optics
     optics = optics - {'PR3','BS'} # [FIXME] please remove me after updating RTM
-    optics = optics - all_typeco
-    init_wd(optics,'TM','OPLEV_TILT',mask_wd_ac)
-    init_wd(optics,'TM','OPLEV_LEN',mask_wd_ac)    
+    optics = optics - all_typeco # [FIXME] 
+    init_wd(optics,'TM','OPLEV_TILT')
+    init_wd(optics,'TM','OPLEV_LEN')    
     optics = optics - all_typeci
-    init_wd(optics,'IM','OSEM',mask_wd_ac)    
-    init_wd(all_typea,'MN','OSEM',mask_wd_ac)
+    init_wd(optics,'IM','OSEM')    
+    init_wd(all_typea,'MN','OSEM')
     
     # Tower part
-    init_wd(optics,'BF','LVDT',mask_wd_ac)
-    init_wd(optics,'IP','ACC',mask_wd_ac)
-    init_wd(optics,'IP','LVDT',mask_wd_ac)
-    init_wd(optics,'F0','LVDT',mask_wd_ac)
-    init_wd(optics,'F1','LVDT',mask_wd_ac)
-    init_wd(optics,'F2','LVDT',mask_wd_ac)
-    init_wd(optics,'F3','LVDT',mask_wd_ac)
-    init_wd(optics,'SF','LVDT',mask_wd_ac)    
+    init_wd(optics,'BF','LVDT')
+    init_wd(optics,'IP','ACC')
+    init_wd(optics,'IP','LVDT')
+    init_wd(optics,'F0','LVDT')
+    init_wd(optics,'F1','LVDT')
+    init_wd(optics,'F2','LVDT')
+    init_wd(optics,'F3','LVDT')
+    init_wd(optics,'SF','LVDT')    
     
 if __name__=='__main__':
     import argparse
