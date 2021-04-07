@@ -129,8 +129,8 @@ def optic_mini(x,y,SYSTEM='VIS_ETMX',OPTIC='ETMX'):
 
 
 def sdf_mini(x,y,fec='123',subsys='ETMXT'):
-    width = 250
-    height = 15
+    width = 180
+    height = 18
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
     txt = '''
@@ -150,7 +150,7 @@ def sdf_mini(x,y,fec='123',subsys='ETMXT'):
 def ctrl_mini(x,y,fec='123',ifo='K1',optic='ETMX',subsys='ETMXT'):
     '''
     '''
-    width = 250
+    width = 60
     height = 15
     if subsys[-1]=='T':
         adl = 'CTRL_TWR_MINI.adl'
@@ -199,7 +199,7 @@ def gds_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
     return txt,width,height
 
 def wd_mini(x,y,fec='123',optic='ETMX',subsys='ETMXT',part='TWR'):
-    width = 320
+    width = 70
     height = 15
     subsys = subsys.lower()
     SUBSYS = subsys.upper()
@@ -356,21 +356,24 @@ if __name__=='__main__':
             #width += w3+5
             _w = w0+w1+w2+15
             for model in models[optic]:
+                _width = width
                 model,fec = model
-                txt,w,h = ctrl_mini(x=width,y=height,fec=fec,optic=optic,subsys=model)
-                contents += txt                
-                txt,w,h = sdf_mini(x=width,y=height,fec=fec,subsys=model)
+                txt,w,h = ctrl_mini(x=_width,y=height,fec=fec,optic=optic,subsys=model)
                 contents += txt
-                txt,w,h = wd_mini(x=width+w+5,y=height,fec=fec,subsys=model,
+                _width += w
+                txt,w,h = wd_mini(x=_width,y=height,fec=fec,subsys=model,optic=optic)
+                contents += txt
+                _width += w                
+                txt,w,h = sdf_mini(x=_width,y=height,fec=fec,subsys=model)
+                contents += txt
+                _width += w                
+                txt,w,h = gds_mini(x=_width,y=height,fec=fec,subsys=model,
                                    optic=optic)
-                contents += txt                
-                txt,w,h = gds_mini(x=width+w+5,y=height,fec=fec,subsys=model,
-                                   optic=optic)
-                contents += txt                
+                contents += txt
                 height += h+2
             try:
                 if len(models[optic])==1:
-                    height += h
+                    height += h+2
             except:
                 pass
             

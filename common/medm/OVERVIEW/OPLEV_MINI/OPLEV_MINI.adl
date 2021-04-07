@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=1502
-		y=611
+		x=2920
+		y=102
 		width=400
 		height=400
 	}
@@ -87,89 +87,171 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=89
-		y=75
-		width=204
-		height=204
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A<100"
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_SUM_OUTMON"
-	}
-}
-rectangle {
-	object {
-		x=89
-		y=75
-		width=204
-		height=204
-	}
-	"basic attribute" {
-		clr=15
-	}
-	"dynamic attribute" {
-		vis="calc"
-		calc="A>100"
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_SUM_OUTMON"
-	}
-}
-"cartesian plot" {
-	object {
-		x=91
-		y=77
-		width=200
-		height=200
-	}
-	plotcom {
-		xlabel="$(XLABEL)"
-		ylabel="$(YLABEL)"
-		clr=0
-		bclr=14
-	}
-	style="line"
-	erase_oldest="plot last n pts"
-	count="5"
-	trace[0] {
-		xdata="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_YAW_OUT16"
-		ydata="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_PIT_OUT16"
-		data_clr=35
-		yaxis=0
-	}
-	x_axis {
-		rangeStyle="user-specified"
-		minRange=-100.000000
-		maxRange=100.000000
-	}
-	y1_axis {
-		rangeStyle="user-specified"
-		minRange=-100.000000
-		maxRange=100.000000
-	}
-	y2_axis {
-		rangeStyle="user-specified"
-	}
-	trigger="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_PIT_OUT16"
-	countPvName="5"
-}
-"related display" {
+composite {
 	object {
 		x=89
 		y=55
 		width=204
-		height=20
+		height=266
 	}
-	display[0] {
-		label="$(FUNC)"
-		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_OPLEV_OVERVIEW.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),XLABEL=$(XLABEL),YLABEL=$(YLABEL),RANGE=$(RANGE)"
+	"composite name"=""
+	children {
+		"text update" {
+			object {
+				x=133
+				y=290
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_PIT_OUT16"
+				clr=60
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=100
+				y=290
+				width=30
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="PIT"
+			align="horiz. centered"
+		}
+		"text update" {
+			object {
+				x=133
+				y=306
+				width=50
+				height=15
+			}
+			monitor {
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_YAW_OUT16"
+				clr=60
+				bclr=14
+			}
+			clrmod="alarm"
+			align="horiz. centered"
+			limits {
+			}
+		}
+		text {
+			object {
+				x=100
+				y=306
+				width=30
+				height=15
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="YAW"
+			align="horiz. centered"
+		}
+		composite {
+			object {
+				x=89
+				y=55
+				width=204
+				height=224
+			}
+			"composite name"=""
+			children {
+				rectangle {
+					object {
+						x=89
+						y=75
+						width=204
+						height=204
+					}
+					"basic attribute" {
+						clr=20
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A<100"
+						chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_SUM_OUTMON"
+					}
+				}
+				rectangle {
+					object {
+						x=89
+						y=75
+						width=204
+						height=204
+					}
+					"basic attribute" {
+						clr=15
+					}
+					"dynamic attribute" {
+						vis="calc"
+						calc="A>100"
+						chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_SUM_OUTMON"
+					}
+				}
+				"cartesian plot" {
+					object {
+						x=91
+						y=77
+						width=200
+						height=200
+					}
+					plotcom {
+						xlabel="$(XLABEL)"
+						ylabel="$(YLABEL)"
+						clr=0
+						bclr=14
+					}
+					style="line"
+					erase_oldest="plot last n pts"
+					count="5"
+					trace[0] {
+						xdata="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_YAW_OUT16"
+						ydata="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_PIT_OUT16"
+						data_clr=35
+						yaxis=0
+					}
+					x_axis {
+						rangeStyle="user-specified"
+						minRange=-100.000000
+						maxRange=100.000000
+					}
+					y1_axis {
+						rangeStyle="user-specified"
+						minRange=-100.000000
+						maxRange=100.000000
+					}
+					y2_axis {
+						rangeStyle="user-specified"
+					}
+					trigger="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_PIT_OUT16"
+					countPvName="5"
+				}
+				"related display" {
+					object {
+						x=89
+						y=55
+						width=204
+						height=20
+					}
+					display[0] {
+						label="$(FUNC)"
+						name="/opt/rtcds/userapps/release/vis/common/medm/VIS_OPLEV_OVERVIEW.adl"
+						args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),XLABEL=$(XLABEL),YLABEL=$(YLABEL),RANGE=$(RANGE)"
+					}
+					clr=0
+					bclr=14
+					label="-$(OPTIC)"
+				}
+			}
+		}
 	}
-	clr=0
-	bclr=14
-	label="-$(OPTIC)"
 }

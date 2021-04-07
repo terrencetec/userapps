@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_WIT_6DOF_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_WIT_3DOF_MINI.adl"
 	version=030109
 }
 display {
@@ -90,9 +90,9 @@ display {
 "shell command" {
 	object {
 		x=241
-		y=15
+		y=17
 		width=10
-		height=100
+		height=50
 	}
 	command[0] {
 		label="INMON"
@@ -193,100 +193,10 @@ text {
 	textix="$(DOF3)"
 	align="horiz. right"
 }
-"text update" {
-	object {
-		x=199
-		y=67
-		width=40
-		height=15
-	}
-	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF4)MON"
-		clr=0
-		bclr=14
-	}
-	align="horiz. centered"
-	format="truncated"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=199
-		y=84
-		width=40
-		height=15
-	}
-	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF5)MON"
-		clr=0
-		bclr=14
-	}
-	align="horiz. centered"
-	format="truncated"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=199
-		y=101
-		width=40
-		height=15
-	}
-	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF6)MON"
-		clr=0
-		bclr=14
-	}
-	align="horiz. centered"
-	format="truncated"
-	limits {
-	}
-}
-text {
-	object {
-		x=182
-		y=68
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(DOF4)"
-	align="horiz. right"
-}
-text {
-	object {
-		x=182
-		y=85
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(DOF5)"
-	align="horiz. right"
-}
-text {
-	object {
-		x=182
-		y=102
-		width=15
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(DOF6)"
-	align="horiz. right"
-}
 text {
 	object {
 		x=215
-		y=117
+		y=71
 		width=15
 		height=15
 	}
