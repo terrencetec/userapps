@@ -31,13 +31,12 @@ def get_tf(_from,_to,datetime='current',oltf=False):
         raise ValueError('!')
     if not '_IN1' in _to:
         raise ValueError('!')
-    
     optic1,stage1,test,dof_exc = _from.replace('_EXC','').split('_')
     optic2,stage2,func2,dof2,_ = _to.split('_')
     if stage1==stage2:
         stage = stage1
     
-    if test!='TEST':
+    if test not in ['TEST','COILOUTF']:
         raise ValueError('!')
     if optic1==optic2:
         optic = optic1
@@ -52,12 +51,12 @@ def get_tf(_from,_to,datetime='current',oltf=False):
                                                                      dof_exc,stage,datetime)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
-    chname_from = 'K1:VIS-{0}_{1}_TEST_{2}_EXC'
+    chname_from = 'K1:VIS-{0}_{1}_{3}_{2}_EXC'
     chname_to = chname_to.format(optic2,stage2,func2,dof2)
-    chname_from = chname_from.format(optic1,stage1,dof_exc)
+    chname_from = chname_from.format(optic1,stage1,dof_exc,test)
     if oltf:
         fname = fname.replace('PLANT','OLTF')
-        chname_from = chname_from.replace('TEST_{0}_EXC'.format(dof_exc),'DAMP_{0}_IN2'.format(dof_exc))
+        chname_from = chname_from.replace('{1}_{0}_EXC'.format(dof_exc,test),'DAMP_{0}_IN2'.format(dof_exc))
     return read_tf(fname,chname_to,chname_from)
 
 def blend(lp='high'):
@@ -94,14 +93,14 @@ def get_fitted_tf(omega_measured,tf_measured,coh_measured,_exc,dof):
     h = np.squeeze(h)
     return _w,h
 
-def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',**kwargs):
+def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e-4,1e2],**kwargs):
     '''
     '''
     if isinstance(ax,np.ndarray) and len(ax)==3:
         if not subtitle=='':
             ax[0].set_title(subtitle)    
         ax[0].loglog(w,np.abs(tf),style,label=label)
-        ax[0].set_ylim(1e-4,100)
+        ax[0].set_ylim(ylim[0],ylim[1])
         ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
                        ,'o',label=label,markersize=2)
         ax[2].semilogx(w,coh,style,label=label)
@@ -128,7 +127,7 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
             fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
             for i,exc in enumerate(excs): # i: plot same figure
                 # get_data
-                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime)
                 # plot
@@ -158,7 +157,7 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
             plt.close()
         
 
-def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
+def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST'):
     '''
     '''
     fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
@@ -170,7 +169,7 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
             for i,optic in enumerate(optics): # i: plot same figure
                 exc = dof
                 # get_data
-                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf)            
                 # plot
@@ -181,6 +180,25 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
             fname = './current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
         else:
             fname = './archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
+    elif len(stages)==1:
+        stage = stages[0]
+        fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
+        for j,exc in enumerate(excs): # j: plot other figure            
+            for i,optic in enumerate(optics): # i: plot same figure
+                #for exc in excs:
+                dof = 'Y'
+                # get_data
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
+                _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf)            
+                # plot
+                label = '{0}'.format(optic)
+                title = '{0}->{1}'.format(exc,dof)
+                plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf,ylim=[1e-7,1e-1])
+        if datetime=='current':
+            fname = './current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+        else:
+            fname = './archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)        
     else:
         raise ValueError('!')    
     print(fname)
@@ -223,7 +241,7 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
         for j,stage in enumerate(stages): # j: plot other figure
             for i,optic in enumerate(optics): # i: plot same figure
                 # get_data
-                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime)
                 # plot
@@ -237,7 +255,7 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
         for j,dof in enumerate(dofs): # j: plot other figure
             for i,optic in enumerate(optics): # i: plot same figure
                 # get_data
-                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime)            
                 # plot
@@ -252,7 +270,7 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
             for i,optic in enumerate(optics): # i: plot same figure
                 exc = dof
                 # get_data
-                _in = '{0}_{1}_TEST_{2}_EXC'.format(optic,stage,exc)
+                _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime)            
                 # plot

@@ -1,3 +1,6 @@
+#!/home/controls/miniconda3/envs/miyoconda37/bin/python 
+#! coding:utf-8
+import time
 import threading
 import subprocess
 import argparse
@@ -78,19 +81,20 @@ def available_optics(optics=all_optics):
     return ok
 
 def open_LIGOFilter(optic,stage,func,dof):
-    ezca.get_LIGOFilter('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof))\
-        .only_on('INPUT','OUTPUT','DECIMATION')
-    ezca['VIS-SRM_F0_TEST_GAS_GAIN'] = 1
-    
+    #ezca.get_LIGOFilter('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func,dof))\
+    #.only_on('INPUT','OUTPUT','DECIMATION')
+    #ezca['VIS-SRM_F0_TEST_GAS_GAIN'] = 1
+    pass
+
 def open_masterswitch(optic):
-    ezca['VIS-{0}_MASTERSWITCH'.format(optic)]=True
+    ezca['VIS-{0}_PAY_MASTERSWITCH'.format(optic)]=True
     
 def close_masterswitch(optic):
-    ezca['VIS-{0}_MASTERSWITCH'.format(optic)]=False
+    ezca['VIS-{0}_PAY_MASTERSWITCH'.format(optic)]=False
     
     
 def masterswitch_is_open(optic):
-    return ezca['VIS-{0}_MASTERSWITCH'.format(optic)]==True
+    return ezca['VIS-{0}_PAY_MASTERSWITCH'.format(optic)]==True
 
 def is_safe(optic):
     return ezca['GRD-VIS_{0}_STATE_S'.format(optic)]=='SAFE'
@@ -188,6 +192,8 @@ def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False,oltf=F
             # run
             if run:
                 run_diag(fname)
+                print('Wait 60 second')
+                time.sleep(60)
             else:
                 raise ValueError('!')
             
@@ -233,6 +239,8 @@ def run_copy(template,optic,stage,dofs=['L','P','Y'],run=False,oltf=False):
             format(fname,_optic,optic,_stage,stage)        
         cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
+        cmd += "; sed -i -e 's/{1}_{3}_COILOUTF_{5}_EXC/{2}_{4}_COILOUTF_{6}_EXC/' {0}".\
+            format(fname,_optic,optic,_stage,stage,_dof,dof)        
         cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
             format(fname,_optic,optic,_stage,stage,_dof,dof)
         if oltf:
@@ -325,8 +333,11 @@ if __name__=="__main__":
                 template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
         elif stage=='BF' and not 'GAS' in dofs:        
             template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
-        elif stage=='TM':        
-            template = 'PLANT_MCO_TM_TEST_P_EXC.xml'            
+        elif stage=='TM':
+            if any([ dof in ['H1','H2','H3','H4'] for dof in dofs]):
+                template = 'PLANT_MCO_TM_COILOUTF_H1_EXC.xml'
+            else:
+                template = 'PLANT_MCO_TM_TEST_P_EXC.xml'
         else:
             raise ValueError('{0}!'.format(stage))
     else:
@@ -377,6 +388,7 @@ if __name__=="__main__":
             func = 'DAMP'
         else:
             func = 'OLDAMP'
-        plot(optics,stages,dofs,excs,func=func,oltf=args.oltf)
-        plot_diag(optics,stages,dofs,excs,func=func,oltf=args.oltf)
-        plot_couple(optics,stages,dofs,excs,func=func)  
+        plot(optics,stages,['L','P','Y'],excs,func=func,oltf=args.oltf,test='COILOUTF')
+        #plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test='TEST') # for normal
+        #plot_diag(optics,stages,dofs,excs,func=func,oltf=args.oltf)
+        #plot_couple(optics,stages,dofs,excs,func=func)  
