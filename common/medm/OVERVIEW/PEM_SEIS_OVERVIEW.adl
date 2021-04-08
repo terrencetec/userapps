@@ -1,13 +1,14 @@
+
 file {
-	name="PEM_SEIS_OVERVIEW.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/PEM_SEIS_OVERVIEW.adl"
 	version=030109
 }
 display {
 	object {
-		x=4278
-		y=578
-		width=500
-		height=149
+		x=1285
+		y=1267
+		width=591
+		height=397
 	}
 	clr=14
 	bclr=4
@@ -88,41 +89,456 @@ display {
 }
 composite {
 	object {
-		x=31
-		y=37
+		x=130
+		y=170
 		width=80
 		height=66
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/PEM_FILTS_3DOF_MINI.adl;site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND,FUNCTION=GND,DOF1=EW,DOF2=NS,DOF3=UD"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/VIS_FILTS_3DOF_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND,FUNCTION=GND,DOF1=EW,DOF2=NS,DOF3=UD"
 }
 composite {
 	object {
-		x=154
-		y=36
+		x=218
+		y=177
 		width=36
 		height=49
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/PEM_MATRIX_3X3_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE)_GND,FUNC=SENS2EUL,FUNCTION=SEN2EUL,FROM1=EW,FROM2=NS,FROM3=UD,TO1=_X,TO2=_Y,TO3=_Z"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX/VIS_MATRIX_3X3_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE)_GND,FUNC=SENS2EUL,FUNCTION=SEN2EUL,FROM1=EW,FROM2=NS,FROM3=UD,TO1=_X,TO2=_Y,TO3=_Z"
 }
 composite {
 	object {
-		x=224
-		y=35
+		x=267
+		y=177
 		width=36
 		height=49
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/PEM_MATRIX_3X3_MINI.adl;IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE)_GND,FUNC=SENSALIGN,FUNCTION=SENALIGN,FROM1=_X,FROM2=_Y,FROM3=_Z,TO1=X,TO2=Y,TO3=Z"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX/VIS_MATRIX_3X3_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE)_GND,FUNC=SENSALIGN,FUNCTION=SENALIGN,FROM1=_X,FROM2=_Y,FROM3=_Z,TO1=X,TO2=Y,TO3=Z"
 }
 composite {
 	object {
-		x=300
-		y=31
-		width=80
-		height=66
+		x=458
+		y=30
+		width=69
+		height=117
 	}
 	"composite name"=""
-	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/PEM_FILTS_3DOF_MINI.adl;site=$(site),IFO=$(IFO),ifo=$(ifo),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND,FUNCTION=GND,DOF1=X_BLRMS_INPUT,DOF2=Y_BLRMS_INPUT,DOF3=Z_BLRMS_INPUT"
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/VIS_WIT_6DOF_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND_X_BLRMS,FUNCTION=X_BLRMS,DOF1=30MHZ100,DOF2=100MHZ300,DOF3=300MHZ1000,DOF4=1HZ3,DOF5=3HZ10,DOF6=10HZ30"
+}
+composite {
+	object {
+		x=458
+		y=144
+		width=69
+		height=117
+	}
+	"composite name"=""
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/VIS_WIT_6DOF_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND_Y_BLRMS,FUNCTION=Y_BLRMS,DOF1=30MHZ100,DOF2=100MHZ300,DOF3=300MHZ1000,DOF4=1HZ3,DOF5=3HZ10,DOF6=10HZ30"
+}
+composite {
+	object {
+		x=458
+		y=259
+		width=69
+		height=117
+	}
+	"composite name"=""
+	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/VIS_WIT_6DOF_MINI.adl;IFO=$(IFO),SUBSYS=PEM,OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=GND_Z_BLRMS,FUNCTION=Z_BLRMS,DOF1=30MHZ100,DOF2=100MHZ300,DOF3=300MHZ1000,DOF4=1HZ3,DOF5=3HZ10,DOF6=10HZ30"
+}
+text {
+	object {
+		x=307
+		y=175
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=307
+		y=188
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=307
+		y=200
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=254
+		y=175
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=254
+		y=188
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=254
+		y=200
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=269
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=281
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=292
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=218
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="EW"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=232
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="NS"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=245
+		y=164
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="UD"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=337
+		y=190
+		width=22
+		height=10
+	}
+	"composite name"=""
+	children {
+		polygon {
+			object {
+				x=349
+				y=190
+				width=10
+				height=10
+			}
+			"basic attribute" {
+				clr=14
+				width=3
+			}
+			"dynamic attribute" {
+				chan="H1"
+			}
+			points {
+				(349,190)
+				(359,194)
+				(349,200)
+				(349,190)
+			}
+		}
+		polyline {
+			object {
+				x=337
+				y=194
+				width=21
+				height=3
+			}
+			"basic attribute" {
+				clr=14
+				fill="outline"
+				width=3
+			}
+			points {
+				(338,195)
+				(356,195)
+			}
+		}
+	}
+}
+polygon {
+	object {
+		x=350
+		y=75
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	points {
+		(350,75)
+		(360,79)
+		(350,85)
+		(350,75)
+	}
+}
+polyline {
+	object {
+		x=327
+		y=79
+		width=29
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(328,80)
+		(354,80)
+	}
+}
+polygon {
+	object {
+		x=350
+		y=303
+		width=10
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+		width=3
+	}
+	"dynamic attribute" {
+		chan="H1"
+	}
+	points {
+		(350,303)
+		(360,307)
+		(350,313)
+		(350,303)
+	}
+}
+polyline {
+	object {
+		x=324
+		y=307
+		width=29
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(325,308)
+		(351,308)
+	}
+}
+polyline {
+	object {
+		x=319
+		y=194
+		width=24
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(320,195)
+		(341,195)
+	}
+}
+polyline {
+	object {
+		x=319
+		y=179
+		width=9
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(320,180)
+		(326,180)
+	}
+}
+rectangle {
+	object {
+		x=325
+		y=79
+		width=3
+		height=103
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+}
+polyline {
+	object {
+		x=320
+		y=205
+		width=9
+		height=3
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=3
+	}
+	points {
+		(321,206)
+		(327,206)
+	}
+}
+rectangle {
+	object {
+		x=325
+		y=205
+		width=3
+		height=103
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+}
+text {
+	object {
+		x=374
+		y=74
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BLRMS"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=371
+		y=188
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BLRMS"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=372
+		y=302
+		width=10
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BLRMS"
+	align="horiz. centered"
 }

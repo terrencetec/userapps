@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS_2DOF_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/MINI/VIS_FILTS_2DOF_MINI.adl"
 	version=030109
 }
 display {
@@ -95,7 +95,7 @@ display {
 		height=35
 	}
 	display[0] {
-		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/VIS_FILTS_2DOF.adl"		
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/VIS_FILTS_2DOF.adl"
 		args="SUBSYS=$(SUBSYS),IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),DOF1=$(DOF1),DOF2=$(DOF2)"
 	}
 	clr=14
@@ -116,8 +116,9 @@ display {
 		bclr=14
 	}
 	align="horiz. centered"
-	format="truncated"
 	limits {
+		precSrc="default"
+		precDefault=3
 	}
 }
 "text update" {
@@ -133,8 +134,9 @@ display {
 		bclr=14
 	}
 	align="horiz. centered"
-	format="truncated"
 	limits {
+		precSrc="default"
+		precDefault=3
 	}
 }
 rectangle {

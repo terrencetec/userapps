@@ -101,7 +101,7 @@ channel_dict = {
     'ITMX_F0_GAS': 0,
     'ITMX_F1_GAS': 1,
     'ITMX_F2_GAS': 2,
-    'ITMX_F3_GAS': 5,
+    'ITMX_F3_GAS': 3,
     'ITMX_BF_GAS': 4,
 
     'ETMY_F0_GAS': 0,
