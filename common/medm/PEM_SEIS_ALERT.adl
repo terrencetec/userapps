@@ -1,0 +1,3136 @@
+
+file {
+	name="/opt/rtcds/userapps/release/vis/common/medm/PEM_SEIS_ALERT.adl"
+	version=030109
+}
+display {
+	object {
+		x=3937
+		y=525
+		width=545
+		height=204
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=233
+		y=15
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Band Limited Root Mean Square (BLRMS)"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=430
+		y=140
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		calc="A>2.7e-2"
+		chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_30_100_RMSMON"
+	}
+}
+rectangle {
+	object {
+		x=430
+		y=118
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		calc="A>8.9e-3"
+		chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_30_100_RMSMON"
+	}
+}
+rectangle {
+	object {
+		x=430
+		y=96
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=60
+	}
+}
+text {
+	object {
+		x=458
+		y=98
+		width=79
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="< 50th "
+}
+text {
+	object {
+		x=458
+		y=121
+		width=79
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="50th - 90th"
+}
+text {
+	object {
+		x=459
+		y=143
+		width=79
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="> 90th"
+}
+text {
+	object {
+		x=460
+		y=73
+		width=60
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Percentile"
+	align="horiz. centered"
+}
+"shell command" {
+	object {
+		x=490
+		y=1
+		width=55
+		height=18
+	}
+	command[0] {
+		label="NIED"
+		name="firefox"
+		args="http://www.kmoni.bosai.go.jp &"
+	}
+	command[1] {
+		label="USGS"
+		name="firefox"
+		args="https://earth.nullschool.net/jp/#current/wind/surface/level/orthographic=-217.18,35.60,1480 &"
+	}
+	command[2] {
+		label="Wave map"
+		name="firefox"
+		args="https://www.windy.com/-Waves-waves &"
+	}
+	clr=0
+	bclr=9
+	label="-Web Link"
+}
+composite {
+	object {
+		x=156
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=156
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.3e-1"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="5.3e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=221
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=221
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-1"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-2>A&&A>9.7e-2"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=285
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=285
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>8.7e-3"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="8.7e-3>A&&A>4.2e-3"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=350
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=350
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.7e-3"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=91
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=91
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-2"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-2>A&&A>8.9e-3"
+				chan="K1:PEM-SEIS_IXV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=198
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=198
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>6.3e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="6.3e-1>A&&A>1.7e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=327
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=327
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.2e-2"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.2e-2>A&&A>5.5e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=392
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=392
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>4.1e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="4.1e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=133
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=133
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.8e-2"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.8e-2>A&&A>9.2e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=263
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=263
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.5e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.5e-1>A&&A>1.2e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=177
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=177
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.5e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="5.5e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=306
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=306
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.0e-2"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.0e-2>A&&A>4.9e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=371
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=371
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=112
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=112
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.6e-2"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.6e-2>A&&A>8.1e-3"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=242
+		y=103
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=242
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.9e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=103
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.9e-1>A&&A>1.0e-1"
+				chan="K1:PEM-SEIS_IXV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=155
+		y=102
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=90
+		y=102
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=220
+		y=102
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=285
+		y=102
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=350
+		y=102
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=159
+		y=51
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="100M_300M"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=93
+		y=51
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="30M_100M"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=223
+		y=51
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="300M_1"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=288
+		y=51
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="1_3"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=353
+		y=51
+		width=59
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="3_10"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=98
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=118
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=140
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=163
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=183
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=205
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=229
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=249
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=271
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=294
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=314
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=336
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=359
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="X"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=379
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Y"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=401
+		y=170
+		width=5
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Z"
+	align="horiz. centered"
+}
+composite {
+	object {
+		x=156
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=156
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.3e-1"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="5.3e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=221
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=221
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-1"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-1>A&&A>9.7e-2"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=285
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=285
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>8.7e-3"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="8.7e-3>A&&A>4.2e-3"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=350
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=350
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.7e-3"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=91
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=91
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-2"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-2>A&&A>8.9e-3"
+				chan="K1:PEM-SEIS_EXV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=198
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=198
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>6.3e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="6.1e-1>A&&A>1.7e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=327
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=327
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.2e-2"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.2-2>A&&A>5.5e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=392
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=392
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>4.1e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="4.1e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=133
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=133
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.8e-2"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.8e-2>A&&A>9.2e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=263
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=263
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.5e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.5e-1>A&&A>1.2e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=177
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=177
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.5e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="5.5e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=306
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=306
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.0e-2"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.0e-2>A&&A>4.9e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=371
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=371
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=112
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=112
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.6e-2"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.6e-2>A&&A>8.1e-3"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=242
+		y=71
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=242
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.9e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=71
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.9e-1>A&&A>1.0e-1"
+				chan="K1:PEM-SEIS_EXV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=155
+		y=70
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=90
+		y=70
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=220
+		y=70
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=285
+		y=70
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=350
+		y=70
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+composite {
+	object {
+		x=156
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=156
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.3e-1"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=156
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.5e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=221
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=221
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-1"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=221
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-1>A&&A>9.7e-2"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=285
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=285
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>8.7e-3"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=285
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="8.7e-3>A&&A>4.2e-3"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=350
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=350
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=350
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.7e-3"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=91
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=91
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.7e-2"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=91
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.7e-2>A&&A>8.9e-3"
+				chan="K1:PEM-SEIS_EYV_GND_X_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=198
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=198
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>6.3e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=198
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="6.3e-1>A&&A>1.7e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=327
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=327
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.2e-2"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=327
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.2e-2>A&&A>5.5e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=392
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=392
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>4.1e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=392
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="4.1e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=133
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=133
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.8e-2"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=133
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.8e-2>A&&A>9.2e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=263
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=263
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.5e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=263
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.5e-1>A&&A>1.2e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Z_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=177
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=177
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>5.5e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+		rectangle {
+			object {
+				x=177
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="5.5e-1>A&&A>1.5e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_100MHZ300"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=306
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=306
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>1.0e-2"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+		rectangle {
+			object {
+				x=306
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="1.0e-2>A&&A>4.9e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_1HZ3"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=371
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=371
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>3.9e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+		rectangle {
+			object {
+				x=371
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="3.9e-3>A&&A>1.6e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_3HZ10"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=112
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=112
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.6e-2"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+		rectangle {
+			object {
+				x=112
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.6e-2>A&&A>8.1e-3"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_30MHZ100"
+			}
+		}
+	}
+}
+composite {
+	object {
+		x=242
+		y=135
+		width=20
+		height=30
+	}
+	"composite name"=""
+	children {
+		rectangle {
+			object {
+				x=242
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=60
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="A>2.9e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+		rectangle {
+			object {
+				x=242
+				y=135
+				width=20
+				height=30
+			}
+			"basic attribute" {
+				clr=30
+			}
+			"dynamic attribute" {
+				vis="calc"
+				calc="2.9e-1>A&&A>1.0e-1"
+				chan="K1:PEM-SEIS_EYV_GND_Y_BLRMS_300MHZ1000"
+			}
+		}
+	}
+}
+rectangle {
+	object {
+		x=155
+		y=134
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=90
+		y=134
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=220
+		y=134
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=285
+		y=134
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=350
+		y=134
+		width=63
+		height=32
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+"related display" {
+	object {
+		x=33
+		y=77
+		width=44
+		height=18
+	}
+	display[0] {
+		label="exv"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/PEM_SEIS_OVERVIEW.adl"
+		args="IFO=K1,OPTIC=SEIS,STAGE=EXV"
+	}
+	clr=14
+	bclr=4
+	label="-EXV"
+}
+"related display" {
+	object {
+		x=33
+		y=109
+		width=44
+		height=18
+	}
+	display[0] {
+		label="ixv"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/PEM_SEIS_OVERVIEW.adl"
+		args="IFO=K1,OPTIC=SEIS,STAGE=IXV"
+	}
+	clr=14
+	bclr=4
+	label="-IXV"
+}
+"related display" {
+	object {
+		x=33
+		y=143
+		width=44
+		height=18
+	}
+	display[0] {
+		label="eyv"
+		name="/opt/rtcds/userapps/release/vis/common/medm/OVERVIEW/PEM_SEIS_OVERVIEW.adl"
+		args="IFO=K1,OPTIC=SEIS,STAGE=EYV"
+	}
+	clr=14
+	bclr=4
+	label="-EYV"
+}

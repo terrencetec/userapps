@@ -1,12 +1,12 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_6X3_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX_2X6_MINI.adl"
 	version=030109
 }
 display {
 	object {
-		x=4508
-		y=314
+		x=3000
+		y=527
 		width=228
 		height=221
 	}
@@ -91,12 +91,12 @@ display {
 	object {
 		x=70
 		y=73
-		width=70
-		height=35
+		width=24
+		height=70
 	}
 	display[0] {
-		name="VIS_MATRIX_6X3.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC),FEC=$(FEC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),FROM1=$(FROM1),FROM2=$(FROM2),FROM3=$(FROM3),FROM4=$(FROM4),FROM5=$(FROM5),FROM6=$(FROM6),TO1=$(TO1),TO2=$(TO2),TO3=$(TO3)"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_MATRIX/VIS_MATRIX_2X6.adl"
+		args="IFO=$(IFO),OPTIC=$(OPTIC),FEC=$(FEC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),FROM1=$(FROM1),FROM2=$(FROM2),TO1=$(TO1),TO2=$(TO2),TO3=$(TO3),TO4=$(TO4),TO5=$(TO5),TO6=$(TO6)"
 	}
 	clr=14
 	bclr=55
@@ -104,8 +104,8 @@ display {
 }
 text {
 	object {
-		x=91
-		y=112
+		x=68
+		y=146
 		width=31
 		height=10
 	}
@@ -244,68 +244,6 @@ composite {
 }
 composite {
 	object {
-		x=94
-		y=73
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=94
-				y=73
-				width=10
-				height=10
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=94
-						y=73
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=14
-						width=3
-					}
-				}
-				rectangle {
-					object {
-						x=94
-						y=73
-						width=8
-						height=10
-					}
-					"basic attribute" {
-						clr=12
-						width=3
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=94
-				y=73
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=16
-				width=3
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_1_3"
-			}
-		}
-	}
-}
-composite {
-	object {
 		x=70
 		y=85
 		width=10
@@ -424,68 +362,6 @@ composite {
 			"dynamic attribute" {
 				vis="if not zero"
 				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_2_2"
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=94
-		y=85
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=94
-				y=85
-				width=10
-				height=10
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=94
-						y=85
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=14
-						width=3
-					}
-				}
-				rectangle {
-					object {
-						x=94
-						y=85
-						width=8
-						height=10
-					}
-					"basic attribute" {
-						clr=12
-						width=3
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=94
-				y=85
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=16
-				width=3
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_2_3"
 			}
 		}
 	}
@@ -616,8 +492,8 @@ composite {
 }
 composite {
 	object {
-		x=94
-		y=97
+		x=70
+		y=109
 		width=10
 		height=10
 	}
@@ -625,8 +501,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=94
-				y=97
+				x=70
+				y=109
 				width=10
 				height=10
 			}
@@ -634,8 +510,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=94
-						y=97
+						x=70
+						y=109
 						width=10
 						height=10
 					}
@@ -646,8 +522,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=94
-						y=97
+						x=70
+						y=109
 						width=8
 						height=10
 					}
@@ -660,8 +536,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=94
-				y=97
+				x=70
+				y=109
 				width=10
 				height=10
 			}
@@ -671,15 +547,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_3_3"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_4_1"
 			}
 		}
 	}
 }
 composite {
 	object {
-		x=106
-		y=73
+		x=82
+		y=109
 		width=10
 		height=10
 	}
@@ -687,8 +563,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=106
-				y=73
+				x=82
+				y=109
 				width=10
 				height=10
 			}
@@ -696,8 +572,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=106
-						y=73
+						x=82
+						y=109
 						width=10
 						height=10
 					}
@@ -708,8 +584,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=106
-						y=73
+						x=82
+						y=109
 						width=8
 						height=10
 					}
@@ -722,8 +598,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=106
-				y=73
+				x=82
+				y=109
 				width=10
 				height=10
 			}
@@ -733,15 +609,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_1_4"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_4_2"
 			}
 		}
 	}
 }
 composite {
 	object {
-		x=118
-		y=73
+		x=70
+		y=121
 		width=10
 		height=10
 	}
@@ -749,8 +625,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=118
-				y=73
+				x=70
+				y=121
 				width=10
 				height=10
 			}
@@ -758,8 +634,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=118
-						y=73
+						x=70
+						y=121
 						width=10
 						height=10
 					}
@@ -770,8 +646,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=118
-						y=73
+						x=70
+						y=121
 						width=8
 						height=10
 					}
@@ -784,8 +660,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=118
-				y=73
+				x=70
+				y=121
 				width=10
 				height=10
 			}
@@ -795,66 +671,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_1_5"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_5_1"
 			}
 		}
 	}
 }
 composite {
 	object {
-		x=130
-		y=73
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		rectangle {
-			object {
-				x=130
-				y=73
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=14
-				width=3
-			}
-		}
-		rectangle {
-			object {
-				x=130
-				y=73
-				width=8
-				height=10
-			}
-			"basic attribute" {
-				clr=12
-				width=3
-			}
-		}
-	}
-}
-rectangle {
-	object {
-		x=130
-		y=73
-		width=10
-		height=10
-	}
-	"basic attribute" {
-		clr=16
-		width=3
-	}
-	"dynamic attribute" {
-		vis="if not zero"
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_1_6"
-	}
-}
-composite {
-	object {
-		x=106
-		y=85
+		x=82
+		y=121
 		width=10
 		height=10
 	}
@@ -862,8 +687,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=106
-				y=85
+				x=82
+				y=121
 				width=10
 				height=10
 			}
@@ -871,8 +696,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=106
-						y=85
+						x=82
+						y=121
 						width=10
 						height=10
 					}
@@ -883,8 +708,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=106
-						y=85
+						x=82
+						y=121
 						width=8
 						height=10
 					}
@@ -897,8 +722,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=106
-				y=85
+				x=82
+				y=121
 				width=10
 				height=10
 			}
@@ -908,15 +733,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_2_4"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_5_2"
 			}
 		}
 	}
 }
 composite {
 	object {
-		x=118
-		y=85
+		x=70
+		y=133
 		width=10
 		height=10
 	}
@@ -924,8 +749,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=118
-				y=85
+				x=70
+				y=133
 				width=10
 				height=10
 			}
@@ -933,8 +758,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=118
-						y=85
+						x=70
+						y=133
 						width=10
 						height=10
 					}
@@ -945,8 +770,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=118
-						y=85
+						x=70
+						y=133
 						width=8
 						height=10
 					}
@@ -959,8 +784,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=118
-				y=85
+				x=70
+				y=133
 				width=10
 				height=10
 			}
@@ -970,15 +795,15 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_2_5"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_6_1"
 			}
 		}
 	}
 }
 composite {
 	object {
-		x=130
-		y=85
+		x=82
+		y=133
 		width=10
 		height=10
 	}
@@ -986,8 +811,8 @@ composite {
 	children {
 		composite {
 			object {
-				x=130
-				y=85
+				x=82
+				y=133
 				width=10
 				height=10
 			}
@@ -995,8 +820,8 @@ composite {
 			children {
 				rectangle {
 					object {
-						x=130
-						y=85
+						x=82
+						y=133
 						width=10
 						height=10
 					}
@@ -1007,8 +832,8 @@ composite {
 				}
 				rectangle {
 					object {
-						x=130
-						y=85
+						x=82
+						y=133
 						width=8
 						height=10
 					}
@@ -1021,8 +846,8 @@ composite {
 		}
 		rectangle {
 			object {
-				x=130
-				y=85
+				x=82
+				y=133
 				width=10
 				height=10
 			}
@@ -1032,193 +857,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_2_6"
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=106
-		y=97
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=106
-				y=97
-				width=10
-				height=10
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=106
-						y=97
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=14
-						width=3
-					}
-				}
-				rectangle {
-					object {
-						x=106
-						y=97
-						width=8
-						height=10
-					}
-					"basic attribute" {
-						clr=12
-						width=3
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=106
-				y=97
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=16
-				width=3
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_3_4"
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=118
-		y=97
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=118
-				y=97
-				width=10
-				height=10
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=118
-						y=97
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=14
-						width=3
-					}
-				}
-				rectangle {
-					object {
-						x=118
-						y=97
-						width=8
-						height=10
-					}
-					"basic attribute" {
-						clr=12
-						width=3
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=118
-				y=97
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=16
-				width=3
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_3_5"
-			}
-		}
-	}
-}
-composite {
-	object {
-		x=130
-		y=97
-		width=10
-		height=10
-	}
-	"composite name"=""
-	children {
-		composite {
-			object {
-				x=130
-				y=97
-				width=10
-				height=10
-			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=130
-						y=97
-						width=10
-						height=10
-					}
-					"basic attribute" {
-						clr=14
-						width=3
-					}
-				}
-				rectangle {
-					object {
-						x=130
-						y=97
-						width=8
-						height=10
-					}
-					"basic attribute" {
-						clr=12
-						width=3
-					}
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=130
-				y=97
-				width=10
-				height=10
-			}
-			"basic attribute" {
-				clr=16
-				width=3
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_3_6"
+				chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_6_2"
 			}
 		}
 	}

@@ -96,7 +96,7 @@ display {
 	}
 	display[0] {
 		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/VIS_FILTS_1DOF.adl"
-		args="IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),DOF1=$(DOF1)"
+		args="SUBSYS=$(SUBSYS),IFO=$(IFO),OPTIC=$(OPTIC),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),DOF1=$(DOF1)"
 	}
 	clr=14
 	bclr=25
@@ -111,7 +111,7 @@ display {
 		height=15
 	}
 	monitor {
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUTPUT"
+		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -164,9 +164,9 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW1R"
-		chanB="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW2R"
-		chanC="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_GAIN"
+		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW1R"
+		chanB="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW2R"
+		chanC="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_GAIN"
 	}
 }
 text {
@@ -205,17 +205,17 @@ text {
 	command[0] {
 		label="INMON"
 		name="ndscope"
-		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON &"
+		args="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON &"
 	}
 	command[1] {
 		label="OUT16"
 		name="ndscope"
-		args="$(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 &"
+		args="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 &"
 	}
 	command[2] {
 		label="10 second average"
 		name="xterm -fn 6x13 -geometry 54x36 -e"
-		args="'z avg -s 10 $(IFO):VIS-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 | less -R' &"
+		args="'z avg -s 10 $(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 | less -R' &"
 	}	
 	clr=0
 	bclr=14

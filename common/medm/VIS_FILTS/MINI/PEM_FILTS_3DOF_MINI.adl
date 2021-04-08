@@ -1,6 +1,6 @@
 
 file {
-	name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS_3DOF_MINI.adl"
+	name="/opt/rtcds/userapps/release/vis/common/medm/PEM_FILTS_3DOF_MINI.adl"
 	version=030109
 }
 display {
@@ -95,8 +95,8 @@ display {
 		height=50
 	}
 	display[0] {
-		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/VIS_FILTS_3DOF.adl"
-		args="OPTIC=$(OPTIC),IFO=$(IFO),SUBSYS=$(SUBSYS),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),DOF1=$(DOF1),DOF2=$(DOF2),DOF3=$(DOF3)"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_FILTS/PEM_FILTS_3DOF.adl"
+		args="OPTIC=$(OPTIC),IFO=$(IFO),STAGE=$(STAGE),FUNC=$(FUNC),FUNCTION=$(FUNCTION),DOF1=$(DOF1),DOF2=$(DOF2),DOF3=$(DOF3)"
 	}
 	clr=14
 	bclr=25
@@ -111,7 +111,7 @@ display {
 		height=15
 	}
 	monitor {
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUTPUT"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -128,7 +128,7 @@ display {
 		height=15
 	}
 	monitor {
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUTPUT"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -145,7 +145,7 @@ display {
 		height=15
 	}
 	monitor {
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUTPUT"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUTPUT"
 		clr=0
 		bclr=14
 	}
@@ -198,9 +198,9 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW1R"
-		chanB="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW2R"
-		chanC="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_GAIN"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW1R"
+		chanB="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_SW2R"
+		chanC="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_GAIN"
 	}
 }
 rectangle {
@@ -247,9 +247,9 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW1R"
-		chanB="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW2R"
-		chanC="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_GAIN"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW1R"
+		chanB="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_SW2R"
+		chanC="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_GAIN"
 	}
 }
 rectangle {
@@ -296,9 +296,9 @@ rectangle {
 	"dynamic attribute" {
 		vis="calc"
 		calc="(A&4)&&(B&1024)&&(C!=0)"
-		chan="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW1R"
-		chanB="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW2R"
-		chanC="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_GAIN"
+		chan="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW1R"
+		chanB="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_SW2R"
+		chanC="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_GAIN"
 	}
 }
 text {
@@ -350,12 +350,12 @@ text {
 	command[0] {
 		label="INMON"
 		name="ndscope"
-		args="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON $(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_INMON $(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_INMON &"
+		args="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_INMON $(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_INMON $(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_INMON &"
 	}
 	command[1] {
 		label="OUT16"
 		name="ndscope"
-		args="$(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 $(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUT16 $(IFO):$(SUBSYS)-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUT16 &"
+		args="$(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF1)_OUT16 $(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF2)_OUT16 $(IFO):PEM-$(OPTIC)_$(STAGE)_$(FUNC)_$(DOF3)_OUT16 &"
 	}
 	clr=0
 	bclr=14
