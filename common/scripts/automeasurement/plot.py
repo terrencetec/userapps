@@ -7,7 +7,7 @@ from dtt2hdf import read_diaggui,DiagAccess
 import matplotlib.pyplot as plt
 
 color = ['k','r','g','m','c','b']
-
+prefix = '/opt/rtcds/userapps/release/vis/common/scripts/automeasurement'
 # ------------------------------------------------------------------------------
 def p(w0,Q):
     p1 = -w0/(2*Q)+1j*np.sqrt((w0)**2-w0**2/(4*Q**2))
@@ -44,10 +44,10 @@ def get_tf(_from,_to,datetime='current',oltf=False):
         raise ValueError('!')
 
     if datetime=='current':    
-        fname = './current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
+        fname = prefix+'/current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
                                                              dof_exc,stage)
     else:
-        fname = './archive/PLANT_{0}_{3}_{1}_{2}_EXC_{4}.xml'.format(optic,test,
+        fname = prefix+'/archive/PLANT_{0}_{3}_{1}_{2}_EXC_{4}.xml'.format(optic,test,
                                                                      dof_exc,stage,datetime)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
@@ -93,7 +93,7 @@ def get_fitted_tf(omega_measured,tf_measured,coh_measured,_exc,dof):
     h = np.squeeze(h)
     return _w,h
 
-def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e-4,1e2],**kwargs):
+def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e-3,1e1],**kwargs):
     '''
     '''
     if isinstance(ax,np.ndarray) and len(ax)==3:
@@ -116,7 +116,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         ax.set_xlim(1e-2,100)
         leg = ax.legend(numpoints=1,markerscale=5)
     
-def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
+def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TEST'):
     '''
     '''
     stage = stages[0]
@@ -139,9 +139,9 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current'):
                     plot_tf(w,tf,coh,ax,label=label,subtitle=title,alpha=0.5)
 
             if datetime=='current':    
-                fname = './current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
+                fname = prefix+'/current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
             else:
-                fname = './archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)
+                fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)
             
             print(fname)
             ax.set_xlabel('Frequency [Hz]')
@@ -177,9 +177,9 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
         if datetime=='current':
-            fname = './current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
         else:
-            fname = './archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
+            fname = prefix+'/archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
     elif len(stages)==1:
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
@@ -196,9 +196,9 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf,ylim=[1e-7,1e-1])
         if datetime=='current':
-            fname = './current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
         else:
-            fname = './archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)        
+            fname = prefix+'/archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)        
     else:
         raise ValueError('!')    
     print(fname)
@@ -211,7 +211,7 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
     plt.close()        
 
         
-def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False):
+def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST'):
     ''' Plot 
     
     Parameters
@@ -278,9 +278,9 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)
         if datetime=='current':
-            fname = './current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
         else:
-            fname = './archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)            
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)            
     else:
         raise ValueError('!')    
     print(fname)
