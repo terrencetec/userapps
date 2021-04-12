@@ -53,7 +53,7 @@ def run_diag(fname):
                                      stdout=tmp_out,
                                      stderr=tmp_err)
     print(' - Fnished {0} {1}'.format(fname,ret))                
-    print('Wait 60 second')
+    print('Wait 30 second')
     time.sleep(30)
 
     archive_fname = fname
@@ -163,7 +163,7 @@ def new_fname(template,optic,stage,dof):
     return new_fname, now
 
 # ------------------------------------------------------------------------------    
-def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
+def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
     ''' Run diaggui xml file which measures the Transfer Function.
     
     This function runs shell command which executes the diaggui xml file for TF
@@ -191,13 +191,13 @@ def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False,oltf=F
     
     # run diag
     for stage in stages:
-        for dof in dofs:
+        for dof in excs:
             # new_fname
             fname, _now = new_fname(template,optic,stage,dof)
             
             # run
             if run:
-                run_copy(dof,fname,template,optic,stage,dofs=dofs,run=True,oltf=args.oltf,ave=ave,bw=bw)
+                run_copy(dof,fname,template,optic,stage,excs=excs,run=True,oltf=args.oltf,ave=ave,bw=bw)
                 run_diag(fname)
             else:
                 raise ValueError('!')
@@ -210,7 +210,7 @@ def run_tf_measurement(template,optic,stages,dofs=['L','P','Y'],run=False,oltf=F
 
 # ------------------------------------------------------------------------------
         
-def run_copy(dof,new_fname,template,optic,stage,dofs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
+def run_copy(dof,new_fname,template,optic,stage,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
     ''' Copy template file to working directory.
 
     This function run shell command which copies template file for TF measurement
@@ -232,7 +232,7 @@ def run_copy(dof,new_fname,template,optic,stage,dofs=['L','P','Y'],run=False,olt
 
     '''    
     # run command
-    #for dof in dofs:
+    #for dof in excs:
     # new_fname
     _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
     #fname, _now = new_fname(template,optic,stage,dof)
@@ -306,32 +306,32 @@ if __name__=="__main__":
     #
     optics = args.o
     stages = args.s
-    dofs = args.d
+    excs = args.d
     optics = available_optics(optics)
     #
     if optics[0]=='all':
         optics = available_optics(optics)
         
     if stages[0]=='all':
-        if dofs[0]=='GAS':
+        if excs[0]=='GAS':
             stages = ['SF','BF,''F0','F1','F2','F3']
         else:
             raise ValueError('!')
         
-    if dofs[0]=='all':
+    if excs[0]=='all':
         if len(stages)==1 and stages[0] in ['IM','BF']:
-            dofs = ['L','T','V','R','P','Y']
+            excs = ['L','T','V','R','P','Y']
         elif len(stages)==1 and stages[0]=='TM':
-            dofs = ['L','P','Y']
+            excs = ['L','P','Y']
         else:
             raise ValueError('!')
     #
     # Notification
     #
     if len(stages)>1:
-        if not 'GAS' in dofs:
+        if not 'GAS' in excs:
             raise ValueError('Please do not measure the multiple stages in same time.')
-        elif 'GAS'==dofs[0] and len(dofs)==1:
+        elif 'GAS'==excs[0] and len(excs)==1:
             if all([stage in ['BF','F0','F1','F2','F3','SF'] for stage in stages]):
                 template = 'PLANT_ETMY_BF_TEST_GAS_EXC.xml'
             else:
@@ -345,10 +345,10 @@ if __name__=="__main__":
                 template = 'OLTF_PRM_IM_TEST_L_EXC.xml'                
             else:
                 template = 'PLANT_PRM_IM_TEST_L_EXC.xml'
-        elif stage=='BF' and not 'GAS' in dofs:        
+        elif stage=='BF' and not 'GAS' in excs:        
             template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
         elif stage=='TM':
-            if any([ dof in ['H1','H2','H3','H4'] for dof in dofs]):
+            if any([ dof in ['H1','H2','H3','H4'] for dof in excs]):
                 template = 'PLANT_MCO_TM_COILOUTF_H1_EXC.xml'
             else:
                 template = 'PLANT_MCO_TM_TEST_P_EXC.xml'
@@ -372,13 +372,14 @@ if __name__=="__main__":
         pass
         # for optic in optics:
         #     for stage in stages:
-        #         run_copy(template,optic,stage,dofs=dofs,run=True,oltf=args.oltf)
+        #         run_copy(template,optic,stage,excs=excs,run=True,oltf=args.oltf)
                 
     # Measurement
     if args.rundiag:
         # Time estimation
         optics_list = [optics[3*i:3*(i+1)] for i in range(4)]
-        _time = len(dofs)*7
+        _time = len(excs)*7
+        _time = int(1./float(args.bw)*float(args.ave)*len(excs)/60/2) + 30*len(excs)
         ans = input('It takes {0} minutes. Do you want to measure? [y/N]'.format(_time))
         if ans not in ['y','yes','Y']:
             print('You chose {0}. Stop.'.format(ans))
@@ -386,23 +387,36 @@ if __name__=="__main__":
         # Open the path to input the excitation signal
         funcs = ['TEST']
         if not args.oltf:
-            open_all(optics,stages,funcs,dofs,oltf=args.oltf)
+            open_all(optics,stages,funcs,excs,oltf=args.oltf)
         # Execution
         t = []                    
         for optic in optics:
             _t = threading.Thread(target=run_tf_measurement,
                                   args=(template,optic,stages),
-                                  kwargs={'run':True,'dofs':dofs,'ave':args.ave,'bw':args.bw})
+                                  kwargs={'run':True,'excs':excs,'ave':args.ave,'bw':args.bw})
             _t.start()
             t += [_t]
       
     # Plot
     if args.plot:
-        excs = dofs
         if not stage in ['TM']:
             func = 'DAMP'
         else:
             func = 'OLDAMP'
-        plot(optics,stages,['L','P','Y'],excs,func=func,oltf=args.oltf,test='COILOUTF')
-        #plot_diag(optics,stages,dofs,excs,func=func,oltf=args.oltf)
-        #plot_couple(optics,stages,dofs,excs,func=func)  
+        
+        if any([ dof in ['L','T','V','P','Y','R'] for dof in excs]):
+            test = 'TEST'
+            dofs = excs
+        elif any([ dof in ['H1','H2','H3','H4'] for dof in excs]):            
+            test = 'COILOUTF'
+            dofs = ['P','Y']
+        else:
+            raise ValueError('!')
+
+                
+        if test=='COILOUTF':
+            for dof in dofs:
+                plot(optics,stages,dof,excs,func=func,oltf=args.oltf,test=test,diag='diag')
+        elif test=='TEST':
+            plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
+            plot_couple(optics,stages,excs,excs,func=func)  

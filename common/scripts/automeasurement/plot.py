@@ -121,11 +121,14 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
     '''
     stage = stages[0]
     optic = optics[0]
-    for optic in optics:
-        for dof in dofs:
-            fig,ax = plt.subplots(1,1,figsize=(5,5),sharex=True,sharey='row')
-            fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
-            for i,exc in enumerate(excs): # i: plot same figure
+    nrow = len(optics)
+    ncol = len(dofs)
+    fig,ax = plt.subplots(ncol,nrow,figsize=(14,8),sharex=True,sharey='row')    
+    for j,optic in enumerate(optics):
+        for i,dof in enumerate(dofs):
+            #fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
+            ax[i,j].set_title('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
+            for k,exc in enumerate(excs): # i: plot same figure
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
@@ -134,35 +137,38 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
                 label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
                 title = ''
                 if exc==dof:
-                    plot_tf(w,tf,coh,ax,label=label,subtitle=title,linewidth=3,zorder=0)
+                    plot_tf(w,tf,coh,ax[i,j],label=label,subtitle=title,linewidth=3,zorder=0)
                 else:
-                    plot_tf(w,tf,coh,ax,label=label,subtitle=title,alpha=0.5)
+                    plot_tf(w,tf,coh,ax[i,j],label=label,subtitle=title,alpha=0.5)
 
             if datetime=='current':    
                 fname = prefix+'/current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
             else:
-                fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)
+                fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)        
             
-            print(fname)
-            ax.set_xlabel('Frequency [Hz]')
-            if dof in ['L','T','V','GAS']:
-                ax.set_ylabel('Magnitude [um/count]')
-            elif dof in ['R','P','Y']:
-                ax.set_ylabel('Magnitude [urad/count]')
-            else:
-                raise ValueError('!')
+    [ax[ncol-1,j].set_xlabel('Frequency [Hz]') for j in range(nrow)]
+    if dof in ['L','T','V','GAS']:
+        [ax[i,0].set_ylabel('Magnitude [um/count]') for i in range(ncol)]
+    elif dof in ['R','P','Y']:
+        [ax[i,0].set_ylabel('Magnitude [urad/count]') for i in range(ncol)]        
+    else:
+        raise ValueError('!')
             
-            plt.tight_layout()
-            plt.savefig(fname)
-            plt.close()
+    plt.tight_layout()
+    #plt.show()    
+    plt.savefig(fname)
+    plt.close()
         
 
-def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST'):
+def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST',diag='diag'):
     '''
     '''
-    fig,ax = plt.subplots(3,6,figsize=(14,8),sharex=True,sharey='row')
+    print(optics,stages,dofs,excs,func,test)
+    
+    nrow = max(len(dofs),len(excs),3)
+    fig,ax = plt.subplots(3,nrow,figsize=(14,8),sharex=True,sharey='row')
     #
-    if excs==dofs and len(stages)==1:
+    if excs==dofs and len(stages)==1:#EUL2EUL    
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
         for j,dof in enumerate(dofs): # j: plot other figure
@@ -177,16 +183,16 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
         if datetime=='current':
-            fname = prefix+'/current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
         else:
-            fname = prefix+'/archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
-    elif len(stages)==1:
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
+    elif test=='COILOUTF': # COIL2EUL
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
         for j,exc in enumerate(excs): # j: plot other figure            
             for i,optic in enumerate(optics): # i: plot same figure
                 #for exc in excs:
-                dof = 'Y'
+                dof = dofs[0]
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
@@ -196,17 +202,18 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf,ylim=[1e-7,1e-1])
         if datetime=='current':
-            fname = prefix+'/current/OLTF_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC.png'.format(optic,stage,func,dof)
         else:
-            fname = prefix+'/archive/OLTF_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)        
-    else:
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC_{4}.png'.format(optic,stage,func,dof,datetime)
+    else: #COIL2SENS
         raise ValueError('!')    
     print(fname)
-    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(6)]
+    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
     ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
     ax[1][0].set_ylabel('Phase [Degree]')
     ax[2][0].set_ylabel('Coherence')    
     plt.tight_layout()
+    #plt.show()
     plt.savefig(fname)
     plt.close()        
 
