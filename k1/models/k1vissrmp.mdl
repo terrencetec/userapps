@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.268"
+    ComputedModelVersion    "1.269"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -40,7 +40,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2137.0, 26.0, 1629.0, 1044.0]
+      Location		      [3849.0, 32.0, 1629.0, 1044.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -65,8 +65,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1591.0, 872.0]
-	ZoomFactor		[0.52870662460567819]
-	Offset			[-26.832488066825988, 491.05011933174245]
+	ZoomFactor		[1.0]
+	Offset			[1115.3071300715987, 1311.9124202092873]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -99,9 +99,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "controls"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Dec 26 06:35:08 2020"
-  RTWModifiedTimeStamp	  530863253
-  ModelVersionFormat	  "1.%<AutoIncrement:268>"
+  LastModifiedDate	  "Mon Apr 12 11:29:56 2021"
+  RTWModifiedTimeStamp	  540127795
+  ModelVersionFormat	  "1.%<AutoIncrement:269>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -977,7 +977,7 @@ Model {
   }
   System {
     Name		    "k1vissrmp"
-    Location		    [2137, 26, 3766, 1070]
+    Location		    [3849, 32, 5478, 1076]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -989,9 +989,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "53"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2302"
+    SIDHighWatermark	    "2305"
     Block {
       BlockType		      Reference
       Name		      "ADC0"
@@ -1647,6 +1647,14 @@ Model {
     }
     Block {
       BlockType		      Ground
+      Name		      "Ground1"
+      SID		      "2303"
+      Position		      [1565, 1975, 1585, 1995]
+      ZOrder		      7759
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
       Name		      "Ground10"
       SID		      "2296"
       Position		      [1565, 1575, 1585, 1595]
@@ -1723,6 +1731,14 @@ Model {
       SID		      "2263"
       Position		      [890, 840, 910, 860]
       ZOrder		      6779
+      ShowName		      off
+    }
+    Block {
+      BlockType		      Ground
+      Name		      "Ground2"
+      SID		      "2304"
+      Position		      [1565, 1935, 1585, 1955]
+      ZOrder		      7760
       ShowName		      off
     }
     Block {
@@ -2077,13 +2093,13 @@ Model {
       Name		      "SRM"
       SID		      "2285"
       Description	      "This is for Type-B and Bp payloads."
-      Ports		      [34, 16]
-      Position		      [1745, 583, 1990, 1907]
+      Ports		      [36, 17]
+      Position		      [1745, 582, 1990, 1988]
       ZOrder		      7735
       BackgroundColor	      "yellow"
       DropShadow	      on
       AttributesFormatString  "%<Description>"
-      LibraryVersion	      "1.401"
+      LibraryVersion	      "1.430"
       SourceBlock	      "PAYLOAD_MASTER/PAYLOAD_MASTER"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -2096,7 +2112,7 @@ Model {
       Position		      [1090, 1353, 1225, 1567]
       ZOrder		      7757
       BackgroundColor	      "green"
-      LibraryVersion	      "1.401"
+      LibraryVersion	      "1.430"
       SourceBlock	      "PAYLOAD_MASTER/BBp_PAYLOADBIO_DECODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -2109,7 +2125,7 @@ Model {
       Position		      [1050, 1649, 1195, 1921]
       ZOrder		      7758
       BackgroundColor	      "green"
-      LibraryVersion	      "1.401"
+      LibraryVersion	      "1.430"
       SourceBlock	      "PAYLOAD_MASTER/BBp_PAYLOADBIO_ENCODE"
       SourceType	      "SubSystem"
       ContentPreviewEnabled   off
@@ -2169,6 +2185,14 @@ Model {
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      "2305"
+      Position		      [2020, 1915, 2040, 1935]
+      ZOrder		      7761
+      ShowName		      off
     }
     Block {
       BlockType		      Terminator
@@ -2805,6 +2829,7 @@ Model {
       ZOrder		      2766
       SrcBlock		      "SRM"
       SrcPort		      3
+      Points		      [0, 0]
       DstBlock		      "Goto5"
       DstPort		      1
     }
@@ -2812,6 +2837,7 @@ Model {
       ZOrder		      2767
       SrcBlock		      "SRM"
       SrcPort		      4
+      Points		      [0, 0]
       DstBlock		      "Goto6"
       DstPort		      1
     }
@@ -2819,6 +2845,7 @@ Model {
       ZOrder		      2768
       SrcBlock		      "SRM"
       SrcPort		      5
+      Points		      [0, 0]
       DstBlock		      "Goto11"
       DstPort		      1
     }
@@ -2826,6 +2853,7 @@ Model {
       ZOrder		      2769
       SrcBlock		      "SRM"
       SrcPort		      6
+      Points		      [0, 0]
       DstBlock		      "Goto7"
       DstPort		      1
     }
@@ -2833,6 +2861,7 @@ Model {
       ZOrder		      2770
       SrcBlock		      "SRM"
       SrcPort		      7
+      Points		      [0, 0]
       DstBlock		      "Goto8"
       DstPort		      1
     }
@@ -2840,6 +2869,7 @@ Model {
       ZOrder		      2771
       SrcBlock		      "SRM"
       SrcPort		      8
+      Points		      [0, 0]
       DstBlock		      "Goto9"
       DstPort		      1
     }
@@ -2847,6 +2877,7 @@ Model {
       ZOrder		      2772
       SrcBlock		      "SRM"
       SrcPort		      9
+      Points		      [0, 0]
       DstBlock		      "Goto10"
       DstPort		      1
     }
@@ -2854,6 +2885,7 @@ Model {
       ZOrder		      2773
       SrcBlock		      "SRM"
       SrcPort		      10
+      Points		      [0, 0]
       DstBlock		      "Goto12"
       DstPort		      1
     }
@@ -2861,6 +2893,7 @@ Model {
       ZOrder		      2774
       SrcBlock		      "SRM"
       SrcPort		      14
+      Points		      [0, 0]
       DstBlock		      "K1:VIS_SRMP_ISC_IM_OUT"
       DstPort		      1
     }
@@ -2868,6 +2901,7 @@ Model {
       ZOrder		      2775
       SrcBlock		      "SRM"
       SrcPort		      12
+      Points		      [0, 0]
       DstBlock		      "Mux1"
       DstPort		      2
     }
@@ -2875,6 +2909,7 @@ Model {
       ZOrder		      2776
       SrcBlock		      "SRM"
       SrcPort		      11
+      Points		      [0, 0]
       DstBlock		      "Mux1"
       DstPort		      1
     }
@@ -2882,6 +2917,7 @@ Model {
       ZOrder		      2777
       SrcBlock		      "SRM"
       SrcPort		      13
+      Points		      [0, 0]
       DstBlock		      "Mux1"
       DstPort		      3
     }
@@ -2889,6 +2925,7 @@ Model {
       ZOrder		      2780
       SrcBlock		      "SRM"
       SrcPort		      16
+      Points		      [0, 0]
       DstBlock		      "Terminator13"
       DstPort		      1
     }
@@ -2896,6 +2933,7 @@ Model {
       ZOrder		      2781
       SrcBlock		      "SRM"
       SrcPort		      15
+      Points		      [0, 0]
       DstBlock		      "Terminator12"
       DstPort		      1
     }
@@ -3178,6 +3216,27 @@ Model {
       SrcPort		      1
       DstBlock		      "SRM"
       DstPort		      32
+    }
+    Line {
+      ZOrder		      2937
+      SrcBlock		      "Ground1"
+      SrcPort		      1
+      DstBlock		      "SRM"
+      DstPort		      36
+    }
+    Line {
+      ZOrder		      2938
+      SrcBlock		      "Ground2"
+      SrcPort		      1
+      DstBlock		      "SRM"
+      DstPort		      35
+    }
+    Line {
+      ZOrder		      2940
+      SrcBlock		      "SRM"
+      SrcPort		      17
+      DstBlock		      "Terminator1"
+      DstPort		      1
     }
     Annotation {
       SID		      "423"
