@@ -111,6 +111,10 @@ def calibration(output,show=False):
     
 if __name__=='__main__':
     #plot('./mco_yaw.txt')
-    calibration('mco_yaw.txt')    
-    calibration('mce_yaw.txt')
-    calibration('mce_pit.txt')
+    calibration('./data/MCO_TM_OPLEV_TILT_YAW.txt',show=True)                
+    calibration('./data/MCE_TM_OPLEV_TILT_YAW.txt',show=True)
+    calibration('./data/MCE_TM_OPLEV_TILT_PIT.txt',show=True)
+    calibration('./data/MCI_TM_OPLEV_TILT_YAW.txt',show=True)            
+    calibration('./data/MCI_TM_OPLEV_TILT_PIT.txt',show=True)        
+    #calibration('mce_yaw.txt')
+    #calibration('mce_pit.txt')
