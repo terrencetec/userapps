@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=2007
-		y=1448
+		x=2598
+		y=541
 		width=399
 		height=400
 	}
@@ -122,8 +122,8 @@ rectangle {
 }
 "choice button" {
 	object {
-		x=101
-		y=97
+		x=121
+		y=100
 		width=25
 		height=38
 	}
@@ -135,8 +135,8 @@ rectangle {
 }
 composite {
 	object {
-		x=123
-		y=100
+		x=162
+		y=66
 		width=52
 		height=29
 	}
@@ -144,8 +144,8 @@ composite {
 	children {
 		text {
 			object {
-				x=123
-				y=115
+				x=162
+				y=81
 				width=52
 				height=14
 			}
@@ -157,8 +157,8 @@ composite {
 		}
 		text {
 			object {
-				x=123
-				y=100
+				x=162
+				y=66
 				width=52
 				height=14
 			}
@@ -175,14 +175,14 @@ composite {
 }
 "related display" {
 	object {
-		x=173
+		x=220
 		y=98
 		width=130
 		height=40
 	}
 	display[0] {
 		label="WATCHDOG"
-		name="VIS_PAY_WD.adl"
+		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_PAY_WD.adl"
 		args="IFO=$(IFO),OPTIC=$(OPTIC)"
 	}
 	clr=14
@@ -191,7 +191,7 @@ composite {
 }
 polyline {
 	object {
-		x=203
+		x=250
 		y=140
 		width=3
 		height=102
@@ -203,13 +203,13 @@ polyline {
 		width=3
 	}
 	points {
-		(204,141)
-		(204,240)
+		(251,141)
+		(251,240)
 	}
 }
 rectangle {
 	object {
-		x=198
+		x=245
 		y=151
 		width=15
 		height=80
@@ -225,7 +225,7 @@ rectangle {
 }
 text {
 	object {
-		x=278
+		x=325
 		y=103
 		width=20
 		height=14
@@ -238,7 +238,7 @@ text {
 }
 polyline {
 	object {
-		x=275
+		x=322
 		y=140
 		width=3
 		height=102
@@ -250,13 +250,13 @@ polyline {
 		width=3
 	}
 	points {
-		(276,141)
-		(276,240)
+		(323,141)
+		(323,240)
 	}
 }
 rectangle {
 	object {
-		x=270
+		x=317
 		y=151
 		width=15
 		height=80
@@ -271,7 +271,7 @@ rectangle {
 }
 composite {
 	object {
-		x=204
+		x=251
 		y=104
 		width=30
 		height=29
@@ -280,7 +280,7 @@ composite {
 	children {
 		text {
 			object {
-				x=209
+				x=256
 				y=119
 				width=20
 				height=14
@@ -293,7 +293,7 @@ composite {
 		}
 		text {
 			object {
-				x=204
+				x=251
 				y=104
 				width=30
 				height=14
@@ -308,7 +308,7 @@ composite {
 }
 rectangle {
 	object {
-		x=178
+		x=225
 		y=107
 		width=20
 		height=21
@@ -323,7 +323,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=179
+		x=226
 		y=108
 		width=19
 		height=20
@@ -334,7 +334,7 @@ rectangle {
 }
 rectangle {
 	object {
-		x=179
+		x=226
 		y=108
 		width=19
 		height=20
@@ -350,7 +350,7 @@ rectangle {
 }
 composite {
 	object {
-		x=251
+		x=298
 		y=107
 		width=20
 		height=20
@@ -359,7 +359,7 @@ composite {
 	children {
 		rectangle {
 			object {
-				x=252
+				x=299
 				y=108
 				width=19
 				height=19
@@ -370,7 +370,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=252
+				x=299
 				y=108
 				width=19
 				height=19
@@ -386,7 +386,7 @@ composite {
 		}
 		rectangle {
 			object {
-				x=251
+				x=298
 				y=107
 				width=20
 				height=20
@@ -403,7 +403,7 @@ composite {
 }
 text {
 	object {
-		x=281
+		x=328
 		y=118
 		width=20
 		height=14
@@ -413,4 +413,103 @@ text {
 	}
 	textix="KILL"
 	align="horiz. right"
+}
+text {
+	object {
+		x=109
+		y=51
+		width=52
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="PAY"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=162
+		y=51
+		width=52
+		height=14
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="TWR"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=185
+		y=97
+		width=4
+		height=144
+	}
+	"basic attribute" {
+		clr=14
+		style="dash"
+		fill="outline"
+		width=3
+	}
+	points {
+		(187,98)
+		(186,239)
+	}
+}
+rectangle {
+	object {
+		x=180
+		y=113
+		width=15
+		height=118
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		chan="$(IFO):VIS-$(OPTIC)_TWR_MASTERSWITCH"
+	}
+}
+composite {
+	object {
+		x=109
+		y=65
+		width=52
+		height=29
+	}
+	"composite name"=""
+	children {
+		text {
+			object {
+				x=109
+				y=80
+				width=52
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="SWITCH"
+			align="horiz. centered"
+		}
+		text {
+			object {
+				x=109
+				y=65
+				width=52
+				height=14
+			}
+			"basic attribute" {
+				clr=0
+			}
+			textix="MASTER"
+			align="horiz. centered"
+		}
+	}
+	"dynamic attribute" {
+		chan="l"
+	}
 }
