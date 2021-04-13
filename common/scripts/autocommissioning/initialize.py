@@ -59,7 +59,10 @@ def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
         if stage=='IP':
             ezca[chname] = 2000
         else:
-            ezca[chname] = 200
+            if stage=='TM':
+                ezca[chname] = 3000 # for oplev TF measurement
+            else:
+                ezca[chname] = 500
 
     # original
     _dofdict = {'BF':['H1','H2','H3','V1','V2','V3','GAS'],
@@ -75,6 +78,11 @@ def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     for optic in optics:
         fm_v1 = _wdfilts(optic,stage)        
         _copy(fm_v1,optic,stage,func2,_dofdict[stage])
+        
+    # switch on
+    for optic in optics:
+        for dof in _dofdict[stage]:
+            switch_on('VIS-{0}_{1}_{2}_{3}'.format(optic,stage,func2,dof),mask=mask)
     
     # Load filter 
     # feclist = hoge(optics)
