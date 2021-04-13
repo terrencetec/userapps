@@ -155,8 +155,8 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
         raise ValueError('!')
             
     plt.tight_layout()
-    #plt.show()    
     plt.savefig(fname)
+    plt.show()        
     plt.close()
         
 
@@ -213,8 +213,8 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
     ax[1][0].set_ylabel('Phase [Degree]')
     ax[2][0].set_ylabel('Coherence')    
     plt.tight_layout()
-    #plt.show()
     plt.savefig(fname)
+    plt.show()    
     plt.close()        
 
         

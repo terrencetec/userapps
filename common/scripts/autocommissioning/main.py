@@ -1,3 +1,4 @@
+#!/home/controls/miniconda3/envs/miyoconda37/bin/python
 import re
 import sys
 import matplotlib.pyplot as plt
@@ -395,7 +396,7 @@ def main_wd():
     '''
     # Payload part
     optics = all_optics
-    optics = optics - {'PR3','BS'} # [FIXME] please remove me after updating RTM
+    #optics = optics - {'PR3','BS'} # [FIXME] please remove me after updating RTM
     optics = optics - all_typeco # [FIXME] 
     init_wd(optics,'TM','OPLEV_TILT')
     init_wd(optics,'TM','OPLEV_LEN')    

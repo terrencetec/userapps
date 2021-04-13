@@ -31,7 +31,11 @@ def push_diag_reset():
 def push_overflow_reset():
     for fec in feclist:
         ezca['FEC-{0}_OVERFLOW_RESET'.format(fec)] = 1
-        
+
+def push_cfc():
+    for fec in feclist:
+        ezca['FEC-{0}_LOAD_NEW_COEFF'.format(fec)] = 1
+                
 
 def push_wd_reset():
     modellist.remove('ts')
@@ -46,10 +50,11 @@ def push_wd_reset():
             ezca['VIS-{0}_PAY_DACKILL_RESET'.format(model[:-1].upper())] = 1
         else:
             ezca['VIS-{0}_WD_RESET'.format(model.upper())] = 1
-            ezca['VIS-{0}_DACKILL_RESET'.format(model.upper())] = 1
+            ezca['VIS-{0}_PAY_DACKILL_RESET'.format(model.upper())] = 1
         print(model)
             
 if __name__=='__main__':
+    push_cfc()
     push_sdf_reload()
     push_diag_reset()
     push_overflow_reset()

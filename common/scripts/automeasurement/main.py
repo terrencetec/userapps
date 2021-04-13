@@ -2,6 +2,7 @@
 #! coding:utf-8
 import time
 import threading
+import numpy as np
 import subprocess
 import argparse
 import ezca
@@ -193,7 +194,12 @@ def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=F
     for stage in stages:
         for dof in excs:
             # new_fname
-            fname, _now = new_fname(template,optic,stage,dof)
+            fname, _now = new_fname(template,optic,stage,dof)        
+
+            # wait random time
+            _t = np.random.randint(0,10,1)
+            time.sleep(_t) # [sec]
+            print('Wait {0} seconds to avoid confliction of other measurement.'.format(_t))
             
             # run
             if run:
@@ -378,8 +384,8 @@ if __name__=="__main__":
     if args.rundiag:
         # Time estimation
         optics_list = [optics[3*i:3*(i+1)] for i in range(4)]
-        _time = len(excs)*7
-        _time = int(1./float(args.bw)*float(args.ave)*len(excs)/60/2) + 30*len(excs)
+        print(len(excs),float(args.ave),float(args.bw))        
+        _time = int(1./float(args.bw)*float(args.ave)*len(excs)/60)# + int(0.5*len(excs))
         ans = input('It takes {0} minutes. Do you want to measure? [y/N]'.format(_time))
         if ans not in ['y','yes','Y']:
             print('You chose {0}. Stop.'.format(ans))
