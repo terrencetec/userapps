@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=787
-		y=32
+		x=705
+		y=25
 		width=1118
 		height=1003
 	}
@@ -336,34 +336,6 @@ text {
 	textix="DC"
 	align="horiz. centered"
 }
-oval {
-	object {
-		x=380
-		y=36
-		width=50
-		height=50
-	}
-	"basic attribute" {
-		clr=53
-	}
-	"dynamic attribute" {
-		chan="K1:FEC-102_TIME_STRING"
-	}
-}
-oval {
-	object {
-		x=388
-		y=44
-		width=35
-		height=35
-	}
-	"basic attribute" {
-		clr=0
-	}
-	"dynamic attribute" {
-		chan="K1:FEC-102_TIME_STRING"
-	}
-}
 text {
 	object {
 		x=580
@@ -376,35 +348,6 @@ text {
 	}
 	textix="Controller"
 	align="horiz. centered"
-}
-"related display" {
-	object {
-		x=397
-		y=56
-		width=15
-		height=15
-	}
-	display[0] {
-		label="sc"
-		name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COMMISSIONING_OVERVIEW.adl"
-	}
-	clr=20
-	bclr=4
-	visual="invisible"
-}
-oval {
-	object {
-		x=395
-		y=52
-		width=20
-		height=20
-	}
-	"basic attribute" {
-		clr=20
-	}
-	"dynamic attribute" {
-		chan="K1:FEC-102_TIME_STRING"
-	}
 }
 "related display" {
 	object {
@@ -422,8 +365,8 @@ oval {
 }
 "related display" {
 	object {
-		x=121
-		y=871
+		x=6
+		y=897
 		width=70
 		height=20
 	}
@@ -464,4 +407,72 @@ composite {
 	}
 	"composite name"=""
 	"composite file"="/opt/rtcds/userapps/release/vis/common/medm/PEM_SEIS_ALERT_MINI.adl"
+}
+composite {
+	object {
+		x=3
+		y=969
+		width=30
+		height=30
+	}
+	"composite name"=""
+	children {
+		oval {
+			object {
+				x=3
+				y=969
+				width=30
+				height=30
+			}
+			"basic attribute" {
+				clr=53
+			}
+			"dynamic attribute" {
+				chan="K1:FEC-102_TIME_STRING"
+			}
+		}
+		oval {
+			object {
+				x=8
+				y=974
+				width=21
+				height=21
+			}
+			"basic attribute" {
+				clr=0
+			}
+			"dynamic attribute" {
+				chan="K1:FEC-102_TIME_STRING"
+			}
+		}
+		"related display" {
+			object {
+				x=13
+				y=981
+				width=9
+				height=9
+			}
+			display[0] {
+				label="sc"
+				name="/opt/rtcds/userapps/release/vis/common/medm/VIS_COMMISSIONING_OVERVIEW.adl"
+			}
+			clr=20
+			bclr=4
+			visual="invisible"
+		}
+		oval {
+			object {
+				x=12
+				y=979
+				width=12
+				height=12
+			}
+			"basic attribute" {
+				clr=20
+			}
+			"dynamic attribute" {
+				chan="K1:FEC-102_TIME_STRING"
+			}
+		}
+	}
 }
