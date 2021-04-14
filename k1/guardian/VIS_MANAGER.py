@@ -37,9 +37,9 @@ models = {'ETMX':[['VISETMXT',102],['VISETMXP',103]],
           'SRM':[['VISSRMT',75],['VISSRMP',76]],
           'SR2':[['VISSR2T',65],['VISSR2P',66]],
           'SR3':[['VISSR3T',70],['VISSR3P',71]],
-          'PRM':[['VISPRM',55]],
-          'PR2':[['VISPR2',45]],
-          'PR3':[['VISPR3',50]],
+          'PRM':[['VISPRM',55],['VISPRM',56]],
+          'PR2':[['VISPR2',45],['VISPRM',46]],
+          'PR3':[['VISPR3',50],['VISPRM',51]],
           'MCI':[['VISMCI',38]],
           'MCE':[['VISMCE',39]],
           'MCO':[['VISMCO',40]],
@@ -167,13 +167,24 @@ class sdf_check(GuardStateDecorator):
 class gds_check(GuardStateDecorator):
     def pre_exec(self):
         txt = 'GDS error: '
-        flag = True        
+        flag = True
+        errdict={1:'FE',
+                 2:'TIM',
+                 4:'ADC',
+                 8:'DAC',
+                 16:'DAQ',
+                 32:'IPC',
+                 64:'AWG',                 
+                 128:'DK',
+                 256:'EXC',
+                 512:'OVF',
+                 1024:'CFC'}
         for optic in optics:
             for model in models[optic]:
                 name, fec = model
                 err = ezca['FEC-{fec}_STATE_WORD'.format(fec=fec)]
                 if err != 0:
-                    txt += '{0} {1}, '.format(name,int(err))
+                    txt += '{0} {1}, '.format(name,errdict[int(err)])
                     flag = False
                 else:
                     pass
@@ -310,7 +321,7 @@ class ALIGN_XARM(GuardState):
                     nodes['VIS_'+opt]='MISALIGNED' 
             if is_used(opt):
                 someone_use += [opt]                
-        notify('Not managed: {0}'.format(','.join(someone_use)))
+        #notify('Not managed: {0}'.format(','.join(someone_use)))
         return True
 
 class ALIGN_IO(GuardState):
@@ -360,7 +371,7 @@ class ALL_ALIGNED(GuardState):
     def run(self):
         ''' Force to request the ALIGNED state if no one use the suspensions.
         '''
-        notify('Not managed: {0}'.format(','.join(used_optics())))
+        #notify('Not managed: {0}'.format(','.join(used_optics())))
         optics = unused_optics()
         optics = [opt for opt in optics if nodes['VIS_'+opt]!='ALIGNED']
         [manager_request(opt,'ALIGNED') for opt in optics]
@@ -387,7 +398,7 @@ class ALL_SAFE(GuardState):
     def run(self):
         ''' Force to request the SAFE state if no one use the suspensions.
         '''
-        notify('Not managed: {0}'.format(','.join(used_optics()))) 
+        #notify('Not managed: {0}'.format(','.join(used_optics()))) 
         optics = unused_optics()        
         optics = [opt for opt in optics if nodes['VIS_'+opt]!='SAFE']   
         [manager_request(opt,'SAFE') for opt in optics]
