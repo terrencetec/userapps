@@ -29,14 +29,10 @@ nodes = NodeManager(list(map(lambda x:'VIS_'+x,managed_optics)))
 
 # ---------
 # should be moved somewhere.
-models = {'ETMX':[['VISETMXT',102],['VISETMXP',103],['VISETMXMON',104],
-                  ['MODALETMX',105]],
-          'ETMY':[['VISETMYT',107],['VISETMYP',108],['VISETMYMON',109],
-                  ['MODALETMY',110]],
-          'ITMX':[['VISITMXT',92],['VISITMXP',93],['VISITMXMON',94],
-                  ['MODALITMX',95]],
-          'ITMY':[['VISITMYT',97],['VISITMYP',98],['VISITMYMON',99],
-                  ['MODALITMY',100]],
+models = {'ETMX':[['VISETMXT',102],['VISETMXP',103]],
+          'ETMY':[['VISETMYT',107],['VISETMYP',108]],
+          'ITMX':[['VISITMXT',92],['VISITMXP',93]],
+          'ITMY':[['VISITMYT',97],['VISITMYP',98]],
           'BS':[['VISBST',60],['VISBSP',61]],
           'SRM':[['VISSRMT',75],['VISSRMP',76]],
           'SR2':[['VISSR2T',65],['VISSR2P',66]],
