@@ -184,7 +184,10 @@ class gds_check(GuardStateDecorator):
                 name, fec = model
                 err = ezca['FEC-{fec}_STATE_WORD'.format(fec=fec)]
                 if err != 0:
-                    txt += '{0} {1}, '.format(name,errdict[int(err)])
+                    try:
+                        txt += '{0} {1}, '.format(name,errdict[int(err)])
+                    except:
+                        txt += '{0} {1}, '.format(name,int(err))
                     flag = False
                 else:
                     pass
