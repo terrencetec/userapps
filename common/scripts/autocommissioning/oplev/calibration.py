@@ -48,57 +48,47 @@ def calibration(output,show=False):
                          markersize=2,capsize=3)
             #
             _df = df
+            x = _df['Disp'].values            
+            _ave = x.mean()            
+            _x = np.arange(_ave-2,_ave+2,0.05)
+            y = _df[_name[n]+'.mean'].values            
             if dof not in _name[n]:
                 if 'SUM' not in _name[n] and 'CRS' not in _name[n]:
                     func = lambda x,a,b: a+b*x
-                    x = _df['Disp'].values
-                    y = _df[_name[n]+'.mean'].values
                     slope = (y[-1]-y[0])/(x[-1]-x[0])
-                    print(x)
-                    print(slope,(y[-1]-y[0]),(x[-1]-x[0]))
                     ini_param = np.array([slope,0.0])
                     popt, pcov = curve_fit(func,x,y,p0=ini_param)
-                    _x = np.linspace(int(x.min()),int(x.max())+1,100)
-                    a,b = popt
-                    label = '{0:3.2f}*x + {1:3.2f}'.format(b,a)
+                    label = '{0:3.2f}*x + {1:3.2f}'.format(*popt)
                     _ax.plot(_x,func(_x,*popt),label=label)
             if dof in _name[n]:
+                # fit error func
                 func = lambda x,a,b,c,d: a*scipy.special.erf(b*(x-c)) + d
-                x = _df['Disp']
-                # bounds = [[-1, -5, -20, -2],
-                #           [+1, +5, +20, +2]]
-                # popt, pcov = curve_fit(func,x,_df[_name[n]+'.mean'],bounds=bounds)
-                y = _df[_name[n]+'.mean'].values                
                 if (y[-1]-y[0])>0:
                     ini_param = np.array([-1.0,-4,x.mean(),0.0])
                 else:
                     ini_param = np.array([-1.0,+5,x.mean(),0.0])
-
-                print(ini_param)                    
                 popt, pcov = curve_fit(func,x,y,p0=ini_param)
-                print(popt)
                 a,b,c,d = popt
-                _x = np.linspace(int(x.min()),int(x.max())+1,100)
-                #_x = x
-                label = '{0:3.2f}* erf({1:3.2f}(x-{2:3.2f})) + {3:3.2f}'.format(a,b,c,d)
+                label = '{0:3.2f}* erf({1:3.2f}(x-{2:3.2f})) + {3:3.2f}'.format(*popt)
                 _ax.plot(_x,func(_x,*popt),label=label)
+                # fit linear
                 func = lambda x,a,b,c: a*b*(x-c)*2/np.sqrt(np.pi)
                 slope_inv = a*b*2/np.sqrt(np.pi)
                 slope = 1./slope_inv
                 label = '{0:3.2f}*(x-{1:3.2f})'.format(slope_inv,c)
                 _ax.plot(_x,func(_x,a,b,c),label=label)
-                sigma = 1/b*np.sqrt(2)
-                linrange = sigma/2 #?
-                #print('Beam radius is {0:3.2f} [mm]?.'.format(sigma))
+                sigma = 1/(abs(b)*np.sqrt(2))
+                radius = 2*sigma
+                width = 2*radius
+                linrange = sigma/2
+                print('{1}_{2}, Beam width(1/e^2) is {0:3.2f} [mm]?.'.format(width,optic,dof))
                 #print('Linear range is {0:3.2f} [mm]?.'.format(linrange))                
                 _ax.vlines(x=c,ymin=-1,ymax=1,color='black',linestyle='--')                
                 _ax.axvspan(c-linrange,c+linrange,color='gray',alpha=0.3)
                 
             if 'SUM' in _name[n]:
                 func = lambda x,a,b: a+b*x
-                x = _df['Disp']
                 popt, pcov = curve_fit(func,x,_df[_name[n]+'.mean'])
-                _x = np.linspace(int(x.min()),int(x.max())+1,100)            
                 a,b = popt
                 label = '{0:3.2f}*x + {1:3.2f}'.format(b,a)
                 _ax.plot(_x,func(_x,*popt),label=label)   
@@ -125,10 +115,11 @@ def calibration(output,show=False):
     
 if __name__=='__main__':
     #plot('./mco_yaw.txt')
-    calibration('./data/MCO_TM_OPLEV_TILT_YAW.txt',show=True)                
-    calibration('./data/MCI_TM_OPLEV_TILT_PIT.txt',show=True)            
+    calibration('./data/MCO_TM_OPLEV_TILT_YAW.txt',show=True)
+    calibration('./data/MCO_TM_OPLEV_TILT_PIT.txt',show=True)                    
     calibration('./data/MCI_TM_OPLEV_TILT_YAW.txt',show=True)
-    calibration('./data/MCE_TM_OPLEV_TILT_PIT.txt',show=True)
-    calibration('./data/MCE_TM_OPLEV_TILT_YAW.txt',show=True)        
+    calibration('./data/MCI_TM_OPLEV_TILT_PIT.txt',show=True)                
+    calibration('./data/MCE_TM_OPLEV_TILT_YAW.txt',show=True)
+    calibration('./data/MCE_TM_OPLEV_TILT_PIT.txt',show=True)    
     #calibration('mce_yaw.txt')
     #calibration('mce_pit.txt')
