@@ -6,6 +6,11 @@ from dtt2hdf import read_diaggui,DiagAccess
 
 import matplotlib.pyplot as plt
 
+# ----
+import ezca
+ezca = ezca.Ezca(timeout=2)
+# ----
+
 color = ['k','r','g','m','c','b']
 prefix = '/opt/rtcds/userapps/release/vis/common/scripts/automeasurement'
 # ------------------------------------------------------------------------------
@@ -14,17 +19,25 @@ def p(w0,Q):
     p2 = -w0/(2*Q)-1j*np.sqrt((w0)**2-w0**2/(4*Q**2))
     return [p1,p2]
 
-def read_tf(fname,chname_to,chname_from):
+def read_tf(fname,chname_to,chname_from,savetxt=False):
+    '''
+    '''
     try:
         data = DiagAccess(fname)
         _tf = data.xfer(chname_to,chname_from).xfer
         _coh = data.xfer(chname_to,chname_from).coh
-        _omega = data.xfer(chname_to,chname_from).FHz
+        _freq = data.xfer(chname_to,chname_from).FHz
     except:
         raise ValueError('{0} is invalid file. Please open with diaggui and check the measurement result.'.format(fname))
-    return _omega,_tf,_coh
+    
+    if savetxt:
+        data = np.stack([_freq,np.abs(_tf),np.rad2deg(np.angle(_tf)),_coh]).T
+        _fname = fname.replace('xml','dat')
+        np.savetxt(_fname,data,header='freq,abs,phase,coherence')
+    
+    return _freq,_tf,_coh
 
-def get_tf(_from,_to,datetime='current',oltf=False):
+def get_tf(_from,_to,datetime='current',oltf=False,savetxt=False):
     '''
     '''
     if not '_EXC' in _from:
@@ -57,7 +70,7 @@ def get_tf(_from,_to,datetime='current',oltf=False):
     if oltf:
         fname = fname.replace('PLANT','OLTF')
         chname_from = chname_from.replace('{1}_{0}_EXC'.format(dof_exc,test),'DAMP_{0}_IN2'.format(dof_exc))
-    return read_tf(fname,chname_to,chname_from)
+    return read_tf(fname,chname_to,chname_from,savetxt=savetxt)
 
 def blend(lp='high'):
     w0 = 0.5
@@ -99,7 +112,8 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
     if isinstance(ax,np.ndarray) and len(ax)==3:
         if not subtitle=='':
             ax[0].set_title(subtitle)    
-        ax[0].loglog(w,np.abs(tf),style,label=label)
+        hoge = ax[0].loglog(w,np.abs(tf),style,label=label)
+        _color = hoge[0].get_color()
         ax[0].set_ylim(ylim[0],ylim[1])
         ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
                        ,'o',label=label,markersize=2)
@@ -108,8 +122,17 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         ax[1].set_yticks(range(-180,181,90))
         ax[2].set_ylim(0,1)
         ax[2].set_xlim(1e-2,100)
+        # -------
+        # idx = np.where(np.abs(w)<0.5)[0]
+        # _dc = np.mean(np.abs(tf)[idx])
+        # chname = 'VIS-{0}_GAIN'.format(label.replace('OLDAMP','TEST'))
+        # _gain = ezca[chname]
+        # print(label,_gain,'->','{0:3.0f}'.format(_gain/_dc))
+        # #ezca[chname] = '{0:3.0f}'.format(_gain/_dc)
+        # ax[0].hlines(_dc,1e-2,1e0,color=_color,linestyle='--')
+        # -------
         leg = ax[0].legend(loc='lower left',numpoints=1,markerscale=5)
-        [l.set_linewidth(3) for l in leg.legendHandles]
+        [l.set_linewidth(3) for l in leg.legendHandles]        
     elif not isinstance(ax,list):
         ax.loglog(w,np.abs(tf),style,label=label,**kwargs)
         ax.set_ylim(1e-6,100)
@@ -160,7 +183,7 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
     plt.close()
         
 
-def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST',diag='diag'):
+def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST',diag='diag',savetxt=True):
     '''
     '''
     print(optics,stages,dofs,excs,func,test)
@@ -177,9 +200,10 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf)            
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf,savetxt=savetxt)
+                #
                 # plot
-                label = '{0}'.format(optic)
+                label = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
         if datetime=='current':
@@ -196,7 +220,7 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf)            
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf,savetxt=savetxt)
                 # plot
                 label = '{0}'.format(optic)
                 title = '{0}->{1}'.format(exc,dof)

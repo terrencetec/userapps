@@ -54,8 +54,8 @@ def run_diag(fname):
                                      stdout=tmp_out,
                                      stderr=tmp_err)
     print(' - Fnished {0} {1}'.format(fname,ret))                
-    print('Wait 30 second')
-    time.sleep(30)
+    print('Wait 20 second')
+    time.sleep(20)
 
     archive_fname = fname
     current_fname = _fname.split('EXC')[0]+'EXC.xml' # remeove timestamp
@@ -81,7 +81,7 @@ def open_all(optics,stages,funcs,dofs,oltf=False):
         
 def available_optics(optics=all_optics):
     cms = 'VIS-{0}_COMMISH_MESSAGE'
-    ok = [optic for optic in optics if ezca[cms.format(optic)]=='Miyo: SC']
+    ok = [optic for optic in optics if 'SC' in ezca[cms.format(optic)]]
     return ok
 
 def open_LIGOFilter(optic,stage,func,dof):
@@ -164,7 +164,7 @@ def new_fname(template,optic,stage,dof):
     return new_fname, now
 
 # ------------------------------------------------------------------------------    
-def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
+def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01,amps=[5,5,5]):
     ''' Run diaggui xml file which measures the Transfer Function.
     
     This function runs shell command which executes the diaggui xml file for TF
@@ -192,18 +192,18 @@ def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=F
     
     # run diag
     for stage in stages:
-        for dof in excs:
+        for dof,amp in zip(excs,amps):
             # new_fname
             fname, _now = new_fname(template,optic,stage,dof)        
 
             # wait random time
-            _t = np.random.randint(0,10,1)
+            _t = np.random.randint(0,20,1)
             time.sleep(_t) # [sec]
             print('Wait {0} seconds to avoid confliction of other measurement.'.format(_t))
             
             # run
             if run:
-                run_copy(dof,fname,template,optic,stage,excs=excs,run=True,oltf=args.oltf,ave=ave,bw=bw)
+                run_copy(dof,fname,template,optic,stage,run=True,oltf=args.oltf,ave=ave,bw=bw,amp=amp)
                 run_diag(fname)
             else:
                 raise ValueError('!')
@@ -216,7 +216,7 @@ def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=F
 
 # ------------------------------------------------------------------------------
         
-def run_copy(dof,new_fname,template,optic,stage,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01):
+def run_copy(dof,new_fname,template,optic,stage,run=False,oltf=False,ave=5,bw=0.01,amp=5):
     ''' Copy template file to working directory.
 
     This function run shell command which copies template file for TF measurement
@@ -237,11 +237,8 @@ def run_copy(dof,new_fname,template,optic,stage,excs=['L','P','Y'],run=False,olt
         If true, execute shell command. Default is false.
 
     '''    
-    # run command
-    #for dof in excs:
     # new_fname
     _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
-    #fname, _now = new_fname(template,optic,stage,dof)
     fname = new_fname
     # make command
     print('copy {0} -> {1}'.format(prefix+'/template/'+template,fname))
@@ -258,6 +255,7 @@ def run_copy(dof,new_fname,template,optic,stage,excs=['L','P','Y'],run=False,olt
         format(fname,_optic,optic,_stage,stage,_dof,dof)
     cmd += """; sed -i -e 's/<Param Name="Averages" Type="int">5/<Param Name="Averages" Type="int">{1}/' {0}""".format(fname,ave)
     cmd += """; sed -i -e 's/<Param Name="BW" Type="double" Unit="Hz">0.01/<Param Name="BW" Type="double" Unit="Hz">{1}/' {0}""".format(fname,bw)
+    cmd += """; sed -i -e 's/Type="double">34/Type="double">{1}/' {0}""".format(fname,amp) # for amplitude
     
     if oltf:
         cmd += "; sed -i -e 's/{1}_EXC/{2}_EXC/' {0}".\
@@ -270,10 +268,7 @@ def run_copy(dof,new_fname,template,optic,stage,excs=['L','P','Y'],run=False,olt
             format(fname,_dof,dof)            
     # run
     if run:
-        subprocess.run(cmd,shell=True,check=True)
-        if os.path.getsize(fname)<6700: # unuse
-            raise ValueError('{0} is invalid file due to small file size. Please open the file by diaggui.'.format(fname))
-                
+        subprocess.run(cmd,shell=True,check=True)                
 
 # ------------------------------------------------------------------------------
 if __name__=="__main__":
@@ -305,7 +300,9 @@ if __name__=="__main__":
     parser.add_argument('--bw','--bandwidth',default=0.03,
                         help='')
     parser.add_argument('--ave','--average',default=10,
-                        help='')        
+                        help='')
+    parser.add_argument('--amp','--amplitude',nargs='+',default=[5,5],
+                        help='')
     args = parser.parse_args()
     #
     # Arguments
@@ -354,10 +351,16 @@ if __name__=="__main__":
         elif stage=='BF' and not 'GAS' in excs:        
             template = 'PLANT_PRM_BF_TEST_L_EXC.xml'
         elif stage=='TM':
-            if any([ dof in ['H1','H2','H3','H4'] for dof in excs]):
+            if any([ exc in ['H1','H2','H3','H4'] for exc in excs]):
                 template = 'PLANT_MCO_TM_COILOUTF_H1_EXC.xml'
             else:
-                template = 'PLANT_MCO_TM_TEST_P_EXC.xml'
+                template = 'PLANT_MCO_TM_TEST_P_EXC.xml'                
+                # if excs==['P']:
+                #     template = 'PLANT_MCO_TM_TEST_P_EXC.xml'
+                # elif excs==['Y']:
+                #     template = 'PLANT_MCO_TM_TEST_Y_EXC.xml'
+                # else:
+                #     raise ValueError('!')
         else:
             raise ValueError('{0}!'.format(stage))
     else:
@@ -399,7 +402,7 @@ if __name__=="__main__":
         for optic in optics:
             _t = threading.Thread(target=run_tf_measurement,
                                   args=(template,optic,stages),
-                                  kwargs={'run':True,'excs':excs,'ave':args.ave,'bw':args.bw})
+                                  kwargs={'run':True,'excs':excs,'ave':args.ave,'bw':args.bw,'amps':args.amp})
             _t.start()
             t += [_t]
       
@@ -422,7 +425,7 @@ if __name__=="__main__":
                 
         if test=='COILOUTF':
             for dof in dofs:
-                plot(optics,stages,dof,excs,func=func,oltf=args.oltf,test=test,diag='diag')
+                plot(optics,stages,dof,excs,func=func,oltf=args.oltf,test=test,diag='diag',savetxt=True)
         elif test=='TEST':
             plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
             plot_couple(optics,stages,excs,excs,func=func)  
