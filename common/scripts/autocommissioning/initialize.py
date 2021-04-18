@@ -24,7 +24,47 @@ def _wdfilts(optic,stage):
         raise ValueError('!')
     fm_v1 = ff[fmname]
     return fm_v1
+
+def _actmat(optic,stage='TM',func='EUL2COIL'):
+    if optic in ['MCI','MCO']: #klog16157
+        _eul2coil = [[+1,+1,-1],
+                     [+1,-1,-1],
+                     [+1,-1,+1],
+                     [+1,+1,+1]]
+        _lkin2coil =   [[+1,-1],
+                        [-1,-1],
+                        [-1,+1],
+                        [+1,+1]]
+    elif optic in ['MCE']: #klog16157
+        _eul2coil = [[+1,+1,+1],
+                     [+1,-1,+1],
+                     [+1,-1,-1],
+                     [+1,+1,-1]]
+        _lkin2coil =   [[+1,+1],
+                        [-1,+1],
+                        [-1,-1],
+                        [+1,-1]]
+    else:
+        raise ValueError('!')
     
+    return _eul2coil,_lkin2coil
+        
+
+def init_act(optics,stage='TM',func='OSEM'):
+    '''
+    '''        
+    # Init each OpLev values
+    for optic in optics:
+        for row in range(4):
+            for col in range(3):
+                chname = 'VIS-{0}_{1}_EUL2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                ezca[chname] = _actmat(optic,stage,func)[0][row][col] # 0 is for eul2coil
+    for optic in optics:
+        for row in range(4):
+            for col in range(2):
+                chname = 'VIS-{0}_{1}_LKIN2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
+                ezca[chname] = _actmat(optic,stage,func)[1][row][col] # 1 is for lkin2coil
+                
 
 def init_wd(optics,stage='BF',func='WD_AC_BANDLIM_LVDT',mask=None):
     '''

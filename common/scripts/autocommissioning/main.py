@@ -11,7 +11,7 @@ import ezca
 
 #import foton
 
-from initialize import init_oplev, init_osem, init_wd
+from initialize import init_oplev, init_osem, init_wd, init_act
 from diagonalize import diag_oplev
 from utils import all_optics, all_typea, all_typeb, all_typebp, all_typeci, all_typeco
 
@@ -171,30 +171,6 @@ def foton2zpk(zpkstr):
 
 def db(val):
     return 20*np.log10(val)
-
-def init_act(optics,stage='TM',func='OSEM'):
-    '''
-    '''        
-    # Init each OpLev values
-    _eul2coil = [[+1,+1,+1],
-                 [+1,-1,+1],
-                 [+1,-1,-1],
-                 [+1,+1,-1]]
-    _lkin2coil = [[+1,+1],
-                  [-1,+1],
-                  [-1,-1],
-                  [+1,-1]]
-
-    for optic in optics:
-        for row in range(4):
-            for col in range(3):
-                chname = 'VIS-{0}_{1}_EUL2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
-                ezca[chname] = _eul2coil[row][col]
-    for optic in optics:
-        for row in range(4):
-            for col in range(2):
-                chname = 'VIS-{0}_{1}_LKIN2{2}_{3}_{4}'.format(optic,stage,func,row+1,col+1)
-                ezca[chname] = _lkin2coil[row][col]
                             
 
 def all_zpk(fms,active=range(10)):
@@ -413,10 +389,17 @@ def main_wd():
     init_wd(optics,'F2','LVDT')
     init_wd(optics,'F3','LVDT')
     init_wd(optics,'SF','LVDT')    
+
+def main_act():
+    '''
+    '''
+    optics = ['MCE','MCI','MCO']
+    init_act(optics,'TM')    
     
 if __name__=='__main__':
     import argparse
     parser = argparse.ArgumentParser(description='hoge')
+    parser.add_argument('--act',action='store_true')    
     parser.add_argument('--oplev',action='store_true')
     parser.add_argument('--watchdog',action='store_true')    
     parser.add_argument('--osem',action='store_true')
@@ -435,7 +418,8 @@ if __name__=='__main__':
         main_osem()
     if args.watchdog:
         main_wd()
-
+    if args.act:
+        main_act()
         
     # ------------        
     #main1()
@@ -443,7 +427,7 @@ if __name__=='__main__':
     #switch_on('VIS-PRM_IM_OSEMINF_V1',mask=['INPUT','OFFSET','FM1','FM9','OUTPUT','DECIMATION','FM8'])
     #copy_param(chname,['PR2','PR3'])
 
-    if False:
+    if True:
         optics = ['MCE','MCI','MCO']
         #optics = all_typea
         init_act(optics,'TM')
