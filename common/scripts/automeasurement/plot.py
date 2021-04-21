@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 import ezca
 ezca = ezca.Ezca(timeout=2)
 # ----
+import warnings
+warnings.simplefilter('error')
 
 color = ['k','r','g','m','c','b']
 prefix = '/opt/rtcds/userapps/release/vis/common/scripts/automeasurement'
@@ -21,14 +23,21 @@ def p(w0,Q):
 
 def read_tf(fname,chname_to,chname_from,savetxt=False):
     '''
-    '''
+    '''    
     try:
         data = DiagAccess(fname)
         _tf = data.xfer(chname_to,chname_from).xfer
         _coh = data.xfer(chname_to,chname_from).coh
-        _freq = data.xfer(chname_to,chname_from).FHz
-    except:
-        raise ValueError('{0} is invalid file. Please open with diaggui and check the measurement result.'.format(fname))
+        _freq = data.xfer(chname_to,chname_from).FHz                        
+    # except RuntimeWarning:
+    #     #raise ValueError('No data in '+fname+'. Please run measurement again.')
+    #     print('No data in '+fname+'. Please run measurement again.')    
+    except RuntimeWarning:
+        # raise ValueError('{0} is invalid file. Please open with diaggui and '\
+        #                  'check the measurement result.'.format(fname))
+        print('{0} is invalid file. Please open with diaggui and '\
+              'check the measurement result.'.format(fname))    
+    
     
     if savetxt:
         data = np.stack([_freq,np.abs(_tf),np.rad2deg(np.angle(_tf)),_coh]).T
@@ -57,19 +66,20 @@ def get_tf(_from,_to,datetime='current',oltf=False,savetxt=False):
         raise ValueError('!')
 
     if datetime=='current':    
-        fname = prefix+'/current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(optic,test,
-                                                             dof_exc,stage)
+        fname = prefix+'/current/PLANT_{0}_{3}_{1}_{2}_EXC.xml'.format(
+            optic,test,dof_exc,stage)
     else:
-        fname = prefix+'/archive/PLANT_{0}_{3}_{1}_{2}_EXC_{4}.xml'.format(optic,test,
-                                                                     dof_exc,stage,datetime)
+        fname = prefix+'/archive/PLANT_{0}_{3}_{1}_{2}_EXC_{4}.xml'.format(
+            optic,test,dof_exc,stage,datetime)
     # 
-    chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1'
+    chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1_DQ'
     chname_from = 'K1:VIS-{0}_{1}_{3}_{2}_EXC'
     chname_to = chname_to.format(optic2,stage2,func2,dof2)
     chname_from = chname_from.format(optic1,stage1,dof_exc,test)
     if oltf:
         fname = fname.replace('PLANT','OLTF')
-        chname_from = chname_from.replace('{1}_{0}_EXC'.format(dof_exc,test),'DAMP_{0}_IN2'.format(dof_exc))
+        chname_from = chname_from.replace('{1}_{0}_EXC'.format(dof_exc,test)
+                                          ,'DAMP_{0}_IN2'.format(dof_exc))
     return read_tf(fname,chname_to,chname_from,savetxt=savetxt)
 
 def blend(lp='high'):
@@ -138,8 +148,11 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         ax.set_ylim(1e-6,100)
         ax.set_xlim(1e-2,100)
         leg = ax.legend(numpoints=1,markerscale=5)
-    
-def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TEST'):
+
+# ------------------------------------------------------------------------------
+        
+def plot_couple(optics,stages,dofs,excs,func='DAMP',
+                datetime='current',test='TEST'):
     '''
     '''
     stage = stages[0]
@@ -160,14 +173,18 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
                 label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
                 title = ''
                 if exc==dof:
-                    plot_tf(w,tf,coh,ax[i,j],label=label,subtitle=title,linewidth=3,zorder=0)
+                    plot_tf(w,tf,coh,ax[i,j],label=label,
+                            subtitle=title,linewidth=3,zorder=0)
                 else:
-                    plot_tf(w,tf,coh,ax[i,j],label=label,subtitle=title,alpha=0.5)
+                    plot_tf(w,tf,coh,ax[i,j],label=label,
+                            subtitle=title,alpha=0.5)
 
             if datetime=='current':    
-                fname = prefix+'/current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.format(optic,stage,func,dof)
+                fname = prefix+'/current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.\
+                    format(optic,stage,func,dof)
             else:
-                fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.format(optic,stage,func,dof,datetime)        
+                fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.\
+                    format(optic,stage,func,dof,datetime)        
             
     [ax[ncol-1,j].set_xlabel('Frequency [Hz]') for j in range(nrow)]
     if dof in ['L','T','V','GAS']:
@@ -181,9 +198,11 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current',test='TES
     plt.savefig(fname)
     plt.show()        
     plt.close()
-        
 
-def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST',diag='diag',savetxt=True):
+# ------------------------------------------------------------------------------    
+
+def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
+         oltf=False,test='TEST',diag='diag',savetxt=True):
     '''
     '''
     print(optics,stages,dofs,excs,func,test)
@@ -200,16 +219,19 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf,savetxt=savetxt)
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf,\
+                                    savetxt=savetxt)
                 #
                 # plot
                 label = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
         if datetime=='current':
-            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.\
+                format(optic,stage,func,exc)
         else:
-            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.\
+                format(optic,stage,func,exc,datetime)
     elif test=='COILOUTF': # COIL2EUL
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
@@ -220,15 +242,19 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
-                w, tf, coh = get_tf(_in,_out,datetime=datetime,oltf=oltf,savetxt=savetxt)
+                w, tf, coh = get_tf(_in,_out,datetime=datetime,
+                                    oltf=oltf,savetxt=savetxt)
                 # plot
                 label = '{0}'.format(optic)
                 title = '{0}->{1}'.format(exc,dof)
-                plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf,ylim=[1e-7,1e-1])
+                plot_tf(w,tf,coh,ax[:,j],label=label,
+                        subtitle=title,oltf=oltf,ylim=[1e-7,1e-1])
         if datetime=='current':
-            fname = prefix+'/current/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC.png'.format(optic,stage,func,dof)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC.png'.\
+                format(optic,stage,func,dof)
         else:
-            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC_{4}.png'.format(optic,stage,func,dof,datetime)
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_{3}_DIAG_EXC_{4}.png'.\
+                format(optic,stage,func,dof,datetime)
     else: #COIL2SENS
         raise ValueError('!')    
     print(fname)
@@ -239,8 +265,9 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test=
     plt.tight_layout()
     plt.savefig(fname)
     plt.show()    
-    plt.close()        
-
+    plt.close()
+    
+# ------------------------------------------------------------------------------
         
 def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,test='TEST'):
     ''' Plot 
@@ -293,7 +320,8 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,
                 label = '{0}'.format(optic)
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)                
-        fname = prefix+'PLANT_SUS_{1}_{2}_{3}_EXC.png'.format(optic,stage,func,exc)
+        fname = prefix+'PLANT_SUS_{1}_{2}_{3}_EXC.png'.format(optic,
+                                                              stage,func,exc)
     elif excs==dofs and len(stages)==1:
         stage = stages[0]
         fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
@@ -309,9 +337,11 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,
                 title = '{0}->{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title)
         if datetime=='current':
-            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.format(optic,stage,func,exc)
+            fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.\
+                format(optic,stage,func,exc)
         else:
-            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.format(optic,stage,func,exc,datetime)            
+            fname = prefix+'/archive/PLANT_SUS_{1}_{2}_DIAG_EXC_{4}.png'.\
+                format(optic,stage,func,exc,datetime)            
     else:
         raise ValueError('!')    
     print(fname)
@@ -322,6 +352,8 @@ def plot_diag(optics,stages,dofs,excs,func='DAMP',datetime='current',oltf=False,
     plt.tight_layout()
     plt.savefig(fname)
     plt.close()
+
+# ------------------------------------------------------------------------------
     
 if __name__=='__main__':
     optics = ['PRM']
@@ -334,7 +366,7 @@ if __name__=='__main__':
     stages = ['IM']    
     excs = ['L','T','V','R','P','Y']
     dofs = ['L','T','V','R','P','Y']    
-    plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current')    
+    plot_couple(optics,stages,dofs,excs,func='DAMP',datetime='current')
     exit()
     
     stages = ['SF','BF']

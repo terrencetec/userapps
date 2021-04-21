@@ -32,14 +32,16 @@ def run_diag(fname):
         File name of the diaggui xml file.
 
     '''
-    _fname = fname.split('/')[10].replace('.xml','')
-
+    print(fname)        
+    #_fname = fname.split('/')[10].replace('.xml','')
+    _fname = fname.split('/')[-1].replace('.xml','')
+    tmp_fname = '/home/controls/Desktop/'+fname.split('/')[-1]
     if not os.path.exists(fname):
         raise ValueError('{0} does not exist.'.format(fname))
     
     # make command file for execution
     with open(prefix+'/log/tmp_{0}_in'.format(_fname),'w') as f:
-        txt = 'open\nrestore {0}\nrun -w\nsave {0}\nquit\n'.format(fname)
+        txt = 'open\nrestore {0}\nrun -w\nsave {1}\nquit\n'.format(fname,tmp_fname)
         f.write(txt)
     print(' - Run {0}'.format(fname))
     
@@ -47,23 +49,25 @@ def run_diag(fname):
     with open(prefix+'/log/tmp_{0}_in'.format(_fname),'r') as tmp_in:
         with open(prefix+'/log/tmp_{0}_out'.format(_fname),'w') as tmp_out:
             with open(prefix+'/log/tmp_{0}_err'.format(_fname),'w') as tmp_err:
-                ret = subprocess.run('diag',
+                _num = np.random.choice([0,1])
+                ret = subprocess.run('NDSSERVER=k1nds{0}:8088 diag'.format(_num),
                                      shell=True,
                                      check=True,
                                      stdin=tmp_in,
                                      stdout=tmp_out,
                                      stderr=tmp_err)
-    print(' - Fnished {0} {1}'.format(fname,ret))                
-    print('Wait 20 second')
-    time.sleep(20)
+    print(' - Fnished {0} {1}'.format(fname,ret))
+    print('Wait 2 second for calm down')
+    time.sleep(2)
 
-    archive_fname = fname
+    #archive_fname = fname
+    archive_fname = tmp_fname
     current_fname = _fname.split('EXC')[0]+'EXC.xml' # remeove timestamp
     current_fname = prefix + '/current/' + current_fname
-    cmd = 'cp {0} {1}'.format(archive_fname,current_fname)
+    cmd = 'mv {0} {1}'.format(archive_fname,current_fname)
     subprocess.run(cmd,shell=True,check=True)
     print(' -',cmd)
-
+    time.sleep(2)
 
 def open_all(optics,stages,funcs,dofs,oltf=False):
     '''
@@ -163,6 +167,18 @@ def new_fname(template,optic,stage,dof):
     new_fname = get_prefix(stage) + new.replace('.xml','_{0}.xml'.format(now))
     return new_fname, now
 
+def _new_fname(template,optic,stage,dof):
+    '''
+    '''
+    _,_optic,_stage,_,_dof,_ = template.replace('.xml','').split('_')
+    new = template.replace(_optic,optic).replace('_'+_dof+'_','_'+dof+'_')
+    new = new.replace('_'+_dof+'_','_'+dof+'_')
+    new = new.replace('_'+_stage+'_','_'+stage+'_')
+    now = datetime.now().strftime('%Y%m%d%H')
+    new_fname = '/home/controls/Desktop/'+new.replace('.xml','_{0}.xml'.format(now))
+    return new_fname, now
+
+
 # ------------------------------------------------------------------------------    
 def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01,amps=[5,5,5]):
     ''' Run diaggui xml file which measures the Transfer Function.
@@ -194,16 +210,69 @@ def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=F
     for stage in stages:
         for dof,amp in zip(excs,amps):
             # new_fname
-            fname, _now = new_fname(template,optic,stage,dof)        
-
+            fname, _now = new_fname(template,optic,stage,dof)
+            
             # wait random time
-            _t = np.random.randint(0,20,1)
-            time.sleep(_t) # [sec]
-            print('Wait {0} seconds to avoid confliction of other measurement.'.format(_t))
+            _wait = np.random.randint(0,5,1)[0]
+            time.sleep(_wait) # [sec]
+            print('Wait {0} seconds to avoid confliction of other measurement.'.format(_wait))
             
             # run
             if run:
                 run_copy(dof,fname,template,optic,stage,run=True,oltf=args.oltf,ave=ave,bw=bw,amp=amp)
+                time.sleep(3)
+                run_diag(fname)
+            else:
+                raise ValueError('!')
+            
+    # close master_switch
+    if not oltf:
+        close_masterswitch(optic)
+
+    return fname,True
+
+def _run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=False,ave=5,bw=0.01,amps=[5,5,5]):
+    ''' Run diaggui xml file which measures the Transfer Function.
+    
+    This function runs shell command which executes the diaggui xml file for TF
+    measurement. Name of the file is given by  arguments
+
+
+    Parameters
+    ----
+    template: `str`
+        name of the template diaggui file.
+
+    target_optic: `str`
+        optic name that you want to measure
+
+    target_stage: `str`
+        stage name that you want to measure
+
+    Returns
+    ----
+    None
+    '''
+    # Check if measurement is OK.
+    if not is_ready_to_measure(optic):
+        raise ValueError('!')
+    
+    # run diag
+    for stage in stages:
+        for dof,amp in zip(excs,amps):
+            # new_fname
+            fname, _now = new_fname(template,optic,stage,dof)
+            fname, _now = _new_fname(template,optic,stage,dof)            
+            
+            # wait random time
+            _wait = np.random.randint(0,5,1)[0]
+            time.sleep(_wait) # [sec]
+            print('Wait {0} seconds to avoid confliction of other measurement.'.format(_wait))
+            
+            # run
+            if run:
+                run_copy(dof,fname,template,optic,stage,run=True,oltf=args.oltf,ave=ave,bw=bw,amp=amp)
+                #time.sleep(3)
                 run_diag(fname)
             else:
                 raise ValueError('!')
@@ -246,7 +315,9 @@ def run_copy(dof,new_fname,template,optic,stage,run=False,oltf=False,ave=5,bw=0.
     cmd += "; sed -i -e 's/{1}_{3}_DAMP/{2}_{4}_DAMP/' {0}".\
         format(fname,_optic,optic,_stage,stage)
     cmd += "; sed -i -e 's/{1}_{3}_OLDAMP/{2}_{4}_OLDAMP/' {0}".\
-        format(fname,_optic,optic,_stage,stage)        
+        format(fname,_optic,optic,_stage,stage)
+    cmd += "; sed -i -e 's/{1}_{3}_MASTER_OUT_{5}/{2}_{4}_MASTER_OUT_{6}/' {0}".\
+        format(fname,_optic,optic,_stage,stage,_dof,dof)
     cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
         format(fname,_optic,optic,_stage,stage,_dof,dof)
     cmd += "; sed -i -e 's/{1}_{3}_COILOUTF_{5}_EXC/{2}_{4}_COILOUTF_{6}_EXC/' {0}".\
@@ -256,7 +327,6 @@ def run_copy(dof,new_fname,template,optic,stage,run=False,oltf=False,ave=5,bw=0.
     cmd += """; sed -i -e 's/<Param Name="Averages" Type="int">5/<Param Name="Averages" Type="int">{1}/' {0}""".format(fname,ave)
     cmd += """; sed -i -e 's/<Param Name="BW" Type="double" Unit="Hz">0.01/<Param Name="BW" Type="double" Unit="Hz">{1}/' {0}""".format(fname,bw)
     cmd += """; sed -i -e 's/Type="double">34/Type="double">{1}/' {0}""".format(fname,amp) # for amplitude
-    
     if oltf:
         cmd += "; sed -i -e 's/{1}_EXC/{2}_EXC/' {0}".\
             format(fname,_dof,dof)
@@ -268,7 +338,9 @@ def run_copy(dof,new_fname,template,optic,stage,run=False,oltf=False,ave=5,bw=0.
             format(fname,_dof,dof)            
     # run
     if run:
-        subprocess.run(cmd,shell=True,check=True)                
+        subprocess.run(cmd,shell=True,check=True)
+        if os.path.getsize(fname)<6700: # unuse
+            raise ValueError('{0} is invalid file due to small file size. Please open the file by diaggui.'.format(fname))
 
 # ------------------------------------------------------------------------------
 if __name__=="__main__":
@@ -388,7 +460,7 @@ if __name__=="__main__":
         # Time estimation
         optics_list = [optics[3*i:3*(i+1)] for i in range(4)]
         print(len(excs),float(args.ave),float(args.bw))        
-        _time = int(1./float(args.bw)*float(args.ave)*len(excs)/60)# + int(0.5*len(excs))
+        _time = int(1./float(args.bw)*float(args.ave)*len(excs)/60/2)# + int(0.5*len(excs))
         ans = input('It takes {0} minutes. Do you want to measure? [y/N]'.format(_time))
         if ans not in ['y','yes','Y']:
             print('You chose {0}. Stop.'.format(ans))
@@ -400,6 +472,8 @@ if __name__=="__main__":
         # Execution
         t = []                    
         for optic in optics:
+            # kwargs={'run':True,'excs':excs,'ave':args.ave,'bw':args.bw,'amps':args.amp}
+            # _run_tf_measurement(template,optic,stages,**kwargs)
             _t = threading.Thread(target=run_tf_measurement,
                                   args=(template,optic,stages),
                                   kwargs={'run':True,'excs':excs,'ave':args.ave,'bw':args.bw,'amps':args.amp})
