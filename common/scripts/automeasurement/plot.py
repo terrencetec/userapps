@@ -24,7 +24,8 @@ def p(w0,Q):
 def read_tf(fname,chname_to,chname_from,savetxt=False):
     '''
     '''    
-    try:
+    try:        
+        print(fname,chname_to,chname_from)
         data = DiagAccess(fname)
         _tf = data.xfer(chname_to,chname_from).xfer
         _coh = data.xfer(chname_to,chname_from).coh
@@ -33,14 +34,14 @@ def read_tf(fname,chname_to,chname_from,savetxt=False):
     #     #raise ValueError('No data in '+fname+'. Please run measurement again.')
     #     print('No data in '+fname+'. Please run measurement again.')    
     except RuntimeWarning:
-        # raise ValueError('{0} is invalid file. Please open with diaggui and '\
-        #                  'check the measurement result.'.format(fname))
-        print('{0} is invalid file. Please open with diaggui and '\
-              'check the measurement result.'.format(fname))    
+        raise ValueError('{0} is invalid file. Please open with diaggui and '\
+                         'check the measurement result.'.format(fname))
+        # print('{0} is invalid file. Please open with diaggui and '\
+        #       'check the measurement result.'.format(fname))    
     
     
     if savetxt:
-        data = np.stack([_freq,np.abs(_tf),np.rad2deg(np.angle(_tf)),_coh]).T
+        data = np.stack([_freq,np.abs(_tf),np.rad2deg(np.angle(_tf))*-1,_coh]).T
         _fname = fname.replace('xml','dat')
         np.savetxt(_fname,data,header='freq,abs,phase,coherence')
     
@@ -73,7 +74,8 @@ def get_tf(_from,_to,datetime='current',oltf=False,savetxt=False):
             optic,test,dof_exc,stage,datetime)
     # 
     chname_to = 'K1:VIS-{0}_{1}_{2}_{3}_IN1_DQ'
-    chname_from = 'K1:VIS-{0}_{1}_{3}_{2}_EXC'
+    #chname_from = 'K1:VIS-{0}_{1}_{3}_{2}_EXC' # FIXME 
+    chname_from = 'K1:VIS-{0}_{1}_{3}_{2}_OUT'  # This modification is only MCO_TEST_P template. Others should use _EXC.
     chname_to = chname_to.format(optic2,stage2,func2,dof2)
     chname_from = chname_from.format(optic1,stage1,dof_exc,test)
     if oltf:
@@ -116,7 +118,7 @@ def get_fitted_tf(omega_measured,tf_measured,coh_measured,_exc,dof):
     h = np.squeeze(h)
     return _w,h
 
-def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e-3,1e1],**kwargs):
+def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e-6,1e0],oltf=False,**kwargs):
     '''
     '''
     if isinstance(ax,np.ndarray) and len(ax)==3:
@@ -125,13 +127,13 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         hoge = ax[0].loglog(w,np.abs(tf),style,label=label,**kwargs)
         _color = hoge[0].get_color()
         ax[0].set_ylim(ylim[0],ylim[1])
-        ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
-                       ,'o',label=label,markersize=2,**kwargs)
+        ax[1].semilogx(w,np.rad2deg(np.angle(tf))*-1, # -1 is come from bug in dtt2hdf
+                       'o',label=label,markersize=2,**kwargs)
         ax[2].semilogx(w,coh,style,label=label,**kwargs)
         ax[1].set_ylim(-180,180)
         ax[1].set_yticks(range(-180,181,90))
         ax[2].set_ylim(0,1)
-        ax[2].set_xlim(1e-2,100)
+        ax[2].set_xlim(1e-2,50)
         # -------
         # idx = np.where(np.abs(w)<0.5)[0]
         # _dc = np.mean(np.abs(tf)[idx])
@@ -141,12 +143,12 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         # #ezca[chname] = '{0:3.0f}'.format(_gain/_dc)
         # ax[0].hlines(_dc,1e-2,1e0,color=_color,linestyle='--')
         # -------
-        leg = ax[0].legend(loc='lower left',numpoints=1,markerscale=5)
+        leg = ax[0].legend(loc='upper left',numpoints=1,markerscale=5)
         [l.set_linewidth(3) for l in leg.legendHandles]        
     elif not isinstance(ax,list):
         ax.loglog(w,np.abs(tf),style,label=label,**kwargs)
         ax.set_ylim(1e-6,100)
-        ax.set_xlim(1e-2,100)
+        ax.set_xlim(1e-2,50)
         leg = ax.legend(numpoints=1,markerscale=5)
 
 # ------------------------------------------------------------------------------
@@ -196,9 +198,9 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
         #     raise ValueError('!')
         [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
         if dof in ['L','T','V','GAS']:
-            ax[0][0].set_ylabel('Magnitude\n[um/um]')            
+            ax[0][0].set_ylabel('Magnitude\n[um/count]')            
         elif dof in ['R','P','Y']:
-            ax[0][0].set_ylabel('Magnitude [urad/urad]')
+            ax[0][0].set_ylabel('Magnitude [urad/count]')
         else:
             raise ValueError('!')        
         ax[1][0].set_ylabel('Phase [Degree]')
@@ -268,7 +270,13 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
         raise ValueError('!')    
     print(fname)
     [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
-    ax[0][0].set_ylabel('Magnitude\n[um/count, urad/count]')
+
+    if dof in ['L','T','V','GAS']:
+        ax[0][0].set_ylabel('Magnitude\n[um/count]')            
+    elif dof in ['R','P','Y']:
+        ax[0][0].set_ylabel('Magnitude [urad/count]')
+    else:
+        raise ValueError('!')            
     ax[1][0].set_ylabel('Phase [Degree]')
     ax[2][0].set_ylabel('Coherence')    
     plt.tight_layout()

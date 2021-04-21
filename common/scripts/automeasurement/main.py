@@ -57,8 +57,8 @@ def run_diag(fname):
                                      stdout=tmp_out,
                                      stderr=tmp_err)
     print(' - Fnished {0} {1}'.format(fname,ret))
-    print('Wait 2 second for calm down')
-    time.sleep(2)
+    print('Wait 10 second for calm down')
+    time.sleep(10)
 
     #archive_fname = fname
     archive_fname = tmp_fname
@@ -67,7 +67,7 @@ def run_diag(fname):
     cmd = 'mv {0} {1}'.format(archive_fname,current_fname)
     subprocess.run(cmd,shell=True,check=True)
     print(' -',cmd)
-    time.sleep(2)
+    #time.sleep(2)
 
 def open_all(optics,stages,funcs,dofs,oltf=False):
     '''
@@ -213,14 +213,14 @@ def run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=F
             fname, _now = new_fname(template,optic,stage,dof)
             
             # wait random time
-            _wait = np.random.randint(0,5,1)[0]
-            time.sleep(_wait) # [sec]
-            print('Wait {0} seconds to avoid confliction of other measurement.'.format(_wait))
+            #_wait = np.random.randint(0,5,1)[0]
+            #time.sleep(_wait) # [sec]
+            #print('Wait {0} seconds to avoid confliction of other measurement.'.format(_wait))
             
             # run
             if run:
                 run_copy(dof,fname,template,optic,stage,run=True,oltf=args.oltf,ave=ave,bw=bw,amp=amp)
-                time.sleep(3)
+                #time.sleep(3)
                 run_diag(fname)
             else:
                 raise ValueError('!')
@@ -265,8 +265,8 @@ def _run_tf_measurement(template,optic,stages,excs=['L','P','Y'],run=False,oltf=
             fname, _now = _new_fname(template,optic,stage,dof)            
             
             # wait random time
-            _wait = np.random.randint(0,5,1)[0]
-            time.sleep(_wait) # [sec]
+            #_wait = np.random.randint(0,5,1)[0]
+            #time.sleep(_wait) # [sec]
             print('Wait {0} seconds to avoid confliction of other measurement.'.format(_wait))
             
             # run
@@ -320,13 +320,22 @@ def run_copy(dof,new_fname,template,optic,stage,run=False,oltf=False,ave=5,bw=0.
         format(fname,_optic,optic,_stage,stage,_dof,dof)
     cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_EXC/{2}_{4}_TEST_{6}_EXC/' {0}".\
         format(fname,_optic,optic,_stage,stage,_dof,dof)
+    cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_OUT/{2}_{4}_TEST_{6}_OUT/' {0}".\
+        format(fname,_optic,optic,_stage,stage,_dof,dof)
+    cmd += "; sed -i -e 's/{1}_{3}_TEST_{5}_IN2/{2}_{4}_TEST_{6}_IN2/' {0}".\
+        format(fname,_optic,optic,_stage,stage,_dof,dof)
+    cmd += "; sed -i -e 's/{1}_{3}_COILOUTF_{5}_OUT/{2}_{4}_COILOUTF_{6}_OUT/' {0}".\
+        format(fname,_optic,optic,_stage,stage,_dof,dof)
+    cmd += "; sed -i -e 's/{1}_{3}_COILOUTF_{5}_IN2/{2}_{4}_COILOUTF_{6}_IN2/' {0}".\
+        format(fname,_optic,optic,_stage,stage,_dof,dof)    
     cmd += "; sed -i -e 's/{1}_{3}_COILOUTF_{5}_EXC/{2}_{4}_COILOUTF_{6}_EXC/' {0}".\
         format(fname,_optic,optic,_stage,stage,_dof,dof)        
     cmd += "; sed -i -e 's/{1}_{3}_{5}/{2}_{4}_{6}/' {0}".\
         format(fname,_optic,optic,_stage,stage,_dof,dof)
     cmd += """; sed -i -e 's/<Param Name="Averages" Type="int">5/<Param Name="Averages" Type="int">{1}/' {0}""".format(fname,ave)
-    cmd += """; sed -i -e 's/<Param Name="BW" Type="double" Unit="Hz">0.01/<Param Name="BW" Type="double" Unit="Hz">{1}/' {0}""".format(fname,bw)
+    cmd += """; sed -i -e 's/<Param Name="BW" Type="double" Unit="Hz">0.1/<Param Name="BW" Type="double" Unit="Hz">{1}/' {0}""".format(fname,bw)
     cmd += """; sed -i -e 's/Type="double">34/Type="double">{1}/' {0}""".format(fname,amp) # for amplitude
+    
     if oltf:
         cmd += "; sed -i -e 's/{1}_EXC/{2}_EXC/' {0}".\
             format(fname,_dof,dof)
@@ -501,5 +510,5 @@ if __name__=="__main__":
             for dof in dofs:
                 plot(optics,stages,dof,excs,func=func,oltf=args.oltf,test=test,diag='diag',savetxt=True)
         elif test=='TEST':
-            #plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
+            plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
             plot_couple(optics,stages,excs,excs,func=func)  
