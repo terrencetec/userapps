@@ -501,5 +501,5 @@ if __name__=="__main__":
             for dof in dofs:
                 plot(optics,stages,dof,excs,func=func,oltf=args.oltf,test=test,diag='diag',savetxt=True)
         elif test=='TEST':
-            plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
+            #plot(optics,stages,dofs,excs,func=func,oltf=args.oltf,test=test,diag='diag')
             plot_couple(optics,stages,excs,excs,func=func)  

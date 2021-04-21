@@ -122,12 +122,12 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
     if isinstance(ax,np.ndarray) and len(ax)==3:
         if not subtitle=='':
             ax[0].set_title(subtitle)    
-        hoge = ax[0].loglog(w,np.abs(tf),style,label=label)
+        hoge = ax[0].loglog(w,np.abs(tf),style,label=label,**kwargs)
         _color = hoge[0].get_color()
         ax[0].set_ylim(ylim[0],ylim[1])
         ax[1].semilogx(w,np.rad2deg(np.angle(tf))#*-1, # -1 is come from bug in dtt2hdf
-                       ,'o',label=label,markersize=2)
-        ax[2].semilogx(w,coh,style,label=label)
+                       ,'o',label=label,markersize=2,**kwargs)
+        ax[2].semilogx(w,coh,style,label=label,**kwargs)
         ax[1].set_ylim(-180,180)
         ax[1].set_yticks(range(-180,181,90))
         ax[2].set_ylim(0,1)
@@ -159,12 +159,13 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
     optic = optics[0]
     nrow = len(optics)
     ncol = len(dofs)
-    fig,ax = plt.subplots(ncol,nrow,figsize=(14,8),sharex=True,sharey='row')    
-    for j,optic in enumerate(optics):
-        for i,dof in enumerate(dofs):
-            #fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
-            ax[i,j].set_title('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
-            for k,exc in enumerate(excs): # i: plot same figure
+    ncol = 3
+    for k,dof in enumerate(dofs):
+        fig,ax = plt.subplots(ncol,nrow,figsize=(14,8),sharex=True,sharey='row')
+        for j,optic in enumerate(optics):
+            for i,exc in enumerate(excs): # i: plot same figure
+                #fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
+                ax[0,j].set_title('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))                
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
@@ -172,11 +173,11 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
                 # plot
                 label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
                 title = ''
-                if exc==dof:
-                    plot_tf(w,tf,coh,ax[i,j],label=label,
+                if exc==dof: # plot with bold line
+                    plot_tf(w,tf,coh,ax[:,j],label=label,
                             subtitle=title,linewidth=3,zorder=0)
                 else:
-                    plot_tf(w,tf,coh,ax[i,j],label=label,
+                    plot_tf(w,tf,coh,ax[:,j],label=label,
                             subtitle=title,alpha=0.5)
 
             if datetime=='current':    
@@ -186,18 +187,26 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
                 fname = prefix+'/archive/PLANT_{0}_{1}_{2}_{3}_COUPLE_{4}.png'.\
                     format(optic,stage,func,dof,datetime)        
             
-    [ax[ncol-1,j].set_xlabel('Frequency [Hz]') for j in range(nrow)]
-    if dof in ['L','T','V','GAS']:
-        [ax[i,0].set_ylabel('Magnitude [um/count]') for i in range(ncol)]
-    elif dof in ['R','P','Y']:
-        [ax[i,0].set_ylabel('Magnitude [urad/count]') for i in range(ncol)]        
-    else:
-        raise ValueError('!')
-            
-    plt.tight_layout()
-    plt.savefig(fname)
-    plt.show()        
-    plt.close()
+        # [ax[ncol-1,j].set_xlabel('Frequency [Hz]') for j in range(nrow)]
+        # if dof in ['L','T','V','GAS']:
+        #     [ax[i,0].set_ylabel('Magnitude [um/count]') for i in range(ncol)]
+        # elif dof in ['R','P','Y']:
+        #     [ax[i,0].set_ylabel('Magnitude [urad/count]') for i in range(ncol)]        
+        # else:
+        #     raise ValueError('!')
+        [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
+        if dof in ['L','T','V','GAS']:
+            ax[0][0].set_ylabel('Magnitude\n[um/um]')            
+        elif dof in ['R','P','Y']:
+            ax[0][0].set_ylabel('Magnitude [urad/urad]')
+        else:
+            raise ValueError('!')        
+        ax[1][0].set_ylabel('Phase [Degree]')
+        ax[2][0].set_ylabel('Coherence')            
+        plt.tight_layout()
+        plt.savefig(fname)
+        plt.show()        
+        plt.close()
 
 # ------------------------------------------------------------------------------    
 
