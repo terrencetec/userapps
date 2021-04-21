@@ -123,7 +123,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
     '''
     if isinstance(ax,np.ndarray) and len(ax)==3:
         if not subtitle=='':
-            ax[0].set_title(subtitle)    
+            ax[0].set_title(subtitle,fontsize=20)    
         hoge = ax[0].loglog(w,np.abs(tf),style,label=label,**kwargs)
         _color = hoge[0].get_color()
         ax[0].set_ylim(ylim[0],ylim[1])
@@ -143,7 +143,7 @@ def plot_tf(w,tf,coh,ax=None,label='None',style='-',subtitle='No title',ylim=[1e
         # #ezca[chname] = '{0:3.0f}'.format(_gain/_dc)
         # ax[0].hlines(_dc,1e-2,1e0,color=_color,linestyle='--')
         # -------
-        leg = ax[0].legend(loc='upper left',numpoints=1,markerscale=5)
+        leg = ax[0].legend(loc='upper left',numpoints=1,markerscale=5,fontsize=15)
         [l.set_linewidth(3) for l in leg.legendHandles]        
     elif not isinstance(ax,list):
         ax.loglog(w,np.abs(tf),style,label=label,**kwargs)
@@ -161,26 +161,27 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
     optic = optics[0]
     nrow = len(optics)
     ncol = len(dofs)
-    ncol = 3
+    ncol = 3    
     for k,dof in enumerate(dofs):
         fig,ax = plt.subplots(ncol,nrow,figsize=(14,8),sharex=True,sharey='row')
+        plt.subplots_adjust(wspace=0.1, hspace=0.1)        
         for j,optic in enumerate(optics):
             for i,exc in enumerate(excs): # i: plot same figure
-                #fig.suptitle('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))
-                ax[0,j].set_title('Coupling TFs to {0}_{1}_{2}_{3}'.format(optic,stage,func, dof))                
+                fig.suptitle('{1}_{3} Coupling'.format(optic,stage,func, dof),fontsize=25)
+                ax[0,j].set_title('{0}'.format(optic,stage,func, dof),fontsize=20)                
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
                 w, tf, coh = get_tf(_in,_out,datetime=datetime)
                 # plot
-                label = '{0}{1} -> {0}{2}'.format(stage,exc,dof)
+                label = '{1}2{2}'.format(stage,exc,dof)
                 title = ''
                 if exc==dof: # plot with bold line
                     plot_tf(w,tf,coh,ax[:,j],label=label,
                             subtitle=title,linewidth=3,zorder=0)
                 else:
                     plot_tf(w,tf,coh,ax[:,j],label=label,
-                            subtitle=title,alpha=0.5)
+                            subtitle=title,alpha=0.8)
 
             if datetime=='current':    
                 fname = prefix+'/current/PLANT_{0}_{1}_{2}_{3}_COUPLE.png'.\
@@ -196,15 +197,16 @@ def plot_couple(optics,stages,dofs,excs,func='DAMP',
         #     [ax[i,0].set_ylabel('Magnitude [urad/count]') for i in range(ncol)]        
         # else:
         #     raise ValueError('!')
-        [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
+        [ax[2][k].set_xlabel('Frequency [Hz]',fontsize=15) for k in range(nrow)]
         if dof in ['L','T','V','GAS']:
-            ax[0][0].set_ylabel('Magnitude\n[um/count]')            
+            ax[0][0].set_ylabel('Magnitude\n[um/count]',fontsize=15)            
         elif dof in ['R','P','Y']:
-            ax[0][0].set_ylabel('Magnitude [urad/count]')
+            ax[0][0].set_ylabel('Magnitude\n[urad/count]',fontsize=15)
         else:
             raise ValueError('!')        
-        ax[1][0].set_ylabel('Phase [Degree]')
-        ax[2][0].set_ylabel('Coherence')            
+        ax[1][0].set_ylabel('Phase\n[Degree]',fontsize=15)
+        ax[2][0].set_ylabel('Coherence',fontsize=15)
+        [ax[i][j].tick_params(labelsize=12) for i in range(ncol) for j in range(nrow)]        
         plt.tight_layout()
         plt.savefig(fname)
         plt.show()        
@@ -220,10 +222,11 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
     
     nrow = max(len(dofs),len(excs),3)
     fig,ax = plt.subplots(3,nrow,figsize=(14,8),sharex=True,sharey='row')
+    plt.subplots_adjust(wspace=0.1, hspace=0.1)
     #
     if excs==dofs and len(stages)==1:#EUL2EUL    
         stage = stages[0]
-        fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
+        fig.suptitle('{0}'.format(stage,func),fontsize=25)
         for j,dof in enumerate(dofs): # j: plot other figure
             for i,optic in enumerate(optics): # i: plot same figure
                 exc = dof
@@ -234,8 +237,8 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
                                     savetxt=savetxt)
                 #
                 # plot
-                label = '{0}_{1}_{2}_{3}'.format(optic,stage,func,dof)
-                title = '{0}->{1}'.format(exc,dof)
+                label = '{0}'.format(optic,stage,func,dof)
+                title = '{0}2{1}'.format(exc,dof)
                 plot_tf(w,tf,coh,ax[:,j],label=label,subtitle=title,oltf=oltf)
         if datetime=='current':
             fname = prefix+'/current/PLANT_SUS_{1}_{2}_DIAG_EXC.png'.\
@@ -245,11 +248,11 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
                 format(optic,stage,func,exc,datetime)
     elif test=='COILOUTF': # COIL2EUL
         stage = stages[0]
-        fig.suptitle('{0} {1} DIAG EXC'.format(stage,func))
+        dof = dofs[0]        
+        fig.suptitle('Coil to {2}'.format(stage,func,dof),fontsize=25)
         for j,exc in enumerate(excs): # j: plot other figure            
             for i,optic in enumerate(optics): # i: plot same figure
                 #for exc in excs:
-                dof = dofs[0]
                 # get_data
                 _in = '{0}_{1}_{3}_{2}_EXC'.format(optic,stage,exc,test)
                 _out = '{0}_{1}_{2}_{3}_IN1'.format(optic,stage,func,dof)
@@ -269,17 +272,18 @@ def plot(optics,stages,dofs,excs,func='DAMP',datetime='current',
     else: #COIL2SENS
         raise ValueError('!')    
     print(fname)
-    [ax[2][k].set_xlabel('Frequency [Hz]') for k in range(nrow)]
+    [ax[2][k].set_xlabel('Frequency [Hz]',fontsize=15) for k in range(nrow)]
 
     if dof in ['L','T','V','GAS']:
-        ax[0][0].set_ylabel('Magnitude\n[um/count]')            
+        ax[0][0].set_ylabel('Magnitude\n[um/count]',fontsize=15)
     elif dof in ['R','P','Y']:
-        ax[0][0].set_ylabel('Magnitude [urad/count]')
+        ax[0][0].set_ylabel('Magnitude\n[urad/count]',fontsize=15)
     else:
         raise ValueError('!')            
-    ax[1][0].set_ylabel('Phase [Degree]')
-    ax[2][0].set_ylabel('Coherence')    
-    plt.tight_layout()
+    ax[1][0].set_ylabel('Phase\n[Degree]',fontsize=15)
+    ax[2][0].set_ylabel('Coherence',fontsize=15)
+    [ax[i][j].tick_params(labelsize=12) for i in range(3) for j in range(nrow)]
+    #plt.tight_layout()
     plt.savefig(fname)
     plt.show()    
     plt.close()
